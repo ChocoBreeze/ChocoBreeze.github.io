@@ -14,3 +14,6 @@ title: "Welcome to My GitHub Page"
 {% for post in site.posts %}
 - [{{ post.title }}]({{ post.url }}) - {{ post.date | date: "%Y-%m-%d" }}
 {% endfor %}
+
+## ..
+확인용
