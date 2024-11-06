@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Java Basics"
-date: 2024-11-08
+date: 2024-11-07
 categories: [Java]
 tags: [Introduction, Java, Basics]
 ---

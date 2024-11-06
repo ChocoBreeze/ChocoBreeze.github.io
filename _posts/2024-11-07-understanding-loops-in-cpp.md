@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Understanding Loops in C++"
-date: 2024-11-09
+date: 2024-11-07
 categories: [C++]
 tags: [Loops, Beginner, Tutorial]
 ---
