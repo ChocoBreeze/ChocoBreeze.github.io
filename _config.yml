@@ -1,26 +1,7 @@
-# 기본 사이트 설정
 title: ChocoBreeze Blog
 description: Welcome to my GitHub Pages blog
-url: "https://chocobreeze.github.io/"
+url: "https://chocobreeze.github.io/"  # 본인의 GitHub Pages URL로 수정
+remote_theme: lorepirri/cayman-blog
 
-# 테마 설정
-remote_theme: mmistakes/minimal-mistakes@4.24.0
-
-# 네비게이션 메뉴 설정 (필요시 사용)
-navigation:
-  - title: "Home"
-    url: "/"
-  - title: "Categories"
-    url: "/categories/"
-  - title: "About"
-    url: "/about/"
-
-# 저자 설정
-author:
-  name: ChocoBreeze
-  email: your-email@example.com
-
-# 소셜 아이콘 설정
-social:
-  twitter: your_twitter_handle
-  github: ChocoBreeze
+author: ChocoBreeze
+show_downloads: true  # GitHub 저장소 다운로드 버튼을 보여줄지 여부
