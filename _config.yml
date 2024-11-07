@@ -4,10 +4,7 @@ description: Welcome to my GitHub Pages blog
 url: "https://chocobreeze.github.io/"
 
 # 테마 설정
-remote_theme: mmistakes/minimal-mistakes
-
-# 사이트의 로고 이미지 및 기본 옵션 설정
-logo: "/assets/images/logo.png"
+remote_theme: mmistakes/minimal-mistakes@4.24.0
 
 # 네비게이션 메뉴 설정 (필요시 사용)
 navigation:
