@@ -15,5 +15,10 @@ title: "Welcome to My GitHub Page"
 - [{{ post.title }}]({{ post.url }}) - {{ post.date | date: "%Y-%m-%d" }}
 {% endfor %}
 
+## Categories
+{% for category in site.categories %}
+- [{{ category[0] }}]({{ site.baseurl }}/categories/{{ category[0]]}})
+{% endfor %}
+
 ## ..
 확인용
