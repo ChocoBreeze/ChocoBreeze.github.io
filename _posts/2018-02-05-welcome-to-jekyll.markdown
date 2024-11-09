@@ -2,7 +2,7 @@
 layout: post
 title: "Welcome to Jekyll!"
 date: 2018-02-05 15:13:18 +0200
-image: 12.jpg
+image: 3.jpg
 tags: [jekyll, docs]
 categories: jekyll
 ---
@@ -25,3 +25,4 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
 [jekyll-talk]: https://talk.jekyllrb.com/
+
