@@ -34,8 +34,16 @@ disqus-identifier: # Add your shortname for Disqus Comment. For example mr-brown
 # Disqus는 웹사이트에 댓글 기능을 추가하는 외부 서비스입니다.
 # 일단은 하지 말자.
 
+# 추가
+highlighter: rouge
+
 # Build settings
 markdown: kramdown
+
+kramdown:
+  syntax_highlighter_opts:
+    inline_theme: github
+
 permalink: /:year/:month/:day/:title/
 plugins:
   - jekyll-paginate
