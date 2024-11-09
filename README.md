@@ -1,2 +1,2 @@
-# ChocoBreeze.github.io
-GitHub Blog
+# README
+블로그 글 쓰기
