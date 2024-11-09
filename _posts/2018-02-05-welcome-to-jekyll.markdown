@@ -2,7 +2,7 @@
 layout: post
 title: "Welcome to Jekyll!"
 date: 2018-02-05 15:13:18 +0200
-image: 3.jpg
+image: legacy/12.jpg
 tags: [jekyll, docs]
 categories: jekyll
 ---
