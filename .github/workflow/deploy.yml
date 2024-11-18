@@ -1,0 +1,33 @@
+name: Jekyll Build and Deploy
+
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 푸시할 때마다 배포
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1'  # Jekyll을 위해 호환 가능한 버전 설정
+
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install
+
+    - name: Build the site
+      run: bundle exec jekyll build --trace
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site  # Jekyll 빌드 결과물이 들어있는 디렉터리
