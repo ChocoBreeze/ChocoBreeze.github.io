@@ -5,7 +5,11 @@
       "category" : "",
       "tags"     : "Problem_Solving",
       "url"      : "/2024/11/19/2461.-Maximum-Sum-of-Distinct-Subarrays-With-Length-K/",
+<<<<<<< HEAD
       "date"     : "2024-11-19 20:00:00 +0900"
+=======
+      "date"     : "2024-11-19 11:00:00 +0000"
+>>>>>>> c99622043dc48f601efe78954c8f1507ed28d04f
     } ,
   
     {
@@ -13,7 +17,7 @@
       "category" : "",
       "tags"     : "Problem_Solving",
       "url"      : "/2024/11/18/1652.-Defuse-the-Bomb/",
-      "date"     : "2024-11-18 20:00:00 +0900"
+      "date"     : "2024-11-18 11:00:00 +0000"
     } ,
   
     {
@@ -21,7 +25,7 @@
       "category" : "",
       "tags"     : "Problem_Solving",
       "url"      : "/2024/11/17/862.-Shortest-Subarray-with-Sum-at-Least-K/",
-      "date"     : "2024-11-17 20:00:00 +0900"
+      "date"     : "2024-11-17 11:00:00 +0000"
     } ,
   
     {
@@ -29,7 +33,7 @@
       "category" : "",
       "tags"     : "Problem_Solving",
       "url"      : "/2024/11/16/3254.-Find-the-Power-of-K-Size-Subarrays-I/",
-      "date"     : "2024-11-16 20:00:00 +0900"
+      "date"     : "2024-11-16 11:00:00 +0000"
     } ,
   
     {
@@ -37,7 +41,7 @@
       "category" : "",
       "tags"     : "Problem_Solving",
       "url"      : "/2024/11/15/1574.-Shortest-Subarray-to-be-Removed-to-Make-Array-Sorted/",
-      "date"     : "2024-11-15 20:00:00 +0900"
+      "date"     : "2024-11-15 11:00:00 +0000"
     } ,
   
     {
@@ -45,7 +49,7 @@
       "category" : "",
       "tags"     : "Problem_Solving",
       "url"      : "/2024/11/14/2064.-Minimized-Maximum-of-Products-Distributed-to-Any-Store/",
-      "date"     : "2024-11-14 20:00:00 +0900"
+      "date"     : "2024-11-14 11:00:00 +0000"
     } ,
   
     {
@@ -53,7 +57,7 @@
       "category" : "",
       "tags"     : "Problem_Solving",
       "url"      : "/2024/11/13/2563.-Count-the-Number-of-Fair-Pairs/",
-      "date"     : "2024-11-13 20:00:00 +0900"
+      "date"     : "2024-11-13 11:00:00 +0000"
     } ,
   
     {
@@ -61,7 +65,7 @@
       "category" : "",
       "tags"     : "Problem_Solving",
       "url"      : "/2024/11/12/2070.-Most-Beautiful-Item-for-Each-Query/",
-      "date"     : "2024-11-12 20:00:00 +0900"
+      "date"     : "2024-11-12 11:00:00 +0000"
     } ,
   
     {
@@ -69,7 +73,7 @@
       "category" : "",
       "tags"     : "Problem_Solving",
       "url"      : "/2024/11/11/2601.-Prime-Subtraction-Operation/",
-      "date"     : "2024-11-11 20:00:00 +0900"
+      "date"     : "2024-11-11 11:00:00 +0000"
     } ,
   
     {
@@ -77,7 +81,7 @@
       "category" : "",
       "tags"     : "Problem_Solving",
       "url"      : "/2024/11/10/3097.-Shortest-Subarray-With-OR-at-Least-K-II/",
-      "date"     : "2024-11-10 20:00:00 +0900"
+      "date"     : "2024-11-10 11:00:00 +0000"
     } ,
   
     {
@@ -85,7 +89,7 @@
       "category" : "",
       "tags"     : "Problem_Solving",
       "url"      : "/2024/11/09/3133.-Minimum-Array-End/",
-      "date"     : "2024-11-09 20:00:00 +0900"
+      "date"     : "2024-11-09 11:00:00 +0000"
     } ,
   
     {
@@ -93,7 +97,7 @@
       "category" : "",
       "tags"     : "Problem_Solving",
       "url"      : "/2024/11/08/1829.-Maximum-XOR-for-Each-Query/",
-      "date"     : "2024-11-08 20:00:00 +0900"
+      "date"     : "2024-11-08 11:00:00 +0000"
     } ,
   
     {
@@ -101,7 +105,7 @@
       "category" : "",
       "tags"     : "Problem_Solving",
       "url"      : "/2024/11/07/2275.-Largest-Combination-With-Bitwise-AND-Greater-Than-Zero/",
-      "date"     : "2024-11-07 20:00:00 +0900"
+      "date"     : "2024-11-07 11:00:00 +0000"
     } ,
   
     {
@@ -109,7 +113,7 @@
       "category" : "",
       "tags"     : "",
       "url"      : "/2018/03/02/style-guide/",
-      "date"     : "2018-03-02 20:35:20 +0900"
+      "date"     : "2018-03-02 11:35:20 +0000"
     } ,
   
     {
@@ -117,7 +121,7 @@
       "category" : "",
       "tags"     : "jekyll and docs",
       "url"      : "/2018/02/05/welcome-to-jekyll/",
-      "date"     : "2018-02-05 22:13:18 +0900"
+      "date"     : "2018-02-05 13:13:18 +0000"
     } 
   
 ]
