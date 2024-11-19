@@ -5,9 +5,9 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>Page not found</title>
-  <meta name='description' content="개발 관련 공부 내용 기록">
-  <link rel='canonical' href="https://chocobreeze.github.io/404.html">
+  <title>24.11.15 1574. Shortest Subarray to be Removed to Make Array Sorted</title>
+  <meta name='description' content="24.11.15 1574. Shortest Subarray to be Removed to Make Array Sorted문제 링크">
+  <link rel='canonical' href="https://chocobreeze.github.io/2024/11/15/1574.-Shortest-Subarray-to-be-Removed-to-Make-Array-Sorted/">
   <link rel='alternate' type='application/rss+xml' title='Welcome to ChocoBreeze Blog' href="https://chocobreeze.github.io/feed.xml">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
@@ -77,39 +77,213 @@
 </aside> <!-- /.c-sidebar -->
 
 <main class="c-content">
-  <style media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
-
-<div class="container">
-  <header class="c-header u-hide u-no-margin-bottom">
-    <div class="c-header__box">
-      <div class="c-search u-full-width">
-        <div class="c-search__box">
-          <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
-          <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
-          <div data-icon='ei-search' data-size='s'></div>
+  <article class="c-article">
+  <div class="c-article__content">
+    <header class="c-header u-hide u-no-margin-top">
+      <div class="c-header__box">
+        <div class="c-search u-full-width">
+          <div class="c-search__box">
+            <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
+            <div data-icon='ei-search' data-size='s'></div>
+          </div>
+          <ul id="js-results-container" class="c-search-results-list"></ul>
         </div>
-        <ul id="js-results-container" class="c-search-results-list"></ul>
       </div>
-    </div>
-  </header>
-  <h1>404</h1>
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
-  <p><a href="/">Back to the bLog</a></p>
-</div>
+    </header>
+    
+    <div class="c-article__image o-opacity" style="background-image: url( /images/legacy/2.jpg )"></div>
+    
+    <div class="c-wrap-content">
+      <header class="c-article__header">
+        <h1 class="c-article__title">24.11.15 1574. Shortest Subarray to be Removed to Make Array Sorted</h1>
+        <div class="c-article__date">
+          <span>2024, Nov 15</span>
+        </div>
+      </header>
+      <h1 id="241115-1574-shortest-subarray-to-be-removed-to-make-array-sorted">24.11.15 1574. Shortest Subarray to be Removed to Make Array Sorted</h1>
+<p><a href="https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store/description/">문제 링크</a></p>
 
+<p><br /></p>
+
+<h2 id="내-코드">내 코드</h2>
+<p>아이디어가 없음..</p>
+<ul>
+  <li>해설 읽기..</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="solution">Solution</h2>
+<h3 id="overview">Overview</h3>
+<p><img src="/images/2024-11-15/image.png" alt="alt text" /></p>
+
+<p>3가지 부분으로 나눠서 생각 가능.</p>
+<ol>
+  <li>오름차순 정렬된 파란색 부분</li>
+  <li>오름차순 정렬음 막는 노란 부분</li>
+  <li>다시 오름차순으로 정렬된 초록 부분</li>
+</ol>
+
+<p>2개의 예외 케이스</p>
+<ol>
+  <li>이미 다 정렬된 경우 $\rightarrow$ 지울 subarray가 없음.</li>
+  <li>반대로 정렬된 경우. $\rightarrow$ 제일 첫 원소만 남기거나 가장 마지막 원소만 남기거나.</li>
+</ol>
+
+<p>제거 할 수 있는 가장 긴 부분 찾기.</p>
+
+<h3 id="approach-two-pointers">Approach: Two Pointers</h3>
+<p>예시: <code class="language-plaintext highlighter-rouge">[1, 2, 3, 10, 4, 2, 3, 5]</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">0</code>을 정렬이 되지 않은 부분, <code class="language-plaintext highlighter-rouge">1</code>을 정렬된 부분이라고 생각해보면, 다음과 같음. <code class="language-plaintext highlighter-rouge">[0, 0, 0, 0, 0, 1, 1, 1]</code></p>
+
+<p>정렬된 <code class="language-plaintext highlighter-rouge">[1, 1, 1]</code>에서 binary search를 통해 왼쪽 구역의 정렬된 마지막 원소를 어디에 넣을지 찾을 수 있음. $\rightarrow$ $O(n \log n)$</p>
+
+<p>이 경우 two-pointer 사용 시 $O(n)$도 가능.</p>
+
+<p><img src="/images/2024-11-15/image-1.png" alt="alt text" /></p>
+
+<p>two pointer를 사용해보자( <code class="language-plaintext highlighter-rouge">left</code> and <code class="language-plaintext highlighter-rouge">right</code>).</p>
+
+<ul>
+  <li>접두사 파란색 배열: <code class="language-plaintext highlighter-rouge">arr[0 : left]</code></li>
+  <li>접미사 녹색 배열: <code class="language-plaintext highlighter-rouge">arr[right:]</code></li>
+</ul>
+
+<p>이 two pointer 방법을 사용해여 왼쪽의 각 위치에 대해 <code class="language-plaintext highlighter-rouge">arr[left]</code> $\leq$ <code class="language-plaintext highlighter-rouge">arr[right]</code>인 가장 작은 오른쪽을 찾자. $\rightarrow$ 지워야 할 subarray 길이: <code class="language-plaintext highlighter-rouge">right - left - 1</code></p>
+
+<p>만약 <code class="language-plaintext highlighter-rouge">arr[left]</code> $&gt;$ <code class="language-plaintext highlighter-rouge">arr[right]</code>이면 <code class="language-plaintext highlighter-rouge">right</code>를 증가시켜 다음 가능한 매칭을 찾고, 조건을 만족하는 <code class="language-plaintext highlighter-rouge">right</code>를 찾은 경우에, <code class="language-plaintext highlighter-rouge">left</code>를 다음 위치로 이동하자.</p>
+
+<ul>
+  <li><em>0ms, 69.5MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let <code class="language-plaintext highlighter-rouge">N</code> be the size of <code class="language-plaintext highlighter-rouge">arr</code>.</li>
+      <li>Time Complexity: $O(N)$</li>
+      <li>Space Complexity: $O(1)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">findLengthOfShortestSubarray</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">arr</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">right</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">arr</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">right</span> <span style="color: #0550ae">&gt;</span> <span style="color: #0550ae">0</span> <span style="color: #0550ae">&amp;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">arr</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">right</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">&gt;=</span> <span style="color: #24292f;background-color: #f6f8fa">arr</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">right</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">])</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">right</span><span style="color: #0550ae">--</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">ans</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">right</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">left</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">left</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">right</span> <span style="color: #0550ae">&amp;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">left</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span> <span style="color: #0550ae">||</span> <span style="color: #24292f;background-color: #f6f8fa">arr</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">left</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">&lt;=</span> <span style="color: #24292f;background-color: #f6f8fa">arr</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">left</span><span style="color: #24292f;background-color: #f6f8fa">]))</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #6e7781">// find next valid number after arr[left]</span>
+            <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">right</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">arr</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">&amp;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">arr</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">left</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">arr</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">right</span><span style="color: #24292f;background-color: #f6f8fa">])</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">right</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #6e7781">// save length of removed subarray</span>
+            <span style="color: #24292f;background-color: #f6f8fa">ans</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">min</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">ans</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">right</span> <span style="color: #0550ae">-</span> <span style="color: #24292f;background-color: #f6f8fa">left</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">left</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">ans</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+<p><br /></p>
+
+      <div class="c-article__footer u-clearfix">
+        <div class="c-article__tag">
+          
+          <a href="/tags#Problem_Solving">&#35; Problem_Solving</a>
+          
+        </div>
+        <!-- <div class="c-article__share">
+          <a href="https://twitter.com/intent/tweet?text=24.11.15%201574.%20Shortest%20Subarray%20to%20be%20Removed%20to%20Make%20Array%20Sorted&url=https://chocobreeze.github.io/2024/11/15/1574.-Shortest-Subarray-to-be-Removed-to-Make-Array-Sorted/" title="Share
+          on Twitter" rel="nofollow" target="_blank"><div data-icon='ei-sc-twitter' data-size='s'></div></a>
+          <a href="https://facebook.com/sharer.php?u=https://chocobreeze.github.io/2024/11/15/1574.-Shortest-Subarray-to-be-Removed-to-Make-Array-Sorted/" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a>
+          <a href="https://plus.google.com/share?url=https://chocobreeze.github.io/2024/11/15/1574.-Shortest-Subarray-to-be-Removed-to-Make-Array-Sorted/" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a>
+        </div> -->
+      </div>
+      <!-- <div class="c-newsletter">
+  <div class="c-newsletter__header">
+    <h4 class="c-newsletter__title">Newsletter</h4>
+    <div class="c-newsletter__subtitle">Subscribe to this blog and receive notifications of new posts by email.</div>
+  </div>
+  <form class="c-newsletter-form validate" action="#" method="POST" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+    <div class="c-newsletter-form__group">
+      <label class="u-screen-reader-text" for="mce-EMAIL">Email address</label>
+      <input class="c-newsletter__email required email" id="mce-EMAIL" type="email" name="EMAIL" placeholder="Your email address" autocomplete="on">
+      <input class="c-newsletter__button" id="mc-embedded-subscribe" type="submit" name="subscribe" value="Subscribe">
+    </div>
+  </form>
+</div> -->
+      <div class="c-recent-post">
+        <h4 class="c-recent__title">You might also enjoy</h4>
+        <div class="c-recent__box">
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/11/18/1652.-Defuse-the-Bomb/" style="background-image: url( /images/legacy/2.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/11/18/1652.-Defuse-the-Bomb/">24.11.18 1652. Defuse the Bomb</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-11-18T11:00:00+00:00">November 18, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/11/17/862.-Shortest-Subarray-with-Sum-at-Least-K/" style="background-image: url( /images/legacy/2.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/11/17/862.-Shortest-Subarray-with-Sum-at-Least-K/">24.11.17 862. Shortest Subarray with Sum at Least K</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-11-17T11:00:00+00:00">November 17, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/11/16/3254.-Find-the-Power-of-K-Size-Subarrays-I/" style="background-image: url( /images/legacy/2.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/11/16/3254.-Find-the-Power-of-K-Size-Subarrays-I/">24.11.16 3254. Find the Power of K-Size Subarrays I</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-11-16T11:00:00+00:00">November 16, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/11/14/2064.-Minimized-Maximum-of-Products-Distributed-to-Any-Store/" style="background-image: url( /images/legacy/2.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/11/14/2064.-Minimized-Maximum-of-Products-Distributed-to-Any-Store/">24.11.14 2064. Minimized Maximum of Products Distributed to Any Store</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-11-14T11:00:00+00:00">November 14, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        </div>
+      </div> <!-- /.c-recent-post -->
+      
+    </div> <!-- /.c-wrap-content -->
+  </div> <!-- /.c-article__content -->
+</article> <!-- /.c-article-page -->
+
+<!-- KaTeX CSS 추가 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<!-- KaTeX JS 추가 및 자동 렌더링 설정 -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" 
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});">
+</script>
 </main> <!-- /.c-content -->
   </div> <!-- /.o-wrapper -->
   <div class="c-top" data-icon='ei-chevron-up' data-size='s' title="Scroll To Top"></div> <!-- /.c-top -->

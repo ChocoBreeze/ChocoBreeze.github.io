@@ -5,9 +5,9 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>Page not found</title>
-  <meta name='description' content="개발 관련 공부 내용 기록">
-  <link rel='canonical' href="https://chocobreeze.github.io/404.html">
+  <title>24.11.07 2275. Largest Combination With Bitwise AND Greater Than Zero</title>
+  <meta name='description' content="24.11.07 2275. Largest Combination With Bitwise AND Greater Than Zero문제 링크">
+  <link rel='canonical' href="https://chocobreeze.github.io/2024/11/07/2275.-Largest-Combination-With-Bitwise-AND-Greater-Than-Zero/">
   <link rel='alternate' type='application/rss+xml' title='Welcome to ChocoBreeze Blog' href="https://chocobreeze.github.io/feed.xml">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
@@ -77,39 +77,236 @@
 </aside> <!-- /.c-sidebar -->
 
 <main class="c-content">
-  <style media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
-
-<div class="container">
-  <header class="c-header u-hide u-no-margin-bottom">
-    <div class="c-header__box">
-      <div class="c-search u-full-width">
-        <div class="c-search__box">
-          <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
-          <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
-          <div data-icon='ei-search' data-size='s'></div>
+  <article class="c-article">
+  <div class="c-article__content">
+    <header class="c-header u-hide u-no-margin-top">
+      <div class="c-header__box">
+        <div class="c-search u-full-width">
+          <div class="c-search__box">
+            <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
+            <div data-icon='ei-search' data-size='s'></div>
+          </div>
+          <ul id="js-results-container" class="c-search-results-list"></ul>
         </div>
-        <ul id="js-results-container" class="c-search-results-list"></ul>
       </div>
-    </div>
-  </header>
-  <h1>404</h1>
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
-  <p><a href="/">Back to the bLog</a></p>
-</div>
+    </header>
+    
+    <div class="c-article__image o-opacity" style="background-image: url( /images/legacy/2.jpg )"></div>
+    
+    <div class="c-wrap-content">
+      <header class="c-article__header">
+        <h1 class="c-article__title">24.11.07 2275. Largest Combination With Bitwise AND Greater Than Zero</h1>
+        <div class="c-article__date">
+          <span>2024, Nov 07</span>
+        </div>
+      </header>
+      <h1 id="241107-2275-largest-combination-with-bitwise-and-greater-than-zero">24.11.07 2275. Largest Combination With Bitwise AND Greater Than Zero</h1>
+<p><a href="https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/description/?envType=daily-question&amp;envId=2024-11-07">문제 링크</a></p>
 
+<p><br /></p>
+
+<ul>
+  <li>bit연산 아직 부족하다..</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="내-코드">내 코드</h2>
+<p>못 풀었다.. (근데 더 간단한 방법이 생각이 나지 않음..)</p>
+
+<p><br /></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">largestCombination</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">candidates</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #24292f;background-color: #f6f8fa">unordered_map</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">um</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">answer</span><span style="color: #24292f;background-color: #f6f8fa">{};</span>
+        <span style="color: #cf222e">for</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">c</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">candidates</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">for</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">v</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">um</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #cf222e">if</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">k</span> <span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">c</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                    <span style="color: #cf222e">if</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">um</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">count</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">k</span> <span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">c</span><span style="color: #24292f;background-color: #f6f8fa">))</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                        <span style="color: #24292f;background-color: #f6f8fa">um</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">k</span> <span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">c</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">max</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">um</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">k</span> <span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">c</span><span style="color: #24292f;background-color: #f6f8fa">],</span> <span style="color: #24292f;background-color: #f6f8fa">v</span> <span style="color: #0550ae">+</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+                    <span style="color: #cf222e">else</span> <span style="color: #24292f;background-color: #f6f8fa">um</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">emplace</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">k</span> <span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">c</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">v</span> <span style="color: #0550ae">+</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+
+                    <span style="color: #24292f;background-color: #f6f8fa">answer</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">max</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">answer</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">v</span> <span style="color: #0550ae">+</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+                <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #cf222e">if</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">um</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">count</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">c</span><span style="color: #24292f;background-color: #f6f8fa">))</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">um</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">c</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">max</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">um</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">c</span><span style="color: #24292f;background-color: #f6f8fa">],</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #cf222e">else</span> <span style="color: #24292f;background-color: #f6f8fa">um</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">emplace</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">c</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+
+            <span style="color: #24292f;background-color: #f6f8fa">answer</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">max</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">answer</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">um</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">c</span><span style="color: #24292f;background-color: #f6f8fa">]);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">answer</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<h2 id="solution">Solution</h2>
+
+<h3 id="approach-1-using-a-bit-count-array">Approach 1: Using a Bit Count Array</h3>
+<ul>
+  <li><em>45ms, 60.21MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Time Complexity: $O(n \cdot b + b) = O(n)$</li>
+      <li>Space Complexity: $O(b) = O(1)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">largestCombination</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">candidates</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// Initialize a vector to store the count of each bit position.</span>
+        <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">bitCount</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">24</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">&lt;</span> <span style="color: #0550ae">24</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">num</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">candidates</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #6e7781">// Check if the i-th bit is set.</span>
+                <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">((</span><span style="color: #24292f;background-color: #f6f8fa">num</span> <span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">1</span> <span style="color: #0550ae">&lt;&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">))</span> <span style="color: #0550ae">!=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">bitCount</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+                <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #6e7781">// Return the maximum count.</span>
+        <span style="color: #cf222e">return</span> <span style="color: #0550ae">*</span><span style="color: #8250df">max_element</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">bitCount</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">begin</span><span style="color: #24292f;background-color: #f6f8fa">(),</span> <span style="color: #24292f;background-color: #f6f8fa">bitCount</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #24292f;background-color: #f6f8fa">());</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>너무 어렵게 생각했다..</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="approach-2-direct-maximum-bit-count">Approach 2: Direct Maximum Bit Count</h3>
+<ul>
+  <li><em>41ms, 60.19MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Time Complexity: $O(n \cdot b) = O(n)$</li>
+      <li>Space Complexity: $O(1)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">largestCombination</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">candidates</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">maxCount</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>  <span style="color: #6e7781">// Variable to track the maximum count of set bits.</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">&lt;</span> <span style="color: #0550ae">24</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">count</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>  <span style="color: #6e7781">// Count of numbers with the i-th bit set.</span>
+            <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">num</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">candidates</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">((</span><span style="color: #24292f;background-color: #f6f8fa">num</span> <span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">1</span> <span style="color: #0550ae">&lt;&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">))</span> <span style="color: #0550ae">!=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>  <span style="color: #6e7781">// Check if the i-th bit is set.</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">count</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+                <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #24292f;background-color: #f6f8fa">maxCount</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">max</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">maxCount</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">count</span><span style="color: #24292f;background-color: #f6f8fa">);</span>  <span style="color: #6e7781">// Update the maximum count.</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">maxCount</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><img src="/images/2024-11-07/image.png" alt="alt text" /></p>
+
+      <div class="c-article__footer u-clearfix">
+        <div class="c-article__tag">
+          
+          <a href="/tags#Problem_Solving">&#35; Problem_Solving</a>
+          
+        </div>
+        <!-- <div class="c-article__share">
+          <a href="https://twitter.com/intent/tweet?text=24.11.07%202275.%20Largest%20Combination%20With%20Bitwise%20AND%20Greater%20Than%20Zero&url=https://chocobreeze.github.io/2024/11/07/2275.-Largest-Combination-With-Bitwise-AND-Greater-Than-Zero/" title="Share
+          on Twitter" rel="nofollow" target="_blank"><div data-icon='ei-sc-twitter' data-size='s'></div></a>
+          <a href="https://facebook.com/sharer.php?u=https://chocobreeze.github.io/2024/11/07/2275.-Largest-Combination-With-Bitwise-AND-Greater-Than-Zero/" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a>
+          <a href="https://plus.google.com/share?url=https://chocobreeze.github.io/2024/11/07/2275.-Largest-Combination-With-Bitwise-AND-Greater-Than-Zero/" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a>
+        </div> -->
+      </div>
+      <!-- <div class="c-newsletter">
+  <div class="c-newsletter__header">
+    <h4 class="c-newsletter__title">Newsletter</h4>
+    <div class="c-newsletter__subtitle">Subscribe to this blog and receive notifications of new posts by email.</div>
+  </div>
+  <form class="c-newsletter-form validate" action="#" method="POST" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+    <div class="c-newsletter-form__group">
+      <label class="u-screen-reader-text" for="mce-EMAIL">Email address</label>
+      <input class="c-newsletter__email required email" id="mce-EMAIL" type="email" name="EMAIL" placeholder="Your email address" autocomplete="on">
+      <input class="c-newsletter__button" id="mc-embedded-subscribe" type="submit" name="subscribe" value="Subscribe">
+    </div>
+  </form>
+</div> -->
+      <div class="c-recent-post">
+        <h4 class="c-recent__title">You might also enjoy</h4>
+        <div class="c-recent__box">
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/11/18/1652.-Defuse-the-Bomb/" style="background-image: url( /images/legacy/2.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/11/18/1652.-Defuse-the-Bomb/">24.11.18 1652. Defuse the Bomb</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-11-18T11:00:00+00:00">November 18, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/11/17/862.-Shortest-Subarray-with-Sum-at-Least-K/" style="background-image: url( /images/legacy/2.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/11/17/862.-Shortest-Subarray-with-Sum-at-Least-K/">24.11.17 862. Shortest Subarray with Sum at Least K</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-11-17T11:00:00+00:00">November 17, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/11/16/3254.-Find-the-Power-of-K-Size-Subarrays-I/" style="background-image: url( /images/legacy/2.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/11/16/3254.-Find-the-Power-of-K-Size-Subarrays-I/">24.11.16 3254. Find the Power of K-Size Subarrays I</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-11-16T11:00:00+00:00">November 16, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/11/15/1574.-Shortest-Subarray-to-be-Removed-to-Make-Array-Sorted/" style="background-image: url( /images/legacy/2.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/11/15/1574.-Shortest-Subarray-to-be-Removed-to-Make-Array-Sorted/">24.11.15 1574. Shortest Subarray to be Removed to Make Array Sorted</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-11-15T11:00:00+00:00">November 15, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        </div>
+      </div> <!-- /.c-recent-post -->
+      
+    </div> <!-- /.c-wrap-content -->
+  </div> <!-- /.c-article__content -->
+</article> <!-- /.c-article-page -->
+
+<!-- KaTeX CSS 추가 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<!-- KaTeX JS 추가 및 자동 렌더링 설정 -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" 
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});">
+</script>
 </main> <!-- /.c-content -->
   </div> <!-- /.o-wrapper -->
   <div class="c-top" data-icon='ei-chevron-up' data-size='s' title="Scroll To Top"></div> <!-- /.c-top -->
