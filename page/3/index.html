@@ -5,10 +5,10 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>Contact</title>
+  <title>Welcome to ChocoBreeze Blog</title>
   <meta name='description' content="개발 관련 공부 내용 기록">
-  <link rel='canonical' href="http://localhost:4000/contact/">
-  <link rel='alternate' type='application/rss+xml' title='Welcome to ChocoBreeze Blog' href="http://localhost:4000/feed.xml">
+  <link rel='canonical' href="https://chocobreeze.github.io/page/3/">
+  <link rel='alternate' type='application/rss+xml' title='Welcome to ChocoBreeze Blog' href="https://chocobreeze.github.io/feed.xml">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
@@ -77,9 +77,11 @@
 </aside> <!-- /.c-sidebar -->
 
 <main class="c-content">
-  <header class="c-header u-hide u-no-margin-bottom">
+  
+
+<header class="c-header">
   <div class="c-header__box">
-    <div class="c-search u-full-width">
+    <div class="c-search">
       <div class="c-search__box">
         <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
         <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
@@ -87,35 +89,103 @@
       </div>
       <ul id="js-results-container" class="c-search-results-list"></ul>
     </div>
+    <div class="c-nav">
+      <ul class="c-nav__list u-lists-reset">
+        <li class="c-nav__item is-active">
+          <div data-icon='ei-pencil' data-size='s'></div> Posts</li>
+        <li class="c-nav__item">
+          <div data-icon='ei-star' data-size='s'></div> Categories</li>
+      </ul>
+    </div>
   </div>
-</header>
-<div class="c-form-box o-opacity">
-  <form class="c-form" action="#"
-    method="POST">
-    <a href="/"><div class="c-form-bnt__close" data-icon='ei-close' data-size='s'></div></a>
-    <div class="c-form__title">You can contact me!</div>
-    <div class="c-form__group">
-      <label for="form-name">Your Name (Required)</label>
-      <input class="c-form__input" id="form-name" type="text" name="name" required>
+</header> <!-- /.c-header -->
+<div class="c-posts o-opacity" data-page="3" data-totalPages="3">
+  
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/legacy/12.jpg)"
+        href="/2018/02/05/welcome-to-jekyll/"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/2018/02/05/welcome-to-jekyll/">Welcome to Jekyll!</a>
+      </h2>
+      <p>You’ll find this post in your _posts directory. Go ahead and edit it and re-build...</p>
+      <span class="c-post-date">2018, Feb 05&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">1 minute read</span>
     </div>
-    <div class="c-form__group">
-      <label for="form-email">Your Email (Required)</label>
-      <input class="c-form__input" id="form-email" type="email" name="_replyto" required>
-    </div>
-    <div class="c-form__group">
-      <label for="form-subject">Subject</label>
-      <input class="c-form__input" id="form-subject" type="text" name="_subject">
-    </div>
-    <div class="c-form__group">
-      <label for="form-text">Your Message (Required)</label>
-      <textarea class="c-form__input" id="form-text" name="text" rows="10" required></textarea>
-    </div>
-    <div class="c-form__group">
-      <button class="c-btn c-btn--secondary c-btn--big c-btn--shadow" type="submit">Send</button>
-    </div>
-    <input type="hidden" name="_next" value="/contact/thanks/" />
-  </form>
-</div> <!-- /.c-form-box -->
+  </article> <!-- /.c-post -->
+  
+</div> <!-- /.c-posts -->
+
+
+
+
+<div class="c-categories" style="display: none;">
+  <ul class="c-categories__list u-lists-reset">
+      
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/problem-solving/">
+      <!-- <a class="c-categories__link" href="/category/problem-solving/"> -->
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/legacy/2.jpg');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">Problem_Solving</h2>
+          <p class="c-categories__count"><span>13</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/guide/">
+      <!-- <a class="c-categories__link" href="/category/guide/"> -->
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/legacy/8.jpg');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">guide</h2>
+          <p class="c-categories__count"><span>1</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/jekyll/">
+      <!-- <a class="c-categories__link" href="/category/jekyll/"> -->
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/legacy/12.jpg');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">jekyll</h2>
+          <p class="c-categories__count"><span>1</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+  </ul>
+</div> <!-- ./c-categories -->
 </main> <!-- /.c-content -->
   </div> <!-- /.o-wrapper -->
   <div class="c-top" data-icon='ei-chevron-up' data-size='s' title="Scroll To Top"></div> <!-- /.c-top -->
