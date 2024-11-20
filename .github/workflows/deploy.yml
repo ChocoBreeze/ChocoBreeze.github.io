@@ -1,0 +1,41 @@
+name: Build and Deploy Jekyll Site
+
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 푸시할 때만 실행됩니다.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. GitHub Repository 클론
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # 2. Ruby 및 Jekyll 설치
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1' # Ruby 버전 (Jekyll에 적합한 최신 버전)
+        bundler-cache: true
+
+    # 3. 의존성 설치
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install
+
+    # 4. Jekyll 빌드
+    - name: Build site with Jekyll
+      run: bundle exec jekyll build
+
+    # 5. 결과물 배포
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+
+# jekyll-archives는 github pages에서 지원하지 않음.
