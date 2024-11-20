@@ -47,6 +47,14 @@ kramdown:
 permalink: /:year/:month/:day/:title/
 plugins:
   - jekyll-paginate
+  - jekyll-archives
+
+jekyll-archives:
+  enabled:
+    - categories
+  layout: category
+  permalinks:
+    category: /category/:name/
 
 paginate: 7
 paginate_path: "/page/:num/"
