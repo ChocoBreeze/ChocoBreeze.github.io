@@ -1,6 +1,6 @@
 title: Welcome to ChocoBreeze Blog # 사이트 제목
 description: 개발 관련 공부 내용 기록 # 사이트 설명
-baseurl: "" # 사이트의 서브 디렉토리 경로입니다. GitHub Pages의 경우 보통 "/repository-name" 형식으로 설정합니다.
+baseurl: "/ChocoBreeze.github.io" # 사이트의 서브 디렉토리 경로입니다. GitHub Pages의 경우 보통 "/repository-name" 형식으로 설정합니다.
 url: "https://chocobreeze.github.io" # 사이트의 기본 도메인 = 배포될 도메인 주소
 
 # Author
