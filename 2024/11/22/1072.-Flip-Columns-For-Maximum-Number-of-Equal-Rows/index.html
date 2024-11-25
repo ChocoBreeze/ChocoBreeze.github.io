@@ -5,9 +5,9 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>24.11.19 2461. Maximum Sum of Distinct Subarrays With Length K</title>
-  <meta name='description' content="24.11.19 2461. Maximum Sum of Distinct Subarrays With Length K문제 링크">
-  <link rel='canonical' href="https://chocobreeze.github.io/2024/11/19/2461.-Maximum-Sum-of-Distinct-Subarrays-With-Length-K/">
+  <title>24.11.22 1072. Flip Columns For Maximum Number of Equal Rows</title>
+  <meta name='description' content="24.11.22 1072. Flip Columns For Maximum Number of Equal Rows문제 링크">
+  <link rel='canonical' href="https://chocobreeze.github.io/2024/11/22/1072.-Flip-Columns-For-Maximum-Number-of-Equal-Rows/">
   <link rel='alternate' type='application/rss+xml' title='Welcome to ChocoBreeze Blog' href="https://chocobreeze.github.io/feed.xml">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
@@ -96,53 +96,26 @@
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">24.11.19 2461. Maximum Sum of Distinct Subarrays With Length K</h1>
+        <h1 class="c-article__title">24.11.22 1072. Flip Columns For Maximum Number of Equal Rows</h1>
         <div class="c-article__date">
-          <span>2024, Nov 19</span>
+          <span>2024, Nov 22</span>
         </div>
       </header>
-      <h1 id="241119-2461-maximum-sum-of-distinct-subarrays-with-length-k">24.11.19 2461. Maximum Sum of Distinct Subarrays With Length K</h1>
-<p><a href="https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/description/">문제 링크</a></p>
+      <h1 id="241122-1072-flip-columns-for-maximum-number-of-equal-rows">24.11.22 1072. Flip Columns For Maximum Number of Equal Rows</h1>
+<p><a href="https://leetcode.com/problems/flip-columns-for-maximum-number-of-equal-rows/description/?envType=daily-question&amp;envId=2024-11-22">문제 링크</a></p>
 
 <p><br /></p>
 
 <h2 id="내-코드">내 코드</h2>
+<p>아이디어가 없다..</p>
+
+<blockquote>
+  <p>Return the maximum number of rows that have all values equal after some number of flips. $\rightarrow$ 뒤집거나 그대로 놔두었을 때 같은 row의 수 반환하기.</p>
+</blockquote>
+
 <ul>
-  <li>숫자 범위 10만 $\rightarrow$ DAT.</li>
-  <li>
-    <p>중복된 숫자 관리 $\rightarrow$ <code class="language-plaintext highlighter-rouge">unordered_set</code></p>
-  </li>
-  <li><em>25ms, 111.43MB</em>
-    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
-<span style="color: #0550ae">public:</span>
-  <span style="color: #cf222e">long</span> <span style="color: #cf222e">long</span> <span style="color: #24292f;background-color: #f6f8fa">maximumSubarraySum</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
-      <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">dat</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">100'100</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
-      <span style="color: #24292f;background-color: #f6f8fa">unordered_set</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">numSet</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #6e7781">// 중복되는 숫자들</span>
-      <span style="color: #cf222e">long</span> <span style="color: #cf222e">long</span> <span style="color: #24292f;background-color: #f6f8fa">answer</span><span style="color: #24292f;background-color: #f6f8fa">{},</span> <span style="color: #24292f;background-color: #f6f8fa">sum</span><span style="color: #24292f;background-color: #f6f8fa">{};</span>
-      <span style="color: #cf222e">for</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">{};</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">;</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
-          <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
-          <span style="color: #24292f;background-color: #f6f8fa">dat</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]]</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
-          <span style="color: #cf222e">if</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">dat</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]]</span> <span style="color: #0550ae">&gt;</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">numSet</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">insert</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]);</span>
-      <span style="color: #24292f;background-color: #f6f8fa">}</span>
-
-      <span style="color: #cf222e">if</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">numSet</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">empty</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #24292f;background-color: #f6f8fa">answer</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">max</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">answer</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">sum</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
-
-      <span style="color: #cf222e">for</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">e</span> <span style="color: #0550ae">=</span> <span style="color: #cf222e">static_cast</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">());</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">e</span><span style="color: #24292f;background-color: #f6f8fa">;</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
-          <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
-          <span style="color: #24292f;background-color: #f6f8fa">dat</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]]</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
-          <span style="color: #cf222e">if</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">dat</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]]</span> <span style="color: #0550ae">&gt;</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">numSet</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">insert</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]);</span>
-
-          <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">-=</span> <span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">-</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
-          <span style="color: #24292f;background-color: #f6f8fa">dat</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">-</span><span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">]]</span><span style="color: #0550ae">--</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
-          <span style="color: #cf222e">if</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">dat</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">-</span><span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">]]</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">numSet</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">erase</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">-</span><span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">]);</span>
-
-          <span style="color: #cf222e">if</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">numSet</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">empty</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #24292f;background-color: #f6f8fa">answer</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">max</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">answer</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">sum</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
-      <span style="color: #24292f;background-color: #f6f8fa">}</span>
-
-      <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">answer</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
-  <span style="color: #24292f;background-color: #f6f8fa">}</span>
-<span style="color: #24292f;background-color: #f6f8fa">};</span>
-</code></pre></div>    </div>
+  <li><em>ms, MB</em>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div>    </div>
   </li>
 </ul>
 
@@ -150,50 +123,282 @@
 
 <h2 id="solution">Solution</h2>
 
-<h3 id="approach-sliding-window">Approach: Sliding Window</h3>
+<h3 id="approach-1-brute-force">Approach 1: Brute Force</h3>
 <ul>
-  <li><em>92ms, 98.28MB</em></li>
+  <li><em>125ms, 74.26MB</em></li>
   <li>Complexity
     <ul>
-      <li>Let $N$ be the size of <code class="language-plaintext highlighter-rouge">nums</code>.</li>
-      <li>Time Complexity: $O(N)$</li>
-      <li>Space Complexity: $O(N)$</li>
+      <li>Let <code class="language-plaintext highlighter-rouge">n</code> be the number of rows and <code class="language-plaintext highlighter-rouge">m</code> be the number of columns in the matrix.</li>
+      <li>Time Complexity: $O(n^2 \cdot m)$</li>
+      <li>Space Complexity: $O(m)$</li>
     </ul>
   </li>
 </ul>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
 <span style="color: #0550ae">public:</span>
-    <span style="color: #cf222e">long</span> <span style="color: #cf222e">long</span> <span style="color: #24292f;background-color: #f6f8fa">maximumSubarraySum</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
-        <span style="color: #cf222e">long</span> <span style="color: #cf222e">long</span> <span style="color: #24292f;background-color: #f6f8fa">ans</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
-        <span style="color: #cf222e">long</span> <span style="color: #cf222e">long</span> <span style="color: #24292f;background-color: #f6f8fa">currentSum</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
-        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">begin</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
-        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">end</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">maxEqualRowsAfterFlips</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">matrix</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">numCols</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">matrix</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">maxIdenticalRows</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
 
-        <span style="color: #24292f;background-color: #f6f8fa">unordered_map</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">numToIndex</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">currentRow</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">matrix</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #6e7781">// Create vector to store flipped version of current row</span>
+            <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">flippedRow</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">numCols</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">identicalRowCount</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
 
-        <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">end</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
-            <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">currNum</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
-            <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">lastOccurrence</span> <span style="color: #0550ae">=</span>
-                <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">numToIndex</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">count</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currNum</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #0550ae">?</span> <span style="color: #24292f;background-color: #f6f8fa">numToIndex</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currNum</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">:</span> <span style="color: #0550ae">-</span><span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
-
-            <span style="color: #6e7781">// if current window already has number or if window is too big,</span>
-            <span style="color: #6e7781">// adjust window</span>
-            <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">begin</span> <span style="color: #0550ae">&lt;=</span> <span style="color: #24292f;background-color: #f6f8fa">lastOccurrence</span> <span style="color: #0550ae">||</span> <span style="color: #24292f;background-color: #f6f8fa">end</span> <span style="color: #0550ae">-</span> <span style="color: #24292f;background-color: #f6f8fa">begin</span> <span style="color: #0550ae">+</span> <span style="color: #0550ae">1</span> <span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
-                <span style="color: #24292f;background-color: #f6f8fa">currentSum</span> <span style="color: #0550ae">-=</span> <span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">begin</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
-                <span style="color: #24292f;background-color: #f6f8fa">begin</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #6e7781">// Create flipped version of current row (0-&gt;1, 1-&gt;0)</span>
+            <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">col</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">col</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">numCols</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">col</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">flippedRow</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">col</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">1</span> <span style="color: #0550ae">-</span> <span style="color: #24292f;background-color: #f6f8fa">currentRow</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">col</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
             <span style="color: #24292f;background-color: #f6f8fa">}</span>
-            <span style="color: #24292f;background-color: #f6f8fa">numToIndex</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currNum</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
-            <span style="color: #24292f;background-color: #f6f8fa">currentSum</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">nums</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
-            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">end</span> <span style="color: #0550ae">-</span> <span style="color: #24292f;background-color: #f6f8fa">begin</span> <span style="color: #0550ae">+</span> <span style="color: #0550ae">1</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
-                <span style="color: #24292f;background-color: #f6f8fa">ans</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">max</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">ans</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">currentSum</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+
+            <span style="color: #6e7781">// Check every row against current row and its flipped version</span>
+            <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">compareRow</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">matrix</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #6e7781">// If row matches either original or flipped pattern, increment</span>
+                <span style="color: #6e7781">// counter</span>
+                <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">compareRow</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">currentRow</span> <span style="color: #0550ae">||</span> <span style="color: #24292f;background-color: #f6f8fa">compareRow</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">flippedRow</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">identicalRowCount</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+                <span style="color: #24292f;background-color: #f6f8fa">}</span>
             <span style="color: #24292f;background-color: #f6f8fa">}</span>
-            <span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+            <span style="color: #24292f;background-color: #f6f8fa">maxIdenticalRows</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">max</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">maxIdenticalRows</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">identicalRowCount</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
         <span style="color: #24292f;background-color: #f6f8fa">}</span>
-        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">ans</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">maxIdenticalRows</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
     <span style="color: #24292f;background-color: #f6f8fa">}</span>
 <span style="color: #24292f;background-color: #f6f8fa">};</span>
 </code></pre></div></div>
+<p><br /></p>
+
+<h3 id="approach-2-hash-map">Approach 2: Hash Map</h3>
+<p>패턴 만들기</p>
+
+<div style="display: flex;">
+
+<div style="flex: 50%">
+
+```text
++---+---+
+| 0 | 1 |
++---+---+
+| 1 | 0 |
++---+---+
+```
+
+</div>
+
+<div style="flex: 50%">
+
+```text
++---+---+
+| T | F |   // T = 0
++---+---+
+| T | F |   // T = 1
++---+---+
+```
+
+</div> </div>
+
+<p>This means that if we replace each row with a unique pattern that represents it, then identical and even complementary rows will share the same pattern. The below illustration visualizes this concept:</p>
+
+<p><img src="/images/2024-11-22/image.png" alt="alt text" /></p>
+
+<p>So, our task simplifies to just finding the pattern that shows up the most often. To do this, we’ll go through each row in the matrix, converting it into its pattern string. Then, we’ll use a map called <code class="language-plaintext highlighter-rouge">patternFrequency</code> to keep track of how many times each pattern appears. Once we’ve done that, we’ll just look through all the values in the map, find the highest frequency, and return that as our answer.</p>
+
+<ul>
+  <li><em>16ms, 74.72MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let <code class="language-plaintext highlighter-rouge">n</code> be the number of rows and <code class="language-plaintext highlighter-rouge">m</code> be the number of columns in the matrix.</li>
+      <li>Time Complexity: $O(n \cdot m)$</li>
+      <li>Space Complexity: $O(n \cdot m)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">maxEqualRowsAfterFlips</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">matrix</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// Map to store frequency of each pattern</span>
+        <span style="color: #24292f;background-color: #f6f8fa">unordered_map</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">string</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">patternFrequency</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">currentRow</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">matrix</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">patternBuilder</span> <span style="color: #0550ae">=</span> <span style="color: #0a3069">""</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+            <span style="color: #6e7781">// Convert row to pattern relative to its first element</span>
+            <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">col</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">col</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">currentRow</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">();</span> <span style="color: #24292f;background-color: #f6f8fa">col</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #6e7781">// 'T' if current element matches first element, 'F' otherwise</span>
+                <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentRow</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">currentRow</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">col</span><span style="color: #24292f;background-color: #f6f8fa">])</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">patternBuilder</span> <span style="color: #0550ae">+=</span> <span style="color: #0a3069">"T"</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+                <span style="color: #24292f;background-color: #f6f8fa">}</span> <span style="color: #cf222e">else</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">patternBuilder</span> <span style="color: #0550ae">+=</span> <span style="color: #0a3069">"F"</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+                <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+            <span style="color: #6e7781">// Convert pattern to string and update its frequency in map</span>
+            <span style="color: #24292f;background-color: #f6f8fa">patternFrequency</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">patternBuilder</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// Find the pattern with maximum frequency</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">maxFrequency</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">entry</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">patternFrequency</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">maxFrequency</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">max</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">entry</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">second</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">maxFrequency</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">maxFrequency</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<h4 id="추가-설명---gpt">추가 설명 - gpt</h4>
+
+<h3> 문제의 핵심: </h3>
+
+<p>우리는 각 행의 값을 “열을 뒤집어” 같은 값으로 만들 수 있는 경우를 찾아야 합니다. 
+이를 효율적으로 풀기 위해, “행의 패턴”을 비교하는 방법을 사용할 겁니다.</p>
+
+<h3> 예시 1: </h3>
+
+<h4> 입력: </h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>matrix = [
+  [0, 1],
+  [1, 0]
+]
+</code></pre></div></div>
+
+<h4> 과정: </h4>
+
+<ol>
+  <li>첫 번째 행 <code class="language-plaintext highlighter-rouge">[0, 1]</code>:
+    <ul>
+      <li>이 행에서 첫 번째 값이 <code class="language-plaintext highlighter-rouge">0</code>이므로, 다른 값들도 이를 기준으로 “뒤집음 없이” 패턴화합니다.</li>
+      <li>패턴으로 변환하면 <code class="language-plaintext highlighter-rouge">[0, 1] → "01"</code> (첫 번째 값과 같은 값은 <code class="language-plaintext highlighter-rouge">0</code>, 다른 값은 <code class="language-plaintext highlighter-rouge">1</code>).</li>
+    </ul>
+  </li>
+  <li>두 번째 행 <code class="language-plaintext highlighter-rouge">[1, 0]</code>:
+    <ul>
+      <li>이 행에서 첫 번째 값이 <code class="language-plaintext highlighter-rouge">1</code>입니다. 따라서 첫 번째 값과 동일한 값을 <code class="language-plaintext highlighter-rouge">0</code>, 다른 값을 <code class="language-plaintext highlighter-rouge">1</code>로 변환합니다.</li>
+      <li>패턴으로 변환하면 <code class="language-plaintext highlighter-rouge">[1, 0] → "01"</code>.</li>
+    </ul>
+  </li>
+  <li>두 행 모두 같은 패턴 <code class="language-plaintext highlighter-rouge">"01"</code>을 가집니다. 따라서 이 패턴으로 두 행 모두 “같은 값”으로 만들 수 있습니다.</li>
+</ol>
+
+<h4> 출력: </h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2
+</code></pre></div></div>
+
+<hr />
+
+<h3> 예시 2: </h3>
+
+<h4> 입력: </h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>matrix = [
+  [0, 1, 0],
+  [1, 0, 1],
+  [0, 0, 0]
+]
+</code></pre></div></div>
+
+<h4> 과정: </h4>
+
+<ol>
+  <li>첫 번째 행 <code class="language-plaintext highlighter-rouge">[0, 1, 0]</code>:
+    <ul>
+      <li>첫 번째 값이 <code class="language-plaintext highlighter-rouge">0</code>이므로, 이를 기준으로 변환합니다.</li>
+      <li>변환된 패턴: <code class="language-plaintext highlighter-rouge">[0, 1, 0] → "010"</code>.</li>
+    </ul>
+  </li>
+  <li>두 번째 행 <code class="language-plaintext highlighter-rouge">[1, 0, 1]</code>:
+    <ul>
+      <li>첫 번째 값이 <code class="language-plaintext highlighter-rouge">1</code>이므로, 이를 기준으로 변환합니다.</li>
+      <li>변환된 패턴: <code class="language-plaintext highlighter-rouge">[1, 0, 1] → "010"</code> (첫 번째 값을 기준으로 뒤집으면 같은 패턴).</li>
+    </ul>
+  </li>
+  <li>세 번째 행 <code class="language-plaintext highlighter-rouge">[0, 0, 0]</code>:
+    <ul>
+      <li>첫 번째 값이 <code class="language-plaintext highlighter-rouge">0</code>이므로, 변환 후 <code class="language-plaintext highlighter-rouge">[0, 0, 0] → "000"</code>.</li>
+    </ul>
+  </li>
+  <li>패턴 빈도:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">"010"</code>: 2번 등장 (첫 번째, 두 번째 행).</li>
+      <li><code class="language-plaintext highlighter-rouge">"000"</code>: 1번 등장 (세 번째 행).</li>
+    </ul>
+  </li>
+</ol>
+
+<h4> 출력: </h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2
+</code></pre></div></div>
+
+<hr />
+
+<h3> 예시 3 (혼자 풀어보세요): </h3>
+
+<h4> 입력: </h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>matrix = [
+  [1, 1, 0],
+  [0, 0, 1],
+  [1, 1, 1]
+]
+</code></pre></div></div>
+
+<ol>
+  <li>첫번째 행: <code class="language-plaintext highlighter-rouge">[1, 1, 0]</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">"110"</code></li>
+  <li>두번째 행: <code class="language-plaintext highlighter-rouge">[0, 0, 1]</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">"110"</code> (첫 행 기준)</li>
+  <li>세번재 행: <code class="language-plaintext highlighter-rouge">[1, 1, 1]</code> $\rightarrow$ <code class="language-plaintext highlighter-rouge">"111"</code> (첫 행 기준)</li>
+  <li>패턴 빈도:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">"110"</code>: 2번 등장 (첫 번째, 두 번째 행).</li>
+      <li><code class="language-plaintext highlighter-rouge">"111"</code>: 1번 등장 (세 번째 행).</li>
+    </ul>
+  </li>
+</ol>
+
+<h4> 출력: </h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2
+</code></pre></div></div>
+
+<hr />
+
+<h3> 핵심 아이디어 정리: </h3>
+
+<ol>
+  <li>모든 행을 “패턴”으로 변환해서 동일한 패턴을 찾는 문제입니다.</li>
+  <li>열을 뒤집는 동작은 행 전체의 패턴을 유지하기 때문에, 비교할 때 “뒤집힌 행”도 같은 패턴으로 처리됩니다.</li>
+  <li><strong>해시맵</strong>을 사용해서 패턴 빈도를 기록하면 효율적으로 최대 값을 구할 수 있습니다.</li>
+</ol>
+
+<p>그리고 코드</p>
+
+<p><em>29ms, 74.58MB</em></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">maxEqualRowsAfterFlips</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">std</span><span style="color: #0550ae">::</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">std</span><span style="color: #0550ae">::</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">matrix</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #24292f;background-color: #f6f8fa">std</span><span style="color: #0550ae">::</span><span style="color: #24292f;background-color: #f6f8fa">unordered_map</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">std</span><span style="color: #0550ae">::</span><span style="color: #24292f;background-color: #f6f8fa">string</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">pattern_count</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">max_rows</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">const</span> <span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">row</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">matrix</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">std</span><span style="color: #0550ae">::</span><span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">pattern</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">val</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">row</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">pattern</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">val</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">row</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">])</span> <span style="color: #0550ae">?</span> <span style="color: #0a3069">'0'</span> <span style="color: #0550ae">:</span> <span style="color: #0a3069">'1'</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #24292f;background-color: #f6f8fa">max_rows</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">std</span><span style="color: #0550ae">::</span><span style="color: #24292f;background-color: #f6f8fa">max</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">max_rows</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">pattern_count</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">pattern</span><span style="color: #24292f;background-color: #f6f8fa">]);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">max_rows</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
 <p><br /></p>
 
       <div class="c-article__footer u-clearfix">
@@ -203,10 +408,10 @@
           
         </div>
         <!-- <div class="c-article__share">
-          <a href="https://twitter.com/intent/tweet?text=24.11.19%202461.%20Maximum%20Sum%20of%20Distinct%20Subarrays%20With%20Length%20K&url=https://chocobreeze.github.io/2024/11/19/2461.-Maximum-Sum-of-Distinct-Subarrays-With-Length-K/" title="Share
+          <a href="https://twitter.com/intent/tweet?text=24.11.22%201072.%20Flip%20Columns%20For%20Maximum%20Number%20of%20Equal%20Rows&url=https://chocobreeze.github.io/2024/11/22/1072.-Flip-Columns-For-Maximum-Number-of-Equal-Rows/" title="Share
           on Twitter" rel="nofollow" target="_blank"><div data-icon='ei-sc-twitter' data-size='s'></div></a>
-          <a href="https://facebook.com/sharer.php?u=https://chocobreeze.github.io/2024/11/19/2461.-Maximum-Sum-of-Distinct-Subarrays-With-Length-K/" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a>
-          <a href="https://plus.google.com/share?url=https://chocobreeze.github.io/2024/11/19/2461.-Maximum-Sum-of-Distinct-Subarrays-With-Length-K/" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a>
+          <a href="https://facebook.com/sharer.php?u=https://chocobreeze.github.io/2024/11/22/1072.-Flip-Columns-For-Maximum-Number-of-Equal-Rows/" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a>
+          <a href="https://plus.google.com/share?url=https://chocobreeze.github.io/2024/11/22/1072.-Flip-Columns-For-Maximum-Number-of-Equal-Rows/" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a>
         </div> -->
       </div>
       <!-- <div class="c-newsletter">
@@ -228,18 +433,6 @@
         
         
           <div class="c-recent__item">
-            <a class="c-recent__image" href="/2024/11/22/1072.-Flip-Columns-For-Maximum-Number-of-Equal-Rows/" style="background-image: url( /images/legacy/2.jpg)"></a>
-            <div class="c-recent__footer">
-              <h4><a href="/2024/11/22/1072.-Flip-Columns-For-Maximum-Number-of-Equal-Rows/">24.11.22 1072. Flip Columns For Maximum Number of Equal Rows</a></h4>
-              <div class="c-recent__date">
-                <time datetime="2024-11-22T11:00:00+00:00">November 22, 2024</time>
-              </div>
-            </div>
-          </div>
-        
-        
-        
-          <div class="c-recent__item">
             <a class="c-recent__image" href="/2024/11/21/2257.-Count-Unguarded-Cells-in-the-Grid/" style="background-image: url( /images/legacy/2.jpg)"></a>
             <div class="c-recent__footer">
               <h4><a href="/2024/11/21/2257.-Count-Unguarded-Cells-in-the-Grid/">24.11.21 2257. Count Unguarded Cells in the Grid</a></h4>
@@ -257,6 +450,18 @@
               <h4><a href="/2024/11/20/2516.-Take-K-of-Each-Character-From-Left-and-Right/">24.11.20 2516. Take K of Each Character From Left and Right</a></h4>
               <div class="c-recent__date">
                 <time datetime="2024-11-20T11:00:00+00:00">November 20, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/11/19/2461.-Maximum-Sum-of-Distinct-Subarrays-With-Length-K/" style="background-image: url( /images/legacy/2.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/11/19/2461.-Maximum-Sum-of-Distinct-Subarrays-With-Length-K/">24.11.19 2461. Maximum Sum of Distinct Subarrays With Length K</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-11-19T11:00:00+00:00">November 19, 2024</time>
               </div>
             </div>
           </div>
