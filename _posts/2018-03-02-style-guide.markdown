@@ -85,7 +85,7 @@ A paragraph looks like this — dolor amet cray stumptown fingerstache neutra fo
 <!-- ![]({{site.baseurl}}/images/1.jpg) -->
 <!-- 만약 baseurl이 설정되어 있지 않다면, {{site.baseurl}}은 빈 값으로 대체됩니다. -->
 
-<img src="/images/1.jpg" width="300" height="300">
+<img src="/images/Okeydokey/pic (59).jpg" width="300" height="300">
 <!-- preview에는 안 떠도 homepage에는 뜸. -->
 
 ***
