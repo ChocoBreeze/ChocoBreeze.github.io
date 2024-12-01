@@ -34,28 +34,6 @@ permalink: /topics/
 </div>
 </header>
 
-<section>
-    <h1>Debugging Topics</h1>
-    <ul>
-      {% for topic in topic_list %}
-        {% assign lower_topic = topic | downcase %}
-        <li>
-          <strong>Topic:</strong> {{ topic }} <br>
-          <strong>Count:</strong>
-          {% assign filtered_posts = site.posts | where_exp: "post", "post.topics | join: ',' | downcase contains lower_topic" %}
-          {{ filtered_posts | size }}
-          <ul>
-            {% for post in filtered_posts %}
-              <li>{{ post.title }}</li>
-            {% endfor %}
-          </ul>
-        </li>
-      {% endfor %}
-    </ul>
-  </section>
-  
-  
-
 <section class="c-blog-tags o-opacity">
     <h1>Topics in Blog</h1>
     <ul class="c-tag__list">
