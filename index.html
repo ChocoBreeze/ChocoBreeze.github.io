@@ -28,6 +28,16 @@ layout: home
           Difficulty: <strong class="{{ post.difficulty | downcase }}">{{ post.difficulty }}</strong>
         {% endif %}
       </p>
+      {% if post.topics %}
+        <div class="post-topics">
+          <span class="topics-label">Topics:</span>
+          <ul>
+            {% for topic in post.topics %}
+              <li class="topic-item">{{ topic }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
       <span class="c-post-date">{{post.date | date: '%Y, %b %d'}}&nbsp;&nbsp;&nbsp;—&nbsp;</span>
       <span class="c-post-words">{% capture words %}{{ post.content | number_of_words }}{% endcapture %}{% unless words contains "-" %}{{ words |
           plus: 250 | divided_by: 250 | append: " minute read" }}{% endunless %}</span>

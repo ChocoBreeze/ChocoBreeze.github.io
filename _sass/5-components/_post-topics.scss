@@ -1,0 +1,40 @@
+/* ===============
+	topics
+=============== */
+
+.post-topics {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+  
+    .topics-label {
+      font-weight: bold;
+      margin-right: 5px;
+      color: #444;
+    }
+  
+    ul {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  
+      .topic-item {
+        background-color: #f3f3f3;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        padding: 1px 5px;
+        font-size: 12px;
+        color: #333;
+        text-transform: capitalize;
+        white-space: nowrap;
+      }
+  
+      .topic-item:hover {
+        background-color: #e0e0e0;
+      }
+    }
+  }
+  
