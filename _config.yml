@@ -72,3 +72,4 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - explanation/*  # explanation의 모든 파일
