@@ -1,0 +1,93 @@
+---
+layout: home
+title: Topics
+permalink: /topics/
+---
+
+{% capture site_topics -%}
+  {% for post in site.posts -%}
+    {% if post.topics -%}
+      {% for topic in post.topics -%}
+        {{ topic | downcase | replace: "\n", " " | replace: "\r", " " | strip }},
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+{% endcapture %}
+
+<!-- {% assign site_topics_cleaned = site_topics | replace: "\n", " " | replace: "\r", " " | replace: "      ", " " | replace: "  ", " " | replace: "  ", " " | replace: "  ", " " | strip | remove: ",," %} -->
+<!-- {% assign topic_words = site_topics_cleaned | strip  | remove: "\n" | remove: "\r" | split: ',' | uniq | sort %} -->
+
+<!-- {% assign site_topics_cleaned = site_topics | replace: "\n", " " | replace: "\r", " " | replace: "      ", " " | replace: "  ", " " | replace: "  ", " " | replace: "  ", " " | strip | remove: ",," %} -->
+{% assign topic_list = site_topics_cleaned | replace: "\n", " " | split: ',' | reject: '' | uniq | sort %}
+
+ 
+<header class="c-header u-hide u-no-margin-bottom">
+<div class="c-header__box">
+    <div class="c-search u-full-width">
+    <div class="c-search__box">
+        <label for="js-search-input" class="u-screen-reader-text">Search for Topics</label>
+        <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
+        <div data-icon='ei-search' data-size='s'></div>
+    </div>
+    <ul id="js-results-container" class="c-search-results-list"></ul>
+    </div>
+</div>
+</header>
+
+<section>
+    <h1>Debugging Topics</h1>
+    <ul>
+      {% for topic in topic_list %}
+        {% assign lower_topic = topic | downcase %}
+        <li>
+          <strong>Topic:</strong> {{ topic }} <br>
+          <strong>Count:</strong>
+          {% assign filtered_posts = site.posts | where_exp: "post", "post.topics | join: ',' | downcase contains lower_topic" %}
+          {{ filtered_posts | size }}
+          <ul>
+            {% for post in filtered_posts %}
+              <li>{{ post.title }}</li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+  
+  
+
+<section class="c-blog-tags o-opacity">
+    <h1>Topics in Blog</h1>
+    <ul class="c-tag__list">
+    {% for item in (0..topic_list.size) %}{% unless forloop.last %}
+        {% capture this_topic %}{{ topic_list[item] | strip_newlines }}{% endcapture %}
+        <li>
+        <a href="#{{ this_topic | cgi_escape }}" class="c-tag">
+            {{ this_topic  }}
+            <span>({{ site.posts | where_exp: "post", "post.topics contains this_topic" | size }})</span>
+            <!-- <span>({{ site.posts[this_topic].size }})</span> -->
+        </a>
+        </li>
+    {% endunless %}{% endfor %}
+    </ul>
+
+    {% for item in (0..topic_list.size) %}{% unless forloop.last %}
+        {% capture this_topic %}{{ topic_list[item] | strip_newlines }}{% endcapture %}
+        <h2 id="{{ this_topic | cgi_escape }}">{{ this_topic | capitalize }}</h2>
+        {% for post in site.posts %}
+        {% if post.topics contains this_topic %}
+            <div class="c-tag__item">
+            <span>
+                {% if post.image %}
+                <img class="c-tag__image" src="{{ "/images/" | prepend: site.baseurl | append: post.image }}" alt="{{ post.title }}">
+                {% endif %}
+                <a href="{{ post.url }}">{{ post.title }}</a>
+            </span>
+            <small>
+                <span>| {{ post.date | date_to_string }}</span>
+            </small>
+            </div>
+        {% endif %}
+        {% endfor %}
+    {% endunless %}{% endfor %}
+</section>
