@@ -1,0 +1,25 @@
+/* ===============
+	difficulty
+=============== */
+
+.post-difficulty strong {
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: bold;
+
+    &.easy {
+        // color: #4caf50;  // 초록색
+        color: #1cb8b8;
+    }
+
+    &.medium {
+        // color: #ff9800;  // 주황색
+        color: #ffb84d;
+    }
+
+    &.hard {
+        // color: #f44336;  // 빨간색
+        color: #f63636;
+    }
+}
+ 
