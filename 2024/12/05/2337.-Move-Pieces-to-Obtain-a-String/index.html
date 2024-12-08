@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <title>2337. Move Pieces to Obtain a String</title>
+  <meta name='description' content="2337. Move Pieces to Obtain a String문제 링크">
+  <link rel='canonical' href="https://chocobreeze.github.io/2024/12/05/2337.-Move-Pieces-to-Obtain-a-String/">
+  <link rel='alternate' type='application/rss+xml' title='Welcome to ChocoBreeze Blog' href="https://chocobreeze.github.io/feed.xml">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+  <style>
+    
+    /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:rgba(0,0,0,0);-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}@-webkit-keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.icon{position:relative;display:inline-block;width:25px;height:25px;overflow:hidden;fill:currentColor}.icon__cnt{width:100%;height:100%;background:inherit;fill:inherit;pointer-events:none;transform:translateX(0);-ms-transform:translate(0.5px, -0.3px)}.icon--m{width:50px;height:50px}.icon--l{width:100px;height:100px}.icon--xl{width:150px;height:150px}.icon--xxl{width:200px;height:200px}.icon__spinner{position:absolute;top:0;left:0;width:100%;height:100%}.icon--ei-spinner .icon__spinner,.icon--ei-spinner-2 .icon__spinner{-webkit-animation:spin 1s steps(12) infinite;animation:spin 1s steps(12) infinite}.icon--ei-spinner-3 .icon__spinner{-webkit-animation:spin 1.5s linear infinite;animation:spin 1.5s linear infinite}.icon--ei-sc-facebook{fill:#3b5998}.icon--ei-sc-github{fill:#333}.icon--ei-sc-google-plus{fill:#dd4b39}.icon--ei-sc-instagram{fill:#3f729b}.icon--ei-sc-linkedin{fill:#0976b4}.icon--ei-sc-odnoklassniki{fill:#ed812b}.icon--ei-sc-skype{fill:#00aff0}.icon--ei-sc-soundcloud{fill:#f80}.icon--ei-sc-tumblr{fill:#35465c}.icon--ei-sc-twitter{fill:#55acee}.icon--ei-sc-vimeo{fill:#1ab7ea}.icon--ei-sc-vk{fill:#45668e}.icon--ei-sc-youtube{fill:#e52d27}.icon--ei-sc-pinterest{fill:#bd081c}.icon--ei-sc-telegram{fill:#08c}.icon--ei-sc-naver{fill:#03c75a}*,*::after,*::before{box-sizing:border-box}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:15px}ul,ol,dd{margin-left:15px}code{background-color:rgba(0,0,0,0) !important}.highlight{background:#f7f7f7}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:teal}.highlight .nb{color:#0086b3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:teal}.highlight .ni{color:purple}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:navy}.highlight .nv{color:teal}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#d14}.highlight .sc{color:#d14}.highlight .sd{color:#d14}.highlight .s2{color:#d14}.highlight .se{color:#d14}.highlight .sh{color:#d14}.highlight .si{color:#d14}.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:teal}.highlight .vg{color:teal}.highlight .vi{color:teal}.highlight .il{color:#099}body{font-family:"Open Sans",Helvetica Neue,Helvetica,Arial,sans-serif;font-size:15px;line-height:28px;color:#404040;background-color:#fbfbfb;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}*::selection{color:#fff;background-color:#3af}h1,h2,h3,h4,h5,h6{font-family:"Volkhov","Times New Roman",Times,serif;font-weight:400;line-height:initial}h1{font-size:32px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}img{max-width:100%;height:auto;vertical-align:middle}a{text-decoration:none;color:#3af;transition:.35s}a:hover{color:hsl(205,100%,45%)}blockquote{padding-left:15px;border-left:3px solid #3af;font-family:"Volkhov","Times New Roman",Times,serif;font-style:normal;font-size:18px;background-color:rgba(220,235,245,.2)}blockquote p{padding:10px}hr{height:1px;margin:30px 0;border:0;background-color:#f0f0f0}pre{overflow:auto;padding:25px;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all;font-family:Courier,monospace}code{overflow:auto;white-space:pre-wrap;word-wrap:break-word;word-break:break-all;font-family:Courier,monospace;font-size:14px;background-color:#f7f7f7}p code,li code{padding:3px 5px}.o-wrapper{max-width:1440px;position:relative}.o-opacity{animation-duration:.7s;animation-delay:.2s;animation-fill-mode:both;animation-name:opacity}@keyframes opacity{from{opacity:0}to{opacity:1}}.c-btn{display:inline-block;white-space:nowrap;vertical-align:middle;font-family:"Volkhov",serif;font-size:12px;text-align:center;padding:8px 15px;cursor:pointer;transition:.35s}.c-btn--primary{color:#fff;background-color:#3af;background:linear-gradient(135deg, #33aaff 0%, #62d5ff 100%)}.c-btn--secondary{color:#fff;background-color:#cfcfdd;background:linear-gradient(135deg, #a2a2bd 0%, #cfcfdd 100%)}.c-btn--round{border-radius:30px}.c-btn--shadow{box-shadow:8px 10px 20px 0 rgba(46,61,73,.15)}.c-btn--shadow:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,.2)}.c-btn--middle{display:block;width:300px;max-width:100%}.c-btn--big{display:block;width:100%}.c-btn:hover{color:#fff;transition:.35s}.c-btn:active{transform:translateY(2px)}.c-sidebar{display:flex;flex-direction:column;justify-content:space-between;position:fixed;top:0;left:0;bottom:0;width:360px;padding:40px 20px 20px;text-align:center;box-shadow:1px 1px 0 rgba(31,35,46,.15);background-color:#fff}.c-sidebar-author .c-author__cover{width:100px;height:100px;margin:0 auto 10px;border-radius:50%;overflow:hidden;background-color:#cfcfdd}.c-sidebar-author .c-author__cover img{width:100%;height:100%;border-radius:50%;transition:.35s}.c-sidebar-author .c-author__cover img:hover{transform:scale3d(0.9, 0.9, 1)}.c-sidebar-author .c-contact-menu .c-btn{min-width:110px}.c-sidebar-author .c-contact-menu .c-btn .icon{width:18px;height:18px;vertical-align:text-bottom;fill:#fff}.c-sidebar-author .c-author__info{font-family:"Volkhov",serif}.c-sidebar-author .c-author__name{font-size:18px;font-weight:700;line-height:21px}.c-sidebar-author .c-author__job{font-size:12px;color:#a0a0a0;margin:5px 0 0}.c-sidebar-author .c-contact-menu{margin:30px 0}.c-sidebar-author .c-contact-menu .c-btn--secondary{margin-right:10px}.c-sidebar-author .c-author__about{max-width:400px;margin:0 auto 15px;font-size:13px}.c-sidebar-footer .c-social__title{position:relative;font-family:"Volkhov",serif;font-size:15px;font-weight:700;color:#444}.c-sidebar-footer .c-social__title::before{content:"";display:block;height:2px;width:calc(50% - 40px);transform:translateY(-50%);position:absolute;top:50%;left:0;background-color:#444}.c-sidebar-footer .c-social__title::after{content:"";display:block;height:2px;width:calc(50% - 40px);transform:translateY(-50%);position:absolute;top:50%;right:0;background-color:#444}.c-sidebar-footer .c-social__list{list-style-type:none;padding:0;margin:15px 0}.c-sidebar-footer .c-social__list .c-social__item{display:inline-block;width:27px;height:27px}.c-sidebar-footer .c-social__list .icon{width:27px;height:27px;fill:#444;vertical-align:middle;transition:.35s}.c-sidebar-footer .c-social__list .icon:hover{fill:#3af;transform:scale(1.2);transition:.35s}.c-sidebar-footer .c-copyright p{font-size:13px;margin:0}@media only screen and (max-width: 900px){.c-sidebar{position:relative;width:100%;padding:20px}.c-sidebar .c-contact-menu{margin:20px 0}.c-sidebar-footer .c-social .c-social__title{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}.c-sidebar-footer .c-social__list{margin:0}.c-sidebar-footer .c-copyright{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}}@media only screen and (max-width: 480px){.c-sidebar-author .c-author__cover{width:80px;height:80px}.c-sidebar-author .c-author__cover img{width:100%;height:100%}.c-sidebar-author .c-contact-menu{margin:15px 0}.c-sidebar-author .c-contact-menu .c-btn{min-width:80px;font-size:10px;padding:4px 15px;margin-right:5px}.c-sidebar-author .c-contact-menu .c-btn .icon{width:16px;height:16px}.c-sidebar-footer .c-social .c-social__title{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}.c-sidebar-footer .c-social__list{margin:0}.c-sidebar-footer .c-social__list .icon{width:25px;height:25px}.c-sidebar-footer .c-copyright{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}}.c-content{position:relative;display:flex;flex-direction:row;flex-wrap:wrap;align-items:stretch;padding:0 20px 0;margin-left:360px}@media only screen and (max-width: 900px){.c-content{position:static;padding:0 15px 0;margin-left:0}}.c-posts{width:100%;display:flex;flex-direction:row;flex-wrap:wrap}.c-post{width:100%;max-width:100%;margin-bottom:20px;display:flex;flex-direction:row;align-items:stretch;min-height:180px;border-radius:10px;overflow:hidden;transition:.35s;background-color:#fff;box-shadow:0 1px 1px 0 rgba(31,35,46,.15)}.c-post:hover{transform:translate(0px, -2px);box-shadow:0 15px 45px -10px rgba(10,16,34,.2)}.c-post .c-post-thumbnail{display:block;width:30%;max-width:100%;min-height:180px;border-radius:10px 0 0 10px;background-color:rgba(220,235,245,.2);background-size:cover;background-position:50% 50%}.c-post .c-post-content{padding:15px;width:70%}.c-post .c-post-content .c-post-title{font-size:30px;font-weight:400;margin:0 0 15px}.c-post .c-post-content .c-post-title a{text-decoration:none;color:#263959}.c-post .c-post-content .c-post-date,.c-post .c-post-content .c-post-words{font-size:12px}.c-load-more{padding:20px;margin:20px auto 40px;font-size:13px;color:#fff;border:none;background-color:#3af;outline:none}.c-load-more:hover{background-color:hsl(205,100%,45%)}@media only screen and (max-width: 1200px){.c-post{width:48%;max-width:100%;margin:0 1% 20px;flex-direction:column}.c-post .c-post-thumbnail{width:100%;border-radius:10px 10px 0 0}.c-post .c-post-content{width:100%}.c-post .c-post-content .c-post-title{font-size:21px;margin:15px 0}}@media only screen and (max-width: 480px){.c-post{width:100%;max-width:100%;margin:0 0 20px}.c-post .c-post-content{width:100%}.c-post .c-post-content .c-post-title{font-size:21px;margin:15px 0}}.c-article{width:100%;margin:20px 0}.c-wrap-content{padding:20px;background-color:#fff}.c-article__image{position:relative;background-color:rgba(220,235,245,.2);background-position:center;background-size:cover;background-repeat:no-repeat}.c-article__image:after{content:"";display:block;padding-top:56%}.c-article__header{margin-bottom:20px;text-align:center}.c-article__header .c-article__title{margin-bottom:10px}.c-article__date span{font-size:13px;text-transform:uppercase;color:#a0a0a0}.c-article__footer{margin:30px 0 0;padding-bottom:30px;text-align:center;border-bottom:1px solid #f0f0f0}.c-article__footer .c-article__share{transition:.35s}.c-article__footer .c-article__share a .icon{vertical-align:middle;transition:.35s}.c-article__footer .c-article__share a .icon:hover{opacity:.7;transition:.35s}.c-article__footer .c-article__tag{margin-bottom:5px}.c-article__footer .c-article__tag a{display:inline-block;vertical-align:middle;padding:5px 10px;font-family:"Volkhov","Times New Roman",Times,serif;font-size:10px;line-height:10px;text-transform:uppercase;background-color:rgba(115,138,160,.6);color:#fff}.c-article__footer .c-article__tag a:hover{background-color:rgba(80.2446808511,99.6723404255,118.2553191489,.6)}.c-article__footer .c-article__tag a:last-child{margin-right:0}.c-recent-post{padding:30px 0}.c-recent-post .c-recent__title{font-size:14px;text-align:center;text-transform:uppercase;margin-bottom:30px}.c-recent-post .c-recent__box{display:flex;flex-direction:row;flex-wrap:wrap}.c-recent-post .c-recent__item{max-width:23%;flex-basis:23%;margin:0 1% 20px;border-radius:10px;overflow:hidden;text-align:center;background-color:#fff;box-shadow:0 1px 1px 0 rgba(31,35,46,.15);transition:.35s}.c-recent-post .c-recent__item h4{margin-bottom:5px;font-size:12px;text-transform:uppercase}.c-recent-post .c-recent__item h4 a{color:#444}.c-recent-post .c-recent__item:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,.2)}.c-recent-post .c-recent__footer{padding:15px}.c-recent-post .c-recent__image{display:block;width:100%;min-height:180px;background-color:rgba(220,235,245,.2);background-size:cover;background-position:center;background-repeat:no-repeat}.c-recent-post .c-recent__date{color:#a0a0a0;font-size:12px}@media only screen and (max-width: 1200px){.c-recent-post .c-recent__item{max-width:48%;flex-basis:48%}}@media only screen and (max-width: 900px){.c-article{margin:15px 0}}@media only screen and (max-width: 480px){.c-wrap-content{padding:15px}.c-article__header{margin-bottom:5px}.c-article__header .c-article__title{font-size:24px;margin-bottom:5px}.c-recent-post .c-recent__item{max-width:100%;flex-basis:100%;margin:0 0 20px}}.c-blog-tags{width:100%;padding:20px;margin:20px 0 40px;background-color:#fff}.c-blog-tags h1{text-align:center;margin-bottom:0}.c-blog-tags h2{font-size:18px;text-transform:uppercase;margin:30px 0;color:#757575}.c-tag__list{list-style:none;padding:0 0 40px;margin:40px 0 0;border-bottom:1px solid #f0f0f0}.c-tag__list li{display:inline-block;margin-right:15px}.c-tag__list li a{color:#404040;text-transform:uppercase;font-size:12px}.c-tag__list li a:hover{color:#000}.c-tag__item{margin-bottom:15px}.c-tag__image{width:50px;height:50px;border-radius:50%;margin-right:5px}@media only screen and (max-width: 480px){.c-blog-tags{padding:15px}.c-blog-tags h1{font-size:27px}.c-blog-tags h2{font-size:16px;margin:15px 0}.c-tag__list{padding:0 0 30px;margin:30px 0 0}.c-tag__item{margin-bottom:5px}.c-tag__image{display:none}}.c-header{position:relative;width:100%;margin:20px 0}.c-header__box{position:relative;display:flex;flex-direction:row;justify-content:space-between;align-items:center}.c-header__box .icon--ei-search{position:absolute;top:7px;left:15px;fill:#ccc}.c-search{width:80%}.c-search .c-search__box{display:flex;align-items:center}.c-search .c-search__text{position:relative;width:100%;padding:10px 10px 10px 40px;border:1px solid #dce4ea;border-radius:30px;outline:none;color:#a0a0a0}.c-search .c-search__text::placeholder{color:#ccc}.c-search .c-search__text:hover{box-shadow:0 1px 0px rgba(132,135,138,.1);transition:.35s}.c-search .c-search-results-list{position:absolute;width:100%;margin:10px 0 0;list-style-type:none;background-color:#fff;z-index:1}.c-search .c-search-results-list li{display:flex;flex-wrap:wrap;align-items:center;margin:0;padding:20px 25px 0;background-color:#fff;line-height:1.4;border-left:solid 1px #edeeee;border-right:solid 1px #edeeee}.c-search .c-search-results-list li:first-child{border-top-left-radius:5px;border-top-right-radius:5px;border-top:solid 1px #edeeee}.c-search .c-search-results-list li:last-child{border-bottom-left-radius:5px;border-bottom-right-radius:5px;padding-bottom:25px;border-bottom:solid 1px #edeeee}.c-search .c-search-results-list li a{font-size:16px}.c-nav{flex-grow:1;padding-left:20px}.c-nav .c-nav__list{display:flex;justify-content:flex-end}.c-nav .c-nav__list .c-nav__item{display:flex;align-items:center;float:left;padding:4px 10px;font-size:10px;text-transform:uppercase;white-space:nowrap;border:1px solid #dce4ea;box-shadow:0 1px 0px rgba(132,135,138,.4);will-change:transform;transform:translateY(0px);cursor:pointer}.c-nav .c-nav__list .c-nav__item:hover{color:#222;background-color:#fff}.c-nav .c-nav__list .c-nav__item.is-active{box-shadow:0 0 0 rgba(132,135,138,.5);transform:translateY(1px);color:#cfcfdd}.c-nav .c-nav__list .c-nav__item.is-active:hover{background-color:#fbfbfb}.c-nav .c-nav__list .c-nav__item:first-child{border-radius:10px 0 0 10px}.c-nav .c-nav__list .c-nav__item:last-child{border-radius:0 10px 10px 0}.c-nav .c-nav__list .c-nav__item .icon{width:18px;height:18px;margin-right:3px}@media only screen and (max-width: 900px){.c-header{margin:15px 0}}@media only screen and (max-width: 480px){.c-header .c-header__box{flex-direction:column}.c-header .c-search{width:100%}.c-header .c-search .c-search__text{padding:8px 8px 8px 40px}.c-header .c-nav{margin-top:15px}.c-header .c-nav .c-nav__list{justify-content:center}.c-header .c-nav .c-nav__item{padding:4px 8px}}.c-categories{width:100%}.c-categories__list{width:100%;display:flex;flex-direction:row;flex-wrap:wrap}.c-categories__item{max-width:25%;flex-basis:25%;padding:0 10px 20px}.c-categories__link{height:100%;display:flex;flex-direction:column;align-items:center;padding:20px 10px;border-radius:5px;box-shadow:5px 5px 25px rgba(46,61,73,.15);background-color:#fff;transition:.35s}.c-categories__link:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,.2)}.c-categories__link:hover .c-categories__img .c-categories__more{opacity:1;transition:.35s}.c-categories__link .c-categories__container{width:100%;word-wrap:break-word}.c-categories__link .c-categories__container.c-empty-figure{display:flex;flex-direction:column;justify-content:center;flex-grow:1}.c-categories__img{position:relative;max-width:100%}.c-categories__img figure{position:relative;width:200px;max-width:100%;margin-bottom:20px;overflow:hidden;background-size:cover;background-repeat:no-repeat;background-position:center;border-radius:50%;box-shadow:inset 0 1px 3px rgba(141,165,185,.3)}.c-categories__img figure:after{content:"";display:block;padding-top:100%}.c-categories__img figure:before{content:"";position:absolute;top:0;bottom:0;left:0;right:0;background-color:rgba(0,0,0,.15)}.c-categories__img .c-categories__more{display:inline-block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);font-weight:700;color:#fff;text-transform:uppercase;text-shadow:0 1px 0 rgba(104,172,191,.3);opacity:0;transition:.35s}.c-categories__container{text-align:center}.c-categories__container .c-categories__header{font-size:13px;margin-bottom:10px;font-weight:normal;text-transform:uppercase;color:#404040}.c-categories__container .c-categories__count{font-family:"Volkhov",serif;font-size:12px;color:#404040;margin-bottom:0}.c-categories__container .c-categories__count span{display:inline-block;width:20px;height:20px;line-height:20px;vertical-align:baseline;margin-right:5px;border-radius:50%;color:#fff;background-color:#ee6c6c}@media only screen and (max-width: 1200px){.c-categories .c-categories__item{max-width:33.333%;flex-basis:33.333%}}@media only screen and (max-width: 1050px){.c-categories .c-categories__item{max-width:50%;flex-basis:50%}}@media only screen and (max-width: 480px){.c-categories .c-categories__item{max-width:100%;flex-basis:100%;padding:0 0 20px}}.c-form-box{position:absolute;top:0;width:calc(100% - 40px);min-height:100vh;padding:0 20px;background-color:#fff;z-index:1}.c-form-bnt__close{position:absolute;top:0px;left:0;width:30px;height:30px;cursor:pointer;transition:.35s}.c-form-bnt__close:hover{transform:scale(0.8);opacity:.8}.c-form{position:relative;width:750px;max-width:100%;margin:40px auto}.c-form .c-form__title{margin:0 0 40px;min-width:0;border:0;padding:0;font-family:"Volkhov","Times New Roman",Times,serif;text-transform:uppercase;text-align:center}.c-form a{color:#404040}.c-form__group{margin-bottom:20px}.c-form__group label{display:block;text-transform:uppercase;font-size:10px}.c-form__group input,.c-form__group textarea{width:100%;padding:10px 15px;color:#404040;border:1px solid #dce4ea;outline:none;transition:.35s}.c-form__group input:focus,.c-form__group textarea:focus{box-shadow:0 4px 25px rgba(132,135,138,.1)}.c-form__group button{padding:20px;text-transform:uppercase;outline:none;border:none}.c-thank-you p{position:relative;padding:20px 40px;width:750px;max-width:100%;text-transform:uppercase;font-size:12px;line-height:18px;font-weight:700;margin:40px auto 0;text-align:center;color:#fff;background:linear-gradient(135deg, #55b5ad 0%, #5ec9c5 100%)}.c-thank-you p .c-form-bnt__close{width:25px;height:25px;background:rgba(0,0,0,0)}.c-thank-you p a{color:#fff}@media only screen and (max-width: 900px){.c-form-box{width:100%;left:0;right:0}}@media only screen and (max-width: 480px){.c-form-bnt__close{width:25px;height:25px}}.c-newsletter{padding:30px 0 60px;margin:0 auto;border-bottom:1px solid #f0f0f0}.c-newsletter__header{text-align:center}.c-newsletter__header .c-newsletter__title{font-size:14px;text-transform:uppercase;text-align:center}.c-newsletter__header .c-newsletter__subtitle{margin-bottom:15px}.c-newsletter-form{width:100%;max-width:750px;margin:0 auto}.c-newsletter-form .c-newsletter-form__group{display:flex}.c-newsletter__email{width:70%;height:40px;padding:10px 15px;border:1px solid #ddd;border-right-color:rgba(0,0,0,0);outline:none;transition:.35s}.c-newsletter__email:focus{box-shadow:0 4px 25px rgba(132,135,138,.1)}.c-newsletter__button{width:30%;height:40px;color:#fff;background-color:#3af;transition:.35s;border:none;outline:none;cursor:pointer}.c-newsletter__button:hover{background-color:hsl(205,100%,45%)}@media only screen and (max-width: 480px){.c-newsletter__button{font-size:13px}}.c-comments{padding:30px 0;border-top:1px solid #f0f0f0}.c-top{position:fixed;width:40px;height:40px;bottom:20px;color:#757575;cursor:pointer;transition:.35s;right:-100px;z-index:10;opacity:.5}.c-top--active{right:15px}.c-top:hover{color:#757575;opacity:1}.post-difficulty strong{padding:2px 5px;border-radius:3px;font-weight:bold}.post-difficulty strong.easy{color:#1cb8b8}.post-difficulty strong.medium{color:#ffb84d}.post-difficulty strong.hard{color:#f63636}.post-topics{margin-top:10px;font-size:14px;color:#666}.post-topics .topics-label{font-weight:bold;margin-right:5px;color:#444}.post-topics ul{display:inline-flex;flex-wrap:wrap;gap:5px;list-style:none;padding:0;margin:0}.post-topics ul .topic-item{background-color:#f3f3f3;border:1px solid #ddd;border-radius:20px;padding:1px 5px;font-size:12px;color:#333;text-transform:capitalize;white-space:nowrap}.post-topics ul .topic-item:hover{background-color:#e0e0e0}.u-text-left{text-align:left}.u-text-right{text-align:right}.u-text-center{text-align:center}.u-text-justify{text-align:justify}.u-block{display:block}.u-inline-block{display:inline-block}.u-inline{display:inline}.u-full-width{display:block;width:100%}.u-vertical-center{display:flex;align-items:center;justify-content:center}.u-responsive-image{max-width:100%;height:auto;vertical-align:middle}.u-show{display:block !important}.u-hide{display:none !important}.u-invisible{visibility:hidden}.u-float-left{float:left}.u-float-right{float:right}.u-no-padding-top{padding-top:0}.u-no-padding-bottom{padding-bottom:0}.u-no-padding-left{padding-left:0}.u-no-padding-right{padding-right:0}.u-no-padding{padding:0}.u-no-margin-top{margin-top:0}.u-no-margin-bottom{margin-bottom:0}.u-no-margin-left{margin-left:0}.u-no-margin-right{margin-right:0}.u-no-margin{margin:0}.u-lists-reset{list-style-type:none;margin:0;padding:0}.u-clearfix::before,.u-clearfix::after{content:"";display:table;clear:both}.u-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}
+  </style>
+</head>
+
+<body>
+  
+  <div class="o-wrapper">
+    <aside class="c-sidebar">
+  <div class="c-sidebar-author">
+    <div class="c-author__cover">
+      <a href="/">
+        <img src="/images/Okeydokey/pic_62.jpg" alt="ChocoBreeze">
+      </a>
+    </div>
+    <div class="c-author__info">
+      <div class="c-author__name">ChocoBreeze</div>
+      <span class="c-author__job">Developer</span>
+    </div>
+    <div class="c-contact-menu">
+      
+      
+      
+      
+    </div>
+    <!-- <p class="c-author__about">- 너무 늦게 자지 않기- 끼니 거르지 않기- 이유 생각하기</p> -->
+    <p class="c-author__about">- 너무 늦게 자지 않기<br/>- 끼니 거르지 않기<br/>- 이유 생각하기</p>
+  </div>
+
+  <div class="c-sidebar-footer">
+    <div class="c-social">
+      <div class="c-social__title">Social</div>
+      <ul class="c-social__list u-lists-reset">
+        
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://github.com/ChocoBreeze" target="_blank"><div data-icon='ei-sc-github' data-size='s'></div></a></li>
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://instagram.com/breezechoco" target="_blank"><div data-icon='ei-sc-instagram' data-size='s'></div></a></li>
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://blog.naver.com/chocobreeze" target="_blank"><div data-icon='ei-sc-naver' data-size='s'></div></a></li>
+        
+      </ul>
+    </div>
+    <div class="c-copyright">
+      <p>2024 &copy; ChocoBreeze</p>
+    </div>
+  </div>
+</aside> <!-- /.c-sidebar -->
+
+<main class="c-content">
+  <article class="c-article">
+  <div class="c-article__content">
+    <header class="c-header u-hide u-no-margin-top">
+      <div class="c-header__box">
+        <div class="c-search u-full-width">
+          <div class="c-search__box">
+            <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
+            <div data-icon='ei-search' data-size='s'></div>
+          </div>
+          <ul id="js-results-container" class="c-search-results-list"></ul>
+        </div>
+      </div>
+    </header>
+    
+    <div class="c-article__image o-opacity" style="background-image: url( /images/Mine/20230407_185955.jpg )"></div>
+    
+    <div class="c-wrap-content">
+      <header class="c-article__header">
+        <h1 class="c-article__title">2337. Move Pieces to Obtain a String</h1>
+        <div class="c-article__date">
+          <span>2024, Dec 05</span>
+        </div>
+      </header>
+      <h1 id="2337-move-pieces-to-obtain-a-string">2337. Move Pieces to Obtain a String</h1>
+<p><a href="https://leetcode.com/problems/move-pieces-to-obtain-a-string/description/?envType=daily-question&amp;envId=2024-12-05">문제 링크</a></p>
+
+<p><br /></p>
+
+<h2 id="내-코드">내 코드</h2>
+<p>못 풀었다..</p>
+
+<p><br /></p>
+
+<p>구체적인 아이디어가 없는..</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">bool</span> <span style="color: #24292f;background-color: #f6f8fa">canChange</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">target</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// ___L =&gt; L___ (_, L 포함)</span>
+        <span style="color: #6e7781">// R___ =&gt; ___R (R, _ 포함)</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">startL</span><span style="color: #24292f;background-color: #f6f8fa">{},</span> <span style="color: #24292f;background-color: #f6f8fa">endL</span><span style="color: #24292f;background-color: #f6f8fa">{};</span> <span style="color: #6e7781">// [startL, endL)</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">startR</span><span style="color: #24292f;background-color: #f6f8fa">{},</span> <span style="color: #24292f;background-color: #f6f8fa">endR</span><span style="color: #24292f;background-color: #f6f8fa">{};</span><span style="color: #6e7781">// [startR, endR)</span>
+        <span style="color: #cf222e">for</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">{},</span> <span style="color: #24292f;background-color: #f6f8fa">e</span><span style="color: #24292f;background-color: #f6f8fa">{</span><span style="color: #cf222e">static_cast</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">target</span><span style="color: #24292f;background-color: #f6f8fa">())};</span> <span style="color: #24292f;background-color: #f6f8fa">s</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">e</span> <span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #0550ae">++</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">if</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0a3069">'_'</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #cf222e">if</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">startR</span> <span style="color: #0550ae">!=</span> <span style="color: #24292f;background-color: #f6f8fa">endR</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                    <span style="color: #6e7781">// 기존에 쌓은 구간 확인</span>
+                <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="solution">Solution</h2>
+
+<h3 id="approach-1-brute-force-memory-limit-exceeded">Approach 1: Brute Force (Memory Limit Exceeded)</h3>
+<ul>
+  <li><em>Memory Limit Exceeded</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let $n$ be the size of the <code class="language-plaintext highlighter-rouge">start</code> and <code class="language-plaintext highlighter-rouge">target</code> strings.</li>
+      <li>Time Complexity: $O(n^2)$</li>
+      <li>Space Complexity: $O(n^2)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">bool</span> <span style="color: #24292f;background-color: #f6f8fa">canChange</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">target</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// To keep track of visited states to avoid cycles</span>
+        <span style="color: #24292f;background-color: #f6f8fa">unordered_set</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">string</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">visitedStates</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #6e7781">// Queue for current state</span>
+        <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">string</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">stateQueue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #6e7781">// Start with the initial state</span>
+        <span style="color: #24292f;background-color: #f6f8fa">stateQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+
+        <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">!</span><span style="color: #24292f;background-color: #f6f8fa">stateQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">empty</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">currentState</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">stateQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">front</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+            <span style="color: #24292f;background-color: #f6f8fa">stateQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">pop</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+
+            <span style="color: #6e7781">// If we reach the target state, return true</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentState</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">target</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #cf222e">return</span> <span style="color: #953800">true</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+            <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">position</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">position</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">();</span> <span style="color: #24292f;background-color: #f6f8fa">position</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #6e7781">// Try moving 'L' to the left</span>
+                <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">position</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0a3069">'L'</span> <span style="color: #0550ae">&amp;&amp;</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">position</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0a3069">'_'</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">swap</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">position</span><span style="color: #24292f;background-color: #f6f8fa">],</span> <span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">position</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">]);</span>
+                    <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">visitedStates</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">find</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #0550ae">==</span>
+                        <span style="color: #24292f;background-color: #f6f8fa">visitedStates</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                        <span style="color: #6e7781">// Add the new state to the queue</span>
+                        <span style="color: #24292f;background-color: #f6f8fa">stateQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+                        <span style="color: #6e7781">// Mark the new state as visited</span>
+                        <span style="color: #24292f;background-color: #f6f8fa">visitedStates</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">insert</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+                    <span style="color: #6e7781">// Restore the state</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">swap</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">position</span><span style="color: #24292f;background-color: #f6f8fa">],</span> <span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">position</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">]);</span>
+                <span style="color: #24292f;background-color: #f6f8fa">}</span>
+                <span style="color: #6e7781">// Try moving 'R' to the right</span>
+                <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">position</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0a3069">'R'</span> <span style="color: #0550ae">&amp;&amp;</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">position</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0a3069">'_'</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">swap</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">position</span><span style="color: #24292f;background-color: #f6f8fa">],</span> <span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">position</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">]);</span>
+                    <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">visitedStates</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">find</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #0550ae">==</span>
+                        <span style="color: #24292f;background-color: #f6f8fa">visitedStates</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                        <span style="color: #6e7781">// Add the new state to the queue</span>
+                        <span style="color: #24292f;background-color: #f6f8fa">stateQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+                        <span style="color: #6e7781">// Mark the new state as visited</span>
+                        <span style="color: #24292f;background-color: #f6f8fa">visitedStates</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">insert</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+                    <span style="color: #6e7781">// Restore the state</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">swap</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">position</span><span style="color: #24292f;background-color: #f6f8fa">],</span> <span style="color: #24292f;background-color: #f6f8fa">currentState</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">position</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">]);</span>
+                <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// If no valid transformation sequence is found, return false</span>
+        <span style="color: #cf222e">return</span> <span style="color: #953800">false</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="approach-2-using-queue">Approach 2: Using Queue</h3>
+<ul>
+  <li><em>43ms, 37.83MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let $n$ be the size of the <code class="language-plaintext highlighter-rouge">start</code> and <code class="language-plaintext highlighter-rouge">target</code> strings.</li>
+      <li>Time Complexity: $O(n)$</li>
+      <li>Space Complexity: $O(n)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">bool</span> <span style="color: #24292f;background-color: #f6f8fa">canChange</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">target</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// Queue to store characters and indices from both strings</span>
+        <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">pair</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">char</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">startQueue</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">targetQueue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #6e7781">// Record non-underscore characters and their indices</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">();</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">!=</span> <span style="color: #0a3069">'_'</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">startQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push</span><span style="color: #24292f;background-color: #f6f8fa">({</span><span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">],</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">});</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">target</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">!=</span> <span style="color: #0a3069">'_'</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">targetQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push</span><span style="color: #24292f;background-color: #f6f8fa">({</span><span style="color: #24292f;background-color: #f6f8fa">target</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">],</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">});</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// If number of pieces don't match, return false</span>
+        <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">startQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">!=</span> <span style="color: #24292f;background-color: #f6f8fa">targetQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #cf222e">return</span> <span style="color: #953800">false</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #6e7781">// Compare each piece's type and position</span>
+        <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">!</span><span style="color: #24292f;background-color: #f6f8fa">startQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">empty</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">auto</span> <span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">startChar</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">startIndex</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">startQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">front</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+            <span style="color: #24292f;background-color: #f6f8fa">startQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">pop</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+            <span style="color: #cf222e">auto</span> <span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">targetChar</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">targetIndex</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">targetQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">front</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+            <span style="color: #24292f;background-color: #f6f8fa">targetQueue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">pop</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+
+            <span style="color: #6e7781">// Check character match and movement rules</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">startChar</span> <span style="color: #0550ae">!=</span> <span style="color: #24292f;background-color: #f6f8fa">targetChar</span> <span style="color: #0550ae">||</span>
+                <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">startChar</span> <span style="color: #0550ae">==</span> <span style="color: #0a3069">'L'</span> <span style="color: #0550ae">&amp;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">startIndex</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">targetIndex</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #0550ae">||</span>
+                <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">startChar</span> <span style="color: #0550ae">==</span> <span style="color: #0a3069">'R'</span> <span style="color: #0550ae">&amp;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">startIndex</span> <span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">targetIndex</span><span style="color: #24292f;background-color: #f6f8fa">))</span>
+                <span style="color: #cf222e">return</span> <span style="color: #953800">false</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #cf222e">return</span> <span style="color: #953800">true</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<h4 id="gpt">GPT</h4>
+<p>아래는 LeetCode 문제 “Move Pieces to Obtain a String”를 한국어로 자세히 설명한 내용입니다.</p>
+
+<p><strong>문제 개요:</strong><br />
+문자열 <strong>s</strong>를 시작점으로 하여 문자열 <strong>t</strong>를 만들고자 합니다. 두 문자열은 같은 문자 집합(L, R, _)을 갖고 있으며, 주어진 규칙에 따라 문자를 이동시킬 수 있습니다. 이동 규칙은 다음과 같습니다.</p>
+
+<ul>
+  <li>‘R’ 문자는 오른쪽으로만 이동할 수 있음: 즉, 오른쪽에 빈 칸(‘_‘)이 있을 때만 ‘R’을 오른쪽 칸으로 옮길 수 있습니다.</li>
+  <li>‘L’ 문자는 왼쪽으로만 이동할 수 있음: 즉, 왼쪽에 빈 칸(‘_‘)이 있을 때만 ‘L’을 왼쪽 칸으로 옮길 수 있습니다.</li>
+</ul>
+
+<p>이때, <strong>s</strong>에서 시작해 위 규칙에 따라 문자를 움직여서 <strong>t</strong>를 만들 수 있는지 판단하는 문제입니다.</p>
+
+<p><strong>핵심 아이디어:</strong></p>
+<ul>
+  <li>‘R’은 절대로 왼쪽으로 갈 수 없고, ‘L’은 절대로 오른쪽으로 갈 수 없습니다.</li>
+  <li>이 말은 결국, <strong>s</strong>에서의 ‘R’의 상대적인 순서와 위치 조건이 <strong>t</strong>에서도 충족되어야 하고, 마찬가지로 ‘L’도 그렇습니다.</li>
+  <li>구체적으로:
+    <ul>
+      <li>‘R’ 문자는 처음 위치보다 왼쪽에 있을 수 없습니다. (오른쪽 이동만 가능하므로, 최종적으로 ‘R’은 s에서의 위치보다 t에서의 위치가 같거나 더 오른쪽에 있어야 함)</li>
+      <li>‘L’ 문자는 처음 위치보다 오른쪽에 있을 수 없습니다. (왼쪽 이동만 가능하므로, 최종적으로 ‘L’은 s에서의 위치보다 t에서의 위치가 같거나 더 왼쪽에 있어야 함)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>또한, ‘L’과 ‘R’의 상대적 순서는 바뀔 수 없습니다. 예를 들어, s에서 첫 번째 ‘R’이 두 번째 ‘R’보다 왼쪽에 있었다면, t에서도 여전히 첫 번째 ‘R’은 두 번째 ‘R’보다 왼쪽에 있어야 합니다. ‘L’에 대해서도 마찬가지이며, ‘R’와 ‘L’ 사이의 상대적 순서 또한 규칙적으로 유지됩니다.<br />
+즉, s에서 등장하는 ‘R’의 순서와 t에서 등장하는 ‘R’의 순서가 같고, s에서 ‘L’의 순서와 t에서의 ‘L’의 순서도 같아야 합니다. 순서가 달라진다면 ‘R’와 ‘L’이 서로를 건너뛰어야 하는 상황이 발생하는데, 이는 주어진 이동 규칙으로 불가능합니다.</p>
+
+<p><strong>접근법 (큐/리스트 사용):</strong></p>
+
+<ol>
+  <li>
+    <p><strong>문자 빈도와 구성이 일치하는지 확인:</strong><br />
+s와 t가 ‘L’, ‘R’, ‘_’ 문자를 동일한 개수로 가지고 있지 않다면, 변환은 불가능합니다.</p>
+  </li>
+  <li>
+    <p><strong>‘L’과 ‘R’의 인덱스 추출:</strong><br />
+s 문자열을 순회하여 ‘R’ 문자가 등장하는 인덱스를 모두 s_R 리스트(또는 큐)에 저장하고, ‘L’ 문자가 등장하는 인덱스를 s_L 리스트에 저장합니다.<br />
+t 문자열에 대해서도 동일하게 t_R, t_L을 구합니다.</p>
+
+    <p>예를 들어,<br />
+s = “<em>R_L</em>” 라면, s_R = [1], s_L = [3]<br />
+t = “<em>_RL</em>” 라면, t_R = [2], t_L = [2]</p>
+  </li>
+  <li>
+    <p><strong>‘R’ 인덱스 검증:</strong><br />
+s와 t에서 ‘R’의 인덱스 리스트 길이가 같고, 등장 순서가 같아야 합니다.<br />
+그리고 각 i에 대해 s_R[i] ≤ t_R[i] 여야 합니다.<br />
+왜냐하면 ‘R’은 오른쪽으로만 이동할 수 있으므로, 최종 위치 t_R[i]는 처음 위치 s_R[i]보다 왼쪽에 있을 수 없습니다.<br />
+만약 t_R[i] &lt; s_R[i]인 경우, ‘R’을 왼쪽으로 옮기는 것은 불가능하므로 실패합니다.</p>
+  </li>
+  <li>
+    <p><strong>‘L’ 인덱스 검증:</strong><br />
+s와 t에서 ‘L’의 인덱스 리스트 역시 길이와 순서가 같아야 합니다.<br />
+그리고 각 i에 대해 s_L[i] ≥ t_L[i] 여야 합니다.<br />
+왜냐하면 ‘L’은 왼쪽으로만 이동할 수 있으므로, 최종 위치 t_L[i]가 시작 위치 s_L[i]보다 오른쪽에 있을 수 없습니다.<br />
+만약 t_L[i] &gt; s_L[i]인 경우, ‘L’을 오른쪽으로 옮기는 것은 불가능하므로 실패합니다.</p>
+  </li>
+  <li>
+    <p><strong>모든 조건 충족 시 성공:</strong><br />
+위의 모든 검사를 통과하면 s에서 t로의 변환이 가능합니다.</p>
+  </li>
+</ol>
+
+<p><strong>이 접근법의 이유:</strong></p>
+<ul>
+  <li>문자열 내에서 문자들을 실제로 하나하나 옮기는 복잡한 시뮬레이션을 하지 않고, 인덱스 조건만으로 가능 여부를 판단할 수 있습니다.</li>
+  <li>‘R’은 왼쪽으로 못 가고, ‘L’은 오른쪽으로 못 간다는 제약이 결국 인덱스 비교로 귀결됩니다.</li>
+  <li>‘R’와 ‘L’의 상대적 순서를 검사함으로써 불가능한 재배열을 사전에 차단합니다.</li>
+</ul>
+
+<p><strong>예시:</strong><br />
+s = “<em>R_L</em>”<br />
+t = “<em>_RL</em>”</p>
+
+<ul>
+  <li>s_R = [1], s_L = [3]</li>
+  <li>t_R = [2], t_L = [2]</li>
+</ul>
+
+<p>‘R’ 체크: s_R[0] = 1, t_R[0] = 2 → s_R[0] ≤ t_R[0] (1 ≤ 2) 만족<br />
+‘L’ 체크: s_L[0] = 3, t_L[0] = 2 → s_L[0] ≥ t_L[0] (3 ≥ 2) 만족</p>
+
+<p>모두 조건을 만족하므로 s를 t로 변환하는 것은 가능합니다.</p>
+
+<p>정리하자면, 이 방법(Approach 2 using Queue)은 문자 각각의 인덱스를 따로 추출하여, ‘R’는 오른쪽 이동 조건(s_R[i] ≤ t_R[i])을, ‘L’은 왼쪽 이동 조건(s_L[i] ≥ t_L[i])을 만족하는지만 확인함으로써 문제를 단순화시키고 변환 가능 여부를 판단하는 방식입니다.</p>
+
+<p><br /></p>
+
+<h3 id="approach-3-two-pointer">Approach 3: Two pointer</h3>
+<ul>
+  <li><em>4ms, 21.7MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let $n$ be the size of the <code class="language-plaintext highlighter-rouge">start</code> and <code class="language-plaintext highlighter-rouge">target</code> strings.</li>
+      <li>Time Complexity: $O(n)$</li>
+      <li>Space Complexity: $O(1)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">bool</span> <span style="color: #24292f;background-color: #f6f8fa">canChange</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">target</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">startLength</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+        <span style="color: #6e7781">// Pointer for start string and target string</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">startIndex</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">targetIndex</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">startIndex</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">startLength</span> <span style="color: #0550ae">||</span> <span style="color: #24292f;background-color: #f6f8fa">targetIndex</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">startLength</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #6e7781">// Skip underscores in start</span>
+            <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">startIndex</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">startLength</span> <span style="color: #0550ae">&amp;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">startIndex</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0a3069">'_'</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">startIndex</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #6e7781">// Skip underscores in target</span>
+            <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">targetIndex</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">startLength</span> <span style="color: #0550ae">&amp;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">target</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">targetIndex</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0a3069">'_'</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">targetIndex</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #6e7781">// If one string is exhausted, both should be exhausted</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">startIndex</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">startLength</span> <span style="color: #0550ae">||</span> <span style="color: #24292f;background-color: #f6f8fa">targetIndex</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">startLength</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">startIndex</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">startLength</span> <span style="color: #0550ae">&amp;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">targetIndex</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">startLength</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+            <span style="color: #6e7781">// Check if the pieces match and follow movement rules</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">startIndex</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">!=</span> <span style="color: #24292f;background-color: #f6f8fa">target</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">targetIndex</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">||</span>
+                <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">startIndex</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0a3069">'L'</span> <span style="color: #0550ae">&amp;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">startIndex</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">targetIndex</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #0550ae">||</span>
+                <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">start</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">startIndex</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0a3069">'R'</span> <span style="color: #0550ae">&amp;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">startIndex</span> <span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">targetIndex</span><span style="color: #24292f;background-color: #f6f8fa">))</span>
+                <span style="color: #cf222e">return</span> <span style="color: #953800">false</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+            <span style="color: #24292f;background-color: #f6f8fa">startIndex</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #24292f;background-color: #f6f8fa">targetIndex</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// If all conditions are satisfied, return true</span>
+        <span style="color: #cf222e">return</span> <span style="color: #953800">true</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<h4 id="gpt-1">GPT</h4>
+<p>아래는 LeetCode 문제 “Move Pieces to Obtain a String”의 에디토리얼 중 접근 방법 3 (Two Pointer Approach)을 한국어로 자세히 설명한 내용입니다.</p>
+
+<p><strong>접근 방법 3 (Two Pointer):</strong></p>
+
+<p><strong>핵심 아이디어:</strong><br />
+이 접근법은 투 포인터(Two Pointer) 기법을 이용하여 문자열 <strong>s</strong>와 <strong>t</strong>를 동시에 순회하며, 각 문자를 적절히 매칭하는지 검사하는 방식입니다. 앞서 언급한 원리를 기억하면, ‘R’은 오른쪽으로만 이동 가능하고, ‘L’은 왼쪽으로만 이동 가능하며, 따라서 s에서 나온 ‘R’이 t에서 대응하는 ‘R’보다 오른쪽에 있을 수 없고, s에서 나온 ‘L’이 t에서 대응하는 ‘L’보다 왼쪽에 있을 수 없습니다.</p>
+
+<p>구체적인 방법은 다음과 같습니다:</p>
+
+<ol>
+  <li>
+    <p><strong>전처리:</strong><br />
+s와 t가 동일한 문자 구성(동일한 수의 ‘R’, ‘L’, ‘_‘)을 가지고 있는지 먼저 확인합니다. 만약 문자 구성이 다르다면 바로 false를 반환합니다.</p>
+  </li>
+  <li>
+    <p><strong>두 포인터 사용:</strong><br />
+인덱스 i, j를 두 문자열 s와 t에 각각 두고, 두 문자열을 동시에 순회합니다.</p>
+
+    <ul>
+      <li>i: 문자열 s를 순회하는 포인터</li>
+      <li>j: 문자열 t를 순회하는 포인터</li>
+    </ul>
+
+    <p>여기서 ‘_’(빈칸)는 실제로 문자를 옮기는 데 있어서 중요한 장애물이 아니라, 단지 이동 가능 공간을 나타냅니다. 우리가 궁극적으로 맞춰야 하는 것은 s에 있는 ‘L’들과 ‘R’들이 t에서 같은 순서, 그리고 가능한 위치 관계를 만족하는가입니다.</p>
+  </li>
+  <li>
+    <p><strong>포인터 이동 로직:</strong>
+문자열 s와 t에서 ‘L’ 또는 ‘R’ 문자를 만날 때까지 각각 i와 j를 이동합니다. 빈칸(‘<em>‘)은 건너뛰어도 됩니다. 즉, s[i]가 ‘</em>‘라면 i를 증가시켜 다음 문자를 탐색하고, t[j]가 ‘_‘라면 j를 증가시켜 다음 문자를 탐색합니다.</p>
+
+    <ul>
+      <li>s[i]와 t[j] 모두 알파벳 ‘L’ 또는 ‘R’을 찾은 경우, 두 문자가 서로 같은지 확인합니다.
+        <ul>
+          <li>만약 s[i] != t[j] 라면, 순서를 맞출 수 없으므로 바로 false를 반환합니다.</li>
+        </ul>
+      </li>
+      <li>s[i]와 t[j]가 같은 문자라면, 이 문자가 ‘R’인지, ‘L’인지에 따라 위치 관계를 확인해야 합니다.
+        <ul>
+          <li>
+            <p>만약 ‘R’이라면, s에서의 위치 i는 t에서의 위치 j보다 항상 작거나 같아야 합니다. (s_R[i] ≤ t_R[j])<br />
+왜냐하면 ‘R’은 오른쪽으로만 이동 가능하므로, 최종적으로 t에서 ‘R’이 있는 인덱스 j는 시작점 s의 인덱스 i보다 왼쪽에 있을 수 없습니다.<br />
+만약 i &gt; j라면, s의 ‘R’은 t에서 요구하는 위치보다 왼쪽에 있어야 하는데, ‘R’은 왼쪽으로 이동할 수 없으므로 불가능합니다.</p>
+          </li>
+          <li>
+            <p>만약 ‘L’이라면, s에서의 위치 i는 t에서의 위치 j보다 항상 크거나 같아야 합니다. (s_L[i] ≥ t_L[j])<br />
+왜냐하면 ‘L’은 왼쪽으로만 이동 가능하므로, 최종적으로 t에서 ‘L’이 있는 인덱스 j는 시작점 s의 인덱스 i보다 오른쪽에 있을 수 없습니다.<br />
+만약 i &lt; j라면, s의 ‘L’은 t에서 요구하는 위치보다 오른쪽에 있어야 하는데, ‘L’은 오른쪽으로 이동할 수 없으므로 이 역시 불가능합니다.</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>이 조건들을 만족하지 않는 순간 false를 반환합니다.</p>
+  </li>
+  <li>
+    <p><strong>모두 만족할 경우:</strong><br />
+s와 t에서 더 이상 비교할 ‘L’이나 ‘R’ 문자가 없고, 모든 위치 제약을 만족했다면 true를 반환합니다.</p>
+  </li>
+</ol>
+
+<p><strong>정리:</strong></p>
+<ul>
+  <li>투 포인터 기법으로 s와 t를 동시에 순회합니다.</li>
+  <li>빈칸(‘_‘)은 무시하고, ‘L’이나 ‘R’ 문자를 찾을 때까지 각각 진행합니다.</li>
+  <li>‘L’, ‘R’을 각각 짝지을 때, s의 인덱스와 t의 인덱스 관계를 검사하여 이동 가능 여부를 판별합니다.</li>
+  <li>모든 문자 짝에 대해 조건이 만족되면 true, 중간에 하나라도 불가능한 조건이 나오면 false입니다.</li>
+</ul>
+
+<p><strong>예시를 통한 이해:</strong></p>
+
+<p>예를 들어, s = “<em>R_L</em>“와 t = “<em>_RL</em>”:</p>
+<ul>
+  <li>s: ‘<em>’, ‘R’, ‘</em>’, ‘L’, ‘_’</li>
+  <li>t: ‘<em>’, ‘</em>’, ‘R’, ‘L’, ‘_’</li>
+</ul>
+
+<p>두 포인터 i, j를 각각 s와 t 처음에 둡니다.</p>
+<ul>
+  <li>s에서 i를 오른쪽으로 이동: s[0] = ‘_’ → i=1<br />
+s[1] = ‘R’, 이제 ‘R’을 찾음.</li>
+  <li>t에서 j를 오른쪽으로 이동: t[0] = ‘<em>’, t[1] = ‘</em>’ → j=2<br />
+t[2] = ‘R’, 이제 ‘R’을 찾음.</li>
+</ul>
+
+<p>이제 s[i]=R, t[j]=R이므로 같은 문자입니다. ‘R’인 경우, s의 인덱스(i=1) ≤ t의 인덱스(j=2)이어야 합니다. 여기서는 1 ≤ 2이므로 만족.</p>
+
+<p>다음 ‘L’을 찾기 위해 s와 t에서 각각 i와 j를 진행:</p>
+<ul>
+  <li>s에서 i를 증가: i=2에서 ‘_’, i=3에서 ‘L’ 발견.</li>
+  <li>t에서 j를 증가: j=3에서 ‘L’ 발견.</li>
+</ul>
+
+<p>이제 s[i]=L, t[j]=L이므로 같은 문자입니다. ‘L’인 경우, s의 인덱스(i=3) ≥ t의 인덱스(j=3)이어야 합니다. 여기서는 3 ≥ 3이므로 만족.</p>
+
+<p>마지막까지 조건을 위배하지 않고 모두 만족했으므로 결과는 true입니다.</p>
+
+<p>이 접근법은 별도의 자료구조 없이 O(n) 시간에 가능하며, 두 문자열을 한 번에 순회하면서 조건을 점검하기 때문에 직관적이고 효율적입니다.</p>
+
+<p><br /></p>
+
+      <div class="c-article__footer u-clearfix">
+        <div class="c-article__tag">
+          
+          <a href="/tags#Problem_Solving">&#35; Problem_Solving</a>
+          
+        </div>
+        <!-- <div class="c-article__share">
+          <a href="https://twitter.com/intent/tweet?text=2337.%20Move%20Pieces%20to%20Obtain%20a%20String&url=https://chocobreeze.github.io/2024/12/05/2337.-Move-Pieces-to-Obtain-a-String/" title="Share
+          on Twitter" rel="nofollow" target="_blank"><div data-icon='ei-sc-twitter' data-size='s'></div></a>
+          <a href="https://facebook.com/sharer.php?u=https://chocobreeze.github.io/2024/12/05/2337.-Move-Pieces-to-Obtain-a-String/" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a>
+          <a href="https://plus.google.com/share?url=https://chocobreeze.github.io/2024/12/05/2337.-Move-Pieces-to-Obtain-a-String/" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a>
+        </div> -->
+      </div>
+      <!-- <div class="c-newsletter">
+  <div class="c-newsletter__header">
+    <h4 class="c-newsletter__title">Newsletter</h4>
+    <div class="c-newsletter__subtitle">Subscribe to this blog and receive notifications of new posts by email.</div>
+  </div>
+  <form class="c-newsletter-form validate" action="#" method="POST" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+    <div class="c-newsletter-form__group">
+      <label class="u-screen-reader-text" for="mce-EMAIL">Email address</label>
+      <input class="c-newsletter__email required email" id="mce-EMAIL" type="email" name="EMAIL" placeholder="Your email address" autocomplete="on">
+      <input class="c-newsletter__button" id="mc-embedded-subscribe" type="submit" name="subscribe" value="Subscribe">
+    </div>
+  </form>
+</div> -->
+      <div class="c-recent-post">
+        <h4 class="c-recent__title">You might also enjoy</h4>
+        <div class="c-recent__box">
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/12/06/2554.-Maximum-Number-of-Integers-to-Choose-From-a-Range-I/" style="background-image: url( /images/Mine/20230420_184440.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/12/06/2554.-Maximum-Number-of-Integers-to-Choose-From-a-Range-I/">2554. Maximum Number of Integers to Choose From a Range I</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-12-06T11:00:00+00:00">December 6, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/12/04/2825.-Make-String-a-Subsequence-Using-Cyclic-Increments/" style="background-image: url( /images/Mine/20230405_185046.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/12/04/2825.-Make-String-a-Subsequence-Using-Cyclic-Increments/">2825. Make String a Subsequence Using Cyclic Increments</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-12-04T11:00:00+00:00">December 4, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/12/03/2109.-Adding-Spaces-to-a-String/" style="background-image: url( /images/Mine/20230404_182423.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/12/03/2109.-Adding-Spaces-to-a-String/">2109. Adding Spaces to a String</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-12-03T11:00:00+00:00">December 3, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/12/02/1455.-Check-If-a-Word-Occurs-As-a-Prefix-of-Any-Word-in-a-Sentence/" style="background-image: url( /images/Mine/20230328_183552.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/12/02/1455.-Check-If-a-Word-Occurs-As-a-Prefix-of-Any-Word-in-a-Sentence/">1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-12-02T11:00:00+00:00">December 2, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        </div>
+      </div> <!-- /.c-recent-post -->
+      
+    </div> <!-- /.c-wrap-content -->
+  </div> <!-- /.c-article__content -->
+</article> <!-- /.c-article-page -->
+
+<!-- KaTeX CSS 추가 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<!-- KaTeX JS 추가 및 자동 렌더링 설정 -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" 
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});">
+</script>
+</main> <!-- /.c-content -->
+  </div> <!-- /.o-wrapper -->
+  <div class="c-top" data-icon='ei-chevron-up' data-size='s' title="Scroll To Top"></div> <!-- /.c-top -->
+  <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/evil-icons.min.js"></script>
+<script src="/js/jquery.fitvids.js"></script>
+<script src="/js/simple-jekyll-search.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- /javascripts -->
+</body>
+</html>
