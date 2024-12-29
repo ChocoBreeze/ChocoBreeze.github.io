@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <title>2872. Maximum Number of K-Divisible Components</title>
+  <meta name='description' content="2872. Maximum Number of K-Divisible Components문제 링크">
+  <link rel='canonical' href="https://chocobreeze.github.io/2024/12/21/2872.-Maximum-Number-of-K-Divisible-Components/">
+  <link rel='alternate' type='application/rss+xml' title='Welcome to ChocoBreeze Blog' href="https://chocobreeze.github.io/feed.xml">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+  <style>
+    
+    /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:rgba(0,0,0,0);-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}@-webkit-keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.icon{position:relative;display:inline-block;width:25px;height:25px;overflow:hidden;fill:currentColor}.icon__cnt{width:100%;height:100%;background:inherit;fill:inherit;pointer-events:none;transform:translateX(0);-ms-transform:translate(0.5px, -0.3px)}.icon--m{width:50px;height:50px}.icon--l{width:100px;height:100px}.icon--xl{width:150px;height:150px}.icon--xxl{width:200px;height:200px}.icon__spinner{position:absolute;top:0;left:0;width:100%;height:100%}.icon--ei-spinner .icon__spinner,.icon--ei-spinner-2 .icon__spinner{-webkit-animation:spin 1s steps(12) infinite;animation:spin 1s steps(12) infinite}.icon--ei-spinner-3 .icon__spinner{-webkit-animation:spin 1.5s linear infinite;animation:spin 1.5s linear infinite}.icon--ei-sc-facebook{fill:#3b5998}.icon--ei-sc-github{fill:#333}.icon--ei-sc-google-plus{fill:#dd4b39}.icon--ei-sc-instagram{fill:#3f729b}.icon--ei-sc-linkedin{fill:#0976b4}.icon--ei-sc-odnoklassniki{fill:#ed812b}.icon--ei-sc-skype{fill:#00aff0}.icon--ei-sc-soundcloud{fill:#f80}.icon--ei-sc-tumblr{fill:#35465c}.icon--ei-sc-twitter{fill:#55acee}.icon--ei-sc-vimeo{fill:#1ab7ea}.icon--ei-sc-vk{fill:#45668e}.icon--ei-sc-youtube{fill:#e52d27}.icon--ei-sc-pinterest{fill:#bd081c}.icon--ei-sc-telegram{fill:#08c}.icon--ei-sc-naver{fill:#03c75a}*,*::after,*::before{box-sizing:border-box}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:15px}ul,ol,dd{margin-left:15px}code{background-color:rgba(0,0,0,0) !important}.highlight{background:#f7f7f7}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:teal}.highlight .nb{color:#0086b3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:teal}.highlight .ni{color:purple}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:navy}.highlight .nv{color:teal}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#d14}.highlight .sc{color:#d14}.highlight .sd{color:#d14}.highlight .s2{color:#d14}.highlight .se{color:#d14}.highlight .sh{color:#d14}.highlight .si{color:#d14}.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:teal}.highlight .vg{color:teal}.highlight .vi{color:teal}.highlight .il{color:#099}body{font-family:"Open Sans",Helvetica Neue,Helvetica,Arial,sans-serif;font-size:15px;line-height:28px;color:#404040;background-color:#fbfbfb;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}*::selection{color:#fff;background-color:#3af}h1,h2,h3,h4,h5,h6{font-family:"Volkhov","Times New Roman",Times,serif;font-weight:400;line-height:initial}h1{font-size:32px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}img{max-width:100%;height:auto;vertical-align:middle}a{text-decoration:none;color:#3af;transition:.35s}a:hover{color:hsl(205,100%,45%)}blockquote{padding-left:15px;border-left:3px solid #3af;font-family:"Volkhov","Times New Roman",Times,serif;font-style:normal;font-size:18px;background-color:rgba(220,235,245,.2)}blockquote p{padding:10px}hr{height:1px;margin:30px 0;border:0;background-color:#f0f0f0}pre{overflow:auto;padding:25px;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all;font-family:Courier,monospace}code{overflow:auto;white-space:pre-wrap;word-wrap:break-word;word-break:break-all;font-family:Courier,monospace;font-size:14px;background-color:#f7f7f7}p code,li code{padding:3px 5px}.o-wrapper{max-width:1440px;position:relative}.o-opacity{animation-duration:.7s;animation-delay:.2s;animation-fill-mode:both;animation-name:opacity}@keyframes opacity{from{opacity:0}to{opacity:1}}.c-btn{display:inline-block;white-space:nowrap;vertical-align:middle;font-family:"Volkhov",serif;font-size:12px;text-align:center;padding:8px 15px;cursor:pointer;transition:.35s}.c-btn--primary{color:#fff;background-color:#3af;background:linear-gradient(135deg, #33aaff 0%, #62d5ff 100%)}.c-btn--secondary{color:#fff;background-color:#cfcfdd;background:linear-gradient(135deg, #a2a2bd 0%, #cfcfdd 100%)}.c-btn--round{border-radius:30px}.c-btn--shadow{box-shadow:8px 10px 20px 0 rgba(46,61,73,.15)}.c-btn--shadow:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,.2)}.c-btn--middle{display:block;width:300px;max-width:100%}.c-btn--big{display:block;width:100%}.c-btn:hover{color:#fff;transition:.35s}.c-btn:active{transform:translateY(2px)}.c-sidebar{display:flex;flex-direction:column;justify-content:space-between;position:fixed;top:0;left:0;bottom:0;width:360px;padding:40px 20px 20px;text-align:center;box-shadow:1px 1px 0 rgba(31,35,46,.15);background-color:#fff}.c-sidebar-author .c-author__cover{width:100px;height:100px;margin:0 auto 10px;border-radius:50%;overflow:hidden;background-color:#cfcfdd}.c-sidebar-author .c-author__cover img{width:100%;height:100%;border-radius:50%;transition:.35s}.c-sidebar-author .c-author__cover img:hover{transform:scale3d(0.9, 0.9, 1)}.c-sidebar-author .c-contact-menu .c-btn{min-width:110px}.c-sidebar-author .c-contact-menu .c-btn .icon{width:18px;height:18px;vertical-align:text-bottom;fill:#fff}.c-sidebar-author .c-author__info{font-family:"Volkhov",serif}.c-sidebar-author .c-author__name{font-size:18px;font-weight:700;line-height:21px}.c-sidebar-author .c-author__job{font-size:12px;color:#a0a0a0;margin:5px 0 0}.c-sidebar-author .c-contact-menu{margin:30px 0}.c-sidebar-author .c-contact-menu .c-btn--secondary{margin-right:10px}.c-sidebar-author .c-author__about{max-width:400px;margin:0 auto 15px;font-size:13px}.c-sidebar-footer .c-social__title{position:relative;font-family:"Volkhov",serif;font-size:15px;font-weight:700;color:#444}.c-sidebar-footer .c-social__title::before{content:"";display:block;height:2px;width:calc(50% - 40px);transform:translateY(-50%);position:absolute;top:50%;left:0;background-color:#444}.c-sidebar-footer .c-social__title::after{content:"";display:block;height:2px;width:calc(50% - 40px);transform:translateY(-50%);position:absolute;top:50%;right:0;background-color:#444}.c-sidebar-footer .c-social__list{list-style-type:none;padding:0;margin:15px 0}.c-sidebar-footer .c-social__list .c-social__item{display:inline-block;width:27px;height:27px}.c-sidebar-footer .c-social__list .icon{width:27px;height:27px;fill:#444;vertical-align:middle;transition:.35s}.c-sidebar-footer .c-social__list .icon:hover{fill:#3af;transform:scale(1.2);transition:.35s}.c-sidebar-footer .c-copyright p{font-size:13px;margin:0}@media only screen and (max-width: 900px){.c-sidebar{position:relative;width:100%;padding:20px}.c-sidebar .c-contact-menu{margin:20px 0}.c-sidebar-footer .c-social .c-social__title{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}.c-sidebar-footer .c-social__list{margin:0}.c-sidebar-footer .c-copyright{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}}@media only screen and (max-width: 480px){.c-sidebar-author .c-author__cover{width:80px;height:80px}.c-sidebar-author .c-author__cover img{width:100%;height:100%}.c-sidebar-author .c-contact-menu{margin:15px 0}.c-sidebar-author .c-contact-menu .c-btn{min-width:80px;font-size:10px;padding:4px 15px;margin-right:5px}.c-sidebar-author .c-contact-menu .c-btn .icon{width:16px;height:16px}.c-sidebar-footer .c-social .c-social__title{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}.c-sidebar-footer .c-social__list{margin:0}.c-sidebar-footer .c-social__list .icon{width:25px;height:25px}.c-sidebar-footer .c-copyright{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}}.c-content{position:relative;display:flex;flex-direction:row;flex-wrap:wrap;align-items:stretch;padding:0 20px 0;margin-left:360px}@media only screen and (max-width: 900px){.c-content{position:static;padding:0 15px 0;margin-left:0}}.c-posts{width:100%;display:flex;flex-direction:row;flex-wrap:wrap}.c-post{width:100%;max-width:100%;margin-bottom:20px;display:flex;flex-direction:row;align-items:stretch;min-height:180px;border-radius:10px;overflow:hidden;transition:.35s;background-color:#fff;box-shadow:0 1px 1px 0 rgba(31,35,46,.15)}.c-post:hover{transform:translate(0px, -2px);box-shadow:0 15px 45px -10px rgba(10,16,34,.2)}.c-post .c-post-thumbnail{display:block;width:30%;max-width:100%;min-height:180px;border-radius:10px 0 0 10px;background-color:rgba(220,235,245,.2);background-size:cover;background-position:50% 50%}.c-post .c-post-content{padding:15px;width:70%}.c-post .c-post-content .c-post-title{font-size:30px;font-weight:400;margin:0 0 15px}.c-post .c-post-content .c-post-title a{text-decoration:none;color:#263959}.c-post .c-post-content .c-post-date,.c-post .c-post-content .c-post-words{font-size:12px}.c-load-more{padding:20px;margin:20px auto 40px;font-size:13px;color:#fff;border:none;background-color:#3af;outline:none}.c-load-more:hover{background-color:hsl(205,100%,45%)}@media only screen and (max-width: 1200px){.c-post{width:48%;max-width:100%;margin:0 1% 20px;flex-direction:column}.c-post .c-post-thumbnail{width:100%;border-radius:10px 10px 0 0}.c-post .c-post-content{width:100%}.c-post .c-post-content .c-post-title{font-size:21px;margin:15px 0}}@media only screen and (max-width: 480px){.c-post{width:100%;max-width:100%;margin:0 0 20px}.c-post .c-post-content{width:100%}.c-post .c-post-content .c-post-title{font-size:21px;margin:15px 0}}.c-article{width:100%;margin:20px 0}.c-wrap-content{padding:20px;background-color:#fff}.c-article__image{position:relative;background-color:rgba(220,235,245,.2);background-position:center;background-size:cover;background-repeat:no-repeat}.c-article__image:after{content:"";display:block;padding-top:56%}.c-article__header{margin-bottom:20px;text-align:center}.c-article__header .c-article__title{margin-bottom:10px}.c-article__date span{font-size:13px;text-transform:uppercase;color:#a0a0a0}.c-article__footer{margin:30px 0 0;padding-bottom:30px;text-align:center;border-bottom:1px solid #f0f0f0}.c-article__footer .c-article__share{transition:.35s}.c-article__footer .c-article__share a .icon{vertical-align:middle;transition:.35s}.c-article__footer .c-article__share a .icon:hover{opacity:.7;transition:.35s}.c-article__footer .c-article__tag{margin-bottom:5px}.c-article__footer .c-article__tag a{display:inline-block;vertical-align:middle;padding:5px 10px;font-family:"Volkhov","Times New Roman",Times,serif;font-size:10px;line-height:10px;text-transform:uppercase;background-color:rgba(115,138,160,.6);color:#fff}.c-article__footer .c-article__tag a:hover{background-color:rgba(80.2446808511,99.6723404255,118.2553191489,.6)}.c-article__footer .c-article__tag a:last-child{margin-right:0}.c-recent-post{padding:30px 0}.c-recent-post .c-recent__title{font-size:14px;text-align:center;text-transform:uppercase;margin-bottom:30px}.c-recent-post .c-recent__box{display:flex;flex-direction:row;flex-wrap:wrap}.c-recent-post .c-recent__item{max-width:23%;flex-basis:23%;margin:0 1% 20px;border-radius:10px;overflow:hidden;text-align:center;background-color:#fff;box-shadow:0 1px 1px 0 rgba(31,35,46,.15);transition:.35s}.c-recent-post .c-recent__item h4{margin-bottom:5px;font-size:12px;text-transform:uppercase}.c-recent-post .c-recent__item h4 a{color:#444}.c-recent-post .c-recent__item:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,.2)}.c-recent-post .c-recent__footer{padding:15px}.c-recent-post .c-recent__image{display:block;width:100%;min-height:180px;background-color:rgba(220,235,245,.2);background-size:cover;background-position:center;background-repeat:no-repeat}.c-recent-post .c-recent__date{color:#a0a0a0;font-size:12px}@media only screen and (max-width: 1200px){.c-recent-post .c-recent__item{max-width:48%;flex-basis:48%}}@media only screen and (max-width: 900px){.c-article{margin:15px 0}}@media only screen and (max-width: 480px){.c-wrap-content{padding:15px}.c-article__header{margin-bottom:5px}.c-article__header .c-article__title{font-size:24px;margin-bottom:5px}.c-recent-post .c-recent__item{max-width:100%;flex-basis:100%;margin:0 0 20px}}.c-blog-tags{width:100%;padding:20px;margin:20px 0 40px;background-color:#fff}.c-blog-tags h1{text-align:center;margin-bottom:0}.c-blog-tags h2{font-size:18px;text-transform:uppercase;margin:30px 0;color:#757575}.c-tag__list{list-style:none;padding:0 0 40px;margin:40px 0 0;border-bottom:1px solid #f0f0f0}.c-tag__list li{display:inline-block;margin-right:15px}.c-tag__list li a{color:#404040;text-transform:uppercase;font-size:12px}.c-tag__list li a:hover{color:#000}.c-tag__item{margin-bottom:15px}.c-tag__image{width:50px;height:50px;border-radius:50%;margin-right:5px}@media only screen and (max-width: 480px){.c-blog-tags{padding:15px}.c-blog-tags h1{font-size:27px}.c-blog-tags h2{font-size:16px;margin:15px 0}.c-tag__list{padding:0 0 30px;margin:30px 0 0}.c-tag__item{margin-bottom:5px}.c-tag__image{display:none}}.c-header{position:relative;width:100%;margin:20px 0}.c-header__box{position:relative;display:flex;flex-direction:row;justify-content:space-between;align-items:center}.c-header__box .icon--ei-search{position:absolute;top:7px;left:15px;fill:#ccc}.c-search{width:80%}.c-search .c-search__box{display:flex;align-items:center}.c-search .c-search__text{position:relative;width:100%;padding:10px 10px 10px 40px;border:1px solid #dce4ea;border-radius:30px;outline:none;color:#a0a0a0}.c-search .c-search__text::placeholder{color:#ccc}.c-search .c-search__text:hover{box-shadow:0 1px 0px rgba(132,135,138,.1);transition:.35s}.c-search .c-search-results-list{position:absolute;width:100%;margin:10px 0 0;list-style-type:none;background-color:#fff;z-index:1}.c-search .c-search-results-list li{display:flex;flex-wrap:wrap;align-items:center;margin:0;padding:20px 25px 0;background-color:#fff;line-height:1.4;border-left:solid 1px #edeeee;border-right:solid 1px #edeeee}.c-search .c-search-results-list li:first-child{border-top-left-radius:5px;border-top-right-radius:5px;border-top:solid 1px #edeeee}.c-search .c-search-results-list li:last-child{border-bottom-left-radius:5px;border-bottom-right-radius:5px;padding-bottom:25px;border-bottom:solid 1px #edeeee}.c-search .c-search-results-list li a{font-size:16px}.c-nav{flex-grow:1;padding-left:20px}.c-nav .c-nav__list{display:flex;justify-content:flex-end}.c-nav .c-nav__list .c-nav__item{display:flex;align-items:center;float:left;padding:4px 10px;font-size:10px;text-transform:uppercase;white-space:nowrap;border:1px solid #dce4ea;box-shadow:0 1px 0px rgba(132,135,138,.4);will-change:transform;transform:translateY(0px);cursor:pointer}.c-nav .c-nav__list .c-nav__item:hover{color:#222;background-color:#fff}.c-nav .c-nav__list .c-nav__item.is-active{box-shadow:0 0 0 rgba(132,135,138,.5);transform:translateY(1px);color:#cfcfdd}.c-nav .c-nav__list .c-nav__item.is-active:hover{background-color:#fbfbfb}.c-nav .c-nav__list .c-nav__item:first-child{border-radius:10px 0 0 10px}.c-nav .c-nav__list .c-nav__item:last-child{border-radius:0 10px 10px 0}.c-nav .c-nav__list .c-nav__item .icon{width:18px;height:18px;margin-right:3px}@media only screen and (max-width: 900px){.c-header{margin:15px 0}}@media only screen and (max-width: 480px){.c-header .c-header__box{flex-direction:column}.c-header .c-search{width:100%}.c-header .c-search .c-search__text{padding:8px 8px 8px 40px}.c-header .c-nav{margin-top:15px}.c-header .c-nav .c-nav__list{justify-content:center}.c-header .c-nav .c-nav__item{padding:4px 8px}}.c-categories{width:100%}.c-categories__list{width:100%;display:flex;flex-direction:row;flex-wrap:wrap}.c-categories__item{max-width:25%;flex-basis:25%;padding:0 10px 20px}.c-categories__link{height:100%;display:flex;flex-direction:column;align-items:center;padding:20px 10px;border-radius:5px;box-shadow:5px 5px 25px rgba(46,61,73,.15);background-color:#fff;transition:.35s}.c-categories__link:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,.2)}.c-categories__link:hover .c-categories__img .c-categories__more{opacity:1;transition:.35s}.c-categories__link .c-categories__container{width:100%;word-wrap:break-word}.c-categories__link .c-categories__container.c-empty-figure{display:flex;flex-direction:column;justify-content:center;flex-grow:1}.c-categories__img{position:relative;max-width:100%}.c-categories__img figure{position:relative;width:200px;max-width:100%;margin-bottom:20px;overflow:hidden;background-size:cover;background-repeat:no-repeat;background-position:center;border-radius:50%;box-shadow:inset 0 1px 3px rgba(141,165,185,.3)}.c-categories__img figure:after{content:"";display:block;padding-top:100%}.c-categories__img figure:before{content:"";position:absolute;top:0;bottom:0;left:0;right:0;background-color:rgba(0,0,0,.15)}.c-categories__img .c-categories__more{display:inline-block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);font-weight:700;color:#fff;text-transform:uppercase;text-shadow:0 1px 0 rgba(104,172,191,.3);opacity:0;transition:.35s}.c-categories__container{text-align:center}.c-categories__container .c-categories__header{font-size:13px;margin-bottom:10px;font-weight:normal;text-transform:uppercase;color:#404040}.c-categories__container .c-categories__count{font-family:"Volkhov",serif;font-size:12px;color:#404040;margin-bottom:0}.c-categories__container .c-categories__count span{display:inline-block;width:20px;height:20px;line-height:20px;vertical-align:baseline;margin-right:5px;border-radius:50%;color:#fff;background-color:#ee6c6c}@media only screen and (max-width: 1200px){.c-categories .c-categories__item{max-width:33.333%;flex-basis:33.333%}}@media only screen and (max-width: 1050px){.c-categories .c-categories__item{max-width:50%;flex-basis:50%}}@media only screen and (max-width: 480px){.c-categories .c-categories__item{max-width:100%;flex-basis:100%;padding:0 0 20px}}.c-form-box{position:absolute;top:0;width:calc(100% - 40px);min-height:100vh;padding:0 20px;background-color:#fff;z-index:1}.c-form-bnt__close{position:absolute;top:0px;left:0;width:30px;height:30px;cursor:pointer;transition:.35s}.c-form-bnt__close:hover{transform:scale(0.8);opacity:.8}.c-form{position:relative;width:750px;max-width:100%;margin:40px auto}.c-form .c-form__title{margin:0 0 40px;min-width:0;border:0;padding:0;font-family:"Volkhov","Times New Roman",Times,serif;text-transform:uppercase;text-align:center}.c-form a{color:#404040}.c-form__group{margin-bottom:20px}.c-form__group label{display:block;text-transform:uppercase;font-size:10px}.c-form__group input,.c-form__group textarea{width:100%;padding:10px 15px;color:#404040;border:1px solid #dce4ea;outline:none;transition:.35s}.c-form__group input:focus,.c-form__group textarea:focus{box-shadow:0 4px 25px rgba(132,135,138,.1)}.c-form__group button{padding:20px;text-transform:uppercase;outline:none;border:none}.c-thank-you p{position:relative;padding:20px 40px;width:750px;max-width:100%;text-transform:uppercase;font-size:12px;line-height:18px;font-weight:700;margin:40px auto 0;text-align:center;color:#fff;background:linear-gradient(135deg, #55b5ad 0%, #5ec9c5 100%)}.c-thank-you p .c-form-bnt__close{width:25px;height:25px;background:rgba(0,0,0,0)}.c-thank-you p a{color:#fff}@media only screen and (max-width: 900px){.c-form-box{width:100%;left:0;right:0}}@media only screen and (max-width: 480px){.c-form-bnt__close{width:25px;height:25px}}.c-newsletter{padding:30px 0 60px;margin:0 auto;border-bottom:1px solid #f0f0f0}.c-newsletter__header{text-align:center}.c-newsletter__header .c-newsletter__title{font-size:14px;text-transform:uppercase;text-align:center}.c-newsletter__header .c-newsletter__subtitle{margin-bottom:15px}.c-newsletter-form{width:100%;max-width:750px;margin:0 auto}.c-newsletter-form .c-newsletter-form__group{display:flex}.c-newsletter__email{width:70%;height:40px;padding:10px 15px;border:1px solid #ddd;border-right-color:rgba(0,0,0,0);outline:none;transition:.35s}.c-newsletter__email:focus{box-shadow:0 4px 25px rgba(132,135,138,.1)}.c-newsletter__button{width:30%;height:40px;color:#fff;background-color:#3af;transition:.35s;border:none;outline:none;cursor:pointer}.c-newsletter__button:hover{background-color:hsl(205,100%,45%)}@media only screen and (max-width: 480px){.c-newsletter__button{font-size:13px}}.c-comments{padding:30px 0;border-top:1px solid #f0f0f0}.c-top{position:fixed;width:40px;height:40px;bottom:20px;color:#757575;cursor:pointer;transition:.35s;right:-100px;z-index:10;opacity:.5}.c-top--active{right:15px}.c-top:hover{color:#757575;opacity:1}.post-difficulty strong{padding:2px 5px;border-radius:3px;font-weight:bold}.post-difficulty strong.easy{color:#1cb8b8}.post-difficulty strong.medium{color:#ffb84d}.post-difficulty strong.hard{color:#f63636}.post-topics{margin-top:10px;font-size:14px;color:#666}.post-topics .topics-label{font-weight:bold;margin-right:5px;color:#444}.post-topics ul{display:inline-flex;flex-wrap:wrap;gap:5px;list-style:none;padding:0;margin:0}.post-topics ul .topic-item{background-color:#f3f3f3;border:1px solid #ddd;border-radius:20px;padding:1px 5px;font-size:12px;color:#333;text-transform:capitalize;white-space:nowrap}.post-topics ul .topic-item:hover{background-color:#e0e0e0}.u-text-left{text-align:left}.u-text-right{text-align:right}.u-text-center{text-align:center}.u-text-justify{text-align:justify}.u-block{display:block}.u-inline-block{display:inline-block}.u-inline{display:inline}.u-full-width{display:block;width:100%}.u-vertical-center{display:flex;align-items:center;justify-content:center}.u-responsive-image{max-width:100%;height:auto;vertical-align:middle}.u-show{display:block !important}.u-hide{display:none !important}.u-invisible{visibility:hidden}.u-float-left{float:left}.u-float-right{float:right}.u-no-padding-top{padding-top:0}.u-no-padding-bottom{padding-bottom:0}.u-no-padding-left{padding-left:0}.u-no-padding-right{padding-right:0}.u-no-padding{padding:0}.u-no-margin-top{margin-top:0}.u-no-margin-bottom{margin-bottom:0}.u-no-margin-left{margin-left:0}.u-no-margin-right{margin-right:0}.u-no-margin{margin:0}.u-lists-reset{list-style-type:none;margin:0;padding:0}.u-clearfix::before,.u-clearfix::after{content:"";display:table;clear:both}.u-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}
+  </style>
+</head>
+
+<body>
+  
+  <div class="o-wrapper">
+    <aside class="c-sidebar">
+  <div class="c-sidebar-author">
+    <div class="c-author__cover">
+      <a href="/">
+        <img src="/images/Okeydokey/pic_62.jpg" alt="ChocoBreeze">
+      </a>
+    </div>
+    <div class="c-author__info">
+      <div class="c-author__name">ChocoBreeze</div>
+      <span class="c-author__job">Developer</span>
+    </div>
+    <div class="c-contact-menu">
+      
+      
+      
+      
+    </div>
+    <!-- <p class="c-author__about">- 너무 늦게 자지 않기- 끼니 거르지 않기- 이유 생각하기</p> -->
+    <p class="c-author__about">- 너무 늦게 자지 않기<br/>- 끼니 거르지 않기<br/>- 이유 생각하기</p>
+  </div>
+
+  <div class="c-sidebar-footer">
+    <div class="c-social">
+      <div class="c-social__title">Social</div>
+      <ul class="c-social__list u-lists-reset">
+        
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://github.com/ChocoBreeze" target="_blank"><div data-icon='ei-sc-github' data-size='s'></div></a></li>
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://instagram.com/breezechoco" target="_blank"><div data-icon='ei-sc-instagram' data-size='s'></div></a></li>
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://blog.naver.com/chocobreeze" target="_blank"><div data-icon='ei-sc-naver' data-size='s'></div></a></li>
+        
+      </ul>
+    </div>
+    <div class="c-copyright">
+      <p>2024 &copy; ChocoBreeze</p>
+    </div>
+  </div>
+</aside> <!-- /.c-sidebar -->
+
+<main class="c-content">
+  <article class="c-article">
+  <div class="c-article__content">
+    <header class="c-header u-hide u-no-margin-top">
+      <div class="c-header__box">
+        <div class="c-search u-full-width">
+          <div class="c-search__box">
+            <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
+            <div data-icon='ei-search' data-size='s'></div>
+          </div>
+          <ul id="js-results-container" class="c-search-results-list"></ul>
+        </div>
+      </div>
+    </header>
+    
+    <div class="c-article__image o-opacity" style="background-image: url( /images/Mine/20230530_215218.jpg )"></div>
+    
+    <div class="c-wrap-content">
+      <header class="c-article__header">
+        <h1 class="c-article__title">2872. Maximum Number of K-Divisible Components</h1>
+        <div class="c-article__date">
+          <span>2024, Dec 21</span>
+        </div>
+      </header>
+      <h1 id="2872-maximum-number-of-k-divisible-components">2872. Maximum Number of K-Divisible Components</h1>
+<p><a href="https://leetcode.com/problems/maximum-number-of-k-divisible-components/description/?envType=daily-question&amp;envId=2024-12-21">문제 링크</a></p>
+
+<p><br /></p>
+
+<h2 id="내-코드">내 코드</h2>
+<p>Solution 참고..</p>
+
+<p><br /></p>
+
+<h2 id="solution">Solution</h2>
+
+<h3 id="approach-1-depth-first-search-dfs">Approach 1: Depth-First Search (DFS)</h3>
+<ul>
+  <li><em>155ms, 177.99MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let $n$ be the number of nodes in the graph, and let $m$ be the number of edges in the graph.</li>
+      <li>Time Complexity: $O(n + m)$</li>
+      <li>Space Complexity: $O(n + m)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">maxKDivisibleComponents</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;</span> <span style="color: #0550ae">&amp;</span><span style="color: #24292f;background-color: #f6f8fa">edges</span><span style="color: #24292f;background-color: #f6f8fa">,</span>
+                                <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #0550ae">&amp;</span><span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// Step 1: Create adjacency list from edges</span>
+        <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">auto</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">edges</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">node1</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+            <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">node2</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+            <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #6e7781">// Step 2: Initialize component count</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #6e7781">// Step 3: Start DFS traversal from node 0</span>
+        <span style="color: #24292f;background-color: #f6f8fa">dfs</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #0550ae">-</span><span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+
+        <span style="color: #6e7781">// Step 4: Return the total number of components</span>
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+<span style="color: #cf222e">private</span><span style="color: #0550ae">:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #8250df">dfs</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">parentNode</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">[],</span>
+            <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #0550ae">&amp;</span><span style="color: #24292f;background-color: #f6f8fa">nodeValues</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #0550ae">&amp;</span><span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// Step 1: Initialize sum for the current subtree</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #6e7781">// Step 2: Traverse all neighbors</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">auto</span> <span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">])</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">!=</span> <span style="color: #24292f;background-color: #f6f8fa">parentNode</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #6e7781">// Recursive call to process the subtree rooted at the neighbor</span>
+                <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">dfs</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">nodeValues</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">,</span>
+                           <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+                <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">%=</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">;</span>  <span style="color: #6e7781">// Ensure the sum stays within bounds</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// Step 3: Add the value of the current node to the sum</span>
+        <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">nodeValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+
+        <span style="color: #6e7781">// Step 4: Check if the sum is divisible by k</span>
+        <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">%=</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #6e7781">// Step 5: Return the computed sum for the current subtree</span>
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">sum</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="gpt">GPT</h4>
+<p>아래 코드는 <strong>트리(Tree)</strong> 에서 노드를 루트(여기서는 0번 노드)로 잡고 DFS를 수행하면서, 각 서브트리(subtree)의 합이 (k)로 나누어떨어지는(즉, 합이 0 mod (k)) 경우를 찾아 <strong>그러한 서브트리의 개수</strong>(componentCount)를 세는 알고리즘입니다.</p>
+
+<blockquote>
+  <p>일반적으로 “최대 (k)-로 나누어떨어지는 컴포넌트 수”라고 하면,<br />
+<strong>트리의 간선들을 적절히 끊어서</strong> 얻을 수 있는 <strong>서로 겹치지 않는</strong> (disjoint) 서브트리들의 수를 구하는 문제로 등장합니다.<br />
+그 경우에는 “서브트리가 0 mod (k)가 될 때마다 해당 서브트리를 잘라내고(parent에게 0을 반환)” 하는 로직을 자주 씁니다.</p>
+
+  <p>그러나 이 코드에서는 <strong><code class="language-plaintext highlighter-rouge">if (sum == 0) componentCount++</code> 후에도 <code class="language-plaintext highlighter-rouge">sum</code>을 그대로 리턴</strong>하여, 부모 서브트리에 합산이 이어집니다. 즉, <strong>서브트리를 ‘분리(cut)’ 하지 않고</strong>도 0 mod (k)인 경우를 세고 있어, “서브트리가 서로 겹칠 수 있음”에 유의해야 합니다.<br />
+문제 의도나 요건에 따라 다르지만, 흔히 “Disjoint 서브트리 개수를 최대화”하는 접근이라면 <code class="language-plaintext highlighter-rouge">sum == 0</code>일 때 <code class="language-plaintext highlighter-rouge">return 0;</code>으로 부모와 끊어주곤 합니다.</p>
+</blockquote>
+
+<p>아래에서는 <strong>주어진 코드 자체의 흐름</strong>에 초점을 맞추어 설명하겠습니다.</p>
+
+<hr />
+
+<h2 id="코드-구조">코드 구조</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">int</span> <span style="color: #8250df">maxKDivisibleComponents</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;</span> <span style="color: #0550ae">&amp;</span><span style="color: #24292f;background-color: #f6f8fa">edges</span><span style="color: #24292f;background-color: #f6f8fa">,</span>
+                            <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #0550ae">&amp;</span><span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #6e7781">// 1. 인접 리스트(adjacency list) 생성</span>
+    <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+    <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">auto</span> <span style="color: #0550ae">&amp;</span><span style="color: #24292f;background-color: #f6f8fa">edge</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">edges</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">node1</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">node2</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+        <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+    <span style="color: #6e7781">// 2. 서브트리가 0 mod k가 될 때마다 +1 할 카운터</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+    <span style="color: #6e7781">// 3. 루트(0번 노드)부터 DFS 시작</span>
+    <span style="color: #24292f;background-color: #f6f8fa">dfs</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #0550ae">-</span><span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+
+    <span style="color: #6e7781">// 4. 개수 반환</span>
+    <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+<span style="color: #6e7781">// DFS 함수</span>
+<span style="color: #cf222e">int</span> <span style="color: #8250df">dfs</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">parentNode</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">[],</span>
+        <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #0550ae">&amp;</span><span style="color: #24292f;background-color: #f6f8fa">nodeValues</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #0550ae">&amp;</span><span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #24292f;background-color: #f6f8fa">)</span>
+<span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #6e7781">// (1) 현재 노드를 루트로 하는 서브트리 합</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+    <span style="color: #6e7781">// (2) 자식(인접) 노드 순회</span>
+    <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">auto</span> <span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">])</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">!=</span> <span style="color: #24292f;background-color: #f6f8fa">parentNode</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #6e7781">// 자식 서브트리의 합을 구해 더함</span>
+            <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">dfs</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">adjList</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">nodeValues</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">%=</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">;</span>  <span style="color: #6e7781">// 오버플로우 방지 및 모듈로 연산</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+    <span style="color: #6e7781">// (3) 현재 노드의 값 추가</span>
+    <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">nodeValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+    <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">%=</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+    <span style="color: #6e7781">// (4) 만약 이 서브트리 합이 0 mod k라면 컴포넌트 1개 발견</span>
+    <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+    <span style="color: #6e7781">// (5) 부모에게 이 서브트리의 합을 반환</span>
+    <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">sum</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+</code></pre></div></div>
+
+<h3 id="1-인접-리스트-생성">1. <strong>인접 리스트 생성</strong></h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">edges</code>에는 (node1, node2) 형태의 간선 정보가 주어지고, 이 정보를 통해 각 노드에 연결된 이웃 노드 목록을 <code class="language-plaintext highlighter-rouge">adjList</code>에 저장합니다.</li>
+  <li>문제에서 <code class="language-plaintext highlighter-rouge">n</code>개의 노드가 0번부터 (n-1)번까지 있다고 가정.</li>
+</ul>
+
+<h3 id="2-dfs로-서브트리-합을-구해-나가며-0-mod-k인-것-카운트">2. <strong>DFS로 서브트리 합을 구해 나가며, 0 mod (k)인 것 카운트</strong></h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">componentCount</code>는 <strong>서브트리 합이 (k)로 나누어떨어질 때마다</strong> 1씩 증가합니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">dfs(0, -1, ...)</code> 호출로 0번 노드를 루트 삼아 깊이 우선 탐색을 시작합니다.</li>
+</ul>
+
+<h4 id="a-자식-노드-처리">(a) 자식 노드 처리</h4>
+<ul>
+  <li>DFS는 <strong>후위 순회(post-order)</strong> 형태로 진행됩니다.
+    <ul>
+      <li>즉, 자식 노드를 모두 방문(dfs)한 뒤에 <strong>자신의 nodeValue</strong>를 더합니다.</li>
+    </ul>
+  </li>
+  <li>각 자식 서브트리에서 돌려받은 합을 <code class="language-plaintext highlighter-rouge">sum</code>에 누적하며, 모듈로 (k) 연산(<code class="language-plaintext highlighter-rouge">sum %= k</code>)으로 합을 계속 (k) 범위 안에서 관리합니다.</li>
+</ul>
+
+<h4 id="b-현재-노드-값-추가-및-0-mod-k-여부-확인">(b) 현재 노드 값 추가 및 “0 mod (k) 여부” 확인</h4>
+<ul>
+  <li>자식 노드들을 모두 처리한 뒤, <code class="language-plaintext highlighter-rouge">sum += nodeValues[currentNode]</code>로 현재 노드의 값을 추가합니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">sum %= k</code> 후, <strong><code class="language-plaintext highlighter-rouge">sum == 0</code>이라면 <code class="language-plaintext highlighter-rouge">componentCount++</code></strong>
+    <ul>
+      <li>이 시점에서 “<code class="language-plaintext highlighter-rouge">currentNode</code>를 루트로 하는 전체 서브트리”가 (k)로 나누어떨어진다는 의미입니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="c-부모에게-sum-반환">(c) 부모에게 <code class="language-plaintext highlighter-rouge">sum</code> 반환</h4>
+<ul>
+  <li>반환값 <code class="language-plaintext highlighter-rouge">sum</code>은 부모 노드의 DFS에서 “현재 노드(subtree) 전체를 합산”하는 데 쓰입니다.</li>
+  <li>주의할 점: 만약 <code class="language-plaintext highlighter-rouge">sum == 0</code>이었던 경우에도, <code class="language-plaintext highlighter-rouge">return sum;</code>에서 <code class="language-plaintext highlighter-rouge">sum</code>을 그대로 반환합니다.
+    <ul>
+      <li><strong>“서브트리가 분리(cut)되지 않고, 부모 노드가 다시 이 합을 이어받는다”</strong>는 것이 핵심입니다.</li>
+      <li>이로 인해 부모 서브트리 역시 0 mod (k)가 될 수도 있고, 그러면 또 <code class="language-plaintext highlighter-rouge">componentCount++</code>가 됩니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="핵심-동작-해설">핵심 동작 해설</h2>
+
+<ol>
+  <li><strong>DFS(트리 구조) + 후위 순회</strong>
+    <ul>
+      <li>각 노드의 자식(=인접한 노드 중 부모가 아닌 노드)을 모두 재귀적으로 처리한 뒤, 자신의 값을 더합니다.</li>
+    </ul>
+  </li>
+  <li><strong>모듈로 연산</strong>
+    <ul>
+      <li>매번 <code class="language-plaintext highlighter-rouge">sum</code>에 대해 <code class="language-plaintext highlighter-rouge">% k</code>를 수행함으로써, 큰 수가 되는 것을 방지하고, “0 mod $k$”인지를 쉽게 체크할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">sum == 0</code>이면 <code class="language-plaintext highlighter-rouge">componentCount</code> 증가</strong>
+    <ul>
+      <li>이 코드는 “서브트리가 $k$로 나누어떨어질 때마다” 카운트하는 로직을 담고 있습니다.</li>
+      <li>하지만 <strong>“트리를 쪼개서(disjoint 서브트리) 최대 몇 개를 만들 수 있는지”</strong> 와 같은 문제에서는, 보통 여기서 <code class="language-plaintext highlighter-rouge">sum == 0</code>일 때 서브트리를 잘라내기 위해 <code class="language-plaintext highlighter-rouge">return 0;</code>을 하기도 합니다.</li>
+      <li>본 코드에서는 그런 ‘컷(cut)’ 로직 없이 <strong>단순히 0 mod $k$인 서브트리의 개수를 세는</strong> 방식이므로, 부모 서브트리가 동일한 부분을 또 활용해 0 mod $k$가 될 수도 있습니다.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="예시-간단-시뮬레이션">예시 간단 시뮬레이션</h2>
+
+<p>가령,</p>
+<ul>
+  <li>노드 수 $n=5$, 간선이 ${(0,1), (0,2), (1,3), (1,4)}$인 형태를 생각해봅시다.</li>
+  <li>각 노드의 값이 <code class="language-plaintext highlighter-rouge">values = [2, 1, 3, 6, 4]</code>라 하고, $k=3$라고 합시다.</li>
+</ul>
+
+<p>트리 구조(루트: 0):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      (0) val=2
+      /    \
+(1)val=1   (2)val=3
+   /  \
+ (3)6 (4)4
+</code></pre></div></div>
+
+<ol>
+  <li><strong>DFS(0, -1)</strong> 시작
+    <ul>
+      <li>sum=0 (초기)</li>
+      <li>자식: 1, 2 두 개</li>
+    </ul>
+  </li>
+  <li><strong>DFS(1, 0)</strong>
+    <ul>
+      <li>sum=0</li>
+      <li>자식: 3, 4</li>
+      <li><strong>DFS(3,1)</strong>
+        <ul>
+          <li>자식 없음 → sum=0 + nodeValues[3]=6</li>
+          <li>6 % 3=0 → componentCount++ (1 증가)</li>
+          <li>return 0 (코드상은 <code class="language-plaintext highlighter-rouge">return 6 % 3 = 0</code> 이지만, 값은 0)</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">sum += 0</code>, <code class="language-plaintext highlighter-rouge">sum=0</code> (여전히 0)</li>
+      <li><strong>DFS(4,1)</strong>
+        <ul>
+          <li>자식 없음 → sum=0 + nodeValues[4]=4</li>
+          <li>4 % 3=1 → sum=1, 1 != 0 → componentCount 증가는 없음</li>
+          <li>return 1</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">sum += 1</code> (이전 sum=0이었음), sum=1</li>
+      <li>자기 노드(1) 값 1을 더함 → sum=2, 2 % 3=2</li>
+      <li>2 != 0 → componentCount 변화 없음</li>
+      <li>return 2</li>
+    </ul>
+  </li>
+  <li><strong>DFS(2, 0)</strong>
+    <ul>
+      <li>자식 없음 → sum=0 + nodeValues[2]=3</li>
+      <li>3 % 3=0 → componentCount++ (1 증가, 총 2가 됨)</li>
+      <li>return 0</li>
+    </ul>
+  </li>
+  <li>루트(0)로 돌아와서:
+    <ul>
+      <li>자식(1)로부터 2, 자식(2)로부터 0을 받아 합산 → sum=2</li>
+      <li>현재 노드 0의 값=2 추가 → sum=4 → 4 % 3=1</li>
+      <li>1 != 0 → componentCount 변화 없음</li>
+      <li>최종 return 1</li>
+    </ul>
+  </li>
+</ol>
+
+<p>위 시뮬레이션에서,</p>
+<ul>
+  <li>노드 3의 서브트리 값=6 → 0 mod 3 → componentCount=1</li>
+  <li>노드 2의 서브트리 값=3 → 0 mod 3 → componentCount=2</li>
+  <li>그 뒤 루트(0) 서브트리는 1 mod 3 → count 증가 없음</li>
+  <li>최종 componentCount=2</li>
+</ul>
+
+<p>이때 <strong>서브트리가 서로 겹칠 수 있는지</strong>를 따지지 않았기 때문에,</p>
+<ul>
+  <li>노드 2 자체가 하나의 서브트리(0 mod 3)</li>
+  <li>노드 3 자체가 하나의 서브트리(0 mod 3)</li>
+  <li>만약 노드 1~3~4를 묶었을 때의 합(1+6+4=11)이 3으로 나누어떨어지는지 등은 별개의 문제(겹칠 수도 있음)입니다.</li>
+</ul>
+
+<hr />
+
+<h2 id="결론">결론</h2>
+
+<ol>
+  <li><strong>트리 DFS</strong>로 각 노드를 루트로 하는 서브트리 합을 구하고, 그 합이 $k$로 나누어떨어지는 경우마다 <code class="language-plaintext highlighter-rouge">componentCount</code>를 증가시킵니다.</li>
+  <li>이 코드는 <strong>‘서브트리를 잘라내는(cut) 방식’</strong> 은 사용하지 않아, 서로 다른 서브트리가 겹치는 경우도 함께 세게 됩니다.</li>
+  <li>“서브트리를 실제로 분할(disjoint)해서 얻을 수 있는 최대 개수”를 구하는 문제에서는, 보통 <code class="language-plaintext highlighter-rouge">if (sum == 0) { componentCount++; return 0; } else return sum;</code>처럼 구현합니다.
+    <ul>
+      <li>그럼 자식 서브트리가 0 mod (k)가 되는 순간, 부모와의 연결(간선)을 ‘끊었다’고 간주하고, 부모 합에는 0이 더해지므로 <strong>또 다른 독립 서브트리</strong>를 찾을 수 있게 됩니다.</li>
+    </ul>
+  </li>
+  <li>반면 이 코드(질문에 주어진 형태)는 <strong>단순히 DFS 중 만나는 모든 “0 mod $k$” 서브트리를 카운팅</strong>하는 방식이며, 그 결과가 꼭 “서로 겹치지 않는” 컴포넌트 수와 일치하지 않을 수 있다는 점에 주의해야 합니다.</li>
+</ol>
+
+<blockquote>
+  <p>요약하자면, <strong>각 노드가 루트인 서브트리의 합을 모듈로 $k$로 확인</strong>하고, 0이면 <code class="language-plaintext highlighter-rouge">componentCount++</code> 하는 간단한 DFS 로직입니다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="approach-2-breadth-first-search-bfs">Approach 2: Breadth-First Search (BFS)</h3>
+<ul>
+  <li><em>320ms, 266.42MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let $n$ be the number of nodes in the graph, and let $m$ be the number of edges in the graph.</li>
+      <li>Time Complexity: $O(n + m)$</li>
+      <li>Space Complexity: $O(n + m)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">maxKDivisibleComponents</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">edges</span><span style="color: #24292f;background-color: #f6f8fa">,</span>
+                                <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// Base case: if there are less than 2 nodes, return 1</span>
+        <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">n</span> <span style="color: #0550ae">&lt;</span> <span style="color: #0550ae">2</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #cf222e">return</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">unordered_map</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">unordered_set</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #6e7781">// Step 1: Build the graph</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">const</span> <span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">edges</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">node1</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">],</span> <span style="color: #24292f;background-color: #f6f8fa">node2</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+            <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">insert</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">insert</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// Convert values to long long to prevent overflow</span>
+        <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">long</span> <span style="color: #cf222e">long</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">begin</span><span style="color: #24292f;background-color: #f6f8fa">(),</span> <span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #24292f;background-color: #f6f8fa">());</span>
+
+        <span style="color: #6e7781">// Step 2: Initialize the BFS queue with leaf nodes (nodes with only one</span>
+        <span style="color: #6e7781">// connection)</span>
+        <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">const</span> <span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">neighbors</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighbors</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// Step 3: Process nodes in BFS order</span>
+        <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">!</span><span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">empty</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">currentNode</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">front</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+            <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">pop</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+
+            <span style="color: #6e7781">// Find the neighbor node</span>
+            <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">-</span><span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">!</span><span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">empty</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">*</span><span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">begin</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">&gt;=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #6e7781">// Remove the edge between current and neighbor</span>
+                <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">erase</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+                <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">erase</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+            <span style="color: #6e7781">// Check divisibility of the current node's value</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">%</span> <span style="color: #24292f;background-color: #f6f8fa">k</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span> <span style="color: #cf222e">else</span> <span style="color: #8250df">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">&gt;=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #6e7781">// Add current node's value to the neighbor</span>
+                <span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+            <span style="color: #6e7781">// If the neighbor becomes a leaf node, add it to the queue</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">&gt;=</span> <span style="color: #0550ae">0</span> <span style="color: #0550ae">&amp;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="gpt-1">GPT</h4>
+<p>아래 코드는 <strong>트리(Tree)</strong> 에서 <strong>노드들의 값을 더했을 때 $k$로 나누어떨어지는(=0 mod $k$) 서브트리를 최대 몇 개 만들 수 있는가</strong>를 구하는 전형적인 아이디어 중 하나입니다.</p>
+
+<ul>
+  <li>“트리”라는 전제: 입력 그래프가 $n$개의 노드와 $n-1$개의 엣지를 가지고 있으며 사이클이 없다고 가정(문제 설정에 따라).</li>
+  <li><strong>리프 노드(leaf node)부터</strong> 바깥에서 안쪽으로(바텀업) 차례로 병합해 가면서, “값의 합이 $k$로 나누어떨어지면 그 덩어리를 하나의 컴포넌트(서브트리)로 분리하고 카운팅”하는 로직입니다.</li>
+</ul>
+
+<p>아래에서는 코드의 흐름을 단계별로 살펴보겠습니다.</p>
+
+<hr />
+
+<h2 id="전체-코드-구조">전체 코드 구조</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">int</span> <span style="color: #8250df">maxKDivisibleComponents</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">edges</span><span style="color: #24292f;background-color: #f6f8fa">,</span>
+                            <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #6e7781">// 1) n이 2 미만이면(노드가 하나뿐이면), 답은 1</span>
+    <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">n</span> <span style="color: #0550ae">&lt;</span> <span style="color: #0550ae">2</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #cf222e">return</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+    <span style="color: #6e7781">// 최종적으로 갯수를 세어 반환할 변수</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+    <span style="color: #6e7781">// 그래프 인접 리스트 (unordered_map&lt;int, unordered_set&lt;int&gt;&gt;)</span>
+    <span style="color: #24292f;background-color: #f6f8fa">unordered_map</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">unordered_set</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+    <span style="color: #6e7781">// 2) 간선 정보를 통해 그래프 구성</span>
+    <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">const</span> <span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">edges</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">node1</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">],</span> <span style="color: #24292f;background-color: #f6f8fa">node2</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+        <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">insert</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">insert</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+    <span style="color: #6e7781">// values를 long long으로 변환 (오버플로우 방지)</span>
+    <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">long</span> <span style="color: #cf222e">long</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">begin</span><span style="color: #24292f;background-color: #f6f8fa">(),</span> <span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #24292f;background-color: #f6f8fa">());</span>
+
+    <span style="color: #6e7781">// 3) 리프 노드(연결된 간선이 1개뿐인 노드)를 큐에 삽입</span>
+    <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">const</span> <span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">neighbors</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighbors</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+    <span style="color: #6e7781">// 4) BFS로 리프부터 차례로 처리</span>
+    <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">!</span><span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">empty</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">currentNode</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">front</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+        <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">pop</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+
+        <span style="color: #6e7781">// currentNode의 이웃(부모) 찾기</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">-</span><span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">!</span><span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">empty</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">*</span><span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">begin</span><span style="color: #24292f;background-color: #f6f8fa">();</span>  
+            <span style="color: #6e7781">// currentNode가 연결된 유일한 노드(리프이므로 1개뿐)</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// 그래프에서 currentNode &lt;-&gt; neighborNode 간 연결 제거</span>
+        <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">&gt;=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">erase</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">erase</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// 5) currentNode의 값이 k로 나누어떨어지는지 확인</span>
+        <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">%</span> <span style="color: #24292f;background-color: #f6f8fa">k</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #6e7781">// 이 노드는 독립적으로 하나의 "k-로 나누어떨어지는 서브트리"를 형성</span>
+            <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span> <span style="color: #cf222e">else</span> <span style="color: #8250df">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">&gt;=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #6e7781">// 나누어떨어지지 않으면, 이 값을 neighborNode로 '합산'해서 이어줌</span>
+            <span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// neighborNode가 새로 '리프'가 됐다면 큐에 삽입</span>
+        <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">&gt;=</span> <span style="color: #0550ae">0</span> <span style="color: #0550ae">&amp;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+    <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="주요-아이디어-리프-노드부터-bfs또는-트리의-바닥에서-위로-합치기">주요 아이디어: <strong>리프 노드부터 BFS(또는 트리의 바닥에서 위로 합치기)</strong></h2>
+
+<ol>
+  <li><strong>리프 노드 선정</strong>
+    <ul>
+      <li>차수가 1(이웃이 1개)인 노드는 리프(leaf)입니다.</li>
+      <li>초기 단계에서, 모든 리프 노드를 큐에 넣습니다.</li>
+    </ul>
+  </li>
+  <li><strong>리프 노드를 하나씩 처리</strong>
+    <ul>
+      <li>큐에서 리프 노드를 꺼냅니다(<code class="language-plaintext highlighter-rouge">currentNode</code>).</li>
+      <li><code class="language-plaintext highlighter-rouge">currentNode</code>에 연결된 유일한 이웃(사실상 부모 역할) <code class="language-plaintext highlighter-rouge">neighborNode</code>를 찾아,
+        <ul>
+          <li><strong>엣지를 그래프에서 제거</strong>(둘 사이의 연결을 끊는다).</li>
+          <li>만약 <code class="language-plaintext highlighter-rouge">currentNode</code>의 값(<code class="language-plaintext highlighter-rouge">longValues[currentNode]</code>)이 (k)로 나누어떨어지면(<strong>0 mod k</strong>),
+            <ul>
+              <li><strong>독립적인 컴포넌트로 분리</strong> → <code class="language-plaintext highlighter-rouge">componentCount++</code></li>
+              <li>이 노드는 이제 “최종 소모”되었으므로, 더 이상 부모에게 값을 전달하지 않습니다.</li>
+            </ul>
+          </li>
+          <li>나누어떨어지지 않으면, <strong>부모 노드의 값</strong>에 <code class="language-plaintext highlighter-rouge">currentNode</code>의 값을 <strong>합산</strong>합니다(“병합”).
+            <ul>
+              <li>이걸 통해 “작은 서브트리”가 “부모 서브트리”에 흡수된다고 볼 수 있습니다.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>다시 리프 갱신</strong>
+    <ul>
+      <li>연결을 끊고 나면, <code class="language-plaintext highlighter-rouge">neighborNode</code>의 차수가 줄어 새로운 리프가 될 수 있습니다.</li>
+      <li>만약 차수가 1이 되었다면 큐에 넣어, 차례대로 반복 처리합니다.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="왜-이렇게-하면-최대-개수를-세게-되나">왜 이렇게 하면 “최대” 개수를 세게 되나?</h3>
+
+<ul>
+  <li>노드 하나(또는 작은 서브트리)에서 <strong>값의 합</strong>이 $k$의 배수가 되면, “더 큰 덩어리로 합쳐지기 전에” 해당 서브트리를 <strong>바로 분리</strong>하여 컴포넌트로 카운팅할 수 있습니다.</li>
+  <li>만약 배수가 아니라면, 부모 노드(또는 이웃 노드)와 <strong>합산</strong>해 다음 단계에 다시 시도할 수 있습니다.</li>
+  <li><strong>결과적으로</strong>, 가능한 한 일찍(leaf 단계에서) “나누어떨어지는 서브트리”가 있으면 곧바로 떼어내어 카운팅하기 때문에, <strong>서브트리를 더 이상 괜히 키워서 배수를 놓치는 일이 없습니다</strong>.
+    <ul>
+      <li>이는 그리디(Greedy)한 아이디어이면서, 트리 구조에서 리프부터 처리를 해 나갈 때 유효합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="동작-예시-간단-시뮬레이션">동작 예시 간단 시뮬레이션</h2>
+
+<p>가령 노드가 5개, 간선은</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 - 1
+1 - 2
+2 - 3
+2 - 4
+</code></pre></div></div>
+<p>이며, 각 노드의 값이 <code class="language-plaintext highlighter-rouge">[2, 4, 3, 9, 6]</code>이고 (k=3)이라고 해 봅시다.</p>
+
+<ol>
+  <li><strong>그래프 구성 &amp; 리프 찾기</strong>
+    <ul>
+      <li>인접 리스트:
+        <ul>
+          <li>0 → {1} (차수 1, 리프)</li>
+          <li>1 → {0,2}</li>
+          <li>2 → {1,3,4}</li>
+          <li>3 → {2} (차수 1, 리프)</li>
+          <li>4 → {2} (차수 1, 리프)</li>
+        </ul>
+      </li>
+      <li>초기에 리프: 0, 3, 4</li>
+    </ul>
+  </li>
+  <li><strong>리프 처리 순서 (예: 큐= [0, 3, 4])</strong>
+    <ul>
+      <li><strong>리프 0 처리</strong>
+        <ul>
+          <li>이웃은 1</li>
+          <li><code class="language-plaintext highlighter-rouge">longValues[0] = 2</code>, 2 % 3 != 0 → 분리 불가</li>
+          <li>부모(1)에 2를 더해 줌 → <code class="language-plaintext highlighter-rouge">longValues[1] = 4 + 2 = 6</code></li>
+          <li>간선 제거(0-1), → 0은 이제 고립, 1의 차수는 1줄어 <code class="language-plaintext highlighter-rouge">1 → {2}</code> (차수 1이 됨)</li>
+          <li>1을 큐에 추가(새 리프) → 큐=[3,4,1]</li>
+        </ul>
+      </li>
+      <li><strong>리프 3 처리</strong>
+        <ul>
+          <li>이웃은 2</li>
+          <li><code class="language-plaintext highlighter-rouge">longValues[3] = 9</code>, 9 % 3=0 → 컴포넌트 하나 찾음 (componentCount=1)</li>
+          <li>간선(3-2) 제거 → 3은 분리, 2 → {1,4} (차수 2)</li>
+          <li>3은 “배수”로 떨어져서 사라짐, 2에는 합치지 않음</li>
+          <li>큐=[4,1]</li>
+        </ul>
+      </li>
+      <li><strong>리프 4 처리</strong>
+        <ul>
+          <li>이웃은 2</li>
+          <li><code class="language-plaintext highlighter-rouge">longValues[4] = 6</code>, 6 % 3=0 → 또 컴포넌트 하나 찾음 (componentCount=2)</li>
+          <li>간선(4-2) 제거 → 4 분리, 2 → {1} (차수 1)</li>
+          <li>큐=[1,2] (2도 새 리프가 됐으므로 추가)</li>
+        </ul>
+      </li>
+      <li><strong>리프 1 처리</strong>
+        <ul>
+          <li>이웃은 2</li>
+          <li><code class="language-plaintext highlighter-rouge">longValues[1] = 6</code>, 6 % 3=0 → 컴포넌트 하나 (componentCount=3)</li>
+          <li>간선(1-2) 제거 → 1 분리, 2 → {} (차수 0)</li>
+          <li>큐=[2]</li>
+        </ul>
+      </li>
+      <li><strong>리프 2 처리</strong>
+        <ul>
+          <li>이웃 없음(차수 0, 사실상 고립)</li>
+          <li><code class="language-plaintext highlighter-rouge">longValues[2] = 3</code>, 3 % 3=0 → 컴포넌트 하나 (componentCount=4)</li>
+          <li>큐=[] 끝</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>최종 <code class="language-plaintext highlighter-rouge">componentCount = 4</code>.</p>
+
+<p>이 예시에서 보면,</p>
+<ul>
+  <li>리프(3)의 값=9 (3의 배수) → 바로 분리</li>
+  <li>리프(4)의 값=6 (3의 배수) → 바로 분리</li>
+  <li>리프(0)의 값=2 (3의 배수 아님) → 부모(1)에 더해져 1의 값이 6이 됨 → 나중에 1이 리프가 되어 6(3의 배수)으로 분리</li>
+  <li>남은 2도 값=3으로 최종 분리</li>
+</ul>
+
+<hr />
+
+<h2 id="정리">정리</h2>
+
+<ol>
+  <li><strong>리프에서 출발</strong>
+    <ul>
+      <li>리프 노드가 자기가 들고 있는 값이 $k$로 나누어떨어지면, 그대로 하나의 “독립 서브트리(컴포넌트)”가 되어 <strong>카운트</strong>하고 노드를 제거(그래프에서 분리)한다.</li>
+      <li>아니면, 그 값을 부모에게 넘겨서(합산) 더 큰 서브트리를 만들어본다.</li>
+    </ul>
+  </li>
+  <li><strong>반복</strong>
+    <ul>
+      <li>부모(혹은 이웃)의 차수가 1이 되어 리프가 되면, 다시 위 과정을 반복</li>
+      <li>이렇게 진행하면, <strong>서로 겹치지 않는</strong> 최대 개수의 “$k$-배수 서브트리”를 얻을 수 있다.</li>
+    </ul>
+  </li>
+  <li><strong>구현 방식</strong>
+    <ul>
+      <li>BFS(또는 DFS) 방식으로 리프 노드를 “바닥부터” 올려보내며 처리</li>
+      <li>각 노드는 최대 한 번 리프가 되어 큐에 들어가기 때문에, 전체 복잡도는 $O(n)$.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>이 로직 덕분에 <strong>트리 상의 노드 값을 “가능한 한 빨리(k로 나누어떨어지면 바로 분리)” 해서 최대한 많은 컴포넌트</strong>를 구할 수 있게 됩니다.</p>
+
+<blockquote>
+  <p>정리하자면, 이 코드는 <strong>트리에서 리프 노드부터 제거</strong>해 가면서, “리프 노드가 가진 값이 (k)의 배수이면 즉시 한 컴포넌트로 카운트”, 아니라면 부모에게 값을 <strong>합산</strong>하여 다음에 검사하도록 하는 <strong>그리디+바텀업</strong> 방법입니다.<br />
+이렇게 하면 <strong>서로 겹치지 않는</strong> 서브트리를 최대한 많이 구성할 수 있고, 최종적으로 그 개수를 <code class="language-plaintext highlighter-rouge">componentCount</code>에 누적하게 됩니다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="approach-3-topological-sort--onion-sort">Approach 3: Topological Sort / Onion Sort</h3>
+<ul>
+  <li><em>110ms, 176.06MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let $n$ be the number of nodes in the graph, and let $m$ be the number of edges in the graph.</li>
+      <li>Time Complexity: $O(n + m)$</li>
+      <li>Space Complexity: $O(n + m)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">maxKDivisibleComponents</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">edges</span><span style="color: #24292f;background-color: #f6f8fa">,</span>
+                                <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">n</span> <span style="color: #0550ae">&lt;</span> <span style="color: #0550ae">2</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #cf222e">return</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+
+        <span style="color: #6e7781">// Build the graph and calculate in-degrees</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">const</span> <span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">edges</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">node1</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">],</span> <span style="color: #24292f;background-color: #f6f8fa">node2</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+            <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// Convert values to long long to prevent overflow</span>
+        <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">long</span> <span style="color: #cf222e">long</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">begin</span><span style="color: #24292f;background-color: #f6f8fa">(),</span> <span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #24292f;background-color: #f6f8fa">());</span>
+
+        <span style="color: #6e7781">// Initialize the queue with nodes having in-degree of 1 (leaf nodes)</span>
+        <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">node</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">node</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">node</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">!</span><span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">empty</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">currentNode</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">front</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+            <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">pop</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+            <span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">--</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+            <span style="color: #cf222e">long</span> <span style="color: #cf222e">long</span> <span style="color: #24292f;background-color: #f6f8fa">addValue</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+            <span style="color: #6e7781">// Check if the current node's value is divisible by k</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">%</span> <span style="color: #24292f;background-color: #f6f8fa">k</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span> <span style="color: #cf222e">else</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">addValue</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+            <span style="color: #6e7781">// Propagate the value to the neighbor nodes</span>
+            <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">])</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                    <span style="color: #cf222e">continue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+                <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+                <span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">--</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+                <span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">addValue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+                <span style="color: #6e7781">// If the neighbor node's in-degree becomes 1, add it to the</span>
+                <span style="color: #6e7781">// queue</span>
+                <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                    <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+                <span style="color: #24292f;background-color: #f6f8fa">}</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="gpt-2">GPT</h4>
+<p>아래 코드는 <strong>트리(Tree)</strong> 형태의 그래프에서, 노드별로 주어진 값을 $k$로 나누어떨어지도록 만드는 <strong>서브트리를 최대 몇 개</strong> 뽑아낼 수 있는지를 구하는 전형적인 알고리즘 패턴 중 하나입니다.</p>
+
+<ul>
+  <li><strong>트리(무방향, n개의 노드, n-1개의 간선)</strong></li>
+  <li>각 노드에는 값이 있고, 이를 누적(합)했을 때 <strong>$k$의 배수</strong>가 되면 독립적인 서브트리(컴포넌트)로 떼어낼 수 있다고 간주합니다.</li>
+  <li><strong>리프 노드(차수가 1인 노드)</strong> 부터 시작하여, “노드의 값이 $k$의 배수이면 곧바로 컴포넌트로 분리하고 제거”, “아니면 부모(이웃)에게 값을 합쳐서 넘긴 뒤 제거” 하는 과정을 <strong>BFS(또는 위상 정렬과 유사한 방식)</strong> 로 반복하여 <strong>최대 개수</strong>를 구합니다.</li>
+</ul>
+
+<hr />
+
+<h2 id="코드-구조-1">코드 구조</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">int</span> <span style="color: #8250df">maxKDivisibleComponents</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">edges</span><span style="color: #24292f;background-color: #f6f8fa">,</span>
+                            <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #6e7781">// (1) 예외 처리: 노드가 1개 이하인 경우</span>
+    <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">n</span> <span style="color: #0550ae">&lt;</span> <span style="color: #0550ae">2</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #cf222e">return</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+    <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+
+    <span style="color: #6e7781">// (2) 그래프 인접 리스트 및 inDegree(차수) 계산</span>
+    <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">const</span> <span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">edges</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">node1</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">],</span> <span style="color: #24292f;background-color: #f6f8fa">node2</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">edge</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+        <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">].</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node1</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node2</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+    <span style="color: #6e7781">// (3) 오버플로우 방지를 위해 long long으로 변환</span>
+    <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">long</span> <span style="color: #cf222e">long</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">begin</span><span style="color: #24292f;background-color: #f6f8fa">(),</span> <span style="color: #24292f;background-color: #f6f8fa">values</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #24292f;background-color: #f6f8fa">());</span>
+
+    <span style="color: #6e7781">// (4) 차수가 1(리프)인 노드를 모두 큐에 넣음</span>
+    <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">node</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">node</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">node</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">node</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">node</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+    <span style="color: #6e7781">// (5) BFS/위상정렬 방식으로 리프 노드부터 처리</span>
+    <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">!</span><span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">empty</span><span style="color: #24292f;background-color: #f6f8fa">())</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">currentNode</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">front</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+        <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">pop</span><span style="color: #24292f;background-color: #f6f8fa">();</span>
+        <span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">--</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #cf222e">long</span> <span style="color: #cf222e">long</span> <span style="color: #24292f;background-color: #f6f8fa">addValue</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>  <span style="color: #6e7781">// 부모(이웃)에게 넘길 값</span>
+
+        <span style="color: #6e7781">// (a) 현재 노드 값이 k로 나누어떨어지면, 독립 컴포넌트로 카운팅</span>
+        <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">%</span> <span style="color: #24292f;background-color: #f6f8fa">k</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #6e7781">// (b) 나누어떨어지지 않으면, 그 값을 부모에게 넘겨서 합산</span>
+        <span style="color: #cf222e">else</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">addValue</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// (c) 연결된 이웃 노드들의 inDegree 갱신 및 값 합산</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">neighborNode</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">graph</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentNode</span><span style="color: #24292f;background-color: #f6f8fa">])</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #6e7781">// 이미 처리된(또는 차수가 0이 된) 노드는 무시</span>
+                <span style="color: #cf222e">continue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+            <span style="color: #6e7781">// currentNode를 제거했으므로, neighborNode의 차수 감소</span>
+            <span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">--</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+            <span style="color: #6e7781">// currentNode가 남긴 값을 neighborNode에 더함</span>
+            <span style="color: #24292f;background-color: #f6f8fa">longValues</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">addValue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+            <span style="color: #6e7781">// neighborNode가 새롭게 리프 노드(차수=1)가 되면 큐에 삽입</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">inDegree</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">queue</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">neighborNode</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+    <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">componentCount</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="동작-방식">동작 방식</h2>
+
+<ol>
+  <li><strong>그래프 및 차수(<code class="language-plaintext highlighter-rouge">inDegree</code>) 계산</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">graph[node]</code>에 연결된 노드 목록을 저장하고, 각 노드의 차수(연결된 간선 수)를 <code class="language-plaintext highlighter-rouge">inDegree[node]</code>에 기록합니다.</li>
+      <li>트리이므로 전체 간선은 <code class="language-plaintext highlighter-rouge">n-1</code>개입니다.</li>
+    </ul>
+  </li>
+  <li><strong>리프 노드(차수 1) 찾기</strong>
+    <ul>
+      <li>처음에 차수가 1인 노드들을 큐에 넣습니다. (대표적인 “위상 정렬”에서의 시작 노드 찾기와 유사)</li>
+    </ul>
+  </li>
+  <li><strong>BFS/위상 정렬 순회</strong>
+    <ul>
+      <li>큐에서 <code class="language-plaintext highlighter-rouge">currentNode</code>를 꺼내 처리:
+1) <code class="language-plaintext highlighter-rouge">currentNode</code>의 값을 확인
+        <ul>
+          <li>만약 $longValues[currentNode] \ \% \ k == 0$이면,
+            <ul>
+              <li>“이 노드는 독립적인 하나의 서브트리”로 분리 가능 → <code class="language-plaintext highlighter-rouge">componentCount++</code></li>
+              <li>부모(이웃)에게 값을 더하지 않음 (이미 분리해서 제거했기 때문)</li>
+            </ul>
+          </li>
+          <li>아니면, 부모(이웃)에게 넘길 <code class="language-plaintext highlighter-rouge">addValue</code>를 설정(= <code class="language-plaintext highlighter-rouge">longValues[currentNode]</code>).<br />
+2) <code class="language-plaintext highlighter-rouge">currentNode</code>와 이웃 노드 <code class="language-plaintext highlighter-rouge">neighborNode</code> 간의 간선을 effectively “제거”</li>
+          <li><code class="language-plaintext highlighter-rouge">inDegree[neighborNode]--</code> (연결이 끊겼으므로 차수 감소)</li>
+          <li><code class="language-plaintext highlighter-rouge">longValues[neighborNode] += addValue</code> (나누어떨어지지 않은 값만 이웃에게 흡수)<br />
+3) <code class="language-plaintext highlighter-rouge">neighborNode</code>의 차수가 1이 되면 새 리프 → 큐에 삽입</li>
+          <li>이렇게 순차적으로 바깥(리프)에서부터 안쪽(부모)으로 값을 합쳐 나갑니다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>반복</strong>
+    <ul>
+      <li>위 과정을 큐가 빌 때까지 반복하면, 최종적으로 <strong>“가능한 한 많은 서브트리”</strong> 가 <code class="language-plaintext highlighter-rouge">k</code>의 배수 형태로 분리되었을 때의 개수를 얻습니다.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="왜-최대-개수가-보장될까">왜 “최대 개수”가 보장될까?</h2>
+
+<ul>
+  <li><strong>그리디 전략</strong>:
+    <ul>
+      <li>리프 노드가 $k$로 나누어떨어지면, 더 큰 서브트리에 포함시키지 않고 <strong>곧바로</strong> 떨어뜨려(카운트하고) 제거해 버립니다.</li>
+      <li>만약 리프 노드가 배수가 아니라면, 그 값을 부모에게 “병합”하여 부모 쪽에서 다시 확인합니다.</li>
+      <li>이렇게 <strong>리프부터 시작해</strong> 가능한 한 일찍 독립 컴포넌트를 만들어내는 것이, 트리에서 “서로 겹치지 않는” 서브트리들을 <strong>최대 개수</strong>로 얻는 방법과 일치합니다.</li>
+    </ul>
+  </li>
+  <li><strong>예시</strong><br />
+1) 리프 노드 A의 값이 12, $k=3$이라면, 바로 하나의 서브트리가 되어(또는 간선을 끊고) <code class="language-plaintext highlighter-rouge">componentCount++</code>.<br />
+2) 리프 노드 B의 값이 5, $k=3$라면, 5로는 나누어떨어지지 않으니 부모와 합산해보는 식입니다.
+    <ul>
+      <li>이 과정을 모든 리프에 대해 반복하면, <strong>중복 없이(disjoint) 서브트리</strong>가 만들어지므로 최대 개수 달성.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="정리-1">정리</h2>
+
+<ol>
+  <li><strong>트리 + 그리디 + 위상 정렬(BFS) 아이디어</strong>
+    <ul>
+      <li>리프 노드부터 제거하면서, 값이 $k$ 배수면 곧바로 컴포넌트로 취급해 카운트.</li>
+      <li>배수가 아니면 부모(이웃)에 값을 넘겨서 합산하고, 리프 노드는 제거.</li>
+    </ul>
+  </li>
+  <li><strong>이 과정을 반복</strong>
+    <ul>
+      <li>이웃 노드의 차수가 1이 되면 새로운 리프가 되어, 같은 로직을 적용.</li>
+    </ul>
+  </li>
+  <li><strong>최종적으로 얻은 <code class="language-plaintext highlighter-rouge">componentCount</code></strong> 가 <strong>서로 겹치지 않는</strong> $k$-배수 서브트리의 최대 개수가 됩니다.</li>
+</ol>
+
+<p>코드에서 핵심은 <strong>in-degree(차수) 관리</strong>와 <strong>값 합산</strong>, 그리고 <strong>리프 노드 업데이트</strong>를 올바르게 수행하는 것이며, 이는 전체를 $O(n)$ 시간 안에 처리할 수 있습니다.</p>
+
+<p><br /></p>
+
+<h2 id="onion-sort">Onion Sort</h2>
+<p><strong>Onion Sort</strong>라는 것은 보통 정식으로 인정된(또는 널리 알려진) 표준 정렬 알고리즘은 아닙니다. 간혹 프로그래머나 커뮤니티에서 <strong>“농담(joke)”</strong> 혹은 <strong>“학습 자료 예시”</strong> 로 언급되는 경우가 있습니다. 주로 다음 두 가지 맥락에서 볼 수 있습니다:</p>
+
+<ol>
+  <li><strong>농담 알고리즘(Joke Algorithm)</strong>
+    <ul>
+      <li>“양파를 까면 눈물이 나듯이, 이 정렬 알고리즘을 쓰면 코드를 짜는 사람이 혹은 컴퓨터가 고통받는다”라는 식의 <strong>유머</strong>로 만들어진 가상의 알고리즘입니다.</li>
+      <li>실제로는 <strong>매우 비효율</strong>적이거나, 정확한 동작 원리가 없으며, 대개 <strong>Bubble Sort</strong>나 <strong>Bogo Sort</strong> 같은 정렬 중 하나를 변형·비꼬아 부르는 용도로 쓰이기도 합니다.</li>
+    </ul>
+  </li>
+  <li><strong>레이어(계층)를 차례차례 벗겨내듯 정렬한다</strong>는 <strong>비공식적 별칭</strong>
+    <ul>
+      <li>간혹 “배열(리스트)의 ‘겉껍질(최댓값/최솟값)부터 하나씩 벗겨내며 정렬하는 방식’”이라는 식으로, 어떤 <strong>아이디어</strong>를 설명하기 위해 “Onion Sort”라는 이름을 장난스럽게 붙이는 경우가 있습니다.</li>
+      <li>예: 최소값을 찾아 맨 앞에, 최대값을 찾아 맨 뒤에 두는 식으로 계속 <strong>겉에서부터 안쪽</strong>으로 정렬을 완성해가는 발상을 “양파 껍질 벗기기”에 비유할 수 있습니다.</li>
+      <li>하지만 이 또한 <strong>공식적으로 정립된 알고리즘</strong>이라고 하기는 어렵고, 특정 구현 예시에서 붙여본 ‘닉네임’ 정도로 보는 편이 맞습니다.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="결론-1">결론</h2>
+<ul>
+  <li>“Onion Sort”는 <strong>정식으로 정립되거나 널리 쓰이는 정렬 알고리즘</strong>이 아니라, 주로 <strong>농담</strong> 또는 <strong>비공식 아이디어</strong>로 언급되는 이름입니다.</li>
+  <li>따라서 진지하게 “Onion Sort의 복잡도”나 “정확한 구현” 같은 것을 찾기보다는, <strong>코드 유머</strong>나 <strong>학습 자료</strong> 안에서 가볍게 등장하는 <strong>개념</strong> 정도로 이해하시면 됩니다.</li>
+</ul>
+
+<p><br /></p>
+
+
+      <div class="c-article__footer u-clearfix">
+        <div class="c-article__tag">
+          
+          <a href="/tags#Problem_Solving">&#35; Problem_Solving</a>
+          
+        </div>
+        <!-- <div class="c-article__share">
+          <a href="https://twitter.com/intent/tweet?text=2872.%20Maximum%20Number%20of%20K-Divisible%20Components&url=https://chocobreeze.github.io/2024/12/21/2872.-Maximum-Number-of-K-Divisible-Components/" title="Share
+          on Twitter" rel="nofollow" target="_blank"><div data-icon='ei-sc-twitter' data-size='s'></div></a>
+          <a href="https://facebook.com/sharer.php?u=https://chocobreeze.github.io/2024/12/21/2872.-Maximum-Number-of-K-Divisible-Components/" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a>
+          <a href="https://plus.google.com/share?url=https://chocobreeze.github.io/2024/12/21/2872.-Maximum-Number-of-K-Divisible-Components/" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a>
+        </div> -->
+      </div>
+      <!-- <div class="c-newsletter">
+  <div class="c-newsletter__header">
+    <h4 class="c-newsletter__title">Newsletter</h4>
+    <div class="c-newsletter__subtitle">Subscribe to this blog and receive notifications of new posts by email.</div>
+  </div>
+  <form class="c-newsletter-form validate" action="#" method="POST" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+    <div class="c-newsletter-form__group">
+      <label class="u-screen-reader-text" for="mce-EMAIL">Email address</label>
+      <input class="c-newsletter__email required email" id="mce-EMAIL" type="email" name="EMAIL" placeholder="Your email address" autocomplete="on">
+      <input class="c-newsletter__button" id="mc-embedded-subscribe" type="submit" name="subscribe" value="Subscribe">
+    </div>
+  </form>
+</div> -->
+      <div class="c-recent-post">
+        <h4 class="c-recent__title">You might also enjoy</h4>
+        <div class="c-recent__box">
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/12/22/2940.-Find-Building-Where-Alice-and-Bob-Can-Meet/" style="background-image: url( /images/Mine/20230530_215417.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/12/22/2940.-Find-Building-Where-Alice-and-Bob-Can-Meet/">2940. Find Building Where Alice and Bob Can Meet</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-12-22T11:00:00+00:00">December 22, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/12/20/2415.-Reverse-Odd-Levels-of-Binary-Tree/" style="background-image: url( /images/Mine/20230530_211405.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/12/20/2415.-Reverse-Odd-Levels-of-Binary-Tree/">2415. Reverse Odd Levels of Binary Tree</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-12-20T11:00:00+00:00">December 20, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/12/19/769.-Max-Chunks-To-Make-Sorted/" style="background-image: url( /images/Mine/20230526_195604.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/12/19/769.-Max-Chunks-To-Make-Sorted/">769. Max Chunks To Make Sorted</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-12-19T11:00:00+00:00">December 19, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2024/12/18/1475.-Final-Prices-With-a-Special-Discount-in-a-Shop/" style="background-image: url( /images/Mine/20230526_185734.jpg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2024/12/18/1475.-Final-Prices-With-a-Special-Discount-in-a-Shop/">1475. Final Prices With a Special Discount in a Shop</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2024-12-18T11:00:00+00:00">December 18, 2024</time>
+              </div>
+            </div>
+          </div>
+        
+        
+        </div>
+      </div> <!-- /.c-recent-post -->
+      
+    </div> <!-- /.c-wrap-content -->
+  </div> <!-- /.c-article__content -->
+</article> <!-- /.c-article-page -->
+
+<!-- KaTeX CSS 추가 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<!-- KaTeX JS 추가 및 자동 렌더링 설정 -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" 
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});">
+</script>
+</main> <!-- /.c-content -->
+  </div> <!-- /.o-wrapper -->
+  <div class="c-top" data-icon='ei-chevron-up' data-size='s' title="Scroll To Top"></div> <!-- /.c-top -->
+  <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/evil-icons.min.js"></script>
+<script src="/js/jquery.fitvids.js"></script>
+<script src="/js/simple-jekyll-search.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- /javascripts -->
+</body>
+</html>
