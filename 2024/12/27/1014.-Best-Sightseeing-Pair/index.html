@@ -135,7 +135,7 @@
 <h4 id="gpt">GPT</h4>
 <p><strong>문제 이해</strong><br />
 LeetCode 1014번 <em>Best Sightseeing Pair</em> 문제는, 배열 <code class="language-plaintext highlighter-rouge">values</code>가 주어졌을 때,<br />
-\(\text{score}(i, j) = \text{values}[i] + \text{values}[j] + i - j\)<br />
+$\text{score}(i, j) = \text{values}[i] + \text{values}[j] + i - j$<br />
 의 값이 최대가 되도록 하는 서로 다른 인덱스 $ i, j $ ($ i &lt; j $)를 찾아 그 때의 $\text{score}(i, j)$를 구하는 문제입니다.</p>
 
 <hr />
@@ -154,7 +154,7 @@ LeetCode 1014번 <em>Best Sightseeing Pair</em> 문제는, 배열 <code class="l
 
 <p>위 식을 조금 변형해보면 다음과 같이 <strong>두 부분</strong>으로 나누어 생각할 수 있습니다:</p>
 
-<p>[\text{score}(i, j) = (\text{values}[i] + i) + (\text{values}[j] - j)]</p>
+<p>$\text{score}(i, j) = (\text{values}[i] + i) + (\text{values}[j] - j)$</p>
 
 <p>즉,</p>
 <ul>
@@ -179,7 +179,7 @@ LeetCode 1014번 <em>Best Sightseeing Pair</em> 문제는, 배열 <code class="l
   <li>
     <p><strong>현재 인덱스 $j$에서의 점수 계산</strong><br />
 현재 인덱스 $j$에 대해, 이미 구해둔 <code class="language-plaintext highlighter-rouge">mx</code>와 $\text{values}[j] - j$의 합이 바로
-\(\max_{i &lt; j} (\text{values}[i] + i) \;+\; (\text{values}[j] - j)\)
+$\max_{i &lt; j} (\text{values}[i] + i) \;+\; (\text{values}[j] - j)$
 이 되므로, 이를 이용해 그 시점에서의 가능한 최대 점수를 갱신합니다.</p>
   </li>
   <li><strong>결과 갱신</strong>
@@ -385,7 +385,7 @@ LeetCode 1014번 <em>Best Sightseeing Pair</em> 문제는, 배열 <code class="l
 <h4 id="gpt-1">GPT</h4>
 <p>이 코드는 배열 <code class="language-plaintext highlighter-rouge">values</code>에서 두 위치의 점수를 계산하여 최적의 <strong>Sightseeing Pair</strong>를 찾는 문제를 해결합니다. 점수는 다음과 같이 계산됩니다:</p>
 
-<p>[\text{Score}(i, j) = \text{values}[i] + \text{values}[j] + i - j]</p>
+<p>$\text{Score}(i, j) = \text{values}[i] + \text{values}[j] + i - j$</p>
 
 <p>여기서 $i &lt; j$입니다.</p>
 
@@ -395,7 +395,7 @@ LeetCode 1014번 <em>Best Sightseeing Pair</em> 문제는, 배열 <code class="l
 <p>주어진 문제에서 점수는 두 요소의 값과 그들 간의 거리(인덱스 차이)를 기반으로 계산됩니다.<br />
 이를 다음과 같이 변환할 수 있습니다:</p>
 
-<p>[\text{Score}(i, j) = (\text{values}[i] + i) + (\text{values}[j] - j)]</p>
+<p>$\text{Score}(i, j) = (\text{values}[i] + i) + (\text{values}[j] - j)$</p>
 
 <p>이렇게 변환하면:</p>
 <ol>
@@ -580,7 +580,7 @@ LeetCode 1014번 <em>Best Sightseeing Pair</em> 문제는, 배열 <code class="l
 </ol>
 
 <h4 id="출력">출력:</h4>
-<p>\(\text{maxScore} = 11\)</p>
+<p>$\text{maxScore} = 11$</p>
 
 <p><br /></p>
 
@@ -627,7 +627,7 @@ LeetCode 1014번 <em>Best Sightseeing Pair</em> 문제는, 배열 <code class="l
 <h4 id="gpt-2">GPT</h4>
 <p>이 코드는 배열 <code class="language-plaintext highlighter-rouge">values</code>에서 두 인덱스 $i$와 $j$ ($i &lt; j$)에 대해 다음 점수 공식을 최대화하는 문제를 해결합니다:</p>
 
-<p>[\text{Score}(i, j) = \text{values}[i] + \text{values}[j] + i - j]</p>
+<p>$\text{Score}(i, j) = \text{values}[i] + \text{values}[j] + i - j$</p>
 
 <p>이 문제는 효율적으로 해결되며, 아래에서 단계별로 분석합니다.</p>
 
@@ -637,7 +637,7 @@ LeetCode 1014번 <em>Best Sightseeing Pair</em> 문제는, 배열 <code class="l
 
 <p>공식을 다음과 같이 변환합니다:</p>
 
-<p>[\text{Score}(i, j) = (\text{values}[i] + i) + (\text{values}[j] - j)]</p>
+<p>$\text{Score}(i, j) = (\text{values}[i] + i) + (\text{values}[j] - j)$</p>
 
 <ol>
   <li><strong>왼쪽 점수</strong>: $\text{values}[i] + i$

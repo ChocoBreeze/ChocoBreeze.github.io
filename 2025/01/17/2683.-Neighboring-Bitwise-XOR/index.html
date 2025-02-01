@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <title>2683. Neighboring Bitwise XOR</title>
+  <meta name='description' content="문제 링크">
+  <link rel='canonical' href="https://chocobreeze.github.io/2025/01/17/2683.-Neighboring-Bitwise-XOR/">
+  <link rel='alternate' type='application/rss+xml' title='Welcome to ChocoBreeze Blog' href="https://chocobreeze.github.io/feed.xml">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+  <style>
+    
+    /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:rgba(0,0,0,0);-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}@-webkit-keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.icon{position:relative;display:inline-block;width:25px;height:25px;overflow:hidden;fill:currentColor}.icon__cnt{width:100%;height:100%;background:inherit;fill:inherit;pointer-events:none;transform:translateX(0);-ms-transform:translate(0.5px, -0.3px)}.icon--m{width:50px;height:50px}.icon--l{width:100px;height:100px}.icon--xl{width:150px;height:150px}.icon--xxl{width:200px;height:200px}.icon__spinner{position:absolute;top:0;left:0;width:100%;height:100%}.icon--ei-spinner .icon__spinner,.icon--ei-spinner-2 .icon__spinner{-webkit-animation:spin 1s steps(12) infinite;animation:spin 1s steps(12) infinite}.icon--ei-spinner-3 .icon__spinner{-webkit-animation:spin 1.5s linear infinite;animation:spin 1.5s linear infinite}.icon--ei-sc-facebook{fill:#3b5998}.icon--ei-sc-github{fill:#333}.icon--ei-sc-google-plus{fill:#dd4b39}.icon--ei-sc-instagram{fill:#3f729b}.icon--ei-sc-linkedin{fill:#0976b4}.icon--ei-sc-odnoklassniki{fill:#ed812b}.icon--ei-sc-skype{fill:#00aff0}.icon--ei-sc-soundcloud{fill:#f80}.icon--ei-sc-tumblr{fill:#35465c}.icon--ei-sc-twitter{fill:#55acee}.icon--ei-sc-vimeo{fill:#1ab7ea}.icon--ei-sc-vk{fill:#45668e}.icon--ei-sc-youtube{fill:#e52d27}.icon--ei-sc-pinterest{fill:#bd081c}.icon--ei-sc-telegram{fill:#08c}.icon--ei-sc-naver{fill:#03c75a}*,*::after,*::before{box-sizing:border-box}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:15px}ul,ol,dd{margin-left:15px}code{background-color:rgba(0,0,0,0) !important}.highlight{background:#f7f7f7}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:teal}.highlight .nb{color:#0086b3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:teal}.highlight .ni{color:purple}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:navy}.highlight .nv{color:teal}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#d14}.highlight .sc{color:#d14}.highlight .sd{color:#d14}.highlight .s2{color:#d14}.highlight .se{color:#d14}.highlight .sh{color:#d14}.highlight .si{color:#d14}.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:teal}.highlight .vg{color:teal}.highlight .vi{color:teal}.highlight .il{color:#099}body{font-family:"Open Sans",Helvetica Neue,Helvetica,Arial,sans-serif;font-size:15px;line-height:28px;color:#404040;background-color:#fbfbfb;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}*::selection{color:#fff;background-color:#3af}h1,h2,h3,h4,h5,h6{font-family:"Volkhov","Times New Roman",Times,serif;font-weight:400;line-height:initial}h1{font-size:32px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}img{max-width:100%;height:auto;vertical-align:middle}a{text-decoration:none;color:#3af;transition:.35s}a:hover{color:hsl(205,100%,45%)}blockquote{padding-left:15px;border-left:3px solid #3af;font-family:"Volkhov","Times New Roman",Times,serif;font-style:normal;font-size:18px;background-color:rgba(220,235,245,.2)}blockquote p{padding:10px}hr{height:1px;margin:30px 0;border:0;background-color:#f0f0f0}pre{overflow:auto;padding:25px;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all;font-family:Courier,monospace}code{overflow:auto;white-space:pre-wrap;word-wrap:break-word;word-break:break-all;font-family:Courier,monospace;font-size:14px;background-color:#f7f7f7}p code,li code{padding:3px 5px}.o-wrapper{max-width:1440px;position:relative}.o-opacity{animation-duration:.7s;animation-delay:.2s;animation-fill-mode:both;animation-name:opacity}@keyframes opacity{from{opacity:0}to{opacity:1}}.c-btn{display:inline-block;white-space:nowrap;vertical-align:middle;font-family:"Volkhov",serif;font-size:12px;text-align:center;padding:8px 15px;cursor:pointer;transition:.35s}.c-btn--primary{color:#fff;background-color:#3af;background:linear-gradient(135deg, #33aaff 0%, #62d5ff 100%)}.c-btn--secondary{color:#fff;background-color:#cfcfdd;background:linear-gradient(135deg, #a2a2bd 0%, #cfcfdd 100%)}.c-btn--round{border-radius:30px}.c-btn--shadow{box-shadow:8px 10px 20px 0 rgba(46,61,73,.15)}.c-btn--shadow:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,.2)}.c-btn--middle{display:block;width:300px;max-width:100%}.c-btn--big{display:block;width:100%}.c-btn:hover{color:#fff;transition:.35s}.c-btn:active{transform:translateY(2px)}.c-sidebar{display:flex;flex-direction:column;justify-content:space-between;position:fixed;top:0;left:0;bottom:0;width:360px;padding:40px 20px 20px;text-align:center;box-shadow:1px 1px 0 rgba(31,35,46,.15);background-color:#fff}.c-sidebar-author .c-author__cover{width:100px;height:100px;margin:0 auto 10px;border-radius:50%;overflow:hidden;background-color:#cfcfdd}.c-sidebar-author .c-author__cover img{width:100%;height:100%;border-radius:50%;transition:.35s}.c-sidebar-author .c-author__cover img:hover{transform:scale3d(0.9, 0.9, 1)}.c-sidebar-author .c-contact-menu .c-btn{min-width:110px}.c-sidebar-author .c-contact-menu .c-btn .icon{width:18px;height:18px;vertical-align:text-bottom;fill:#fff}.c-sidebar-author .c-author__info{font-family:"Volkhov",serif}.c-sidebar-author .c-author__name{font-size:18px;font-weight:700;line-height:21px}.c-sidebar-author .c-author__job{font-size:12px;color:#a0a0a0;margin:5px 0 0}.c-sidebar-author .c-contact-menu{margin:30px 0}.c-sidebar-author .c-contact-menu .c-btn--secondary{margin-right:10px}.c-sidebar-author .c-author__about{max-width:400px;margin:0 auto 15px;font-size:13px}.c-sidebar-footer .c-social__title{position:relative;font-family:"Volkhov",serif;font-size:15px;font-weight:700;color:#444}.c-sidebar-footer .c-social__title::before{content:"";display:block;height:2px;width:calc(50% - 40px);transform:translateY(-50%);position:absolute;top:50%;left:0;background-color:#444}.c-sidebar-footer .c-social__title::after{content:"";display:block;height:2px;width:calc(50% - 40px);transform:translateY(-50%);position:absolute;top:50%;right:0;background-color:#444}.c-sidebar-footer .c-social__list{list-style-type:none;padding:0;margin:15px 0}.c-sidebar-footer .c-social__list .c-social__item{display:inline-block;width:27px;height:27px}.c-sidebar-footer .c-social__list .icon{width:27px;height:27px;fill:#444;vertical-align:middle;transition:.35s}.c-sidebar-footer .c-social__list .icon:hover{fill:#3af;transform:scale(1.2);transition:.35s}.c-sidebar-footer .c-copyright p{font-size:13px;margin:0}@media only screen and (max-width: 900px){.c-sidebar{position:relative;width:100%;padding:20px}.c-sidebar .c-contact-menu{margin:20px 0}.c-sidebar-footer .c-social .c-social__title{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}.c-sidebar-footer .c-social__list{margin:0}.c-sidebar-footer .c-copyright{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}}@media only screen and (max-width: 480px){.c-sidebar-author .c-author__cover{width:80px;height:80px}.c-sidebar-author .c-author__cover img{width:100%;height:100%}.c-sidebar-author .c-contact-menu{margin:15px 0}.c-sidebar-author .c-contact-menu .c-btn{min-width:80px;font-size:10px;padding:4px 15px;margin-right:5px}.c-sidebar-author .c-contact-menu .c-btn .icon{width:16px;height:16px}.c-sidebar-footer .c-social .c-social__title{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}.c-sidebar-footer .c-social__list{margin:0}.c-sidebar-footer .c-social__list .icon{width:25px;height:25px}.c-sidebar-footer .c-copyright{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}}.c-content{position:relative;display:flex;flex-direction:row;flex-wrap:wrap;align-items:stretch;padding:0 20px 0;margin-left:360px}@media only screen and (max-width: 900px){.c-content{position:static;padding:0 15px 0;margin-left:0}}.c-posts{width:100%;display:flex;flex-direction:row;flex-wrap:wrap}.c-post{width:100%;max-width:100%;margin-bottom:20px;display:flex;flex-direction:row;align-items:stretch;min-height:180px;border-radius:10px;overflow:hidden;transition:.35s;background-color:#fff;box-shadow:0 1px 1px 0 rgba(31,35,46,.15)}.c-post:hover{transform:translate(0px, -2px);box-shadow:0 15px 45px -10px rgba(10,16,34,.2)}.c-post .c-post-thumbnail{display:block;width:30%;max-width:100%;min-height:180px;border-radius:10px 0 0 10px;background-color:rgba(220,235,245,.2);background-size:cover;background-position:50% 50%}.c-post .c-post-content{padding:15px;width:70%}.c-post .c-post-content .c-post-title{font-size:30px;font-weight:400;margin:0 0 15px}.c-post .c-post-content .c-post-title a{text-decoration:none;color:#263959}.c-post .c-post-content .c-post-date,.c-post .c-post-content .c-post-words{font-size:12px}.c-load-more{padding:20px;margin:20px auto 40px;font-size:13px;color:#fff;border:none;background-color:#3af;outline:none}.c-load-more:hover{background-color:hsl(205,100%,45%)}@media only screen and (max-width: 1200px){.c-post{width:48%;max-width:100%;margin:0 1% 20px;flex-direction:column}.c-post .c-post-thumbnail{width:100%;border-radius:10px 10px 0 0}.c-post .c-post-content{width:100%}.c-post .c-post-content .c-post-title{font-size:21px;margin:15px 0}}@media only screen and (max-width: 480px){.c-post{width:100%;max-width:100%;margin:0 0 20px}.c-post .c-post-content{width:100%}.c-post .c-post-content .c-post-title{font-size:21px;margin:15px 0}}.c-article{width:100%;margin:20px 0}.c-wrap-content{padding:20px;background-color:#fff}.c-article__image{position:relative;background-color:rgba(220,235,245,.2);background-position:center;background-size:cover;background-repeat:no-repeat}.c-article__image:after{content:"";display:block;padding-top:56%}.c-article__header{margin-bottom:20px;text-align:center}.c-article__header .c-article__title{margin-bottom:10px}.c-article__date span{font-size:13px;text-transform:uppercase;color:#a0a0a0}.c-article__footer{margin:30px 0 0;padding-bottom:30px;text-align:center;border-bottom:1px solid #f0f0f0}.c-article__footer .c-article__share{transition:.35s}.c-article__footer .c-article__share a .icon{vertical-align:middle;transition:.35s}.c-article__footer .c-article__share a .icon:hover{opacity:.7;transition:.35s}.c-article__footer .c-article__tag{margin-bottom:5px}.c-article__footer .c-article__tag a{display:inline-block;vertical-align:middle;padding:5px 10px;font-family:"Volkhov","Times New Roman",Times,serif;font-size:10px;line-height:10px;text-transform:uppercase;background-color:rgba(115,138,160,.6);color:#fff}.c-article__footer .c-article__tag a:hover{background-color:rgba(80.2446808511,99.6723404255,118.2553191489,.6)}.c-article__footer .c-article__tag a:last-child{margin-right:0}.c-recent-post{padding:30px 0}.c-recent-post .c-recent__title{font-size:14px;text-align:center;text-transform:uppercase;margin-bottom:30px}.c-recent-post .c-recent__box{display:flex;flex-direction:row;flex-wrap:wrap}.c-recent-post .c-recent__item{max-width:23%;flex-basis:23%;margin:0 1% 20px;border-radius:10px;overflow:hidden;text-align:center;background-color:#fff;box-shadow:0 1px 1px 0 rgba(31,35,46,.15);transition:.35s}.c-recent-post .c-recent__item h4{margin-bottom:5px;font-size:12px;text-transform:uppercase}.c-recent-post .c-recent__item h4 a{color:#444}.c-recent-post .c-recent__item:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,.2)}.c-recent-post .c-recent__footer{padding:15px}.c-recent-post .c-recent__image{display:block;width:100%;min-height:180px;background-color:rgba(220,235,245,.2);background-size:cover;background-position:center;background-repeat:no-repeat}.c-recent-post .c-recent__date{color:#a0a0a0;font-size:12px}@media only screen and (max-width: 1200px){.c-recent-post .c-recent__item{max-width:48%;flex-basis:48%}}@media only screen and (max-width: 900px){.c-article{margin:15px 0}}@media only screen and (max-width: 480px){.c-wrap-content{padding:15px}.c-article__header{margin-bottom:5px}.c-article__header .c-article__title{font-size:24px;margin-bottom:5px}.c-recent-post .c-recent__item{max-width:100%;flex-basis:100%;margin:0 0 20px}}.c-blog-tags{width:100%;padding:20px;margin:20px 0 40px;background-color:#fff}.c-blog-tags h1{text-align:center;margin-bottom:0}.c-blog-tags h2{font-size:18px;text-transform:uppercase;margin:30px 0;color:#757575}.c-tag__list{list-style:none;padding:0 0 40px;margin:40px 0 0;border-bottom:1px solid #f0f0f0}.c-tag__list li{display:inline-block;margin-right:15px}.c-tag__list li a{color:#404040;text-transform:uppercase;font-size:12px}.c-tag__list li a:hover{color:#000}.c-tag__item{margin-bottom:15px}.c-tag__image{width:50px;height:50px;border-radius:50%;margin-right:5px}@media only screen and (max-width: 480px){.c-blog-tags{padding:15px}.c-blog-tags h1{font-size:27px}.c-blog-tags h2{font-size:16px;margin:15px 0}.c-tag__list{padding:0 0 30px;margin:30px 0 0}.c-tag__item{margin-bottom:5px}.c-tag__image{display:none}}.c-header{position:relative;width:100%;margin:20px 0}.c-header__box{position:relative;display:flex;flex-direction:row;justify-content:space-between;align-items:center}.c-header__box .icon--ei-search{position:absolute;top:7px;left:15px;fill:#ccc}.c-search{width:80%}.c-search .c-search__box{display:flex;align-items:center}.c-search .c-search__text{position:relative;width:100%;padding:10px 10px 10px 40px;border:1px solid #dce4ea;border-radius:30px;outline:none;color:#a0a0a0}.c-search .c-search__text::placeholder{color:#ccc}.c-search .c-search__text:hover{box-shadow:0 1px 0px rgba(132,135,138,.1);transition:.35s}.c-search .c-search-results-list{position:absolute;width:100%;margin:10px 0 0;list-style-type:none;background-color:#fff;z-index:1}.c-search .c-search-results-list li{display:flex;flex-wrap:wrap;align-items:center;margin:0;padding:20px 25px 0;background-color:#fff;line-height:1.4;border-left:solid 1px #edeeee;border-right:solid 1px #edeeee}.c-search .c-search-results-list li:first-child{border-top-left-radius:5px;border-top-right-radius:5px;border-top:solid 1px #edeeee}.c-search .c-search-results-list li:last-child{border-bottom-left-radius:5px;border-bottom-right-radius:5px;padding-bottom:25px;border-bottom:solid 1px #edeeee}.c-search .c-search-results-list li a{font-size:16px}.c-nav{flex-grow:1;padding-left:20px}.c-nav .c-nav__list{display:flex;justify-content:flex-end}.c-nav .c-nav__list .c-nav__item{display:flex;align-items:center;float:left;padding:4px 10px;font-size:10px;text-transform:uppercase;white-space:nowrap;border:1px solid #dce4ea;box-shadow:0 1px 0px rgba(132,135,138,.4);will-change:transform;transform:translateY(0px);cursor:pointer}.c-nav .c-nav__list .c-nav__item:hover{color:#222;background-color:#fff}.c-nav .c-nav__list .c-nav__item.is-active{box-shadow:0 0 0 rgba(132,135,138,.5);transform:translateY(1px);color:#cfcfdd}.c-nav .c-nav__list .c-nav__item.is-active:hover{background-color:#fbfbfb}.c-nav .c-nav__list .c-nav__item:first-child{border-radius:10px 0 0 10px}.c-nav .c-nav__list .c-nav__item:last-child{border-radius:0 10px 10px 0}.c-nav .c-nav__list .c-nav__item .icon{width:18px;height:18px;margin-right:3px}@media only screen and (max-width: 900px){.c-header{margin:15px 0}}@media only screen and (max-width: 480px){.c-header .c-header__box{flex-direction:column}.c-header .c-search{width:100%}.c-header .c-search .c-search__text{padding:8px 8px 8px 40px}.c-header .c-nav{margin-top:15px}.c-header .c-nav .c-nav__list{justify-content:center}.c-header .c-nav .c-nav__item{padding:4px 8px}}.c-categories{width:100%}.c-categories__list{width:100%;display:flex;flex-direction:row;flex-wrap:wrap}.c-categories__item{max-width:25%;flex-basis:25%;padding:0 10px 20px}.c-categories__link{height:100%;display:flex;flex-direction:column;align-items:center;padding:20px 10px;border-radius:5px;box-shadow:5px 5px 25px rgba(46,61,73,.15);background-color:#fff;transition:.35s}.c-categories__link:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,.2)}.c-categories__link:hover .c-categories__img .c-categories__more{opacity:1;transition:.35s}.c-categories__link .c-categories__container{width:100%;word-wrap:break-word}.c-categories__link .c-categories__container.c-empty-figure{display:flex;flex-direction:column;justify-content:center;flex-grow:1}.c-categories__img{position:relative;max-width:100%}.c-categories__img figure{position:relative;width:200px;max-width:100%;margin-bottom:20px;overflow:hidden;background-size:cover;background-repeat:no-repeat;background-position:center;border-radius:50%;box-shadow:inset 0 1px 3px rgba(141,165,185,.3)}.c-categories__img figure:after{content:"";display:block;padding-top:100%}.c-categories__img figure:before{content:"";position:absolute;top:0;bottom:0;left:0;right:0;background-color:rgba(0,0,0,.15)}.c-categories__img .c-categories__more{display:inline-block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);font-weight:700;color:#fff;text-transform:uppercase;text-shadow:0 1px 0 rgba(104,172,191,.3);opacity:0;transition:.35s}.c-categories__container{text-align:center}.c-categories__container .c-categories__header{font-size:13px;margin-bottom:10px;font-weight:normal;text-transform:uppercase;color:#404040}.c-categories__container .c-categories__count{font-family:"Volkhov",serif;font-size:12px;color:#404040;margin-bottom:0}.c-categories__container .c-categories__count span{display:inline-block;width:20px;height:20px;line-height:20px;vertical-align:baseline;margin-right:5px;border-radius:50%;color:#fff;background-color:#ee6c6c}@media only screen and (max-width: 1200px){.c-categories .c-categories__item{max-width:33.333%;flex-basis:33.333%}}@media only screen and (max-width: 1050px){.c-categories .c-categories__item{max-width:50%;flex-basis:50%}}@media only screen and (max-width: 480px){.c-categories .c-categories__item{max-width:100%;flex-basis:100%;padding:0 0 20px}}.c-form-box{position:absolute;top:0;width:calc(100% - 40px);min-height:100vh;padding:0 20px;background-color:#fff;z-index:1}.c-form-bnt__close{position:absolute;top:0px;left:0;width:30px;height:30px;cursor:pointer;transition:.35s}.c-form-bnt__close:hover{transform:scale(0.8);opacity:.8}.c-form{position:relative;width:750px;max-width:100%;margin:40px auto}.c-form .c-form__title{margin:0 0 40px;min-width:0;border:0;padding:0;font-family:"Volkhov","Times New Roman",Times,serif;text-transform:uppercase;text-align:center}.c-form a{color:#404040}.c-form__group{margin-bottom:20px}.c-form__group label{display:block;text-transform:uppercase;font-size:10px}.c-form__group input,.c-form__group textarea{width:100%;padding:10px 15px;color:#404040;border:1px solid #dce4ea;outline:none;transition:.35s}.c-form__group input:focus,.c-form__group textarea:focus{box-shadow:0 4px 25px rgba(132,135,138,.1)}.c-form__group button{padding:20px;text-transform:uppercase;outline:none;border:none}.c-thank-you p{position:relative;padding:20px 40px;width:750px;max-width:100%;text-transform:uppercase;font-size:12px;line-height:18px;font-weight:700;margin:40px auto 0;text-align:center;color:#fff;background:linear-gradient(135deg, #55b5ad 0%, #5ec9c5 100%)}.c-thank-you p .c-form-bnt__close{width:25px;height:25px;background:rgba(0,0,0,0)}.c-thank-you p a{color:#fff}@media only screen and (max-width: 900px){.c-form-box{width:100%;left:0;right:0}}@media only screen and (max-width: 480px){.c-form-bnt__close{width:25px;height:25px}}.c-newsletter{padding:30px 0 60px;margin:0 auto;border-bottom:1px solid #f0f0f0}.c-newsletter__header{text-align:center}.c-newsletter__header .c-newsletter__title{font-size:14px;text-transform:uppercase;text-align:center}.c-newsletter__header .c-newsletter__subtitle{margin-bottom:15px}.c-newsletter-form{width:100%;max-width:750px;margin:0 auto}.c-newsletter-form .c-newsletter-form__group{display:flex}.c-newsletter__email{width:70%;height:40px;padding:10px 15px;border:1px solid #ddd;border-right-color:rgba(0,0,0,0);outline:none;transition:.35s}.c-newsletter__email:focus{box-shadow:0 4px 25px rgba(132,135,138,.1)}.c-newsletter__button{width:30%;height:40px;color:#fff;background-color:#3af;transition:.35s;border:none;outline:none;cursor:pointer}.c-newsletter__button:hover{background-color:hsl(205,100%,45%)}@media only screen and (max-width: 480px){.c-newsletter__button{font-size:13px}}.c-comments{padding:30px 0;border-top:1px solid #f0f0f0}.c-top{position:fixed;width:40px;height:40px;bottom:20px;color:#757575;cursor:pointer;transition:.35s;right:-100px;z-index:10;opacity:.5}.c-top--active{right:15px}.c-top:hover{color:#757575;opacity:1}.post-difficulty strong{padding:2px 5px;border-radius:3px;font-weight:bold}.post-difficulty strong.easy{color:#1cb8b8}.post-difficulty strong.medium{color:#ffb84d}.post-difficulty strong.hard{color:#f63636}.post-topics{margin-top:10px;font-size:14px;color:#666}.post-topics .topics-label{font-weight:bold;margin-right:5px;color:#444}.post-topics ul{display:inline-flex;flex-wrap:wrap;gap:5px;list-style:none;padding:0;margin:0}.post-topics ul .topic-item{background-color:#f3f3f3;border:1px solid #ddd;border-radius:20px;padding:1px 5px;font-size:12px;color:#333;text-transform:capitalize;white-space:nowrap}.post-topics ul .topic-item:hover{background-color:#e0e0e0}.u-text-left{text-align:left}.u-text-right{text-align:right}.u-text-center{text-align:center}.u-text-justify{text-align:justify}.u-block{display:block}.u-inline-block{display:inline-block}.u-inline{display:inline}.u-full-width{display:block;width:100%}.u-vertical-center{display:flex;align-items:center;justify-content:center}.u-responsive-image{max-width:100%;height:auto;vertical-align:middle}.u-show{display:block !important}.u-hide{display:none !important}.u-invisible{visibility:hidden}.u-float-left{float:left}.u-float-right{float:right}.u-no-padding-top{padding-top:0}.u-no-padding-bottom{padding-bottom:0}.u-no-padding-left{padding-left:0}.u-no-padding-right{padding-right:0}.u-no-padding{padding:0}.u-no-margin-top{margin-top:0}.u-no-margin-bottom{margin-bottom:0}.u-no-margin-left{margin-left:0}.u-no-margin-right{margin-right:0}.u-no-margin{margin:0}.u-lists-reset{list-style-type:none;margin:0;padding:0}.u-clearfix::before,.u-clearfix::after{content:"";display:table;clear:both}.u-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}
+  </style>
+</head>
+
+<body>
+  
+  <div class="o-wrapper">
+    <aside class="c-sidebar">
+  <div class="c-sidebar-author">
+    <div class="c-author__cover">
+      <a href="/">
+        <img src="/images/Okeydokey/pic_62.jpg" alt="ChocoBreeze">
+      </a>
+    </div>
+    <div class="c-author__info">
+      <div class="c-author__name">ChocoBreeze</div>
+      <span class="c-author__job">Developer</span>
+    </div>
+    <div class="c-contact-menu">
+      
+      
+      
+      
+    </div>
+    <!-- <p class="c-author__about">- 너무 늦게 자지 않기- 끼니 거르지 않기- 이유 생각하기</p> -->
+    <p class="c-author__about">- 너무 늦게 자지 않기<br/>- 끼니 거르지 않기<br/>- 이유 생각하기</p>
+  </div>
+
+  <div class="c-sidebar-footer">
+    <div class="c-social">
+      <div class="c-social__title">Social</div>
+      <ul class="c-social__list u-lists-reset">
+        
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://github.com/ChocoBreeze" target="_blank"><div data-icon='ei-sc-github' data-size='s'></div></a></li>
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://instagram.com/breezechoco" target="_blank"><div data-icon='ei-sc-instagram' data-size='s'></div></a></li>
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://blog.naver.com/chocobreeze" target="_blank"><div data-icon='ei-sc-naver' data-size='s'></div></a></li>
+        
+      </ul>
+    </div>
+    <div class="c-copyright">
+      <p>2025 &copy; ChocoBreeze</p>
+    </div>
+  </div>
+</aside> <!-- /.c-sidebar -->
+
+<main class="c-content">
+  <article class="c-article">
+  <div class="c-article__content">
+    <header class="c-header u-hide u-no-margin-top">
+      <div class="c-header__box">
+        <div class="c-search u-full-width">
+          <div class="c-search__box">
+            <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
+            <div data-icon='ei-search' data-size='s'></div>
+          </div>
+          <ul id="js-results-container" class="c-search-results-list"></ul>
+        </div>
+      </div>
+    </header>
+    
+    
+    <div class="c-wrap-content">
+      <header class="c-article__header">
+        <h1 class="c-article__title">2683. Neighboring Bitwise XOR</h1>
+        <div class="c-article__date">
+          <span>2025, Jan 17</span>
+        </div>
+      </header>
+      <p><a href="https://leetcode.com/problems/neighboring-bitwise-xor/description/?envType=daily-question&amp;envId=2025-01-17">문제 링크</a></p>
+
+<p><br /></p>
+
+<h2 id="내-코드">내 코드</h2>
+<p>다 XOR하면 0인지 확인</p>
+
+<p><em>0ms, 263.86MB</em></p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">bool</span> <span style="color: #24292f;background-color: #f6f8fa">doesValidArrayExist</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">all</span><span style="color: #24292f;background-color: #f6f8fa">{};</span>
+        <span style="color: #cf222e">for</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">n</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">all</span> <span style="color: #0550ae">^=</span> <span style="color: #24292f;background-color: #f6f8fa">n</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #cf222e">if</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">all</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #cf222e">return</span> <span style="color: #953800">true</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">else</span> <span style="color: #cf222e">return</span> <span style="color: #953800">false</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="solution">Solution</h2>
+
+<h3 id="approach-1-simulation">Approach 1: Simulation</h3>
+<ul>
+  <li><em>69ms, 290.00MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let $n$ be the size of the <code class="language-plaintext highlighter-rouge">derived</code> array.</li>
+      <li>Time Complexity: $O(n)$</li>
+      <li>Space Complexity: $O(n)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">bool</span> <span style="color: #24292f;background-color: #f6f8fa">doesValidArrayExist</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// Create an original array initialized with 0.</span>
+        <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">original</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">{</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">};</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">();</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">((</span><span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">^</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]));</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #6e7781">// Store the validation results in checkForZero and checkForOne</span>
+        <span style="color: #6e7781">// respectively.</span>
+        <span style="color: #cf222e">bool</span> <span style="color: #24292f;background-color: #f6f8fa">checkForZero</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">]);</span>
+        <span style="color: #24292f;background-color: #f6f8fa">original</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">{</span><span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">};</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">();</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">((</span><span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">^</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]));</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #cf222e">bool</span> <span style="color: #24292f;background-color: #f6f8fa">checkForOne</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">]);</span>
+
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">checkForZero</span> <span style="color: #0550ae">|</span> <span style="color: #24292f;background-color: #f6f8fa">checkForOne</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="gpt-o3-mini-high">GPT (o3-mini-high)</h4>
+<p>이 코드는 주어진 <strong>derived</strong> 배열을 기반으로, 원래의 배열(<strong>original</strong>)이 존재하는지 판별하는 문제를 해결합니다.<br />
+문제의 조건은 다음과 같습니다.</p>
+
+<blockquote>
+  <p>원래의 배열 <strong>original</strong>이 존재하여,<br />
+모든 $0 \leq i &lt; n$에 대해<br />
+$\text{derived}[i] = \text{original}[i] \oplus \text{original}[(i+1) \bmod n]$<br />
+를 만족하는 경우, 해당 <strong>original</strong> 배열은 유효(valid)하다고 볼 수 있습니다.</p>
+
+  <p>특히, 원형으로 연결되어 있으므로 $\text{original}[n] = \text{original}[0]$여야 합니다.</p>
+</blockquote>
+
+<p>코드에서는 <strong>original</strong> 배열을 복원하는 과정을 두 가지 경우(초기값을 0 또는 1로 설정)로 시도하여,<br />
+하나라도 $\text{original}[n] == \text{original}[0]$를 만족하면 유효한 배열이 존재한다고 판단합니다.</p>
+
+<hr />
+
+<h2 id="코드-동작-상세-설명">코드 동작 상세 설명</h2>
+
+<h3 id="1-첫-번째-시도-original0--0">1. 첫 번째 시도: original[0] = 0</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">original</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">{</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">};</span>
+<span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">();</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">(</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">^</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #24292f;background-color: #f6f8fa">);</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p><strong>원리</strong>:<br />
+문제의 정의에 따라, $\text{derived}[i] = \text{original}[i] \oplus \text{original}[i+1]$<br />
+이므로, $\text{original}[i+1] = \text{derived}[i] \oplus \text{original}[i]$ 로 원래 배열을 복원할 수 있습니다.</p>
+  </li>
+  <li><strong>과정</strong>:
+    <ul>
+      <li>먼저, <strong>original</strong> 배열의 첫 번째 원소를 0으로 초기화합니다.</li>
+      <li>반복문을 돌면서, 각 $i$에 대해<br />
+$\text{original}[i+1] = \text{derived}[i] \oplus \text{original}[i]$<br />
+를 계산하여 <strong>original</strong> 배열에 추가합니다.</li>
+    </ul>
+  </li>
+  <li><strong>검증</strong>:<br />
+반복문이 끝나면, 복원된 배열의 마지막 원소는 $\text{original}[n]$가 됩니다.<br />
+원형 배열의 조건에 따라 $\text{original}[n] $는 $\text{original}[0]$와 같아야 합니다.<br />
+이를 통해 첫 번째 경우의 결과를 확인합니다.</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">bool</span> <span style="color: #24292f;background-color: #f6f8fa">checkForZero</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">]);</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>checkForZero</strong>는 초기값 0으로 복원한 경우 $\text{original}[n] == \text{original}[0]$인지 여부를 나타냅니다.</li>
+</ul>
+
+<hr />
+
+<h3 id="2-두-번째-시도-original0--1">2. 두 번째 시도: original[0] = 1</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #24292f;background-color: #f6f8fa">original</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">{</span><span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">};</span>
+<span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">();</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">(</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">^</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #24292f;background-color: #f6f8fa">);</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p><strong>원리 및 과정</strong>은 첫 번째 시도와 동일합니다.<br />
+단, 이번에는 <strong>original</strong> 배열의 첫 번째 원소를 1로 초기화하여 복원합니다.</p>
+  </li>
+  <li>
+    <p><strong>검증</strong>:<br />
+복원 후,</p>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">bool</span> <span style="color: #24292f;background-color: #f6f8fa">checkForOne</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">]);</span>
+</code></pre></div>    </div>
+    <p>를 통해 초기값 1로 복원한 경우 $\text{original}[n] == \text{original}[0]$ 인지 확인합니다.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="3-최종-결과-반환">3. 최종 결과 반환</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">checkForZero</span> <span style="color: #0550ae">|</span> <span style="color: #24292f;background-color: #f6f8fa">checkForOne</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>두 경우 중 하나라도 조건을 만족하면 유효한 <strong>original</strong> 배열이 존재한다는 의미입니다.</li>
+  <li>여기서 <code class="language-plaintext highlighter-rouge">|</code> 연산자는 논리 OR (또는 비트 OR로도 사용되지만, 두 불리언 값에 대해서는 동일한 효과를 냅니다.)</li>
+  <li>따라서, <strong>checkForZero</strong> 또는 <strong>checkForOne</strong> 중 하나라도 참이면 함수는 <strong>true</strong>를 반환합니다.</li>
+</ul>
+
+<hr />
+
+<h2 id="결론">결론</h2>
+
+<ul>
+  <li>
+    <p><strong>아이디어</strong>:<br />
+주어진 <strong>derived</strong> 배열에서,<br />
+원래 배열을 $\text{original}[i+1] = \text{derived}[i] \oplus \text{original}[i]$ 관계를 통해 복원할 수 있습니다.<br />
+단, 원형 관계 $(\text{original}[n] == \text{original}[0])$를 만족해야 하므로,<br />
+초기값을 0과 1 두 가지 경우로 시도하여 유효성을 확인합니다.</p>
+  </li>
+  <li>
+    <p><strong>시간 복잡도</strong>:<br />
+$O(n)$ — derived 배열의 길이에 비례하여 복원 과정을 진행합니다.</p>
+  </li>
+</ul>
+
+<p>이와 같이, 코드에서는 두 가지 초기값을 시도하여 하나라도 원형 조건을 만족하면 유효한 배열이 존재한다고 판단합니다.</p>
+
+<p><br /></p>
+
+<h3 id="approach-2-optimized-simulation">Approach 2: Optimized Simulation</h3>
+<ul>
+  <li><em>27ms, 289.83MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let $n$ be the size of the <code class="language-plaintext highlighter-rouge">derived</code> array.</li>
+      <li>Time Complexity: $O(n)$</li>
+      <li>Space Complexity: $O(n)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">bool</span> <span style="color: #24292f;background-color: #f6f8fa">doesValidArrayExist</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// Initialize the original array with 0 as the first element.</span>
+        <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">original</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">{</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">};</span>
+
+        <span style="color: #6e7781">// Generate the original array based on derived and original[0] = 0.</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">();</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">((</span><span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">^</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]));</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// Check if the array is valid by comparing the first and last elements.</span>
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="gpt-o3-mini-high-1">GPT (o3-mini-high)</h4>
+<p>이 코드는 주어진 <strong>derived</strong> 배열로부터 원래의 배열(<strong>original</strong>)이 존재하는지 판별하는 문제를 해결합니다.<br />
+문제의 조건은 다음과 같습니다:</p>
+
+<ul>
+  <li>원래 배열의 각 인덱스에 대해<br />
+$\text{derived}[i] = \text{original}[i] \oplus \text{original}[i+1] \quad \text{(0 ≤ i &lt; n)}$</li>
+  <li>배열이 원형(circular)으로 연결되어 있으므로,<br />
+$\text{original}[n] = \text{original}[0]$여야 합니다.</li>
+</ul>
+
+<p>코드에서는 <strong>original[0]</strong> 를 0으로 고정하고,<br />
+주어진 관계를 이용하여 나머지 원소들을 복원한 뒤,<br />
+마지막 원소가 첫 번째 원소와 일치하는지 확인합니다.<br />
+일치하면 유효한 배열이 존재한다고 판단하여 <strong>true</strong>를,<br />
+그렇지 않으면 <strong>false</strong>를 반환합니다.</p>
+
+<hr />
+
+<h2 id="코드-설명">코드 설명</h2>
+
+<h3 id="1-원래-배열의-초기값-설정">1. 원래 배열의 초기값 설정</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">original</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">{</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>original</strong> 배열을 선언하고,<br />
+원래 배열의 첫 번째 원소를 <strong>0</strong>으로 초기화합니다.</li>
+  <li>문제에서는 <strong>original[0]</strong>의 값이 무엇이든 상관없지만,<br />
+원래 배열의 존재 여부를 판단하기 위해 임의의 값(여기서는 0)을 선택합니다.</li>
+</ul>
+
+<hr />
+
+<h2 id="2-원래-배열-복원">2. 원래 배열 복원</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">i</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">();</span> <span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">push_back</span><span style="color: #24292f;background-color: #f6f8fa">((</span><span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">^</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">i</span><span style="color: #24292f;background-color: #f6f8fa">]));</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>문제에서 주어진 관계<br />
+$\text{derived}[i] = \text{original}[i] \oplus \text{original}[i+1]$<br />
+를 이용하여,<br />
+$\text{original}[i+1] = \text{derived}[i] \oplus \text{original}[i]$로 <strong>original</strong> 배열을 순차적으로 복원합니다.</li>
+  <li>반복문은 <strong>derived</strong> 배열의 모든 원소에 대해 실행됩니다.</li>
+  <li>각 단계에서
+    <ul>
+      <li>현재 원소 <strong>original[i]</strong> 와 <strong>derived[i]</strong> 의 XOR 결과를 계산하여,</li>
+      <li>이를 <strong>original[i+1]</strong> 로 배열에 추가합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="3-원형-조건-검증">3. 원형 조건 검증</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">==</span> <span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">original</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">];</span>
+</code></pre></div></div>
+
+<ul>
+  <li>배열이 원형으로 연결되어 있으므로,<br />
+복원한 <strong>original</strong> 배열의 마지막 원소와 첫 번째 원소가 같아야 합니다.</li>
+  <li>만약 $\text{original}[0] == \text{original}[n]$라면,<br />
+주어진 <strong>derived</strong> 배열에 해당하는 유효한 <strong>original</strong> 배열이 존재하는 것이므로 <strong>true</strong>를 반환합니다.</li>
+  <li>그렇지 않으면, <strong>false</strong>를 반환합니다.</li>
+</ul>
+
+<hr />
+
+<h2 id="요약">요약</h2>
+
+<ol>
+  <li><strong>original[0]</strong> 를 0으로 초기화합니다.</li>
+  <li>
+    <p>각 $i$에 대해 $\text{original}[i+1] = \text{derived}[i] \oplus \text{original}[i]$를 이용해 <strong>original</strong> 배열을 복원합니다.</p>
+  </li>
+  <li>복원한 배열의 마지막 원소가 첫 번째 원소와 같으면,<br />
+조건$(\text{original}[n] = \text{original}[0])$을 만족하므로 유효한 배열이 존재한다고 판단합니다.</li>
+</ol>
+
+<p>이 방식은 문제의 관계식을 그대로 활용하여 <strong>O(n)</strong> 시간에 유효성을 검사합니다.</p>
+
+<p><br /></p>
+
+<h3 id="approach-3-cumulative-xor">Approach 3: Cumulative XOR</h3>
+<ul>
+  <li><em>0ms, 263.90MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let $n$ be the size of the <code class="language-plaintext highlighter-rouge">derived</code> array.</li>
+      <li>Time Complexity: $O(n)$</li>
+      <li>Space Complexity: $O(1)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">bool</span> <span style="color: #24292f;background-color: #f6f8fa">doesValidArrayExist</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">XOR</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">auto</span> <span style="color: #24292f;background-color: #f6f8fa">element</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">XOR</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">XOR</span> <span style="color: #0550ae">^</span> <span style="color: #24292f;background-color: #f6f8fa">element</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">XOR</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="gpt-o3-mini-high-2">GPT (o3-mini-high)</h4>
+<p>이 코드는 주어진 <strong>derived</strong> 배열이 유효한 배열에서 파생되었는지 판별하기 위해, 배열의 모든 원소를 XOR한 값이 0인지 확인합니다. 문제의 배경은 다음과 같습니다.</p>
+
+<hr />
+
+<h2 id="문제-배경">문제 배경</h2>
+
+<p>원래 배열 <strong>original</strong>이 있을 때,<br />
+<strong>derived</strong> 배열은 다음과 같이 정의됩니다:</p>
+<ul>
+  <li>$\text{derived}[i] = \text{original}[i] \oplus \text{original}[(i+1) \bmod n]$</li>
+</ul>
+
+<p>여기서 $\oplus$는 XOR 연산을 의미하며, 원형 배열이므로 마지막 원소와 첫 번째 원소도 연결됩니다.</p>
+
+<p>XOR 연산의 성질에 따르면, 동일한 값끼리 XOR 하면 0이 됩니다.<br />
+원래 배열에서 각 원소는 두 번 XOR에 참여하게 됩니다.<br />
+즉,<br />
+$\begin{aligned} \text{derived}[0] \oplus \text{derived}[1] \oplus \cdots \oplus \text{derived}[n-1] \ = (\text{original}[0] \oplus \text{original}[1]) \oplus (\text{original}[1] \oplus \text{original}[2]) \oplus \cdots \oplus (\text{original}[n-1] \oplus \text{original}[0]) \ = \text{original}[0] \oplus \text{original}[1] \oplus \text{original}[1] \oplus \text{original}[2] \oplus \cdots \oplus \text{original}[n-1] \oplus \text{original}[0] \ = 0. \end{aligned}$</p>
+
+<p>따라서, 유효한 <strong>derived</strong> 배열이라면 모든 원소의 XOR 결과는 0이어야 합니다.</p>
+
+<hr />
+
+<h2 id="코드-설명-1">코드 설명</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">bool</span> <span style="color: #8250df">doesValidArrayExist</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">XOR</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">auto</span> <span style="color: #24292f;background-color: #f6f8fa">element</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #24292f;background-color: #f6f8fa">XOR</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">XOR</span> <span style="color: #0550ae">^</span> <span style="color: #24292f;background-color: #f6f8fa">element</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+    <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">XOR</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li><strong>초기화</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">int XOR = 0;</code><br />
+모든 원소를 XOR할 때 결과를 저장할 변수를 0으로 초기화합니다.</li>
+    </ul>
+  </li>
+  <li><strong>배열 순회 및 XOR 누적</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">for (auto element : derived) { XOR = XOR ^ element; }</code><br />
+배열의 각 원소에 대해 XOR 연산을 수행합니다.<br />
+XOR 연산의 특성상 같은 숫자가 두 번 등장하면 상쇄되어 0이 되므로,<br />
+유효한 <strong>derived</strong> 배열에서는 모든 원소가 짝수 번 등장하는 효과를 내어 최종 결과가 0이 됩니다.</li>
+    </ul>
+  </li>
+  <li><strong>검증 및 결과 반환</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">return XOR == 0;</code><br />
+누적한 XOR 값이 0이면 유효한 배열에서 파생된 것이라고 판단하고 <strong>true</strong>를 반환하고,<br />
+그렇지 않으면 <strong>false</strong>를 반환합니다.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="결론-1">결론</h2>
+
+<p>이 코드는 <strong>derived</strong> 배열에 있는 모든 원소를 XOR한 값이 0인지 검사하여,<br />
+원래의 배열이 존재할 수 있는지 (즉, <strong>derived</strong> 배열이 유효한지) 판별합니다.<br />
+XOR 연산의 특성을 활용한 매우 간단하고 효율적인 풀이입니다.</p>
+
+<p><br /></p>
+
+<h3 id="approach-4-sum-parity">Approach 4: Sum Parity</h3>
+<ul>
+  <li><em>0ms, 263.80MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let $n$ be the size of the <code class="language-plaintext highlighter-rouge">derived</code> array.</li>
+      <li>Time Complexity: $O(n)$</li>
+      <li>Space Complexity: $O(1)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">bool</span> <span style="color: #24292f;background-color: #f6f8fa">doesValidArrayExist</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">accumulate</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">begin</span><span style="color: #24292f;background-color: #f6f8fa">(),</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #24292f;background-color: #f6f8fa">(),</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">%</span> <span style="color: #0550ae">2</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="gpt-o3-mini-high-3">GPT (o3-mini-high)</h4>
+<p>이 코드는 주어진 <strong>derived</strong> 배열의 모든 원소의 합을 구한 후, 그 합이 짝수인지 확인하여 유효한 배열이 존재하는지 판별합니다.</p>
+
+<h3 id="배경">배경</h3>
+
+<p>문제의 조건은 다음과 같습니다.<br />
+원래의 배열 <strong>original</strong>에서 파생된 <strong>derived</strong> 배열은 아래 관계를 만족해야 합니다:</p>
+
+<p>$\text{derived}[i] = \text{original}[i] \oplus \text{original}[(i+1) \bmod n]$</p>
+
+<p>여기서 $\oplus$는 XOR 연산입니다.<br />
+이 관계를 원형으로 모두 XOR하면, 모든 <strong>original</strong>의 원소가 두 번 XOR에 참여하여 서로 상쇄되므로,<br />
+<strong>derived</strong> 배열의 모든 원소를 XOR한 결과는 0이 되어야 합니다.</p>
+
+<blockquote>
+  <p><strong>XOR의 성질</strong>:<br />
+이진 값(0 또는 1)에서 XOR 연산은 사실 각 원소의 홀짝 여부(패리티)를 나타냅니다.<br />
+예를 들어, $0 \oplus 1 \oplus 1 = 0$이고, 이는 배열에 1이 짝수 개 있다는 것을 의미합니다.</p>
+</blockquote>
+
+<p>즉, <strong>derived</strong> 배열이 유효하려면 배열 내의 1의 개수가 짝수여야 합니다.</p>
+
+<h3 id="코드-동작">코드 동작</h3>
+
+<ol>
+  <li><strong>합계 계산</strong>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">accumulate</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">begin</span><span style="color: #24292f;background-color: #f6f8fa">(),</span> <span style="color: #24292f;background-color: #f6f8fa">derived</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #24292f;background-color: #f6f8fa">(),</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+</code></pre></div>    </div>
+    <ul>
+      <li><strong>accumulate</strong> 함수는 <code class="language-plaintext highlighter-rouge">&lt;numeric&gt;</code> 헤더에 정의되어 있으며,<br />
+<strong>derived</strong> 배열의 모든 원소를 더해 <strong>sum</strong>에 저장합니다.</li>
+      <li>만약 <strong>derived</strong> 배열의 원소가 0과 1로 이루어져 있다면,<br />
+<strong>sum</strong>은 배열 내 1의 개수를 나타냅니다.</li>
+    </ul>
+  </li>
+  <li><strong>짝수 여부 판별</strong>
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">sum</span> <span style="color: #0550ae">%</span> <span style="color: #0550ae">2</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+</code></pre></div>    </div>
+    <ul>
+      <li><strong>sum % 2</strong> 연산을 통해 1의 개수가 짝수인지(즉, 나머지가 0인지) 확인합니다.</li>
+      <li>짝수라면 유효한 <strong>derived</strong> 배열의 조건(모든 원소의 XOR 결과가 0)을 만족하므로 <strong>true</strong>를 반환합니다.</li>
+      <li>홀수라면 조건에 어긋나므로 <strong>false</strong>를 반환합니다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="결론-2">결론</h3>
+
+<p>이 코드는 <strong>derived</strong> 배열이 0과 1로 구성되어 있을 때,<br />
+1의 총 개수가 짝수인지(즉, 배열 전체의 XOR 결과가 0인지)를 검사하여<br />
+유효한 원래 배열 <strong>original</strong>이 존재하는지를 판단합니다.</p>
+
+<ul>
+  <li><strong>시간 복잡도</strong>: $O(n)$ — 배열의 모든 원소를 한 번씩 합산합니다.</li>
+  <li><strong>핵심 아이디어</strong>: 배열의 패리티(홀짝성)를 합계를 통해 확인함으로써 XOR 결과를 간단하게 판별할 수 있다는 점입니다.</li>
+</ul>
+
+<p><br /></p>
+
+      <div class="c-article__footer u-clearfix">
+        <div class="c-article__tag">
+          
+          <a href="/tags#Problem_Solving">&#35; Problem_Solving</a>
+          
+        </div>
+        <!-- <div class="c-article__share">
+          <a href="https://twitter.com/intent/tweet?text=2683.%20Neighboring%20Bitwise%20XOR&url=https://chocobreeze.github.io/2025/01/17/2683.-Neighboring-Bitwise-XOR/" title="Share
+          on Twitter" rel="nofollow" target="_blank"><div data-icon='ei-sc-twitter' data-size='s'></div></a>
+          <a href="https://facebook.com/sharer.php?u=https://chocobreeze.github.io/2025/01/17/2683.-Neighboring-Bitwise-XOR/" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a>
+          <a href="https://plus.google.com/share?url=https://chocobreeze.github.io/2025/01/17/2683.-Neighboring-Bitwise-XOR/" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a>
+        </div> -->
+      </div>
+      <!-- <div class="c-newsletter">
+  <div class="c-newsletter__header">
+    <h4 class="c-newsletter__title">Newsletter</h4>
+    <div class="c-newsletter__subtitle">Subscribe to this blog and receive notifications of new posts by email.</div>
+  </div>
+  <form class="c-newsletter-form validate" action="#" method="POST" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+    <div class="c-newsletter-form__group">
+      <label class="u-screen-reader-text" for="mce-EMAIL">Email address</label>
+      <input class="c-newsletter__email required email" id="mce-EMAIL" type="email" name="EMAIL" placeholder="Your email address" autocomplete="on">
+      <input class="c-newsletter__button" id="mc-embedded-subscribe" type="submit" name="subscribe" value="Subscribe">
+    </div>
+  </form>
+</div> -->
+      <div class="c-recent-post">
+        <h4 class="c-recent__title">You might also enjoy</h4>
+        <div class="c-recent__box">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+      </div> <!-- /.c-recent-post -->
+      
+    </div> <!-- /.c-wrap-content -->
+  </div> <!-- /.c-article__content -->
+</article> <!-- /.c-article-page -->
+
+<!-- KaTeX CSS 추가 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<!-- KaTeX JS 추가 및 자동 렌더링 설정 -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" 
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});">
+</script>
+</main> <!-- /.c-content -->
+  </div> <!-- /.o-wrapper -->
+  <div class="c-top" data-icon='ei-chevron-up' data-size='s' title="Scroll To Top"></div> <!-- /.c-top -->
+  <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/evil-icons.min.js"></script>
+<script src="/js/jquery.fitvids.js"></script>
+<script src="/js/simple-jekyll-search.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- /javascripts -->
+</body>
+</html>

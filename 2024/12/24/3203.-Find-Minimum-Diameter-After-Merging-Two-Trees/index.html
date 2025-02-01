@@ -689,9 +689,7 @@
   <li><strong>트리 직경(diameter) 계산</strong>: 두 번의 BFS/DFS 사용. (가장 흔한 접근)</li>
   <li><strong>두 트리를 “최소 직경”으로 연결</strong>: 각 트리의 지름 경로의 중앙을 연결하면,
     <ul>
-      <li>
-\[\text{새 트리의 직경} \approx \lceil \frac{d_1}{2} \rceil + \lceil \frac{d_2}{2} \rceil + 1\]
-      </li>
+      <li>$\text{새 트리의 직경} \approx \lceil \frac{d_1}{2} \rceil + \lceil \frac{d_2}{2} \rceil + 1$</li>
     </ul>
   </li>
   <li><strong>최종</strong>: 세 값(트리1 지름, 트리2 지름, 합쳐진 트리의 최소 지름) 중 최댓값 반환.</li>
@@ -728,7 +726,7 @@
 
 <p>트리 두 개를 <strong>간선 하나</strong>로 연결했을 때 “그 합쳐진 트리의 직경(diameter)을 <strong>최소</strong>로 만들려면” 주로 알려진 방법이 <strong>각 트리의 지름 경로(diameter path) 가운데(중심부)끼리</strong> 연결하는 것입니다.<br />
 이때 새로 합쳐진 트리의 직경이<br />
-\(\Bigl\lceil \tfrac{d_1}{2} \Bigr\rceil + \Bigl\lceil \tfrac{d_2}{2} \Bigr\rceil + 1\)<br />
+$\Bigl\lceil \tfrac{d_1}{2} \Bigr\rceil + \Bigl\lceil \tfrac{d_2}{2} \Bigr\rceil + 1$<br />
 (또는 상황에 따라 $\lfloor\,\rfloor$를 쓸 수도 있음)<br />
 형태로 계산되는 이유를 단계별로 살펴보겠습니다.</p>
 
@@ -773,7 +771,7 @@
   <li>트리2 지름 = $d_2$. 중심부 기준 트리2 내부 최악 노드까지도 $\lceil d_2/2 \rceil$.</li>
   <li>두 중심부끼리 연결하는 데 간선이 1개.</li>
   <li>따라서 “합쳐진 트리에서 가장 멀리 떨어진 노드끼리” 이동 거리는 <strong>대략</strong><br />
-\(\Bigl\lceil \tfrac{d_1}{2} \Bigr\rceil \;+\; 1 \;+\; \Bigl\lceil \tfrac{d_2}{2} \Bigr\rceil.\)<br />
+$\Bigl\lceil \tfrac{d_1}{2} \Bigr\rceil \;+\; 1 \;+\; \Bigl\lceil \tfrac{d_2}{2} \Bigr\rceil.$<br />
 이 값이 새 트리의 최대 거리(즉 직경) 후보가 됩니다.</li>
 </ul>
 
@@ -815,7 +813,7 @@
 </ul>
 
 <p>정리하면, <strong>홀수 지름</strong>에서 중심 “노드”로 선택했을 때는 어느 쪽이든 최대 거리가 $\lceil d/2\rceil$가 될 수 있으므로,<br />
-\(\text{(트리1 내부 최악 거리)} + 1 + \text{(트리2 내부 최악 거리)} \;=\; \Bigl\lceil \tfrac{d_1}{2} \Bigr\rceil + \Bigl\lceil \tfrac{d_2}{2} \Bigr\rceil + 1\)
+$\text{(트리1 내부 최악 거리)} + 1 + \text{(트리2 내부 최악 거리)} \;=\; \Bigl\lceil \tfrac{d_1}{2} \Bigr\rceil + \Bigl\lceil \tfrac{d_2}{2} \Bigr\rceil + 1$
 로 계산해야 안전하게 “합쳐진 트리의 최대 거리(직경)”를 예측할 수 있습니다.</p>
 
 <hr />
@@ -830,7 +828,7 @@
     </ul>
   </li>
   <li>최종적으로,<br />
-\(\bigl\lceil \tfrac{d_1}{2} \bigr\rceil \;+\; 1 \;+\; \bigl\lceil \tfrac{d_2}{2} \bigr\rceil\)
+$\bigl\lceil \tfrac{d_1}{2} \bigr\rceil \;+\; 1 \;+\; \bigl\lceil \tfrac{d_2}{2} \bigr\rceil$
 이 <strong>두 트리를 하나의 간선으로 연결했을 때</strong> 얻을 수 있는 <strong>최소 직경</strong>(가장 짧은 최댓값)으로 알려져 있습니다.</li>
 </ol>
 
@@ -973,7 +971,7 @@
   <li><strong>지름</strong>이 $d_1$인 트리와 $d_2$인 트리를 각각 갖고 있을 때,
     <ul>
       <li>각 트리의 “지름 경로” 중 <strong>가운데</strong>(약 절반 지점)끼리 연결하면, <strong>합쳐진 트리의 직경</strong>이 보통<br />
-  \(\bigl\lceil d_1/2 \bigr\rceil \;+\; \bigl\lceil d_2/2 \bigr\rceil \;+\; 1\)
+  $\bigl\lceil d_1/2 \bigr\rceil \;+\; \bigl\lceil d_2/2 \bigr\rceil \;+\; 1$
 로 <strong>최소화</strong>되는 것이 알려져 있습니다.</li>
       <li>코드에서는 이를 <code class="language-plaintext highlighter-rouge">combinedDiameter</code>로 계산하고, 그와 기존 지름들($d_1, d_2$) 중 최댓값을 반환합니다.</li>
     </ul>
@@ -1342,7 +1340,7 @@
     <ul>
       <li>트리1 지름 = $d_1$, 트리2 지름 = $d_2$.</li>
       <li>각 지름 경로의 중앙(혹은 중앙 노드들)끼리 연결 → 합쳐진 트리의 직경이<br />
-\(\bigl\lceil d_1 / 2 \bigr\rceil \;+\; \bigl\lceil d_2 / 2 \bigr\rceil \;+\; 1\)
+$\bigl\lceil d_1 / 2 \bigr\rceil \;+\; \bigl\lceil d_2 / 2 \bigr\rceil \;+\; 1$
 로 <strong>최소화</strong>됨.</li>
     </ul>
   </li>

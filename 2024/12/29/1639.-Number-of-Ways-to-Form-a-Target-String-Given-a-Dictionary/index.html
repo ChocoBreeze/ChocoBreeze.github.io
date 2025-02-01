@@ -334,7 +334,7 @@
 </ol>
 
 <p>총 시간 복잡도:<br />
-\(O(\text{words.size()} \times \text{words[0].size()} + \text{words[0].size()} \times \text{target.size()})\)</p>
+$O(\text{words.size()} \times \text{words[0].size()} + \text{words[0].size()} \times \text{target.size()})$</p>
 
 <h4 id="공간-복잡도"><strong>공간 복잡도</strong></h4>
 <ol>
@@ -343,7 +343,7 @@
 </ol>
 
 <p>총 공간 복잡도:<br />
-\(O(\text{words[0].size()} \times (\text{target.size()} + 26))\)</p>
+$O(\text{words[0].size()} \times (\text{target.size()} + 26))$</p>
 
 <hr />
 
@@ -358,13 +358,7 @@
 <ol>
   <li>
     <p><strong>빈도 계산</strong>:
-\(\text{charFrequency} = 
-\begin{bmatrix}
-[1, 0, 1], \\
-[0, 1, 0], \\
-[1, 0, 1], \\
-[1, 1, 1]
-\end{bmatrix}\)
+$\text{charFrequency} = \begin{bmatrix}[1, 0, 1], \ [0, 1, 0], \ [1, 0, 1], \ [1, 1, 1] \end{bmatrix}$
 (각 열은 a, b, c의 빈도를 나타냄).</p>
   </li>
   <li>
@@ -484,7 +478,7 @@
     <ul>
       <li>현재 인덱스를 사용하지 않는 경우: <code class="language-plaintext highlighter-rouge">dp[currWord][currTarget] = dp[currWord - 1][currTarget]</code>.</li>
       <li>현재 인덱스를 사용하는 경우:
-\(dp[currWord][currTarget] += charFrequency[currWord - 1][target[currTarget - 1]] \times dp[currWord - 1][currTarget - 1]\)</li>
+$dp[currWord][currTarget] += charFrequency[currWord - 1][target[currTarget - 1]] \times dp[currWord - 1][currTarget - 1]$</li>
     </ul>
   </li>
 </ol>
@@ -579,7 +573,7 @@ $O(\text{wordLength} \times \text{targetLength})$.</li>
 </ol>
 
 <p>총 시간 복잡도:<br />
-\(O(\text{words.size()} \times \text{wordLength} + \text{wordLength} \times \text{targetLength})\)</p>
+$O(\text{words.size()} \times \text{wordLength} + \text{wordLength} \times \text{targetLength})$</p>
 
 <h4 id="공간-복잡도-1"><strong>공간 복잡도</strong></h4>
 <ol>
@@ -588,7 +582,7 @@ $O(\text{wordLength} \times \text{targetLength})$.</li>
 </ol>
 
 <p>총 공간 복잡도:<br />
-\(O(\text{wordLength} \times (\text{targetLength} + 26))\)</p>
+$O(\text{wordLength} \times (\text{targetLength} + 26))$</p>
 
 <hr />
 
@@ -604,13 +598,7 @@ $O(\text{wordLength} \times \text{targetLength})$.</li>
 <ol>
   <li>
     <p><strong><code class="language-plaintext highlighter-rouge">charFrequency</code> 계산</strong>:
-\(\text{charFrequency} =
-\begin{bmatrix}
-[1, 0, 1], \\
-[0, 1, 0], \\
-[1, 0, 1], \\
-[1, 1, 1]
-\end{bmatrix}\)
+$\text{charFrequency} = \begin{bmatrix} [1, 0, 1], \ [0, 1, 0], \ [1, 0, 1], \ [1, 1, 1] \end{bmatrix}$<br />
 ($a, b, c$의 빈도).</p>
   </li>
   <li><strong>DP 테이블 채우기</strong>:
@@ -823,7 +811,7 @@ $O(\text{wordLength} \times \text{targetLength})$.</li>
 </ol>
 
 <p>총 시간 복잡도:<br />
-\(O(\text{words.size()} \times \text{wordLength} + \text{wordLength} \times \text{targetLength})\)</p>
+$O(\text{words.size()} \times \text{wordLength} + \text{wordLength} \times \text{targetLength})$</p>
 
 <h4 id="공간-복잡도-2"><strong>공간 복잡도</strong></h4>
 <ol>
@@ -834,7 +822,7 @@ $O(\text{targetLength})$.</li>
 </ol>
 
 <p>총 공간 복잡도:<br />
-\(O(\text{wordLength} \times 26 + \text{targetLength})\)</p>
+$O(\text{wordLength} \times 26 + \text{targetLength})$</p>
 
 <hr />
 
@@ -849,13 +837,7 @@ $O(\text{targetLength})$.</li>
 <ol>
   <li>
     <p><strong><code class="language-plaintext highlighter-rouge">charFrequency</code> 계산</strong>:
-\(\text{charFrequency} =
-\begin{bmatrix}
-[1, 0, 1], \\
-[0, 1, 0], \\
-[1, 0, 1], \\
-[1, 1, 1]
-\end{bmatrix}\)
+$\text{charFrequency} = \begin{bmatrix} [1, 0, 1], \ [0, 1, 0], \ [1, 0, 1], \ [1, 1, 1] \end{bmatrix}$<br />
 ($a, b, c$의 빈도).</p>
   </li>
   <li><strong>DP 배열 갱신</strong>:

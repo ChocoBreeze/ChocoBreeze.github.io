@@ -820,7 +820,7 @@ LIS의 길이: 4
     <ul>
       <li>각 레벨에서 <code class="language-plaintext highlighter-rouge">levelSize</code>만큼 노드를 뽑아, 이 노드들이 “해당 레벨”에서 인덱스 0부터 $\text{levelSize}-1$까지 순서대로 들어왔다고 칩시다.</li>
       <li><code class="language-plaintext highlighter-rouge">nodes[i]</code>에 다음을 저장:
-\(\text{(node-&gt;val &lt;&lt; SHIFT)} + i\)
+$\text{(node-&gt;val « SHIFT)} + i$
         <ul>
           <li>여기서 <code class="language-plaintext highlighter-rouge">SHIFT</code>는 20, <code class="language-plaintext highlighter-rouge">MASK</code>가 0xFFFFF(20비트)</li>
           <li>즉, <strong>상위 20비트</strong>는 노드의 값(<code class="language-plaintext highlighter-rouge">node-&gt;val</code>), <strong>하위 20비트</strong>는 “레벨 내 인덱스(i)”입니다.</li>

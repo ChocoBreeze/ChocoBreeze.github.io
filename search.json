@@ -3,6 +3,62 @@
 [
   
     {
+      "title": "407. Trapping Rain Water II",
+      "category": "Problem_Solving",
+      "tags": "Problem_Solving",
+      "url": "/2025/01/19/407.-Trapping-Rain-Water-II/",
+      "date": "2025-01-19 11:00:00"
+    } ,
+  
+    {
+      "title": "1368. Minimum Cost to Make at Least One Valid Path in a Grid",
+      "category": "Problem_Solving",
+      "tags": "Problem_Solving",
+      "url": "/2025/01/18/1368.-Minimum-Cost-to-Make-at-Least-One-Valid-Path-in-a-Grid/",
+      "date": "2025-01-18 11:00:00"
+    } ,
+  
+    {
+      "title": "2683. Neighboring Bitwise XOR",
+      "category": "Problem_Solving",
+      "tags": "Problem_Solving",
+      "url": "/2025/01/17/2683.-Neighboring-Bitwise-XOR/",
+      "date": "2025-01-17 11:00:00"
+    } ,
+  
+    {
+      "title": "2425. Bitwise XOR of All Pairings",
+      "category": "Problem_Solving",
+      "tags": "Problem_Solving",
+      "url": "/2025/01/16/2425.-Bitwise-XOR-of-All-Pairings/",
+      "date": "2025-01-16 11:00:00"
+    } ,
+  
+    {
+      "title": "2429. Minimize XOR",
+      "category": "Problem_Solving",
+      "tags": "Problem_Solving",
+      "url": "/2025/01/15/2429.-Minimize-XOR/",
+      "date": "2025-01-15 11:00:00"
+    } ,
+  
+    {
+      "title": "2657. Find the Prefix Common Array of Two Arrays",
+      "category": "Problem_Solving",
+      "tags": "Problem_Solving",
+      "url": "/2025/01/14/2657.-Find-the-Prefix-Common-Array-of-Two-Arrays/",
+      "date": "2025-01-14 11:00:00"
+    } ,
+  
+    {
+      "title": "3223. Minimum Length of String After Operations",
+      "category": "Problem_Solving",
+      "tags": "Problem_Solving",
+      "url": "/2025/01/13/3223.-Minimum-Length-of-String-After-Operations/",
+      "date": "2025-01-13 11:00:00"
+    } ,
+  
+    {
       "title": "2116. Check if a Parentheses String Can Be Valid",
       "category": "Problem_Solving",
       "tags": "Problem_Solving",

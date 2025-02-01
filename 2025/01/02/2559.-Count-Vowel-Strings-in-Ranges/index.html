@@ -251,7 +251,7 @@
       <li><code class="language-plaintext highlighter-rouge">prefixSum[R]</code>: <code class="language-plaintext highlighter-rouge">words[0]</code>부터 <code class="language-plaintext highlighter-rouge">words[R]</code>까지 조건을 만족하는 단어 개수</li>
       <li><code class="language-plaintext highlighter-rouge">prefixSum[L-1]</code>: <code class="language-plaintext highlighter-rouge">words[0]</code>부터 <code class="language-plaintext highlighter-rouge">words[L-1]</code>까지 조건을 만족하는 단어 개수</li>
       <li>따라서, <strong>범위 <code class="language-plaintext highlighter-rouge">[L, R]</code>의 개수</strong>는<br />
-\(\text{prefixSum}[R] - \text{prefixSum}[L-1]\)</li>
+$\text{prefixSum}[R] - \text{prefixSum}[L-1]$</li>
     </ul>
   </li>
   <li>예외 처리: <code class="language-plaintext highlighter-rouge">L == 0</code>이면 <code class="language-plaintext highlighter-rouge">prefixSum[-1]</code>은 존재하지 않으므로 <code class="language-plaintext highlighter-rouge">0</code>으로 대체</li>

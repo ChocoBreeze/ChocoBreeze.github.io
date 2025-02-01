@@ -542,7 +542,7 @@ $[3, 3, 3, 8, 13, 12, 6]$<br />
 <h5 id="a-k-길이-부분-배열-합-계산"><strong>a. $k$-길이 부분 배열 합 계산</strong></h5>
 <ul>
   <li>현재 부분 배열의 끝 인덱스가 $endIndex$일 때:
-\(\text{currentSum} = \text{prefixSum}[endIndex] - \text{prefixSum}[endIndex - k]\)
+$\text{currentSum} = \text{prefixSum}[endIndex] - \text{prefixSum}[endIndex - k]$
     <ul>
       <li>이는 $[endIndex-k, endIndex)$ 부분 배열의 합을 계산.</li>
       <li>이전까지의 최적 결과($subarrayCount - 1$)를 더함.</li>
@@ -616,7 +616,7 @@ $[3, 3, 3, 8, 13, 12, 6]$<br />
 <ol>
   <li>
     <p><strong>Prefix Sum</strong>:
-\(\text{prefixSum} = [0, 1, 3, 4, 6, 12, 19, 24, 25]\)</p>
+$\text{prefixSum} = [0, 1, 3, 4, 6, 12, 19, 24, 25]$</p>
   </li>
   <li>
     <p><strong>DP 테이블 계산</strong>:</p>
@@ -926,15 +926,15 @@ $[3, 3, 3, 8, 13, 12, 6]$<br />
 <ol>
   <li>
     <p><strong>Prefix Sum</strong>:
-\(\text{prefixSum} = [0, 1, 3, 4, 6, 12, 19, 24, 25]\)</p>
+$\text{prefixSum} = [0, 1, 3, 4, 6, 12, 19, 24, 25]$</p>
   </li>
   <li>
     <p><strong><code class="language-plaintext highlighter-rouge">leftMaxIndex</code> 계산</strong>:
-\(\text{leftMaxIndex} = [0, 0, 0, 1, 3, 3, 3, 3]\)</p>
+$\text{leftMaxIndex} = [0, 0, 0, 1, 3, 3, 3, 3]$</p>
   </li>
   <li>
     <p><strong><code class="language-plaintext highlighter-rouge">rightMaxIndex</code> 계산</strong>:
-\(\text{rightMaxIndex} = [4, 4, 4, 4, 4, 5, 6, 7]\)</p>
+$\text{rightMaxIndex} = [4, 4, 4, 4, 4, 5, 6, 7]$</p>
   </li>
   <li>
     <p><strong>중간 부분 배열 순회</strong>:</p>

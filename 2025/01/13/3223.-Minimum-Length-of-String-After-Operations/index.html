@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <title>3223. Minimum Length of String After Operations</title>
+  <meta name='description' content="문제 링크">
+  <link rel='canonical' href="https://chocobreeze.github.io/2025/01/13/3223.-Minimum-Length-of-String-After-Operations/">
+  <link rel='alternate' type='application/rss+xml' title='Welcome to ChocoBreeze Blog' href="https://chocobreeze.github.io/feed.xml">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+  <style>
+    
+    /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:rgba(0,0,0,0);-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}@-webkit-keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.icon{position:relative;display:inline-block;width:25px;height:25px;overflow:hidden;fill:currentColor}.icon__cnt{width:100%;height:100%;background:inherit;fill:inherit;pointer-events:none;transform:translateX(0);-ms-transform:translate(0.5px, -0.3px)}.icon--m{width:50px;height:50px}.icon--l{width:100px;height:100px}.icon--xl{width:150px;height:150px}.icon--xxl{width:200px;height:200px}.icon__spinner{position:absolute;top:0;left:0;width:100%;height:100%}.icon--ei-spinner .icon__spinner,.icon--ei-spinner-2 .icon__spinner{-webkit-animation:spin 1s steps(12) infinite;animation:spin 1s steps(12) infinite}.icon--ei-spinner-3 .icon__spinner{-webkit-animation:spin 1.5s linear infinite;animation:spin 1.5s linear infinite}.icon--ei-sc-facebook{fill:#3b5998}.icon--ei-sc-github{fill:#333}.icon--ei-sc-google-plus{fill:#dd4b39}.icon--ei-sc-instagram{fill:#3f729b}.icon--ei-sc-linkedin{fill:#0976b4}.icon--ei-sc-odnoklassniki{fill:#ed812b}.icon--ei-sc-skype{fill:#00aff0}.icon--ei-sc-soundcloud{fill:#f80}.icon--ei-sc-tumblr{fill:#35465c}.icon--ei-sc-twitter{fill:#55acee}.icon--ei-sc-vimeo{fill:#1ab7ea}.icon--ei-sc-vk{fill:#45668e}.icon--ei-sc-youtube{fill:#e52d27}.icon--ei-sc-pinterest{fill:#bd081c}.icon--ei-sc-telegram{fill:#08c}.icon--ei-sc-naver{fill:#03c75a}*,*::after,*::before{box-sizing:border-box}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:15px}ul,ol,dd{margin-left:15px}code{background-color:rgba(0,0,0,0) !important}.highlight{background:#f7f7f7}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:teal}.highlight .nb{color:#0086b3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:teal}.highlight .ni{color:purple}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:navy}.highlight .nv{color:teal}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#d14}.highlight .sc{color:#d14}.highlight .sd{color:#d14}.highlight .s2{color:#d14}.highlight .se{color:#d14}.highlight .sh{color:#d14}.highlight .si{color:#d14}.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:teal}.highlight .vg{color:teal}.highlight .vi{color:teal}.highlight .il{color:#099}body{font-family:"Open Sans",Helvetica Neue,Helvetica,Arial,sans-serif;font-size:15px;line-height:28px;color:#404040;background-color:#fbfbfb;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}*::selection{color:#fff;background-color:#3af}h1,h2,h3,h4,h5,h6{font-family:"Volkhov","Times New Roman",Times,serif;font-weight:400;line-height:initial}h1{font-size:32px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}img{max-width:100%;height:auto;vertical-align:middle}a{text-decoration:none;color:#3af;transition:.35s}a:hover{color:hsl(205,100%,45%)}blockquote{padding-left:15px;border-left:3px solid #3af;font-family:"Volkhov","Times New Roman",Times,serif;font-style:normal;font-size:18px;background-color:rgba(220,235,245,.2)}blockquote p{padding:10px}hr{height:1px;margin:30px 0;border:0;background-color:#f0f0f0}pre{overflow:auto;padding:25px;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all;font-family:Courier,monospace}code{overflow:auto;white-space:pre-wrap;word-wrap:break-word;word-break:break-all;font-family:Courier,monospace;font-size:14px;background-color:#f7f7f7}p code,li code{padding:3px 5px}.o-wrapper{max-width:1440px;position:relative}.o-opacity{animation-duration:.7s;animation-delay:.2s;animation-fill-mode:both;animation-name:opacity}@keyframes opacity{from{opacity:0}to{opacity:1}}.c-btn{display:inline-block;white-space:nowrap;vertical-align:middle;font-family:"Volkhov",serif;font-size:12px;text-align:center;padding:8px 15px;cursor:pointer;transition:.35s}.c-btn--primary{color:#fff;background-color:#3af;background:linear-gradient(135deg, #33aaff 0%, #62d5ff 100%)}.c-btn--secondary{color:#fff;background-color:#cfcfdd;background:linear-gradient(135deg, #a2a2bd 0%, #cfcfdd 100%)}.c-btn--round{border-radius:30px}.c-btn--shadow{box-shadow:8px 10px 20px 0 rgba(46,61,73,.15)}.c-btn--shadow:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,.2)}.c-btn--middle{display:block;width:300px;max-width:100%}.c-btn--big{display:block;width:100%}.c-btn:hover{color:#fff;transition:.35s}.c-btn:active{transform:translateY(2px)}.c-sidebar{display:flex;flex-direction:column;justify-content:space-between;position:fixed;top:0;left:0;bottom:0;width:360px;padding:40px 20px 20px;text-align:center;box-shadow:1px 1px 0 rgba(31,35,46,.15);background-color:#fff}.c-sidebar-author .c-author__cover{width:100px;height:100px;margin:0 auto 10px;border-radius:50%;overflow:hidden;background-color:#cfcfdd}.c-sidebar-author .c-author__cover img{width:100%;height:100%;border-radius:50%;transition:.35s}.c-sidebar-author .c-author__cover img:hover{transform:scale3d(0.9, 0.9, 1)}.c-sidebar-author .c-contact-menu .c-btn{min-width:110px}.c-sidebar-author .c-contact-menu .c-btn .icon{width:18px;height:18px;vertical-align:text-bottom;fill:#fff}.c-sidebar-author .c-author__info{font-family:"Volkhov",serif}.c-sidebar-author .c-author__name{font-size:18px;font-weight:700;line-height:21px}.c-sidebar-author .c-author__job{font-size:12px;color:#a0a0a0;margin:5px 0 0}.c-sidebar-author .c-contact-menu{margin:30px 0}.c-sidebar-author .c-contact-menu .c-btn--secondary{margin-right:10px}.c-sidebar-author .c-author__about{max-width:400px;margin:0 auto 15px;font-size:13px}.c-sidebar-footer .c-social__title{position:relative;font-family:"Volkhov",serif;font-size:15px;font-weight:700;color:#444}.c-sidebar-footer .c-social__title::before{content:"";display:block;height:2px;width:calc(50% - 40px);transform:translateY(-50%);position:absolute;top:50%;left:0;background-color:#444}.c-sidebar-footer .c-social__title::after{content:"";display:block;height:2px;width:calc(50% - 40px);transform:translateY(-50%);position:absolute;top:50%;right:0;background-color:#444}.c-sidebar-footer .c-social__list{list-style-type:none;padding:0;margin:15px 0}.c-sidebar-footer .c-social__list .c-social__item{display:inline-block;width:27px;height:27px}.c-sidebar-footer .c-social__list .icon{width:27px;height:27px;fill:#444;vertical-align:middle;transition:.35s}.c-sidebar-footer .c-social__list .icon:hover{fill:#3af;transform:scale(1.2);transition:.35s}.c-sidebar-footer .c-copyright p{font-size:13px;margin:0}@media only screen and (max-width: 900px){.c-sidebar{position:relative;width:100%;padding:20px}.c-sidebar .c-contact-menu{margin:20px 0}.c-sidebar-footer .c-social .c-social__title{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}.c-sidebar-footer .c-social__list{margin:0}.c-sidebar-footer .c-copyright{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}}@media only screen and (max-width: 480px){.c-sidebar-author .c-author__cover{width:80px;height:80px}.c-sidebar-author .c-author__cover img{width:100%;height:100%}.c-sidebar-author .c-contact-menu{margin:15px 0}.c-sidebar-author .c-contact-menu .c-btn{min-width:80px;font-size:10px;padding:4px 15px;margin-right:5px}.c-sidebar-author .c-contact-menu .c-btn .icon{width:16px;height:16px}.c-sidebar-footer .c-social .c-social__title{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}.c-sidebar-footer .c-social__list{margin:0}.c-sidebar-footer .c-social__list .icon{width:25px;height:25px}.c-sidebar-footer .c-copyright{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}}.c-content{position:relative;display:flex;flex-direction:row;flex-wrap:wrap;align-items:stretch;padding:0 20px 0;margin-left:360px}@media only screen and (max-width: 900px){.c-content{position:static;padding:0 15px 0;margin-left:0}}.c-posts{width:100%;display:flex;flex-direction:row;flex-wrap:wrap}.c-post{width:100%;max-width:100%;margin-bottom:20px;display:flex;flex-direction:row;align-items:stretch;min-height:180px;border-radius:10px;overflow:hidden;transition:.35s;background-color:#fff;box-shadow:0 1px 1px 0 rgba(31,35,46,.15)}.c-post:hover{transform:translate(0px, -2px);box-shadow:0 15px 45px -10px rgba(10,16,34,.2)}.c-post .c-post-thumbnail{display:block;width:30%;max-width:100%;min-height:180px;border-radius:10px 0 0 10px;background-color:rgba(220,235,245,.2);background-size:cover;background-position:50% 50%}.c-post .c-post-content{padding:15px;width:70%}.c-post .c-post-content .c-post-title{font-size:30px;font-weight:400;margin:0 0 15px}.c-post .c-post-content .c-post-title a{text-decoration:none;color:#263959}.c-post .c-post-content .c-post-date,.c-post .c-post-content .c-post-words{font-size:12px}.c-load-more{padding:20px;margin:20px auto 40px;font-size:13px;color:#fff;border:none;background-color:#3af;outline:none}.c-load-more:hover{background-color:hsl(205,100%,45%)}@media only screen and (max-width: 1200px){.c-post{width:48%;max-width:100%;margin:0 1% 20px;flex-direction:column}.c-post .c-post-thumbnail{width:100%;border-radius:10px 10px 0 0}.c-post .c-post-content{width:100%}.c-post .c-post-content .c-post-title{font-size:21px;margin:15px 0}}@media only screen and (max-width: 480px){.c-post{width:100%;max-width:100%;margin:0 0 20px}.c-post .c-post-content{width:100%}.c-post .c-post-content .c-post-title{font-size:21px;margin:15px 0}}.c-article{width:100%;margin:20px 0}.c-wrap-content{padding:20px;background-color:#fff}.c-article__image{position:relative;background-color:rgba(220,235,245,.2);background-position:center;background-size:cover;background-repeat:no-repeat}.c-article__image:after{content:"";display:block;padding-top:56%}.c-article__header{margin-bottom:20px;text-align:center}.c-article__header .c-article__title{margin-bottom:10px}.c-article__date span{font-size:13px;text-transform:uppercase;color:#a0a0a0}.c-article__footer{margin:30px 0 0;padding-bottom:30px;text-align:center;border-bottom:1px solid #f0f0f0}.c-article__footer .c-article__share{transition:.35s}.c-article__footer .c-article__share a .icon{vertical-align:middle;transition:.35s}.c-article__footer .c-article__share a .icon:hover{opacity:.7;transition:.35s}.c-article__footer .c-article__tag{margin-bottom:5px}.c-article__footer .c-article__tag a{display:inline-block;vertical-align:middle;padding:5px 10px;font-family:"Volkhov","Times New Roman",Times,serif;font-size:10px;line-height:10px;text-transform:uppercase;background-color:rgba(115,138,160,.6);color:#fff}.c-article__footer .c-article__tag a:hover{background-color:rgba(80.2446808511,99.6723404255,118.2553191489,.6)}.c-article__footer .c-article__tag a:last-child{margin-right:0}.c-recent-post{padding:30px 0}.c-recent-post .c-recent__title{font-size:14px;text-align:center;text-transform:uppercase;margin-bottom:30px}.c-recent-post .c-recent__box{display:flex;flex-direction:row;flex-wrap:wrap}.c-recent-post .c-recent__item{max-width:23%;flex-basis:23%;margin:0 1% 20px;border-radius:10px;overflow:hidden;text-align:center;background-color:#fff;box-shadow:0 1px 1px 0 rgba(31,35,46,.15);transition:.35s}.c-recent-post .c-recent__item h4{margin-bottom:5px;font-size:12px;text-transform:uppercase}.c-recent-post .c-recent__item h4 a{color:#444}.c-recent-post .c-recent__item:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,.2)}.c-recent-post .c-recent__footer{padding:15px}.c-recent-post .c-recent__image{display:block;width:100%;min-height:180px;background-color:rgba(220,235,245,.2);background-size:cover;background-position:center;background-repeat:no-repeat}.c-recent-post .c-recent__date{color:#a0a0a0;font-size:12px}@media only screen and (max-width: 1200px){.c-recent-post .c-recent__item{max-width:48%;flex-basis:48%}}@media only screen and (max-width: 900px){.c-article{margin:15px 0}}@media only screen and (max-width: 480px){.c-wrap-content{padding:15px}.c-article__header{margin-bottom:5px}.c-article__header .c-article__title{font-size:24px;margin-bottom:5px}.c-recent-post .c-recent__item{max-width:100%;flex-basis:100%;margin:0 0 20px}}.c-blog-tags{width:100%;padding:20px;margin:20px 0 40px;background-color:#fff}.c-blog-tags h1{text-align:center;margin-bottom:0}.c-blog-tags h2{font-size:18px;text-transform:uppercase;margin:30px 0;color:#757575}.c-tag__list{list-style:none;padding:0 0 40px;margin:40px 0 0;border-bottom:1px solid #f0f0f0}.c-tag__list li{display:inline-block;margin-right:15px}.c-tag__list li a{color:#404040;text-transform:uppercase;font-size:12px}.c-tag__list li a:hover{color:#000}.c-tag__item{margin-bottom:15px}.c-tag__image{width:50px;height:50px;border-radius:50%;margin-right:5px}@media only screen and (max-width: 480px){.c-blog-tags{padding:15px}.c-blog-tags h1{font-size:27px}.c-blog-tags h2{font-size:16px;margin:15px 0}.c-tag__list{padding:0 0 30px;margin:30px 0 0}.c-tag__item{margin-bottom:5px}.c-tag__image{display:none}}.c-header{position:relative;width:100%;margin:20px 0}.c-header__box{position:relative;display:flex;flex-direction:row;justify-content:space-between;align-items:center}.c-header__box .icon--ei-search{position:absolute;top:7px;left:15px;fill:#ccc}.c-search{width:80%}.c-search .c-search__box{display:flex;align-items:center}.c-search .c-search__text{position:relative;width:100%;padding:10px 10px 10px 40px;border:1px solid #dce4ea;border-radius:30px;outline:none;color:#a0a0a0}.c-search .c-search__text::placeholder{color:#ccc}.c-search .c-search__text:hover{box-shadow:0 1px 0px rgba(132,135,138,.1);transition:.35s}.c-search .c-search-results-list{position:absolute;width:100%;margin:10px 0 0;list-style-type:none;background-color:#fff;z-index:1}.c-search .c-search-results-list li{display:flex;flex-wrap:wrap;align-items:center;margin:0;padding:20px 25px 0;background-color:#fff;line-height:1.4;border-left:solid 1px #edeeee;border-right:solid 1px #edeeee}.c-search .c-search-results-list li:first-child{border-top-left-radius:5px;border-top-right-radius:5px;border-top:solid 1px #edeeee}.c-search .c-search-results-list li:last-child{border-bottom-left-radius:5px;border-bottom-right-radius:5px;padding-bottom:25px;border-bottom:solid 1px #edeeee}.c-search .c-search-results-list li a{font-size:16px}.c-nav{flex-grow:1;padding-left:20px}.c-nav .c-nav__list{display:flex;justify-content:flex-end}.c-nav .c-nav__list .c-nav__item{display:flex;align-items:center;float:left;padding:4px 10px;font-size:10px;text-transform:uppercase;white-space:nowrap;border:1px solid #dce4ea;box-shadow:0 1px 0px rgba(132,135,138,.4);will-change:transform;transform:translateY(0px);cursor:pointer}.c-nav .c-nav__list .c-nav__item:hover{color:#222;background-color:#fff}.c-nav .c-nav__list .c-nav__item.is-active{box-shadow:0 0 0 rgba(132,135,138,.5);transform:translateY(1px);color:#cfcfdd}.c-nav .c-nav__list .c-nav__item.is-active:hover{background-color:#fbfbfb}.c-nav .c-nav__list .c-nav__item:first-child{border-radius:10px 0 0 10px}.c-nav .c-nav__list .c-nav__item:last-child{border-radius:0 10px 10px 0}.c-nav .c-nav__list .c-nav__item .icon{width:18px;height:18px;margin-right:3px}@media only screen and (max-width: 900px){.c-header{margin:15px 0}}@media only screen and (max-width: 480px){.c-header .c-header__box{flex-direction:column}.c-header .c-search{width:100%}.c-header .c-search .c-search__text{padding:8px 8px 8px 40px}.c-header .c-nav{margin-top:15px}.c-header .c-nav .c-nav__list{justify-content:center}.c-header .c-nav .c-nav__item{padding:4px 8px}}.c-categories{width:100%}.c-categories__list{width:100%;display:flex;flex-direction:row;flex-wrap:wrap}.c-categories__item{max-width:25%;flex-basis:25%;padding:0 10px 20px}.c-categories__link{height:100%;display:flex;flex-direction:column;align-items:center;padding:20px 10px;border-radius:5px;box-shadow:5px 5px 25px rgba(46,61,73,.15);background-color:#fff;transition:.35s}.c-categories__link:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,.2)}.c-categories__link:hover .c-categories__img .c-categories__more{opacity:1;transition:.35s}.c-categories__link .c-categories__container{width:100%;word-wrap:break-word}.c-categories__link .c-categories__container.c-empty-figure{display:flex;flex-direction:column;justify-content:center;flex-grow:1}.c-categories__img{position:relative;max-width:100%}.c-categories__img figure{position:relative;width:200px;max-width:100%;margin-bottom:20px;overflow:hidden;background-size:cover;background-repeat:no-repeat;background-position:center;border-radius:50%;box-shadow:inset 0 1px 3px rgba(141,165,185,.3)}.c-categories__img figure:after{content:"";display:block;padding-top:100%}.c-categories__img figure:before{content:"";position:absolute;top:0;bottom:0;left:0;right:0;background-color:rgba(0,0,0,.15)}.c-categories__img .c-categories__more{display:inline-block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);font-weight:700;color:#fff;text-transform:uppercase;text-shadow:0 1px 0 rgba(104,172,191,.3);opacity:0;transition:.35s}.c-categories__container{text-align:center}.c-categories__container .c-categories__header{font-size:13px;margin-bottom:10px;font-weight:normal;text-transform:uppercase;color:#404040}.c-categories__container .c-categories__count{font-family:"Volkhov",serif;font-size:12px;color:#404040;margin-bottom:0}.c-categories__container .c-categories__count span{display:inline-block;width:20px;height:20px;line-height:20px;vertical-align:baseline;margin-right:5px;border-radius:50%;color:#fff;background-color:#ee6c6c}@media only screen and (max-width: 1200px){.c-categories .c-categories__item{max-width:33.333%;flex-basis:33.333%}}@media only screen and (max-width: 1050px){.c-categories .c-categories__item{max-width:50%;flex-basis:50%}}@media only screen and (max-width: 480px){.c-categories .c-categories__item{max-width:100%;flex-basis:100%;padding:0 0 20px}}.c-form-box{position:absolute;top:0;width:calc(100% - 40px);min-height:100vh;padding:0 20px;background-color:#fff;z-index:1}.c-form-bnt__close{position:absolute;top:0px;left:0;width:30px;height:30px;cursor:pointer;transition:.35s}.c-form-bnt__close:hover{transform:scale(0.8);opacity:.8}.c-form{position:relative;width:750px;max-width:100%;margin:40px auto}.c-form .c-form__title{margin:0 0 40px;min-width:0;border:0;padding:0;font-family:"Volkhov","Times New Roman",Times,serif;text-transform:uppercase;text-align:center}.c-form a{color:#404040}.c-form__group{margin-bottom:20px}.c-form__group label{display:block;text-transform:uppercase;font-size:10px}.c-form__group input,.c-form__group textarea{width:100%;padding:10px 15px;color:#404040;border:1px solid #dce4ea;outline:none;transition:.35s}.c-form__group input:focus,.c-form__group textarea:focus{box-shadow:0 4px 25px rgba(132,135,138,.1)}.c-form__group button{padding:20px;text-transform:uppercase;outline:none;border:none}.c-thank-you p{position:relative;padding:20px 40px;width:750px;max-width:100%;text-transform:uppercase;font-size:12px;line-height:18px;font-weight:700;margin:40px auto 0;text-align:center;color:#fff;background:linear-gradient(135deg, #55b5ad 0%, #5ec9c5 100%)}.c-thank-you p .c-form-bnt__close{width:25px;height:25px;background:rgba(0,0,0,0)}.c-thank-you p a{color:#fff}@media only screen and (max-width: 900px){.c-form-box{width:100%;left:0;right:0}}@media only screen and (max-width: 480px){.c-form-bnt__close{width:25px;height:25px}}.c-newsletter{padding:30px 0 60px;margin:0 auto;border-bottom:1px solid #f0f0f0}.c-newsletter__header{text-align:center}.c-newsletter__header .c-newsletter__title{font-size:14px;text-transform:uppercase;text-align:center}.c-newsletter__header .c-newsletter__subtitle{margin-bottom:15px}.c-newsletter-form{width:100%;max-width:750px;margin:0 auto}.c-newsletter-form .c-newsletter-form__group{display:flex}.c-newsletter__email{width:70%;height:40px;padding:10px 15px;border:1px solid #ddd;border-right-color:rgba(0,0,0,0);outline:none;transition:.35s}.c-newsletter__email:focus{box-shadow:0 4px 25px rgba(132,135,138,.1)}.c-newsletter__button{width:30%;height:40px;color:#fff;background-color:#3af;transition:.35s;border:none;outline:none;cursor:pointer}.c-newsletter__button:hover{background-color:hsl(205,100%,45%)}@media only screen and (max-width: 480px){.c-newsletter__button{font-size:13px}}.c-comments{padding:30px 0;border-top:1px solid #f0f0f0}.c-top{position:fixed;width:40px;height:40px;bottom:20px;color:#757575;cursor:pointer;transition:.35s;right:-100px;z-index:10;opacity:.5}.c-top--active{right:15px}.c-top:hover{color:#757575;opacity:1}.post-difficulty strong{padding:2px 5px;border-radius:3px;font-weight:bold}.post-difficulty strong.easy{color:#1cb8b8}.post-difficulty strong.medium{color:#ffb84d}.post-difficulty strong.hard{color:#f63636}.post-topics{margin-top:10px;font-size:14px;color:#666}.post-topics .topics-label{font-weight:bold;margin-right:5px;color:#444}.post-topics ul{display:inline-flex;flex-wrap:wrap;gap:5px;list-style:none;padding:0;margin:0}.post-topics ul .topic-item{background-color:#f3f3f3;border:1px solid #ddd;border-radius:20px;padding:1px 5px;font-size:12px;color:#333;text-transform:capitalize;white-space:nowrap}.post-topics ul .topic-item:hover{background-color:#e0e0e0}.u-text-left{text-align:left}.u-text-right{text-align:right}.u-text-center{text-align:center}.u-text-justify{text-align:justify}.u-block{display:block}.u-inline-block{display:inline-block}.u-inline{display:inline}.u-full-width{display:block;width:100%}.u-vertical-center{display:flex;align-items:center;justify-content:center}.u-responsive-image{max-width:100%;height:auto;vertical-align:middle}.u-show{display:block !important}.u-hide{display:none !important}.u-invisible{visibility:hidden}.u-float-left{float:left}.u-float-right{float:right}.u-no-padding-top{padding-top:0}.u-no-padding-bottom{padding-bottom:0}.u-no-padding-left{padding-left:0}.u-no-padding-right{padding-right:0}.u-no-padding{padding:0}.u-no-margin-top{margin-top:0}.u-no-margin-bottom{margin-bottom:0}.u-no-margin-left{margin-left:0}.u-no-margin-right{margin-right:0}.u-no-margin{margin:0}.u-lists-reset{list-style-type:none;margin:0;padding:0}.u-clearfix::before,.u-clearfix::after{content:"";display:table;clear:both}.u-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}
+  </style>
+</head>
+
+<body>
+  
+  <div class="o-wrapper">
+    <aside class="c-sidebar">
+  <div class="c-sidebar-author">
+    <div class="c-author__cover">
+      <a href="/">
+        <img src="/images/Okeydokey/pic_62.jpg" alt="ChocoBreeze">
+      </a>
+    </div>
+    <div class="c-author__info">
+      <div class="c-author__name">ChocoBreeze</div>
+      <span class="c-author__job">Developer</span>
+    </div>
+    <div class="c-contact-menu">
+      
+      
+      
+      
+    </div>
+    <!-- <p class="c-author__about">- 너무 늦게 자지 않기- 끼니 거르지 않기- 이유 생각하기</p> -->
+    <p class="c-author__about">- 너무 늦게 자지 않기<br/>- 끼니 거르지 않기<br/>- 이유 생각하기</p>
+  </div>
+
+  <div class="c-sidebar-footer">
+    <div class="c-social">
+      <div class="c-social__title">Social</div>
+      <ul class="c-social__list u-lists-reset">
+        
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://github.com/ChocoBreeze" target="_blank"><div data-icon='ei-sc-github' data-size='s'></div></a></li>
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://instagram.com/breezechoco" target="_blank"><div data-icon='ei-sc-instagram' data-size='s'></div></a></li>
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://blog.naver.com/chocobreeze" target="_blank"><div data-icon='ei-sc-naver' data-size='s'></div></a></li>
+        
+      </ul>
+    </div>
+    <div class="c-copyright">
+      <p>2025 &copy; ChocoBreeze</p>
+    </div>
+  </div>
+</aside> <!-- /.c-sidebar -->
+
+<main class="c-content">
+  <article class="c-article">
+  <div class="c-article__content">
+    <header class="c-header u-hide u-no-margin-top">
+      <div class="c-header__box">
+        <div class="c-search u-full-width">
+          <div class="c-search__box">
+            <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
+            <div data-icon='ei-search' data-size='s'></div>
+          </div>
+          <ul id="js-results-container" class="c-search-results-list"></ul>
+        </div>
+      </div>
+    </header>
+    
+    
+    <div class="c-wrap-content">
+      <header class="c-article__header">
+        <h1 class="c-article__title">3223. Minimum Length of String After Operations</h1>
+        <div class="c-article__date">
+          <span>2025, Jan 13</span>
+        </div>
+      </header>
+      <p><a href="https://leetcode.com/problems/minimum-length-of-string-after-operations/description/?envType=daily-question&amp;envId=2025-01-13">문제 링크</a></p>
+
+<p><br /></p>
+
+<h2 id="내-코드">내 코드</h2>
+<p>그냥 3개 이상일 때 2개 깎기.</p>
+
+<p><em>14ms, 32.04MB</em></p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">minimumLength</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #24292f;background-color: #f6f8fa">vector</span> <span style="color: #24292f;background-color: #f6f8fa">counting</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">26</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #cf222e">for</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">char</span> <span style="color: #24292f;background-color: #f6f8fa">c</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">counting</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">c</span> <span style="color: #0550ae">-</span> <span style="color: #0a3069">'a'</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #cf222e">if</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">counting</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">c</span> <span style="color: #0550ae">-</span> <span style="color: #0a3069">'a'</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">&gt;=</span> <span style="color: #0550ae">3</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">counting</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">c</span> <span style="color: #0550ae">-</span> <span style="color: #0a3069">'a'</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">-=</span> <span style="color: #0550ae">2</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">answer</span><span style="color: #24292f;background-color: #f6f8fa">{};</span>
+        <span style="color: #24292f;background-color: #f6f8fa">answer</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">accumulate</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">begin</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">counting</span><span style="color: #24292f;background-color: #f6f8fa">),</span> <span style="color: #24292f;background-color: #f6f8fa">end</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">counting</span><span style="color: #24292f;background-color: #f6f8fa">),</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">answer</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="solution">Solution</h2>
+
+<h3 id="approach-1-using-hash-map">Approach 1: Using Hash Map</h3>
+<ul>
+  <li><em>40ms, 32.63MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let $n$ be the size of the string <code class="language-plaintext highlighter-rouge">s</code>, and let <code class="language-plaintext highlighter-rouge">k</code> be the size of the character set.</li>
+      <li>Time Complexity: $O(n)$</li>
+      <li>Space Complexity: $O(1) \ or \ O(k)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">minimumLength</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// Step 1: Count the frequency of each character in the string</span>
+        <span style="color: #24292f;background-color: #f6f8fa">unordered_map</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">char</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">charFrequencyMap</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">char</span> <span style="color: #24292f;background-color: #f6f8fa">currentChar</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">charFrequencyMap</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentChar</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// Step 2: Calculate the number of characters to delete</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">deleteCount</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">pair</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">charFrequencyMap</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">pair</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">second</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">%</span> <span style="color: #0550ae">2</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #6e7781">// If frequency is odd, delete all except one</span>
+                <span style="color: #24292f;background-color: #f6f8fa">deleteCount</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span> <span style="color: #cf222e">else</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #6e7781">// If frequency is even, delete all except two</span>
+                <span style="color: #24292f;background-color: #f6f8fa">deleteCount</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">2</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// Step 3: Return the minimum length after deletions</span>
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">length</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">-</span> <span style="color: #24292f;background-color: #f6f8fa">deleteCount</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="gpt-o3-mini-high">GPT (o3-mini-high)</h4>
+<p>이 코드는 문자열 <strong>s</strong>에서 특정 삭제 연산을 수행한 후 도달할 수 있는 “최소 길이”를 계산합니다.<br />
+코드의 로직은 각 문자의 등장 횟수를 이용해, 각 문자마다 남겨야 하는 최소 개수를 결정하고, 그 결과 전체 남은 문자 수(최소 길이)를 구하는 방식입니다.</p>
+
+<p>문제의 조건(정확한 문제 설명은 주어지지 않았지만)을 유추해보면,</p>
+<ul>
+  <li><strong>홀수 횟수로 등장하는 문자</strong>는 삭제 연산을 통해 결국 1개만 남길 수 있고,</li>
+  <li><strong>짝수 횟수로 등장하는 문자</strong>는 2개만 남길 수 있다는 규칙에 기반한 것으로 보입니다.</li>
+</ul>
+
+<p>아래에서 단계별로 코드를 설명하겠습니다.</p>
+
+<hr />
+
+<h2 id="1-각-문자의-등장-횟수-세기">1. 각 문자의 등장 횟수 세기</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #24292f;background-color: #f6f8fa">unordered_map</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">char</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">charFrequencyMap</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+<span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">char</span> <span style="color: #24292f;background-color: #f6f8fa">currentChar</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #24292f;background-color: #f6f8fa">charFrequencyMap</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentChar</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>역할</strong>:<br />
+문자열 <strong>s</strong>의 각 문자에 대해 등장 횟수를 세어, <code class="language-plaintext highlighter-rouge">charFrequencyMap</code>에 저장합니다.</li>
+  <li><strong>예시</strong>:<br />
+s = <code class="language-plaintext highlighter-rouge">"aaabbc"</code>인 경우,
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">'a'</code>의 빈도: 3</li>
+      <li><code class="language-plaintext highlighter-rouge">'b'</code>의 빈도: 2</li>
+      <li><code class="language-plaintext highlighter-rouge">'c'</code>의 빈도: 1</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2-삭제해야-할-문자-개수-계산">2. 삭제해야 할 문자 개수 계산</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">deleteCount</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+<span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">auto</span><span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">pair</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">charFrequencyMap</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">pair</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">second</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">%</span> <span style="color: #0550ae">2</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// If frequency is odd, delete all except one</span>
+        <span style="color: #24292f;background-color: #f6f8fa">deleteCount</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span> <span style="color: #cf222e">else</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// If frequency is even, delete all except two</span>
+        <span style="color: #24292f;background-color: #f6f8fa">deleteCount</span> <span style="color: #0550ae">+=</span> <span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">2</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>핵심 아이디어</strong>:<br />
+각 문자에 대해 남겨야 하는 최소 개수를 결정합니다.
+    <ul>
+      <li><strong>홀수 빈도</strong>:
+        <ul>
+          <li>예를 들어 빈도가 3인 문자라면, 3‑1 = 2개를 삭제하여 <strong>1개만 남김</strong>.</li>
+        </ul>
+      </li>
+      <li><strong>짝수 빈도</strong>:
+        <ul>
+          <li>예를 들어 빈도가 4인 문자라면, 4‑2 = 2개를 삭제하여 <strong>2개만 남김</strong>.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>결과</strong>:<br />
+전체 삭제 횟수 <code class="language-plaintext highlighter-rouge">deleteCount</code>는 s에서 삭제되어 없어지는 문자들의 총 개수가 됩니다.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-최소-길이-계산">3. 최소 길이 계산</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">length</span><span style="color: #24292f;background-color: #f6f8fa">()</span> <span style="color: #0550ae">-</span> <span style="color: #24292f;background-color: #f6f8fa">deleteCount</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>계산 방식</strong>:<br />
+원래 문자열 길이에서 삭제한 문자 수를 빼면, 최종적으로 남는 문자열의 최소 길이가 됩니다.</li>
+  <li><strong>예시</strong>:<br />
+s = <code class="language-plaintext highlighter-rouge">"aaabbc"</code>인 경우
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">'a'</code>: 빈도 3 → 남겨야 하는 개수 1 → 삭제: 3‑1 = 2</li>
+      <li><code class="language-plaintext highlighter-rouge">'b'</code>: 빈도 2 → 남겨야 하는 개수 2 → 삭제: 2‑2 = 0</li>
+      <li><code class="language-plaintext highlighter-rouge">'c'</code>: 빈도 1 → 남겨야 하는 개수 1 → 삭제: 1‑1 = 0<br />
+총 삭제: 2개<br />
+최종 길이: 6 - 2 = 4</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="최종-요약">최종 요약</h2>
+
+<ul>
+  <li><strong>목적</strong>:<br />
+문자열 <strong>s</strong>에서 각 문자의 빈도를 기준으로,
+    <ul>
+      <li>홀수 빈도인 경우 1개만 남기고,</li>
+      <li>짝수 빈도인 경우 2개만 남긴다고 가정할 때,<br />
+삭제할 문자 개수를 누적하여 최종적으로 남을 수 있는 최소 길이를 반환합니다.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>주의점</strong>:<br />
+이 풀이 방식은 문제에서 “각 문자는 홀수이면 1개, 짝수이면 2개만 남길 수 있다”는 조건이나 규칙이 주어졌음을 전제로 합니다.<br />
+문제의 정확한 삭제 연산이나 조건에 따라 풀이가 달라질 수 있으므로,<br />
+실제 문제 조건과 맞는지 확인하는 것이 중요합니다.</p>
+  </li>
+  <li><strong>시간 복잡도</strong>:<br />
+문자열을 한 번 순회하여 빈도를 세고, 각 문자(최대 26종류)를 다시 순회하므로 O(n) (n = s의 길이)입니다.</li>
+</ul>
+
+<p>이와 같이, 코드는 문자열 <strong>s</strong>에서 각 문자별로 최종적으로 남겨야 하는 최소 개수를 계산하여, 삭제 후 남은 최소 길이를 구하는 방법을 구현한 것입니다.</p>
+
+<p><br /></p>
+
+<h3 id="approach-2-using-frequency-array">Approach 2: Using Frequency Array</h3>
+<ul>
+  <li><em>11ms, 31.96MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let $n$ be the size of the string <code class="language-plaintext highlighter-rouge">s</code>, and let <code class="language-plaintext highlighter-rouge">k</code> be the size of the character set.</li>
+      <li>Time Complexity: $O(n)$</li>
+      <li>Space Complexity: $O(1) \ or \ O(k)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">minimumLength</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #6e7781">// Step 1: Initialize a frequency array to count occurrences of each</span>
+        <span style="color: #6e7781">// character</span>
+        <span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">charFrequency</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">26</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">totalLength</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #6e7781">// Step 2: Count the frequency of each character in the string</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">char</span> <span style="color: #24292f;background-color: #f6f8fa">currentChar</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #24292f;background-color: #f6f8fa">charFrequency</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentChar</span> <span style="color: #0550ae">-</span> <span style="color: #0a3069">'a'</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// Step 3: Calculate the total length after deletions count</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">charFrequency</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #cf222e">continue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>  <span style="color: #6e7781">// Skip characters that don't appear</span>
+            <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">%</span> <span style="color: #0550ae">2</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">totalLength</span> <span style="color: #0550ae">+=</span> <span style="color: #0550ae">2</span><span style="color: #24292f;background-color: #f6f8fa">;</span>  <span style="color: #6e7781">// If frequency is even, add 2</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span> <span style="color: #cf222e">else</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+                <span style="color: #24292f;background-color: #f6f8fa">totalLength</span> <span style="color: #0550ae">+=</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">;</span>  <span style="color: #6e7781">// If frequency is odd, add 1</span>
+            <span style="color: #24292f;background-color: #f6f8fa">}</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #6e7781">// Step 4: Return the minimum length after deletions count</span>
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">totalLength</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="gpt-o3-mini-high-1">GPT (o3-mini-high)</h4>
+<p>이 코드는 문자열 <strong>s</strong>에 대해, 주어진 삭제 규칙에 따라 최적의 삭제를 진행한 후 남을 수 있는 최소 길이를 계산하는 솔루션입니다.<br />
+여기서 삭제 규칙(문제 조건)은 각 문자별로 다음과 같이 남길 수 있는 최소 개수가 정해진다고 가정합니다:</p>
+
+<ul>
+  <li>한 문자가 <strong>홀수 번</strong> 등장하면, 모든 짝을 삭제한 후 <strong>1개</strong>가 남을 수 있다.</li>
+  <li>한 문자가 <strong>짝수 번</strong> 등장하면, 모든 짝을 삭제해도 <strong>2개</strong>를 남기는 것이 최선이다.</li>
+</ul>
+
+<p>즉, 문자열에 등장하는 각 문자에 대해 최종적으로 남을 수 있는 최소 개수는</p>
+<ul>
+  <li>홀수 빈도 → 1개</li>
+  <li>짝수 빈도 → 2개</li>
+</ul>
+
+<p>최종 최소 길이는 s에 등장하는 서로 다른 문자들에 대해 위의 최소 개수를 모두 합한 값이 됩니다.</p>
+
+<p>아래에서 코드를 단계별로 자세히 설명합니다.</p>
+
+<hr />
+
+<h3 id="step-1-문자-빈도수-배열-초기화">Step 1. 문자 빈도수 배열 초기화</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #24292f;background-color: #f6f8fa">vector</span><span style="color: #0550ae">&lt;</span><span style="color: #cf222e">int</span><span style="color: #0550ae">&gt;</span> <span style="color: #24292f;background-color: #f6f8fa">charFrequency</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #0550ae">26</span><span style="color: #24292f;background-color: #f6f8fa">,</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+<span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">totalLength</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>charFrequency</strong>:<br />
+알파벳 소문자 <code class="language-plaintext highlighter-rouge">'a'</code>부터 <code class="language-plaintext highlighter-rouge">'z'</code>까지의 등장 횟수를 저장하는 크기 26의 배열입니다.<br />
+모든 원소를 0으로 초기화합니다.</li>
+  <li><strong>totalLength</strong>:<br />
+삭제 작업 후 남게 될 문자열의 최소 길이를 누적할 변수입니다.</li>
+</ul>
+
+<hr />
+
+<h3 id="step-2-문자열-내-각-문자의-빈도수-계산">Step 2. 문자열 내 각 문자의 빈도수 계산</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">char</span> <span style="color: #24292f;background-color: #f6f8fa">currentChar</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #24292f;background-color: #f6f8fa">charFrequency</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">currentChar</span> <span style="color: #0550ae">-</span> <span style="color: #0a3069">'a'</span><span style="color: #24292f;background-color: #f6f8fa">]</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>문자열 <strong>s</strong>의 모든 문자에 대해 해당 문자의 아스키 코드 차이를 이용하여<br />
+<code class="language-plaintext highlighter-rouge">charFrequency</code> 배열의 올바른 인덱스를 찾아 등장 횟수를 증가시킵니다.</li>
+  <li>예를 들어, s = <code class="language-plaintext highlighter-rouge">"aabccc"</code>인 경우:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">'a'</code> → 2회</li>
+      <li><code class="language-plaintext highlighter-rouge">'b'</code> → 1회</li>
+      <li><code class="language-plaintext highlighter-rouge">'c'</code> → 3회</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="step-3-각-문자별로-삭제-후-남을-개수-합산">Step 3. 각 문자별로 삭제 후 남을 개수 합산</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">:</span> <span style="color: #24292f;background-color: #f6f8fa">charFrequency</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #cf222e">continue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>  <span style="color: #6e7781">// 문자열에 등장하지 않는 문자는 건너뜀</span>
+    <span style="color: #cf222e">if</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">frequency</span> <span style="color: #0550ae">%</span> <span style="color: #0550ae">2</span> <span style="color: #0550ae">==</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #24292f;background-color: #f6f8fa">totalLength</span> <span style="color: #0550ae">+=</span> <span style="color: #0550ae">2</span><span style="color: #24292f;background-color: #f6f8fa">;</span>  <span style="color: #6e7781">// 짝수 빈도인 경우, 최종적으로 2개 남김</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span> <span style="color: #cf222e">else</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #24292f;background-color: #f6f8fa">totalLength</span> <span style="color: #0550ae">+=</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">;</span>  <span style="color: #6e7781">// 홀수 빈도인 경우, 최종적으로 1개 남김</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>빈도수가 0인 문자</strong>는 s에 등장하지 않으므로 무시합니다.</li>
+  <li>각 문자가 등장하는 횟수에 따라
+    <ul>
+      <li>짝수이면 최적의 삭제를 통해 <strong>2개</strong>를 남기는 것이 최선이라고 가정하여 2를 더합니다.</li>
+      <li>홀수이면 <strong>1개</strong>만 남길 수 있으므로 1을 더합니다.</li>
+    </ul>
+  </li>
+  <li>예를 들어, s = <code class="language-plaintext highlighter-rouge">"aabccc"</code>인 경우
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">'a'</code>: 2회 → 짝수 → 남길 수 있는 최소 개수는 2</li>
+      <li><code class="language-plaintext highlighter-rouge">'b'</code>: 1회 → 홀수 → 남길 수 있는 최소 개수는 1</li>
+      <li><code class="language-plaintext highlighter-rouge">'c'</code>: 3회 → 홀수 → 남길 수 있는 최소 개수는 1<br />
+최종 <strong>totalLength = 2 + 1 + 1 = 4</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="step-4-최종-결과-반환">Step 4. 최종 결과 반환</h3>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">totalLength</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>위에서 계산한 <strong>totalLength</strong>가 삭제 작업을 최적으로 수행했을 때 남을 수 있는 문자열의 최소 길이가 됩니다.</li>
+</ul>
+
+<hr />
+
+<h3 id="결론">결론</h3>
+
+<p>이 솔루션은 문자열 <strong>s</strong>의 각 문자가 등장하는 횟수를 이용하여,</p>
+<ul>
+  <li>홀수번 등장하는 문자는 1개,</li>
+  <li>짝수번 등장하는 문자는 2개가 남는다고 가정하고<br />
+각 문자별 최소 남김 개수를 합산하여 최종 길이를 계산합니다.</li>
+</ul>
+
+<p><strong>시간 복잡도</strong>는 문자열을 한 번 순회하는 O(n)와 26글자(상수)의 반복으로 구성되어 O(n)이며,<br />
+<strong>공간 복잡도</strong>는 알파벳 26개에 대한 배열을 사용하므로 O(1)입니다.</p>
+
+<blockquote>
+  <p><strong>주의</strong>:<br />
+이 코드의 삭제 규칙(짝수번이면 2개, 홀수번이면 1개 남음)이 문제의 조건과 정확히 일치해야 하며,<br />
+실제 문제에서 요구하는 삭제 연산의 규칙에 따라 이 풀이가 유효한지 확인해야 합니다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="approach-3-using-bitwise">Approach 3: Using Bitwise</h3>
+<ul>
+  <li><em>8ms, 32.05MB</em></li>
+  <li>Complexity
+    <ul>
+      <li>Let $n$ be the size of the string <code class="language-plaintext highlighter-rouge">s</code>.</li>
+      <li>Time Complexity: $O(n)$</li>
+      <li>Space Complexity: $O(1)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">class</span> <span style="color: #953800">Solution</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+<span style="color: #0550ae">public:</span>
+    <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">minimumLength</span><span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">string</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">present</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">parity</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">placevalue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #6e7781">// Iterate through the string and update the present and parity bitmasks</span>
+        <span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">k</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">k</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">();</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #6e7781">// Calculate the bit position for the character</span>
+            <span style="color: #24292f;background-color: #f6f8fa">placevalue</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">1</span> <span style="color: #0550ae">&lt;&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">-</span> <span style="color: #0a3069">'a'</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #6e7781">// Set the corresponding bit in the present bitmask</span>
+            <span style="color: #24292f;background-color: #f6f8fa">present</span> <span style="color: #0550ae">|=</span> <span style="color: #24292f;background-color: #f6f8fa">placevalue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+            <span style="color: #6e7781">// Toggle the corresponding bit in the parity bitmask</span>
+            <span style="color: #24292f;background-color: #f6f8fa">parity</span> <span style="color: #0550ae">^=</span> <span style="color: #24292f;background-color: #f6f8fa">placevalue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">totalLength</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+        <span style="color: #6e7781">// Process the present bitmask and check the parity bitmask to calculate</span>
+        <span style="color: #6e7781">// the minimum length</span>
+        <span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">present</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+            <span style="color: #6e7781">// Clear the least significant bit in present</span>
+            <span style="color: #24292f;background-color: #f6f8fa">placevalue</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">present</span> <span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">present</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #6e7781">// If the corresponding parity bit is set, it indicates an odd</span>
+            <span style="color: #6e7781">// occurrence, so add 1</span>
+            <span style="color: #24292f;background-color: #f6f8fa">totalLength</span> <span style="color: #0550ae">+=</span> <span style="color: #0550ae">2</span> <span style="color: #0550ae">-</span> <span style="color: #24292f;background-color: #f6f8fa">((</span><span style="color: #24292f;background-color: #f6f8fa">parity</span> <span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">present</span> <span style="color: #0550ae">-</span> <span style="color: #24292f;background-color: #f6f8fa">placevalue</span><span style="color: #24292f;background-color: #f6f8fa">))</span> <span style="color: #0550ae">!=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+            <span style="color: #24292f;background-color: #f6f8fa">present</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">placevalue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+        <span style="color: #24292f;background-color: #f6f8fa">}</span>
+
+        <span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">totalLength</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #24292f;background-color: #f6f8fa">}</span>
+<span style="color: #24292f;background-color: #f6f8fa">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="gpt">GPT</h4>
+<p>이 코드는 문자열 <strong>s</strong>에서 등장하는 각 알파벳에 대해,</p>
+<ul>
+  <li>짝수 번 등장하는 문자는 최종적으로 2개씩</li>
+  <li>홀수 번 등장하는 문자는 최종적으로 1개만 남길 수 있다고 가정하여,<br />
+삭제 후 남을 수 있는 최소 길이를 비트마스크(bitmask)를 이용해 계산하는 방식입니다.</li>
+</ul>
+
+<p>아래 단계별로 코드를 자세히 설명합니다.</p>
+
+<hr />
+
+<h2 id="1-비트마스크-변수-초기화">1. 비트마스크 변수 초기화</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">present</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+<span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">parity</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+<span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">placevalue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p><strong>present</strong>:<br />
+문자열 <strong>s</strong>에서 등장한 알파벳들을 기록하기 위한 비트마스크입니다.<br />
+예를 들어, <code class="language-plaintext highlighter-rouge">'a'</code>가 한 번 이상 등장하면 비트 0이 1로 설정됩니다.</p>
+  </li>
+  <li>
+    <p><strong>parity</strong>:<br />
+각 알파벳의 등장 횟수의 홀짝(parity)을 기록하는 비트마스크입니다.<br />
+문자열을 순회하면서 해당 문자가 등장할 때마다 XOR 연산을 사용하여 비트를 토글합니다.<br />
+최종적으로, 특정 알파벳에 대응하는 비트가 1이면 홀수번 등장, 0이면 짝수번 등장한 것을 의미합니다.</p>
+  </li>
+  <li>
+    <p><strong>placevalue</strong>:<br />
+각 문자에 해당하는 비트의 위치(값)를 저장하는 변수입니다.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="2-문자열-순회--비트마스크-업데이트">2. 문자열 순회 – 비트마스크 업데이트</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">for</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">k</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span> <span style="color: #24292f;background-color: #f6f8fa">k</span> <span style="color: #0550ae">&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">.</span><span style="color: #24292f;background-color: #f6f8fa">size</span><span style="color: #24292f;background-color: #f6f8fa">();</span> <span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #0550ae">++</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #6e7781">// 현재 문자에 해당하는 비트 위치 계산 (예: 'a' → 1&lt;&lt;0, 'b' → 1&lt;&lt;1, …)</span>
+    <span style="color: #24292f;background-color: #f6f8fa">placevalue</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">1</span> <span style="color: #0550ae">&lt;&lt;</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">s</span><span style="color: #24292f;background-color: #f6f8fa">[</span><span style="color: #24292f;background-color: #f6f8fa">k</span><span style="color: #24292f;background-color: #f6f8fa">]</span> <span style="color: #0550ae">-</span> <span style="color: #0a3069">'a'</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+    <span style="color: #6e7781">// present 비트마스크에 현재 문자를 표시 (이미 등장했더라도 그대로 유지)</span>
+    <span style="color: #24292f;background-color: #f6f8fa">present</span> <span style="color: #0550ae">|=</span> <span style="color: #24292f;background-color: #f6f8fa">placevalue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+    <span style="color: #6e7781">// parity 비트마스크에서는 현재 문자의 비트를 토글 (짝수번이면 0, 홀수번이면 1)</span>
+    <span style="color: #24292f;background-color: #f6f8fa">parity</span> <span style="color: #0550ae">^=</span> <span style="color: #24292f;background-color: #f6f8fa">placevalue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p><strong>present |= placevalue;</strong><br />
+현재 문자가 등장했음을 기록합니다.<br />
+이미 기록된 경우에도 변화가 없으므로, 이 비트마스크에는 <strong>s</strong>에 등장한 모든 서로 다른 문자의 비트가 1로 설정됩니다.</p>
+  </li>
+  <li>
+    <p><strong>parity ^= placevalue;</strong><br />
+XOR 연산으로 각 문자의 등장 횟수를 홀짝 토글합니다.<br />
+예를 들어, <code class="language-plaintext highlighter-rouge">'a'</code>가 3번 등장했다면, 처음에는 0에서 1로, 두 번째 등장에서 1→0, 세 번째 등장에서 0→1로 토글되어 최종적으로 1(홀수)을 나타냅니다.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="3-남은-문자들을-기반으로-최소-길이-계산">3. 남은 문자들을 기반으로 최소 길이 계산</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">int</span> <span style="color: #24292f;background-color: #f6f8fa">totalLength</span> <span style="color: #0550ae">=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+
+<span style="color: #6e7781">// present에 기록된 각 문자(비트)가 남아있는 동안 반복</span>
+<span style="color: #cf222e">while</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">present</span><span style="color: #24292f;background-color: #f6f8fa">)</span> <span style="color: #24292f;background-color: #f6f8fa">{</span>
+    <span style="color: #6e7781">// present의 가장 낮은 자리의 1을 제거하기 전의 값과 제거 후의 값의 차이를 이용</span>
+    <span style="color: #6e7781">// present &amp; (present - 1)는 present에서 가장 낮은 1비트를 제거한 결과입니다.</span>
+    <span style="color: #24292f;background-color: #f6f8fa">placevalue</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">present</span> <span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">present</span> <span style="color: #0550ae">-</span> <span style="color: #0550ae">1</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+    
+    <span style="color: #6e7781">// present - placevalue는 방금 제거한, 가장 낮은 set bit의 값을 구하는 효과와 같습니다.</span>
+    <span style="color: #6e7781">// 만약 (parity &amp; (present - placevalue)) != 0이면 해당 문자의 등장 횟수가 홀수라는 의미입니다.</span>
+    <span style="color: #6e7781">//  - 홀수이면 최종적으로 1개만 남기므로 (2 - 1) = 1을 더합니다.</span>
+    <span style="color: #6e7781">//  - 짝수이면 최종적으로 2개 남기므로 (2 - 0) = 2를 더합니다.</span>
+    <span style="color: #24292f;background-color: #f6f8fa">totalLength</span> <span style="color: #0550ae">+=</span> <span style="color: #0550ae">2</span> <span style="color: #0550ae">-</span> <span style="color: #24292f;background-color: #f6f8fa">((</span><span style="color: #24292f;background-color: #f6f8fa">parity</span> <span style="color: #0550ae">&amp;</span> <span style="color: #24292f;background-color: #f6f8fa">(</span><span style="color: #24292f;background-color: #f6f8fa">present</span> <span style="color: #0550ae">-</span> <span style="color: #24292f;background-color: #f6f8fa">placevalue</span><span style="color: #24292f;background-color: #f6f8fa">))</span> <span style="color: #0550ae">!=</span> <span style="color: #0550ae">0</span><span style="color: #24292f;background-color: #f6f8fa">);</span>
+    
+    <span style="color: #6e7781">// present를 갱신하여 이미 처리한 비트를 제거합니다.</span>
+    <span style="color: #24292f;background-color: #f6f8fa">present</span> <span style="color: #0550ae">=</span> <span style="color: #24292f;background-color: #f6f8fa">placevalue</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+<span style="color: #24292f;background-color: #f6f8fa">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>비트 연산 트릭</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">present &amp; (present - 1)</code>는 현재 <strong>present</strong>에서 가장 낮은 set bit(즉, 가장 낮은 자리의 1)를 0으로 만드는 연산입니다.</li>
+      <li>따라서, <code class="language-plaintext highlighter-rouge">present - (present &amp; (present - 1))</code>는 현재 <strong>present</strong>에서 제거된 그 한 비트의 값(예: 1«i)을 나타냅니다.</li>
+    </ul>
+  </li>
+  <li><strong>(parity &amp; (present - placevalue)) != 0</strong>:
+    <ul>
+      <li>이 표현식은 현재 처리 중인 문자(해당 비트)가 홀수 번 등장했는지 검사합니다.</li>
+      <li>만약 홀수이면, 결과는 true(1)이고, 그렇지 않으면 false(0)가 되어,<br />
+<strong>totalLength</strong>에 <code class="language-plaintext highlighter-rouge">2 - 1 = 1</code> 또는 <code class="language-plaintext highlighter-rouge">2 - 0 = 2</code>가 더해집니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>즉, <strong>모든 등장한 문자</strong>에 대해:</p>
+<ul>
+  <li>홀수번 등장 → 결과에 1을 더함</li>
+  <li>짝수번 등장 → 결과에 2를 더함</li>
+</ul>
+
+<p>이 계산은 앞의 풀이에서 빈도 배열을 사용하여</p>
+<blockquote>
+  <p>“빈도수가 홀수이면 1, 짝수이면 2”<br />
+를 더하는 것과 동일한 결과를 얻습니다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="4-최종-결과-반환">4. 최종 결과 반환</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span style="color: #cf222e">return</span> <span style="color: #24292f;background-color: #f6f8fa">totalLength</span><span style="color: #24292f;background-color: #f6f8fa">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>계산된 <strong>totalLength</strong>는<br />
+주어진 규칙(각 문자가 홀수이면 1개, 짝수이면 2개 남김)에 따라 삭제 후 남을 수 있는 최소 길이를 의미합니다.</li>
+</ul>
+
+<hr />
+
+<h2 id="요약">요약</h2>
+
+<ol>
+  <li><strong>문자열 순회 및 비트마스크 구성</strong>:
+    <ul>
+      <li><strong>present</strong>: 등장한 문자를 기록</li>
+      <li><strong>parity</strong>: 각 문자의 등장 횟수 홀짝을 토글하여 기록</li>
+    </ul>
+  </li>
+  <li><strong>각 문자별 최소 남길 개수 계산</strong>:
+    <ul>
+      <li>비트마스크 <strong>present</strong>를 반복적으로 순회하면서,</li>
+      <li>해당 문자의 홀짝 정보(<strong>parity</strong>)에 따라 최종 남겨야 할 개수를 결정 (홀수이면 1, 짝수이면 2)</li>
+    </ul>
+  </li>
+  <li><strong>최종 최소 길이 반환</strong>.</li>
+</ol>
+
+<p>이와 같이, 비트 연산을 활용하여 각 문자별 등장 횟수의 홀짝 정보를 빠르게 집계하고, 이를 바탕으로 최소 길이를 계산하는 알고리즘입니다.</p>
+
+<p><br /></p>
+
+      <div class="c-article__footer u-clearfix">
+        <div class="c-article__tag">
+          
+          <a href="/tags#Problem_Solving">&#35; Problem_Solving</a>
+          
+        </div>
+        <!-- <div class="c-article__share">
+          <a href="https://twitter.com/intent/tweet?text=3223.%20Minimum%20Length%20of%20String%20After%20Operations&url=https://chocobreeze.github.io/2025/01/13/3223.-Minimum-Length-of-String-After-Operations/" title="Share
+          on Twitter" rel="nofollow" target="_blank"><div data-icon='ei-sc-twitter' data-size='s'></div></a>
+          <a href="https://facebook.com/sharer.php?u=https://chocobreeze.github.io/2025/01/13/3223.-Minimum-Length-of-String-After-Operations/" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a>
+          <a href="https://plus.google.com/share?url=https://chocobreeze.github.io/2025/01/13/3223.-Minimum-Length-of-String-After-Operations/" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a>
+        </div> -->
+      </div>
+      <!-- <div class="c-newsletter">
+  <div class="c-newsletter__header">
+    <h4 class="c-newsletter__title">Newsletter</h4>
+    <div class="c-newsletter__subtitle">Subscribe to this blog and receive notifications of new posts by email.</div>
+  </div>
+  <form class="c-newsletter-form validate" action="#" method="POST" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+    <div class="c-newsletter-form__group">
+      <label class="u-screen-reader-text" for="mce-EMAIL">Email address</label>
+      <input class="c-newsletter__email required email" id="mce-EMAIL" type="email" name="EMAIL" placeholder="Your email address" autocomplete="on">
+      <input class="c-newsletter__button" id="mc-embedded-subscribe" type="submit" name="subscribe" value="Subscribe">
+    </div>
+  </form>
+</div> -->
+      <div class="c-recent-post">
+        <h4 class="c-recent__title">You might also enjoy</h4>
+        <div class="c-recent__box">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+      </div> <!-- /.c-recent-post -->
+      
+    </div> <!-- /.c-wrap-content -->
+  </div> <!-- /.c-article__content -->
+</article> <!-- /.c-article-page -->
+
+<!-- KaTeX CSS 추가 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<!-- KaTeX JS 추가 및 자동 렌더링 설정 -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" 
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});">
+</script>
+</main> <!-- /.c-content -->
+  </div> <!-- /.o-wrapper -->
+  <div class="c-top" data-icon='ei-chevron-up' data-size='s' title="Scroll To Top"></div> <!-- /.c-top -->
+  <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/evil-icons.min.js"></script>
+<script src="/js/jquery.fitvids.js"></script>
+<script src="/js/simple-jekyll-search.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- /javascripts -->
+</body>
+</html>

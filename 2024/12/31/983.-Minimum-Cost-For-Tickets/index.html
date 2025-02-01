@@ -319,7 +319,7 @@
     </ul>
   </li>
   <li><strong>점화식</strong>:
-\(dp[currDay] = \min(\text{1-day cost}, \text{7-day cost}, \text{30-day cost})\)
+$dp[currDay] = \min(\text{1-day cost}, \text{7-day cost}, \text{30-day cost})$
     <ul>
       <li><code class="language-plaintext highlighter-rouge">1-day cost</code>: $\text{costs[0]} + dp[currDay + 1]$</li>
       <li><code class="language-plaintext highlighter-rouge">7-day cost</code>: $\text{costs[1]} + dp[currDay + 7]$</li>
@@ -450,7 +450,7 @@
 <ol>
   <li>
     <p><strong>여행 날짜 저장</strong>:
-\(\text{isTravelNeeded} = \{1, 4, 6, 7, 8, 20\}\)</p>
+$\text{isTravelNeeded} = {1, 4, 6, 7, 8, 20}$</p>
   </li>
   <li><strong>재귀 호출</strong>:
     <ul>
@@ -689,7 +689,7 @@ $O(\text{lastDay})$</p>
 <ol>
   <li>
     <p><strong>초기화</strong>:
-\(dp = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, \ldots, 0] \quad (\text{크기: } 21)\)</p>
+$dp = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, \ldots, 0] \quad (\text{크기: } 21)$</p>
   </li>
   <li>
     <p><strong>날짜별 DP 계산</strong>:</p>
