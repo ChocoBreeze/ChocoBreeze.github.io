@@ -12,76 +12,172 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<style>
 			main {
 				width: 100%;
-				max-width: 800px;
+				max-width: 900px;
 				margin: 0 auto;
-				padding: 3em 1em;
+				padding: 4em 1em;
 				text-align: center;
 			}
+			.hero-section {
+				margin-bottom: 4rem;
+			}
 			.profile-container {
-				margin-bottom: 2rem;
+				margin-bottom: 1.5rem;
 			}
 			.profile-image {
-				width: 150px;
-				height: 150px;
+				width: 180px;
+				height: 180px;
 				border-radius: 50%;
 				object-fit: cover;
-				border: 4px solid var(--accent);
-				box-shadow: var(--box-shadow);
+				border: 5px solid white;
+				box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+				transition: transform 0.3s ease;
+			}
+			.profile-image:hover {
+				transform: scale(1.05);
 			}
 			h1 {
-				font-size: 3rem;
+				font-size: 3.5rem;
 				margin-bottom: 0.5rem;
+				background: linear-gradient(45deg, var(--accent), #7232f2);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				font-weight: 800;
 			}
 			.description {
-				font-size: 1.25rem;
+				font-size: 1.4rem;
 				color: rgb(var(--gray-dark));
-				margin-bottom: 2rem;
+				margin-bottom: 3rem;
+				font-weight: 500;
 			}
-			.goals {
-				text-align: left;
-				display: inline-block;
-				background: #f8f9fa;
-				padding: 1.5rem 2rem;
-				border-radius: 12px;
-				border-left: 5px solid #7232f2; /* Astro accent color */
+			
+			.features-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.5rem;
+				margin-bottom: 4rem;
 			}
-			.goals h2 {
-				font-size: 1.5rem;
-				margin-top: 0;
+			.feature-card {
+				background: white;
+				padding: 2rem 1.5rem;
+				border-radius: 16px;
+				box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+				transition: all 0.3s ease;
+				text-decoration: none;
+				color: inherit;
+				border: 1px solid #f0f0f0;
 			}
-			.goals ul {
+			.feature-card:hover {
+				transform: translateY(-10px);
+				box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+				border-color: var(--accent);
+			}
+			.feature-card .icon {
+				font-size: 2.5rem;
+				margin-bottom: 1rem;
+				display: block;
+			}
+			.feature-card h3 {
+				margin: 0 0 0.5rem 0;
+				font-size: 1.25rem;
+			}
+			.feature-card p {
 				margin: 0;
-				padding-left: 1.2rem;
+				font-size: 0.9rem;
+				color: #666;
+				line-height: 1.4;
 			}
-			.goals li {
-				margin-bottom: 0.5rem;
+
+			.goals-section {
+				background: rgba(255, 255, 255, 0.7);
+				backdrop-filter: blur(10px);
+				padding: 3rem;
+				border-radius: 24px;
+				text-align: left;
+				box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+				border: 1px solid white;
+			}
+			.goals-section h2 {
+				font-size: 2rem;
+				margin-top: 0;
+				margin-bottom: 1.5rem;
+				border: none;
+				color: var(--accent);
+			}
+			.goals-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1rem;
+			}
+			.goals-list li {
+				padding: 1rem;
+				background: white;
+				border-radius: 12px;
+				font-weight: 500;
+				display: flex;
+				align-items: center;
+				box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+			}
+			.goals-list li::before {
+				content: "✨";
+				margin-right: 0.75rem;
+			}
+
+			@media (max-width: 768px) {
+				.features-grid {
+					grid-template-columns: 1fr;
+				}
+				.goals-list {
+					grid-template-columns: 1fr;
+				}
+				h1 { font-size: 2.5rem; }
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<div class="profile-container">
-				<img src="/images/Okeydokey/pic_62.jpg" alt="ChocoBreeze" class="profile-image" />
+			<div class="hero-section">
+				<div class="profile-container">
+					<img src="/images/Okeydokey/pic_62.jpg" alt="ChocoBreeze" class="profile-image" />
+				</div>
+				<h1>ChocoBreeze</h1>
+				<p class="description">
+					이유를 고민하고 성장을 기록하는 정영훈의 블로그입니다.
+				</p>
 			</div>
-			<h1>👨‍💻 {SITE_TITLE}</h1>
-			<p class="description">
-				{SITE_DESCRIPTION}
-			</p>
+
+			<div class="features-grid">
+				<a href="/etf" class="feature-card">
+					<span class="icon">📈</span>
+					<h3>ETF & Finance</h3>
+					<p>시장의 흐름을 읽는 합리적인 투자 전략을 탐구합니다.</p>
+				</a>
+				<a href="/problem-solving" class="feature-card">
+					<span class="icon">💻</span>
+					<h3>Problem Solving</h3>
+					<p>알고리즘 문제 풀이를 통한 논리적 사고를 기록합니다.</p>
+				</a>
+				<a href="/reports" class="feature-card">
+					<span class="icon">🤖</span>
+					<h3>AI Research</h3>
+					<p>궁금한 기술과 트렌드를 AI와 함께 심층 조사합니다.</p>
+				</a>
+			</div>
 			
-			<div class="goals">
-				<h2>나의 다짐</h2>
-				<ul>
+			<div class="goals-section">
+				<h2>나의 다짐 (Goals)</h2>
+				<ul class="goals-list">
 					<li>너무 늦게 자지 않기</li>
 					<li>끼니 거르지 않기</li>
 					<li>이유 생각하기 (Why?)</li>
-					<li>알고리즘을 넘어 다양한 기술 탐구하기</li>
+					<li>다양한 기술 탐구하기</li>
+					<li>기록을 멈추지 않기</li>
+					<li>나누며 함께 성장하기</li>
 				</ul>
 			</div>
-			
-			<p style="margin-top: 3rem;">
-				지금까지의 공부 기록은 <a href="/problem-solving">Problem Solving</a> 메뉴에서 확인할 수 있습니다.
-			</p>
 		</main>
 		<Footer />
 	</body>
