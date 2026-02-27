@@ -40,11 +40,11 @@ body {
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
+	font-size: 16px;
+	line-height: 1.6;
 }
 main {
-	width: 720px;
+	width: 1020px;
 	max-width: calc(100% - 2em);
 	margin: auto;
 	padding: 3em 1em;
@@ -55,24 +55,26 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 0 0 0.5rem 0;
+	margin: 1.5rem 0 0.5rem 0;
 	color: rgb(var(--black));
 	line-height: 1.2;
 }
 h1 {
-	font-size: 3.052em;
+	font-size: 2.4rem;
 }
 h2 {
-	font-size: 2.441em;
+	font-size: 1.8rem;
+	border-bottom: 1px solid rgb(var(--gray-light));
+	padding-bottom: 0.3rem;
 }
 h3 {
-	font-size: 1.953em;
+	font-size: 1.4rem;
 }
 h4 {
-	font-size: 1.563em;
+	font-size: 1.1rem;
 }
 h5 {
-	font-size: 1.25em;
+	font-size: 1em;
 }
 strong,
 b {
@@ -88,17 +90,28 @@ p {
 	margin-bottom: 1em;
 }
 .prose p {
-	margin-bottom: 2em;
+	margin-bottom: 1.2rem;
 }
 textarea {
 	width: 100%;
-	font-size: 16px;
+	font-size: 14px;
 }
 input {
-	font-size: 16px;
+	font-size: 14px;
 }
 table {
 	width: 100%;
+	font-size: 0.9em;
+	border-collapse: collapse;
+	margin-bottom: 1rem;
+}
+th, td {
+	border: 1px solid rgb(var(--gray-light));
+	padding: 8px;
+	text-align: left;
+}
+th {
+	background-color: #f8f9fa;
 }
 img {
 	max-width: 100%;
@@ -109,10 +122,12 @@ code {
 	padding: 2px 5px;
 	background-color: rgb(var(--gray-light));
 	border-radius: 2px;
+	font-size: 0.9em;
 }
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	font-size: 0.9em;
 }
 pre > code {
 	all: unset;
@@ -120,20 +135,24 @@ pre > code {
 blockquote {
 	border-left: 4px solid var(--accent);
 	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.333em;
+	margin: 1rem 0;
+	font-size: 1.1em;
+	font-style: italic;
 }
 hr {
 	border: none;
 	border-top: 1px solid rgb(var(--gray-light));
+	margin: 2rem 0;
 }
 @media (max-width: 720px) {
 	body {
-		font-size: 18px;
+		font-size: 15px;
 	}
 	main {
 		padding: 1em;
 	}
+	h1 { font-size: 2rem; }
+	h2 { font-size: 1.5rem; }
 }
 
 .sr-only {

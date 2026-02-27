@@ -1,0 +1,103 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import BlogPost from '../../layouts/BlogPost.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: post,
+	}));
+}
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await render(post);
+
+// "이전/다음 글" 찾기 로직
+const allPosts = (await getCollection('blog')).filter(p => {
+	const currentCats = post.data.categories;
+	const pCats = p.data.categories;
+	const normalize = (c) => Array.isArray(c) ? c[0] : c;
+	return normalize(currentCats) === normalize(pCats);
+}).sort((a, b) => {
+	// ETF면 order 순, 아니면 날짜 순
+	if (a.data.categories === 'ETF' || (Array.isArray(a.data.categories) && a.data.categories.includes('ETF'))) {
+		if (a.data.pinned && !b.data.pinned) return -1;
+		if (!a.data.pinned && b.data.pinned) return 1;
+		return (a.data.order ?? 0) - (b.data.order ?? 0);
+	}
+	const dateA = a.data.pubDate || a.data.date || new Date(0);
+	const dateB = b.data.pubDate || b.data.date || new Date(0);
+	return dateA.valueOf() - dateB.valueOf(); // 과거순으로 정렬해야 인덱스 관리가 편함
+});
+
+const index = allPosts.findIndex((p) => p.id === post.id);
+const prevPost = index > 0 ? allPosts[index - 1] : null;
+const nextPost = index < allPosts.length - 1 ? allPosts[index + 1] : null;
+---
+
+<BlogPost {...post.data}>
+	<Content />
+	
+	<div class="post-navigation">
+		{prevPost && (
+			<a href={`/problem-solving/${prevPost.id}/`} class="prev">
+				<span class="label">← 이전 글</span>
+				<span class="title">{prevPost.data.title}</span>
+			</a>
+		)}
+		{!prevPost && <div class="spacer"></div>}
+		
+		{nextPost && (
+			<a href={`/problem-solving/${nextPost.id}/`} class="next">
+				<span class="label">다음 글 →</span>
+				<span class="title">{nextPost.data.title}</span>
+			</a>
+		)}
+	</div>
+</BlogPost>
+
+<style>
+	.post-navigation {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-top: 4rem;
+		padding-top: 2rem;
+		border-top: 1px solid #eee;
+	}
+	.post-navigation a {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		padding: 1rem;
+		border: 1px solid #eee;
+		border-radius: 8px;
+		text-decoration: none;
+		color: inherit;
+		transition: all 0.2s ease;
+		max-width: 50%;
+	}
+	.post-navigation a:hover {
+		border-color: var(--accent);
+		background-color: #fcfaff;
+	}
+	.post-navigation .label {
+		font-size: 0.8rem;
+		color: #666;
+		margin-bottom: 0.25rem;
+	}
+	.post-navigation .title {
+		font-weight: bold;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.post-navigation .next {
+		text-align: right;
+	}
+	.spacer {
+		flex: 1;
+	}
+</style>

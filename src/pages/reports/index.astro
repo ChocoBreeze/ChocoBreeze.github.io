@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
@@ -7,19 +6,30 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => {
+// "reports" 카테고리에 있는 글들만 가져옵니다.
+const posts = (await getCollection('blog'))
+	.filter(post => {
+		const cats = post.data.categories;
+		return Array.isArray(cats) ? (cats.includes('reports') || cats.includes('Reports')) : (cats === 'reports' || cats === 'Reports');
+	})
+	.sort((a, b) => {
+		// 1. Pinned posts come first
+		if (a.data.pinned && !b.data.pinned) return -1;
+		if (!a.data.pinned && b.data.pinned) return 1;
+
 		const dateA = a.data.pubDate || a.data.date || new Date(0);
 		const dateB = b.data.pubDate || b.data.date || new Date(0);
 		return dateB.valueOf() - dateA.valueOf();
-	}
-);
+	});
+
+const TITLE = "Reports";
+const DESCRIPTION = "프로젝트 분석 및 정기 리포트 기록입니다.";
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={TITLE} description={DESCRIPTION} />
 		<style>
 			main {
 				width: 960px;
@@ -101,7 +111,7 @@ const posts = (await getCollection('blog')).sort(
 							const image = post.data.heroImage || (post.data.image ? `/images/${post.data.image}` : undefined);
 							return (
 								<li>
-									<a href={`/blog/${post.id}/`}>
+									<a href={`/problem-solving/${post.id}/`}>
 										{image && (
 											<img width={720} height={360} src={image} alt="" />
 										)}

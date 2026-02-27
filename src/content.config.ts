@@ -18,6 +18,8 @@ const blog = defineCollection({
 		categories: z.union([z.string(), z.array(z.string())]).optional().nullable(),
 		difficulty: z.string().optional().nullable(),
 		topics: z.array(z.string()).optional().nullable(),
+		pinned: z.boolean().optional().default(false),
+		order: z.number().optional(),
 	}),
 });
 
