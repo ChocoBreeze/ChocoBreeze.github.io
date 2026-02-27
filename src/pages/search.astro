@@ -1,0 +1,125 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Search | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: 960px;
+				margin: auto;
+				padding: 3em 1em;
+			}
+			.search-container {
+				margin-bottom: 2rem;
+			}
+			#search-input {
+				width: 100%;
+				padding: 0.8rem 1.2rem;
+				font-size: 1.2rem;
+				border: 2px solid #eee;
+				border-radius: 8px;
+				outline: none;
+				transition: border-color 0.2s;
+			}
+			#search-input:focus {
+				border-color: var(--accent);
+			}
+			#results-list {
+				list-style: none;
+				padding: 0;
+			}
+			.result-item {
+				margin-bottom: 1.5rem;
+				padding: 1rem;
+				border-radius: 8px;
+				transition: background-color 0.2s;
+			}
+			.result-item:hover {
+				background-color: #fcfaff;
+			}
+			.result-item a {
+				text-decoration: none;
+				color: inherit;
+			}
+			.result-item h3 {
+				margin: 0 0 0.5rem 0;
+				color: var(--black);
+			}
+			.result-item p {
+				margin: 0;
+				color: #666;
+				font-size: 0.9rem;
+			}
+			.result-category {
+				display: inline-block;
+				padding: 0.2rem 0.5rem;
+				background: #eee;
+				border-radius: 4px;
+				font-size: 0.7rem;
+				margin-bottom: 0.5rem;
+				color: #555;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="search-container">
+				<h1>검색</h1>
+				<input type="text" id="search-input" placeholder="제목이나 설명으로 검색하세요..." autofocus />
+			</div>
+			<div id="results-count" style="margin-bottom: 1rem; font-size: 0.9rem; color: #888;"></div>
+			<ul id="results-list"></ul>
+		</main>
+		<Footer />
+
+		<script>
+			let searchIndex = [];
+			const searchInput = document.getElementById('search-input');
+			const resultsList = document.getElementById('results-list');
+			const resultsCount = document.getElementById('results-count');
+
+			// 인덱스 데이터 가져오기
+			fetch('/search.json')
+				.then(res => res.json())
+				.then(data => {
+					searchIndex = data;
+				});
+
+			searchInput.addEventListener('input', (e) => {
+				const query = e.target.value.toLowerCase().trim();
+				if (query.length < 2) {
+					resultsList.innerHTML = '';
+					resultsCount.textContent = '';
+					return;
+				}
+
+				const filtered = searchIndex.filter(item => 
+					item.title.toLowerCase().includes(query) || 
+					(item.description && item.description.toLowerCase().includes(query))
+				);
+
+				displayResults(filtered);
+			});
+
+			function displayResults(results) {
+				resultsCount.textContent = `${results.length}개의 결과를 찾았습니다.`;
+				resultsList.innerHTML = results.map(item => `
+					<li class="result-item">
+						<a href="/problem-solving/${item.slug}/">
+							<span class="result-category">${Array.isArray(item.categories) ? item.categories[0] : (item.categories || 'Uncategorized')}</span>
+							<h3>${item.title}</h3>
+							<p>${item.description || ''}</p>
+						</a>
+					</li>
+				`).join('');
+			}
+		</script>
+	</body>
+</html>
