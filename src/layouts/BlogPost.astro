@@ -35,9 +35,9 @@ const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
 				height: auto;
 			}
 			.prose {
-				width: 1000px;
+				width: 1100px; /* 본문 폭 늘림 */
 				max-width: calc(100% - 2em);
-				margin: 2rem 0 2rem 200px; /* 시작점을 200px로 이동 */
+				margin: 2rem 0 2rem 200px;
 				padding: 1em;
 				color: rgb(var(--gray-dark));
 				position: relative;
@@ -63,7 +63,7 @@ const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
 			.toc {
 				position: fixed;
 				top: 150px;
-				left: 1240px; /* 본문 끝(1200px) + 여유(40px) */
+				left: 1340px; /* 본문 끝(1300px) + 여유(40px) */
 				width: 280px;
 				max-height: 70vh;
 				overflow-y: auto;
@@ -72,7 +72,7 @@ const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
 				border-left: 1px solid #eee;
 				display: none;
 			}
-			@media (min-width: 1550px) { /* 충분한 공간이 확보될 때만 표시 */
+			@media (min-width: 1650px) { /* 더 넓어진 폭에 맞춰 조정 */
 				.toc {
 					display: block;
 				}
