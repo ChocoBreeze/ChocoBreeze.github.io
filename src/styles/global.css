@@ -15,7 +15,29 @@
 	--box-shadow:
 		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
 		rgba(var(--gray), 33%);
+	
+	/* Default Colors (Light) */
+	--bg-color: #f8f9ff;
+	--text-color: var(--gray-dark);
+	--heading-color: var(--black);
+	--card-bg: white;
+	--border-color: #eee;
+	--toc-bg: rgba(255, 255, 255, 0.8);
+	--bg-image-opacity: 0.12;
 }
+
+[data-theme='dark'] {
+	--bg-color: #0d1117; /* GitHub Dark 스타일 */
+	--text-color: #c9d1d9; /* 가독성 좋은 밝은 회색 */
+	--heading-color: #f0f6fc; /* 제목은 아주 밝게 */
+	--card-bg: #161b22;
+	--border-color: #30363d;
+	--toc-bg: rgba(13, 17, 23, 0.9);
+	--gray-light: #21262d;
+	--accent: #58a6ff; /* 밝고 명확한 블루 */
+	--bg-image-opacity: 0.03;
+}
+
 @font-face {
 	font-family: "Atkinson";
 	src: url("/fonts/atkinson-regular.woff") format("woff");
@@ -35,14 +57,15 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background-color: #f8f9ff; /* 은은한 보라빛이 감도는 밝은 배경색 */
+	background-color: var(--bg-color); /* 변수 사용 */
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
+	color: var(--text-color); /* 변수 사용 */
 	font-size: 16px;
 	line-height: 1.6;
 	position: relative;
 	min-height: 100vh;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* 은은한 배경 이미지 추가 */
@@ -57,11 +80,12 @@ body::before {
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	opacity: 0.12; /* 색감과 어우러지도록 살짝 올림 */
-	filter: blur(3px) sepia(0.2) hue-rotate(240deg); /* 색감을 더해주는 필터 조합 */
+	opacity: var(--bg-image-opacity); /* 변수 사용 */
+	filter: blur(3px) sepia(0.2) hue-rotate(240deg);
 	z-index: -1;
 	pointer-events: none;
 }
+
 main {
 	width: 1020px;
 	max-width: calc(100% - 2em);
@@ -75,7 +99,7 @@ h4,
 h5,
 h6 {
 	margin: 1.5rem 0 0.5rem 0;
-	color: rgb(var(--black));
+	color: var(--heading-color); /* 변수 사용 */
 	line-height: 1.2;
 }
 h1 {
@@ -83,9 +107,10 @@ h1 {
 }
 h2 {
 	font-size: 1.8rem;
-	border-bottom: 1px solid rgb(var(--gray-light));
+	border-bottom: 1px solid var(--border-color); /* 변수 사용 */
 	padding-bottom: 0.3rem;
 }
+/* ... 이하 스타일들도 변수 기반으로 적용 필요 ... */
 h3 {
 	font-size: 1.4rem;
 }
@@ -107,9 +132,14 @@ a:hover {
 }
 p {
 	margin-bottom: 1em;
+	color: var(--text-color);
 }
-.prose p {
+.prose p, .prose li, .prose ul, .prose ol {
 	margin-bottom: 1.2rem;
+	color: var(--text-color);
+}
+.prose strong {
+	color: var(--heading-color);
 }
 textarea {
 	width: 100%;
@@ -139,14 +169,17 @@ img {
 }
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
+	background-color: var(--gray-light);
 	border-radius: 2px;
 	font-size: 0.9em;
+	color: var(--accent);
 }
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
 	font-size: 0.9em;
+	margin: 1.5rem 0;
+	overflow-x: auto;
 }
 pre > code {
 	all: unset;
@@ -157,11 +190,44 @@ blockquote {
 	margin: 1rem 0;
 	font-size: 1.1em;
 	font-style: italic;
+	background-color: var(--bg-color);
 }
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-	margin: 2rem 0;
+header {
+	background-color: var(--card-bg) !important;
+	border-bottom: 1px solid var(--border-color);
+}
+nav a {
+	color: var(--text-color) !important;
+}
+.title {
+	margin: 0;
+	color: var(--heading-color) !important; /* 목록 제목 색상 강제 */
+	line-height: 1;
+}
+.feature-card {
+	background-color: var(--card-bg) !important;
+	border-color: var(--border-color) !important;
+}
+.goals-section {
+	background-color: var(--toc-bg) !important;
+	border-color: var(--border-color) !important;
+}
+.goals-list li {
+	background-color: var(--card-bg) !important;
+	color: var(--text-color);
+}
+.toc {
+	background-color: var(--toc-bg);
+	border-left-color: var(--border-color) !important;
+}
+#back-to-top {
+	background-color: var(--card-bg) !important;
+	color: var(--text-color) !important;
+	border: 1px solid var(--border-color) !important;
+}
+#back-to-top:hover {
+	background-color: var(--accent) !important;
+	color: white !important;
 }
 @media (max-width: 720px) {
 	body {
