@@ -111,7 +111,7 @@ const DESCRIPTION = "프로젝트 분석 및 정기 리포트 기록입니다.";
 							const image = post.data.heroImage || (post.data.image ? `/images/${post.data.image}` : undefined);
 							return (
 								<li>
-									<a href={`/problem-solving/${post.id}/`}>
+									<a href={`/blog/${post.id}/`}>
 										{image && (
 											<img width={720} height={360} src={image} alt="" />
 										)}

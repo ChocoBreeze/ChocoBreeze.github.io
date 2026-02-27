@@ -18,18 +18,33 @@ const { Content, headings } = await render(post);
 const allPosts = (await getCollection('blog')).filter(p => {
 	const currentCats = post.data.categories;
 	const pCats = p.data.categories;
-	const normalize = (c) => Array.isArray(c) ? c[0] : c;
+	const normalize = (c) => {
+		if (Array.isArray(c)) return c[0];
+		return c;
+	};
 	return normalize(currentCats) === normalize(pCats);
 }).sort((a, b) => {
-	// ETF면 order 순, 아니면 날짜 순
-	if (a.data.categories === 'ETF' || (Array.isArray(a.data.categories) && a.data.categories.includes('ETF'))) {
+	// ETF 카테고리인 경우 (대소문자 무시)
+	const isETF = (c) => {
+		const norm = Array.isArray(c) ? c[0] : c;
+		return norm?.toLowerCase() === 'etf';
+	};
+
+	if (isETF(a.data.categories)) {
+		// 1. Pinned 우선
 		if (a.data.pinned && !b.data.pinned) return -1;
 		if (!a.data.pinned && b.data.pinned) return 1;
-		return (a.data.order ?? 0) - (b.data.order ?? 0);
+		
+		// 2. Order 순서 (order가 없으면 아주 큰 숫자 부여)
+		const orderA = a.data.order ?? 999;
+		const orderB = b.data.order ?? 999;
+		if (orderA !== orderB) return orderA - orderB;
 	}
+
+	// 그 외 일반 글들은 날짜 순 (과거 -> 최신 순으로 정렬해야 '다음 글'이 미래 글이 됨)
 	const dateA = a.data.pubDate || a.data.date || new Date(0);
 	const dateB = b.data.pubDate || b.data.date || new Date(0);
-	return dateA.valueOf() - dateB.valueOf(); // 과거순으로 정렬해야 인덱스 관리가 편함
+	return dateA.valueOf() - dateB.valueOf(); 
 });
 
 const index = allPosts.findIndex((p) => p.id === post.id);
@@ -42,7 +57,7 @@ const nextPost = index < allPosts.length - 1 ? allPosts[index + 1] : null;
 	
 	<div class="post-navigation">
 		{prevPost && (
-			<a href={`/problem-solving/${prevPost.id}/`} class="prev">
+			<a href={`/blog/${prevPost.id}/`} class="prev">
 				<span class="label">← 이전 글</span>
 				<span class="title">{prevPost.data.title}</span>
 			</a>
@@ -50,7 +65,7 @@ const nextPost = index < allPosts.length - 1 ? allPosts[index + 1] : null;
 		{!prevPost && <div class="spacer"></div>}
 		
 		{nextPost && (
-			<a href={`/problem-solving/${nextPost.id}/`} class="next">
+			<a href={`/blog/${nextPost.id}/`} class="next">
 				<span class="label">다음 글 →</span>
 				<span class="title">{nextPost.data.title}</span>
 			</a>
