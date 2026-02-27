@@ -39,10 +39,75 @@ import HeaderLink from './HeaderLink.astro';
 					></path>
 				</svg>
 			</a>
+			<button id="theme-toggle" aria-label="Toggle dark mode" class="theme-toggle">
+				<svg id="sun-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<circle cx="12" cy="12" r="5"></circle>
+					<line x1="12" y1="1" x2="12" y2="3"></line>
+					<line x1="12" y1="21" x2="12" y2="23"></line>
+					<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+					<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+					<line x1="1" y1="12" x2="3" y2="12"></line>
+					<line x1="21" y1="12" x2="23" y2="12"></line>
+					<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+					<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+				</svg>
+				<svg id="moon-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+				</svg>
+			</button>
 		</div>
 	</nav>
 </header>
+
+<script>
+	const themeToggle = document.getElementById('theme-toggle');
+	const html = document.documentElement;
+
+	themeToggle.addEventListener('click', () => {
+		const isDark = html.getAttribute('data-theme') === 'dark';
+		const newTheme = isDark ? 'light' : 'dark';
+		
+		html.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+	});
+</script>
+
 <style>
+	.theme-toggle {
+		background: none;
+		border: none;
+		cursor: pointer;
+		color: var(--text-color);
+		padding: 0.5rem;
+		margin-left: 0.5rem;
+		display: flex;
+		align-items: center;
+		border-radius: 50%;
+		transition: background-color 0.2s;
+		position: relative;
+		width: 40px;
+		height: 40px;
+	}
+	.theme-toggle:hover {
+		background-color: var(--gray-light);
+	}
+	.theme-toggle svg {
+		position: absolute;
+		transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+	}
+	
+	#sun-icon { opacity: 0; transform: rotate(90deg) scale(0); }
+	#moon-icon { opacity: 0; transform: rotate(-90deg) scale(0); }
+
+	:global([data-theme='light']) #moon-icon {
+		opacity: 1;
+		transform: rotate(0) scale(1);
+	}
+	:global([data-theme='dark']) #sun-icon {
+		opacity: 1;
+		transform: rotate(0) scale(1);
+	}
+
 	header {
 		margin: 0;
 		padding: 0 1em;
