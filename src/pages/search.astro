@@ -11,7 +11,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<BaseHead title={`Search | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
 			main {
-				width: 960px;
+				width: 100%;
+				max-width: 960px;
 				margin: auto;
 				padding: 3em 1em;
 			}
@@ -112,7 +113,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				resultsCount.textContent = `${results.length}개의 결과를 찾았습니다.`;
 				resultsList.innerHTML = results.map(item => `
 					<li class="result-item">
-						<a href="/problem-solving/${item.slug}/">
+						<a href="/blog/${item.slug}/">
 							<span class="result-category">${Array.isArray(item.categories) ? item.categories[0] : (item.categories || 'Uncategorized')}</span>
 							<h3>${item.title}</h3>
 							<p>${item.description || ''}</p>

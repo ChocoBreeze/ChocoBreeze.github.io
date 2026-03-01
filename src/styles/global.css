@@ -87,8 +87,8 @@ body::before {
 }
 
 main {
-	width: 1020px;
-	max-width: calc(100% - 2em);
+	width: 100%;
+	max-width: 1020px;
 	margin: auto;
 	padding: 3em 1em;
 }
@@ -149,10 +149,18 @@ input {
 	font-size: 14px;
 }
 table {
+	display: block;
 	width: 100%;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
 	font-size: 0.9em;
 	border-collapse: collapse;
 	margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+	table {
+		display: table;
+	}
 }
 th, td {
 	border: 1px solid rgb(var(--gray-light));
@@ -231,13 +239,15 @@ nav a {
 }
 @media (max-width: 720px) {
 	body {
-		font-size: 15px;
+		font-size: 16px;
 	}
 	main {
-		padding: 1em;
+		padding: 2em 1em;
 	}
-	h1 { font-size: 2rem; }
-	h2 { font-size: 1.5rem; }
+	h1 { font-size: 1.8rem; }
+	h2 { font-size: 1.4rem; }
+	h3 { font-size: 1.25rem; }
+	h4 { font-size: 1.1rem; }
 }
 
 .sr-only {

@@ -12,7 +12,6 @@ import HeaderLink from './HeaderLink.astro';
 			<a href="/">{SITE_TITLE}</a>
 		</h2>
 		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/etf">ETF</HeaderLink>
 			<HeaderLink href="/semiconductor">Semiconductor</HeaderLink>
 			<HeaderLink href="/problem-solving">Problem Solving</HeaderLink>
@@ -144,14 +143,41 @@ import HeaderLink from './HeaderLink.astro';
 		text-decoration: none;
 		border-bottom-color: var(--accent);
 	}
-	.social-links,
-	.social-links a {
+	.social-links {
 		display: flex;
 		align-items: center;
+		gap: 0.5rem;
 	}
 	@media (max-width: 720px) {
-		.social-links {
+		.social-links a:not([href="/search"]) { /* 검색 외의 외부 링크 숨김 */
 			display: none;
+		}
+		.internal-links {
+			display: flex;
+			gap: 0.25rem;
+			overflow-x: auto; /* 가로 스크롤 허용 */
+			white-space: nowrap;
+			-webkit-overflow-scrolling: touch;
+			scrollbar-width: none; /* 파이어폭스 스크롤바 숨김 */
+			margin: 0 0.5rem;
+		}
+		.internal-links::-webkit-scrollbar {
+			display: none; /* 크롬/사파리 스크롤바 숨김 */
+		}
+		nav {
+			flex-direction: column;
+			padding: 0.5rem 0;
+		}
+		.internal-links {
+			order: 3;
+			width: 100%;
+			justify-content: flex-start;
+			padding-bottom: 0.5rem;
+		}
+		.social-links {
+			position: absolute;
+			right: 1em;
+			top: 0.75rem;
 		}
 	}
 </style>
