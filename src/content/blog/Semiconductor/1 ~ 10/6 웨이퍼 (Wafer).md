@@ -1,7 +1,7 @@
 ---
 title: '6. 웨이퍼(Wafer)'
 description: '반도체 칩을 만들기 위한 얇고 둥근 실리콘 판'
-pubDate: '2026-01-07T13:00:00Z'
+pubDate: '2026-01-06T13:00:00Z'
 categories: "Semiconductor"
 ---
 

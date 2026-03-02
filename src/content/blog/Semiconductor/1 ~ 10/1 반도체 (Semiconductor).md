@@ -1,7 +1,7 @@
 ---
 title: '1. 반도체(semiconductor)'
 description: '전기가 가끔은 흐르고, 가끔은 안 흐르는 특별한 재료'
-pubDate: '2026-01-02T13:00:00Z'
+pubDate: '2026-01-01T13:00:00Z'
 categories: "Semiconductor"
 ---
 

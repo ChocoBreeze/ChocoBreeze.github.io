@@ -1,7 +1,7 @@
 ---
 title: '9. CPU / GPU / NPU'
 description: '역할이 모두 다른 컴퓨터가 계산을 하는 뇌'
-pubDate: '2026-01-09T01:00:00Z'
+pubDate: '2026-01-09T00:00:00Z'
 categories: "Semiconductor"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: '10. D램(DRAM) / 낸드(NAND) / SSD'
 description: '저장장치'
-pubDate: '2026-01-10T01:00:00Z'
+pubDate: '2026-01-10T00:00:00Z'
 categories: "Semiconductor"
 ---
 

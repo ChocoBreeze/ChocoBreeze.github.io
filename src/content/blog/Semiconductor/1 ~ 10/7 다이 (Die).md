@@ -1,7 +1,7 @@
 ---
 title: '7. 다이(Die)'
 description: '웨이퍼에서 잘라낸 하나의 반도체 칩 조각'
-pubDate: '2026-01-08T00:00:00Z'
+pubDate: '2026-01-07T00:00:00Z'
 categories: "Semiconductor"
 ---
 

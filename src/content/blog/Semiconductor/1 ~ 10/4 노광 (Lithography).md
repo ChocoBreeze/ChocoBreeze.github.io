@@ -1,7 +1,7 @@
 ---
 title: '4. 노광 (Lithography)'
 description: '빛으로 반도체 회로(길과 건물)를 웨이퍼 위에 찍어내는 과정'
-pubDate: '2026-01-05T13:00:00Z'
+pubDate: '2026-01-04T13:00:00Z'
 categories: "Semiconductor"
 ---
 

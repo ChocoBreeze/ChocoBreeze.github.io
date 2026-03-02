@@ -1,7 +1,7 @@
 ---
 title: '2. 트랜지스터(Transistor)'
 description: '전기를 켜고 끄는 초미니 전기 스위치'
-pubDate: '2026-01-03T13:00:00Z'
+pubDate: '2026-01-02T13:00:00Z'
 categories: "Semiconductor"
 ---
 

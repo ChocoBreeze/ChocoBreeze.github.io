@@ -1,7 +1,7 @@
 ---
 title: '8. 패키징(Packaging)'
 description: '패키징은 다이(칩 조각)를 보호하고, 밖의 기판·메인보드와 연결할 수 있게 껍데기와 다리를 달아주는 과정'
-pubDate: '2026-01-08T01:00:00Z'
+pubDate: '2026-01-08T00:00:00Z'
 categories: "Semiconductor"
 ---
 

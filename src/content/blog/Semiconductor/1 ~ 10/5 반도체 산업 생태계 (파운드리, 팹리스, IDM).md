@@ -1,7 +1,7 @@
 ---
 title: '5. 파운드리 / 팹리스 / IDM'
 description: '반도체 칩이 만들어지는 과정 전체'
-pubDate: '2026-01-06T13:00:00Z'
+pubDate: '2026-01-05T13:00:00Z'
 categories: "Semiconductor"
 ---
 
