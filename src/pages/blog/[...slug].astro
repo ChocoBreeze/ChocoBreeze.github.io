@@ -5,7 +5,7 @@ import BlogPost from '../../layouts/BlogPost.astro';
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
 	return posts.map((post) => ({
-		params: { slug: post.id },
+		params: { slug: post.data.slug || post.id },
 		props: post,
 	}));
 }
@@ -50,6 +50,8 @@ const allPosts = (await getCollection('blog')).filter(p => {
 const index = allPosts.findIndex((p) => p.id === post.id);
 const prevPost = index > 0 ? allPosts[index - 1] : null;
 const nextPost = index < allPosts.length - 1 ? allPosts[index + 1] : null;
+
+const getSlug = (p: CollectionEntry<'blog'>) => p.data.slug || p.id;
 ---
 
 <BlogPost {...post.data} headings={headings}>
@@ -57,7 +59,7 @@ const nextPost = index < allPosts.length - 1 ? allPosts[index + 1] : null;
 	
 	<div class="post-navigation">
 		{prevPost && (
-			<a href={`/blog/${prevPost.id}/`} class="prev">
+			<a href={`/blog/${getSlug(prevPost)}/`} class="prev">
 				<span class="label">← 이전 글</span>
 				<span class="title">{prevPost.data.title}</span>
 			</a>
@@ -65,7 +67,7 @@ const nextPost = index < allPosts.length - 1 ? allPosts[index + 1] : null;
 		{!prevPost && <div class="spacer"></div>}
 		
 		{nextPost && (
-			<a href={`/blog/${nextPost.id}/`} class="next">
+			<a href={`/blog/${getSlug(nextPost)}/`} class="next">
 				<span class="label">다음 글 →</span>
 				<span class="title">{nextPost.data.title}</span>
 			</a>
