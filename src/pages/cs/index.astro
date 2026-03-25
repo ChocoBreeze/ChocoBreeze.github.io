@@ -18,7 +18,7 @@ const posts = (await getCollection('blog'))
 
 		const dateA = a.data.pubDate || a.data.date || new Date(0);
 		const dateB = b.data.pubDate || b.data.date || new Date(0);
-		return dateB.valueOf() - dateA.valueOf();
+		return dateA.valueOf() - dateB.valueOf();
 	});
 
 const category = BLOG_CATEGORIES.find(({ key }) => key === 'Computer Science')!;

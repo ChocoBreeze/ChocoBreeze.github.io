@@ -47,16 +47,16 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                 height: auto;
             }
             .blog-post-shell {
-                width: min(1500px, calc(100% - 2em));
+                width: min(1560px, calc(100% - 2em));
                 margin: 2rem auto;
                 display: grid;
-                grid-template-columns: 240px minmax(0, 1fr);
+                grid-template-columns: 240px minmax(0, 1fr) 240px;
                 gap: 2rem;
                 align-items: start;
             }
             .prose {
                 width: 100%;
-                max-width: 980px;
+                max-width: 100%;
                 margin: 0;
                 padding: 1em;
                 color: rgb(var(--gray-dark));
@@ -81,11 +81,10 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
 
             /* Table of Contents Styles */
             .toc {
-                position: fixed;
-                top: 150px;
-                right: 1.5rem;
-                width: 280px;
-                max-height: 70vh;
+                position: sticky;
+                top: 110px;
+                width: 100%;
+                max-height: calc(100vh - 140px);
                 overflow-y: auto;
                 padding: 1.1rem;
                 font-size: 0.88rem;
@@ -96,8 +95,7 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                 backdrop-filter: blur(14px);
                 display: none;
             }
-            @media (min-width: 1650px) {
-                /* 더 넓어진 폭에 맞춰 조정 */
+            @media (min-width: 1400px) {
                 .toc {
                     display: block;
                 }
@@ -177,6 +175,11 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                 transform: translateY(-5px);
                 box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
             }
+            @media (max-width: 1399px) {
+                .blog-post-shell {
+                    grid-template-columns: 240px minmax(0, 1fr);
+                }
+            }
             @media (max-width: 980px) {
                 .blog-post-shell {
                     grid-template-columns: 1fr;
@@ -199,24 +202,6 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                 <div class="blog-post-shell">
                     <BlogSidebar activeCategory={activeCategory} />
                     <div class="prose">
-                        {
-                            headings && headings.length > 0 && (
-                                <nav class="toc">
-                                    <h2>On this page</h2>
-                                    <ul>
-                                        {headings
-                                            .filter((h) => h.depth <= 3)
-                                            .map((h) => (
-                                                <li class={`depth-${h.depth}`}>
-                                                    <a href={`#${h.slug}`}>
-                                                        {h.text}
-                                                    </a>
-                                                </li>
-                                            ))}
-                                    </ul>
-                                </nav>
-                            )
-                        }
                         <div class="title">
                             <div class="date">
                                 {date && <FormattedDate date={date} />}
@@ -234,6 +219,24 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                         </div>
                         <slot />
                     </div>
+                    {
+                        headings && headings.length > 0 && (
+                            <nav class="toc">
+                                <h2>On this page</h2>
+                                <ul>
+                                    {headings
+                                        .filter((h) => h.depth <= 3)
+                                        .map((h) => (
+                                            <li class={`depth-${h.depth}`}>
+                                                <a href={`#${h.slug}`}>
+                                                    {h.text}
+                                                </a>
+                                            </li>
+                                        ))}
+                                </ul>
+                            </nav>
+                        )
+                    }
                 </div>
             </article>
         </main>
