@@ -1,5 +1,5 @@
 ---
-title: 'BITO (ProShares Bitcoin Strategy ETF) 종합 분석 보고서'
+title: 'BITO (ProShares Bitcoin Strategy ETF)'
 description: '미국 최초의 비트코인 연계 ETF'
 pubDate: '2026-01-15T13:00:00Z'
 categories: "ETF"

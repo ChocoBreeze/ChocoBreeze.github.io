@@ -1,5 +1,5 @@
 ---
-title: 'IBIT (iShares Bitcoin Trust ETF) 종합 분석 보고서'
+title: 'IBIT (iShares Bitcoin Trust ETF)'
 description: '스팟 비트코인 ETF'
 pubDate: '2026-01-15T10:00:00Z'
 categories: "ETF"

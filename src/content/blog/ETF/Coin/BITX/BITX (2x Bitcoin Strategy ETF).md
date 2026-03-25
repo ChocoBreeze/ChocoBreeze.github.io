@@ -1,5 +1,5 @@
 ---
-title: 'BITX (2x Bitcoin Strategy ETF) 종합 분석 보고서'
+title: 'BITX (2x Bitcoin Strategy ETF)'
 description: '2배 일일 비트코인 레버리지 ETF'
 pubDate: '2026-01-15T11:00:00Z'
 categories: "ETF"

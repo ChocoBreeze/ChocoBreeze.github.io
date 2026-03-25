@@ -1,5 +1,5 @@
 ---
-title: 'BITU (ProShares Ultra Bitcoin ETF) 종합 분석 보고서'
+title: 'BITU (ProShares Ultra Bitcoin ETF)'
 description: '2배 일일 비트코인 레버리지 ETF'
 pubDate: '2026-01-15T12:00:00Z'
 categories: "ETF"

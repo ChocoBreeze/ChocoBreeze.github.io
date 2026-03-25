@@ -1,5 +1,5 @@
 ---
-title: 'FBTC (Fidelity Wise Origin Bitcoin Fund) 종합 분석 보고서'
+title: 'FBTC (Fidelity Wise Origin Bitcoin Fund)'
 description: '스팟 비트코인 ETF'
 pubDate: '2026-01-15T09:00:00Z'
 categories: "ETF"
