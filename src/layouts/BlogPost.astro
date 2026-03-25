@@ -1,211 +1,244 @@
 ---
-import { Image } from 'astro:assets';
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import Header from "../components/Header.astro";
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, date: jekyllDate, updatedDate, heroImage, image: jekyllImage, headings } = Astro.props;
+const {
+    title,
+    description,
+    pubDate,
+    date: jekyllDate,
+    updatedDate,
+    heroImage,
+    image: jekyllImage,
+    headings,
+} = Astro.props;
 const date = pubDate || jekyllDate;
 const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-				margin-bottom: 1rem;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-				max-width: 720px; /* 이미지 너비를 720px로 제한 */
-				height: auto;
-			}
-			.prose {
-				width: 1100px; /* 본문 폭 늘림 */
-				max-width: calc(100% - 2em);
-				margin: 2rem auto; /* 중앙 정렬로 변경 */
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-				position: relative;
-			}
-			@media (min-width: 1300px) { /* 충분히 넓을 때만 왼쪽 여백 유지 */
+    <head>
+        <BaseHead title={title} description={description} />
+        <style>
+            main {
+                width: calc(100% - 2em);
+                max-width: 100%;
+                margin: 0;
+            }
+            .hero-image {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            .hero-image img {
+                display: block;
+                margin: 0 auto;
+                border-radius: 12px;
+                box-shadow: var(--box-shadow);
+                max-width: 720px; /* 이미지 너비를 720px로 제한 */
+                height: auto;
+            }
+            .prose {
+                width: 1280px;
+                max-width: calc(100% - 2em);
+                margin: 2rem auto;
+                padding: 1em;
+                color: rgb(var(--gray-dark));
+                position: relative;
+            }
+			@media (min-width: 1500px) {
 				.prose {
-					margin: 2rem 0 2rem 200px;
+					margin: 2rem 360px 2rem 140px;
 				}
 			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: left;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
+            .title {
+                margin-bottom: 1em;
+                padding: 1em 0;
+                text-align: left;
+                line-height: 1;
+            }
+            .title h1 {
+                margin: 0 0 0.5em 0;
+            }
+            .date {
+                margin-bottom: 0.5em;
+                color: rgb(var(--gray));
+            }
+            .last-updated-on {
+                font-style: italic;
+            }
 
-			/* Table of Contents Styles */
-			.toc {
-				position: fixed;
-				top: 150px;
-				left: 1340px; /* 본문 끝(1300px) + 여유(40px) */
-				width: 280px;
-				max-height: 70vh;
-				overflow-y: auto;
-				padding: 1rem;
-				font-size: 0.85rem;
-				border-left: 1px solid #eee;
-				display: none;
-			}
-			@media (min-width: 1650px) { /* 더 넓어진 폭에 맞춰 조정 */
-				.toc {
-					display: block;
-				}
-			}
-			.toc h2 {
-				font-size: 0.9rem;
-				text-transform: uppercase;
-				letter-spacing: 0.05em;
-				margin-top: 0;
-				margin-bottom: 1rem;
-				color: #999;
-			}
-			.toc ul {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-			}
-			.toc li {
-				margin-bottom: 0.6rem;
-				line-height: 1.3;
-			}
-			.toc a {
-				text-decoration: none;
-				color: #666;
-				transition: all 0.2s;
-			}
-			.toc a:hover {
-				color: var(--accent);
-				padding-left: 4px;
-			}
-			.toc .depth-3 { margin-left: 1rem; color: #888; }
+            /* Table of Contents Styles */
+            .toc {
+                position: fixed;
+                top: 150px;
+                right: 1.5rem;
+                width: 280px;
+                max-height: 70vh;
+                overflow-y: auto;
+                padding: 1rem;
+                font-size: 0.85rem;
+                border-left: 1px solid #eee;
+                display: none;
+            }
+            @media (min-width: 1650px) {
+                /* 더 넓어진 폭에 맞춰 조정 */
+                .toc {
+                    display: block;
+                }
+            }
+            .toc h2 {
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                margin-top: 0;
+                margin-bottom: 1rem;
+                color: #999;
+            }
+            .toc ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .toc li {
+                margin-bottom: 0.6rem;
+                line-height: 1.3;
+            }
+            .toc a {
+                text-decoration: none;
+                color: #666;
+                transition: all 0.2s;
+            }
+            .toc a:hover {
+                color: var(--accent);
+                padding-left: 4px;
+            }
+            .toc .depth-3 {
+                margin-left: 1rem;
+                color: #888;
+            }
 
-			/* Back to Top Button */
-			#back-to-top {
-				position: fixed;
-				bottom: 3rem;
-				right: 3rem;
-				width: 50px;
-				height: 50px;
-				background-color: var(--accent); /* 기본 색상을 강조색으로 */
-				color: white;
-				border: none;
-				border-radius: 50%;
-				cursor: pointer;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-				opacity: 0;
-				visibility: hidden;
-				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-				z-index: 9999; /* 최상단으로 */
-			}
-			#back-to-top.show {
-				opacity: 1;
-				visibility: visible;
-			}
-			#back-to-top:hover {
-				transform: translateY(-5px);
-				box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-			}
-		</style>
-	</head>
+            /* Back to Top Button */
+            #back-to-top {
+                position: fixed;
+                bottom: 3rem;
+                right: 3rem;
+                width: 50px;
+                height: 50px;
+                background-color: var(--accent); /* 기본 색상을 강조색으로 */
+                color: white;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 9999; /* 최상단으로 */
+            }
+            #back-to-top.show {
+                opacity: 1;
+                visibility: visible;
+            }
+            #back-to-top:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            }
+        </style>
+    </head>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{image && <img width={1020} height={510} src={image} alt="" />}
-				</div>
-				<div class="prose">
-					{headings && headings.length > 0 && (
-						<nav class="toc">
-							<h2>On this page</h2>
-							<ul>
-								{headings.filter(h => h.depth <= 3).map(h => (
-									<li class={`depth-${h.depth}`}>
-										<a href={`#${h.slug}`}>{h.text}</a>
-									</li>
-								))}
-							</ul>
-						</nav>
-					)}
-					<div class="title">
-						<div class="date">
-							{date && <FormattedDate date={date} />}
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
+    <body>
+        <Header />
+        <main>
+            <article>
+                <div class="hero-image">
+                    {
+                        image && (
+                            <img width={1020} height={510} src={image} alt="" />
+                        )
+                    }
+                </div>
+                <div class="prose">
+                    {
+                        headings && headings.length > 0 && (
+                            <nav class="toc">
+                                <h2>On this page</h2>
+                                <ul>
+                                    {headings
+                                        .filter((h) => h.depth <= 3)
+                                        .map((h) => (
+                                            <li class={`depth-${h.depth}`}>
+                                                <a href={`#${h.slug}`}>
+                                                    {h.text}
+                                                </a>
+                                            </li>
+                                        ))}
+                                </ul>
+                            </nav>
+                        )
+                    }
+                    <div class="title">
+                        <div class="date">
+                            {date && <FormattedDate date={date} />}
+                            {
+                                updatedDate && (
+                                    <div class="last-updated-on">
+                                        Last updated on{" "}
+                                        <FormattedDate date={updatedDate} />
+                                    </div>
+                                )
+                            }
+                        </div>
+                        <h1>{title}</h1>
+                        <hr />
+                    </div>
+                    <slot />
+                </div>
+            </article>
+        </main>
 
-		<button id="back-to-top" aria-label="Back to top">
-			<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-				<polyline points="18 15 12 9 6 15"></polyline>
-			</svg>
-		</button>
+        <button id="back-to-top" aria-label="Back to top">
+            <svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+        </button>
 
-		<Footer />
+        <Footer />
 
-		<script>
-			const backToTop = document.getElementById('back-to-top');
+        <script>
+            const backToTop = document.getElementById("back-to-top");
 
-			window.addEventListener('scroll', () => {
-				if (window.scrollY > 300) {
-					backToTop.classList.add('show');
-				} else {
-					backToTop.classList.remove('show');
-				}
-			});
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add("show");
+                } else {
+                    backToTop.classList.remove("show");
+                }
+            });
 
-			backToTop.addEventListener('click', () => {
-				window.scrollTo({
-					top: 0,
-					behavior: 'smooth'
-				});
-			});
-		</script>
-	</body>
+            backToTop.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
+            });
+        </script>
+    </body>
 </html>
