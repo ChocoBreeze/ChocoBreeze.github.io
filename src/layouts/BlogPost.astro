@@ -2,9 +2,11 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
+import BlogSidebar from "../components/BlogSidebar.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import Header from "../components/Header.astro";
+import { getCategoryDefinition } from "../data/blogCategories";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -20,6 +22,7 @@ const {
 } = Astro.props;
 const date = pubDate || jekyllDate;
 const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
+const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
 ---
 
 <html lang="en">
@@ -43,19 +46,22 @@ const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
                 max-width: 720px; /* 이미지 너비를 720px로 제한 */
                 height: auto;
             }
-            .prose {
-                width: 1280px;
-                max-width: calc(100% - 2em);
+            .blog-post-shell {
+                width: min(1500px, calc(100% - 2em));
                 margin: 2rem auto;
+                display: grid;
+                grid-template-columns: 240px minmax(0, 1fr);
+                gap: 2rem;
+                align-items: start;
+            }
+            .prose {
+                width: 100%;
+                max-width: 980px;
+                margin: 0;
                 padding: 1em;
                 color: rgb(var(--gray-dark));
                 position: relative;
             }
-			@media (min-width: 1500px) {
-				.prose {
-					margin: 2rem 360px 2rem 140px;
-				}
-			}
             .title {
                 margin-bottom: 1em;
                 padding: 1em 0;
@@ -81,9 +87,13 @@ const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
                 width: 280px;
                 max-height: 70vh;
                 overflow-y: auto;
-                padding: 1rem;
-                font-size: 0.85rem;
-                border-left: 1px solid #eee;
+                padding: 1.1rem;
+                font-size: 0.88rem;
+                border: 1px solid var(--border-color);
+                border-radius: 20px;
+                background: var(--toc-bg);
+                box-shadow: 0 12px 30px rgba(var(--gray), 0.12);
+                backdrop-filter: blur(14px);
                 display: none;
             }
             @media (min-width: 1650px) {
@@ -93,34 +103,49 @@ const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
                 }
             }
             .toc h2 {
-                font-size: 0.9rem;
+                font-size: 0.78rem;
+                font-weight: 700;
                 text-transform: uppercase;
-                letter-spacing: 0.05em;
+                letter-spacing: 0.12em;
                 margin-top: 0;
-                margin-bottom: 1rem;
-                color: #999;
+                margin-bottom: 0.9rem;
+                color: rgb(var(--gray));
             }
             .toc ul {
                 list-style: none;
                 padding: 0;
                 margin: 0;
+                display: grid;
+                gap: 0.45rem;
             }
             .toc li {
-                margin-bottom: 0.6rem;
-                line-height: 1.3;
+                margin-bottom: 0;
+                line-height: 1.35;
             }
             .toc a {
+                display: block;
+                padding: 0.7rem 0.85rem;
+                border-radius: 14px;
                 text-decoration: none;
-                color: #666;
-                transition: all 0.2s;
+                color: var(--text-color);
+                border: 1px solid transparent;
+                background: transparent;
+                transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
             }
             .toc a:hover {
                 color: var(--accent);
-                padding-left: 4px;
+                background: color-mix(in srgb, var(--card-bg) 82%, rgb(var(--gray)) 18%);
+                border-color: var(--border-color);
+                transform: translateX(2px);
+            }
+            .toc a.active {
+                color: var(--heading-color);
+                background: color-mix(in srgb, var(--accent) 12%, transparent);
+                border-color: color-mix(in srgb, var(--accent) 30%, var(--border-color));
+                font-weight: 700;
             }
             .toc .depth-3 {
-                margin-left: 1rem;
-                color: #888;
+                margin-left: 0.9rem;
             }
 
             /* Back to Top Button */
@@ -152,6 +177,11 @@ const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
                 transform: translateY(-5px);
                 box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
             }
+            @media (max-width: 980px) {
+                .blog-post-shell {
+                    grid-template-columns: 1fr;
+                }
+            }
         </style>
     </head>
 
@@ -166,41 +196,44 @@ const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
                         )
                     }
                 </div>
-                <div class="prose">
-                    {
-                        headings && headings.length > 0 && (
-                            <nav class="toc">
-                                <h2>On this page</h2>
-                                <ul>
-                                    {headings
-                                        .filter((h) => h.depth <= 3)
-                                        .map((h) => (
-                                            <li class={`depth-${h.depth}`}>
-                                                <a href={`#${h.slug}`}>
-                                                    {h.text}
-                                                </a>
-                                            </li>
-                                        ))}
-                                </ul>
-                            </nav>
-                        )
-                    }
-                    <div class="title">
-                        <div class="date">
-                            {date && <FormattedDate date={date} />}
-                            {
-                                updatedDate && (
-                                    <div class="last-updated-on">
-                                        Last updated on{" "}
-                                        <FormattedDate date={updatedDate} />
-                                    </div>
-                                )
-                            }
+                <div class="blog-post-shell">
+                    <BlogSidebar activeCategory={activeCategory} />
+                    <div class="prose">
+                        {
+                            headings && headings.length > 0 && (
+                                <nav class="toc">
+                                    <h2>On this page</h2>
+                                    <ul>
+                                        {headings
+                                            .filter((h) => h.depth <= 3)
+                                            .map((h) => (
+                                                <li class={`depth-${h.depth}`}>
+                                                    <a href={`#${h.slug}`}>
+                                                        {h.text}
+                                                    </a>
+                                                </li>
+                                            ))}
+                                    </ul>
+                                </nav>
+                            )
+                        }
+                        <div class="title">
+                            <div class="date">
+                                {date && <FormattedDate date={date} />}
+                                {
+                                    updatedDate && (
+                                        <div class="last-updated-on">
+                                            Last updated on{" "}
+                                            <FormattedDate date={updatedDate} />
+                                        </div>
+                                    )
+                                }
+                            </div>
+                            <h1>{title}</h1>
+                            <hr />
                         </div>
-                        <h1>{title}</h1>
-                        <hr />
+                        <slot />
                     </div>
-                    <slot />
                 </div>
             </article>
         </main>
@@ -224,6 +257,18 @@ const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
 
         <script>
             const backToTop = document.getElementById("back-to-top");
+            const tocLinks = Array.from(document.querySelectorAll(".toc a"));
+            const headingElements = tocLinks
+                .map((link) => {
+                    const id = link.getAttribute("href")?.slice(1);
+                    if (!id) return null;
+
+                    const element = document.getElementById(id);
+                    if (!element) return null;
+
+                    return { link, element };
+                })
+                .filter(Boolean);
 
             window.addEventListener("scroll", () => {
                 if (window.scrollY > 300) {
@@ -239,6 +284,44 @@ const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
                     behavior: "smooth",
                 });
             });
+
+            if (headingElements.length > 0) {
+                const setActiveLink = (activeId) => {
+                    headingElements.forEach(({ link, element }) => {
+                        const isActive = element.id === activeId;
+                        link.classList.toggle("active", isActive);
+                        link.setAttribute("aria-current", isActive ? "true" : "false");
+                    });
+                };
+
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        const visibleEntries = entries
+                            .filter((entry) => entry.isIntersecting)
+                            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+                        if (visibleEntries.length > 0) {
+                            setActiveLink(visibleEntries[0].target.id);
+                            return;
+                        }
+
+                        const passedHeadings = headingElements
+                            .filter(({ element }) => element.getBoundingClientRect().top <= 160)
+                            .map(({ element }) => element.id);
+
+                        if (passedHeadings.length > 0) {
+                            setActiveLink(passedHeadings[passedHeadings.length - 1]);
+                        }
+                    },
+                    {
+                        rootMargin: "-120px 0px -55% 0px",
+                        threshold: [0, 1],
+                    }
+                );
+
+                headingElements.forEach(({ element }) => observer.observe(element));
+                setActiveLink(headingElements[0].element.id);
+            }
         </script>
     </body>
 </html>

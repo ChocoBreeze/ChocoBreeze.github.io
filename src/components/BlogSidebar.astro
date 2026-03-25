@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import {
+	BLOG_CATEGORIES,
+	getCategoryDefinition,
+	type BlogCategoryKey,
+} from '../data/blogCategories';
+
+type Props = {
+	activeCategory?: BlogCategoryKey;
+};
+
+const { activeCategory } = Astro.props;
+
+const posts = await getCollection('blog');
+const categoryCounts = new Map<BlogCategoryKey, number>();
+
+for (const post of posts) {
+	const definition = getCategoryDefinition(post.data.categories);
+	if (!definition) continue;
+
+	categoryCounts.set(
+		definition.key,
+		(categoryCounts.get(definition.key) ?? 0) + 1,
+	);
+}
+---
+
+<aside class="blog-sidebar">
+	<div class="blog-sidebar-inner">
+		<p class="blog-sidebar-label">Categories</p>
+		<nav aria-label="Blog categories">
+			<ul class="blog-sidebar-list">
+				{
+					BLOG_CATEGORIES.map((category) => {
+						const isActive = category.key === activeCategory;
+						const count = categoryCounts.get(category.key) ?? 0;
+
+						return (
+							<li>
+								<a
+									href={category.href}
+									class:list={[
+										'blog-sidebar-link',
+										{ active: isActive },
+									]}
+									aria-current={isActive ? 'page' : undefined}
+								>
+									<span>{category.label}</span>
+									<span class="count">{count}</span>
+								</a>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</nav>
+	</div>
+</aside>
