@@ -24,6 +24,9 @@
 	--border-color: #eee;
 	--toc-bg: rgba(255, 255, 255, 0.8);
 	--bg-image-opacity: 0.12;
+	--muted-text: rgb(var(--gray));
+	--table-head-bg: #eef2ff;
+	--table-row-alt-bg: rgba(35, 55, 255, 0.04);
 }
 
 [data-theme='dark'] {
@@ -36,6 +39,9 @@
 	--gray-light: #21262d;
 	--accent: #58a6ff; /* 밝고 명확한 블루 */
 	--bg-image-opacity: 0.03;
+	--muted-text: #8b949e;
+	--table-head-bg: #1f2630;
+	--table-row-alt-bg: rgba(88, 166, 255, 0.08);
 }
 
 @font-face {
@@ -156,6 +162,10 @@ table {
 	font-size: 0.9em;
 	border-collapse: collapse;
 	margin-bottom: 1rem;
+	color: var(--text-color);
+	background-color: var(--card-bg);
+	border: 1px solid var(--border-color);
+	border-radius: 12px;
 }
 @media (min-width: 768px) {
 	table {
@@ -163,12 +173,20 @@ table {
 	}
 }
 th, td {
-	border: 1px solid rgb(var(--gray-light));
+	border: 1px solid var(--border-color);
 	padding: 8px;
 	text-align: left;
+	color: var(--text-color);
 }
 th {
-	background-color: #f8f9fa;
+	background-color: var(--table-head-bg);
+	color: var(--heading-color);
+}
+tbody tr:nth-child(even) {
+	background-color: var(--table-row-alt-bg);
+}
+tbody tr:hover {
+	background-color: color-mix(in srgb, var(--table-row-alt-bg) 70%, var(--card-bg));
 }
 img {
 	max-width: 100%;
@@ -255,7 +273,7 @@ nav a {
 	font-weight: 700;
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
-	color: rgb(var(--gray));
+	color: var(--muted-text);
 }
 .blog-sidebar-list {
 	list-style: none;
@@ -278,7 +296,7 @@ nav a {
 	transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 .blog-sidebar-link:hover {
-	background: color-mix(in srgb, var(--card-bg) 82%, rgb(var(--gray)) 18%);
+	background: color-mix(in srgb, var(--card-bg) 82%, var(--muted-text) 18%);
 	border-color: var(--border-color);
 	transform: translateX(2px);
 }
@@ -295,8 +313,8 @@ nav a {
 	border-radius: 999px;
 	text-align: center;
 	font-size: 0.82rem;
-	background: color-mix(in srgb, var(--card-bg) 78%, rgb(var(--gray)) 22%);
-	color: rgb(var(--gray));
+	background: color-mix(in srgb, var(--card-bg) 78%, var(--muted-text) 22%);
+	color: var(--muted-text);
 }
 .blog-list-panel {
 	min-width: 0;
@@ -365,7 +383,7 @@ nav a {
 }
 .blog-post-card .date {
 	margin: 0;
-	color: rgb(var(--gray));
+	color: var(--muted-text);
 }
 #back-to-top {
 	background-color: var(--card-bg) !important;

@@ -59,7 +59,7 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                 max-width: 100%;
                 margin: 0;
                 padding: 1em;
-                color: rgb(var(--gray-dark));
+                color: var(--text-color);
                 position: relative;
             }
             .title {
@@ -73,7 +73,7 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
             }
             .date {
                 margin-bottom: 0.5em;
-                color: rgb(var(--gray));
+                color: var(--muted-text);
             }
             .last-updated-on {
                 font-style: italic;
@@ -107,7 +107,7 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                 letter-spacing: 0.12em;
                 margin-top: 0;
                 margin-bottom: 0.9rem;
-                color: rgb(var(--gray));
+                color: var(--muted-text);
             }
             .toc ul {
                 list-style: none;
@@ -132,7 +132,7 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
             }
             .toc a:hover {
                 color: var(--accent);
-                background: color-mix(in srgb, var(--card-bg) 82%, rgb(var(--gray)) 18%);
+                background: color-mix(in srgb, var(--card-bg) 82%, var(--muted-text) 18%);
                 border-color: var(--border-color);
                 transform: translateX(2px);
             }
@@ -225,7 +225,11 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                                 <h2>On this page</h2>
                                 <ul>
                                     {headings
-                                        .filter((h) => h.depth <= 3)
+                                        .filter(
+                                            (h) =>
+                                                h.depth <= 3 &&
+                                                h.text.trim().toLowerCase() !== "footnotes"
+                                        )
                                         .map((h) => (
                                             <li class={`depth-${h.depth}`}>
                                                 <a href={`#${h.slug}`}>
