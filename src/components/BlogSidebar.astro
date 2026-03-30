@@ -11,6 +11,14 @@ type Props = {
 };
 
 const { activeCategory } = Astro.props;
+const computingKeys: BlogCategoryKey[] = ['Computer Science', 'Programming', 'Problem_Solving'];
+const primaryCategories = BLOG_CATEGORIES.filter(
+	({ key }) => !computingKeys.includes(key),
+);
+const computingCategories = BLOG_CATEGORIES.filter(({ key }) =>
+	computingKeys.includes(key),
+);
+const isComputingActive = activeCategory ? computingKeys.includes(activeCategory) : false;
 
 const posts = await getCollection('blog');
 const categoryCounts = new Map<BlogCategoryKey, number>();
@@ -32,7 +40,7 @@ for (const post of posts) {
 		<nav aria-label="Blog categories">
 			<ul class="blog-sidebar-list">
 				{
-					BLOG_CATEGORIES.map((category) => {
+					primaryCategories.map((category) => {
 						const isActive = category.key === activeCategory;
 						const count = categoryCounts.get(category.key) ?? 0;
 
@@ -53,7 +61,68 @@ for (const post of posts) {
 						);
 					})
 				}
+				<li class="blog-sidebar-group">
+					<a
+						href="/computing"
+						class:list={[
+							'blog-sidebar-link',
+							'blog-sidebar-group-link',
+							{ active: isComputingActive },
+						]}
+						aria-current={isComputingActive ? 'page' : undefined}
+					>
+						<span>Computing</span>
+						<span class="count">
+							{computingCategories.reduce(
+								(total, category) => total + (categoryCounts.get(category.key) ?? 0),
+								0,
+							)}
+						</span>
+					</a>
+					<ul class="blog-sidebar-sublist">
+						{
+							computingCategories.map((category) => {
+								const isActive = category.key === activeCategory;
+								const count = categoryCounts.get(category.key) ?? 0;
+
+								return (
+									<li>
+										<a
+											href={category.href}
+											class:list={[
+												'blog-sidebar-link',
+												'blog-sidebar-sublink',
+												{ active: isActive },
+											]}
+											aria-current={isActive ? 'page' : undefined}
+										>
+											<span>{category.label}</span>
+											<span class="count">{count}</span>
+										</a>
+									</li>
+								);
+							})
+						}
+					</ul>
+				</li>
 			</ul>
 		</nav>
 	</div>
 </aside>
+
+<style>
+	.blog-sidebar-sublist {
+		list-style: none;
+		margin: 0.35rem 0 0;
+		padding: 0 0 0 0.85rem;
+	}
+
+	.blog-sidebar-sublink {
+		font-size: 0.95rem;
+		padding-left: 0.9rem;
+	}
+
+	.blog-sidebar-group-link {
+		font-weight: 700;
+	}
+</style>

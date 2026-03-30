@@ -1,0 +1,163 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+
+const sections = [
+	{
+		href: '/cs',
+		icon: '🧠',
+		title: 'Computer Science',
+		description: '운영체제, 네트워크, 알고리즘 같은 전공 핵심 개념을 정리합니다.',
+	},
+	{
+		href: '/programming',
+		icon: '🛠️',
+		title: 'Programming',
+		description: '언어, 문법, 구현 과정에서 배운 내용을 코드와 함께 기록합니다.',
+	},
+	{
+		href: '/problem-solving',
+		icon: '💻',
+		title: 'Problem Solving',
+		description: '알고리즘 문제 풀이를 통해 사고 과정과 해결 패턴을 축적합니다.',
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Computing"
+			description="Computer Science, Programming, Problem Solving을 묶는 상위 섹션입니다."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="computing-page">
+			<section class="computing-hero">
+				<p class="eyebrow">Computing</p>
+				<h1>Computing</h1>
+				<p class="description">
+					전공 지식, 구현 감각, 문제 해결 훈련을 한 흐름으로 묶어 정리합니다.
+				</p>
+			</section>
+
+			<section class="computing-grid" aria-label="Computing sections">
+				{
+					sections.map((section) => (
+						<a href={section.href} class="computing-card">
+							<span class="icon">{section.icon}</span>
+							<h2>{section.title}</h2>
+							<p>{section.description}</p>
+						</a>
+					))
+				}
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.computing-page {
+		width: min(1100px, calc(100% - 2rem));
+		margin: 0 auto;
+		padding: 4rem 0 5rem;
+	}
+
+	.computing-hero {
+		margin-bottom: 2.5rem;
+		padding: 2.5rem;
+		border-radius: 28px;
+		background:
+			radial-gradient(circle at top left, rgba(52, 152, 219, 0.18), transparent 32%),
+			radial-gradient(circle at top right, rgba(46, 204, 113, 0.16), transparent 28%),
+			linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(245, 249, 255, 0.96));
+		box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+	}
+
+	.eyebrow {
+		margin: 0 0 0.75rem;
+		font-size: 0.85rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	h1 {
+		margin: 0;
+		font-size: clamp(2.5rem, 6vw, 4.5rem);
+		line-height: 0.95;
+	}
+
+	.description {
+		max-width: 42rem;
+		margin: 1rem 0 0;
+		font-size: 1.1rem;
+		line-height: 1.7;
+		color: rgb(var(--gray-dark));
+	}
+
+	.computing-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.25rem;
+	}
+
+	.computing-card {
+		display: block;
+		padding: 1.75rem;
+		border-radius: 22px;
+		background: white;
+		color: inherit;
+		text-decoration: none;
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
+		transition:
+			transform 0.25s ease,
+			box-shadow 0.25s ease,
+			border-color 0.25s ease;
+	}
+
+	.computing-card:hover {
+		transform: translateY(-6px);
+		border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+		box-shadow: 0 24px 48px rgba(15, 23, 42, 0.09);
+	}
+
+	.icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 3rem;
+		height: 3rem;
+		margin-bottom: 1rem;
+		font-size: 1.6rem;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--accent) 12%, white);
+	}
+
+	h2 {
+		margin: 0 0 0.75rem;
+		font-size: 1.3rem;
+	}
+
+	.computing-card p {
+		margin: 0;
+		line-height: 1.6;
+		color: rgb(var(--gray-dark));
+	}
+
+	@media (max-width: 900px) {
+		.computing-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.computing-hero {
+			padding: 2rem;
+		}
+	}
+</style>
