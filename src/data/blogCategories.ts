@@ -4,7 +4,8 @@ export type BlogCategoryKey =
 	| 'Computer Science'
 	| 'Programming'
 	| 'Problem_Solving'
-	| 'Reports';
+	| 'Reports'
+	| 'Market Brief';
 
 export type BlogCategoryDefinition = {
 	key: BlogCategoryKey;
@@ -64,6 +65,14 @@ export const BLOG_CATEGORIES: BlogCategoryDefinition[] = [
 		description: 'AI와 함께 탐구하고 분석한 다양한 주제별 리포트 기록입니다.',
 		sortOrder: 'desc',
 	},
+	{
+		key: 'Market Brief',
+		label: 'Market Brief',
+		href: '/market-brief',
+		title: 'US Market Brief',
+		description: '전일과 전주의 미국 주식 시장 흐름을 짧고 선명하게 정리합니다.',
+		sortOrder: 'desc',
+	},
 ];
 
 export function normalizeCategory(category: unknown): string | undefined {
@@ -84,6 +93,9 @@ export function normalizeCategory(category: unknown): string | undefined {
 	}
 	if (normalized === 'computer science' || normalized === 'cs') {
 		return 'Computer Science';
+	}
+	if (normalized === 'market brief' || normalized === 'market_brief' || normalized === 'us market brief') {
+		return 'Market Brief';
 	}
 	if (normalized === 'semiconductor') {
 		return 'Semiconductor';

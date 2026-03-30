@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import { BLOG_CATEGORIES } from '../../data/blogCategories';
+import BlogListLayout from '../../layouts/BlogListLayout.astro';
+
+const posts = (await getCollection('blog'))
+	.filter((post) => {
+		const cats = post.data.categories;
+		return Array.isArray(cats)
+			? cats.includes('Market Brief')
+			: cats === 'Market Brief';
+	})
+	.sort((a, b) => {
+		if (a.data.pinned && !b.data.pinned) return -1;
+		if (!a.data.pinned && b.data.pinned) return 1;
+
+		const dateA = a.data.pubDate || a.data.date || new Date(0);
+		const dateB = b.data.pubDate || b.data.date || new Date(0);
+		return dateB.valueOf() - dateA.valueOf();
+	});
+
+const category = BLOG_CATEGORIES.find(({ key }) => key === 'Market Brief')!;
+---
+
+<BlogListLayout
+	title={category.title}
+	description={category.description}
+	activeCategory={category.key}
+	posts={posts}
+/>

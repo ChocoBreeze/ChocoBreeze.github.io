@@ -18,6 +18,7 @@ import HeaderLink from './HeaderLink.astro';
 			<HeaderLink href="/programming">Programming</HeaderLink>
 			<HeaderLink href="/problem-solving">Problem Solving</HeaderLink>
 			<HeaderLink href="/reports">Reports</HeaderLink>
+			<HeaderLink href="/market-brief">Market Brief</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
 		<div class="social-links">
@@ -151,20 +152,20 @@ import HeaderLink from './HeaderLink.astro';
 		gap: 0.5rem;
 	}
 	@media (max-width: 720px) {
-		.social-links a:not([href="/search"]) { /* 검색 외의 외부 링크 숨김 */
+		.social-links a:not([href="/search"]) {
 			display: none;
 		}
 		.internal-links {
 			display: flex;
 			gap: 0.25rem;
-			overflow-x: auto; /* 가로 스크롤 허용 */
+			overflow-x: auto;
 			white-space: nowrap;
 			-webkit-overflow-scrolling: touch;
-			scrollbar-width: none; /* 파이어폭스 스크롤바 숨김 */
+			scrollbar-width: none;
 			margin: 0 0.5rem;
 		}
 		.internal-links::-webkit-scrollbar {
-			display: none; /* 크롬/사파리 스크롤바 숨김 */
+			display: none;
 		}
 		nav {
 			flex-direction: column;
