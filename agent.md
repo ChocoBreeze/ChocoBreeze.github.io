@@ -2,13 +2,14 @@
 
 ## Purpose
 
-This repository is an Astro-based personal blog. The root `README.md` is still close to the Astro starter template, so this file is the project-specific guide for automated agents and contributors.
+This repository is an Astro-based personal blog. The root `README.md` documents project usage, while this file captures project-specific working rules for automated agents and contributors.
 
 ## Stack
 
-- Astro 5
+- Astro 6
 - Content collections via `src/content.config.ts`
 - Markdown-first content in `src/content/blog`
+- GitHub Pages deployment via `.github/workflows/deploy.yml`
 
 ## Working Rules
 
@@ -16,6 +17,7 @@ This repository is an Astro-based personal blog. The root `README.md` is still c
 - Do not edit generated output in `.astro/` or `dist/`.
 - Keep existing category and route conventions intact.
 - When changing layouts or routes, verify that category pages and individual post pages still resolve.
+- If a change affects deployment, keep the GitHub Actions workflow aligned with Astro's supported Node version.
 
 ## Content Model
 
@@ -49,6 +51,7 @@ Known categories:
 - `Programming`
 - `Problem_Solving`
 - `Reports`
+- `Market Brief`
 
 If a post is intended to appear in a category page, make sure its `categories` frontmatter normalizes to one of the values above.
 
@@ -60,6 +63,7 @@ Current content is grouped physically under `src/content/blog` by topic, for exa
 - `Reports/...`
 - `Programming/...`
 - `Problem Solving/...`
+- `Market Brief/...`
 
 Preserve the existing folder style unless there is an explicit request to reorganize content.
 
@@ -73,6 +77,7 @@ Preserve the existing folder style unless there is an explicit request to reorga
   - `/programming`
   - `/problem-solving`
   - `/reports`
+  - `/market-brief`
 
 When adding or editing posts, avoid changes that would silently break these routes.
 
@@ -87,10 +92,19 @@ Run from repository root:
 
 Use `npm run build` as the default verification step after meaningful content or layout changes.
 
+## Deployment Notes
+
+GitHub Pages deployment currently uses:
+
+- `withastro/action@v5`
+- `node-version: 22.12.0`
+
+Keep deployment on Node `22.12.0+` for Astro 6 compatibility.
+
 ## Recommended Workflow
 
 1. Inspect the target post, route, or layout before editing.
 2. If adding a post, place it in the appropriate `src/content/blog/...` folder.
 3. Use a stable `slug` when the filename is not URL-friendly.
 4. Run `npm run build` after meaningful changes.
-5. Summarize any assumptions, especially around category naming or route behavior.
+5. Summarize any assumptions, especially around category naming, route behavior, or deployment compatibility.

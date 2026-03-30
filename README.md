@@ -5,11 +5,12 @@ Astro 기반 개인 블로그 저장소입니다.
 
 ## Tech Stack
 
-- Astro 5
+- Astro 6
 - Markdown / MDX
 - Astro Content Collections
 - `remark-math` + `rehype-katex`
 - Sitemap / RSS
+- GitHub Pages via GitHub Actions
 
 ## Run
 
@@ -58,6 +59,7 @@ npm run dev
 - `/programming`
 - `/problem-solving`
 - `/reports`
+- `/market-brief`
 
 ## Content Rules
 
@@ -87,6 +89,7 @@ npm run dev
 - `Programming`
 - `Problem_Solving`
 - `Reports`
+- `Market Brief`
 
 카테고리 페이지에 노출되어야 하는 글은 `categories` 값이 위 규칙과 맞아야 합니다.
 
@@ -96,6 +99,15 @@ npm run dev
 - 파일명이 한글, 공백, 특수문자를 포함하면 `slug`를 명시하는 편이 안전합니다.
 - 기존 폴더 구조는 이미 콘텐츠 정리 방식과 연결되어 있으므로 임의 재구성은 피하는 것이 좋습니다.
 - 수식이 필요한 글은 Markdown 안에서 KaTeX 문법을 사용할 수 있습니다.
+
+## Deployment
+
+GitHub Pages 배포는 `.github/workflows/deploy.yml`에서 관리합니다.
+
+- `withastro/action@v5`
+- `node-version: 22.12.0`
+
+Astro 6 기준으로 배포 환경도 Node `22.12.0+`를 유지하는 것이 좋습니다.
 
 ## Verification
 
