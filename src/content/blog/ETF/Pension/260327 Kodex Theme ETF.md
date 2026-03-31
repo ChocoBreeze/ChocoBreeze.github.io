@@ -355,6 +355,24 @@ categories: "ETF"
 |---|---|---|---|
 | KODEX 미국AI광통신네트워크 | 0173Y0 | 2026년 3월 31일 | AI 데이터센터 광통신 인프라 — 시스코, Coherent, Ciena 등 |
 
+## KODEX 미국AI광통신네트워크
+
+- **기초지수**: Akros 미국 AI광통신 및 네트워크 인프라 지수
+- **특징**: 미국 증시에 상장된 광통신 부품·모듈 업체, 데이터센터·통신 네트워크 장비사, AI 데이터센터용 네트워크·스위칭 칩/ASIC 등 반도체 기업
+
+| Rank | Name | Ticker | Weight |
+|---|---|---|---|
+| 1 | Lumentum Holdings | LITE | 22.25% |
+| 2 | Ciena | CIEN | 21.66% |
+| 3 | Coherent | COHR | 18.98% |
+| 4 | Corning | GLW | 5.76% |
+| 5 | Tower Semiconductor Ltd | TSEM | 5.65% |
+| 6 | Applied Optoelectronics | AAOI | 5.43% |
+| 7 | Nokia ADR | NOK | 5.33% |
+| 8 | Marvell Technology Group | MRVL | 5.20% |
+| 9 | Celestica | CLS | 5.18% |
+| 10 | Fabrinet | FN | 4.24% |
+
 ---
 
 ## 주요 테마별 비교 인사이트
