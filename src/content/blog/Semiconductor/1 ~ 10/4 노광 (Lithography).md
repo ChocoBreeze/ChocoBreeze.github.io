@@ -33,7 +33,7 @@ categories: "Semiconductor"
 
 ## 3) **실제 기업·제품 예시**
 
-* **ASML(네덜란드)**가 **전 세계에서 유일하게 EUV 노광 장비를 만드는 회사**
+* <strong>ASML(네덜란드)</strong>가 <strong>전 세계에서 유일하게 EUV 노광 장비를 만드는 회사</strong>
 * 삼성·TSMC·인텔 같은 기업들은 이 장비로 7nm/5nm/3nm 같은 초미세 공정을 생산함
 * **NVIDIA H100 / Apple A17 / Snapdragon 8 Gen3** 등 최신 칩은 모두 EUV가 필요함
 
