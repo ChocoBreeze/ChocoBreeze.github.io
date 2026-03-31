@@ -1,28 +1,46 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
+import { normalizeCategory } from '../../data/blogCategories';
+
+const posts = await getCollection('blog');
+const categoryCounts = new Map<string, number>();
+
+for (const post of posts) {
+	const categories = Array.isArray(post.data.categories) ? post.data.categories : [post.data.categories];
+	for (const category of categories) {
+		const normalized = normalizeCategory(category);
+		if (!normalized) continue;
+		categoryCounts.set(normalized, (categoryCounts.get(normalized) ?? 0) + 1);
+	}
+}
 
 const sections = [
 	{
+		key: 'ETF',
 		href: '/etf',
 		icon: '📈',
 		title: 'ETF',
 		description: 'ETF 구조, 상품 비교, 투자 아이디어를 축적합니다.',
 	},
 	{
+		key: 'Reports',
 		href: '/reports',
 		icon: '🤖',
 		title: 'AI Research',
 		description: 'AI를 활용해 기업, 산업, 기술 주제를 리포트형으로 깊게 조사합니다.',
 	},
 	{
+		key: 'Market Brief',
 		href: '/market-brief',
 		icon: '📊',
 		title: 'Market Brief',
 		description: '전일과 전주의 미국 시장 흐름을 짧고 밀도 있게 정리합니다.',
 	},
 	{
+		key: 'Economics',
 		href: '/economics',
 		icon: '🌐',
 		title: 'Economics',
@@ -55,7 +73,10 @@ const sections = [
 					sections.map((section) => (
 						<a href={section.href} class="finance-card">
 							<span class="icon">{section.icon}</span>
-							<h2>{section.title}</h2>
+							<div class="card-header">
+								<h2>{section.title}</h2>
+								<p class="count">{categoryCounts.get(section.key) ?? 0} posts</p>
+							</div>
 							<p>{section.description}</p>
 						</a>
 					))
@@ -146,9 +167,31 @@ const sections = [
 		background: color-mix(in srgb, var(--accent) 12%, white);
 	}
 
+	.card-header {
+		display: grid;
+		gap: 0.45rem;
+		margin-bottom: 0.75rem;
+	}
+
 	h2 {
-		margin: 0 0 0.75rem;
+		margin: 0;
 		font-size: 1.3rem;
+	}
+
+	.count {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: fit-content;
+		margin: 0;
+		padding: 0.35rem 0.7rem;
+		border-radius: 999px;
+		font-size: 0.82rem;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 12%, white);
+		border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
 	}
 
 	.finance-card p {

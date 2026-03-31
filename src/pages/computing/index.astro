@@ -1,22 +1,39 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
+import { normalizeCategory } from '../../data/blogCategories';
+
+const posts = await getCollection('blog');
+const categoryCounts = new Map<string, number>();
+
+for (const post of posts) {
+	const categories = Array.isArray(post.data.categories) ? post.data.categories : [post.data.categories];
+	for (const category of categories) {
+		const normalized = normalizeCategory(category);
+		if (!normalized) continue;
+		categoryCounts.set(normalized, (categoryCounts.get(normalized) ?? 0) + 1);
+	}
+}
 
 const sections = [
 	{
+		key: 'Computer Science',
 		href: '/cs',
 		icon: '🧠',
 		title: 'Computer Science',
 		description: '운영체제, 네트워크, 알고리즘 같은 전공 핵심 개념을 정리합니다.',
 	},
 	{
+		key: 'Programming',
 		href: '/programming',
 		icon: '🛠️',
 		title: 'Programming',
 		description: '언어, 문법, 구현 과정에서 배운 내용을 코드와 함께 기록합니다.',
 	},
 	{
+		key: 'Problem_Solving',
 		href: '/problem-solving',
 		icon: '💻',
 		title: 'Problem Solving',
@@ -49,7 +66,10 @@ const sections = [
 					sections.map((section) => (
 						<a href={section.href} class="computing-card">
 							<span class="icon">{section.icon}</span>
-							<h2>{section.title}</h2>
+							<div class="card-header">
+								<h2>{section.title}</h2>
+								<p class="count">{categoryCounts.get(section.key) ?? 0} posts</p>
+							</div>
 							<p>{section.description}</p>
 						</a>
 					))
@@ -140,9 +160,31 @@ const sections = [
 		background: color-mix(in srgb, var(--accent) 12%, white);
 	}
 
+	.card-header {
+		display: grid;
+		gap: 0.45rem;
+		margin-bottom: 0.75rem;
+	}
+
 	h2 {
-		margin: 0 0 0.75rem;
+		margin: 0;
 		font-size: 1.3rem;
+	}
+
+	.count {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: fit-content;
+		margin: 0;
+		padding: 0.35rem 0.7rem;
+		border-radius: 999px;
+		font-size: 0.82rem;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		color: var(--accent);
+		background: color-mix(in srgb, var(--accent) 12%, white);
+		border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
 	}
 
 	.computing-card p {
