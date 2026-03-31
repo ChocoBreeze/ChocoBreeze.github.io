@@ -1,5 +1,6 @@
 export type BlogCategoryKey =
 	| 'ETF'
+	| 'Economics'
 	| 'Semiconductor'
 	| 'Computer Science'
 	| 'Programming'
@@ -24,6 +25,14 @@ export const BLOG_CATEGORIES: BlogCategoryDefinition[] = [
 		title: 'ETF 알아보기',
 		description: 'ETF에 대한 기초 지식부터 다양한 종류와 투자 방법까지 알아봅니다.',
 		sortOrder: 'asc',
+	},
+	{
+		key: 'Economics',
+		label: 'Economics',
+		href: '/economics',
+		title: '경제 개념 정리',
+		description: '금리, 유동성, 경기 사이클, 환율 같은 경제 흐름의 기본 개념을 정리합니다.',
+		sortOrder: 'desc',
 	},
 	{
 		key: 'Semiconductor',
@@ -75,6 +84,13 @@ export const BLOG_CATEGORIES: BlogCategoryDefinition[] = [
 	},
 ];
 
+export const FINANCE_CATEGORY_KEYS: BlogCategoryKey[] = ['ETF', 'Reports', 'Market Brief', 'Economics'];
+export const COMPUTING_CATEGORY_KEYS: BlogCategoryKey[] = [
+	'Computer Science',
+	'Programming',
+	'Problem_Solving',
+];
+
 export function normalizeCategory(category: unknown): string | undefined {
 	if (Array.isArray(category)) {
 		return typeof category[0] === 'string' ? normalizeCategory(category[0]) : undefined;
@@ -102,6 +118,15 @@ export function normalizeCategory(category: unknown): string | undefined {
 	}
 	if (normalized === 'programming') {
 		return 'Programming';
+	}
+	if (
+		normalized === 'economics' ||
+		normalized === 'economic' ||
+		normalized === 'economy' ||
+		normalized === 'macro' ||
+		normalized === 'macroeconomics'
+	) {
+		return 'Economics';
 	}
 	if (normalized === 'etf') {
 		return 'ETF';

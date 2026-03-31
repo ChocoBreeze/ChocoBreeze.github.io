@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import {
 	BLOG_CATEGORIES,
+	COMPUTING_CATEGORY_KEYS,
+	FINANCE_CATEGORY_KEYS,
 	getCategoryDefinition,
 	type BlogCategoryKey,
 } from '../data/blogCategories';
@@ -11,14 +13,13 @@ type Props = {
 };
 
 const { activeCategory } = Astro.props;
-const computingKeys: BlogCategoryKey[] = ['Computer Science', 'Programming', 'Problem_Solving'];
 const primaryCategories = BLOG_CATEGORIES.filter(
-	({ key }) => !computingKeys.includes(key),
+	({ key }) => !COMPUTING_CATEGORY_KEYS.includes(key) && !FINANCE_CATEGORY_KEYS.includes(key),
 );
-const computingCategories = BLOG_CATEGORIES.filter(({ key }) =>
-	computingKeys.includes(key),
-);
-const isComputingActive = activeCategory ? computingKeys.includes(activeCategory) : false;
+const financeCategories = BLOG_CATEGORIES.filter(({ key }) => FINANCE_CATEGORY_KEYS.includes(key));
+const computingCategories = BLOG_CATEGORIES.filter(({ key }) => COMPUTING_CATEGORY_KEYS.includes(key));
+const isFinanceActive = activeCategory ? FINANCE_CATEGORY_KEYS.includes(activeCategory) : false;
+const isComputingActive = activeCategory ? COMPUTING_CATEGORY_KEYS.includes(activeCategory) : false;
 
 const posts = await getCollection('blog');
 const categoryCounts = new Map<BlogCategoryKey, number>();
@@ -61,6 +62,50 @@ for (const post of posts) {
 						);
 					})
 				}
+				<li class="blog-sidebar-group">
+					<a
+						href="/finance"
+						class:list={[
+							'blog-sidebar-link',
+							'blog-sidebar-group-link',
+							{ active: isFinanceActive },
+						]}
+						aria-current={isFinanceActive ? 'page' : undefined}
+					>
+						<span>Finance</span>
+						<span class="count">
+							{financeCategories.reduce(
+								(total, category) => total + (categoryCounts.get(category.key) ?? 0),
+								0,
+							)}
+						</span>
+					</a>
+					<ul class="blog-sidebar-sublist">
+						{
+							financeCategories.map((category) => {
+								const isActive = category.key === activeCategory;
+								const count = categoryCounts.get(category.key) ?? 0;
+
+								return (
+									<li>
+										<a
+											href={category.href}
+											class:list={[
+												'blog-sidebar-link',
+												'blog-sidebar-sublink',
+												{ active: isActive },
+											]}
+											aria-current={isActive ? 'page' : undefined}
+										>
+											<span>{category.label}</span>
+											<span class="count">{count}</span>
+										</a>
+									</li>
+								);
+							})
+						}
+					</ul>
+				</li>
 				<li class="blog-sidebar-group">
 					<a
 						href="/computing"

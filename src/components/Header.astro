@@ -12,11 +12,9 @@ import HeaderLink from './HeaderLink.astro';
 			<a href="/">{SITE_TITLE}</a>
 		</h2>
 		<div class="internal-links">
-			<HeaderLink href="/etf">ETF</HeaderLink>
+			<HeaderLink href="/finance" matchPaths={['finance', 'etf', 'reports', 'market-brief', 'economics']}>Finance</HeaderLink>
 			<HeaderLink href="/semiconductor">Semiconductor</HeaderLink>
-			<HeaderLink href="/computing">Computing</HeaderLink>
-			<HeaderLink href="/reports">Reports</HeaderLink>
-			<HeaderLink href="/market-brief">Market Brief</HeaderLink>
+			<HeaderLink href="/computing" matchPaths={['computing', 'cs', 'programming', 'problem-solving']}>Computing</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
 		<div class="social-links">
