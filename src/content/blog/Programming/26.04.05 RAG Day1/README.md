@@ -154,8 +154,6 @@ if __name__ == "__main__":
 
 </details> <br/>
 
-![alt text](images/image-3.png)
-
 ```
 사용 모델: gpt-4o-mini
 ============================================================
@@ -296,10 +294,7 @@ if __name__ == "__main__":
 
 </details> <br/>
 
-![alt text](images/image-4.png)
-
 ```
-py tokenizer_experiment.py
 ============================================================
 텍스트: 삼성전자
 토큰 수: 5
