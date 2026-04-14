@@ -1,5 +1,5 @@
 ---
-title: "RAG Week4 문서 청킹"
+title: "RAG Week4 벡터 데이터베이스"
 description: "다루기 좋은 작은 조각으로 나누기"
 pubDate: "2026-04-08T00:00:00+09:00"
 categories: "Programming"
