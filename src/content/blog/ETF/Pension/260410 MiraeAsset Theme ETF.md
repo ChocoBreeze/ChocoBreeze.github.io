@@ -1,7 +1,7 @@
 ---
 title: '미래에셋자산운용 미국 주식 테마 ETF 종합 보고서'
 description: 'TIGER, Global X'
-pubDate: "Apr 10 2026"
+pubDate: "2026-04-10T00:00:00+09:00"
 categories: "ETF"
 ---
 

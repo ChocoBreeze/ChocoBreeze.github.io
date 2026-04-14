@@ -1,7 +1,7 @@
 ---
 title: "RAG Week3 문서 청킹"
 description: "다루기 좋은 작은 조각으로 나누기"
-pubDate: "Apr 08 2026"
+pubDate: "2026-04-08T00:00:00+09:00"
 categories: "Programming"
 tags: ["Chunking", "Chunk", "RAG"]
 ---

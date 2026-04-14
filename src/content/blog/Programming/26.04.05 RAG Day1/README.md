@@ -1,7 +1,7 @@
 ---
 title: "RAG Week1 LLM이란 무엇인가?"
 description: "RAG가 왜 필요한가?"
-pubDate: "Apr 05 2026"
+pubDate: "2026-04-05T00:00:00+09:00"
 categories: "Programming"
 tags: ["RAG", "LLM"]
 ---

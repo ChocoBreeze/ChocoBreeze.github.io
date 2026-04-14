@@ -1,7 +1,7 @@
 ---
 title: "RAG Week2 임베딩과 벡터"
 description: "관련 문서 판단"
-pubDate: "Apr 06 2026"
+pubDate: "2026-04-06T00:00:00+09:00"
 categories: "Programming"
 tags: ["RAG", "embedding", "vector"]
 ---
