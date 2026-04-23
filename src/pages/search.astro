@@ -24,36 +24,48 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				padding: 0.8rem 1.2rem;
 				font-size: 1.2rem;
 				border: 2px solid var(--border-color);
-				border-radius: 8px;
+				border-radius: 14px;
 				outline: none;
 				background: var(--card-bg);
 				color: var(--text-color);
-				transition: border-color 0.2s;
+				transition: border-color 0.2s, box-shadow 0.2s;
 			}
 			#search-input::placeholder {
 				color: var(--muted-text);
 			}
 			#search-input:focus {
 				border-color: var(--accent);
+				box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
 			}
 			#results-list {
 				list-style: none;
 				padding: 0;
+				display: grid;
+				gap: 1rem;
 			}
 			.result-item {
-				margin-bottom: 1.5rem;
 				padding: 1rem;
-				border-radius: 8px;
-				border: 1px solid transparent;
-				transition: background-color 0.2s, border-color 0.2s;
+				border-radius: 18px;
+				background: var(--card-bg);
+				border: 1px solid var(--border-color);
+				box-shadow: 0 10px 24px rgba(var(--gray), 0.08);
+				transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
 			}
 			.result-item:hover {
 				background-color: color-mix(in srgb, var(--card-bg) 82%, var(--muted-text) 18%);
-				border-color: var(--border-color);
+				border-color: color-mix(in srgb, var(--accent) 35%, var(--border-color));
+				box-shadow: 0 16px 36px rgba(var(--gray), 0.14);
+				transform: translateY(-2px);
 			}
 			.result-item a {
+				display: block;
 				text-decoration: none;
 				color: var(--text-color);
+			}
+			.result-item a:focus-visible {
+				outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+				outline-offset: 5px;
+				border-radius: 12px;
 			}
 			.result-item h3 {
 				margin: 0 0 0.5rem 0;
