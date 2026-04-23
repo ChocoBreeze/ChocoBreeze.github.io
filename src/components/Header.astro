@@ -25,7 +25,7 @@ import HeaderLink from './HeaderLink.astro';
 					<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
 				</svg>
 			</a>
-			<a href="https://blog.naver.com/chocobreeze" target="_blank">
+			<a href="https://blog.naver.com/chocobreeze" target="_blank" rel="noopener noreferrer">
 				<span class="sr-only">Follow me on Naver Blog</span>
 				<svg viewBox="0 0 24 24" aria-hidden="true" width="28" height="28">
 					<path
@@ -34,7 +34,7 @@ import HeaderLink from './HeaderLink.astro';
 					></path>
 				</svg>
 			</a>
-			<a href="https://github.com/ChocoBreeze" target="_blank">
+			<a href="https://github.com/ChocoBreeze" target="_blank" rel="noopener noreferrer">
 				<span class="sr-only">Go to my GitHub repo</span>
 				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
 					<path
@@ -67,13 +67,15 @@ import HeaderLink from './HeaderLink.astro';
 	const themeToggle = document.getElementById('theme-toggle');
 	const html = document.documentElement;
 
-	themeToggle.addEventListener('click', () => {
-		const isDark = html.getAttribute('data-theme') === 'dark';
-		const newTheme = isDark ? 'light' : 'dark';
-		
-		html.setAttribute('data-theme', newTheme);
-		localStorage.setItem('theme', newTheme);
-	});
+	if (themeToggle) {
+		themeToggle.addEventListener('click', () => {
+			const isDark = html.getAttribute('data-theme') === 'dark';
+			const newTheme = isDark ? 'light' : 'dark';
+			
+			html.setAttribute('data-theme', newTheme);
+			localStorage.setItem('theme', newTheme);
+		});
+	}
 </script>
 
 <style>

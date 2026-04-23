@@ -6,7 +6,7 @@ export async function GET() {
 		title: post.data.title,
 		description: post.data.description,
 		categories: post.data.categories,
-		slug: post.id,
+		slug: post.data.slug || post.id,
 	}));
 
 	return new Response(JSON.stringify(searchIndex), {

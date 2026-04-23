@@ -10,6 +10,7 @@ export async function getStaticPaths() {
 	}));
 }
 type Props = CollectionEntry<'blog'>;
+type BlogCategory = CollectionEntry<'blog'>['data']['categories'];
 
 const post = Astro.props;
 const { Content, headings } = await render(post);
@@ -18,14 +19,14 @@ const { Content, headings } = await render(post);
 const allPosts = (await getCollection('blog')).filter(p => {
 	const currentCats = post.data.categories;
 	const pCats = p.data.categories;
-	const normalize = (c) => {
+	const normalize = (c: BlogCategory) => {
 		if (Array.isArray(c)) return c[0];
 		return c;
 	};
 	return normalize(currentCats) === normalize(pCats);
 }).sort((a, b) => {
 	// ETF 카테고리인 경우 (대소문자 무시)
-	const isETF = (c) => {
+	const isETF = (c: BlogCategory) => {
 		const norm = Array.isArray(c) ? c[0] : c;
 		return norm?.toLowerCase() === 'etf';
 	};

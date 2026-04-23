@@ -106,45 +106,76 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<Footer />
 
 		<script>
-			let searchIndex = [];
-			const searchInput = document.getElementById('search-input');
+			type SearchItem = {
+				title: string;
+				description?: string;
+				categories?: string | string[] | null;
+				slug: string;
+			};
+
+			let searchIndex: SearchItem[] = [];
+			const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
 			const resultsList = document.getElementById('results-list');
 			const resultsCount = document.getElementById('results-count');
 
 			// 인덱스 데이터 가져오기
 			fetch('/search.json')
 				.then(res => res.json())
-				.then(data => {
+				.then((data: SearchItem[]) => {
 					searchIndex = data;
 				});
 
-			searchInput.addEventListener('input', (e) => {
-				const query = e.target.value.toLowerCase().trim();
-				if (query.length < 2) {
-					resultsList.innerHTML = '';
-					resultsCount.textContent = '';
-					return;
-				}
+			if (searchInput && resultsList && resultsCount) {
+				searchInput.addEventListener('input', () => {
+					const query = searchInput.value.toLowerCase().trim();
+					if (query.length < 2) {
+						resultsList.replaceChildren();
+						resultsCount.textContent = '';
+						return;
+					}
 
-				const filtered = searchIndex.filter(item => 
-					item.title.toLowerCase().includes(query) || 
-					(item.description && item.description.toLowerCase().includes(query))
-				);
+					const filtered = searchIndex.filter(item => 
+						item.title.toLowerCase().includes(query) || 
+						(item.description && item.description.toLowerCase().includes(query))
+					);
 
-				displayResults(filtered);
-			});
+					displayResults(filtered);
+				});
+			}
 
-			function displayResults(results) {
+			function getCategoryLabel(categories: SearchItem['categories']) {
+				if (Array.isArray(categories)) return categories[0] || 'Uncategorized';
+				return categories || 'Uncategorized';
+			}
+
+			function displayResults(results: SearchItem[]) {
+				if (!resultsList || !resultsCount) return;
+
 				resultsCount.textContent = `${results.length}개의 결과를 찾았습니다.`;
-				resultsList.innerHTML = results.map(item => `
-					<li class="result-item">
-						<a href="/blog/${item.slug}/">
-							<span class="result-category">${Array.isArray(item.categories) ? item.categories[0] : (item.categories || 'Uncategorized')}</span>
-							<h3>${item.title}</h3>
-							<p>${item.description || ''}</p>
-						</a>
-					</li>
-				`).join('');
+				const resultItems = results.map((item) => {
+					const listItem = document.createElement('li');
+					listItem.className = 'result-item';
+
+					const link = document.createElement('a');
+					link.href = `/blog/${item.slug}/`;
+
+					const category = document.createElement('span');
+					category.className = 'result-category';
+					category.textContent = getCategoryLabel(item.categories);
+
+					const title = document.createElement('h3');
+					title.textContent = item.title;
+
+					const description = document.createElement('p');
+					description.textContent = item.description || '';
+
+					link.append(category, title, description);
+					listItem.append(link);
+
+					return listItem;
+				});
+
+				resultsList.replaceChildren(...resultItems);
 			}
 		</script>
 	</body>

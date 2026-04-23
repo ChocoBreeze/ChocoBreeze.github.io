@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import type { MarkdownHeading } from "astro";
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import BlogSidebar from "../components/BlogSidebar.astro";
@@ -8,7 +8,21 @@ import FormattedDate from "../components/FormattedDate.astro";
 import Header from "../components/Header.astro";
 import { getCategoryDefinition } from "../data/blogCategories";
 
-type Props = CollectionEntry<"blog">["data"];
+type BlogPostData = CollectionEntry<"blog">["data"];
+
+type Props = Pick<
+    BlogPostData,
+    | "title"
+    | "description"
+    | "pubDate"
+    | "date"
+    | "updatedDate"
+    | "heroImage"
+    | "image"
+    | "categories"
+> & {
+    headings?: MarkdownHeading[];
+};
 
 const {
     title,
@@ -327,19 +341,21 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
         <script>
             const backToTop = document.getElementById("back-to-top");
             const tocLinks = Array.from(document.querySelectorAll(".toc a"));
-            const headingElements = tocLinks
-                .map((link) => {
-                    const id = link.getAttribute("href")?.slice(1);
-                    if (!id) return null;
+            const headingElements: { link: Element; element: HTMLElement }[] = [];
 
-                    const element = document.getElementById(id);
-                    if (!element) return null;
+            for (const link of tocLinks) {
+                const id = link.getAttribute("href")?.slice(1);
+                if (!id) continue;
 
-                    return { link, element };
-                })
-                .filter(Boolean);
+                const element = document.getElementById(id);
+                if (!element) continue;
+
+                headingElements.push({ link, element });
+            }
 
             window.addEventListener("scroll", () => {
+                if (!backToTop) return;
+
                 if (window.scrollY > 300) {
                     backToTop.classList.add("show");
                 } else {
@@ -347,17 +363,19 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                 }
             });
 
-            backToTop.addEventListener("click", () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
+            if (backToTop) {
+                backToTop.addEventListener("click", () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                    });
                 });
-            });
+            }
 
             if (headingElements.length > 0) {
-                let currentActiveId = null;
+                let currentActiveId = "";
 
-                const setActiveLink = (activeId) => {
+                const setActiveLink = (activeId: string) => {
                     if (currentActiveId === activeId) return;
                     currentActiveId = activeId;
 
