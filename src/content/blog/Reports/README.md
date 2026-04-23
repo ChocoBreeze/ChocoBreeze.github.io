@@ -1,7 +1,7 @@
 ---
 title: 'AI 조사 리포트 가이드'
 description: 'AI와 함께 깊이 있게 탐구하고 분석한 다양한 주제별 리포트 목록입니다.'
-pubDate: '2026-01-01T00:00:00Z'
+pubDate: '2025-12-01T00:00:00Z'
 pinned: true
 categories: "reports"
 ---
