@@ -28,7 +28,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				height: 180px;
 				border-radius: 50%;
 				object-fit: cover;
-				border: 5px solid white;
+				border: 5px solid var(--card-bg);
 				box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 				transition: transform 0.3s ease;
 			}
@@ -45,7 +45,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			}
 			.description {
 				font-size: 1.4rem;
-				color: rgb(var(--gray-dark));
+				color: var(--muted-text);
 				margin-bottom: 3rem;
 				font-weight: 500;
 			}
@@ -57,14 +57,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				margin-bottom: 4rem;
 			}
 			.feature-card {
-				background: white;
+				background: var(--card-bg);
 				padding: 2rem 1.5rem;
 				border-radius: 16px;
 				box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 				transition: all 0.3s ease;
 				text-decoration: none;
-				color: inherit;
-				border: 1px solid #f0f0f0;
+				color: var(--text-color);
+				border: 1px solid var(--border-color);
 			}
 			.feature-card:hover {
 				transform: translateY(-10px);
@@ -79,22 +79,23 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			.feature-card h3 {
 				margin: 0 0 0.5rem 0;
 				font-size: 1.25rem;
+				color: var(--heading-color);
 			}
 			.feature-card p {
 				margin: 0;
 				font-size: 0.9rem;
-				color: #666;
+				color: var(--muted-text);
 				line-height: 1.4;
 			}
 
 			.goals-section {
-				background: rgba(255, 255, 255, 0.7);
+				background: color-mix(in srgb, var(--card-bg) 82%, transparent);
 				backdrop-filter: blur(10px);
 				padding: 3rem;
 				border-radius: 24px;
 				text-align: left;
 				box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-				border: 1px solid white;
+				border: 1px solid var(--border-color);
 			}
 			.goals-section h2 {
 				font-size: 2rem;
@@ -113,12 +114,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			}
 			.goals-list li {
 				padding: 1rem;
-				background: white;
+				background: var(--card-bg);
 				border-radius: 12px;
 				font-weight: 500;
 				display: flex;
 				align-items: center;
 				box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+				color: var(--text-color);
 			}
 			.goals-list li::before {
 				content: "✨";

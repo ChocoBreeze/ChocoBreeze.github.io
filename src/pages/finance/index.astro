@@ -101,7 +101,8 @@ const sections = [
 		background:
 			radial-gradient(circle at top left, rgba(245, 158, 11, 0.18), transparent 32%),
 			radial-gradient(circle at top right, rgba(16, 185, 129, 0.16), transparent 30%),
-			linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 250, 240, 0.96));
+			linear-gradient(135deg, var(--card-bg), color-mix(in srgb, var(--card-bg) 88%, var(--accent) 12%));
+		border: 1px solid var(--border-color);
 		box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
 	}
 
@@ -125,7 +126,7 @@ const sections = [
 		margin: 1rem 0 0;
 		font-size: 1.1rem;
 		line-height: 1.7;
-		color: rgb(var(--gray-dark));
+		color: var(--muted-text);
 	}
 
 	.finance-grid {
@@ -138,10 +139,10 @@ const sections = [
 		display: block;
 		padding: 1.75rem;
 		border-radius: 22px;
-		background: white;
-		color: inherit;
+		background: var(--card-bg);
+		color: var(--text-color);
 		text-decoration: none;
-		border: 1px solid rgba(15, 23, 42, 0.08);
+		border: 1px solid var(--border-color);
 		box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
 		transition:
 			transform 0.25s ease,
@@ -164,7 +165,7 @@ const sections = [
 		margin-bottom: 1rem;
 		font-size: 1.6rem;
 		border-radius: 999px;
-		background: color-mix(in srgb, var(--accent) 12%, white);
+		background: color-mix(in srgb, var(--accent) 16%, var(--card-bg));
 	}
 
 	.card-header {
@@ -176,6 +177,7 @@ const sections = [
 	h2 {
 		margin: 0;
 		font-size: 1.3rem;
+		color: var(--heading-color);
 	}
 
 	.count {
@@ -190,14 +192,14 @@ const sections = [
 		font-weight: 700;
 		letter-spacing: 0.02em;
 		color: var(--accent);
-		background: color-mix(in srgb, var(--accent) 12%, white);
-		border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+		background: color-mix(in srgb, var(--accent) 16%, var(--card-bg));
+		border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border-color));
 	}
 
 	.finance-card p {
 		margin: 0;
 		line-height: 1.6;
-		color: rgb(var(--gray-dark));
+		color: var(--muted-text);
 	}
 
 	@media (max-width: 900px) {

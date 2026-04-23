@@ -82,31 +82,33 @@ const getSlug = (p: CollectionEntry<'blog'>) => p.data.slug || p.id;
 		gap: 1rem;
 		margin-top: 4rem;
 		padding-top: 2rem;
-		border-top: 1px solid #eee;
+		border-top: 1px solid var(--border-color);
 	}
 	.post-navigation a {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
 		padding: 1rem;
-		border: 1px solid #eee;
+		border: 1px solid var(--border-color);
 		border-radius: 8px;
 		text-decoration: none;
-		color: inherit;
+		color: var(--text-color);
+		background: var(--card-bg);
 		transition: all 0.2s ease;
 		max-width: 50%;
 	}
 	.post-navigation a:hover {
 		border-color: var(--accent);
-		background-color: #fcfaff;
+		background: color-mix(in srgb, var(--card-bg) 82%, var(--muted-text) 18%);
 	}
 	.post-navigation .label {
 		font-size: 0.8rem;
-		color: #666;
+		color: var(--muted-text);
 		margin-bottom: 0.25rem;
 	}
 	.post-navigation .title {
 		font-weight: bold;
+		color: var(--heading-color);
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;

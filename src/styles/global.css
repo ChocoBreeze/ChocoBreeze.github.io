@@ -18,8 +18,8 @@
 	
 	/* Default Colors (Light) */
 	--bg-color: #f8f9ff;
-	--text-color: var(--gray-dark);
-	--heading-color: var(--black);
+	--text-color: rgb(var(--gray-dark));
+	--heading-color: rgb(var(--black));
 	--card-bg: white;
 	--border-color: #eee;
 	--toc-bg: rgba(255, 255, 255, 0.8);
