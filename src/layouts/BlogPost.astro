@@ -306,11 +306,23 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
             });
 
             if (headingElements.length > 0) {
+                let currentActiveId = null;
+
                 const setActiveLink = (activeId) => {
+                    if (currentActiveId === activeId) return;
+                    currentActiveId = activeId;
+
                     headingElements.forEach(({ link, element }) => {
                         const isActive = element.id === activeId;
                         link.classList.toggle("active", isActive);
                         link.setAttribute("aria-current", isActive ? "true" : "false");
+
+                        if (isActive) {
+                            link.scrollIntoView({
+                                block: "nearest",
+                                inline: "nearest",
+                            });
+                        }
                     });
                 };
 
