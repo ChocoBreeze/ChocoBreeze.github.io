@@ -84,8 +84,8 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                 position: sticky;
                 top: 110px;
                 width: 100%;
-                max-height: calc(100vh - 140px);
-                overflow-y: auto;
+                max-height: min(40rem, calc(100vh - 160px));
+                overflow: hidden;
                 padding: 1.1rem;
                 font-size: 0.88rem;
                 border: 1px solid var(--border-color);
@@ -115,6 +115,19 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                 margin: 0;
                 display: grid;
                 gap: 0.45rem;
+                max-height: calc(min(40rem, 100vh - 160px) - 3.2rem);
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                padding-right: 0.25rem;
+                scrollbar-width: thin;
+                scrollbar-color: color-mix(in srgb, var(--muted-text) 45%, transparent) transparent;
+            }
+            .toc ul::-webkit-scrollbar {
+                width: 6px;
+            }
+            .toc ul::-webkit-scrollbar-thumb {
+                background: color-mix(in srgb, var(--muted-text) 45%, transparent);
+                border-radius: 999px;
             }
             .toc li {
                 margin-bottom: 0;
