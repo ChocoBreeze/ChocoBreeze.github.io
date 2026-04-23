@@ -1,8 +1,8 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+import BlogPostCard from '../components/BlogPostCard.astro';
 import BlogSidebar from '../components/BlogSidebar.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import type { CollectionEntry } from 'astro:content';
 import type { BlogCategoryKey } from '../data/blogCategories';
@@ -33,31 +33,7 @@ const { title, description, activeCategory, posts } = Astro.props;
 					<p>{description}</p>
 				</div>
 				<ul class="blog-post-grid">
-					{
-						posts.map((post) => {
-							const date = post.data.pubDate || post.data.date;
-							const image = post.data.heroImage || (post.data.image ? `/images/${post.data.image}` : undefined);
-							const href = `/blog/${post.data.slug || post.id}/`;
-
-							return (
-								<li class="blog-post-card">
-									<a href={href}>
-										{image && (
-											<img width={720} height={360} src={image} alt="" loading="lazy" />
-										)}
-										<div class="blog-post-card-body">
-											<h2 class="title">{post.data.title}</h2>
-											{date && (
-												<p class="date">
-													<FormattedDate date={date} />
-												</p>
-											)}
-										</div>
-									</a>
-								</li>
-							);
-						})
-					}
+					{posts.map((post) => <BlogPostCard post={post} />)}
 				</ul>
 			</section>
 		</main>

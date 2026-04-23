@@ -1,0 +1,34 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+type Props = {
+	post: CollectionEntry<'blog'>;
+};
+
+const { post } = Astro.props;
+const date = post.data.pubDate || post.data.date;
+const image = post.data.heroImage || (post.data.image ? `/images/${post.data.image}` : undefined);
+const href = `/blog/${post.data.slug || post.id}/`;
+---
+
+<li class={`blog-post-card${image ? '' : ' no-image'}`}>
+	<a href={href}>
+		{
+			image && (
+				<img width={720} height={360} src={image} alt="" loading="lazy" />
+			)
+		}
+		<div class="blog-post-card-body">
+			<h2 class="title">{post.data.title}</h2>
+			{post.data.description && <p class="excerpt">{post.data.description}</p>}
+			{
+				date && (
+					<p class="date">
+						<FormattedDate date={date} />
+					</p>
+				)
+			}
+		</div>
+	</a>
+</li>
