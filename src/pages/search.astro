@@ -23,10 +23,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				width: 100%;
 				padding: 0.8rem 1.2rem;
 				font-size: 1.2rem;
-				border: 2px solid #eee;
+				border: 2px solid var(--border-color);
 				border-radius: 8px;
 				outline: none;
+				background: var(--card-bg);
+				color: var(--text-color);
 				transition: border-color 0.2s;
+			}
+			#search-input::placeholder {
+				color: var(--muted-text);
 			}
 			#search-input:focus {
 				border-color: var(--accent);
@@ -39,32 +44,40 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				margin-bottom: 1.5rem;
 				padding: 1rem;
 				border-radius: 8px;
-				transition: background-color 0.2s;
+				border: 1px solid transparent;
+				transition: background-color 0.2s, border-color 0.2s;
 			}
 			.result-item:hover {
-				background-color: #fcfaff;
+				background-color: color-mix(in srgb, var(--card-bg) 82%, var(--muted-text) 18%);
+				border-color: var(--border-color);
 			}
 			.result-item a {
 				text-decoration: none;
-				color: inherit;
+				color: var(--text-color);
 			}
 			.result-item h3 {
 				margin: 0 0 0.5rem 0;
-				color: var(--black);
+				color: var(--heading-color);
 			}
 			.result-item p {
 				margin: 0;
-				color: #666;
+				color: var(--muted-text);
 				font-size: 0.9rem;
 			}
 			.result-category {
 				display: inline-block;
 				padding: 0.2rem 0.5rem;
-				background: #eee;
+				background: color-mix(in srgb, var(--card-bg) 78%, var(--muted-text) 22%);
+				border: 1px solid var(--border-color);
 				border-radius: 4px;
 				font-size: 0.7rem;
 				margin-bottom: 0.5rem;
-				color: #555;
+				color: var(--muted-text);
+			}
+			#results-count {
+				margin-bottom: 1rem;
+				font-size: 0.9rem;
+				color: var(--muted-text);
 			}
 		</style>
 	</head>
@@ -75,7 +88,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				<h1>검색</h1>
 				<input type="text" id="search-input" placeholder="제목이나 설명으로 검색하세요..." autofocus />
 			</div>
-			<div id="results-count" style="margin-bottom: 1rem; font-size: 0.9rem; color: #888;"></div>
+			<div id="results-count"></div>
 			<ul id="results-list"></ul>
 		</main>
 		<Footer />
