@@ -10,6 +10,9 @@ export async function GET() {
 	}));
 
 	return new Response(JSON.stringify(searchIndex), {
-		headers: { 'Content-Type': 'application/json' },
+		headers: {
+			'Content-Type': 'application/json; charset=utf-8',
+			'X-Content-Type-Options': 'nosniff',
+		},
 	});
 }

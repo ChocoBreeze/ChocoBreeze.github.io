@@ -91,6 +91,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				font-size: 0.9rem;
 				color: var(--muted-text);
 			}
+			#results-count.error {
+				color: #c2410c;
+			}
+			[data-theme='dark'] #results-count.error {
+				color: #fb923c;
+			}
 		</style>
 	</head>
 	<body>
@@ -98,9 +104,18 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<main>
 			<div class="search-container">
 				<h1>검색</h1>
-				<input type="text" id="search-input" placeholder="제목이나 설명으로 검색하세요..." autofocus />
+				<input
+					type="text"
+					id="search-input"
+					placeholder="검색 인덱스를 불러오는 중..."
+					aria-label="게시글 검색"
+					aria-describedby="results-count"
+					autocomplete="off"
+					disabled
+					autofocus
+				/>
 			</div>
-			<div id="results-count"></div>
+			<div id="results-count" role="status" aria-live="polite"></div>
 			<ul id="results-list"></ul>
 		</main>
 		<Footer />
@@ -118,29 +133,70 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			const resultsList = document.getElementById('results-list');
 			const resultsCount = document.getElementById('results-count');
 
-			// 인덱스 데이터 가져오기
-			fetch('/search.json')
-				.then(res => res.json())
-				.then((data: SearchItem[]) => {
-					searchIndex = data;
-				});
-
 			if (searchInput && resultsList && resultsCount) {
+				loadSearchIndex();
+
 				searchInput.addEventListener('input', () => {
-					const query = searchInput.value.toLowerCase().trim();
-					if (query.length < 2) {
-						resultsList.replaceChildren();
-						resultsCount.textContent = '';
-						return;
+					updateResults(searchInput.value);
+				});
+			}
+
+			async function loadSearchIndex() {
+				if (!searchInput || !resultsCount) return;
+
+				try {
+					const response = await fetch('/search.json', {
+						headers: { Accept: 'application/json' },
+					});
+					if (!response.ok) {
+						throw new Error(`Search index request failed: ${response.status}`);
 					}
 
-					const filtered = searchIndex.filter(item => 
-						item.title.toLowerCase().includes(query) || 
-						(item.description && item.description.toLowerCase().includes(query))
-					);
+					const data: unknown = await response.json();
+					if (!Array.isArray(data)) {
+						throw new Error('Search index response is not an array');
+					}
 
-					displayResults(filtered);
-				});
+					searchIndex = data.filter(isSearchItem);
+					searchInput.disabled = false;
+					searchInput.placeholder = '제목이나 설명으로 검색하세요...';
+					resultsCount.classList.remove('error');
+
+					if (searchInput.value.trim()) {
+						updateResults(searchInput.value);
+					}
+				} catch {
+					searchInput.disabled = true;
+					searchInput.placeholder = '검색을 사용할 수 없습니다.';
+					resultsCount.classList.add('error');
+					resultsCount.textContent = '검색 인덱스를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
+				}
+			}
+
+			function isSearchItem(item: unknown): item is SearchItem {
+				if (!item || typeof item !== 'object') return false;
+
+				const candidate = item as Record<string, unknown>;
+				return typeof candidate.title === 'string' && typeof candidate.slug === 'string';
+			}
+
+			function updateResults(value: string) {
+				if (!resultsList || !resultsCount) return;
+
+				const query = value.toLowerCase().trim();
+				if (query.length < 2) {
+					resultsList.replaceChildren();
+					resultsCount.classList.remove('error');
+					resultsCount.textContent = '';
+					return;
+				}
+
+				const filtered = searchIndex.filter(item =>
+					item.title.toLowerCase().includes(query) ||
+					(item.description && item.description.toLowerCase().includes(query))
+				);
+
+				displayResults(filtered);
 			}
 
 			function getCategoryLabel(categories: SearchItem['categories']) {
@@ -148,16 +204,27 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				return categories || 'Uncategorized';
 			}
 
+			function getPostHref(slug: string) {
+				const normalizedSlug = slug
+					.split('/')
+					.filter(Boolean)
+					.map((segment) => encodeURIComponent(segment))
+					.join('/');
+
+				return `/blog/${normalizedSlug}/`;
+			}
+
 			function displayResults(results: SearchItem[]) {
 				if (!resultsList || !resultsCount) return;
 
+				resultsCount.classList.remove('error');
 				resultsCount.textContent = `${results.length}개의 결과를 찾았습니다.`;
 				const resultItems = results.map((item) => {
 					const listItem = document.createElement('li');
 					listItem.className = 'result-item';
 
 					const link = document.createElement('a');
-					link.href = `/blog/${item.slug}/`;
+					link.href = getPostHref(item.slug);
 
 					const category = document.createElement('span');
 					category.className = 'result-category';
