@@ -30,7 +30,7 @@ pip install chromadb langchain-chroma langchain-openai langchain langchain-commu
 
 ### 2. `.env` 확인
 ```env
-OPENAI_API_KEY=sk-...
+OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
 ```
 
 ### 3. 기본 샘플로 벡터 DB 실습

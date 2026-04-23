@@ -66,7 +66,6 @@ categories: "ETF"
 
 ### 시장 지배력
 
-<!-- ![IBIT는 비트코인 ETF 시장을 압도적으로 지배합니다. 61.4% 시장점유율과 $55B AUM으로 2위 FBTC($20B)의 2.75배 규모이며, 출시 341일 만에 $70B 달성으로 역사상 가장 빠르게 성장한 ETF입니다. Return-to-Fee Ratio 454.17은 FBTC(217.20)의 2.1배, GBTC(36)의 12.6배로 탁월한 가치를 제공합니다. 0.25% 운용보수는 업계 최저 수준이며, 2024년 전체 비트코인 ETF 순유입 $54B 중 $52B(96.3%)를 IBIT 단독으로 흡수했습니다.](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/76a22c1c57623d5de220f90c9ba171de/77595948-38e1-4b5a-9a82-a4b822b32c8a/bdea1e03.png) -->
 
 ![alt text](images/image.png)
 

@@ -47,7 +47,6 @@ categories: "ETF"
 
 ### BITX vs BITU 수수료 비교
 
-<!-- ![BITX는 BITU 대비 모든 핵심 지표에서 열세입니다. 운용보수 2.38% (BITU의 2.5배), 최대 하락폭 -61.28% (BITU보다 6%p 더 깊음), Sharpe Ratio 1.02 (BITU 1.11보다 낮음), 선물 노출 107% (BITU 48%의 2.2배로 콘탱고 드래그 더 큼). 10년간 수수료 누적 드래그는 BITX -21.17% vs BITU -9.33%로 BITX가 11.84%p 더 많은 비용을 발생시킵니다. BITX의 유일한 장점은 높은 유동성(일일 거래량 9.33M)이지만 99% 트레이더에게는 무의미하며 2.5배 높은 수수료를 정당화할 수 없습니다.](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/f69c3a13334badb149997ede0435536d/debcfbaa-e976-4a01-b22b-1c6c92715243/f57cd885.png) -->
 
 ![alt text](images/image.png)
 

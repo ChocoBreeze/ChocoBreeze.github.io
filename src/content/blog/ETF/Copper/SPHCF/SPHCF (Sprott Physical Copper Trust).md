@@ -70,7 +70,6 @@ SPHCF는 **극도로 단순하지만 비용이 많은 전략**을 추구한다:
 
 ### 절대 수익률
 
-<!-- ![SPHCF Physical Copper vs Alternatives: High Cost + Premium Penalty](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/35ad71d259fdf6ad39cdff1081444e11/31c2a6c4-bc74-4f6b-8bc2-9ea54819142d/1b369995.png) -->
 
 ![alt text](images/image.png)
 
@@ -87,7 +86,6 @@ SPHCF의 성과는 **높은 비용이 모든 우월성을 파괴함을 보여준
 
 ### 2025년 성능 분석
 
-<!-- ![SPHCF 2025 Performance Waterfall: Where 63% Copper Gain Disappeared](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/35ad71d259fdf6ad39cdff1081444e11/b1f14e7c-04d0-4c8e-9288-369723251e15/fe4b1169.png) -->
 
 ![alt text](images/image-1.png)
 
@@ -108,7 +106,6 @@ SPHCF 2025 Performance Waterfall: Where 63% Copper Gain Disappeared
 
 ### 장기 비용 영향
 
-<!-- ![SPHCF's 1.61% MER: Compounding Cost Destruction Over 30 Years](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/35ad71d259fdf6ad39cdff1081444e11/ab99c72a-7bc3-4ba9-a65f-c0916934a526/409d562a.png) -->
 
 ![alt text](images/image-2.png)
 

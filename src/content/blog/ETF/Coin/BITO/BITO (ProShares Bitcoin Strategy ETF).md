@@ -195,7 +195,6 @@ BITO 수익률: +15% (뒤처짐)
 
 ### vs 비트코인 현물: 심각한 저성과
 
-<!-- ![BITO는 스팟 비트코인 ETF(IBIT, FBTC) 대비 모든 지표에서 압도적으로 열세입니다. AUM $2.5B(IBIT의 4.5%), 운용보수 0.95%(3.8배 비쌈), 콘탱고 드래그 포함 연간 총 비용 6%(24배 높음)로, 2024년 1월 스팟 ETF 승인 이후 사실상 구식 상품이 되었습니다.](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/933055d1a37a5d7c74085d4b96edd9d6/72a107f6-7fdc-4a19-af6d-75ddb64410c9/6562d9b1.png) -->
 
 ![alt text](images/image.png)
 
@@ -484,7 +483,6 @@ Reddit 사용자:[^12]
 
 ### vs IBIT (BlackRock 스팟 비트코인 ETF)[^10][^17]
 
-<!-- ![BITO는 스팟 비트코인 ETF(IBIT, FBTC) 대비 모든 지표에서 압도적으로 열세입니다. AUM $2.5B(IBIT의 4.5%), 운용보수 0.95%(3.8배 비쌈), 콘탱고 드래그 포함 연간 총 비용 6%(24배 높음)로, 2024년 1월 스팟 ETF 승인 이후 사실상 구식 상품이 되었습니다.](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/933055d1a37a5d7c74085d4b96edd9d6/72a107f6-7fdc-4a19-af6d-75ddb64410c9/6562d9b1.png) -->
 
 ![alt text](images/image-1.png)
 

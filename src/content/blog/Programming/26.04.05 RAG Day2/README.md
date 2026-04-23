@@ -30,7 +30,7 @@ py -m pip install openai python-dotenv sentence-transformers
 
 ### 2. `.env` 확인
 ```env
-OPENAI_API_KEY=sk-...
+OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
 ```
 로컬 임베딩 실습은 API 키가 없어도 되지만, OpenAI 임베딩 실습에는 필요합니다.
 

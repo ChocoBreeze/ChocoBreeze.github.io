@@ -152,7 +152,6 @@ COIN $200일 때:
 
 ### vs COIN 직접 보유: CONY 압도적 패배
 
-<!-- ![CONY는 출시 이후(2023년 8월~2026년 1월) COIN 대비 -261%p의 치명적 격차로 참패했습니다. COIN이 +182.5% 상승하는 동안 CONY는 -79.2% 폭락하여 160%라는 헤드라인 배당수익률(96% ROC)도 NAV 붕괴를 상쇄하지 못했습니다. 커버드콜 전략이 상승을 0-15%로 제한하면서 하방은 완전 노출시킨 구조적 결함이 원인입니다.](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/efa718d4d3a5539c7420213f89179313/0a48d94c-6121-441d-b2bc-a49de5706eaa/103c50ce.png) -->
 
 ![alt text](images/image.png)
 
@@ -461,7 +460,6 @@ CONY는 출시 이후(2023년 8월~2026년 1월) COIN 대비 -261%p의 치명적
 
 ### vs COIN 직접 보유[^5][^16][^6][^9]
 
-<!-- ![CONY는 출시 이후(2023년 8월~2026년 1월) COIN 대비 -261%p의 치명적 격차로 참패했습니다. COIN이 +182.5% 상승하는 동안 CONY는 -79.2% 폭락하여 160%라는 헤드라인 배당수익률(96% ROC)도 NAV 붕괴를 상쇄하지 못했습니다. 커버드콜 전략이 상승을 0-15%로 제한하면서 하방은 완전 노출시킨 구조적 결함이 원인입니다.](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/efa718d4d3a5539c7420213f89179313/0a48d94c-6121-441d-b2bc-a49de5706eaa/103c50ce.png) -->
 
 ![alt text](images/image-1.png)
 

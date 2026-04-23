@@ -75,7 +75,6 @@ COPX는 **매우 체계적인 Solactive 지수 방식**을 추구한다:
 
 ### 균형 잡힌 최대 가중치
 
-<!-- ![COPX Top 10 Holdings: Well-Balanced Copper Exposure with Multimetal Mix](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/aaec250522fea5582854695abb4b8c93/841e81be-899f-4c69-acda-cd1fea1e2e1f/528675fe.png) -->
 
 ![alt text](images/image.png)
 
@@ -132,7 +131,6 @@ COPX의 가장 주목할 특징은 **4.75% 최대 가중치 제약**이다:
 
 ### 절대 수익률
 
-<!-- ![COPX 16-Year Performance: Surviving Commodity Cycles (2010-2025)](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/aaec250522fea5582854695abb4b8c93/189eae7f-11a7-45ee-ab52-727b69fa4157/369f4787.png) -->
 
 ![alt text](images/image-1.png)
 
@@ -149,7 +147,6 @@ COPX의 성과는 **장기 검증과 단기 탁월성**을 보여준다:
 
 ### 연도별 성과: 극도의 변동성
 
-<!-- ![COPX vs COPP vs COPJ vs SPY: The Copper Mining Maturity Spectrum](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/aaec250522fea5582854695abb4b8c93/e0467eec-4a88-4883-9c73-5e8a9e6155d7/a3acacb9.png) -->
 
 ![alt text](images/image-2.png)
 

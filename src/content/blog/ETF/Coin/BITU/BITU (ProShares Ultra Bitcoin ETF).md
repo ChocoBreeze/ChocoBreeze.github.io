@@ -135,7 +135,6 @@ categories: "ETF"
 
 ### 전형적 예시: 10% 하락 후 10% 상승
 
-<!-- ![BITU의 일일 리셋 메커니즘은 변동성이 높은 시장에서 치명적입니다. 10일간 비트코인이 +5%/-5%를 반복하여 -1.25% 하락할 때, 이론적 2x 레버리지는 -2.50% 하락이지만 BITU는 실제로 일일 리셋과 복리 효과로 -5.08% 하락합니다. 이 "변동성 붕괴"는 비트코인 역사적 80-100% 변동성에서 연간 -32-50% 드래그를 발생시킵니다.](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/88c214c90ca7a6fdf9eaf082b88f3af7/ea88f784-49b7-46d9-8f2d-cfddc19c7946/1be3ac45.png) -->
 
 ![alt text](images/image.png)
 

@@ -44,7 +44,6 @@ categories: "ETF"
 
 ## 핵심 차별화: Fidelity 자체 커스터디 모델
 
-<!-- ![FBTC는 IBIT와 거의 동일한 성과(1년 수익률 54.3% vs 54.5%, ±0.2% 차이)와 동일한 0.25% 운용보수를 제공하지만, AUM $23B(IBIT $75B의 31%), 일일 거래량 12M주(IBIT 43.7M의 27%), 매수-매도 스프레드 0.04%(IBIT 0.02%의 2배)로 유동성 격차가 존재합니다. 하지만 FBTC의 핵심 이점은 Fidelity Digital Assets 자체 커스터디로, 8개 ETF(73%)가 사용하는 Coinbase 집중 위험을 제거합니다. 최근 일일 유입에서 FBTC가 IBIT를 초과한 사례($351M vs $126M, 2026년 1월)는 기관 신뢰를 증명합니다. 매수 후 보유 투자자에게는 유동성 격차가 무의미하며, IBIT + FBTC 50/50 분할이 커스터디 다각화를 위한 최적 전략입니다.](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/fa149260c1d6cbd7b595a361f71637b8/8795e18d-e6e1-474c-bfda-c36f2ade840b/e4f14928.png) -->
 
 ![alt text](images/image.png)
 

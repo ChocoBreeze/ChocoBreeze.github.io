@@ -69,7 +69,6 @@ DBB는 **평등가중 기초금속 전략**을 추구한다:
 
 ### 절대 수익률
 
-<!-- ![DBB vs Copper Alternatives: Diversification Reduces Returns](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/17e32f3873c30747af660727672b645f/16bed7fd-be5c-469e-88e5-67d161087378/c1bbf268.png) -->
 
 ![alt text](images/image.png)
 
@@ -86,7 +85,6 @@ DBB의 성과는 **다각화가 재앙임을 증명**한다:
 
 ### 극도의 변동성, 제로 가치 창출
 
-<!-- ![DBB 18-Year History: Extreme Volatility with Zero Long-Term Returns (0.42% CAGR)](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/17e32f3873c30747af660727672b645f/e65e38e0-641b-40fe-92cf-39163848d708/95b311b8.png) -->
 
 ![alt text](images/image-1.png)
 
@@ -108,7 +106,6 @@ DBB는 **극도로 변동성 높지만 아무 가치도 창출하지 않는다**
 
 ### 평등가중의 비극
 
-<!-- ![DBB Equal-Weighting vs Market Reality: Structural Underweight to Best Performer](https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/17e32f3873c30747af660727672b645f/21fc17a9-63ad-4301-8d0b-18c06a7f6ad3/137101bf.png) -->
 
 ![alt text](images/image-2.png)
 
