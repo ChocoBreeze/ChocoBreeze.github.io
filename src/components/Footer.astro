@@ -3,11 +3,11 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} 정영훈. All rights reserved.
-	<div class="social-links">
+	<p class="copyright">&copy; {today.getFullYear()} 정영훈. All rights reserved.</p>
+	<div class="social-links" aria-label="Social links">
 		<a href="https://blog.naver.com/chocobreeze" target="_blank" rel="noopener noreferrer" class="naver-link">
 			<span class="sr-only">Follow me on Naver Blog</span>
-			<svg viewBox="0 0 24 24" aria-hidden="true" width="32" height="32" style="margin-top: 3px;"
+			<svg viewBox="0 0 24 24" aria-hidden="true" width="32" height="32"
 				><path
 					fill="currentColor"
 					d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"
@@ -27,10 +27,16 @@ const today = new Date();
 </footer>
 <style>
 	footer {
-		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
+		padding: 2em 1em 5em;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--card-bg) 72%, transparent), var(--bg-color)) no-repeat;
+		border-top: 1px solid var(--border-color);
+		color: var(--muted-text);
 		text-align: center;
+	}
+	.copyright {
+		margin: 0;
+		color: var(--muted-text);
 	}
 	.social-links {
 		display: flex;
@@ -41,17 +47,25 @@ const today = new Date();
 	}
 	.social-links a {
 		text-decoration: none;
-		color: rgb(var(--gray));
+		color: var(--muted-text);
 		display: flex;
 		align-items: center;
+		justify-content: center;
+		border-radius: 10px;
+		transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 	}
 	.social-links a:hover {
-		color: rgb(var(--gray-dark));
+		color: var(--accent);
+		transform: translateY(-2px);
+	}
+	.social-links a:focus-visible {
+		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+		outline-offset: 4px;
 	}
 	.social-links a.naver-link {
-		color: #03C75A;
+		color: #03c75a;
 	}
 	.social-links a.naver-link:hover {
-		color: #02b350; /* 조금 더 진한 초록색 */
+		color: #02b350;
 	}
 </style>
