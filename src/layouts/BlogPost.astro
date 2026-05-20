@@ -41,7 +41,14 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
 
 <html lang="en">
     <head>
-        <BaseHead title={title} description={description} />
+        <BaseHead
+            title={title}
+            description={description}
+            image={image}
+            type="article"
+            publishedTime={date}
+            modifiedTime={updatedDate}
+        />
         <style>
             main {
                 width: calc(100% - 2em);
