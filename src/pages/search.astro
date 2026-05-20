@@ -127,7 +127,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				categories?: string | string[] | null;
 				tags?: string[];
 				headings?: string[];
+				excerpt?: string;
 				slug: string;
+			};
+
+			type SearchResult = {
+				item: SearchItem;
+				score: number;
 			};
 
 			let searchIndex: SearchItem[] = [];
@@ -161,7 +167,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 					searchIndex = data.filter(isSearchItem);
 					searchInput.disabled = false;
-					searchInput.placeholder = '제목, 설명, 태그, 소제목으로 검색하세요...';
+					searchInput.placeholder = '제목, 설명, 태그, 소제목, 본문 요약으로 검색하세요...';
 					resultsCount.classList.remove('error');
 
 					if (searchInput.value.trim()) {
@@ -193,21 +199,42 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					return;
 				}
 
-				const filtered = searchIndex.filter((item) => {
-					const searchableText = [
-						item.title,
-						item.description,
-						...(item.tags ?? []),
-						...(item.headings ?? []),
-					]
-						.filter((value): value is string => typeof value === 'string' && value.length > 0)
-						.join(' ')
-						.toLowerCase();
+				const results = searchIndex
+					.map((item) => ({
+						item,
+						score: getSearchScore(item, query),
+					}))
+					.filter((result) => result.score > 0)
+					.sort((a, b) => b.score - a.score);
 
-					return searchableText.includes(query);
-				});
+				displayResults(results);
+			}
 
-				displayResults(filtered);
+			function includesQuery(value: string | undefined, query: string) {
+				return typeof value === 'string' && value.toLowerCase().includes(query);
+			}
+
+			function getSearchScore(item: SearchItem, query: string) {
+				let score = 0;
+
+				if (includesQuery(item.title, query)) score += 60;
+				if (includesQuery(item.description, query)) score += 30;
+				if (includesQuery(item.excerpt, query)) score += 12;
+
+				if ((item.tags ?? []).some((tag) => includesQuery(tag, query))) {
+					score += 25;
+				}
+
+				if ((item.headings ?? []).some((heading) => includesQuery(heading, query))) {
+					score += 20;
+				}
+
+				const category = getCategoryLabel(item.categories);
+				if (includesQuery(category, query)) {
+					score += 15;
+				}
+
+				return score;
 			}
 
 			function getCategoryLabel(categories: SearchItem['categories']) {
@@ -225,12 +252,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				return `/blog/${normalizedSlug}/`;
 			}
 
-			function displayResults(results: SearchItem[]) {
+			function displayResults(results: SearchResult[]) {
 				if (!resultsList || !resultsCount) return;
 
 				resultsCount.classList.remove('error');
 				resultsCount.textContent = `${results.length}개의 결과를 찾았습니다.`;
-				const resultItems = results.map((item) => {
+				const resultItems = results.map(({ item }) => {
 					const listItem = document.createElement('li');
 					listItem.className = 'result-item';
 
@@ -245,7 +272,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					title.textContent = item.title;
 
 					const description = document.createElement('p');
-					description.textContent = item.description || '';
+					description.textContent = item.description || item.excerpt || '';
 
 					link.append(category, title, description);
 					listItem.append(link);
