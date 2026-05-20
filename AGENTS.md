@@ -18,6 +18,7 @@ This repository is an Astro-based personal blog. The root `README.md` documents 
 - Keep existing category and route conventions intact.
 - When changing layouts or routes, verify that category pages and individual post pages still resolve.
 - If a change affects deployment, keep the GitHub Actions workflow aligned with Astro's supported Node version.
+- Keep content changes, UI/layout changes, validation changes, and deployment changes in separate commits when practical.
 
 ## Content Model
 
@@ -30,7 +31,7 @@ Common fields:
 - `title`: required
 - `slug`: optional, but recommended when the filename contains spaces, Korean text, or special characters
 - `description`: optional
-- `pubDate`: preferred publish date field
+- `pubDate`: preferred publish date field; use full ISO 8601 with timezone, such as `2026-01-16T00:00:00+09:00`
 - `updatedDate`: optional
 - `categories`: optional, string or string array
 - `tags`: optional
@@ -38,6 +39,18 @@ Common fields:
 - `order`: optional, useful for ordered series
 
 Legacy Jekyll-style fields such as `date` and `image` are also accepted, but new posts should prefer the Astro-side fields (`pubDate`, `heroImage`).
+
+For new posts, prefer including at least `title`, `description`, `pubDate`, and `categories`.
+
+## Content Security Checks
+
+Before committing new or edited posts, check for:
+
+- API keys, bearer tokens, access tokens, and credential-looking strings.
+- Local absolute paths, including Windows paths, Unix home paths, and `file://` URIs.
+- Temporary hosted asset URLs or private upload links.
+- Personal file names, machine names, internal project paths, or private notes that should not be public.
+- Markdown or HTML syntax that renders visibly, such as unmatched `**` or unclosed inline tags.
 
 ## Category Conventions
 
@@ -86,11 +99,41 @@ When adding or editing posts, avoid changes that would silently break these rout
 Run from repository root:
 
 - `npm run dev`
+- `npm run check:content`
+- `npm run check`
 - `npm run build`
 - `npm run preview`
-- `npm run astro -- check`
 
-Use `npm run build` as the default verification step after meaningful content or layout changes.
+Use `npm run check:content` for post-only changes. Use `npm run check` and `npm run build` after meaningful code, layout, route, or CI changes.
+
+## Code Review Checklist
+
+Use this checklist before committing non-trivial changes.
+
+## Review Focus
+
+- Confirm the diff matches the user request and does not include unrelated edits.
+- Check category pages, individual post pages, RSS, sitemap, and search when content routing or frontmatter changes.
+- Check dark mode readability when changing shared surfaces, Markdown styles, cards, navigation, forms, or color tokens.
+- Check mobile readability for post detail pages, category lists, search results, and table-heavy posts.
+- Check long headings, long titles, tables, code blocks, and table-of-contents overflow in article layouts.
+- Check Korean UI copy for clarity and consistency.
+- Check external links for safe behavior when link rendering logic changes.
+
+## Validation
+
+- Run `npm run check:content` after adding or editing posts.
+- Run `npm run check` after Astro, TypeScript, content schema, or component changes.
+- Run `npm run build` after meaningful UI, layout, routing, search, RSS, sitemap, or CI changes.
+- Manually inspect affected pages in a browser when changing visual layout, dark mode, or responsive behavior.
+
+## Commit Gate
+
+- Summarize notable behavior or content changes before committing.
+- List verification commands and their results.
+- List skipped checks with the reason.
+- Fix concrete review findings before committing unless the user chooses to defer them.
+- Commit only relevant files for the current task.
 
 ## Deployment Notes
 
