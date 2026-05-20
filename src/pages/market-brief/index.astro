@@ -1,7 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import BlogSidebar from '../../components/BlogSidebar.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
 import { BLOG_CATEGORIES } from '../../data/blogCategories';
-import BlogListLayout from '../../layouts/BlogListLayout.astro';
 
 const posts = (await getCollection('blog'))
 	.filter((post) => {
@@ -20,11 +24,312 @@ const posts = (await getCollection('blog'))
 	});
 
 const category = BLOG_CATEGORIES.find(({ key }) => key === 'Market Brief')!;
+const getDate = (post: (typeof posts)[number]) => post.data.pubDate || post.data.date;
+const getBriefType = (post: (typeof posts)[number]) =>
+	post.data.title.toLowerCase().includes('weekly') ? 'Weekly' : 'Daily';
+const getMonthKey = (post: (typeof posts)[number]) => {
+	const date = getDate(post);
+	if (!date) return 'Unknown';
+	const year = String(date.getFullYear()).slice(2);
+	const month = String(date.getMonth() + 1).padStart(2, '0');
+	return `${year}.${month}`;
+};
+const getPostHref = (post: (typeof posts)[number]) => `/blog/${post.data.slug || post.id}/`;
+
+const monthlyGroups = Array.from(
+	posts.reduce((groups, post) => {
+		const monthKey = getMonthKey(post);
+		const group = groups.get(monthKey) ?? [];
+		group.push(post);
+		groups.set(monthKey, group);
+		return groups;
+	}, new Map<string, typeof posts>()),
+);
+
+const monthKeys = monthlyGroups.map(([monthKey]) => monthKey);
+const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 ---
 
-<BlogListLayout
-	title={category.title}
-	description={category.description}
-	activeCategory={category.key}
-	posts={posts}
-/>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={category.title} description={category.description} />
+		<style>
+			.market-brief-tools {
+				display: grid;
+				gap: 0.9rem;
+				margin: 1.4rem 0 1.75rem;
+			}
+			.market-brief-filter-group {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.55rem;
+			}
+			.market-brief-filter {
+				border: 1px solid var(--border-color);
+				border-radius: 999px;
+				padding: 0.45rem 0.85rem;
+				background: var(--card-bg);
+				color: var(--text-color);
+				font: inherit;
+				font-size: 0.9rem;
+				cursor: pointer;
+				transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+			}
+			.market-brief-filter:hover,
+			.market-brief-filter[aria-pressed='true'] {
+				background: color-mix(in srgb, var(--accent) 14%, var(--card-bg));
+				border-color: color-mix(in srgb, var(--accent) 42%, var(--border-color));
+				transform: translateY(-1px);
+			}
+			.latest-weekly {
+				margin-bottom: 1.5rem;
+				padding: 1.35rem;
+				border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--border-color));
+				border-radius: 24px;
+				background:
+					radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 18%, transparent), transparent 36%),
+					var(--card-bg);
+				box-shadow: 0 16px 34px rgba(var(--gray), 0.12);
+			}
+			.latest-weekly-label,
+			.month-label {
+				margin: 0 0 0.45rem;
+				font-size: 0.8rem;
+				font-weight: 800;
+				letter-spacing: 0.11em;
+				text-transform: uppercase;
+				color: var(--accent);
+			}
+			.latest-weekly h2 {
+				margin: 0 0 0.45rem;
+				font-size: clamp(1.35rem, 3vw, 2rem);
+			}
+			.latest-weekly p {
+				margin: 0 0 1rem;
+				color: var(--muted-text);
+			}
+			.latest-weekly a {
+				color: var(--heading-color);
+				text-decoration: none;
+			}
+			.market-month {
+				margin-bottom: 2rem;
+			}
+			.market-month[hidden],
+			.market-brief-card[hidden] {
+				display: none;
+			}
+			.market-month-header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+				margin-bottom: 0.9rem;
+				padding-bottom: 0.55rem;
+				border-bottom: 1px solid var(--border-color);
+			}
+			.market-month-header h2 {
+				margin: 0;
+				font-size: 1.25rem;
+			}
+			.month-count {
+				color: var(--muted-text);
+				font-size: 0.9rem;
+			}
+			.market-brief-grid {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1rem;
+			}
+			.market-brief-card a {
+				display: flex;
+				height: 100%;
+				flex-direction: column;
+				gap: 0.7rem;
+				padding: 1.05rem;
+				border: 1px solid var(--border-color);
+				border-radius: 18px;
+				background: var(--card-bg);
+				text-decoration: none;
+				color: var(--text-color);
+				box-shadow: 0 10px 24px rgba(var(--gray), 0.08);
+				transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+			}
+			.market-brief-card a:hover {
+				transform: translateY(-3px);
+				border-color: color-mix(in srgb, var(--accent) 35%, var(--border-color));
+				box-shadow: 0 16px 34px rgba(var(--gray), 0.14);
+			}
+			.market-brief-meta {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 0.75rem;
+				color: var(--muted-text);
+				font-size: 0.85rem;
+			}
+			.market-brief-badge {
+				border-radius: 999px;
+				padding: 0.2rem 0.55rem;
+				background: color-mix(in srgb, var(--accent) 12%, var(--card-bg));
+				color: var(--heading-color);
+				font-weight: 700;
+			}
+			.market-brief-card h3 {
+				margin: 0;
+				color: var(--heading-color);
+				font-size: 1.08rem;
+				line-height: 1.4;
+			}
+			.market-brief-card p {
+				margin: 0;
+				color: var(--muted-text);
+				line-height: 1.55;
+			}
+			.market-empty {
+				margin: 2rem 0 0;
+				color: var(--muted-text);
+			}
+			@media (max-width: 720px) {
+				.market-brief-grid {
+					grid-template-columns: 1fr;
+				}
+				.market-month-header {
+					align-items: flex-start;
+					flex-direction: column;
+					gap: 0.2rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main class="blog-page-shell">
+			<BlogSidebar activeCategory={category.key} />
+			<section class="blog-list-panel">
+				<div class="blog-list-heading">
+					<p class="blog-list-eyebrow">Archive</p>
+					<h1>{category.title}</h1>
+					<p>{category.description}</p>
+				</div>
+
+				<div class="market-brief-tools" aria-label="Market Brief filters">
+					<div class="market-brief-filter-group" data-filter-group="type">
+						<button class="market-brief-filter" type="button" data-type="all" aria-pressed="true">All</button>
+						<button class="market-brief-filter" type="button" data-type="Daily" aria-pressed="false">Daily</button>
+						<button class="market-brief-filter" type="button" data-type="Weekly" aria-pressed="false">Weekly</button>
+					</div>
+					<div class="market-brief-filter-group" data-filter-group="month">
+						<button class="market-brief-filter" type="button" data-month="all" aria-pressed="true">All Months</button>
+						{monthKeys.map((monthKey) => (
+							<button class="market-brief-filter" type="button" data-month={monthKey} aria-pressed="false">
+								{monthKey}
+							</button>
+						))}
+					</div>
+				</div>
+
+				{latestWeekly && (
+					<article class="latest-weekly">
+						<p class="latest-weekly-label">Latest Weekly</p>
+						<h2>
+							<a href={getPostHref(latestWeekly)}>{latestWeekly.data.title}</a>
+						</h2>
+						{latestWeekly.data.description && <p>{latestWeekly.data.description}</p>}
+						<a href={getPostHref(latestWeekly)}>주간 브리핑 읽기</a>
+					</article>
+				)}
+
+				<div id="market-empty" class="market-empty" hidden>선택한 조건에 맞는 브리핑이 없습니다.</div>
+
+				{monthlyGroups.map(([monthKey, monthPosts]) => (
+					<section class="market-month" data-month-section={monthKey}>
+						<div class="market-month-header">
+							<div>
+								<p class="month-label">Month</p>
+								<h2>{monthKey}</h2>
+							</div>
+							<span class="month-count">{monthPosts.length} posts</span>
+						</div>
+						<ul class="market-brief-grid">
+							{monthPosts.map((post) => {
+								const date = getDate(post);
+								const briefType = getBriefType(post);
+								return (
+									<li class="market-brief-card" data-brief-type={briefType} data-brief-month={monthKey}>
+										<a href={getPostHref(post)}>
+											<div class="market-brief-meta">
+												<span class="market-brief-badge">{briefType}</span>
+												{date && <FormattedDate date={date} />}
+											</div>
+											<h3>{post.data.title}</h3>
+											{post.data.description && <p>{post.data.description}</p>}
+										</a>
+									</li>
+								);
+							})}
+						</ul>
+					</section>
+				))}
+			</section>
+		</main>
+		<Footer />
+
+		<script>
+			const typeButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-type]'));
+			const monthButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-month]'));
+			const cards = Array.from(document.querySelectorAll<HTMLElement>('.market-brief-card'));
+			const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-month-section]'));
+			const emptyState = document.getElementById('market-empty');
+			let activeType = 'all';
+			let activeMonth = 'all';
+
+			function setPressed(buttons: HTMLButtonElement[], activeButton: HTMLButtonElement) {
+				for (const button of buttons) {
+					button.setAttribute('aria-pressed', String(button === activeButton));
+				}
+			}
+
+			function applyFilters() {
+				let visibleCount = 0;
+
+				for (const card of cards) {
+					const matchesType = activeType === 'all' || card.dataset.briefType === activeType;
+					const matchesMonth = activeMonth === 'all' || card.dataset.briefMonth === activeMonth;
+					const visible = matchesType && matchesMonth;
+					card.hidden = !visible;
+					if (visible) visibleCount += 1;
+				}
+
+				for (const section of sections) {
+					const visibleCards = section.querySelectorAll('.market-brief-card:not([hidden])');
+					section.hidden = visibleCards.length === 0;
+				}
+
+				if (emptyState) {
+					emptyState.hidden = visibleCount > 0;
+				}
+			}
+
+			for (const button of typeButtons) {
+				button.addEventListener('click', () => {
+					activeType = button.dataset.type ?? 'all';
+					setPressed(typeButtons, button);
+					applyFilters();
+				});
+			}
+
+			for (const button of monthButtons) {
+				button.addEventListener('click', () => {
+					activeMonth = button.dataset.month ?? 'all';
+					setPressed(monthButtons, button);
+					applyFilters();
+				});
+			}
+		</script>
+	</body>
+</html>
