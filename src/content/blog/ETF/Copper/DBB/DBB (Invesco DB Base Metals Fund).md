@@ -335,7 +335,7 @@ DBB는 **"다각화가 최고라는 이론을 18년의 0.42% 수익으로 영구
 
 [^17]: https://www.morningstar.com/etfs/arcx/dbb/quote
 
-[^18]: http://aastocks.com/en/usq/quote/quote.aspx?symbol=DBB
+[^18]: https://aastocks.com/en/usq/quote/quote.aspx?symbol=DBB
 
 [^19]: https://www.invesco.com/content/dam/invesco/us/en/product-documents/etf/fact-sheet/dbb-invesco-db-base-metals-fund-fact-sheet.pdf
 
