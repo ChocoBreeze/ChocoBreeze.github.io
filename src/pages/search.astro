@@ -125,6 +125,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				title: string;
 				description?: string;
 				categories?: string | string[] | null;
+				tags?: string[];
+				headings?: string[];
 				slug: string;
 			};
 
@@ -159,7 +161,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 					searchIndex = data.filter(isSearchItem);
 					searchInput.disabled = false;
-					searchInput.placeholder = '제목이나 설명으로 검색하세요...';
+					searchInput.placeholder = '제목, 설명, 태그, 소제목으로 검색하세요...';
 					resultsCount.classList.remove('error');
 
 					if (searchInput.value.trim()) {
@@ -191,10 +193,19 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					return;
 				}
 
-				const filtered = searchIndex.filter(item =>
-					item.title.toLowerCase().includes(query) ||
-					(item.description && item.description.toLowerCase().includes(query))
-				);
+				const filtered = searchIndex.filter((item) => {
+					const searchableText = [
+						item.title,
+						item.description,
+						...(item.tags ?? []),
+						...(item.headings ?? []),
+					]
+						.filter((value): value is string => typeof value === 'string' && value.length > 0)
+						.join(' ')
+						.toLowerCase();
+
+					return searchableText.includes(query);
+				});
 
 				displayResults(filtered);
 			}
