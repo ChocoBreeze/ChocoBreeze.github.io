@@ -1,6 +1,7 @@
 import { getCollection, render } from 'astro:content';
 
 const EXCERPT_LENGTH = 480;
+const SEARCH_TEXT_LENGTH = 6000;
 
 function stripMarkdown(content: string) {
 	return content
@@ -24,6 +25,10 @@ function getExcerpt(content: string) {
 	return `${plainText.slice(0, EXCERPT_LENGTH).trim()}...`;
 }
 
+function getSearchText(content: string) {
+	return stripMarkdown(content).slice(0, SEARCH_TEXT_LENGTH).trim();
+}
+
 export async function GET() {
 	const posts = await getCollection('blog');
 	const searchIndex = await Promise.all(
@@ -38,6 +43,7 @@ export async function GET() {
 				tags: post.data.tags ?? [],
 				headings: headings.map((heading) => heading.text),
 				excerpt: getExcerpt(body),
+				searchText: getSearchText(body),
 				slug: post.data.slug || post.id,
 			};
 		}),

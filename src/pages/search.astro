@@ -76,6 +76,20 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				color: var(--muted-text);
 				font-size: 0.9rem;
 			}
+			.result-snippet {
+				margin-top: 0.65rem;
+				padding: 0.7rem 0.85rem;
+				border-left: 3px solid color-mix(in srgb, var(--accent) 65%, var(--border-color));
+				border-radius: 10px;
+				background: color-mix(in srgb, var(--card-bg) 88%, var(--muted-text) 12%);
+				line-height: 1.6;
+			}
+			.result-snippet mark {
+				border-radius: 0.2em;
+				padding: 0.05em 0.18em;
+				background: color-mix(in srgb, var(--accent) 24%, transparent);
+				color: var(--heading-color);
+			}
 			.result-category {
 				display: inline-block;
 				padding: 0.2rem 0.5rem;
@@ -128,12 +142,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				tags?: string[];
 				headings?: string[];
 				excerpt?: string;
+				searchText?: string;
 				slug: string;
 			};
 
 			type SearchResult = {
 				item: SearchItem;
 				score: number;
+				snippet?: string;
 			};
 
 			let searchIndex: SearchItem[] = [];
@@ -203,6 +219,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					.map((item) => ({
 						item,
 						score: getSearchScore(item, query),
+						snippet: getMatchSnippet(item, query),
 					}))
 					.filter((result) => result.score > 0)
 					.sort((a, b) => b.score - a.score);
@@ -220,6 +237,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				if (includesQuery(item.title, query)) score += 60;
 				if (includesQuery(item.description, query)) score += 30;
 				if (includesQuery(item.excerpt, query)) score += 12;
+				if (includesQuery(item.searchText, query)) score += 12;
 
 				if ((item.tags ?? []).some((tag) => includesQuery(tag, query))) {
 					score += 25;
@@ -235,6 +253,31 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				}
 
 				return score;
+			}
+
+			function getMatchSnippet(item: SearchItem, query: string) {
+				const sources = [
+					item.description,
+					...(item.headings ?? []),
+					item.excerpt,
+					item.searchText,
+				];
+
+				for (const source of sources) {
+					if (!source) continue;
+
+					const index = source.toLowerCase().indexOf(query);
+					if (index === -1) continue;
+
+					const contextLength = 90;
+					const start = Math.max(0, index - contextLength);
+					const end = Math.min(source.length, index + query.length + contextLength);
+					const prefix = start > 0 ? '...' : '';
+					const suffix = end < source.length ? '...' : '';
+					return `${prefix}${source.slice(start, end).trim()}${suffix}`;
+				}
+
+				return item.description || item.excerpt || '';
 			}
 
 			function getCategoryLabel(categories: SearchItem['categories']) {
@@ -257,7 +300,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 				resultsCount.classList.remove('error');
 				resultsCount.textContent = `${results.length}개의 결과를 찾았습니다.`;
-				const resultItems = results.map(({ item }) => {
+				const resultItems = results.map(({ item, snippet }) => {
 					const listItem = document.createElement('li');
 					listItem.className = 'result-item';
 
@@ -275,12 +318,37 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					description.textContent = item.description || item.excerpt || '';
 
 					link.append(category, title, description);
+					if (snippet && snippet !== description.textContent) {
+						const snippetElement = document.createElement('p');
+						snippetElement.className = 'result-snippet';
+						appendHighlightedText(snippetElement, snippet, searchInput?.value.trim() ?? '');
+						link.append(snippetElement);
+					}
 					listItem.append(link);
 
 					return listItem;
 				});
 
 				resultsList.replaceChildren(...resultItems);
+			}
+
+			function appendHighlightedText(parent: HTMLElement, text: string, query: string) {
+				const normalizedQuery = query.toLowerCase();
+				const normalizedText = text.toLowerCase();
+				const index = normalizedQuery ? normalizedText.indexOf(normalizedQuery) : -1;
+
+				if (index === -1) {
+					parent.textContent = text;
+					return;
+				}
+
+				parent.append(
+					document.createTextNode(text.slice(0, index)),
+					Object.assign(document.createElement('mark'), {
+						textContent: text.slice(index, index + query.length),
+					}),
+					document.createTextNode(text.slice(index + query.length)),
+				);
 			}
 		</script>
 	</body>
