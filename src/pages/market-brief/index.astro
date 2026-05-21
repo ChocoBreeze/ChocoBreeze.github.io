@@ -6,6 +6,7 @@ import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { BLOG_CATEGORIES } from '../../data/blogCategories';
+import { getCategoryFeedPath } from '../../lib/rss';
 
 const posts = (await getCollection('blog'))
 	.filter((post) => {
@@ -24,6 +25,7 @@ const posts = (await getCollection('blog'))
 	});
 
 const category = BLOG_CATEGORIES.find(({ key }) => key === 'Market Brief')!;
+const rssHref = getCategoryFeedPath(category.key);
 const getDate = (post: (typeof posts)[number]) => post.data.pubDate || post.data.date;
 const getBriefType = (post: (typeof posts)[number]) =>
 	post.data.title.toLowerCase().includes('weekly') ? 'Weekly' : 'Daily';
@@ -53,12 +55,46 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={category.title} description={category.description} />
+		<BaseHead
+			title={category.title}
+			description={category.description}
+			rssHref={rssHref}
+			rssTitle={`${category.title} RSS`}
+		/>
 		<style>
 			.market-brief-tools {
 				display: grid;
 				gap: 0.9rem;
 				margin: 1.4rem 0 1.75rem;
+			}
+			.market-brief-actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.7rem;
+				margin-top: 1rem;
+			}
+			.rss-subscribe-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.55rem 0.85rem;
+				border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--border-color));
+				border-radius: 999px;
+				background: color-mix(in srgb, var(--card-bg) 86%, var(--accent) 14%);
+				color: var(--heading-color);
+				font-size: 0.9rem;
+				font-weight: 700;
+				text-decoration: none;
+				transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+			}
+			.rss-subscribe-link:hover {
+				border-color: var(--accent);
+				background: color-mix(in srgb, var(--card-bg) 74%, var(--accent) 26%);
+				transform: translateY(-1px);
+			}
+			.rss-subscribe-link:focus-visible {
+				outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+				outline-offset: 4px;
 			}
 			.market-brief-filter-group {
 				display: flex;
@@ -215,6 +251,12 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 					<p class="blog-list-eyebrow">Archive</p>
 					<h1>{category.title}</h1>
 					<p>{category.description}</p>
+					<div class="market-brief-actions">
+						<a class="rss-subscribe-link" href={rssHref}>
+							<span aria-hidden="true">RSS</span>
+							<span>Market Brief 구독</span>
+						</a>
+					</div>
 				</div>
 
 				<div class="market-brief-tools" aria-label="Market Brief filters">

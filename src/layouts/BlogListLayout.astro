@@ -5,7 +5,8 @@ import BlogSidebar from '../components/BlogSidebar.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import type { CollectionEntry } from 'astro:content';
-import type { BlogCategoryKey } from '../data/blogCategories';
+import { BLOG_CATEGORIES, type BlogCategoryKey } from '../data/blogCategories';
+import { getCategoryFeedPath } from '../lib/rss';
 
 type Props = {
 	title: string;
@@ -15,12 +16,19 @@ type Props = {
 };
 
 const { title, description, activeCategory, posts } = Astro.props;
+const category = BLOG_CATEGORIES.find(({ key }) => key === activeCategory);
+const rssHref = getCategoryFeedPath(activeCategory);
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead
+			title={title}
+			description={description}
+			rssHref={rssHref}
+			rssTitle={category ? `${category.title} RSS` : undefined}
+		/>
 	</head>
 	<body>
 		<Header />
@@ -31,6 +39,12 @@ const { title, description, activeCategory, posts } = Astro.props;
 					<p class="blog-list-eyebrow">Archive</p>
 					<h1>{title}</h1>
 					<p>{description}</p>
+					{rssHref && (
+						<a class="rss-subscribe-link" href={rssHref}>
+							<span aria-hidden="true">RSS</span>
+							<span>이 카테고리 구독</span>
+						</a>
+					)}
 				</div>
 				<ul class="blog-post-grid">
 					{posts.map((post) => <BlogPostCard post={post} />)}
@@ -40,3 +54,32 @@ const { title, description, activeCategory, posts } = Astro.props;
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.rss-subscribe-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: 1rem;
+		padding: 0.55rem 0.85rem;
+		border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--border-color));
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--card-bg) 86%, var(--accent) 14%);
+		color: var(--heading-color);
+		font-size: 0.9rem;
+		font-weight: 700;
+		text-decoration: none;
+		transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+	}
+
+	.rss-subscribe-link:hover {
+		border-color: var(--accent);
+		background: color-mix(in srgb, var(--card-bg) 74%, var(--accent) 26%);
+		transform: translateY(-1px);
+	}
+
+	.rss-subscribe-link:focus-visible {
+		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+		outline-offset: 4px;
+	}
+</style>
