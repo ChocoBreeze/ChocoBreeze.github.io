@@ -5,7 +5,7 @@ import process from 'node:process';
 const ROOT_DIR = process.cwd();
 const CONTENT_DIR = path.join(ROOT_DIR, 'src', 'content', 'blog');
 const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
-const MARKDOWN_EXTENSIONS = new Set(['.md', '.mdx', '.markdown']);
+const MARKDOWN_EXTENSIONS = new Set(['.md', '.mdx']);
 const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
 const MAX_FUTURE_DAYS = 370;
 const MAX_PAST_YEARS = 10;
