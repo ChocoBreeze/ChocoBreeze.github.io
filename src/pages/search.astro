@@ -136,14 +136,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 		<script>
 			type SearchItem = {
-				title: string;
-				description?: string;
-				categories?: string | string[] | null;
-				tags?: string[];
-				headings?: string[];
-				excerpt?: string;
-				searchText?: string;
-				slug: string;
+				t: string;
+				d?: string;
+				c?: string | string[] | null;
+				g?: string[];
+				h?: string[];
+				e?: string;
+				x?: string;
+				s: string;
 			};
 
 			type SearchResult = {
@@ -201,7 +201,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				if (!item || typeof item !== 'object') return false;
 
 				const candidate = item as Record<string, unknown>;
-				return typeof candidate.title === 'string' && typeof candidate.slug === 'string';
+				return typeof candidate.t === 'string' && typeof candidate.s === 'string';
 			}
 
 			function updateResults(value: string) {
@@ -234,20 +234,20 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			function getSearchScore(item: SearchItem, query: string) {
 				let score = 0;
 
-				if (includesQuery(item.title, query)) score += 60;
-				if (includesQuery(item.description, query)) score += 30;
-				if (includesQuery(item.excerpt, query)) score += 12;
-				if (includesQuery(item.searchText, query)) score += 12;
+				if (includesQuery(item.t, query)) score += 60;
+				if (includesQuery(item.d, query)) score += 30;
+				if (includesQuery(item.e, query)) score += 12;
+				if (includesQuery(item.x, query)) score += 12;
 
-				if ((item.tags ?? []).some((tag) => includesQuery(tag, query))) {
+				if ((item.g ?? []).some((tag) => includesQuery(tag, query))) {
 					score += 25;
 				}
 
-				if ((item.headings ?? []).some((heading) => includesQuery(heading, query))) {
+				if ((item.h ?? []).some((heading) => includesQuery(heading, query))) {
 					score += 20;
 				}
 
-				const category = getCategoryLabel(item.categories);
+				const category = getCategoryLabel(item.c);
 				if (includesQuery(category, query)) {
 					score += 15;
 				}
@@ -257,10 +257,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 			function getMatchSnippet(item: SearchItem, query: string) {
 				const sources = [
-					item.description,
-					...(item.headings ?? []),
-					item.excerpt,
-					item.searchText,
+					item.d,
+					...(item.h ?? []),
+					item.e,
+					item.x,
 				];
 
 				for (const source of sources) {
@@ -277,10 +277,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					return `${prefix}${source.slice(start, end).trim()}${suffix}`;
 				}
 
-				return item.description || item.excerpt || '';
+				return item.d || item.e || '';
 			}
 
-			function getCategoryLabel(categories: SearchItem['categories']) {
+			function getCategoryLabel(categories: SearchItem['c']) {
 				if (Array.isArray(categories)) return categories[0] || 'Uncategorized';
 				return categories || 'Uncategorized';
 			}
@@ -305,17 +305,17 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					listItem.className = 'result-item';
 
 					const link = document.createElement('a');
-					link.href = getPostHref(item.slug);
+					link.href = getPostHref(item.s);
 
 					const category = document.createElement('span');
 					category.className = 'result-category';
-					category.textContent = getCategoryLabel(item.categories);
+					category.textContent = getCategoryLabel(item.c);
 
 					const title = document.createElement('h3');
-					title.textContent = item.title;
+					title.textContent = item.t;
 
 					const description = document.createElement('p');
-					description.textContent = item.description || item.excerpt || '';
+					description.textContent = item.d || item.e || '';
 
 					link.append(category, title, description);
 					if (snippet && snippet !== description.textContent) {

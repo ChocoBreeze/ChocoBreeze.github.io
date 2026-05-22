@@ -1,7 +1,7 @@
 import { getCollection, render } from 'astro:content';
 
 const EXCERPT_LENGTH = 480;
-const SEARCH_TEXT_LENGTH = 6000;
+const SEARCH_TEXT_LENGTH = 5000;
 
 function stripMarkdown(content: string) {
 	return content
@@ -37,14 +37,14 @@ export async function GET() {
 			const body = (post as { body?: string }).body ?? '';
 
 			return {
-				title: post.data.title,
-				description: post.data.description,
-				categories: post.data.categories,
-				tags: post.data.tags ?? [],
-				headings: headings.map((heading) => heading.text),
-				excerpt: getExcerpt(body),
-				searchText: getSearchText(body),
-				slug: post.data.slug || post.id,
+				t: post.data.title,
+				d: post.data.description,
+				c: post.data.categories,
+				g: post.data.tags ?? [],
+				h: headings.map((heading) => heading.text),
+				e: getExcerpt(body),
+				x: getSearchText(body),
+				s: post.data.slug || post.id,
 			};
 		}),
 	);
