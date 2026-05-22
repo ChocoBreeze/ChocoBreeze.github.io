@@ -1,15 +1,46 @@
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
 const ROOT_DIR = process.cwd();
 const CONTENT_DIR = path.join(ROOT_DIR, 'src', 'content', 'blog');
+const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
 const MARKDOWN_EXTENSIONS = new Set(['.md', '.mdx', '.markdown']);
 const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
 const MAX_FUTURE_DAYS = 370;
 const MAX_PAST_YEARS = 10;
 const PUB_DATE_ISO_REGEX =
   /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/;
+const KNOWN_CATEGORIES = new Set([
+  'ETF',
+  'Economics',
+  'Semiconductor',
+  'Computer Science',
+  'Programming',
+  'Problem_Solving',
+  'Reports',
+  'Market Brief',
+]);
+const CATEGORY_ALIASES = new Map([
+  ['report', 'Reports'],
+  ['reports', 'Reports'],
+  ['problem solving', 'Problem_Solving'],
+  ['problem_solving', 'Problem_Solving'],
+  ['computer science', 'Computer Science'],
+  ['cs', 'Computer Science'],
+  ['market brief', 'Market Brief'],
+  ['market_brief', 'Market Brief'],
+  ['us market brief', 'Market Brief'],
+  ['semiconductor', 'Semiconductor'],
+  ['programming', 'Programming'],
+  ['economics', 'Economics'],
+  ['economic', 'Economics'],
+  ['economy', 'Economics'],
+  ['macro', 'Economics'],
+  ['macroeconomics', 'Economics'],
+  ['etf', 'ETF'],
+]);
+const MARKDOWN_LINK_REGEX = /!?\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
 
 const ABSOLUTE_PATH_PATTERNS = [
   {
@@ -115,6 +146,78 @@ function stripQuotes(value) {
   return value.replace(/^['"]|['"]$/g, '');
 }
 
+function parseFrontmatterListValue(rawValue) {
+  const value = rawValue.trim();
+  if (!value) {
+    return [];
+  }
+
+  if (value.startsWith('[') && value.endsWith(']')) {
+    return value
+      .slice(1, -1)
+      .split(',')
+      .map((item) => stripQuotes(item.trim()))
+      .filter(Boolean);
+  }
+
+  return [stripQuotes(value).trim()].filter(Boolean);
+}
+
+function normalizeCategoryValue(category) {
+  const normalized = category.trim().toLowerCase();
+  return CATEGORY_ALIASES.get(normalized) ?? category.trim();
+}
+
+function slugifyPathSegment(segment) {
+  return segment
+    .trim()
+    .toLowerCase()
+    .replace(/\.[ \t]+/g, '-')
+    .replace(/[()[\]{}]/g, '')
+    .replace(/[&+]/g, '-')
+    .replace(/[^\p{L}\p{N}_-]+/gu, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function normalizeRoutePath(routePath) {
+  const withoutHashOrQuery = getComparableLinkTarget(routePath);
+  const withLeadingSlash = withoutHashOrQuery.startsWith('/') ? withoutHashOrQuery : `/${withoutHashOrQuery}`;
+  return withLeadingSlash.replace(/\/+$/g, '') || '/';
+}
+
+function getPostRoutePath(filePath, content) {
+  const frontmatterMatch = content.match(FRONTMATTER_REGEX);
+  const fields = frontmatterMatch ? parseFrontmatterFields(frontmatterMatch[1]) : new Map();
+  const slugField = fields.get('slug');
+
+  if (slugField) {
+    return normalizeRoutePath(`/blog/${stripQuotes(slugField.rawValue)}`);
+  }
+
+  const relativePath = path.relative(CONTENT_DIR, filePath);
+  const parsedPath = path.parse(relativePath);
+  const relativeWithoutExtension = path.join(parsedPath.dir, parsedPath.name);
+  const slugPath = relativeWithoutExtension
+    .split(path.sep)
+    .filter(Boolean)
+    .map(slugifyPathSegment)
+    .join('/');
+
+  return normalizeRoutePath(`/blog/${slugPath}`);
+}
+
+function buildPostRouteIndex(files) {
+  const routes = new Set();
+
+  for (const filePath of files) {
+    const content = readFileSync(filePath, 'utf8');
+    routes.add(getPostRoutePath(filePath, content));
+  }
+
+  return routes;
+}
+
 function checkRequiredFrontmatterField(filePath, content, frontmatterMatch, fields, fieldName, issues) {
   const field = fields.get(fieldName);
   if (!field || stripQuotes(field.rawValue).trim().length === 0) {
@@ -175,6 +278,52 @@ function checkPubDateRange(filePath, line, pubDateValue, warnings) {
   }
 }
 
+function checkDateFieldFormat(filePath, content, frontmatterMatch, fields, fieldName, issues) {
+  const field = fields.get(fieldName);
+  if (!field) {
+    return;
+  }
+
+  const rawValue = field.rawValue;
+  const value = stripQuotes(rawValue);
+  const line = getLineNumber(content, frontmatterMatch.index + field.index);
+
+  if (!PUB_DATE_ISO_REGEX.test(value)) {
+    addIssue(
+      issues,
+      'error',
+      filePath,
+      line,
+      `Invalid ${fieldName} format: ${rawValue}. Use full ISO 8601 with timezone, e.g. "2026-01-16T00:00:00+09:00".`,
+    );
+  }
+}
+
+function checkCategories(filePath, content, frontmatterMatch, fields, warnings) {
+  const categoryField = fields.get('categories');
+  if (!categoryField) {
+    return;
+  }
+
+  const categories = parseFrontmatterListValue(categoryField.rawValue);
+  const categoryLine = getLineNumber(content, frontmatterMatch.index + categoryField.index);
+
+  for (const category of categories) {
+    const normalizedCategory = normalizeCategoryValue(category);
+    if (KNOWN_CATEGORIES.has(normalizedCategory)) {
+      continue;
+    }
+
+    addIssue(
+      warnings,
+      'warning',
+      filePath,
+      categoryLine,
+      `Unknown category "${category}". It will not match a configured category page.`,
+    );
+  }
+}
+
 function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
   const frontmatterMatch = content.match(FRONTMATTER_REGEX);
   if (!frontmatterMatch) {
@@ -189,6 +338,7 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
 
   checkRequiredFrontmatterField(filePath, content, frontmatterMatch, fields, 'title', issues);
   checkRecommendedFrontmatterField(filePath, content, frontmatterMatch, fields, 'categories', warnings);
+  checkCategories(filePath, content, frontmatterMatch, fields, warnings);
 
   const titleField = fields.get('title');
   if (titleField) {
@@ -225,6 +375,7 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
     return;
   }
 
+  checkDateFieldFormat(filePath, content, frontmatterMatch, fields, 'updatedDate', issues);
   checkPubDateRange(filePath, pubDateLine, pubDateValue, warnings);
 }
 
@@ -314,6 +465,73 @@ function checkPatterns(filePath, content, issues, warnings) {
   }
 }
 
+function isExternalOrAnchorLink(href) {
+  return (
+    href.startsWith('#') ||
+    /^[a-z][a-z0-9+.-]*:/i.test(href) ||
+    href.startsWith('//')
+  );
+}
+
+function getComparableLinkTarget(href) {
+  try {
+    return decodeURIComponent(href.split(/[?#]/, 1)[0]);
+  } catch {
+    return href.split(/[?#]/, 1)[0];
+  }
+}
+
+function resolveInternalLinkTarget(filePath, href) {
+  const target = getComparableLinkTarget(href);
+  if (!target) {
+    return undefined;
+  }
+
+  if (target.startsWith('/')) {
+    return path.join(PUBLIC_DIR, target);
+  }
+
+  return path.resolve(path.dirname(filePath), target);
+}
+
+function shouldCheckInternalLink(href) {
+  if (isExternalOrAnchorLink(href)) {
+    return false;
+  }
+
+  const target = getComparableLinkTarget(href);
+  return target.startsWith('/') || target.startsWith('.') || path.extname(target).length > 0;
+}
+
+function checkInternalLinks(filePath, content, warnings, postRoutes) {
+  const contentWithoutCode = stripCodeBlocks(content);
+
+  for (const match of findAllMatches(contentWithoutCode, MARKDOWN_LINK_REGEX)) {
+    const href = match[1];
+    if (!shouldCheckInternalLink(href)) {
+      continue;
+    }
+
+    const routePath = normalizeRoutePath(href);
+    if (routePath.startsWith('/blog/') && postRoutes.has(routePath)) {
+      continue;
+    }
+
+    const targetPath = resolveInternalLinkTarget(filePath, href);
+    if (!targetPath || existsSync(targetPath)) {
+      continue;
+    }
+
+    addIssue(
+      warnings,
+      'warning',
+      filePath,
+      getLineNumber(contentWithoutCode, match.index ?? 0),
+      `Internal link target not found: ${href}.`,
+    );
+  }
+}
+
 function main() {
   if (!statSync(CONTENT_DIR).isDirectory()) {
     console.error(`Content directory not found: ${CONTENT_DIR}`);
@@ -324,12 +542,14 @@ function main() {
   const issues = [];
   const warnings = [];
   const titleIndex = new Map();
+  const postRoutes = buildPostRouteIndex(files);
 
   for (const filePath of files) {
     const content = readFileSync(filePath, 'utf8');
     checkFrontmatter(filePath, content, issues, warnings, titleIndex);
     checkMarkdownSyntax(filePath, content, warnings);
     checkPatterns(filePath, content, issues, warnings);
+    checkInternalLinks(filePath, content, warnings, postRoutes);
   }
 
   for (const [title, entries] of titleIndex) {
