@@ -3,6 +3,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { BLOG_CATEGORIES } from '../data/blogCategories';
+import { getSearchCategorySlug } from '../lib/searchIndex';
 ---
 
 <!doctype html>
@@ -19,7 +21,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			.search-container {
 				margin-bottom: 2rem;
 			}
-			#search-input {
+			.search-controls {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) minmax(12rem, 16rem);
+				gap: 0.75rem;
+				align-items: center;
+			}
+			#search-input,
+			#search-category {
 				width: 100%;
 				padding: 0.8rem 1.2rem;
 				font-size: 1.2rem;
@@ -33,9 +42,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			#search-input::placeholder {
 				color: var(--muted-text);
 			}
-			#search-input:focus {
+			#search-input:focus,
+			#search-category:focus {
 				border-color: var(--accent);
 				box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+			}
+			#search-category {
+				cursor: pointer;
+				font-size: 1rem;
 			}
 			#results-list {
 				list-style: none;
@@ -111,6 +125,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			[data-theme='dark'] #results-count.error {
 				color: #fb923c;
 			}
+			@media (max-width: 640px) {
+				.search-controls {
+					grid-template-columns: 1fr;
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -118,16 +137,26 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<main>
 			<div class="search-container">
 				<h1>검색</h1>
-				<input
-					type="text"
-					id="search-input"
-					placeholder="검색 인덱스를 불러오는 중..."
-					aria-label="게시글 검색"
-					aria-describedby="results-count"
-					autocomplete="off"
-					disabled
-					autofocus
-				/>
+				<div class="search-controls">
+					<input
+						type="text"
+						id="search-input"
+						placeholder="검색 인덱스를 불러오는 중..."
+						aria-label="게시글 검색"
+						aria-describedby="results-count"
+						autocomplete="off"
+						disabled
+						autofocus
+					/>
+					<select id="search-category" aria-label="검색 카테고리" disabled>
+						<option value="/search.json">전체 카테고리</option>
+						{BLOG_CATEGORIES.map((category) => (
+							<option value={`/search/${getSearchCategorySlug(category.key)}.json`}>
+								{category.label}
+							</option>
+						))}
+					</select>
+				</div>
 			</div>
 			<div id="results-count" role="status" aria-live="polite"></div>
 			<ul id="results-list"></ul>
@@ -154,22 +183,33 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 			let searchIndex: SearchItem[] = [];
 			const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+			const searchCategory = document.getElementById('search-category') as HTMLSelectElement | null;
 			const resultsList = document.getElementById('results-list');
 			const resultsCount = document.getElementById('results-count');
 
-			if (searchInput && resultsList && resultsCount) {
+			if (searchInput && searchCategory && resultsList && resultsCount) {
 				loadSearchIndex();
 
 				searchInput.addEventListener('input', () => {
 					updateResults(searchInput.value);
 				});
+				searchCategory.addEventListener('change', () => {
+					loadSearchIndex(searchCategory.value);
+				});
 			}
 
-			async function loadSearchIndex() {
-				if (!searchInput || !resultsCount) return;
+			async function loadSearchIndex(indexPath = '/search.json') {
+				if (!searchInput || !searchCategory || !resultsCount || !resultsList) return;
 
 				try {
-					const response = await fetch('/search.json', {
+					searchInput.disabled = true;
+					searchCategory.disabled = true;
+					searchInput.placeholder = '검색 인덱스를 불러오는 중...';
+					resultsList.replaceChildren();
+					resultsCount.classList.remove('error');
+					resultsCount.textContent = '';
+
+					const response = await fetch(indexPath, {
 						headers: { Accept: 'application/json' },
 					});
 					if (!response.ok) {
@@ -183,6 +223,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 					searchIndex = data.filter(isSearchItem);
 					searchInput.disabled = false;
+					searchCategory.disabled = false;
 					searchInput.placeholder = '제목, 설명, 태그, 소제목, 본문 요약으로 검색하세요...';
 					resultsCount.classList.remove('error');
 
@@ -191,6 +232,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					}
 				} catch {
 					searchInput.disabled = true;
+					searchCategory.disabled = false;
 					searchInput.placeholder = '검색을 사용할 수 없습니다.';
 					resultsCount.classList.add('error');
 					resultsCount.textContent = '검색 인덱스를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
