@@ -1,0 +1,122 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+const title = 'Feedback';
+const description = '블로그 글의 오타, 깨진 링크, 내용 오류를 제보하는 방법을 안내합니다.';
+const issueUrl =
+	'https://github.com/ChocoBreeze/ChocoBreeze.github.io/issues/new?title=Blog%20feedback%3A%20&body=Page%20URL%3A%20%0A%0AFeedback%3A%20';
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main class="feedback-shell">
+			<section class="feedback-card" aria-labelledby="feedback-title">
+				<p class="eyebrow">Feedback</p>
+				<h1 id="feedback-title">블로그 피드백</h1>
+				<p class="lead">
+					글의 오타, 깨진 링크, 잘못된 설명, 렌더링 문제를 발견하셨다면 GitHub Issue로 알려주세요.
+					확인 후 필요한 부분을 수정하겠습니다.
+				</p>
+				<div class="notice">
+					<strong>공개 저장소에 남는 글입니다.</strong>
+					<p>개인정보, 계정 정보, 비공개 자료 링크, 투자 계좌 정보 등 민감한 내용은 포함하지 말아주세요.</p>
+				</div>
+				<a class="feedback-link" href={issueUrl} target="_blank" rel="noopener noreferrer">
+					GitHub Issue로 제보하기
+				</a>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.feedback-shell {
+		width: min(880px, calc(100% - 2rem));
+		margin: 0 auto;
+		padding: 5rem 0 6rem;
+	}
+
+	.feedback-card {
+		padding: clamp(2rem, 5vw, 3.5rem);
+		border: 1px solid var(--border-color);
+		border-radius: 28px;
+		background:
+			radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 18%, transparent), transparent 34%),
+			var(--card-bg);
+		box-shadow: 0 22px 70px color-mix(in srgb, var(--shadow-color) 55%, transparent);
+		color: var(--text-color);
+	}
+
+	.eyebrow {
+		margin: 0 0 0.75rem;
+		color: var(--accent);
+		font-size: 0.82rem;
+		font-weight: 800;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+	}
+
+	h1 {
+		margin: 0;
+		color: var(--heading-color);
+		font-size: clamp(2.2rem, 6vw, 4rem);
+		line-height: 1.05;
+	}
+
+	.lead {
+		max-width: 42rem;
+		margin: 1.25rem 0 0;
+		color: var(--muted-text);
+		font-size: 1.08rem;
+		line-height: 1.8;
+	}
+
+	.notice {
+		margin-top: 2rem;
+		padding: 1rem 1.1rem;
+		border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border-color));
+		border-radius: 18px;
+		background: color-mix(in srgb, var(--card-bg) 82%, var(--accent) 18%);
+	}
+
+	.notice strong {
+		color: var(--heading-color);
+	}
+
+	.notice p {
+		margin: 0.35rem 0 0;
+		color: var(--muted-text);
+		line-height: 1.7;
+	}
+
+	.feedback-link {
+		display: inline-flex;
+		margin-top: 2rem;
+		padding: 0.82rem 1.1rem;
+		border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border-color));
+		border-radius: 999px;
+		background: var(--accent);
+		color: var(--accent-text);
+		font-weight: 800;
+		text-decoration: none;
+		transition: filter 0.2s ease, transform 0.2s ease;
+	}
+
+	.feedback-link:hover {
+		filter: brightness(1.05);
+		transform: translateY(-2px);
+	}
+
+	.feedback-link:focus-visible {
+		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+		outline-offset: 4px;
+	}
+</style>
