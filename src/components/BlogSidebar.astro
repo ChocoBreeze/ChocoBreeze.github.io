@@ -170,4 +170,22 @@ for (const post of posts) {
 	.blog-sidebar-group-link {
 		font-weight: 700;
 	}
+
+	@media (max-width: 720px) {
+		.blog-sidebar-group {
+			grid-column: 1 / -1;
+		}
+
+		.blog-sidebar-sublist {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.5rem;
+			padding-left: 0;
+		}
+
+		.blog-sidebar-sublink {
+			height: 100%;
+			box-sizing: border-box;
+		}
+	}
 </style>

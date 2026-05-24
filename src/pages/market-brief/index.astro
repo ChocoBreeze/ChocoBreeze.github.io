@@ -100,8 +100,11 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 				display: flex;
 				flex-wrap: wrap;
 				gap: 0.55rem;
+				align-items: flex-start;
 			}
 			.market-brief-filter {
+				box-sizing: border-box;
+				min-height: 2.35rem;
 				border: 1px solid var(--border-color);
 				border-radius: 999px;
 				padding: 0.45rem 0.85rem;
@@ -109,6 +112,8 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 				color: var(--text-color);
 				font: inherit;
 				font-size: 0.9rem;
+				line-height: 1.2;
+				white-space: normal;
 				cursor: pointer;
 				transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 			}
@@ -231,6 +236,13 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 				color: var(--muted-text);
 			}
 			@media (max-width: 720px) {
+				.market-brief-filter-group {
+					display: grid;
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+				.market-brief-filter {
+					width: 100%;
+				}
 				.market-brief-grid {
 					grid-template-columns: 1fr;
 				}
