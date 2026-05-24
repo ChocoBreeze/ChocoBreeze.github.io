@@ -80,6 +80,14 @@ Current content is grouped physically under `src/content/blog` by topic, for exa
 
 Preserve the existing folder style unless there is an explicit request to reorganize content.
 
+## Image Management
+
+- Follow `docs/image-management.md` when adding or reorganizing images.
+- Prefer post-local `images/` folders for images used by a single post.
+- Use `public/images/` for shared site-level or cross-post assets.
+- Avoid personal device filenames, local absolute paths, `file://` URLs, temporary upload links, and private CDN links.
+- Add meaningful alt text to Markdown images.
+
 ## Routing Notes
 
 - Post URLs are generated from `post.data.slug || post.id`.

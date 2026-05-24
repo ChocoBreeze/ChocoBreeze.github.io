@@ -17,6 +17,7 @@ Use this checklist before publishing a new or edited post.
 - Confirm links point to public pages or local assets that exist.
 - Check Markdown syntax for visible `**`, unclosed inline HTML tags, broken tables, and code fences.
 - Add meaningful alt text to Markdown images.
+- Follow `docs/image-management.md` when adding or reorganizing images.
 
 ## Validation
 
