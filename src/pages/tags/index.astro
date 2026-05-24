@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+import { getTagGroups } from '../../lib/taxonomy';
+
+const tagGroups = getTagGroups(await getCollection('blog'));
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead title={`Tags | ${SITE_TITLE}`} description="태그별로 글을 탐색합니다." />
+	</head>
+	<body>
+		<Header />
+		<main class="taxonomy-page">
+			<section class="taxonomy-hero">
+				<p class="eyebrow">Browse</p>
+				<h1>Tags</h1>
+				<p>세부 주제별로 글을 빠르게 찾아볼 수 있습니다.</p>
+			</section>
+			<ul class="tag-grid">
+				{tagGroups.map((group) => (
+					<li>
+						<a href={`/tags/${group.slug}/`}>
+							<span>{group.tag}</span>
+							<small>{group.posts.length} posts</small>
+						</a>
+					</li>
+				))}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.taxonomy-page {
+		width: min(100%, 1080px);
+		margin: 0 auto;
+		padding: 3rem 1rem 4rem;
+	}
+	.taxonomy-hero {
+		margin-bottom: 2rem;
+		padding: 2rem;
+		border: 1px solid var(--border-color);
+		border-radius: 28px;
+		background: color-mix(in srgb, var(--card-bg) 86%, transparent);
+	}
+	.eyebrow {
+		margin: 0 0 0.5rem;
+		color: var(--accent);
+		font-size: 0.8rem;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+	.taxonomy-hero h1 {
+		margin: 0 0 0.5rem;
+	}
+	.taxonomy-hero p:last-child {
+		margin: 0;
+		color: var(--muted-text);
+	}
+	.tag-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 0.8rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.tag-grid a {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 1rem;
+		border: 1px solid var(--border-color);
+		border-radius: 18px;
+		background: var(--card-bg);
+		color: var(--text-color);
+		text-decoration: none;
+		transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+	}
+	.tag-grid a:hover {
+		border-color: var(--accent);
+		background: color-mix(in srgb, var(--card-bg) 82%, var(--accent) 18%);
+		transform: translateY(-2px);
+	}
+	.tag-grid small {
+		color: var(--muted-text);
+		white-space: nowrap;
+	}
+</style>

@@ -9,6 +9,8 @@ const MARKDOWN_EXTENSIONS = new Set(['.md', '.mdx']);
 const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
 const MAX_FUTURE_DAYS = 370;
 const MAX_PAST_YEARS = 10;
+const MAX_TITLE_LENGTH = 100;
+const MAX_DESCRIPTION_LENGTH = 180;
 const PUB_DATE_ISO_REGEX =
   /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/;
 const KNOWN_CATEGORIES = new Set([
@@ -41,6 +43,7 @@ const CATEGORY_ALIASES = new Map([
   ['etf', 'ETF'],
 ]);
 const MARKDOWN_LINK_REGEX = /!?\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
+const MARKDOWN_IMAGE_REGEX = /!\[([^\]]*)]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
 
 const ABSOLUTE_PATH_PATTERNS = [
   {
@@ -324,6 +327,26 @@ function checkCategories(filePath, content, frontmatterMatch, fields, warnings) 
   }
 }
 
+function checkFrontmatterTextLength(filePath, content, frontmatterMatch, fields, fieldName, maxLength, warnings) {
+  const field = fields.get(fieldName);
+  if (!field) {
+    return;
+  }
+
+  const value = stripQuotes(field.rawValue).trim();
+  if (value.length <= maxLength) {
+    return;
+  }
+
+  addIssue(
+    warnings,
+    'warning',
+    filePath,
+    getLineNumber(content, frontmatterMatch.index + field.index),
+    `${fieldName} is ${value.length} characters. Keep it under ${maxLength} characters for readable cards and previews.`,
+  );
+}
+
 function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
   const frontmatterMatch = content.match(FRONTMATTER_REGEX);
   if (!frontmatterMatch) {
@@ -338,6 +361,16 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
 
   checkRequiredFrontmatterField(filePath, content, frontmatterMatch, fields, 'title', issues);
   checkRecommendedFrontmatterField(filePath, content, frontmatterMatch, fields, 'categories', warnings);
+  checkFrontmatterTextLength(filePath, content, frontmatterMatch, fields, 'title', MAX_TITLE_LENGTH, warnings);
+  checkFrontmatterTextLength(
+    filePath,
+    content,
+    frontmatterMatch,
+    fields,
+    'description',
+    MAX_DESCRIPTION_LENGTH,
+    warnings,
+  );
   checkCategories(filePath, content, frontmatterMatch, fields, warnings);
 
   const titleField = fields.get('title');
@@ -417,6 +450,25 @@ function checkMarkdownSyntax(filePath, content, warnings) {
         `Unbalanced HTML tag detected: <${tag}>.`,
       );
     }
+  }
+}
+
+function checkImages(filePath, content, warnings) {
+  const contentWithoutCode = stripCodeBlocks(content);
+
+  for (const match of findAllMatches(contentWithoutCode, MARKDOWN_IMAGE_REGEX)) {
+    const altText = match[1].trim();
+    if (altText) {
+      continue;
+    }
+
+    addIssue(
+      warnings,
+      'warning',
+      filePath,
+      getLineNumber(contentWithoutCode, match.index ?? 0),
+      `Markdown image is missing alt text: ${match[2]}.`,
+    );
   }
 }
 
@@ -548,6 +600,7 @@ function main() {
     const content = readFileSync(filePath, 'utf8');
     checkFrontmatter(filePath, content, issues, warnings, titleIndex);
     checkMarkdownSyntax(filePath, content, warnings);
+    checkImages(filePath, content, warnings);
     checkPatterns(filePath, content, issues, warnings);
     checkInternalLinks(filePath, content, warnings, postRoutes);
   }

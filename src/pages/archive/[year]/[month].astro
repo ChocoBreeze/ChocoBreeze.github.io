@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../../components/BaseHead.astro';
+import BlogPostCard from '../../../components/BlogPostCard.astro';
+import Footer from '../../../components/Footer.astro';
+import Header from '../../../components/Header.astro';
+import { SITE_TITLE } from '../../../consts';
+import { getArchiveGroups } from '../../../lib/taxonomy';
+
+export async function getStaticPaths() {
+	const archiveGroups = getArchiveGroups(await getCollection('blog'));
+
+	return archiveGroups.map((group) => ({
+		params: { year: group.year, month: group.month },
+		props: { group },
+	}));
+}
+
+const { group } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`${group.label} Archive | ${SITE_TITLE}`}
+			description={`${group.label}에 발행된 글 목록입니다.`}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="archive-month-page">
+			<section class="archive-month-hero">
+				<a href="/archive/" class="back-link">← 전체 아카이브</a>
+				<p class="eyebrow">Archive</p>
+				<h1>{group.label}</h1>
+				<p>{group.posts.length}개의 글이 있습니다.</p>
+			</section>
+			<ul class="blog-post-grid">
+				{group.posts.map((post) => <BlogPostCard post={post} />)}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.archive-month-page {
+		width: min(100%, 1080px);
+		margin: 0 auto;
+		padding: 3rem 1rem 4rem;
+	}
+	.archive-month-hero {
+		margin-bottom: 2rem;
+		padding: 2rem;
+		border: 1px solid var(--border-color);
+		border-radius: 28px;
+		background: color-mix(in srgb, var(--card-bg) 86%, transparent);
+	}
+	.back-link {
+		display: inline-flex;
+		margin-bottom: 1rem;
+		color: var(--muted-text);
+		text-decoration: none;
+	}
+	.back-link:hover {
+		color: var(--accent);
+	}
+	.eyebrow {
+		margin: 0 0 0.5rem;
+		color: var(--accent);
+		font-size: 0.8rem;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+	.archive-month-hero h1 {
+		margin: 0 0 0.5rem;
+	}
+	.archive-month-hero p:last-child {
+		margin: 0;
+		color: var(--muted-text);
+	}
+</style>

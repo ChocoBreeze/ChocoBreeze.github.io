@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+import { getArchiveGroups } from '../../lib/taxonomy';
+
+const archiveGroups = getArchiveGroups(await getCollection('blog'));
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead title={`Archive | ${SITE_TITLE}`} description="월별 글 목록을 탐색합니다." />
+	</head>
+	<body>
+		<Header />
+		<main class="archive-page">
+			<section class="archive-hero">
+				<p class="eyebrow">Timeline</p>
+				<h1>Archive</h1>
+				<p>월별로 정리된 글 목록입니다.</p>
+			</section>
+			<div class="archive-list">
+				{archiveGroups.map((group) => (
+					<a href={`/archive/${group.year}/${group.month}/`} class="archive-card">
+						<span>{group.label}</span>
+						<small>{group.posts.length} posts</small>
+					</a>
+				))}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.archive-page {
+		width: min(100%, 960px);
+		margin: 0 auto;
+		padding: 3rem 1rem 4rem;
+	}
+	.archive-hero {
+		margin-bottom: 2rem;
+		padding: 2rem;
+		border: 1px solid var(--border-color);
+		border-radius: 28px;
+		background: color-mix(in srgb, var(--card-bg) 86%, transparent);
+	}
+	.eyebrow {
+		margin: 0 0 0.5rem;
+		color: var(--accent);
+		font-size: 0.8rem;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+	.archive-hero h1 {
+		margin: 0 0 0.5rem;
+	}
+	.archive-hero p:last-child {
+		margin: 0;
+		color: var(--muted-text);
+	}
+	.archive-list {
+		display: grid;
+		gap: 0.75rem;
+	}
+	.archive-card {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 1rem 1.2rem;
+		border: 1px solid var(--border-color);
+		border-radius: 18px;
+		background: var(--card-bg);
+		color: var(--text-color);
+		text-decoration: none;
+		transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+	}
+	.archive-card:hover {
+		border-color: var(--accent);
+		background: color-mix(in srgb, var(--card-bg) 82%, var(--accent) 18%);
+		transform: translateY(-2px);
+	}
+	.archive-card small {
+		color: var(--muted-text);
+	}
+</style>

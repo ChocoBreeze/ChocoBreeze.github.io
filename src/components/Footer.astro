@@ -4,6 +4,11 @@ const today = new Date();
 
 <footer>
 	<p class="copyright">&copy; {today.getFullYear()} 정영훈. All rights reserved.</p>
+	<nav class="footer-nav" aria-label="Footer navigation">
+		<a href="/tags/">Tags</a>
+		<a href="/archive/">Archive</a>
+		<a href="/search/">Search</a>
+	</nav>
 	<div class="social-links" aria-label="Social links">
 		<a href="/rss.xml">
 			<span class="sr-only">Subscribe to RSS feed</span>
@@ -46,6 +51,26 @@ const today = new Date();
 	.copyright {
 		margin: 0;
 		color: var(--muted-text);
+	}
+	.footer-nav {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin-top: 1rem;
+		flex-wrap: wrap;
+	}
+	.footer-nav a {
+		color: var(--muted-text);
+		text-decoration: none;
+		font-size: 0.95rem;
+	}
+	.footer-nav a:hover {
+		color: var(--accent);
+	}
+	.footer-nav a:focus-visible {
+		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+		outline-offset: 4px;
+		border-radius: 8px;
 	}
 	.social-links {
 		display: flex;
