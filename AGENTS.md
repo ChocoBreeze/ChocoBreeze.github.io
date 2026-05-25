@@ -80,6 +80,12 @@ Current content is grouped physically under `src/content/blog` by topic, for exa
 
 Preserve the existing folder style unless there is an explicit request to reorganize content.
 
+## Market Brief Prompts
+
+- When creating Market Brief posts, check `docs/market-brief-prompts.md` for the current Daily and Weekly prompt rules.
+- Daily Brief uses the revised prompt from 2026-05-19 posts onward.
+- Weekly Brief uses the revised prompt from 2026-05-30 posts onward.
+
 ## Image Management
 
 - Follow `docs/image-management.md` when adding or reorganizing images.
