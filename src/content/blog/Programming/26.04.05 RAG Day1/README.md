@@ -47,7 +47,7 @@ py -m pip install openai python-dotenv tiktoken
 > 보안 및 개인 정보 보호를 위해 실제 결제수단 정보 및 금액은 제외했다.
 
 ### 2. `.env` 파일 만들기
-```env
+```text
 OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
 ```
 > 환경 변수에 저장하는 것을 권장.

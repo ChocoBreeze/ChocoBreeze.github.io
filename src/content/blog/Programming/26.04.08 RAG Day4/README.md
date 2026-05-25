@@ -29,7 +29,7 @@ pip install chromadb langchain-chroma langchain-openai langchain langchain-commu
 ```
 
 ### 2. `.env` 확인
-```env
+```text
 OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
 ```
 
