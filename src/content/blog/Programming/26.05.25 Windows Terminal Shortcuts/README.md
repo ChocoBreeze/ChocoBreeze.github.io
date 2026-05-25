@@ -17,8 +17,6 @@ Windows Terminal은 PowerShell, Command Prompt, WSL 같은 여러 쉘을 한 곳
 
 ![Windows Terminal 주요 단축키 한 장 정리](images/windows-terminal-shortcuts.png)
 
-> 이미지 파일은 `images/windows-terminal-shortcuts.png` 이름으로 넣어두면 됩니다.
-
 ## 먼저 익히기 좋은 단축키
 
 처음부터 모든 단축키를 외울 필요는 없습니다.  
