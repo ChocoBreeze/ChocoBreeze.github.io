@@ -25,22 +25,14 @@ const allPosts = (await getCollection('blog')).filter(p => {
 	};
 	return normalize(currentCats) === normalize(pCats);
 }).sort((a, b) => {
-	// ETF 카테고리인 경우 (대소문자 무시)
-	const isETF = (c: BlogCategory) => {
-		const norm = Array.isArray(c) ? c[0] : c;
-		return norm?.toLowerCase() === 'etf';
-	};
+	// 1. Pinned 우선
+	if (a.data.pinned && !b.data.pinned) return -1;
+	if (!a.data.pinned && b.data.pinned) return 1;
 
-	if (isETF(a.data.categories)) {
-		// 1. Pinned 우선
-		if (a.data.pinned && !b.data.pinned) return -1;
-		if (!a.data.pinned && b.data.pinned) return 1;
-		
-		// 2. Order 순서 (order가 없으면 아주 큰 숫자 부여)
-		const orderA = a.data.order ?? 999;
-		const orderB = b.data.order ?? 999;
-		if (orderA !== orderB) return orderA - orderB;
-	}
+	// 2. Order 순서 (order가 없으면 아주 큰 숫자 부여)
+	const orderA = a.data.order ?? 999;
+	const orderB = b.data.order ?? 999;
+	if (orderA !== orderB) return orderA - orderB;
 
 	// 그 외 일반 글들은 날짜 순 (과거 -> 최신 순으로 정렬해야 '다음 글'이 미래 글이 됨)
 	const dateA = a.data.pubDate || a.data.date || new Date(0);
