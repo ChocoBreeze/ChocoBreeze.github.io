@@ -83,6 +83,72 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                 color: var(--text-color);
                 position: relative;
             }
+            .prose :global(img) {
+                display: block;
+                width: auto;
+                max-width: min(100%, 960px);
+                max-height: 72vh;
+                margin: 1.75rem auto 0.75rem;
+                border: 1px solid var(--border-color);
+                border-radius: 18px;
+                background: var(--card-bg);
+                box-shadow: 0 18px 48px rgba(var(--gray), 0.16);
+            }
+            .prose :global(img[data-expandable-image]) {
+                cursor: zoom-in;
+                transition:
+                    border-color 0.2s ease,
+                    box-shadow 0.2s ease,
+                    transform 0.2s ease;
+            }
+            .prose :global(img[data-expandable-image]:hover),
+            .prose :global(img[data-expandable-image]:focus-visible) {
+                border-color: color-mix(in srgb, var(--accent) 45%, var(--border-color));
+                box-shadow: 0 22px 58px rgba(var(--gray), 0.22);
+                transform: translateY(-2px);
+                outline: none;
+            }
+            .image-lightbox {
+                position: fixed;
+                inset: 0;
+                z-index: 10000;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+                background: rgba(12, 18, 28, 0.82);
+                backdrop-filter: blur(10px);
+            }
+            .image-lightbox.is-open {
+                display: flex;
+            }
+            .image-lightbox img {
+                max-width: min(100%, 1200px);
+                max-height: 86vh;
+                border-radius: 18px;
+                box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+                background: var(--card-bg);
+            }
+            .image-lightbox button {
+                position: absolute;
+                top: 1.25rem;
+                right: 1.25rem;
+                width: 44px;
+                height: 44px;
+                border: 1px solid rgba(255, 255, 255, 0.35);
+                border-radius: 999px;
+                background: rgba(0, 0, 0, 0.35);
+                color: #fff;
+                cursor: pointer;
+                font-size: 1.5rem;
+                line-height: 1;
+            }
+            .image-lightbox button:hover,
+            .image-lightbox button:focus-visible {
+                background: rgba(0, 0, 0, 0.58);
+                outline: 2px solid rgba(255, 255, 255, 0.7);
+                outline-offset: 2px;
+            }
             .title {
                 margin-bottom: 1em;
                 padding: 1em 0;
@@ -229,6 +295,11 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                     padding: 0.75rem 0;
                     min-width: 0;
                 }
+                .prose :global(img) {
+                    max-height: none;
+                    margin: 1.25rem auto 0.5rem;
+                    border-radius: 14px;
+                }
                 .blog-post-shell :global(.blog-sidebar) {
                     order: 2;
                     position: static;
@@ -266,6 +337,13 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                 }
                 .hero-image img {
                     border-radius: 0 0 12px 12px;
+                }
+                .image-lightbox {
+                    padding: 0.75rem;
+                }
+                .image-lightbox img {
+                    max-height: 82vh;
+                    border-radius: 12px;
                 }
             }
         </style>
@@ -343,10 +421,18 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
             </svg>
         </button>
 
+        <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+            <button type="button" aria-label="Close image preview">×</button>
+            <img alt="" />
+        </div>
+
         <Footer />
 
         <script>
             const backToTop = document.getElementById("back-to-top");
+            const imageLightbox = document.getElementById("image-lightbox");
+            const lightboxImage = imageLightbox?.querySelector("img");
+            const lightboxClose = imageLightbox?.querySelector("button");
             const tocLinks = Array.from(document.querySelectorAll(".toc a"));
             const headingElements: { link: Element; element: HTMLElement }[] = [];
 
@@ -378,6 +464,50 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                     });
                 });
             }
+
+            const closeImageLightbox = () => {
+                imageLightbox?.classList.remove("is-open");
+                imageLightbox?.setAttribute("aria-hidden", "true");
+                document.body.style.overflow = "";
+            };
+
+            const openImageLightbox = (image: HTMLImageElement) => {
+                if (!imageLightbox || !lightboxImage) return;
+
+                lightboxImage.src = image.currentSrc || image.src;
+                lightboxImage.alt = image.alt;
+                imageLightbox.classList.add("is-open");
+                imageLightbox.setAttribute("aria-hidden", "false");
+                document.body.style.overflow = "hidden";
+                lightboxClose?.focus();
+            };
+
+            document.querySelectorAll<HTMLImageElement>(".prose img").forEach((image) => {
+                image.dataset.expandableImage = "true";
+                image.tabIndex = 0;
+                image.setAttribute("role", "button");
+                image.setAttribute("aria-label", image.alt ? `${image.alt} 이미지 확대` : "이미지 확대");
+
+                image.addEventListener("click", () => openImageLightbox(image));
+                image.addEventListener("keydown", (event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        openImageLightbox(image);
+                    }
+                });
+            });
+
+            lightboxClose?.addEventListener("click", closeImageLightbox);
+            imageLightbox?.addEventListener("click", (event) => {
+                if (event.target === imageLightbox) {
+                    closeImageLightbox();
+                }
+            });
+            window.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") {
+                    closeImageLightbox();
+                }
+            });
 
             if (headingElements.length > 0) {
                 let currentActiveId = "";
