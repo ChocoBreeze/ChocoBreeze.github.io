@@ -136,6 +136,16 @@ a {
 a:hover {
 	color: var(--accent);
 }
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+	outline: 3px solid color-mix(in srgb, var(--accent) 60%, transparent);
+	outline-offset: 3px;
+	border-radius: 8px;
+}
 p {
 	margin-bottom: 1em;
 	color: var(--text-color);
@@ -269,6 +279,25 @@ blockquote {
 header {
 	background-color: var(--card-bg) !important;
 	border-bottom: 1px solid var(--border-color);
+}
+.skip-link {
+	position: fixed;
+	top: 0.75rem;
+	left: 0.75rem;
+	z-index: 1000;
+	padding: 0.7rem 0.95rem;
+	border-radius: 999px;
+	background: var(--accent);
+	color: white !important;
+	font-weight: 700;
+	text-decoration: none;
+	box-shadow: 0 10px 24px rgba(var(--black), 18%);
+	transform: translateY(-140%);
+	transition: transform 0.2s ease;
+}
+.skip-link:focus-visible {
+	transform: translateY(0);
+	outline-color: white;
 }
 nav a {
 	color: var(--text-color) !important;
@@ -520,4 +549,15 @@ nav a {
 	clip-path: inset(50%);
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+	}
 }
