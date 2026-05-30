@@ -7,7 +7,25 @@ Use this checklist before publishing a new or edited post.
 - Choose the target folder under `src/content/blog`.
 - Pick a category that exists in `src/data/blogCategories.ts`.
 - Use `templates/post.md` for new posts.
+- For a generated draft, use `npm run new:post`.
 - Prefer a stable `slug` when the filename contains spaces, Korean text, or special characters.
+
+## Draft Generation
+
+Use the generator when you want a frontmatter-ready draft without manually creating folders.
+
+```powershell
+npm run new:post -- --title "PowerShell 개인 명령어 설정 가이드" --category Programming --date 2026-05-30 --slug programming/powershell-profile-guide
+```
+
+For Market Brief drafts, the title, category, slug, and monthly folder are generated from the date.
+
+```powershell
+npm run new:post -- --type market-daily --date 2026-05-30
+npm run new:post -- --type market-weekly --date 2026-05-30
+```
+
+If a file already exists, the generator stops instead of overwriting it.
 
 ## Content Review
 
