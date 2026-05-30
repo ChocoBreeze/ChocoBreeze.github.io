@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/BlogPost.astro';
+import { BLOG_CATEGORIES } from '../data/blogCategories';
+import { getCategoryFeedPath } from '../lib/rss';
+
+const feedCategories = BLOG_CATEGORIES.map((category) => ({
+	...category,
+	feedPath: getCategoryFeedPath(category.key),
+})).filter((category) => category.feedPath);
+---
+
+<Layout
+	title="RSS 구독 안내"
+	description="블로그 새 글을 RSS 리더에서 받아보는 방법과 전체·카테고리별 피드 주소를 정리합니다."
+	pubDate={new Date('2026-05-30T00:00:00+09:00')}
+>
+	<p>
+		RSS는 블로그에 새 글이 올라왔는지 직접 방문하지 않고도 확인할 수 있는 업데이트 피드입니다.
+		Feedly, Inoreader, NetNewsWire 같은 RSS 리더에 아래 주소를 등록하면 새 글 목록을 받아볼 수 있습니다.
+	</p>
+
+	<h2>전체 글 RSS</h2>
+	<p>
+		모든 카테고리의 최신 글을 한 번에 구독하려면 아래 피드를 사용하면 됩니다.
+	</p>
+	<ul>
+		<li><a href="/rss.xml">/rss.xml</a></li>
+	</ul>
+
+	<h2>카테고리별 RSS</h2>
+	<p>
+		관심 있는 섹션만 구독하고 싶다면 카테고리별 피드를 사용하면 됩니다.
+	</p>
+	<table>
+		<thead>
+			<tr>
+				<th>카테고리</th>
+				<th>피드 주소</th>
+				<th>설명</th>
+			</tr>
+		</thead>
+		<tbody>
+			{
+				feedCategories.map((category) => (
+					<tr>
+						<td>{category.title}</td>
+						<td>
+							<a href={category.feedPath}>{category.feedPath}</a>
+						</td>
+						<td>{category.description}</td>
+					</tr>
+				))
+			}
+		</tbody>
+	</table>
+
+	<h2>사용 방법</h2>
+	<ol>
+		<li>사용 중인 RSS 리더에서 새 피드 추가 메뉴를 엽니다.</li>
+		<li>전체 피드 또는 카테고리별 피드 주소를 입력합니다.</li>
+		<li>이후 새 글이 올라오면 RSS 리더에서 업데이트를 확인합니다.</li>
+	</ol>
+
+	<p>
+		이 RSS 피드는 검색 노출 기능이 아니라 구독자가 새 글을 받아보기 위한 기능입니다.
+	</p>
+</Layout>
