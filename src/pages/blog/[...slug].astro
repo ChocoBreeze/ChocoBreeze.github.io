@@ -43,12 +43,48 @@ const allPosts = (await getCollection('blog')).filter(p => {
 const index = allPosts.findIndex((p) => p.id === post.id);
 const prevPost = index > 0 ? allPosts[index - 1] : null;
 const nextPost = index < allPosts.length - 1 ? allPosts[index + 1] : null;
+const relatedPosts = allPosts
+	.filter((p) => p.id !== post.id && p.id !== prevPost?.id && p.id !== nextPost?.id)
+	.slice(Math.max(0, index - 2), index + 4)
+	.slice(0, 3);
 
 const getSlug = (p: CollectionEntry<'blog'>) => p.data.slug || p.id;
+const getDate = (p: CollectionEntry<'blog'>) => p.data.pubDate || p.data.date;
 ---
 
 <BlogPost {...post.data} headings={headings}>
 	<Content />
+
+	{relatedPosts.length > 0 && (
+		<section class="related-posts" aria-labelledby="related-posts-title">
+			<div class="related-posts-header">
+				<p>Related</p>
+				<h2 id="related-posts-title">같이 읽기 좋은 글</h2>
+			</div>
+			<div class="related-posts-grid">
+				{relatedPosts.map((relatedPost) => (
+					<a href={`/blog/${getSlug(relatedPost)}/`} class="related-post-card">
+						<span class="related-category">
+							{Array.isArray(relatedPost.data.categories)
+								? relatedPost.data.categories[0]
+								: relatedPost.data.categories}
+						</span>
+						<strong>{relatedPost.data.title}</strong>
+						{relatedPost.data.description && <span>{relatedPost.data.description}</span>}
+						{getDate(relatedPost) && (
+							<time datetime={getDate(relatedPost)?.toISOString()}>
+								{getDate(relatedPost)?.toLocaleDateString("ko-KR", {
+									year: "numeric",
+									month: "short",
+									day: "numeric",
+								})}
+							</time>
+						)}
+					</a>
+				))}
+			</div>
+		</section>
+	)}
 	
 	<div class="post-navigation">
 		{prevPost && (
@@ -69,6 +105,80 @@ const getSlug = (p: CollectionEntry<'blog'>) => p.data.slug || p.id;
 </BlogPost>
 
 <style>
+	.related-posts {
+		margin-top: 4rem;
+		padding: 1.5rem;
+		border: 1px solid var(--border-color);
+		border-radius: 24px;
+		background:
+			linear-gradient(135deg, color-mix(in srgb, var(--accent) 9%, transparent), transparent 46%),
+			var(--card-bg);
+	}
+	.related-posts-header {
+		margin-bottom: 1rem;
+	}
+	.related-posts-header p {
+		margin: 0 0 0.25rem;
+		color: var(--muted-text);
+		font-size: 0.75rem;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+	.related-posts-header h2 {
+		margin: 0;
+		font-size: clamp(1.25rem, 3vw, 1.65rem);
+	}
+	.related-posts-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.9rem;
+	}
+	.related-post-card {
+		display: flex;
+		min-width: 0;
+		flex-direction: column;
+		gap: 0.55rem;
+		padding: 1rem;
+		border: 1px solid var(--border-color);
+		border-radius: 18px;
+		background: color-mix(in srgb, var(--card-bg) 88%, var(--bg-color) 12%);
+		color: var(--text-color);
+		text-decoration: none;
+		transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+	}
+	.related-post-card:hover {
+		border-color: color-mix(in srgb, var(--accent) 45%, var(--border-color));
+		background: color-mix(in srgb, var(--card-bg) 78%, var(--accent) 8%);
+		transform: translateY(-2px);
+	}
+	.related-post-card strong {
+		color: var(--heading-color);
+		line-height: 1.35;
+	}
+	.related-post-card span:not(.related-category) {
+		display: -webkit-box;
+		color: var(--muted-text);
+		font-size: 0.9rem;
+		line-height: 1.45;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	.related-category {
+		width: fit-content;
+		padding: 0.25rem 0.55rem;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--accent) 12%, transparent);
+		color: var(--accent);
+		font-size: 0.74rem;
+		font-weight: 800;
+	}
+	.related-post-card time {
+		margin-top: auto;
+		color: var(--muted-text);
+		font-size: 0.82rem;
+	}
 	.post-navigation {
 		display: flex;
 		justify-content: space-between;
@@ -111,5 +221,15 @@ const getSlug = (p: CollectionEntry<'blog'>) => p.data.slug || p.id;
 	}
 	.spacer {
 		flex: 1;
+	}
+	@media (max-width: 860px) {
+		.related-posts {
+			margin-top: 3rem;
+			padding: 1rem;
+			border-radius: 18px;
+		}
+		.related-posts-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>
