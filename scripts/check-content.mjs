@@ -11,6 +11,7 @@ const MAX_FUTURE_DAYS = 370;
 const MAX_PAST_YEARS = 10;
 const MAX_TITLE_LENGTH = 100;
 const MAX_DESCRIPTION_LENGTH = 180;
+const UNSAFE_SLUG_REGEX = /[\s\\?#]/;
 const PUB_DATE_ISO_REGEX =
   /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/;
 const KNOWN_CATEGORIES = new Set([
@@ -211,11 +212,14 @@ function getPostRoutePath(filePath, content) {
 }
 
 function buildPostRouteIndex(files) {
-  const routes = new Set();
+  const routes = new Map();
 
   for (const filePath of files) {
     const content = readFileSync(filePath, 'utf8');
-    routes.add(getPostRoutePath(filePath, content));
+    const routePath = getPostRoutePath(filePath, content);
+    const entries = routes.get(routePath) ?? [];
+    entries.push(filePath);
+    routes.set(routePath, entries);
   }
 
   return routes;
@@ -347,6 +351,26 @@ function checkFrontmatterTextLength(filePath, content, frontmatterMatch, fields,
   );
 }
 
+function checkSlug(filePath, content, frontmatterMatch, fields, warnings) {
+  const field = fields.get('slug');
+  if (!field) {
+    return;
+  }
+
+  const value = stripQuotes(field.rawValue).trim();
+  if (!value || !UNSAFE_SLUG_REGEX.test(value)) {
+    return;
+  }
+
+  addIssue(
+    warnings,
+    'warning',
+    filePath,
+    getLineNumber(content, frontmatterMatch.index + field.index),
+    `Slug contains whitespace, backslashes, query markers, or hash markers: ${field.rawValue}.`,
+  );
+}
+
 function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
   const frontmatterMatch = content.match(FRONTMATTER_REGEX);
   if (!frontmatterMatch) {
@@ -371,6 +395,7 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
     MAX_DESCRIPTION_LENGTH,
     warnings,
   );
+  checkSlug(filePath, content, frontmatterMatch, fields, warnings);
   checkCategories(filePath, content, frontmatterMatch, fields, warnings);
 
   const titleField = fields.get('title');
@@ -584,6 +609,24 @@ function checkInternalLinks(filePath, content, warnings, postRoutes) {
   }
 }
 
+function checkDuplicatePostRoutes(postRoutes, issues) {
+  for (const [routePath, filePaths] of postRoutes) {
+    if (filePaths.length < 2) {
+      continue;
+    }
+
+    for (const filePath of filePaths) {
+      addIssue(
+        issues,
+        'error',
+        filePath,
+        1,
+        `Duplicate generated post route detected: ${routePath}.`,
+      );
+    }
+  }
+}
+
 function main() {
   if (!statSync(CONTENT_DIR).isDirectory()) {
     console.error(`Content directory not found: ${CONTENT_DIR}`);
@@ -595,6 +638,8 @@ function main() {
   const warnings = [];
   const titleIndex = new Map();
   const postRoutes = buildPostRouteIndex(files);
+
+  checkDuplicatePostRoutes(postRoutes, issues);
 
   for (const filePath of files) {
     const content = readFileSync(filePath, 'utf8');
