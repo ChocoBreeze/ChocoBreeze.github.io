@@ -314,7 +314,7 @@ if __name__ == "__main__":
 ```sh
 py chunking_experiment.py --help
 
-usage: week3_chunking_experiment.py [-h] [--file FILE] [--category CATEGORY]
+usage: chunking_experiment.py [-h] [--file FILE] [--category CATEGORY]
 
 Week3 청킹 실험
 
@@ -364,7 +364,7 @@ py chunking_experiment.py
 - chunk 여러 개 출력 (`print_chunk_preview`)
 
 ```sh
-python week3_chunking_experiment.py
+python chunking_experiment.py
 대상 파일: sample_investment_note.txt
 로드된 문서 수: 1
 첫 문서 글자 수: 532
@@ -567,7 +567,7 @@ py chunking_experiment.py --file 2024ltr.pdf
 - `2024ltr.pdf`: 워렌버핏 주주서한(2024): [링크](https://www.berkshirehathaway.com/letters/2024ltr.pdf)
 
 ```sh
-py week3_chunking_experiment.py --file 2024ltr.pdf
+py chunking_experiment.py --file 2024ltr.pdf
 대상 파일: 2024ltr.pdf
 로드된 문서 수: 15
 첫 문서 글자 수: 2189
