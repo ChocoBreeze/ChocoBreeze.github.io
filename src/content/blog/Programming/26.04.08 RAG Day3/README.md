@@ -6,6 +6,8 @@ categories: "Programming"
 tags: ["Chunking", "Chunk", "RAG"]
 ---
 
+![RAG Day3 문서 청킹 개념과 실습 순서 요약 인포그래픽](images/image-4.png)
+
 이번 주는 긴 문서를 RAG가 다루기 좋은 작은 조각으로 나누는 단계입니다. 검색 품질은 임베딩 모델만으로 결정되지 않고, 문서를 어떻게 쪼개는지도 크게 좌우된다는 점을 확인하는 주차입니다.
 
 ## 이번 주 목표
