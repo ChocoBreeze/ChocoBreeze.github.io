@@ -6,6 +6,8 @@ categories: "Programming"
 tags: ["Chunking", "Chunk", "RAG"]
 ---
 
+![RAG Day4 벡터 데이터베이스 개념과 실습 순서 요약 인포그래픽](images/image.png)
+
 이번 주는 `Week2`에서 만든 임베딩과 `Week3`에서 만든 청크를 실제 저장소에 넣는 단계입니다.  
 이제부터는 문서를 매번 다시 임베딩하지 않고, 벡터 DB에 저장해 두었다가 질문이 들어오면 관련 청크만 빠르게 꺼내게 됩니다.
 
