@@ -6,6 +6,8 @@ categories: "Programming"
 tags: ["RAG", "LLM"]
 ---
 
+![RAG Day1 LLM 개념과 실습 순서 요약 인포그래픽](images/image-26.png)
+
 이번 주는 RAG를 만들기 전에, LLM이 어디까지 할 수 있고 어디서 한계가 생기는지 직접 확인하는 단계입니다.
 
 **이번 주 목표**
