@@ -7,7 +7,7 @@ tags: ["RAG", "LLM"]
 ---
 
 ## Transformers, the tech behind LLMs | Deep Learning Chapter 5
-- [Transformers, the tech behind LLMs | Deep Learning Chapter 5](https://www.3blue1brown.com/lessons/gpt?utm_source=chatgpt.com)
+- [Transformers, the tech behind LLMs | Deep Learning Chapter 5](https://www.3blue1brown.com/lessons/gpt)
 - [Youtube - Transformers, the tech behind LLMs | Deep Learning Chapter 5](https://www.youtube.com/watch?v=wjZofJX0v4M)
 
 Formally speaking, a GPT is a Generative Pre-Trained Transformer. 
@@ -23,7 +23,7 @@ What we will focus on is the transformer aspect of the language model, the main 
 ### What exactly is a Transformer?
 <span style=color:red;>A transformer is a special kind of neural network, a Machine Learning Model.</span> There are a wide variety of models that can be built using transformers: voice-to-text, text-to-voice, text-to-image, machine translation, and many more. The specific variant that we will focus on, which is the type that underlies tools like ChatGPT, will be a model trained to take in a piece of text, maybe even with some surrounding images or sound accompanying it, then produce a prediction of what comes next, in the form of a probability distribution over all chunks of text that might follow.
 
-![alt text](images/image-5.png)
+![Transformer가 다음 토큰을 예측해 문장을 생성하는 흐름](images/image-5.png)
 
 At first, predicting the next word might feel like a different goal from generating new text. But once you have a prediction model like this, one simple way to make this generate a longer piece is to give it an initial bit of text to work with, have it predict the next word, take a random sample from the distribution it just generated, then run it all again to make a new prediction based on all the text, including what it just added. <span style=color:red;>This process of repeated prediction and sampling is essentially what’s happening when you interact with ChatGPT and see it producing one word at a time.</span>
 
@@ -43,21 +43,21 @@ To| date|,| the| cle|ve|rest| thinker| of| all| time| was ...
 
 Each of these tokens is then associated with a vector, meaning some list of numbers. <span style=color:red;>A common interpretation of these embeddings is that the coordinates of these vectors may somehow encode the meaning of each token. If you think of these vectors as giving coordinates in some high-dimensional space, words with similar meanings tend to land on vectors close to each other in that space.</span> These steps are pre-processing steps that occur before anything enters the transformer itself.
 
-![alt text](images/image-6.png)
+![토큰을 벡터로 바꿔 의미 공간에 배치하는 임베딩 개념](images/image-6.png)
 
 > 토큰은 숫자 목록을 의미하는 벡터와 연결되며, 벡터의 좌표는 각 토큰의 의미를 인코딩 가능함.
 
 ## Attention Block
 <span style=color:red;>The encoded vectors then pass through an Attention Block where they communicate with each other to update their values based on context.</span> For example, the meaning of the word model in the phrase a machine learning model is different from its meaning in the phrase a fashion model. <span style=color:red;>The Attention Block is responsible for figuring out which words in the context are relevant to updating the meanings of other words and how exactly those meanings should be updated.</span>
 
-![alt text](images/image-7.png)
+![어텐션 블록에서 문맥에 따라 벡터가 업데이트되는 과정](images/image-7.png)
 
 > 벡터는 컨텍스트에 따라 값을 업데이트함.
 
 ### Multilayer Perceptron(Feed-Forward Layer)
 <span style=color:red;>Following the Attention Block, these vectors then pass through a Multilayer Perceptron, or Feed-Forward Layer.</span> Here, the vectors don’t talk to each other; they all go through the same operation in parallel. We’ll talk later about how this step is a bit like asking a long list of questions about each vector and updating them based on the answers.
 
-![alt text](images/image-8.png)
+![어텐션 이후 피드포워드 레이어를 통과하는 Transformer 블록 구조](images/image-8.png)
 
 After that, the vectors pass through another attention block, then another multilayer perceptron block, then another attention block, and so on, getting altered by many variants of these two operations interlaced with one another. A large number of layers like this is what puts the "deep" in deep learning. Computationally, all the operations in both blocks will look like a giant pile of matrix multiplications, and our goal will be to understand how to read the underlying matrices.
 
@@ -70,11 +70,11 @@ With that as a high-level preview, in this lesson we will expand on the details 
 
 > Machine Learning: 데이터를 program의 행동 결정에 이용하는 것.
 
-![alt text](images/image-9.png)
+![데이터로 프로그램 동작을 조정하는 머신러닝 개념](images/image-9.png)
 
 For example, the simplest form of machine learning might be linear regression, where inputs and outputs are single numbers, such as the square footage of a house and its price. A linear regression finds the line of best fit through the data to predict future house prices. This line is determined by two parameters: the slope and the y-intercept, which are tuned to most closely match the data. Then for future houses, with unknown prices, the predicted price would be determined based on the value of this line over the given square footage.
 
-![alt text](images/image-10.png)
+![선형 회귀와 신경망을 비교하는 머신러닝 모델 예시](images/image-10.png)
 
 Deep learning is a subfield of Machine Learning, focused on a specific category of models known as Neural Networks. Needless to say, these can get dramatically more complicated than the simple linear regression example. GPT-3, for example, had an astounding 175 billion parameters. However, simply giving a model a huge number of parameters does not guarantee that it will perform better. Models at such scales risk being either completely intractable to train, prone to overfitting, or both.
 
@@ -91,11 +91,11 @@ To prevent the entire model from being linear, there will typically also be some
 > matrix-vector product.  
 > add nonlinear functions to prevent to be linear
 
-![alt text](images/image-11.png)
+![비선형 함수를 추가해 더 복잡한 패턴을 학습하는 신경망 구조](images/image-11.png)
 
 For example, the 175 billion weights in GPT-3 are organized into just under 28,000 different matrices. Those matrices fall into 8 different categories, and we will step through each type to understand what it does. As we go through, it will be fun for us to reference the numbers from GPT-3 to count up exactly where those 175 billion parameters all come from. There's a risk of getting lost in the vast amount of numbers, and in the hopes of adding clarity we'll draw a sharp distinction between the weights of the model, colored in blue or red, and the data being processed, colored in grey. The weights are the actual brains of the model, learned during training and determining how it behaves. The data being processed encodes whatever specific input was fed into the model in a given instance, like an example snippet of text.
 
-![alt text](images/image-12.png)
+![GPT 모델의 가중치와 입력 데이터가 구분되어 표시된 구조](images/image-12.png)
 
 > 가중치: 모델이 학습하고 동작하는 방식을 결정하는 과정에서 학습된 실제 모델의 두뇌.  
 > 처리 중인 데이터: 텍스트의 예시 스니펫과 같이 특정 입력이 주어진 인스턴스에서 모델에 입력되는 모든 것을 인코딩함.
@@ -110,42 +110,42 @@ The model has a predefined vocabulary, some list of all possible words, say 50,0
 
 Turning words into vectors was common practice in machine learning long before transformers. This is often called embedding the word, which invites thinking of these vectors geometrically as points or directions in some space. Visualizing a list of three numbers as coordinates for a point in 3D space is no problem, <span style=color:red;>but word embeddings tend to be very high dimensional.</span> For GPT-3, they have 12,288 dimensions, and as you will see, it matters to work in a space with lots of distinct directions.
 
-![alt text](images/image-13.png)
+![고차원 단어 임베딩을 3차원 공간으로 투영한 시각화](images/image-13.png)
 
 In the same way that you can take a 2D slice through 3D space and project points onto that slice, for the sake of visualizing word embeddings, we will do something analogous by choosing a 3D slice through the very high-dimensional space, projecting word vectors onto that, and displaying the result.
 
 ### Direction
 <span style=color:red;>The big idea we need to understand here is that as a model tweaks and tunes its weights to decide how exactly words get embedded as vectors during training, it tends to settle on a set of embeddings where directions in this space have meaning.</span> Below, a simple word-to-vector model is running, and when I run a search for all words whose embeddings are closest to that of tower, they all generally have the same vibe.
 
-![alt text](images/image-14.png)
+![비슷한 의미의 단어들이 임베딩 공간에서 가까이 모이는 예시](images/image-14.png)
 
 Another classic example of this is when the difference between the vectors for woman and man is taken, which can be visualized as a vector in this space connecting the tip of one to the tip of the other. This difference is quite similar to the difference between king and queen. So, if the word for a female monarch was unknown, it could be found by taking king, adding the direction of woman minus man, and searching for the closest word embedding.
 
-![alt text](images/image-15.png)
+![king, queen, man, woman 관계를 벡터 차이로 설명하는 임베딩 예시](images/image-15.png)
 
 At least, kind of. Despite this being the classic example, for the model I was playing with when making this video, the true embedding of queen is a little farther off than the difference would suggest, presumably because the way queen is used in training data is not merely a feminine version of a king. Family relations illustrate the idea better:
 
-![alt text](images/image-16.png)
+![가족 관계를 통해 임베딩 방향성이 의미를 가질 수 있음을 보여주는 예시](images/image-16.png)
 
 The idea here is that it seems as if, during training, the model found it advantageous to choose embeddings such that one direction in this space encodes gender information.
 
 Another example of this would be taking the embedding of Italy, subtracting the embedding of Germany, and adding it to the embedding of Hitler. This results in something very close to the embedding of Mussolini. It’s as if the model learned to associate some directions with Italian-ness and others with WWII Axis leaders.
 
-![alt text](images/image-17.png)
+![국가와 역사 인물 관계를 벡터 연산으로 설명하는 임베딩 예시](images/image-17.png)
 
 ### Dot Product
 <span style=color:red;>One bit of mathematical intuition helpful to have in mind as we continue is how the dot product of two vectors can be thought of as measuring how well they align.</span> Computationally, dot products involve multiplying all aligning components and adding the result. Geometrically, the dot product is positive when the vectors point in a similar direction, zero if they're perpendicular, and negative when they point in opposite directions.
 
 > Dot Product: 두 벡터가 얼마나 비슷한 방향을 가리키는지 보는 값
 
-![alt text](images/image-18.png)
+![두 벡터의 방향 유사도를 측정하는 내적 개념](images/image-18.png)
 
 For example, suppose we wanted to test if the embedding of cats minus that of cat represents a kind of plurality direction in this space. To test this, you could take the dot product between this vector and various singular and plural nouns. When I did this for a simple word-to-vector model while making this video, it looked like the plural ones do indeed end up with consistently higher values than singular ones. Also, taking this dot product with the embeddings of the words one, two, three, and four, they give increasing values, as if it’s quantitatively measuring how plural the model finds a given word.
 
 > cats - cat: plurality(복수성)이라는 성질의 방향일 수 있다.  
 > 그리고 실험 결과도 복수성을 가진 단어들과 더 가깝다. (개수가 늘어나는 것도 더 많이 반영)
 
-![alt text](images/image-19.png)
+![복수형 단어 방향성을 내적으로 비교하는 임베딩 실험](images/image-19.png)
 
 Again, how specifically each word gets embedded is learned using data. The embedding matrix, whose columns store the embedding of each word, is the first pile of weights in our model. Using the GPT-3 numbers, the vocabulary size is 50,257, and again, technically this consists not of words, per se, but different little chunks of text called tokens. The embedding dimension is 12,288, giving us 617,558,016 weights in total for this first step. Let’s go add that to a running tally, remembering that by the end we should count up to 175 billion weights.
 
@@ -154,7 +154,7 @@ In the case of a transformer, <span style=color:red;>we also want to think of th
 
 For example, a vector that started its life as the embedding of the word “king” may progressively get tugged and pulled by the various blocks in the network to end up pointing in a much more nuanced direction that somehow encodes a king who lived in Scotland, who had achieved his post after murdering the previous king, who is being described in Shakespearean language, and so on.
 
-![alt text](images/image-20.png)
+![문맥에 따라 단어 벡터가 더 구체적인 의미로 변하는 예시](images/image-20.png)
 
 Think about our understanding of a word, like quill. Its meaning is clearly informed by its surroundings and context, whether it be a hedgehog quill or a type of pen. Sometimes, we may even include context from a long distance away. <span style=color:red;>When putting together a model that is able to predict the next word, the goal is to somehow empower it to do the same thing: take in context efficiently.</span>
 
@@ -162,14 +162,14 @@ In that very first step, when you create the array of vectors based on the input
 
 <span style=color:red;>The network can only look at a fixed number of vectors at a time, known as its context size.</span> GPT-3 was trained with a context size of 2048 tokens. So the data flowing through the network will look like this array of 2048 columns, each of which has around 12k dimensions. This context size limits how much text the transformer can incorporate to make its prediction of the next word, which is why long conversations with the early versions of ChatGPT often gave the feeling of the bot losing the thread of conversation.
 
-![alt text](images/image-21.png)
+![GPT의 컨텍스트 크기와 한 번에 처리할 수 있는 토큰 벡터 배열](images/image-21.png)
 
 ## Unembedding
 We'll go into the details of the Attention Block in the next chapter, but first we'll skip ahead and talk about what happens at the very end of the Transformer. Remember, <span style=color:red;>the desired output is a probability distribution over all possible chunks of text that might come next.</span>
 
 For example, if the last word is Professor, and the context includes words like Harry Potter, and the immediately preceding is least favorite, and if we pretend that all tokens look like full words, a well-trained network would presumably assign a high number to the word Snape.
 
-![alt text](images/image-22.png)
+![문맥을 바탕으로 다음 단어 Snape를 예측하는 언임베딩 예시](images/image-22.png)
 
 ## Unembedding Matrix
 This process involves two steps. The first is <span style=color:red;>to use another matrix</span> that maps the very last vector in the context to a list of ~50,000 values, one for each token in the vocabulary, then there’s a function that normalizes this into a probability distribution, called <span style=color:red;>softmax</span>, which we’ll talk more about in just a second.
@@ -184,7 +184,7 @@ This is often called the unembedding matrix, and we'll give it the label $W_U$. 
 >
 > 그리고 훈련할 때는 마지막 위치만이 아니라 각 위치의 벡터가 자기 다음 토큰을 동시에 예측하도록 학습해서 효율을 높인다.
 
-![alt text](images/image-23.png)
+![각 위치의 벡터가 다음 토큰을 동시에 예측하도록 학습되는 과정](images/image-23.png)
 
 Keeping score on our total number of parameters, the unembedding matrix has one row for each word in the vocabulary, giving 50,257 words, and each row has the same number of elements as the dimension of the embedding, giving 12,288 columns. It’s very similar to the embedding matrix, just with the dimensions of the rows and columns swapped, so it adds another 617M parameters to the network, making our parameter count so far a little over a billion; a small but not insignificant fraction of the 175 billion that we'll end up with in total.
 
@@ -193,7 +193,7 @@ For the last lesson of this chapter, we will go over the softmax function, since
 
 The idea is that if we want a sequence of numbers to serve as a probability distribution, say a distribution over all possible next words, all the values should be between 0 and 1 and should all add up to be 1. However, in deep learning, where so much of what we do looks like a matrix-vector products, the outputs we get by default won’t abide by this at all. The values are often negative or sometimes greater than 1, and they almost certainly don’t all add up to 1.
 
-![alt text](images/image-24.png)
+![언임베딩 행렬이 단어별 점수 분포를 만드는 구조](images/image-24.png)
 
 <span style=color:red;>Softmax turns an arbitrary list of numbers into a valid distribution, in such a way that the largest values end up closest to 1, and the smaller values end up closer to 0.</span>
 
@@ -201,7 +201,7 @@ The way it works is to first raise e to the power of each number, which gives a 
 
 The reason for calling it softmax is that instead of simply pulling out the biggest value, it produces a distribution that gives weight to all the relatively large values, commensurate with how large they are. If one entry in the input is much bigger than the rest, the corresponding output will be very close to 1, so sampling from the distribution is likely the same as just choosing the maximizing index from the input.
 
-![alt text](images/image-25.png)
+![Softmax가 점수 목록을 확률 분포로 바꾸는 과정](images/image-25.png)
 
 Here's another bit of jargon:  
 In the same way that we might call the components of the output of this function probabilities, people often refer to the components of the input as <span style=color:red;>logits</span>. So when you feed in some text, have the word embeddings flow through the network, and do this final multiplication by the unembedding matrix, machine learning people would refer to the components of that raw unnormalized output as the logits for the next word prediction.
