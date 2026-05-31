@@ -6,6 +6,8 @@ categories: "Programming"
 tags: ["RAG", "embedding", "vector"]
 ---
 
+![RAG Day2 임베딩과 벡터 실습 순서 요약 인포그래픽](images/image.png)
+
 이번 주는 문장을 숫자 벡터로 바꾸고, 질문과 문장이 얼마나 가까운지 계산해 보는 단계입니다. RAG에서 "관련 문서를 찾는 검색"이 어떻게 가능한지 직접 확인하는 주차입니다.
 
 **이번 주 목표**
