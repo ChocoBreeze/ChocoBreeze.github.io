@@ -94,7 +94,7 @@ BASE_DIR = Path(__file__).resolve().parent
 
 # 기본 실습용 텍스트 파일 경로입니다.
 # 별도로 --file 옵션을 주지 않으면 이 파일을 사용합니다.
-DEFAULT_FILE = BASE_DIR.parent / "Week3" / "sample_investment_note.txt"
+DEFAULT_FILE = BASE_DIR.parent / "26.04.08 RAG Day3" / "sample_investment_note.txt"
 
 # Chroma 벡터 DB를 저장할 기본 폴더입니다.
 DEFAULT_DB_DIR = BASE_DIR / "investment_db"
@@ -389,7 +389,7 @@ def main() -> None:
         help="인덱싱할 TXT 또는 PDF 파일 경로",
     )
     # 예:
-    # python rag_pipeline_from_scratch.py --file ..\Week3\2024ltr.pdf
+    # python rag_pipeline_from_scratch.py --file ..\26.04.08 RAG Day3\2024ltr.pdf
 
     parser.add_argument(
         "--db-dir",
@@ -498,26 +498,26 @@ if __name__ == "__main__":
 python rag_pipeline_from_scratch.py
 
 # PDF로 실행:
-python rag_pipeline_from_scratch.py --file ..\Week3\2024ltr.pdf
+python rag_pipeline_from_scratch.py --file ..\26.04.08 RAG Day3\2024ltr.pdf
 
 # 기존 DB 지우고 다시 인덱싱:
-python rag_pipeline_from_scratch.py --file ..\Week3\2024ltr.pdf --rebuild
+python rag_pipeline_from_scratch.py --file ..\26.04.08 RAG Day3\2024ltr.pdf --rebuild
 ```
 딱 한 가지 더 말씀드리면,  
 지금 코드는 **DB가 있으면 그냥 재사용**하므로, 다른 파일로 바꿔 실행할 때는 `--rebuild`를 같이 주는 습관이 좋습니다.
 
 예를 들어 sample txt로 만들었던 DB가 있는데 이번엔 PDF를 넣고 싶다면:
 ```bash
-python rag_pipeline_from_scratch.py --file ..\Week3\2024ltr.pdf --rebuild
+python rag_pipeline_from_scratch.py --file ..\26.04.08 RAG Day3\2024ltr.pdf --rebuild
 ```
 
 </details> <br/>
 
 ```bash
-python week5_rag_pipeline_from_scratch.py
+python rag_pipeline_from_scratch.py
 채팅 모델: gpt-4o-mini
 임베딩 모델: text-embedding-3-small
-대상 파일: ..\Week3\sample_investment_note.txt
+대상 파일: ..\26.04.08 RAG Day3\sample_investment_note.txt
 DB 경로: .\investment_db
 ============================================================
 기존 DB 재사용: .\investment_db
@@ -597,13 +597,13 @@ DB 경로: .\investment_db
 아래처럼 다시 실행해보면 됩니다.
 
 ```bash
-python week5_rag_pipeline_from_scratch.py --rebuild
+python rag_pipeline_from_scratch.py --rebuild
 ```
 
 또는 PDF 대상으로 명확하게 보려면:
 
 ```bash
-python week5_rag_pipeline_from_scratch.py --file ..\Week3\2024ltr.pdf --rebuild
+python rag_pipeline_from_scratch.py --file ..\26.04.08 RAG Day3\2024ltr.pdf --rebuild
 ```
 
 그때는 아마 이런 식으로 나와야 합니다.
@@ -690,7 +690,7 @@ python week5_rag_pipeline_from_scratch.py --file ..\Week3\2024ltr.pdf --rebuild
 왜냐하면 현재 대상 파일은:
 
 ```text
-대상 파일: ...\Week3\sample_investment_note.txt
+대상 파일: ...\26.04.08 RAG Day3\sample_investment_note.txt
 ```
 
 인데, 검색 결과에는 계속:
@@ -811,26 +811,26 @@ Week 5 목표 중 하나인:
 <h3> sample txt만 확인 </h3>
 
 ```bash
-python week5_rag_pipeline_from_scratch.py --file ..\Week3\sample_investment_note.txt --rebuild
+python rag_pipeline_from_scratch.py --file ..\26.04.08 RAG Day3\sample_investment_note.txt --rebuild
 ```
 
 <h3> PDF만 확인 </h3>
 
 ```bash
-python week5_rag_pipeline_from_scratch.py --file ..\Week3\2024ltr.pdf --rebuild
+python rag_pipeline_from_scratch.py --file ..\26.04.08 RAG Day3\2024ltr.pdf --rebuild
 ```
 
 </details> <br/>
 
 ```bash
-python week5_rag_pipeline_from_scratch.py --rebuild
+python rag_pipeline_from_scratch.py --rebuild
 ```
 
 ```bash
-python week5_rag_pipeline_from_scratch.py --rebuild
+python rag_pipeline_from_scratch.py --rebuild
 채팅 모델: gpt-4o-mini
 임베딩 모델: text-embedding-3-small
-대상 파일: ..\Week3\sample_investment_note.txt
+대상 파일: ..\26.04.08 RAG Day3\sample_investment_note.txt
 DB 경로: .\investment_db
 ============================================================
 기존 DB 삭제: .\investment_db
@@ -1033,7 +1033,7 @@ python rag_pipeline_from_scratch.py --file 2024ltr.pdf --rebuild
 - 문서에 없는 질문에는 답변이 제한되는지
 
 ```bash
-python week5_rag_pipeline_from_scratch.py --file 2024ltr.pdf --rebuild
+python rag_pipeline_from_scratch.py --file 2024ltr.pdf --rebuild
 채팅 모델: gpt-4o-mini
 임베딩 모델: text-embedding-3-small
 대상 파일: 2024ltr.pdf
@@ -1201,7 +1201,7 @@ GEICO의 2024년 실적 개선은 어떻게 설명되나요?
 질문 바꿔서 다시 실행
 
 ```bash
-python week5_rag_pipeline_from_scratch.py --file 2024ltr.pdf --rebuild
+python rag_pipeline_from_scratch.py --file 2024ltr.pdf --rebuild
 채팅 모델: gpt-4o-mini
 임베딩 모델: text-embedding-3-small
 대상 파일: 2024ltr.pdf
@@ -1385,7 +1385,7 @@ DB 경로: .\investment_db
 </details> <br/>
 
 ```bash
-python week5_rag_pipeline_from_scratch.py --file 2024ltr.pdf --rebuild
+python rag_pipeline_from_scratch.py --file 2024ltr.pdf --rebuild
 채팅 모델: gpt-4o-mini
 임베딩 모델: text-embedding-3-small
 대상 파일: 2024ltr.pdf
@@ -1536,7 +1536,7 @@ GEICO의 실적 개선은 Todd Combs가 5년 동안 GEICO를 주요하게 재편
 
 <h3> 왜 제한 답변이 나왔을까요? </h3>
 
-검색 결과는 p.7, p.7, p.6으로 나와서 사실 페이지 자체는 꽤 맞습니다. 그런데 질문이 **“왜 선호하나요?”**처럼 설명형이라, 검색된 청크에 이유가 흩어져 있었거나 문장 연결이 충분히 안 되었을 수 있습니다. 또 프롬프트가 엄격해서 직접적인 근거가 부족하다고 판단했을 수도 있습니다. 
+검색 결과는 p.7, p.7, p.6으로 나와서 사실 페이지 자체는 꽤 맞습니다. 그런데 질문이 **“왜 선호하나요?”** 처럼 설명형이라, 검색된 청크에 이유가 흩어져 있었거나 문장 연결이 충분히 안 되었을 수 있습니다. 또 프롬프트가 엄격해서 직접적인 근거가 부족하다고 판단했을 수도 있습니다. 
 
 <h3> 더 잘 물어보는 방법 </h3>
 
@@ -1569,7 +1569,7 @@ GEICO의 실적 개선은 Todd Combs가 5년 동안 GEICO를 주요하게 재편
 **답변:** 제공된 자료에서 찾을 수 없습니다.
 
 이건 **문서에 답이 있는데 놓친 경우**입니다.
-표에 따르면 2024년 버크셔의 annual percentage change는 **25.5%**, S&P 500은 **25.0%**입니다. 즉, 2024년에는 버크셔가 S&P 500보다 **약간 높았습니다.** 
+표에 따르면 2024년 버크셔의 annual percentage change는 **25.5%**, S&P 500은 **25.0%** 입니다. 즉, 2024년에는 버크셔가 S&P 500보다 **약간 높았습니다.** 
 
 검색 결과가 p.15, p.14, p.4로 나온 걸 보면 페이지는 잘 찾았어요. 그런데 현재 질문이 “성과는 비교해 어땠나요?”처럼 약간 넓고, 표를 해석해서 비교 문장으로 바꿔야 하다 보니 모델이 엄격하게 “직접적 근거 부족”으로 봤을 수 있습니다. 
 
@@ -1718,7 +1718,7 @@ IRS 세금, equities 선호 이유, S&P 500 비교가 그렇습니다.
 
 <h2> 1. RAG from Scratch — LearnByBuilding.ai </h2>
 
-이 자료는 제목 그대로 **“처음부터 RAG를 직접 만드는 흐름”**을 보는 데 좋아요.
+이 자료는 제목 그대로 **“처음부터 RAG를 직접 만드는 흐름”** 을 보는 데 좋아요.
 
 <h3> 어떻게 보면 좋냐면 </h3>
 
@@ -1762,7 +1762,7 @@ IRS 세금, equities 선호 이유, S&P 500 비교가 그렇습니다.
 <h3> 어떻게 보면 좋냐면 </h3>
 
 이건 코드 한 줄 한 줄 따라가기보다,
-**“RAG를 왜 이렇게 구성하는가”**를 이해하는 자료로 보면 좋아요.
+**“RAG를 왜 이렇게 구성하는가”** 를 이해하는 자료로 보면 좋아요.
 
 <h3> 지금 단계에서 특히 볼 것 </h3>
 
