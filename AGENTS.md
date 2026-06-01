@@ -108,6 +108,12 @@ Preserve the existing folder style unless there is an explicit request to reorga
 
 When adding or editing posts, avoid changes that would silently break these routes.
 
+## Related Posts Notes
+
+- Individual post previous/next links and `같이 읽기 좋은 글` cards are implemented in `src/pages/blog/[...slug].astro`.
+- The current logic is category-and-order based, not tag similarity or content similarity based.
+- See `docs/blog-routing-and-related-posts.md` before changing this behavior.
+
 ## Commands
 
 Run from repository root:
