@@ -23,11 +23,12 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 			}
 			.search-controls {
 				display: grid;
-				grid-template-columns: minmax(0, 1fr) minmax(12rem, 16rem);
+				grid-template-columns: minmax(0, 1fr) minmax(9rem, 12rem) minmax(12rem, 16rem);
 				gap: 0.75rem;
 				align-items: center;
 			}
 			#search-input,
+			#search-mode,
 			#search-category {
 				box-sizing: border-box;
 				min-width: 0;
@@ -45,13 +46,19 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 				color: var(--muted-text);
 			}
 			#search-input:focus,
+			#search-mode:focus,
 			#search-category:focus {
 				border-color: var(--accent);
 				box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
 			}
+			#search-mode,
 			#search-category {
 				cursor: pointer;
 				font-size: 1rem;
+			}
+			#search-category:disabled {
+				cursor: not-allowed;
+				opacity: 0.68;
 			}
 			#results-list {
 				list-style: none;
@@ -116,6 +123,12 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 				margin-bottom: 0.5rem;
 				color: var(--muted-text);
 			}
+			.result-meta {
+				margin: -0.2rem 0 0.55rem;
+				color: var(--muted-text);
+				font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+				font-size: 0.78rem;
+			}
 			#results-count {
 				margin-bottom: 1rem;
 				font-size: 0.9rem;
@@ -150,6 +163,10 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 						disabled
 						autofocus
 					/>
+					<select id="search-mode" aria-label="검색 대상" disabled>
+						<option value="post">글 검색</option>
+						<option value="code">코드 검색</option>
+					</select>
 					<select id="search-category" aria-label="검색 카테고리" disabled>
 						<option value="/search.json">전체 카테고리</option>
 						{BLOG_CATEGORIES.map((category) => (
@@ -175,6 +192,8 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 				e?: string;
 				x?: string;
 				s: string;
+				f?: string;
+				k?: 'markdown-code' | 'source-file';
 			};
 
 			type SearchResult = {
@@ -185,33 +204,44 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 
 			let searchIndex: SearchItem[] = [];
 			const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+			const searchMode = document.getElementById('search-mode') as HTMLSelectElement | null;
 			const searchCategory = document.getElementById('search-category') as HTMLSelectElement | null;
 			const resultsList = document.getElementById('results-list');
 			const resultsCount = document.getElementById('results-count');
 
-			if (searchInput && searchCategory && resultsList && resultsCount) {
+			if (searchInput && searchMode && searchCategory && resultsList && resultsCount) {
 				loadSearchIndex();
 
 				searchInput.addEventListener('input', () => {
 					updateResults(searchInput.value);
+				});
+				searchMode.addEventListener('change', () => {
+					loadSearchIndex(getCurrentIndexPath());
 				});
 				searchCategory.addEventListener('change', () => {
 					loadSearchIndex(searchCategory.value);
 				});
 			}
 
+			function getCurrentIndexPath() {
+				return searchMode?.value === 'code' ? '/code-search.json' : searchCategory?.value || '/search.json';
+			}
+
 			async function loadSearchIndex(indexPath = '/search.json') {
-				if (!searchInput || !searchCategory || !resultsCount || !resultsList) return;
+				if (!searchInput || !searchMode || !searchCategory || !resultsCount || !resultsList) return;
+				const isCodeSearch = searchMode.value === 'code';
+				const resolvedIndexPath = isCodeSearch ? '/code-search.json' : indexPath;
 
 				try {
 					searchInput.disabled = true;
+					searchMode.disabled = true;
 					searchCategory.disabled = true;
 					searchInput.placeholder = '검색 인덱스를 불러오는 중...';
 					resultsList.replaceChildren();
 					resultsCount.classList.remove('error');
 					resultsCount.textContent = '';
 
-					const response = await fetch(indexPath, {
+					const response = await fetch(resolvedIndexPath, {
 						headers: { Accept: 'application/json' },
 					});
 					if (!response.ok) {
@@ -225,8 +255,11 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 
 					searchIndex = data.filter(isSearchItem);
 					searchInput.disabled = false;
-					searchCategory.disabled = false;
-					searchInput.placeholder = '제목, 설명, 태그, 소제목, 본문 요약으로 검색하세요...';
+					searchMode.disabled = false;
+					searchCategory.disabled = isCodeSearch;
+					searchInput.placeholder = isCodeSearch
+						? '함수명, API 호출, 코드 구문으로 검색하세요...'
+						: '제목, 설명, 태그, 소제목, 본문 요약으로 검색하세요...';
 					resultsCount.classList.remove('error');
 
 					if (searchInput.value.trim()) {
@@ -234,6 +267,7 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 					}
 				} catch {
 					searchInput.disabled = true;
+					searchMode.disabled = false;
 					searchCategory.disabled = false;
 					searchInput.placeholder = '검색을 사용할 수 없습니다.';
 					resultsCount.classList.add('error');
@@ -282,6 +316,7 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 				if (includesQuery(item.d, query)) score += 30;
 				if (includesQuery(item.e, query)) score += 12;
 				if (includesQuery(item.x, query)) score += 12;
+				if (includesQuery(item.f, query)) score += 35;
 
 				if ((item.g ?? []).some((tag) => includesQuery(tag, query))) {
 					score += 25;
@@ -304,6 +339,7 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 					item.d,
 					...(item.h ?? []),
 					item.e,
+					item.f,
 					item.x,
 				];
 
@@ -353,7 +389,7 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 
 					const category = document.createElement('span');
 					category.className = 'result-category';
-					category.textContent = getCategoryLabel(item.c);
+					category.textContent = item.k ? 'Code' : getCategoryLabel(item.c);
 
 					const title = document.createElement('h3');
 					title.textContent = item.t;
@@ -362,6 +398,12 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 					description.textContent = item.d || item.e || '';
 
 					link.append(category, title, description);
+					if (item.f) {
+						const meta = document.createElement('p');
+						meta.className = 'result-meta';
+						meta.textContent = item.f;
+						link.append(meta);
+					}
 					if (snippet && snippet !== description.textContent) {
 						const snippetElement = document.createElement('p');
 						snippetElement.className = 'result-snippet';
