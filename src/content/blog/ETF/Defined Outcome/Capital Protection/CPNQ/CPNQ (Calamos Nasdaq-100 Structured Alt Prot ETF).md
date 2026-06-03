@@ -1,5 +1,29 @@
-# CPNQ (Calamos Nasdaq-100 Structured Alt Protection ETF – December) 종합 분석 보고서
+---
+title: 'CPNQ (Calamos Nasdaq-100 Structured Alt Protection ETF - December)'
+description: 'QQQ 가격 수익률을 기준으로 1년 아웃컴 기간의 하방 보호와 제한된 상방 참여를 제공하는 12월물 구조적 보호 ETF'
+pubDate: '2026-05-25T00:00:00+09:00'
+categories: "ETF"
+---
+
+## 요약
+
 > **작성일**: 2026년 5월 25일 기준 데이터 | **운용사**: Calamos Investments LLC | **카테고리**: Defined Outcome / 구조적 보호 ETF
+
+***
+## ETF 분류
+
+| 항목 | 내용 |
+|------|------|
+| **최종 폴더** | `ETF/Defined Outcome/Capital Protection/CPNQ` |
+| **대분류** | Defined Outcome |
+| **하위 분류** | Capital Protection |
+| **핵심 전략** | QQQ 가격 수익률 기준 하방 보호 + 상방 수익 제한 |
+| **운용 방식** | 액티브 |
+| **레버리지·인버스 여부** | 아니오 |
+| **옵션 인컴 전략 여부** | 아니오 |
+| **주요 구조** | FLEX 옵션 기반 구조적 보호 |
+
+CPNQ는 Nasdaq-100 또는 QQQ 노출을 활용하지만, 핵심 목적은 대표지수 단순 추종이 아니라 **정해진 아웃컴 기간 동안 하방 보호와 제한된 상방 참여를 제공하는 구조적 결과**입니다. ETF 분류 기준상 실제 수익 구조와 투자 목적을 우선하므로 `Broad Market/Nasdaq-100`이 아니라 `Defined Outcome/Capital Protection`으로 분류합니다.
 
 ***
 ## 1. 기본 정보
