@@ -68,6 +68,12 @@ Known categories:
 
 If a post is intended to appear in a category page, make sure its `categories` frontmatter normalizes to one of the values above.
 
+## ETF Classification Rules
+
+- When creating, moving, or reorganizing ETF posts, follow `docs/etf/etf-content-guide.md`.
+- Use `docs/etf/미국상장_ETF_분류_기준_Codex용_v2.md` as the detailed reference for U.S.-listed ETF classification.
+- Do not place agent guides, classification references, or other non-post Markdown files under `src/content/blog`, because all Markdown files there are treated as blog posts.
+
 ## Post Placement
 
 Current content is grouped physically under `src/content/blog` by topic, for example:
