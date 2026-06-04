@@ -1,5 +1,28 @@
-# GRID ETF (First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund) 종합 분석 보고서
+---
+title: 'GRID (First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund)'
+description: '글로벌 스마트그리드와 전력 인프라 기업에 투자하는 First Trust의 전력 인프라 테마 ETF'
+pubDate: '2026-04-08T00:00:00+09:00'
+categories: "ETF"
+---
+
+## 요약
+
 > **분석 기준일:** 2026년 4월 8일
+
+***
+## ETF 분류
+
+| 항목 | 내용 |
+|------|------|
+| **최종 폴더** | `ETF/Power Infrastructure/Smart Grid/GRID` |
+| **대분류** | 테마 |
+| **하위 분류** | Power Infrastructure / Smart Grid |
+| **핵심 전략** | Nasdaq Clean Edge Smart Grid Infrastructure Index 추종 |
+| **운용 방식** | 패시브 |
+| **레버리지·인버스 여부** | 아니오 |
+| **옵션 인컴 전략 여부** | 아니오 |
+
+GRID는 명칭에 `NASDAQ`이 포함되어 있지만 대표지수 ETF가 아니라 스마트그리드와 전력망 현대화 관련 기업에 투자하는 **전력 인프라 테마 ETF**입니다. ETF 분류 기준상 실제 노출과 투자 목적을 우선하므로 `Power Infrastructure/Smart Grid`로 분류합니다.
 
 ***
 ## 1. 기본 정보
