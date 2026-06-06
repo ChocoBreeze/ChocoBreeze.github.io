@@ -468,6 +468,41 @@ nav a {
 	line-height: 1.35;
 	color: var(--heading-color);
 }
+.blog-post-card .post-meta-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.35rem;
+	margin: 0 0 0.75rem;
+}
+.blog-post-card .post-meta-chip {
+	display: inline-flex;
+	align-items: center;
+	width: fit-content;
+	max-width: 100%;
+	padding: 0.18rem 0.48rem;
+	border: 1px solid color-mix(in srgb, var(--border-color) 82%, var(--accent) 18%);
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--card-bg) 90%, var(--accent) 10%);
+	color: var(--heading-color);
+	font-size: 0.74rem;
+	font-weight: 700;
+	line-height: 1.2;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.blog-post-card .difficulty-easy {
+	background: color-mix(in srgb, #2da44e 16%, var(--card-bg));
+	border-color: color-mix(in srgb, #2da44e 36%, var(--border-color));
+}
+.blog-post-card .difficulty-medium {
+	background: color-mix(in srgb, #bf8700 16%, var(--card-bg));
+	border-color: color-mix(in srgb, #bf8700 36%, var(--border-color));
+}
+.blog-post-card .difficulty-hard {
+	background: color-mix(in srgb, #cf222e 14%, var(--card-bg));
+	border-color: color-mix(in srgb, #cf222e 34%, var(--border-color));
+}
 .blog-post-card .excerpt {
 	margin: 0 0 1rem;
 	color: var(--muted-text);

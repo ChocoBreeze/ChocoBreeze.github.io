@@ -20,6 +20,8 @@ type Props = Pick<
     | "heroImage"
     | "image"
     | "categories"
+    | "difficulty"
+    | "topics"
 > & {
     headings?: MarkdownHeading[];
 };
@@ -32,11 +34,14 @@ const {
     updatedDate,
     heroImage,
     image: jekyllImage,
+    difficulty,
+    topics,
     headings,
 } = Astro.props;
 const date = pubDate || jekyllDate;
 const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
 const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
+const visibleTopics = topics?.slice(0, 6) ?? [];
 ---
 
 <html lang="en">
@@ -164,6 +169,37 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
             }
             .last-updated-on {
                 font-style: italic;
+            }
+            .post-meta-chips {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.45rem;
+                margin: 0.8rem 0 0;
+            }
+            .post-meta-chip {
+                display: inline-flex;
+                align-items: center;
+                width: fit-content;
+                padding: 0.24rem 0.58rem;
+                border: 1px solid color-mix(in srgb, var(--border-color) 80%, var(--accent) 20%);
+                border-radius: 999px;
+                background: color-mix(in srgb, var(--card-bg) 88%, var(--accent) 12%);
+                color: var(--heading-color);
+                font-size: 0.78rem;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+            .post-meta-chip[data-difficulty="easy"] {
+                background: color-mix(in srgb, #2da44e 16%, var(--card-bg));
+                border-color: color-mix(in srgb, #2da44e 36%, var(--border-color));
+            }
+            .post-meta-chip[data-difficulty="medium"] {
+                background: color-mix(in srgb, #bf8700 16%, var(--card-bg));
+                border-color: color-mix(in srgb, #bf8700 36%, var(--border-color));
+            }
+            .post-meta-chip[data-difficulty="hard"] {
+                background: color-mix(in srgb, #cf222e 14%, var(--card-bg));
+                border-color: color-mix(in srgb, #cf222e 34%, var(--border-color));
             }
 
             /* Table of Contents Styles */
@@ -376,6 +412,20 @@ const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
                                 }
                             </div>
                             <h1>{title}</h1>
+                            {
+                                (difficulty || visibleTopics.length > 0) && (
+                                    <div class="post-meta-chips" aria-label="Post metadata">
+                                        {difficulty && (
+                                            <span class="post-meta-chip" data-difficulty={difficulty.toLowerCase()}>
+                                                난이도: {difficulty}
+                                            </span>
+                                        )}
+                                        {visibleTopics.map((topic) => (
+                                            <span class="post-meta-chip">{topic}</span>
+                                        ))}
+                                    </div>
+                                )
+                            }
                             <hr />
                         </div>
                         <slot />

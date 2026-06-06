@@ -18,6 +18,21 @@ const posts = (await getCollection('blog'))
 	});
 
 const category = BLOG_CATEGORIES.find(({ key }) => key === 'Problem_Solving')!;
+const difficultyOrder = ['Easy', 'Medium', 'Hard'];
+const difficultySummary = difficultyOrder.map((difficulty) => ({
+	difficulty,
+	count: posts.filter((post) => post.data.difficulty === difficulty).length,
+}));
+const topicSummary = Array.from(
+	posts.reduce((counts, post) => {
+		for (const topic of post.data.topics ?? []) {
+			counts.set(topic, (counts.get(topic) ?? 0) + 1);
+		}
+		return counts;
+	}, new Map<string, number>())
+)
+	.sort((a, b) => b[1] - a[1])
+	.slice(0, 8);
 ---
 
 <BlogListLayout
@@ -25,4 +40,132 @@ const category = BLOG_CATEGORIES.find(({ key }) => key === 'Problem_Solving')!;
 	description={category.description}
 	activeCategory={category.key}
 	posts={posts}
-/>
+>
+	<section class="problem-roadmap" aria-labelledby="problem-roadmap-title">
+		<div>
+			<p class="roadmap-eyebrow">Difficulty Roadmap</p>
+			<h2 id="problem-roadmap-title">난이도별 풀이 흐름</h2>
+			<p>
+				문제 풀이 글의 frontmatter에 있는 난이도와 토픽을 기준으로 현재 학습 흐름을 요약합니다.
+				목록 카드와 글 상세에서도 같은 정보를 확인할 수 있습니다.
+			</p>
+		</div>
+		<div class="difficulty-grid">
+			{
+				difficultySummary.map((item) => (
+					<article class={`difficulty-card difficulty-${item.difficulty.toLowerCase()}`}>
+						<span>{item.difficulty}</span>
+						<strong>{item.count}개</strong>
+					</article>
+				))
+			}
+		</div>
+		{
+			topicSummary.length > 0 && (
+				<div class="topic-strip" aria-label="주요 알고리즘 토픽">
+					{topicSummary.map(([topic, count]) => (
+						<span>
+							{topic} · {count}
+						</span>
+					))}
+				</div>
+			)
+		}
+	</section>
+</BlogListLayout>
+
+<style>
+	.problem-roadmap {
+		display: grid;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+		padding: 1.2rem;
+		border: 1px solid var(--border-color);
+		border-radius: 24px;
+		background:
+			linear-gradient(135deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent 46%),
+			var(--card-bg);
+	}
+
+	.roadmap-eyebrow {
+		margin: 0 0 0.35rem;
+		color: var(--accent);
+		font-size: 0.76rem;
+		font-weight: 800;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.problem-roadmap h2 {
+		margin: 0 0 0.45rem;
+		font-size: clamp(1.25rem, 3vw, 1.65rem);
+	}
+
+	.problem-roadmap p {
+		margin: 0;
+		color: var(--muted-text);
+	}
+
+	.difficulty-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.75rem;
+	}
+
+	.difficulty-card {
+		padding: 0.9rem;
+		border: 1px solid var(--border-color);
+		border-radius: 18px;
+		background: color-mix(in srgb, var(--card-bg) 92%, var(--accent) 8%);
+	}
+
+	.difficulty-card span {
+		display: block;
+		color: var(--muted-text);
+		font-size: 0.78rem;
+		font-weight: 800;
+		text-transform: uppercase;
+	}
+
+	.difficulty-card strong {
+		display: block;
+		margin-top: 0.25rem;
+		color: var(--heading-color);
+		font-size: 1.6rem;
+		line-height: 1;
+	}
+
+	.difficulty-easy {
+		background: color-mix(in srgb, #2da44e 14%, var(--card-bg));
+	}
+
+	.difficulty-medium {
+		background: color-mix(in srgb, #bf8700 14%, var(--card-bg));
+	}
+
+	.difficulty-hard {
+		background: color-mix(in srgb, #cf222e 12%, var(--card-bg));
+	}
+
+	.topic-strip {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+	}
+
+	.topic-strip span {
+		padding: 0.25rem 0.58rem;
+		border: 1px solid color-mix(in srgb, var(--border-color) 82%, var(--accent) 18%);
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--card-bg) 90%, var(--accent) 10%);
+		color: var(--heading-color);
+		font-size: 0.8rem;
+		font-weight: 700;
+	}
+
+	@media (max-width: 640px) {
+		.difficulty-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

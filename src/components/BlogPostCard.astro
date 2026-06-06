@@ -10,6 +10,7 @@ const { post } = Astro.props;
 const date = post.data.pubDate || post.data.date;
 const image = post.data.heroImage || (post.data.image ? `/images/${post.data.image}` : undefined);
 const href = `/blog/${post.data.slug || post.id}/`;
+const topics = post.data.topics?.slice(0, 3) ?? [];
 ---
 
 <li class={`blog-post-card${image ? '' : ' no-image'}`}>
@@ -21,6 +22,20 @@ const href = `/blog/${post.data.slug || post.id}/`;
 		}
 		<div class="blog-post-card-body">
 			<h2 class="title">{post.data.title}</h2>
+			{
+				(post.data.difficulty || topics.length > 0) && (
+					<div class="post-meta-chips" aria-label="Post metadata">
+						{post.data.difficulty && (
+							<span class={`post-meta-chip difficulty-${post.data.difficulty.toLowerCase()}`}>
+								{post.data.difficulty}
+							</span>
+						)}
+						{topics.map((topic) => (
+							<span class="post-meta-chip">{topic}</span>
+						))}
+					</div>
+				)
+			}
 			{post.data.description && <p class="excerpt">{post.data.description}</p>}
 			{
 				date && (
