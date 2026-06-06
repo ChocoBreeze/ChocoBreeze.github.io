@@ -46,6 +46,7 @@ const rssHref = getCategoryFeedPath(activeCategory);
 						</a>
 					)}
 				</div>
+				<slot />
 				<ul class="blog-post-grid">
 					{posts.map((post) => <BlogPostCard post={post} />)}
 				</ul>
