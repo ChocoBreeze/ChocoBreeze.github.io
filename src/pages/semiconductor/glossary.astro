@@ -1,0 +1,177 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import BlogSidebar from '../../components/BlogSidebar.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+
+const posts = (await getCollection('blog'))
+	.filter((post) => {
+		const cats = post.data.categories;
+		const isSemiconductor = Array.isArray(cats) ? cats.includes('Semiconductor') : cats === 'Semiconductor';
+		return isSemiconductor && post.data.order !== 0 && /^\d+\./.test(post.data.title);
+	})
+	.sort((a, b) => {
+		const numberA = Number(a.data.title.match(/^(\d+)\./)?.[1] ?? Number.MAX_SAFE_INTEGER);
+		const numberB = Number(b.data.title.match(/^(\d+)\./)?.[1] ?? Number.MAX_SAFE_INTEGER);
+		return numberA - numberB;
+	})
+	.map((post) => {
+		const match = post.data.title.match(/^(\d+)\.\s*(.+)$/);
+		const number = match?.[1] ?? '';
+		const term = match?.[2] ?? post.data.title;
+		const href = `/blog/${post.data.slug || post.id}/`;
+
+		return {
+			number,
+			term,
+			href,
+			description: post.data.description,
+		};
+	});
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title="반도체 용어집"
+			description="왕초보 반도체 뽀개기 시리즈의 핵심 용어를 번호순으로 모아둔 인덱스입니다."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="blog-page-shell">
+			<BlogSidebar activeCategory="Semiconductor" />
+			<section class="glossary-panel">
+				<div class="glossary-hero">
+					<p class="section-eyebrow">Semiconductor Glossary</p>
+					<h1>반도체 용어집</h1>
+					<p>
+						`왕초보 반도체 뽀개기` 시리즈를 용어 단위로 다시 찾기 쉽게 정리했습니다.
+						처음부터 읽어도 되고, 모르는 용어만 골라서 확인해도 됩니다.
+					</p>
+				</div>
+				<div class="glossary-summary">
+					<strong>{posts.length}</strong>
+					<span>terms indexed</span>
+				</div>
+				<ol class="glossary-grid">
+					{
+						posts.map((post) => (
+							<li class="glossary-card">
+								<a href={post.href}>
+									<span class="term-number">No. {post.number}</span>
+									<strong>{post.term}</strong>
+									{post.description && <p>{post.description}</p>}
+								</a>
+							</li>
+						))
+					}
+				</ol>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.glossary-panel {
+		min-width: 0;
+	}
+
+	.glossary-hero {
+		margin-bottom: 1.25rem;
+		padding: 1.35rem;
+		border: 1px solid var(--border-color);
+		border-radius: 26px;
+		background:
+			radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 16%, transparent), transparent 34%),
+			color-mix(in srgb, var(--card-bg) 94%, var(--accent) 6%);
+	}
+
+	.section-eyebrow {
+		margin: 0 0 0.45rem;
+		color: var(--accent);
+		font-size: 0.78rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.glossary-hero h1 {
+		margin-top: 0;
+	}
+
+	.glossary-hero p {
+		margin-bottom: 0;
+		color: var(--muted-text);
+	}
+
+	.glossary-summary {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.45rem;
+		margin-bottom: 1rem;
+		padding: 0.55rem 0.8rem;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--card-bg) 82%, var(--accent) 18%);
+		color: var(--heading-color);
+	}
+
+	.glossary-summary strong {
+		font-size: 1.2rem;
+	}
+
+	.glossary-summary span {
+		color: var(--muted-text);
+		font-size: 0.86rem;
+	}
+
+	.glossary-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+		gap: 0.9rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.glossary-card a {
+		display: grid;
+		gap: 0.45rem;
+		height: 100%;
+		padding: 1rem;
+		border: 1px solid color-mix(in srgb, var(--border-color) 86%, var(--accent) 14%);
+		border-radius: 18px;
+		background: var(--card-bg);
+		color: var(--heading-color);
+		text-decoration: none;
+		transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+	}
+
+	.glossary-card a:hover {
+		border-color: color-mix(in srgb, var(--accent) 55%, var(--border-color));
+		background: color-mix(in srgb, var(--card-bg) 90%, var(--accent) 10%);
+		transform: translateY(-2px);
+	}
+
+	.term-number {
+		color: var(--accent);
+		font-size: 0.78rem;
+		font-weight: 800;
+		letter-spacing: 0.04em;
+	}
+
+	.glossary-card strong {
+		font-size: 1rem;
+		line-height: 1.35;
+	}
+
+	.glossary-card p {
+		margin: 0;
+		color: var(--muted-text);
+		font-size: 0.9rem;
+		line-height: 1.5;
+	}
+</style>

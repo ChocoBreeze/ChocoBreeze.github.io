@@ -29,4 +29,67 @@ const category = BLOG_CATEGORIES.find(({ key }) => key === 'Semiconductor')!;
 	description={category.description}
 	activeCategory={category.key}
 	posts={posts}
-/>
+>
+	<section class="semiconductor-guide-card" aria-labelledby="semiconductor-guide-heading">
+		<div>
+			<p class="section-eyebrow">Quick Index</p>
+			<h2 id="semiconductor-guide-heading">반도체 용어만 빠르게 찾고 싶다면</h2>
+			<p>
+				`왕초보 반도체 뽀개기` 시리즈의 핵심 용어를 번호순으로 모아둔 용어집을 따로 만들었습니다.
+			</p>
+		</div>
+		<a href="/semiconductor/glossary">반도체 용어집 보기</a>
+	</section>
+</BlogListLayout>
+
+<style>
+	.semiconductor-guide-card {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin: 0 0 2rem;
+		padding: 1.2rem;
+		border: 1px solid var(--border-color);
+		border-radius: 22px;
+		background:
+			linear-gradient(135deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent 46%),
+			var(--card-bg);
+	}
+
+	.section-eyebrow {
+		margin: 0 0 0.35rem;
+		color: var(--accent);
+		font-size: 0.78rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.semiconductor-guide-card h2 {
+		margin: 0 0 0.35rem;
+		font-size: 1.25rem;
+	}
+
+	.semiconductor-guide-card p {
+		margin: 0;
+		color: var(--muted-text);
+	}
+
+	.semiconductor-guide-card a {
+		flex-shrink: 0;
+		padding: 0.7rem 0.9rem;
+		border-radius: 999px;
+		background: var(--accent);
+		color: white;
+		font-weight: 800;
+		text-decoration: none;
+	}
+
+	@media (max-width: 760px) {
+		.semiconductor-guide-card {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+	}
+</style>
