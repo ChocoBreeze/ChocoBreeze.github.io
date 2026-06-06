@@ -1,0 +1,232 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import BlogSidebar from '../../components/BlogSidebar.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+
+const ragPosts = (await getCollection('blog'))
+	.filter((post) => post.data.tags?.some((tag) => tag.toLowerCase() === 'rag'))
+	.sort((a, b) => {
+		const weekA = Number(a.data.title.match(/Week\s*(\d+)/i)?.[1] ?? Number.MAX_SAFE_INTEGER);
+		const weekB = Number(b.data.title.match(/Week\s*(\d+)/i)?.[1] ?? Number.MAX_SAFE_INTEGER);
+		return weekA - weekB;
+	})
+	.map((post) => {
+		const week = post.data.title.match(/Week\s*(\d+)/i)?.[1] ?? '';
+		return {
+			week,
+			title: post.data.title.replace(/^RAG\s*/i, ''),
+			description: post.data.description,
+			href: `/blog/${post.data.slug || post.id}/`,
+			tags: post.data.tags ?? [],
+		};
+	});
+
+const phases = [
+	{
+		title: '기초 이해',
+		range: 'Week 1-2',
+		description: 'LLM의 한계와 API 호출, RAG가 필요한 이유를 확인합니다.',
+	},
+	{
+		title: '검색 파이프라인',
+		range: 'Week 3-5',
+		description: '청킹, 임베딩, 벡터 DB, 검색 품질 개선 흐름을 익힙니다.',
+	},
+	{
+		title: '서비스화',
+		range: 'Week 6-9',
+		description: '대화 메모리, 개인 지식 베이스, CLI, Streamlit UI까지 연결합니다.',
+	},
+];
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title="RAG 학습 로드맵"
+			description="RAG Week 1부터 Week 9까지의 학습 글을 순서대로 읽을 수 있는 시리즈 허브입니다."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="blog-page-shell">
+			<BlogSidebar activeCategory="Programming" />
+			<section class="rag-hub-panel">
+				<div class="rag-hero">
+					<p class="section-eyebrow">RAG Learning Roadmap</p>
+					<h1>RAG 학습 로드맵</h1>
+					<p>
+						OpenAI API 호출부터 개인 투자 지식 베이스와 Streamlit UI까지,
+						RAG 학습 기록을 순서대로 따라갈 수 있게 정리했습니다.
+					</p>
+				</div>
+
+				<div class="phase-grid">
+					{
+						phases.map((phase) => (
+							<article class="phase-card">
+								<span>{phase.range}</span>
+								<h2>{phase.title}</h2>
+								<p>{phase.description}</p>
+							</article>
+						))
+					}
+				</div>
+
+				<ol class="rag-timeline">
+					{
+						ragPosts.map((post) => (
+							<li>
+								<a href={post.href} class="rag-week-card">
+									<span class="week-badge">Week {post.week}</span>
+									<div>
+										<h2>{post.title}</h2>
+										{post.description && <p>{post.description}</p>}
+										<ul>
+											{post.tags.slice(0, 4).map((tag) => (
+												<li>{tag}</li>
+											))}
+										</ul>
+									</div>
+								</a>
+							</li>
+						))
+					}
+				</ol>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.rag-hub-panel {
+		min-width: 0;
+	}
+
+	.rag-hero {
+		margin-bottom: 1.2rem;
+		padding: 1.35rem;
+		border: 1px solid var(--border-color);
+		border-radius: 26px;
+		background:
+			linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, transparent), transparent 48%),
+			var(--card-bg);
+	}
+
+	.section-eyebrow {
+		margin: 0 0 0.45rem;
+		color: var(--accent);
+		font-size: 0.78rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.rag-hero h1 {
+		margin-top: 0;
+	}
+
+	.rag-hero p {
+		margin-bottom: 0;
+		color: var(--muted-text);
+	}
+
+	.phase-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+		gap: 0.9rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.phase-card,
+	.rag-week-card {
+		border: 1px solid color-mix(in srgb, var(--border-color) 86%, var(--accent) 14%);
+		background: color-mix(in srgb, var(--card-bg) 96%, var(--accent) 4%);
+	}
+
+	.phase-card {
+		padding: 1rem;
+		border-radius: 18px;
+	}
+
+	.phase-card span,
+	.week-badge {
+		color: var(--accent);
+		font-size: 0.78rem;
+		font-weight: 800;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.phase-card h2 {
+		margin: 0.35rem 0;
+		font-size: 1.1rem;
+	}
+
+	.phase-card p {
+		margin: 0;
+		color: var(--muted-text);
+	}
+
+	.rag-timeline {
+		display: grid;
+		gap: 0.85rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.rag-week-card {
+		display: grid;
+		grid-template-columns: 5.5rem 1fr;
+		gap: 1rem;
+		padding: 1rem;
+		border-radius: 20px;
+		color: var(--heading-color);
+		text-decoration: none;
+		transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+	}
+
+	.rag-week-card:hover {
+		border-color: color-mix(in srgb, var(--accent) 55%, var(--border-color));
+		background: color-mix(in srgb, var(--card-bg) 88%, var(--accent) 12%);
+		transform: translateY(-2px);
+	}
+
+	.rag-week-card h2 {
+		margin: 0 0 0.35rem;
+		font-size: 1.15rem;
+	}
+
+	.rag-week-card p {
+		margin: 0 0 0.65rem;
+		color: var(--muted-text);
+	}
+
+	.rag-week-card ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.rag-week-card ul li {
+		padding: 0.18rem 0.5rem;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--accent) 12%, transparent);
+		color: var(--heading-color);
+		font-size: 0.78rem;
+	}
+
+	@media (max-width: 620px) {
+		.rag-week-card {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
