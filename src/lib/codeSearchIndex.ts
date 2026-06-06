@@ -1,4 +1,5 @@
 import { readFile, readdir } from 'node:fs/promises';
+import type { Dirent } from 'node:fs';
 import path from 'node:path';
 import { type CollectionEntry } from 'astro:content';
 
@@ -93,7 +94,7 @@ function extractMarkdownCodeBlocks(body: string) {
 }
 
 async function getSourceFiles(directory: string) {
-	let entries: Awaited<ReturnType<typeof readdir>>;
+	let entries: Dirent<string>[];
 
 	try {
 		entries = await readdir(directory, { withFileTypes: true });
