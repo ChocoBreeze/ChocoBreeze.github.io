@@ -1,5 +1,13 @@
 # Codex Session Handoff
 
+## Last Known State
+
+- Last updated: 2026-06-08
+- Last checked command: `git status --short`
+- Last known working tree: clean
+- Common validation for content-only work: `npm run check:content`
+- Push status: confirm with `git status -sb` or `git log --oneline origin/main..HEAD`
+
 This document records project-specific Codex work history and handoff notes.
 Use it as a compact reference when starting a new session. Keep persistent rules in `AGENTS.md`; keep completed work history and topic-specific context here.
 
@@ -31,6 +39,45 @@ Cleanup rules:
 - Remove Perplexity logos, temporary hosted image comments, hidden spans, local filename footnotes, and generation artifacts.
 - Add frontmatter and a clear ## ETF 분류 table.
 - Add meaningful image alt text.
+```
+
+## Topic Starter Prompts
+
+### ETF Work
+
+```text
+This session is for ETF content classification and cleanup.
+
+Use these references:
+- AGENTS.md
+- docs/etf/etf-content-guide.md
+- docs/etf/미국상장_ETF_분류_기준_Codex용_v2.md
+
+Classify the ETF by actual strategy, move it to the correct folder, remove generation artifacts, add frontmatter, add ## ETF 분류, add meaningful image alt text, run npm run check:content, and commit the ticker separately.
+```
+
+### RAG Work
+
+```text
+This session is for RAG series content work.
+
+Check the existing RAG Day1-Day9 style before editing. Avoid real API keys, bearer tokens, local absolute paths, and private asset URLs. Use placeholders such as OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>. Keep code files aligned with article snippets and run npm run check:content before committing.
+```
+
+### Market Brief Work
+
+```text
+This session is for Market Brief content work.
+
+Use docs/market-brief-prompts.md. Daily Brief uses the revised prompt from 2026-05-19 onward. Weekly Brief uses the revised prompt from 2026-05-30 onward. Clearly state the U.S. market date and Korea-time context, then run npm run check:content before committing.
+```
+
+### Semiconductor Beginner Series
+
+```text
+This session is for the beginner semiconductor series.
+
+Find the latest existing entry number and date first. Continue with the next number and the next date. Preserve the structure: one-sentence definition, analogy, real examples, visual explanation, market perspective, and beginner check question.
 ```
 
 ## ETF Content Classification
