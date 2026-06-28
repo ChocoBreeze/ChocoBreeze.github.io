@@ -64,13 +64,13 @@ const rssHref = getCategoryFeedPath(activeCategory);
 		margin-top: 1rem;
 		padding: 0.55rem 0.85rem;
 		border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--border-color));
-		border-radius: 999px;
+		border-radius: var(--nv-radius-sm);
 		background: color-mix(in srgb, var(--card-bg) 86%, var(--accent) 14%);
 		color: var(--heading-color);
 		font-size: 0.9rem;
 		font-weight: 700;
 		text-decoration: none;
-		transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+		transition: border-color 0.2s ease, background-color 0.2s ease;
 	}
 
 	.rss-subscribe-link:hover {

@@ -12,97 +12,110 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<style>
 			main {
 				width: 100%;
-				max-width: 900px;
-				margin: 0 auto;
-				padding: 4em 1em;
+				max-width: none;
+				margin: 0;
+				padding: 0;
 				text-align: center;
 			}
 			.hero-section {
-				margin-bottom: 4rem;
+				background: var(--nv-surface-dark);
+				padding: 80px 48px;
+				text-align: center;
 			}
 			.profile-container {
 				margin-bottom: 1.5rem;
 			}
 			.profile-image {
-				width: 180px;
-				height: 180px;
+				width: 120px;
+				height: 120px;
 				border-radius: 50%;
 				object-fit: cover;
-				border: 5px solid var(--card-bg);
-				box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-				transition: transform 0.3s ease;
-			}
-			.profile-image:hover {
-				transform: scale(1.05);
+				border: 2px solid var(--nv-hairline-strong);
 			}
 			h1 {
-				font-size: 3.5rem;
+				font-size: 3rem;
 				margin-bottom: 0.5rem;
-				background: linear-gradient(45deg, var(--accent), #7232f2);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-				font-weight: 800;
+				color: var(--nv-on-dark);
+				font-weight: 700;
+				line-height: 1.25;
 			}
 			.description {
-				font-size: 1.4rem;
-				color: var(--muted-text);
-				margin-bottom: 3rem;
-				font-weight: 500;
+				font-size: 1.2rem;
+				color: var(--nv-on-dark-mute);
+				margin-bottom: 2rem;
+				font-weight: 400;
 			}
-			
+
+			.content-section {
+				max-width: 900px;
+				margin: 0 auto;
+				padding: var(--nv-space-section) var(--nv-space-xl);
+			}
+
 			.features-grid {
 				display: grid;
 				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-				gap: 1.5rem;
-				margin-bottom: 4rem;
+				gap: var(--nv-space-xl);
+				margin-bottom: var(--nv-space-section);
 			}
 			.feature-card {
 				background: var(--card-bg);
-				padding: 2rem 1.5rem;
-				border-radius: 16px;
-				box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-				transition: all 0.3s ease;
+				padding: var(--nv-space-xxl) var(--nv-space-xl);
+				border-radius: var(--nv-radius-sm);
+				transition: border-color 0.2s ease;
 				text-decoration: none;
 				color: var(--text-color);
 				border: 1px solid var(--border-color);
+				position: relative;
+				text-align: left;
+			}
+			.feature-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 12px;
+				height: 12px;
+				background-color: var(--nv-primary);
+				pointer-events: none;
 			}
 			.feature-card:hover {
-				transform: translateY(-10px);
-				box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-				border-color: var(--accent);
+				border-color: var(--nv-primary);
 			}
-			.feature-card .icon {
-				font-size: 2.5rem;
-				margin-bottom: 1rem;
+			.feature-card-icon {
+				font-size: 1.5rem;
+				font-weight: 700;
+				color: var(--nv-primary);
+				margin-bottom: var(--nv-space-md);
 				display: block;
+				font-style: normal;
 			}
 			.feature-card h3 {
 				margin: 0 0 0.5rem 0;
-				font-size: 1.25rem;
+				font-size: 1.05rem;
+				font-weight: 700;
 				color: var(--heading-color);
 			}
 			.feature-card p {
 				margin: 0;
-				font-size: 0.9rem;
+				font-size: 15px;
 				color: var(--muted-text);
-				line-height: 1.4;
+				line-height: 1.67;
 			}
 
 			.goals-section {
-				background: color-mix(in srgb, var(--card-bg) 82%, transparent);
-				backdrop-filter: blur(10px);
-				padding: 3rem;
-				border-radius: 24px;
+				background: var(--card-bg);
+				padding: var(--nv-space-xxl);
+				border-radius: var(--nv-radius-sm);
 				text-align: left;
-				box-shadow: 0 4px 20px rgba(0,0,0,0.03);
 				border: 1px solid var(--border-color);
 			}
 			.goals-section h2 {
-				font-size: 2rem;
+				font-size: 1.5rem;
 				margin-top: 0;
 				margin-bottom: 1.5rem;
 				border: none;
-				color: var(--accent);
+				color: var(--heading-color);
 			}
 			.goals-list {
 				list-style: none;
@@ -110,31 +123,43 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				margin: 0;
 				display: grid;
 				grid-template-columns: 1fr 1fr;
-				gap: 1rem;
+				gap: var(--nv-space-sm);
 			}
 			.goals-list li {
-				padding: 1rem;
-				background: var(--card-bg);
-				border-radius: 12px;
+				padding: var(--nv-space-md) var(--nv-space-lg);
+				background: var(--nv-surface-soft);
+				border-radius: var(--nv-radius-sm);
 				font-weight: 500;
 				display: flex;
 				align-items: center;
-				box-shadow: 0 2px 8px rgba(0,0,0,0.02);
 				color: var(--text-color);
+				border: 1px solid var(--border-color);
+				font-size: 15px;
+			}
+			[data-theme='dark'] .goals-list li {
+				background: #2a2a2a;
 			}
 			.goals-list li::before {
-				content: "✨";
+				content: "▸";
 				margin-right: 0.75rem;
+				color: var(--nv-primary);
+				font-weight: 700;
 			}
 
 			@media (max-width: 768px) {
-\t\t\t\t.features-grid {
+				.hero-section {
+					padding: 48px 24px;
+				}
+				.content-section {
+					padding: 48px var(--nv-space-lg);
+				}
+				.features-grid {
 					grid-template-columns: 1fr;
 				}
 				.goals-list {
 					grid-template-columns: 1fr;
 				}
-				h1 { font-size: 2.5rem; }
+				h1 { font-size: 2rem; }
 			}
 		</style>
 	</head>
@@ -151,32 +176,34 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				</p>
 			</div>
 
-			<div class="features-grid">
-				<a href="/finance" class="feature-card">
-					<span class="icon">📈</span>
-					<h3>Finance</h3>
-					<p>ETF, AI Research, Market Brief, 경제 개념을 하나의 흐름으로 묶어 정리합니다.</p>
-				</a>
-				<a href="/semiconductor" class="feature-card">
-					<span class="icon">🔬</span>
-					<h3>Semiconductor</h3>
-					<p>반도체 기초부터 구조와 산업 흐름까지 차근차근 정리합니다.</p>
-				</a>
-				<a href="/computing" class="feature-card">
-					<span class="icon">🧠</span>
-					<h3>Computing</h3>
-					<p>Computer Science, Programming, Problem Solving을 하나의 흐름으로 묶습니다.</p>
-				</a>
-			</div>
-			
-			<div class="goals-section">
-				<h2>나의 다짐 (Goals)</h2>
-				<ul class="goals-list">
-					<li>끼니 거르지 않기</li>
-					<li>이유 생각하기</li>
-					<li>다양한 기술 탐구하기</li>
-					<li>기록을 멈추지 않기</li>
-				</ul>
+			<div class="content-section">
+				<div class="features-grid">
+					<a href="/finance" class="feature-card">
+						<i class="feature-card-icon" aria-hidden="true">$</i>
+						<h3>Finance</h3>
+						<p>ETF, AI Research, Market Brief, 경제 개념을 하나의 흐름으로 묶어 정리합니다.</p>
+					</a>
+					<a href="/semiconductor" class="feature-card">
+						<i class="feature-card-icon" aria-hidden="true">#</i>
+						<h3>Semiconductor</h3>
+						<p>반도체 기초부터 구조와 산업 흐름까지 차근차근 정리합니다.</p>
+					</a>
+					<a href="/computing" class="feature-card">
+						<i class="feature-card-icon" aria-hidden="true">&gt;_</i>
+						<h3>Computing</h3>
+						<p>Computer Science, Programming, Problem Solving을 하나의 흐름으로 묶습니다.</p>
+					</a>
+				</div>
+
+				<div class="goals-section">
+					<h2>나의 다짐 (Goals)</h2>
+					<ul class="goals-list">
+						<li>끼니 거르지 않기</li>
+						<li>이유 생각하기</li>
+						<li>다양한 기술 탐구하기</li>
+						<li>기록을 멈추지 않기</li>
+					</ul>
+				</div>
 			</div>
 		</main>
 		<Footer />

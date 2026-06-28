@@ -1,95 +1,93 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+/* NVIDIA Design System Tokens */
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
-		rgba(var(--gray), 33%);
-	
-	/* Default Colors (Light) */
-	--bg-color: #f8f9ff;
-	--text-color: rgb(var(--gray-dark));
-	--heading-color: rgb(var(--black));
-	--card-bg: white;
-	--border-color: #eee;
-	--toc-bg: rgba(255, 255, 255, 0.8);
-	--bg-image-opacity: 0.12;
-	--muted-text: rgb(var(--gray));
-	--table-head-bg: #eef2ff;
-	--table-row-alt-bg: rgba(35, 55, 255, 0.04);
+	/* Brand & Accent */
+	--nv-primary: #76b900;
+	--nv-primary-dark: #5a8d00;
+	--nv-on-primary: #000000;
+
+	/* Surfaces */
+	--nv-surface-dark: #000000;
+	--nv-surface-elevated: #1a1a1a;
+	--nv-surface-soft: #f7f7f7;
+	--nv-canvas: #ffffff;
+
+	/* Text */
+	--nv-ink: #000000;
+	--nv-body: #1a1a1a;
+	--nv-mute: #757575;
+	--nv-stone: #898989;
+	--nv-ash: #a7a7a7;
+	--nv-on-dark: #ffffff;
+	--nv-on-dark-mute: rgba(255, 255, 255, 0.7);
+
+	/* Borders */
+	--nv-hairline: #cccccc;
+	--nv-hairline-strong: #5e5e5e;
+
+	/* Semantic */
+	--nv-link-blue: #0046a4;
+	--nv-error: #e52020;
+	--nv-warning: #df6500;
+	--nv-success-deep: #3f8500;
+
+	/* Spacing */
+	--nv-space-xxs: 2px;
+	--nv-space-xs: 4px;
+	--nv-space-sm: 8px;
+	--nv-space-md: 12px;
+	--nv-space-lg: 16px;
+	--nv-space-xl: 24px;
+	--nv-space-xxl: 32px;
+	--nv-space-section: 64px;
+
+	/* Border radius */
+	--nv-radius-none: 0px;
+	--nv-radius-xs: 1px;
+	--nv-radius-sm: 2px;
+
+	/* Elevation (cards have NO shadow per NVIDIA spec) */
+	--nv-shadow-sticky: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+
+	/* === Functional variables (used by components) === */
+	--accent: var(--nv-primary);
+	--bg-color: var(--nv-canvas);
+	--text-color: var(--nv-body);
+	--heading-color: var(--nv-ink);
+	--card-bg: var(--nv-canvas);
+	--border-color: var(--nv-hairline);
+	--toc-bg: var(--nv-canvas);
+	--muted-text: var(--nv-mute);
+	--table-head-bg: var(--nv-surface-soft);
+	--table-row-alt-bg: rgba(118, 185, 0, 0.04);
 }
 
 [data-theme='dark'] {
-	--bg-color: #0d1117; /* GitHub Dark 스타일 */
-	--text-color: #c9d1d9; /* 가독성 좋은 밝은 회색 */
-	--heading-color: #f0f6fc; /* 제목은 아주 밝게 */
-	--card-bg: #161b22;
-	--border-color: #30363d;
-	--toc-bg: rgba(13, 17, 23, 0.9);
-	--gray-light: #21262d;
-	--accent: #58a6ff; /* 밝고 명확한 블루 */
-	--bg-image-opacity: 0.03;
-	--muted-text: #8b949e;
-	--table-head-bg: #1f2630;
-	--table-row-alt-bg: rgba(88, 166, 255, 0.08);
+	--bg-color: var(--nv-surface-elevated);
+	--text-color: var(--nv-on-dark-mute);
+	--heading-color: var(--nv-on-dark);
+	--card-bg: #242424;
+	--border-color: var(--nv-hairline-strong);
+	--toc-bg: rgba(26, 26, 26, 0.95);
+	--muted-text: var(--nv-ash);
+	--table-head-bg: #2a2a2a;
+	--table-row-alt-bg: rgba(118, 185, 0, 0.06);
+	--accent: var(--nv-primary);
 }
 
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
 body {
-	font-family: "Atkinson", sans-serif;
+	font-family: 'Inter', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', Arial, sans-serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background-color: var(--bg-color); /* 변수 사용 */
+	background-color: var(--bg-color);
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: var(--text-color); /* 변수 사용 */
+	color: var(--text-color);
 	font-size: 16px;
 	line-height: 1.6;
-	position: relative;
 	min-height: 100vh;
 	transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* 은은한 배경 이미지 추가 */
-body::before {
-	content: "";
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: url("/images/Mine/20241115_112606.jpg");
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	opacity: var(--bg-image-opacity); /* 변수 사용 */
-	filter: blur(3px) sepia(0.2) hue-rotate(240deg);
-	z-index: -1;
-	pointer-events: none;
 }
 
 main {
@@ -98,6 +96,7 @@ main {
 	margin: auto;
 	padding: 3em 1em;
 }
+
 h1,
 h2,
 h3,
@@ -105,7 +104,7 @@ h4,
 h5,
 h6 {
 	margin: 1.5rem 0 0.5rem 0;
-	color: var(--heading-color); /* 변수 사용 */
+	color: var(--heading-color);
 	line-height: 1.2;
 }
 h1 {
@@ -113,10 +112,9 @@ h1 {
 }
 h2 {
 	font-size: 1.8rem;
-	border-bottom: 1px solid var(--border-color); /* 변수 사용 */
+	border-bottom: 1px solid var(--border-color);
 	padding-bottom: 0.3rem;
 }
-/* ... 이하 스타일들도 변수 기반으로 적용 필요 ... */
 h3 {
 	font-size: 1.4rem;
 }
@@ -144,7 +142,7 @@ textarea:focus-visible,
 [tabindex]:focus-visible {
 	outline: 3px solid color-mix(in srgb, var(--accent) 60%, transparent);
 	outline-offset: 3px;
-	border-radius: 8px;
+	border-radius: var(--nv-radius-sm);
 }
 p {
 	margin-bottom: 1em;
@@ -179,7 +177,7 @@ table {
 	color: var(--text-color);
 	background-color: var(--card-bg);
 	border: 1px solid var(--border-color);
-	border-radius: 12px;
+	border-radius: var(--nv-radius-sm);
 	scrollbar-width: thin;
 	scrollbar-color: color-mix(in srgb, var(--accent) 45%, transparent) transparent;
 	background-image:
@@ -249,18 +247,21 @@ tbody tr:hover {
 img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 8px;
+	border-radius: var(--nv-radius-sm);
 }
 code {
 	padding: 2px 5px;
-	background-color: var(--gray-light);
-	border-radius: 2px;
+	background-color: var(--nv-surface-soft);
+	border-radius: var(--nv-radius-sm);
 	font-size: 0.9em;
 	color: var(--accent);
 }
+[data-theme='dark'] code {
+	background-color: #2a2a2a;
+}
 pre {
 	padding: 1.5em;
-	border-radius: 8px;
+	border-radius: var(--nv-radius-sm);
 	font-size: 0.9em;
 	margin: 1.5rem 0;
 	overflow-x: auto;
@@ -276,22 +277,17 @@ blockquote {
 	font-style: italic;
 	background-color: var(--bg-color);
 }
-header {
-	background-color: var(--card-bg) !important;
-	border-bottom: 1px solid var(--border-color);
-}
 .skip-link {
 	position: fixed;
 	top: 0.75rem;
 	left: 0.75rem;
 	z-index: 1000;
 	padding: 0.7rem 0.95rem;
-	border-radius: 999px;
+	border-radius: var(--nv-radius-sm);
 	background: var(--accent);
 	color: white !important;
 	font-weight: 700;
 	text-decoration: none;
-	box-shadow: 0 10px 24px rgba(var(--black), 18%);
 	transform: translateY(-140%);
 	transition: transform 0.2s ease;
 }
@@ -304,7 +300,7 @@ nav a {
 }
 .title {
 	margin: 0;
-	color: var(--heading-color) !important; /* 목록 제목 색상 강제 */
+	color: var(--heading-color) !important;
 	line-height: 1;
 }
 .feature-card {
@@ -339,16 +335,14 @@ nav a {
 .blog-sidebar-inner {
 	background: var(--toc-bg);
 	border: 1px solid var(--border-color);
-	border-radius: 20px;
+	border-radius: var(--nv-radius-sm);
 	padding: 1.25rem;
-	box-shadow: 0 12px 30px rgba(var(--gray), 0.12);
-	backdrop-filter: blur(14px);
 }
 .blog-sidebar-label {
 	margin: 0 0 0.9rem;
 	font-size: 0.78rem;
 	font-weight: 700;
-	letter-spacing: 0.12em;
+	letter-spacing: 0;
 	text-transform: uppercase;
 	color: var(--muted-text);
 }
@@ -365,21 +359,20 @@ nav a {
 	justify-content: space-between;
 	gap: 1rem;
 	padding: 0.8rem 0.95rem;
-	border-radius: 14px;
+	border-radius: var(--nv-radius-sm);
 	text-decoration: none;
 	color: var(--text-color);
 	background: transparent;
 	border: 1px solid transparent;
-	transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+	transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 .blog-sidebar-link:hover {
 	background: color-mix(in srgb, var(--card-bg) 82%, var(--muted-text) 18%);
 	border-color: var(--border-color);
-	transform: translateX(2px);
 }
 .blog-sidebar-link.active {
-	background: color-mix(in srgb, var(--accent) 12%, transparent);
-	border-color: color-mix(in srgb, var(--accent) 30%, var(--border-color));
+	background: color-mix(in srgb, var(--accent) 10%, transparent);
+	border-color: var(--accent);
 	color: var(--heading-color) !important;
 	font-weight: 700;
 }
@@ -387,7 +380,7 @@ nav a {
 	flex-shrink: 0;
 	min-width: 2rem;
 	padding: 0.15rem 0.5rem;
-	border-radius: 999px;
+	border-radius: var(--nv-radius-sm);
 	text-align: center;
 	font-size: 0.82rem;
 	background: color-mix(in srgb, var(--card-bg) 78%, var(--muted-text) 22%);
@@ -412,7 +405,7 @@ nav a {
 	margin-bottom: 0.4rem !important;
 	font-size: 0.8rem;
 	font-weight: 700;
-	letter-spacing: 0.12em;
+	letter-spacing: 0;
 	text-transform: uppercase;
 	color: var(--accent);
 }
@@ -434,20 +427,27 @@ nav a {
 	text-decoration: none;
 	background: var(--card-bg);
 	border: 1px solid var(--border-color);
-	border-radius: 20px;
+	border-radius: var(--nv-radius-sm);
 	overflow: hidden;
-	box-shadow: 0 10px 24px rgba(var(--gray), 0.08);
-	transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+	position: relative;
+	transition: border-color 0.2s ease;
+}
+.blog-post-card a::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 12px;
+	height: 12px;
+	background-color: var(--nv-primary);
+	z-index: 1;
+	pointer-events: none;
 }
 .blog-post-card a:hover {
-	transform: translateY(-4px);
-	border-color: color-mix(in srgb, var(--accent) 35%, var(--border-color));
-	box-shadow: 0 16px 36px rgba(var(--gray), 0.14);
+	border-color: var(--accent);
 }
 .blog-post-card.no-image a {
-	background:
-		radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 14%, transparent), transparent 38%),
-		var(--card-bg);
+	background: var(--card-bg);
 }
 .blog-post-card img {
 	display: block;
@@ -464,8 +464,9 @@ nav a {
 }
 .blog-post-card .title {
 	margin: 0 0 0.55rem;
-	font-size: 1.2rem;
-	line-height: 1.35;
+	font-size: 1.05rem;
+	font-weight: 700;
+	line-height: 1.47;
 	color: var(--heading-color);
 }
 .blog-post-card .post-meta-chips {
@@ -481,8 +482,8 @@ nav a {
 	max-width: 100%;
 	padding: 0.18rem 0.48rem;
 	border: 1px solid color-mix(in srgb, var(--border-color) 82%, var(--accent) 18%);
-	border-radius: 999px;
-	background: color-mix(in srgb, var(--card-bg) 90%, var(--accent) 10%);
+	border-radius: var(--nv-radius-sm);
+	background: var(--nv-surface-soft);
 	color: var(--heading-color);
 	font-size: 0.74rem;
 	font-weight: 700;
@@ -490,6 +491,9 @@ nav a {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+[data-theme='dark'] .blog-post-card .post-meta-chip {
+	background: #2a2a2a;
 }
 .blog-post-card .difficulty-easy {
 	background: color-mix(in srgb, #2da44e 16%, var(--card-bg));
@@ -507,6 +511,7 @@ nav a {
 	margin: 0 0 1rem;
 	color: var(--muted-text);
 	line-height: 1.55;
+	font-size: 15px;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 3;
@@ -515,15 +520,16 @@ nav a {
 .blog-post-card .date {
 	margin: auto 0 0;
 	color: var(--muted-text);
+	font-size: 0.82rem;
 }
 #back-to-top {
-	background-color: var(--card-bg) !important;
-	color: var(--text-color) !important;
-	border: 1px solid var(--border-color) !important;
-}
-#back-to-top:hover {
 	background-color: var(--accent) !important;
 	color: white !important;
+	border: none !important;
+	border-radius: var(--nv-radius-sm) !important;
+}
+#back-to-top:hover {
+	background-color: var(--nv-primary-dark) !important;
 }
 @media (max-width: 720px) {
 	body {
@@ -576,13 +582,9 @@ nav a {
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
 	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
 	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
 	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
 

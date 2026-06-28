@@ -66,6 +66,11 @@ import HeaderLink from './HeaderLink.astro';
 </header>
 
 <script>
+	const header = document.querySelector('header');
+	window.addEventListener('scroll', () => {
+		header?.classList.toggle('scrolled', window.scrollY > 0);
+	}, { passive: true });
+
 	const themeToggle = document.getElementById('theme-toggle');
 	const html = document.documentElement;
 
@@ -90,10 +95,15 @@ import HeaderLink from './HeaderLink.astro';
 <style>
 	header {
 		margin: 0;
-		padding: 0 1em;
-		background: var(--card-bg);
-		border-bottom: 1px solid var(--border-color);
-		box-shadow: 0 2px 12px rgba(var(--black), 6%);
+		padding: 0 1.5em;
+		background: var(--nv-surface-dark);
+		border-bottom: none;
+		position: sticky;
+		top: 0;
+		z-index: 100;
+	}
+	header.scrolled {
+		box-shadow: var(--nv-shadow-sticky);
 	}
 	.site-title {
 		display: flex;
@@ -106,49 +116,46 @@ import HeaderLink from './HeaderLink.astro';
 		line-height: 1;
 	}
 	.site-logo {
-		color: #7b3f00;
+		color: var(--nv-primary);
 		fill: currentColor;
 		flex-shrink: 0;
-	}
-	:global([data-theme='dark']) .site-logo {
-		color: #c89b6d;
 	}
 	.site-title a,
 	.site-title a.active {
 		text-decoration: none;
-		color: var(--heading-color) !important;
+		color: var(--nv-on-dark) !important;
 	}
 	.theme-toggle {
 		background: none;
 		border: none;
 		cursor: pointer;
-		color: var(--text-color);
+		color: var(--nv-on-dark);
 		padding: 0.5rem;
 		margin-left: 0.5rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border-radius: 50%;
+		border-radius: var(--nv-radius-sm);
 		transition: background-color 0.2s;
 		position: relative;
 		width: 40px;
 		height: 40px;
 	}
 	.theme-toggle:hover {
-		background-color: color-mix(in srgb, var(--card-bg) 78%, var(--muted-text) 22%);
+		background-color: rgba(255, 255, 255, 0.1);
 	}
 	.theme-toggle:focus-visible,
 	.social-links a:focus-visible,
 	nav a:focus-visible {
-		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+		outline: 3px solid color-mix(in srgb, var(--nv-primary) 60%, transparent);
 		outline-offset: 3px;
-		border-radius: 10px;
+		border-radius: var(--nv-radius-sm);
 	}
 	.theme-toggle svg {
 		position: absolute;
 		transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
 	}
-	
+
 	#sun-icon { opacity: 0; transform: rotate(90deg) scale(0); }
 	#moon-icon { opacity: 0; transform: rotate(-90deg) scale(0); }
 
@@ -165,16 +172,22 @@ import HeaderLink from './HeaderLink.astro';
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		height: 64px;
 	}
 	nav a {
-		padding: 1em 0.5em;
-		color: var(--text-color);
-		border-bottom: 4px solid transparent;
+		padding: 0 0.6em;
+		color: var(--nv-on-dark) !important;
+		border-bottom: 2px solid transparent;
 		text-decoration: none;
+		font-weight: 700;
+		font-size: 15px;
+		height: 64px;
+		display: inline-flex;
+		align-items: center;
 	}
 	nav a.active {
 		text-decoration: none;
-		border-bottom-color: var(--accent);
+		border-bottom-color: var(--nv-primary);
 	}
 	.social-links {
 		display: flex;
@@ -185,18 +198,15 @@ import HeaderLink from './HeaderLink.astro';
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		color: var(--text-color) !important;
-	}
-	.social-links a[href*="blog.naver.com"] {
-		color: #03c75a !important;
+		color: var(--nv-on-dark) !important;
 	}
 	.social-links a:hover {
-		color: var(--accent) !important;
-	}
-	.social-links a[href*="blog.naver.com"]:hover {
-		color: #02b350 !important;
+		color: var(--nv-primary) !important;
 	}
 	@media (max-width: 720px) {
+		header {
+			padding: 0 1em;
+		}
 		.social-links a:not([href="/search"]) {
 			display: none;
 		}
@@ -214,7 +224,12 @@ import HeaderLink from './HeaderLink.astro';
 		}
 		nav {
 			flex-direction: column;
+			height: auto;
 			padding: 0.5rem 0;
+		}
+		nav a {
+			height: auto;
+			padding: 0.6em 0.5em;
 		}
 		.internal-links {
 			order: 3;
