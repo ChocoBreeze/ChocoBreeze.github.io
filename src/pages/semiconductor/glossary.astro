@@ -84,10 +84,19 @@ const posts = (await getCollection('blog'))
 		margin-bottom: 1.25rem;
 		padding: 1.35rem;
 		border: 1px solid var(--border-color);
-		border-radius: 26px;
-		background:
-			radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 16%, transparent), transparent 34%),
-			color-mix(in srgb, var(--card-bg) 94%, var(--accent) 6%);
+		border-radius: var(--nv-radius-sm);
+		background: var(--card-bg);
+		position: relative;
+	}
+
+	.glossary-hero::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 12px;
+		height: 12px;
+		background-color: var(--nv-primary);
 	}
 
 	.section-eyebrow {
@@ -114,8 +123,9 @@ const posts = (await getCollection('blog'))
 		gap: 0.45rem;
 		margin-bottom: 1rem;
 		padding: 0.55rem 0.8rem;
-		border-radius: 999px;
+		border-radius: var(--nv-radius-sm);
 		background: color-mix(in srgb, var(--card-bg) 82%, var(--accent) 18%);
+		border: 1px solid color-mix(in srgb, var(--border-color) 80%, var(--accent) 20%);
 		color: var(--heading-color);
 	}
 
@@ -130,30 +140,34 @@ const posts = (await getCollection('blog'))
 
 	.glossary-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 		gap: 0.9rem;
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
 
+	.glossary-card {
+		display: flex;
+	}
+
 	.glossary-card a {
-		display: grid;
+		display: flex;
+		flex-direction: column;
 		gap: 0.45rem;
-		height: 100%;
+		flex: 1;
 		padding: 1rem;
 		border: 1px solid color-mix(in srgb, var(--border-color) 86%, var(--accent) 14%);
-		border-radius: 18px;
+		border-radius: var(--nv-radius-sm);
 		background: var(--card-bg);
 		color: var(--heading-color);
 		text-decoration: none;
-		transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+		transition: border-color 0.2s ease, background-color 0.2s ease;
 	}
 
 	.glossary-card a:hover {
-		border-color: color-mix(in srgb, var(--accent) 55%, var(--border-color));
+		border-color: var(--accent);
 		background: color-mix(in srgb, var(--card-bg) 90%, var(--accent) 10%);
-		transform: translateY(-2px);
 	}
 
 	.term-number {
