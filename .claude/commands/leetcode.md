@@ -6,7 +6,7 @@
 
 $ARGUMENTS 에는 아래 정보가 포함된다:
 
-- **문제 URL** (필수): `https://leetcode.com/problems/...`
+- **문제 URL** (선택): `https://leetcode.com/problems/...` 또는 `today` / 생략. URL을 주지 않거나 "today"라고 입력하면 `https://lctp.fly.dev/` 를 curl로 호출해 오늘의 문제 URL을 자동으로 가져온다.
 - **내 코드** (필수): 사용자가 직접 작성한 C++ 풀이
 - **더 좋은 풀이** (선택): 내 코드보다 나은 풀이가 있을 경우 추가로 제공. 여러 개면 `### 풀이 1`, `### 풀이 2` 같은 제목으로 구분하거나, 각 풀이 앞에 간단한 설명(예: "O(n) 카운팅 풀이", "투 포인터 풀이")을 붙여서 나열한다.
 - **날짜** (선택): "어제", "오늘", 또는 `YYYY-MM-DD` 형식. 생략 시 오늘(Asia/Seoul 기준)
@@ -19,13 +19,22 @@ $ARGUMENTS 에는 아래 정보가 포함된다:
 - 생략 시 오늘 날짜(Asia/Seoul, UTC+9) 사용
 - 형식: `YYYY-MM-DD`
 
-### 2. 문제 정보 파악
+### 2. 문제 URL 확정
+
+- 입력에 `https://leetcode.com/problems/...` URL이 있으면 그대로 사용한다.
+- URL이 없거나 "today"이면 아래 명령으로 오늘의 문제 URL을 가져온다:
+  ```bash
+  curl -sL https://lctp.fly.dev/
+  ```
+  반환값이 곧 문제 URL이다.
+
+### 3. 문제 정보 파악
 URL에서 문제 번호와 이름을 추출하고, 아래 정보를 결정한다:
 - **제목**: `{번호}. {영문 제목}` (LeetCode 표기 그대로)
 - **난이도**: Easy / Medium / Hard
 - **토픽**: LeetCode 문제 태그 기준 (예: Array, Greedy, Sorting, Dynamic Programming 등)
 
-### 3. 파일 생성
+### 4. 파일 생성
 
 **파일 경로:**
 ```
@@ -97,7 +106,7 @@ topics: [{토픽1}, {토픽2}, ...]
 <br/>
 ```
 
-### 4. 검증
+### 5. 검증
 
 파일 생성 후 반드시 실행:
 ```bash
