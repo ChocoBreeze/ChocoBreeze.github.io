@@ -507,6 +507,18 @@ nav a {
 	background: color-mix(in srgb, #cf222e 14%, var(--card-bg));
 	border-color: color-mix(in srgb, #cf222e 34%, var(--border-color));
 }
+[data-theme='dark'] .blog-post-card .difficulty-easy {
+	background: color-mix(in srgb, #2da44e 16%, var(--card-bg));
+	border-color: color-mix(in srgb, #2da44e 36%, var(--border-color));
+}
+[data-theme='dark'] .blog-post-card .difficulty-medium {
+	background: color-mix(in srgb, #bf8700 16%, var(--card-bg));
+	border-color: color-mix(in srgb, #bf8700 36%, var(--border-color));
+}
+[data-theme='dark'] .blog-post-card .difficulty-hard {
+	background: color-mix(in srgb, #cf222e 14%, var(--card-bg));
+	border-color: color-mix(in srgb, #cf222e 34%, var(--border-color));
+}
 .blog-post-card .excerpt {
 	margin: 0 0 1rem;
 	color: var(--muted-text);
