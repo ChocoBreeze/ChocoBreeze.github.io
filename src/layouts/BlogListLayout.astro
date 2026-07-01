@@ -18,6 +18,9 @@ type Props = {
 const { title, description, activeCategory, posts } = Astro.props;
 const category = BLOG_CATEGORIES.find(({ key }) => key === activeCategory);
 const rssHref = getCategoryFeedPath(activeCategory);
+
+const pinnedPosts = posts.filter(p => p.data.pinned);
+const regularPosts = posts.filter(p => !p.data.pinned);
 ---
 
 <!doctype html>
@@ -47,9 +50,33 @@ const rssHref = getCategoryFeedPath(activeCategory);
 					)}
 				</div>
 				<slot />
-				<ul class="blog-post-grid">
-					{posts.map((post) => <BlogPostCard post={post} />)}
-				</ul>
+				{pinnedPosts.length > 0 && (
+					<div class="pinned-section">
+						<p class="pinned-label">
+							<svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">
+								<path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/>
+							</svg>
+							시작 가이드
+						</p>
+						<ul class="blog-post-grid">
+							{pinnedPosts.map((post) => <BlogPostCard post={post} />)}
+						</ul>
+					</div>
+				)}
+				{regularPosts.length > 0 && (
+					<>
+						<div class="sort-controls">
+							<span class="sort-label">정렬</span>
+							<div class="sort-btn-group" role="group" aria-label="정렬 순서">
+								<button class="sort-btn active" data-sort="desc" aria-pressed="true">최신순</button>
+								<button class="sort-btn" data-sort="asc" aria-pressed="false">오래된 순</button>
+							</div>
+						</div>
+						<ul class="blog-post-grid regular-post-grid">
+							{regularPosts.map((post) => <BlogPostCard post={post} />)}
+						</ul>
+					</>
+				)}
 			</section>
 		</main>
 		<Footer />
@@ -83,4 +110,131 @@ const rssHref = getCategoryFeedPath(activeCategory);
 		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
 		outline-offset: 4px;
 	}
+
+	.pinned-section {
+		margin-bottom: 0.5rem;
+	}
+
+	.pinned-label {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		margin: 0 0 1rem;
+		padding: 0.25rem 0.6rem;
+		border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border-color));
+		border-radius: var(--nv-radius-sm);
+		background: color-mix(in srgb, var(--card-bg) 82%, var(--accent) 18%);
+		color: var(--accent);
+		font-size: 0.72rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.07em;
+	}
+
+	.sort-controls {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 2rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--border-color);
+	}
+
+	.sort-label {
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.07em;
+		color: var(--muted-text);
+		font-weight: 700;
+	}
+
+	.sort-btn-group {
+		display: flex;
+		border: 1px solid var(--border-color);
+		border-radius: var(--nv-radius-sm);
+		overflow: hidden;
+	}
+
+	.sort-btn {
+		padding: 0.38rem 0.9rem;
+		border: none;
+		border-right: 1px solid var(--border-color);
+		background: transparent;
+		color: var(--muted-text);
+		font-size: 0.82rem;
+		font-weight: 600;
+		cursor: pointer;
+		font-family: inherit;
+		line-height: 1.4;
+		transition: background-color 0.15s ease, color 0.15s ease;
+	}
+
+	.sort-btn:last-child {
+		border-right: none;
+	}
+
+	.sort-btn:hover:not(.active) {
+		background: color-mix(in srgb, var(--card-bg) 75%, var(--muted-text) 25%);
+		color: var(--text-color);
+	}
+
+	.sort-btn.active {
+		background: var(--nv-primary);
+		color: #000000;
+		font-weight: 700;
+	}
+
+	.sort-btn:focus-visible {
+		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+		outline-offset: 2px;
+		position: relative;
+		z-index: 1;
+	}
 </style>
+
+<script>
+	const grid = document.querySelector('.regular-post-grid');
+	const buttons = document.querySelectorAll<HTMLButtonElement>('.sort-btn');
+
+	const itemData = grid
+		? [...grid.querySelectorAll<HTMLLIElement>('li[data-pub-date]')].map(el => ({
+				el,
+				t: parseInt(el.dataset.pubDate ?? '0'),
+		  }))
+		: [];
+
+	function sortGrid(order: 'asc' | 'desc', historyMode: 'push' | 'replace' = 'push') {
+		if (!grid) return;
+
+		itemData.sort((a, b) => order === 'asc' ? a.t - b.t : b.t - a.t);
+		itemData.forEach(({ el }) => grid.appendChild(el));
+
+		buttons.forEach(btn => {
+			const isActive = btn.dataset.sort === order;
+			btn.classList.toggle('active', isActive);
+			btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+		});
+
+		const url = new URL(window.location.href);
+		order === 'desc' ? url.searchParams.delete('sort') : url.searchParams.set('sort', order);
+		if (historyMode === 'replace') {
+			window.history.replaceState({}, '', url.toString());
+		} else {
+			window.history.pushState({}, '', url.toString());
+		}
+	}
+
+	const rawSort = new URLSearchParams(window.location.search).get('sort');
+	const initialSort: 'asc' | 'desc' = rawSort === 'asc' ? 'asc' : 'desc';
+
+	sortGrid(initialSort, 'replace');
+
+	window.addEventListener('popstate', () => {
+		const sort = new URLSearchParams(window.location.search).get('sort');
+		sortGrid(sort === 'asc' ? 'asc' : 'desc', 'replace');
+	});
+
+	buttons.forEach(btn => btn.addEventListener('click', () => {
+		sortGrid(btn.dataset.sort === 'asc' ? 'asc' : 'desc');
+	}));
+</script>
