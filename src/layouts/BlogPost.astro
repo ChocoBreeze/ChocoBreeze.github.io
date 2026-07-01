@@ -182,7 +182,7 @@ const visibleTopics = topics?.slice(0, 6) ?? [];
                 font-weight: 700;
                 line-height: 1.2;
             }
-            [data-theme='dark'] .post-meta-chip {
+            :global([data-theme='dark']) .post-meta-chip {
                 background: #2a2a2a;
             }
             .post-meta-chip[data-difficulty="easy"] {
