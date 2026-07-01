@@ -5,7 +5,6 @@ description: "자주 사용하는 Git 명령어를 상태 확인, 변경 내용 
 pubDate: "2026-06-17T00:00:00+09:00"
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
-pinned: true
 ---
 
 Git은 명령어가 많아서 처음에는 어디서부터 익혀야 할지 헷갈리기 쉽다.
