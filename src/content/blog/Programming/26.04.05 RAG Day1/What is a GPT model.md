@@ -13,8 +13,8 @@ tags: ["RAG", "LLM"]
 Formally speaking, a GPT is a Generative Pre-Trained Transformer. 
 
 The first two words are self-explanatory: 
-- **generative** means the model generates new text; 
-- **pre-trained** means the model was trained on large amounts of data. 
+- <strong>generative</strong> means the model generates new text; 
+- <strong>pre-trained</strong> means the model was trained on large amounts of data. 
 
 What we will focus on is the transformer aspect of the language model, the main proponent of the recent boom in AI.
 
@@ -172,7 +172,7 @@ For example, if the last word is Professor, and the context includes words like 
 ![문맥을 바탕으로 다음 단어 Snape를 예측하는 언임베딩 예시](images/image-22.png)
 
 ## Unembedding Matrix
-This process involves two steps. The first is <span style=color:red;>to use another matrix</span> that maps the very last vector in the context to a list of ~50,000 values, one for each token in the vocabulary, then there’s a function that normalizes this into a probability distribution, called <span style=color:red;>softmax</span>, which we’ll talk more about in just a second.
+This process involves two steps. The first is <span style=color:red;>to use another matrix</span> that maps the very last vector in the context to a list of \~50,000 values, one for each token in the vocabulary, then there’s a function that normalizes this into a probability distribution, called <span style=color:red;>softmax</span>, which we’ll talk more about in just a second.
 
 It might seem weird to only use the last embedding to make a prediction when there are thousands of other vectors in that last layer just sitting here with their own context-rich meanings. This has to do with how the training process turns out to be much more efficient if we use each vector in this final layer to simultaneously make a prediction for what comes immediately after it. We'll talk a lot more about the training process later.
 

@@ -5,15 +5,15 @@ pubDate: '2026-01-19T00:00:00Z'
 categories: "Semiconductor"
 ---
 
-## 1) **한 문장 정의**
+## 1) <strong>한 문장 정의</strong>
 
-> **SoC는 CPU·GPU·NPU·메모리 컨트롤러 등을 ‘한 칩 위에 모두 통합해 놓은 반도체’예요.**
+> <strong>SoC는 CPU·GPU·NPU·메모리 컨트롤러 등을 ‘한 칩 위에 모두 통합해 놓은 반도체’예요.</strong>
 
 ---
 
-## 2) **비유로 쉽게 설명**
+## 2) <strong>비유로 쉽게 설명</strong>
 
-SoC를 **초미니 “학교 캠퍼스 한 장”** 이라고 생각해봐!
+SoC를 <strong>초미니 “학교 캠퍼스 한 장”</strong> 이라고 생각해봐!
 
 * CPU = 국어 선생님
 * GPU = 미술/그래픽 선생님
@@ -23,7 +23,7 @@ SoC를 **초미니 “학교 캠퍼스 한 장”** 이라고 생각해봐!
 * ISP = 사진 담당 교사(카메라 처리)
 
 이 모든 선생님과 시설을  
-👉 **“한 건물에 다 넣어버린 학교” = SoC**
+👉 <strong>“한 건물에 다 넣어버린 학교” = SoC</strong>
 
 학교가 건물 하나 안에 다 들어 있으면:
 
@@ -40,20 +40,20 @@ SoC를 **초미니 “학교 캠퍼스 한 장”** 이라고 생각해봐!
 
 ### 스마트폰 SoC
 
-* **Apple A17 Pro** (TSMC 3nm)
-* **Snapdragon 8 Gen 3**
-* **Samsung Exynos 2400**
-* **Google Tensor G3**
+* <strong>Apple A17 Pro</strong> (TSMC 3nm)
+* <strong>Snapdragon 8 Gen 3</strong>
+* <strong>Samsung Exynos 2400</strong>
+* <strong>Google Tensor G3</strong>
 
 ### PC/AI SoC
 
-* **Apple M1·M2·M3 시리즈**
-* **NVIDIA Orin/Thor 등 자동차용 SoC**
+* <strong>Apple M1·M2·M3 시리즈</strong>
+* <strong>NVIDIA Orin/Thor 등 자동차용 SoC</strong>
 
 ### 특징
 
 📌 “하나의 칩에 필요한 모든 기능을 집약”  
-그래서 SoC는 스마트폰·AI 기기에서 **가장 중요한 뇌** 역할을 해요.
+그래서 SoC는 스마트폰·AI 기기에서 <strong>가장 중요한 뇌</strong> 역할을 해요.
 
 ---
 
@@ -61,7 +61,7 @@ SoC를 **초미니 “학교 캠퍼스 한 장”** 이라고 생각해봐!
 
 SoC를 머릿속에 그리면:
 
-* **손톱보다 작은 정사각형 칩** 하나
+* <strong>손톱보다 작은 정사각형 칩</strong> 하나
 * 내부를 들여다보면 거대한 층층 구조
 * 칩 내부 구역마다 다른 색깔의 작은 방들
   * CPU 방
@@ -71,7 +71,7 @@ SoC를 머릿속에 그리면:
   * 통신 방
 * 방과 방은 초미세 길(전선)로 연결되어 있음
 
-마치 **도시 전체를 작은 정사각형 안에 축소해 놓은 도시 지도**처럼 보여요.
+마치 <strong>도시 전체를 작은 정사각형 안에 축소해 놓은 도시 지도</strong>처럼 보여요.
 
 ---
 
@@ -92,13 +92,13 @@ SoC는 왜 중요할까?
 * TSMC: SoC 생산의 왕
 
 특히 AI 시대에  
-👉 **SoC에 더 많은 NPU·GPU 기능을 넣는 경쟁이 심해짐**
+👉 <strong>SoC에 더 많은 NPU·GPU 기능을 넣는 경쟁이 심해짐</strong>
 
 ---
 
 ## 6) 초보자 체크 질문
 
-SoC는 여러 기능(CPU·GPU·NPU 등)을 **어디에** 모아놓은 기술일까?
+SoC는 여러 기능(CPU·GPU·NPU 등)을 <strong>어디에</strong> 모아놓은 기술일까?
 
 1. 여러 칩에 따로따로 나눠 넣는 것
 2. 한 칩에 모두 넣는 것

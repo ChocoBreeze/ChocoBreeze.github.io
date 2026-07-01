@@ -7,16 +7,16 @@ categories: "Semiconductor"
 
 ## 1) 한 문장 정의
 
-> **PHY는 칩 안의 데이터를 바깥으로 보낼 때, 그걸 실제 전기 신호로 바꿔서 전달해주는 부분이야.**
+> <strong>PHY는 칩 안의 데이터를 바깥으로 보낼 때, 그걸 실제 전기 신호로 바꿔서 전달해주는 부분이야.</strong>
 
 ---
 
 ## 2) 비유
 
-메모리 컨트롤러가 **사서**라면, PHY는 **택배 포장 기사 + 배송 출입문** 같은 존재야.
+메모리 컨트롤러가 <strong>사서</strong>라면, PHY는 <strong>택배 포장 기사 + 배송 출입문</strong> 같은 존재야.
 
 * 사서가 “이 책 보내!”라고 정하면
-* PHY가 그 책을 **진짜 배송 가능한 형태**로 바꿔서 밖으로 보내는 거지
+* PHY가 그 책을 <strong>진짜 배송 가능한 형태</strong>로 바꿔서 밖으로 보내는 거지
 
 즉,
 
@@ -32,15 +32,15 @@ PHY = “어떻게 실제로 보낼지 처리”
 
 PHY는 여러 곳에 들어가:
 
-* **DDR/LPDDR PHY** → DRAM과 연결
-* **HBM PHY** → HBM과 연결
-* **PCIe PHY** → CPU/GPU와 SSD·다른 칩 연결
-* **SerDes PHY** → 초고속 데이터 통신
+* <strong>DDR/LPDDR PHY</strong> → DRAM과 연결
+* <strong>HBM PHY</strong> → HBM과 연결
+* <strong>PCIe PHY</strong> → CPU/GPU와 SSD·다른 칩 연결
+* <strong>SerDes PHY</strong> → 초고속 데이터 통신
 
 예를 들어:
 
-* **NVIDIA GPU** 안에는 HBM과 연결하는 PHY가 있고
-* **애플 M 시리즈**나 **퀄컴 스냅드래곤**에도 메모리 PHY가 들어 있어
+* <strong>NVIDIA GPU</strong> 안에는 HBM과 연결하는 PHY가 있고
+* <strong>애플 M 시리즈</strong>나 <strong>퀄컴 스냅드래곤</strong>에도 메모리 PHY가 들어 있어
 
 즉, 고속 연결이 필요한 칩에는 PHY가 거의 항상 있어.
 
@@ -60,7 +60,7 @@ PHY는 여러 곳에 들어가:
 * 항공 스케줄 담당 = 컨트롤러
 * 활주로/탑승구 = PHY
 
-즉, **칩 가장자리의 출입문** 같은 느낌이야.
+즉, <strong>칩 가장자리의 출입문</strong> 같은 느낌이야.
 
 ---
 
@@ -79,7 +79,7 @@ PHY가 중요한 이유는:
 
 같은 초고속 연결이 많아져서 PHY 설계 난이도가 급상승했어.
 
-즉, 최신 반도체는 단순히 계산만 잘하는 게 아니라 **신호를 정확하고 빠르게 주고받는 PHY 기술력**도 엄청 중요해.
+즉, 최신 반도체는 단순히 계산만 잘하는 게 아니라 <strong>신호를 정확하고 빠르게 주고받는 PHY 기술력</strong>도 엄청 중요해.
 
 그래서 큰 반도체 회사들은 PHY IP와 설계 역량을 아주 중요하게 봐.
 

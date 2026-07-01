@@ -7,10 +7,10 @@ tags: ["RAG", "OpenAI", "LangChain", "Vector DB", "LLM"]
 slug: "rag-week6-openai-sdk-vs-langchain-rag"
 ---
 
-좋아요. 이번에는 **같은 “문서 2개로 RAG” 작업**을
+좋아요. 이번에는 <strong>같은 “문서 2개로 RAG” 작업</strong>을
 
-* **OpenAI SDK만으로 구현한 버전**
-* **LangChain으로 구현한 버전**
+* <strong>OpenAI SDK만으로 구현한 버전</strong>
+* <strong>LangChain으로 구현한 버전</strong>
 
 이렇게 나란히 보여드릴게요.
 
@@ -18,7 +18,7 @@ slug: "rag-week6-openai-sdk-vs-langchain-rag"
 
 OpenAI 공식 SDK는 `OpenAI()` 클라이언트로 직접 `Responses API`와 `Embeddings API`를 호출하는 방식이고, 새 프로젝트에는 `Responses API`가 권장됩니다. 임베딩은 검색용 벡터를 만들 때 쓰고, 여러 입력을 한 번에 임베딩할 수도 있습니다. ([OpenAI 개발자][1])
 
-반면 LangChain은 RAG를 **Load → Split → Store → Retrieve/Generate** 같은 구성요소로 나눠서 조립하기 쉽게 해 줍니다. 공식 RAG 튜토리얼도 인덱싱 단계와 런타임의 retrieval/generation 단계를 분리해서 설명합니다. ([LangChain Docs][2])
+반면 LangChain은 RAG를 <strong>Load → Split → Store → Retrieve/Generate</strong> 같은 구성요소로 나눠서 조립하기 쉽게 해 줍니다. 공식 RAG 튜토리얼도 인덱싱 단계와 런타임의 retrieval/generation 단계를 분리해서 설명합니다. ([LangChain Docs][2])
 
 <div style="display: flex; gap: 10px;">
 
@@ -26,7 +26,7 @@ OpenAI 공식 SDK는 `OpenAI()` 클라이언트로 직접 `Responses API`와 `Em
 
 ## 1) OpenAI SDK만으로 만드는 2문서 RAG
 
-이 버전은 **문서 읽기, 청킹, 임베딩, 유사도 검색, 프롬프트 조립**을 전부 직접 합니다.
+이 버전은 <strong>문서 읽기, 청킹, 임베딩, 유사도 검색, 프롬프트 조립</strong>을 전부 직접 합니다.
 즉, “모델 호출은 OpenAI가 담당하고, RAG 파이프라인 구조는 내가 직접 짠다”에 가까워요. `OpenAI()` 클라이언트는 공식 Python SDK의 기본 진입점이고, 임베딩은 `client.embeddings.create(...)`, 답변 생성은 `client.responses.create(...)` 식으로 호출합니다. ([OpenAI 개발자][1])
 
 ```python
@@ -226,7 +226,7 @@ if __name__ == "__main__":
 
 ## 2) LangChain으로 만드는 2문서 RAG
 
-이 버전은 같은 일을 하지만, **문서 로더 / 스플리터 / 벡터스토어 / 리트리버 / 모델**을 부품처럼 연결합니다. 공식 LangChain 문서는 RAG를 인덱싱 단계와 런타임 retrieval/generation 단계로 나누고, 각 단계를 전용 구성요소로 설명합니다. ([LangChain Docs][2])
+이 버전은 같은 일을 하지만, <strong>문서 로더 / 스플리터 / 벡터스토어 / 리트리버 / 모델</strong>을 부품처럼 연결합니다. 공식 LangChain 문서는 RAG를 인덱싱 단계와 런타임 retrieval/generation 단계로 나누고, 각 단계를 전용 구성요소로 설명합니다. ([LangChain Docs][2])
 
 ```python
 from __future__ import annotations
@@ -338,7 +338,7 @@ if __name__ == "__main__":
     main()
 ```
 
-여기서 중요한 건, OpenAI 모델을 쓰는 건 같지만 **문서 로드, 분할, 저장, 검색**을 LangChain 인터페이스로 처리한다는 점이에요. 공식 튜토리얼도 `DocumentLoaders`, `RecursiveCharacterTextSplitter`, embeddings, vector store, retrieval/generation 단계를 같은 흐름으로 보여줍니다. ([LangChain Docs][2])
+여기서 중요한 건, OpenAI 모델을 쓰는 건 같지만 <strong>문서 로드, 분할, 저장, 검색</strong>을 LangChain 인터페이스로 처리한다는 점이에요. 공식 튜토리얼도 `DocumentLoaders`, `RecursiveCharacterTextSplitter`, embeddings, vector store, retrieval/generation 단계를 같은 흐름으로 보여줍니다. ([LangChain Docs][2])
 
 </div> </div>
 
@@ -421,15 +421,15 @@ if __name__ == "__main__":
 
 ## 5) 지금 사용자님 공부 단계에 맞춰 한 줄로 정리하면
 
-* **Week 5 느낌**: OpenAI SDK에 가까움
+* <strong>Week 5 느낌</strong>: OpenAI SDK에 가까움
   → 내가 직접 검색 결과를 만들어서 붙임
-* **Week 6 느낌**: LangChain에 가까움
+* <strong>Week 6 느낌</strong>: LangChain에 가까움
   → 검색기, 체인, 메모리 같은 부품으로 구조화함
 
 그래서 둘 다 알아두는 게 좋아요.
-OpenAI SDK 쪽은 **원리 이해**, LangChain 쪽은 **구조화와 확장**에 강합니다. OpenAI는 Python SDK로 직접 Responses API와 Embeddings API를 쓰게 하고, LangChain은 이를 더 큰 RAG 흐름 안에 넣기 쉽게 통합합니다. ([OpenAI 개발자][1])
+OpenAI SDK 쪽은 <strong>원리 이해</strong>, LangChain 쪽은 <strong>구조화와 확장</strong>에 강합니다. OpenAI는 Python SDK로 직접 Responses API와 Embeddings API를 쓰게 하고, LangChain은 이를 더 큰 RAG 흐름 안에 넣기 쉽게 통합합니다. ([OpenAI 개발자][1])
 
-원하시면 다음에는 이 두 코드에서 **어느 줄이 서로 대응되는지** 1:1로 짝지어서 설명해드릴게요.
+원하시면 다음에는 이 두 코드에서 <strong>어느 줄이 서로 대응되는지</strong> 1:1로 짝지어서 설명해드릴게요.
 
 [1]: https://developers.openai.com/api/reference/python/ "OpenAI Python API library"
 [2]: https://docs.langchain.com/oss/python/langchain/rag "Build a RAG agent with LangChain"

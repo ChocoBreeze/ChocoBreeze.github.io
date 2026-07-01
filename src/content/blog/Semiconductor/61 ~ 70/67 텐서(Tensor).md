@@ -7,22 +7,22 @@ categories: "Semiconductor"
 
 ## 1) 한 문장 정의
 
-> **텐서는 숫자를 담아두는 ‘상자’인데, 행렬보다 더 큰 차원까지 담을 수 있는 데이터 묶음이야.**
+> <strong>텐서는 숫자를 담아두는 ‘상자’인데, 행렬보다 더 큰 차원까지 담을 수 있는 데이터 묶음이야.</strong>
 
 ---
 
 ## 2) 비유
 
-행렬을 **숫자 표 한 장**이라고 했지?
+행렬을 <strong>숫자 표 한 장</strong>이라고 했지?
 
 그럼 텐서는 이렇게 생각하면 쉬워:
 
 * 숫자 1개 = 점
 * 숫자 줄 = 선
 * 행렬 = 표 한 장
-* 텐서 = **표가 여러 장 쌓인 앨범**
+* 텐서 = <strong>표가 여러 장 쌓인 앨범</strong>
 
-즉, 행렬보다 더 많은 정보를 담을 수 있는 **큰 숫자 상자**야.
+즉, 행렬보다 더 많은 정보를 담을 수 있는 <strong>큰 숫자 상자</strong>야.
 
 예를 들어 사진을 생각해보면:
 
@@ -50,9 +50,9 @@ AI에서는 텐서를 엄청 많이 써.
 
 실제 기업/제품 예시:
 
-* **NVIDIA GPU**는 텐서 연산을 잘하기 위해 **Tensor Core**를 넣었어
-* **Google TPU**도 텐서 계산에 최적화된 칩이야
-* **PyTorch, TensorFlow** 같은 AI 프레임워크 이름에도 텐서가 들어가
+* <strong>NVIDIA GPU</strong>는 텐서 연산을 잘하기 위해 <strong>Tensor Core</strong>를 넣었어
+* <strong>Google TPU</strong>도 텐서 계산에 최적화된 칩이야
+* <strong>PyTorch, TensorFlow</strong> 같은 AI 프레임워크 이름에도 텐서가 들어가
 
 즉, AI 세계에서는 텐서가 거의 기본 언어 같은 느낌이야.
 
@@ -97,7 +97,7 @@ AI에서는 텐서를 엄청 많이 써.
 [11 12]
 ```
 
-즉, **표 여러 장이 겹쳐 있는 큰 숫자 상자**라고 생각하면 돼.
+즉, <strong>표 여러 장이 겹쳐 있는 큰 숫자 상자</strong>라고 생각하면 돼.
 
 ---
 
@@ -111,14 +111,14 @@ AI에서는 텐서를 엄청 많이 써.
 
 그래서:
 
-* NVIDIA는 **Tensor Core**
-* Google은 **TPU**
-* Apple은 **Neural Engine**
-* Qualcomm/삼성은 **NPU**
+* NVIDIA는 <strong>Tensor Core</strong>
+* Google은 <strong>TPU</strong>
+* Apple은 <strong>Neural Engine</strong>
+* Qualcomm/삼성은 <strong>NPU</strong>
 
 같은 구조를 만들며 경쟁하는 거야.
 
-즉, **AI 반도체는 텐서를 얼마나 빠르게 처리하느냐의 싸움**이라고 봐도 돼.
+즉, <strong>AI 반도체는 텐서를 얼마나 빠르게 처리하느냐의 싸움</strong>이라고 봐도 돼.
 
 ---
 

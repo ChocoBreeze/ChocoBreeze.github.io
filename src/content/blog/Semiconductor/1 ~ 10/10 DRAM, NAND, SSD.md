@@ -5,15 +5,15 @@ pubDate: '2026-01-10T00:00:00Z'
 categories: "Semiconductor"
 ---
 
-## 1) **한 문장 정의**
+## 1) <strong>한 문장 정의</strong>
 
-> **D램(DRAM)**: 컴퓨터가 계산할 때 잠깐 저장하는 **휘발성 메모리(전원 끄면 사라짐)**  
-> **낸드(NAND)**: 전원 끄면 내용이 남는 **비휘발성 저장장치**  
-> **SSD**: 낸드를 여러 개 모아 만든 **빠른 저장장치**
+> <strong>D램(DRAM)</strong>: 컴퓨터가 계산할 때 잠깐 저장하는 <strong>휘발성 메모리(전원 끄면 사라짐)</strong>  
+> <strong>낸드(NAND)</strong>: 전원 끄면 내용이 남는 <strong>비휘발성 저장장치</strong>  
+> <strong>SSD</strong>: 낸드를 여러 개 모아 만든 <strong>빠른 저장장치</strong>
 
 ---
 
-## 2) **비유로 설명**
+## 2) <strong>비유로 설명</strong>
 
 ### ✔ D램 = ‘책상 위 메모지’
 
@@ -35,7 +35,7 @@ categories: "Semiconductor"
 
 ---
 
-## 3) **실제 기업·제품 예시**
+## 3) <strong>실제 기업·제품 예시</strong>
 
 ### D램 제조기업
 
@@ -60,7 +60,7 @@ categories: "Semiconductor"
 
 ---
 
-## 4) **시각적 이미지 설명**
+## 4) <strong>시각적 이미지 설명</strong>
 
 ### DRAM
 
@@ -78,27 +78,27 @@ categories: "Semiconductor"
 
 ---
 
-## 5) **산업·시장 관점**
+## 5) <strong>산업·시장 관점</strong>
 
-✔ **DRAM**: AI·서버에서 매우 중요  
+✔ <strong>DRAM</strong>: AI·서버에서 매우 중요  
 → 대규모 연산을 하려면 엄청난 임시 저장 공간이 필요함  
 → HBM도 DRAM의 한 종류(고대역폭 버전)
 
-✔ **NAND**: 저장장치 시장을 지배  
+✔ <strong>NAND</strong>: 저장장치 시장을 지배  
 → 스마트폰, 노트북, 서버, 클라우드 모두 NAND 기반 SSD를 사용  
 → HDD는 점점 사라지는 중
 
-✔ **SSD**: 데이터센터·AI 트레이닝에서 필수  
+✔ <strong>SSD</strong>: 데이터센터·AI 트레이닝에서 필수  
 → 데이터를 빠르게 GPU에 공급해야 하니까 SSD 속도가 중요해짐
 
 삼성·SK하이닉스가 왜 세계적 기업인지의 이유 중 하나가 바로  
-**D램·낸드 세계 최강자**이기 때문이야.
+<strong>D램·낸드 세계 최강자</strong>이기 때문이야.
 
 ---
 
-## 6) **초보자 체크 질문**
+## 6) <strong>초보자 체크 질문</strong>
 
-다음 중 **전원을 꺼도 내용이 남아있는 저장장치**는 무엇일까?
+다음 중 <strong>전원을 꺼도 내용이 남아있는 저장장치</strong>는 무엇일까?
 
 1. DRAM
 2. NAND

@@ -14,10 +14,10 @@ tags: ["Chunking", "Chunk", "RAG"]
 - 청크에 메타데이터를 붙이는 이유를 이해한다.
 
 ## 핵심 개념
-- **청킹**: 긴 문서를 검색과 임베딩에 적합한 작은 조각으로 나누는 과정
-- **청크 크기**: 한 조각에 담는 텍스트 길이
-- **오버랩**: 앞뒤 청크가 일부 겹치도록 두는 설정
-- **메타데이터**: 파일명, 페이지 번호, 날짜, 카테고리 같은 부가 정보
+- <strong>청킹</strong>: 긴 문서를 검색과 임베딩에 적합한 작은 조각으로 나누는 과정
+- <strong>청크 크기</strong>: 한 조각에 담는 텍스트 길이
+- <strong>오버랩</strong>: 앞뒤 청크가 일부 겹치도록 두는 설정
+- <strong>메타데이터</strong>: 파일명, 페이지 번호, 날짜, 카테고리 같은 부가 정보
 
 ## 이번 주 한눈에 보기
 
@@ -412,12 +412,12 @@ python chunking_experiment.py
 <details>
 <summary> <b> GPT 추가설명 </b> </summary> <br/>
 
-좋아요. 이제는 **왜 저렇게 나왔는지**가 꽤 잘 보입니다.  
-결론부터 말하면, **코드가 정상적으로 잘 동작한 결과**예요.
+좋아요. 이제는 <strong>왜 저렇게 나왔는지</strong>가 꽤 잘 보입니다.  
+결론부터 말하면, <strong>코드가 정상적으로 잘 동작한 결과</strong>예요.
 
 <h2> 왜 0번 청크는 같고, 뒤에서 달라졌나요? </h2>
 
-당신의 텍스트는 사실상 **문단 단위**로 아주 깔끔하게 나뉘어 있어요.
+당신의 텍스트는 사실상 <strong>문단 단위</strong>로 아주 깔끔하게 나뉘어 있어요.
 
 구조를 보면 대충 이렇게 됩니다.
 
@@ -426,24 +426,24 @@ python chunking_experiment.py
 3. RAG 청킹 설명 문단
 4. 청킹 실험 중요성/메타데이터 문단
 
-`RecursiveCharacterTextSplitter`는 이름은 character splitter지만, 실제로는 **무조건 글자 수에서 딱 자르는 게 아니라** 먼저
+`RecursiveCharacterTextSplitter`는 이름은 character splitter지만, 실제로는 <strong>무조건 글자 수에서 딱 자르는 게 아니라</strong> 먼저
 
 * 문단 구분
 * 줄바꿈
 * 문장 경계
 
-같은 **자연스러운 경계**를 최대한 살리려고 합니다.
+같은 <strong>자연스러운 경계</strong>를 최대한 살리려고 합니다.
 
-그래서 첫 문단이 **120자** 정도인데,
+그래서 첫 문단이 <strong>120자</strong> 정도인데,
 
 * 작은 청크 `chunk_size=120`
 * 큰 청크 `chunk_size=220`
 
-둘 다 **첫 문단 하나를 그대로 담을 수 있으니까**
+둘 다 <strong>첫 문단 하나를 그대로 담을 수 있으니까</strong>
 0번 청크가 똑같이 나온 거예요.
 
 즉, “왜 안 달라지지?”가 아니라  
-**“첫 문단이 딱 한 청크로 들어가기 좋게 생겨 있어서 둘 다 같은 결과가 나온 것”** 입니다.
+<strong>“첫 문단이 딱 한 청크로 들어가기 좋게 생겨 있어서 둘 다 같은 결과가 나온 것”</strong> 입니다.
 
 <h2> 작은 청크 결과를 보면 </h2>
 
@@ -454,7 +454,7 @@ python chunking_experiment.py
 * 2번: 스마트폰 문단의 마지막 문장
 * 나머지: 뒤 문단들도 더 잘게 쪼개졌을 가능성 큼
 
-작은 청크에서는 한 문단 전체가 안 들어가면 **문단 안에서도 다시 나뉘는** 거예요.
+작은 청크에서는 한 문단 전체가 안 들어가면 <strong>문단 안에서도 다시 나뉘는</strong> 거예요.
 
 예를 들어 스마트폰 관련 부분은:
 
@@ -463,8 +463,8 @@ python chunking_experiment.py
 
 이렇게 갈라졌죠.
 
-이건 작은 청크에서는 **더 세밀하게 검색될 수 있는 장점**이 있지만,
-반대로 **문맥이 끊길 가능성**도 있다는 뜻입니다.
+이건 작은 청크에서는 <strong>더 세밀하게 검색될 수 있는 장점</strong>이 있지만,
+반대로 <strong>문맥이 끊길 가능성</strong>도 있다는 뜻입니다.
 
 예를 들어 사용자가
 “스마트폰 사업의 위험 요인이 뭐야?”
@@ -487,13 +487,13 @@ python chunking_experiment.py
 * 3번: 마지막 문단 전체일 가능성 높음
 
 큰 청크는 문단 하나를 거의 통째로 담고 있어서
-**문맥 보존은 더 잘 됩니다.**
+<strong>문맥 보존은 더 잘 됩니다.</strong>
 
 예를 들어 스마트폰 문단의 3문장이 한 청크에 다 있으니,
 검색되면 관련 정보가 한 번에 같이 따라옵니다.
 
 대신 단점은, 나중에 문서가 훨씬 길어지면
-**한 청크 안에 주제가 너무 많이 섞일 수 있다는 점**이에요.
+<strong>한 청크 안에 주제가 너무 많이 섞일 수 있다는 점</strong>이에요.
 
 지금 샘플 문서는 문단 구분이 아주 좋아서 큰 청크가 꽤 예쁘게 보이지만,
 실제 투자 보고서는 표, 각주, 리스크, 실적 전망, 밸류에이션이 섞여 있어서
@@ -501,7 +501,7 @@ python chunking_experiment.py
 
 <h2> 지금 실험에서 관찰할 수 있는 핵심 </h2>
 
-당신 결과는 오히려 **교재용 예시로 좋습니다.**
+당신 결과는 오히려 <strong>교재용 예시로 좋습니다.</strong>
 
 <h3> 1. 청크 크기가 작아지면 개수가 늘어남 </h3>
 
@@ -513,12 +513,12 @@ python chunking_experiment.py
 <h3> 2. 작은 청크는 문단 내부도 나눔 </h3>
 
 작은 청크에서는 스마트폰 문단이 둘로 갈렸어요.
-즉, **더 세밀한 검색**은 가능하지만 **문맥 손실 위험**도 생깁니다.
+즉, <strong>더 세밀한 검색</strong>은 가능하지만 <strong>문맥 손실 위험</strong>도 생깁니다.
 
 <h3> 3. 큰 청크는 문단 단위 보존이 더 잘 됨 </h3>
 
 큰 청크에서는 스마트폰 문단 전체가 한 덩어리로 유지됐어요.
-즉, **문맥 보존은 유리**합니다.
+즉, <strong>문맥 보존은 유리</strong>합니다.
 
 <h2> 왜 오버랩 효과는 잘 안 보이나요? </h2>
 
@@ -545,8 +545,8 @@ splitter가 굳이 어색하게 잘라 넣지 않아도 됩니다.
 
 <h2> 한 가지 더 </h2>
 
-지금 샘플은 **문단 단위 비교**에는 좋지만,
-**오버랩 효과 확인용**으로는 조금 약합니다.
+지금 샘플은 <strong>문단 단위 비교</strong>에는 좋지만,
+<strong>오버랩 효과 확인용</strong>으로는 조금 약합니다.
 
 오버랩까지 잘 보고 싶으면 나중에 이런 문서를 써보면 좋아요.
 
@@ -618,14 +618,14 @@ to communicate with you in a manner that we would wish you to use if our positio
 <details>
 <summary> <b> GPT 추가설명 (확인할 것) </b> </summary> <br/>
 
-좋아요. 이 결과는 **Week 3 실습이 아주 잘 된 사례**예요.
+좋아요. 이 결과는 <strong>Week 3 실습이 아주 잘 된 사례</strong>예요.
 텍스트 파일보다 PDF에서 청킹 차이가 훨씬 뚜렷하게 드러났어요.
 
 이제 확인할 것들에 맞춰 하나씩 보면 됩니다.
 
 <h2> 1. 텍스트 파일과 PDF 모두 로드 가능한지 </h2>
 
-네, **둘 다 정상적으로 로드되었습니다.**
+네, <strong>둘 다 정상적으로 로드되었습니다.</strong>
 
 이전 txt 실험에서는:
 
@@ -637,7 +637,7 @@ to communicate with you in a manner that we would wish you to use if our positio
 * 로드된 문서 수: 15
 * 원본 메타데이터: `producer`, `creator`, `creationdate`, `moddate`, `title`, `source`, `total_pages`, `page`, `page_label`
 
-즉, PDF는 단순히 글만 읽는 게 아니라 **페이지 단위로 나뉘어서 들어오고**, 메타데이터도 더 풍부하게 붙는다는 점이 잘 보입니다.
+즉, PDF는 단순히 글만 읽는 게 아니라 <strong>페이지 단위로 나뉘어서 들어오고</strong>, 메타데이터도 더 풍부하게 붙는다는 점이 잘 보입니다.
 
 특히 여기서 중요한 건:
 
@@ -646,16 +646,16 @@ to communicate with you in a manner that we would wish you to use if our positio
 * `page_label: '1'`
 
 이런 정보가 있어서, 나중에 RAG 답변에서
-**“이 내용은 몇 페이지에서 나왔는지”** 추적하기가 더 쉬워진다는 거예요.
+<strong>“이 내용은 몇 페이지에서 나왔는지”</strong> 추적하기가 더 쉬워진다는 거예요.
 
 <h2> 2. 실제 투자 문서에서 어느 정도 크기가 적절해 보이는지 </h2>
 
-지금 결과만 보면, **너무 작은 청크는 지나치게 잘게 쪼개진 느낌**이 있어요.
+지금 결과만 보면, <strong>너무 작은 청크는 지나치게 잘게 쪼개진 느낌</strong>이 있어요.
 
 결과를 보면:
 
-* 작은 청크: **439개**
-* 큰 청크: **211개**
+* 작은 청크: <strong>439개</strong>
+* 큰 청크: <strong>211개</strong>
 
 15페이지짜리 문서에서 작은 청크가 439개면,
 페이지당 거의 29개 정도로 나뉜 셈이에요. 꽤 잘게 쪼개졌죠.
@@ -667,7 +667,7 @@ to communicate with you in a manner that we would wish you to use if our positio
 * 2번: 같은 문장의 뒷부분
 
 이건 초보자 실습용으로는 차이가 잘 보여서 좋지만,
-실제 검색 품질 관점에서는 **조금 너무 잘게 잘린 상태**에 가깝습니다.
+실제 검색 품질 관점에서는 <strong>조금 너무 잘게 잘린 상태</strong>에 가깝습니다.
 
 반면 큰 청크도 아직 엄청 크지는 않아요.
 
@@ -676,22 +676,22 @@ to communicate with you in a manner that we would wish you to use if our positio
 * 2번: 178자
 
 이 정도면 여전히 비교적 작은 편이고,
-적어도 문장이 좀 더 이어져 있어서 **문맥 보존은 더 좋아 보입니다.**
+적어도 문장이 좀 더 이어져 있어서 <strong>문맥 보존은 더 좋아 보입니다.</strong>
 
 그래서 지금 실험 결과만 보면:
 
-* **작은 청크(120/20)** → 너무 잘게 나뉘는 경향
-* **큰 청크(220/40)** → 그나마 실제 문서용으로 더 적절해 보임
+* <strong>작은 청크(120/20)</strong> → 너무 잘게 나뉘는 경향
+* <strong>큰 청크(220/40)</strong> → 그나마 실제 문서용으로 더 적절해 보임
 
 이라고 볼 수 있어요.
 
-다만 이것도 여전히 **실전용 최적값이라기보다는 비교 실험용**에 가깝습니다.
+다만 이것도 여전히 <strong>실전용 최적값이라기보다는 비교 실험용</strong>에 가깝습니다.
 실제 투자 PDF라면 보통 지금보다 더 큰 범위도 시험해보는 게 좋아요.
 
 예를 들면:
 
-* 400~800자 수준
-* 혹은 토큰 기준으로 300~800 정도
+* 400\~800자 수준
+* 혹은 토큰 기준으로 300\~800 정도
 
 처럼 더 넓게 실험해볼 수 있어요.
 
@@ -710,7 +710,7 @@ to communicate with you in a manner that we would wish you to use if our positio
   `are required to periodically tell you many specific facts and figures.`
 
 원래는 한 흐름의 문장인데, 청크가 나뉘면서
-**문장이 중간에서 끊긴 모습**이 보입니다.
+<strong>문장이 중간에서 끊긴 모습</strong>이 보입니다.
 
 이렇게 되면 문제는:
 
@@ -718,7 +718,7 @@ to communicate with you in a manner that we would wish you to use if our positio
 * 검색 시 앞부분만 잡히거나 뒷부분만 잡힐 수 있음
 * 답변 생성 시 문장이 어색하게 이어질 수 있음
 
-즉, **검색은 세밀해질 수 있지만 문맥 손실 위험이 커집니다.**
+즉, <strong>검색은 세밀해질 수 있지만 문맥 손실 위험이 커집니다.</strong>
 
 <h3> 너무 큰 경우 </h3>
 
@@ -745,7 +745,7 @@ to communicate with you in a manner that we would wish you to use if our positio
 
 <h2> 4. 청크가 너무 작으면 문맥이 끊기지 않는지 </h2>
 
-네, **이번 PDF 결과에서는 실제로 문맥이 끊기는 모습이 보입니다.**
+네, <strong>이번 PDF 결과에서는 실제로 문맥이 끊기는 모습이 보입니다.</strong>
 
 가장 분명한 예가 이 부분이에요.
 
@@ -757,7 +757,7 @@ to communicate with you in a manner that we would wish you to use if our positio
 
 이건 한 문장이 청크 경계에서 갈라졌다고 볼 수 있어요.
 
-즉, 지금 설정에서는 **작은 청크뿐 아니라 큰 청크도 여전히 문장 분리 문제가 남아 있습니다.**
+즉, 지금 설정에서는 <strong>작은 청크뿐 아니라 큰 청크도 여전히 문장 분리 문제가 남아 있습니다.</strong>
 다만 작은 청크 쪽이 더 심합니다.
 
 이 결과를 통해 말할 수 있는 건:
@@ -766,7 +766,7 @@ to communicate with you in a manner that we would wish you to use if our positio
 
 <h2> 5. 청크가 너무 크면 검색 결과가 덜 정확해지지 않는지 </h2>
 
-이건 이번 결과만으로 **직접 증명된 것은 아니고, 그렇게 될 가능성을 이해하는 단계**예요.
+이건 이번 결과만으로 <strong>직접 증명된 것은 아니고, 그렇게 될 가능성을 이해하는 단계</strong>예요.
 
 왜냐하면 지금은 아직:
 
@@ -783,9 +783,9 @@ to communicate with you in a manner that we would wish you to use if our positio
 
 즉, 현재 단계에서는:
 
-* **작은 청크의 문제** → 실제 출력에서 보임
-* **큰 청크의 문제** → 이론적으로 예상 가능
-* **실제로 어느 쪽이 더 검색 정확도가 좋은지** → 다음 단계에서 벡터 DB + 질의 실험으로 확인해야 함
+* <strong>작은 청크의 문제</strong> → 실제 출력에서 보임
+* <strong>큰 청크의 문제</strong> → 이론적으로 예상 가능
+* <strong>실제로 어느 쪽이 더 검색 정확도가 좋은지</strong> → 다음 단계에서 벡터 DB + 질의 실험으로 확인해야 함
 
 입니다.
 
@@ -799,25 +799,25 @@ to communicate with you in a manner that we would wish you to use if our positio
 
 <h2> 아주 짧게 답하면 </h2>
 
-* **TXT와 PDF 모두 정상 로드됨**
-* **PDF는 페이지 단위 메타데이터까지 들어와서 RAG용으로 더 의미 있는 실험이 됨**
-* **작은 청크는 실제로 문맥이 끊기는 모습이 보임**
-* **큰 청크는 문맥 보존이 더 낫지만, 검색 정확도는 실제 retrieval 실험으로 확인해야 함**
-* **현재 결과만 보면 작은 청크보다 큰 청크 쪽이 실제 투자 문서에 더 적절해 보임**
+* <strong>TXT와 PDF 모두 정상 로드됨</strong>
+* <strong>PDF는 페이지 단위 메타데이터까지 들어와서 RAG용으로 더 의미 있는 실험이 됨</strong>
+* <strong>작은 청크는 실제로 문맥이 끊기는 모습이 보임</strong>
+* <strong>큰 청크는 문맥 보존이 더 낫지만, 검색 정확도는 실제 retrieval 실험으로 확인해야 함</strong>
+* <strong>현재 결과만 보면 작은 청크보다 큰 청크 쪽이 실제 투자 문서에 더 적절해 보임</strong>
 
 </details> <br/>
 
 <details>
 <summary> <b> GPT 추가설명 - 메타데이터 </b> </summary> <br/>
 
-메타데이터는 **데이터에 붙어 있는 설명 정보**예요.
-쉽게 말하면, **내용 그 자체는 아니지만 그 내용을 설명해주는 꼬리표**라고 보면 됩니다.
+메타데이터는 <strong>데이터에 붙어 있는 설명 정보</strong>예요.
+쉽게 말하면, <strong>내용 그 자체는 아니지만 그 내용을 설명해주는 꼬리표</strong>라고 보면 됩니다.
 
 예를 들어 청크의 실제 본문이 이런 거라면:
 
 > 삼성전자는 2024년 들어 반도체 업황 회복의 영향을 받았다.
 
-이 문장 자체가 **본문 데이터**예요.
+이 문장 자체가 <strong>본문 데이터</strong>예요.
 
 그런데 여기에 이런 정보가 같이 붙어 있으면:
 
@@ -827,7 +827,7 @@ to communicate with you in a manner that we would wish you to use if our positio
 * 언제 저장했는지
 * 어떤 카테고리 문서인지
 
-이런 게 바로 **메타데이터**입니다.
+이런 게 바로 <strong>메타데이터</strong>입니다.
 
 <h2> 비유하면 </h2>
 
@@ -851,7 +851,7 @@ to communicate with you in a manner that we would wish you to use if our positio
 
 이런 건 메타데이터예요.
 
-즉, **내용을 설명하는 부가 정보**예요.
+즉, <strong>내용을 설명하는 부가 정보</strong>예요.
 
 <h2> 지금 청킹 코드에서의 메타데이터 </h2>
 
@@ -890,7 +890,7 @@ to communicate with you in a manner that we would wish you to use if our positio
   → `투자보고서`
 
 이 정보들은 청크 내용 자체는 아니죠.
-하지만 그 청크를 **이해하고 관리하는 데 필요한 정보**예요.
+하지만 그 청크를 <strong>이해하고 관리하는 데 필요한 정보</strong>예요.
 그래서 메타데이터라고 부릅니다.
 
 <h2> 왜 필요한데요? </h2>
@@ -961,8 +961,8 @@ RAG에서는 메타데이터가 꽤 중요해요.
 
 즉,
 
-* **본문 데이터** = 실제 내용
-* **메타데이터** = 그 내용을 설명하는 정보
+* <strong>본문 데이터</strong> = 실제 내용
+* <strong>메타데이터</strong> = 그 내용을 설명하는 정보
 
 입니다.
 
@@ -1012,7 +1012,7 @@ RAG용 문서에서는 보통 이런 것들을 많이 넣어요.
 
 메타데이터는
 
-> **“이 텍스트가 어디서 왔고, 어떤 성격인지 알려주는 추가 정보”**
+> <strong>“이 텍스트가 어디서 왔고, 어떤 성격인지 알려주는 추가 정보”</strong>
 
 입니다.
 
@@ -1035,7 +1035,7 @@ RAG용 문서에서는 보통 이런 것들을 많이 넣어요.
 <summary> <b> GPT 추가설명 - 누가 메타데이터를 넣는가? </b> </summary> <br/>
 
 상황에 따라 달라요.
-**일부는 로더가 자동으로 넣어주고, 일부는 개발자가 직접 넣습니다.**
+<strong>일부는 로더가 자동으로 넣어주고, 일부는 개발자가 직접 넣습니다.</strong>
 
 지금 코드 기준으로 나눠서 보면 이해가 쉬워요.
 
@@ -1056,7 +1056,7 @@ documents = loader.load()
 ```
 
 이때 `loader.load()`를 하면 LangChain의 `Document` 객체를 만들어주는데,
-그 안에 **기본 메타데이터**를 어느 정도 같이 넣어주는 경우가 많아요.
+그 안에 <strong>기본 메타데이터</strong>를 어느 정도 같이 넣어주는 경우가 많아요.
 
 예를 들면:
 
@@ -1071,10 +1071,10 @@ documents = loader.load()
 원본 메타데이터: {'source': 'sample_investment_note.txt'}
 ```
 
-이 `source`는 **TextLoader가 넣어준 것**이라고 보면 됩니다.
+이 `source`는 <strong>TextLoader가 넣어준 것</strong>이라고 보면 됩니다.
 
 즉, 이건 OpenAI API가 넣어준 게 아니라
-**LangChain의 document loader가 문서를 읽으면서 붙여준 메타데이터**예요.
+<strong>LangChain의 document loader가 문서를 읽으면서 붙여준 메타데이터</strong>예요.
 
 <h2> 2. 개발자가 직접 넣는 메타데이터 </h2>
 
@@ -1091,7 +1091,7 @@ chunk.metadata.update(
 )
 ```
 
-이건 **당신이 직접 추가한 메타데이터**예요.
+이건 <strong>당신이 직접 추가한 메타데이터</strong>예요.
 
 즉,
 
@@ -1101,7 +1101,7 @@ chunk.metadata.update(
 * `category`
 
 이 4개는 로더가 자동으로 준 게 아니라
-**코드 작성자가 필요해서 넣은 것**입니다.
+<strong>코드 작성자가 필요해서 넣은 것</strong>입니다.
 
 <h2> 아주 간단히 구분하면 </h2>
 
@@ -1120,7 +1120,7 @@ chunk.metadata.update(
 
 <h2> Q. OpenAI API가 넣어주는 건가요? </h2>
 
-보통 **아니에요.**
+보통 <strong>아니에요.</strong>
 
 OpenAI API는 기본적으로:
 
@@ -1187,9 +1187,9 @@ enrich_metadata(chunks_small, args.category)
 
 메타데이터는
 
-* **일부는 로더가 자동으로 넣어줄 수 있고**
-* **대부분 실무에서는 개발자가 필요한 걸 직접 더 붙입니다**
-* **OpenAI API가 자동으로 넣어주는 건 보통 아닙니다**
+* <strong>일부는 로더가 자동으로 넣어줄 수 있고</strong>
+* <strong>대부분 실무에서는 개발자가 필요한 걸 직접 더 붙입니다</strong>
+* <strong>OpenAI API가 자동으로 넣어주는 건 보통 아닙니다</strong>
 
 정도로 이해하면 딱 맞아요.
 
@@ -1207,7 +1207,7 @@ enrich_metadata(chunks_small, args.category)
 <details>
 <summary> <b> GPT 추가설명 </b> </summary> <br/>
 
-좋아요. 지금 쓴 답은 방향은 맞는데, **조금만 더 구체적으로** 적으면 훨씬 좋아져요.
+좋아요. 지금 쓴 답은 방향은 맞는데, <strong>조금만 더 구체적으로</strong> 적으면 훨씬 좋아져요.
 특히 마지막 질문은 헷갈릴 수 있는데, 그 이유까지 같이 설명해볼게요.
 
 <h3> 문서 전체를 한 번에 임베딩하면 왜 검색 품질이 떨어질까? </h3>
@@ -1230,7 +1230,7 @@ enrich_metadata(chunks_small, args.category)
 * 환율
 * RAG 설명
 
-이 다 들어 있으면, 그 전체를 한 벡터로 만들었을 때 **질문과 딱 맞는 부분만 뽑아내기 어려워지는 것**이에요.
+이 다 들어 있으면, 그 전체를 한 벡터로 만들었을 때 <strong>질문과 딱 맞는 부분만 뽑아내기 어려워지는 것</strong>이에요.
 
 <h3> 청크 오버랩이 없으면 어떤 정보 손실이 생길까? </h3>
 
@@ -1256,12 +1256,12 @@ enrich_metadata(chunks_small, args.category)
 
 먼저, 왜 출처 추적이 필요하냐면:
 
-* 답변이 **어느 문서에서 나온 말인지 확인**하려고
-* 사용자가 **원문을 다시 찾아볼 수 있게** 하려고
-* 잘못된 답변이 나오면 **어떤 문서/청크에서 왔는지 디버깅**하려고
+* 답변이 <strong>어느 문서에서 나온 말인지 확인</strong>하려고
+* 사용자가 <strong>원문을 다시 찾아볼 수 있게</strong> 하려고
+* 잘못된 답변이 나오면 <strong>어떤 문서/청크에서 왔는지 디버깅</strong>하려고
 
 즉, RAG는 그냥 답만 하는 게 아니라
-**“이 말이 어디서 나왔는지 보여줄 수 있어야 신뢰성이 높아진다”** 는 점이 중요해요.
+<strong>“이 말이 어디서 나왔는지 보여줄 수 있어야 신뢰성이 높아진다”</strong> 는 점이 중요해요.
 
 그래서 추천 답은:
 

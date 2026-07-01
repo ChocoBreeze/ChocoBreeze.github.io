@@ -7,7 +7,7 @@ categories: "Programming"
 tags: ["Git", "Branch", "CLI", "Version Control", "Developer Tools"]
 ---
 
-`git branch`는 Git에서 **브랜치를 확인하거나 생성, 삭제할 때 사용하는 명령어**입니다.
+`git branch`는 Git에서 <strong>브랜치를 확인하거나 생성, 삭제할 때 사용하는 명령어</strong>입니다.
 
 Git에서 브랜치는 작업 흐름을 나누기 위해 사용합니다. 예를 들어 `main` 브랜치는 안정적인 기본 코드로 두고, 새로운 기능은 `feature/login` 같은 별도 브랜치에서 작업할 수 있습니다.
 
@@ -25,7 +25,7 @@ git branch
 git branch
 ```
 
-이 명령어는 **로컬 브랜치 목록**을 확인할 때 사용합니다.
+이 명령어는 <strong>로컬 브랜치 목록</strong>을 확인할 때 사용합니다.
 
 예를 들어 다음과 같은 결과가 나올 수 있습니다.
 
@@ -47,7 +47,7 @@ git branch
 
 ## 2. 로컬 브랜치란?
 
-`git branch`를 실행했을 때 보이는 브랜치는 기본적으로 **로컬 브랜치**입니다.
+`git branch`를 실행했을 때 보이는 브랜치는 기본적으로 <strong>로컬 브랜치</strong>입니다.
 
 로컬 브랜치는 내 컴퓨터 안에 있는 브랜치입니다.
 
@@ -148,7 +148,7 @@ git branch -D feature/login
 git branch -a
 ```
 
-`git branch -a`는 **로컬 브랜치와 원격 브랜치를 모두 보여주는 명령어**입니다.
+`git branch -a`는 <strong>로컬 브랜치와 원격 브랜치를 모두 보여주는 명령어</strong>입니다.
 
 여기서 `-a`는 all의 의미입니다.
 
@@ -272,7 +272,7 @@ git switch -c feature/payment origin/feature/payment
 git branch -vv
 ```
 
-`git branch -vv`는 **로컬 브랜치가 어떤 원격 브랜치를 추적하고 있는지 자세히 보여주는 명령어**입니다.
+`git branch -vv`는 <strong>로컬 브랜치가 어떤 원격 브랜치를 추적하고 있는지 자세히 보여주는 명령어</strong>입니다.
 
 여기서 `-v`는 verbose의 의미입니다.
 

@@ -11,28 +11,28 @@ categories: "ETF"
 
 | 테마 카테고리 | ETF명 | 종목코드 | 편입 종목 수 |
 |---|---|---|---|
-| **AI 반도체** | KODEX 미국AI반도체TOP3플러스 | 0151S0 | 10종목 |
-| **AI 소프트웨어** | KODEX 미국AI소프트웨어TOP10 | 0041D0 | 10종목 |
-| **AI 테크** | KODEX 미국AI테크TOP10 | 485540 | 10종목 |
-| **AI 전력 인프라** | KODEX 미국AI전력핵심인프라 | 487230 | 10종목 |
-| **반도체 (광의)** | KODEX 미국반도체 | 390390 | 25종목 |
-| **빅테크** | KODEX 미국빅테크10(H) | 314250 | 10종목 |
-| **테크TOP3** | KODEX 미국테크TOP3플러스 | 491090 | 10종목 |
-| **우주항공** | KODEX 미국우주항공 | 0167Z0 | 20종목 |
-| **드론/UAM** | KODEX 미국드론UAM TOP10 | 0144M0 | 10종목 |
-| **휴머노이드 로봇** | KODEX 미국휴머노이드로봇 | 0038A0 | 21종목 |
-| **원자력/SMR** | KODEX 미국원자력SMR | 0132H0 | 10종목 |
-| **클린에너지** | KODEX 미국클린에너지나스닥 | 419420 | 55종목 |
-| **스마트모빌리티** | KODEX 미국스마트모빌리티S&P | 390400 | 88종목 |
-| **서학개미 (한국인 인기종목)** | KODEX 미국서학개미 | 473460 | 25종목 |
+| <strong>AI 반도체</strong> | KODEX 미국AI반도체TOP3플러스 | 0151S0 | 10종목 |
+| <strong>AI 소프트웨어</strong> | KODEX 미국AI소프트웨어TOP10 | 0041D0 | 10종목 |
+| <strong>AI 테크</strong> | KODEX 미국AI테크TOP10 | 485540 | 10종목 |
+| <strong>AI 전력 인프라</strong> | KODEX 미국AI전력핵심인프라 | 487230 | 10종목 |
+| <strong>반도체 (광의)</strong> | KODEX 미국반도체 | 390390 | 25종목 |
+| <strong>빅테크</strong> | KODEX 미국빅테크10(H) | 314250 | 10종목 |
+| <strong>테크TOP3</strong> | KODEX 미국테크TOP3플러스 | 491090 | 10종목 |
+| <strong>우주항공</strong> | KODEX 미국우주항공 | 0167Z0 | 20종목 |
+| <strong>드론/UAM</strong> | KODEX 미국드론UAM TOP10 | 0144M0 | 10종목 |
+| <strong>휴머노이드 로봇</strong> | KODEX 미국휴머노이드로봇 | 0038A0 | 21종목 |
+| <strong>원자력/SMR</strong> | KODEX 미국원자력SMR | 0132H0 | 10종목 |
+| <strong>클린에너지</strong> | KODEX 미국클린에너지나스닥 | 419420 | 55종목 |
+| <strong>스마트모빌리티</strong> | KODEX 미국스마트모빌리티S&P | 390400 | 88종목 |
+| <strong>서학개미 (한국인 인기종목)</strong> | KODEX 미국서학개미 | 473460 | 25종목 |
 
 ---
 
 ## 1. KODEX 미국AI반도체TOP3플러스 (0151S0)
 
-- **기초지수**: Akros 미국 AI반도체 Top 3 플러스 지수 (Price Return)
-- **특징**: 엔비디아, TSMC, 브로드컴 3종목에 약 60% 압축 투자 + AI 반도체 밸류체인 추가 편입
-- **상장일**: 2026년 1월 13일 | **총보수**: 연 0.49%
+- <strong>기초지수</strong>: Akros 미국 AI반도체 Top 3 플러스 지수 (Price Return)
+- <strong>특징</strong>: 엔비디아, TSMC, 브로드컴 3종목에 약 60% 압축 투자 + AI 반도체 밸류체인 추가 편입
+- <strong>상장일</strong>: 2026년 1월 13일 | <strong>총보수</strong>: 연 0.49%
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -51,8 +51,8 @@ categories: "ETF"
 
 ## 2. KODEX 미국AI소프트웨어TOP10 (0041D0)
 
-- **기초지수**: iSelect 미국AI소프트웨어 TOP10 지수 (Price Return)
-- **특징**: AI 소프트웨어 플랫폼 및 클라우드 선도 기업 10종목 집중 투자
+- <strong>기초지수</strong>: iSelect 미국AI소프트웨어 TOP10 지수 (Price Return)
+- <strong>특징</strong>: AI 소프트웨어 플랫폼 및 클라우드 선도 기업 10종목 집중 투자
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -71,8 +71,8 @@ categories: "ETF"
 
 ## 3. KODEX 미국AI테크TOP10 (485540)
 
-- **기초지수**: KEDI 미국AI테크TOP10 지수 (Price Return)
-- **특징**: AI 기술을 주도하는 미국 빅테크 10종목, 시가총액 가중 방식
+- <strong>기초지수</strong>: KEDI 미국AI테크TOP10 지수 (Price Return)
+- <strong>특징</strong>: AI 기술을 주도하는 미국 빅테크 10종목, 시가총액 가중 방식
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -91,8 +91,8 @@ categories: "ETF"
 
 ## 4. KODEX 미국AI전력핵심인프라 (487230)
 
-- **기초지수**: iSelect 미국AI전력핵심인프라 지수 (Price Return)
-- **특징**: AI 데이터센터 전력 공급망 핵심 기업 — 발전설비, 전력 인프라, 원자력 포함
+- <strong>기초지수</strong>: iSelect 미국AI전력핵심인프라 지수 (Price Return)
+- <strong>특징</strong>: AI 데이터센터 전력 공급망 핵심 기업 — 발전설비, 전력 인프라, 원자력 포함
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -111,8 +111,8 @@ categories: "ETF"
 
 ## 5. KODEX 미국반도체 (390390)
 
-- **기초지수**: MVIS US Listed Semiconductor 25 Index (KRW)
-- **특징**: 미국 상장 반도체 기업 25개 — 설계·제조·장비 전 밸류체인
+- <strong>기초지수</strong>: MVIS US Listed Semiconductor 25 Index (KRW)
+- <strong>특징</strong>: 미국 상장 반도체 기업 25개 — 설계·제조·장비 전 밸류체인
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -133,15 +133,15 @@ categories: "ETF"
 | 15 | Cadence Design Systems Inc | CDNS | 2.36% |
 | 16 | MARVELL TECHNOLOGY INC | MRVL | 2.25% |
 | 17 | TERADYNE INC | TER | 1.48% |
-| 18 | MONOLITHIC POWER SYSTEMS | MPWR | ~1% |
-| 19-25 | NXP Semiconductors, ON Semi, Microchip, Skyworks, Wolfspeed 등 | - | 각 ~1% |
+| 18 | MONOLITHIC POWER SYSTEMS | MPWR | \~1% |
+| 19-25 | NXP Semiconductors, ON Semi, Microchip, Skyworks, Wolfspeed 등 | - | 각 \~1% |
 
 ---
 
 ## 6. KODEX 미국빅테크10(H) (314250)
 
-- **기초지수**: NYSE U.S. BIG TECH 10 Index (구 NYSE FANG+ Index)
-- **특징**: 동일가중 방식으로 빅테크 10종목에 균등 투자, 환헤지(H)
+- <strong>기초지수</strong>: NYSE U.S. BIG TECH 10 Index (구 NYSE FANG+ Index)
+- <strong>특징</strong>: 동일가중 방식으로 빅테크 10종목에 균등 투자, 환헤지(H)
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -160,8 +160,8 @@ categories: "ETF"
 
 ## 7. KODEX 미국테크TOP3플러스 (491090)
 
-- **기초지수**: KEDI 미국테크Top3플러스 지수
-- **특징**: 엔비디아, 애플, 마이크로소프트 TOP3에 약 68% 집중 + 테크 밸류체인 추가 편입
+- <strong>기초지수</strong>: KEDI 미국테크Top3플러스 지수
+- <strong>특징</strong>: 엔비디아, 애플, 마이크로소프트 TOP3에 약 68% 집중 + 테크 밸류체인 추가 편입
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -180,9 +180,9 @@ categories: "ETF"
 
 ## 8. KODEX 미국우주항공 (0167Z0)
 
-- **기초지수**: iSelect 미국우주항공 지수 (Price Return)
-- **특징**: 민간 우주 발사체·위성·방위 기업 집중. 스페이스X 상장 시 특별 편입 전략
-- **상장일**: 2026년 3월 17일
+- <strong>기초지수</strong>: iSelect 미국우주항공 지수 (Price Return)
+- <strong>특징</strong>: 민간 우주 발사체·위성·방위 기업 집중. 스페이스X 상장 시 특별 편입 전략
+- <strong>상장일</strong>: 2026년 3월 17일
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -211,8 +211,8 @@ categories: "ETF"
 
 ## 9. KODEX 미국드론UAM TOP10 (0144M0)
 
-- **기초지수**: iSelect 미국드론UAM TOP10 지수 (Price Return)
-- **특징**: 도심항공모빌리티(UAM) 및 군사·상업용 드론 기업 10종목
+- <strong>기초지수</strong>: iSelect 미국드론UAM TOP10 지수 (Price Return)
+- <strong>특징</strong>: 도심항공모빌리티(UAM) 및 군사·상업용 드론 기업 10종목
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -231,8 +231,8 @@ categories: "ETF"
 
 ## 10. KODEX 미국휴머노이드로봇 (0038A0)
 
-- **기초지수**: iSelect 미국 휴머노이드 로봇 지수 (Price Return)
-- **특징**: 로봇 하드웨어·AI·센서 등 휴머노이드 로봇 밸류체인 21종목
+- <strong>기초지수</strong>: iSelect 미국 휴머노이드 로봇 지수 (Price Return)
+- <strong>특징</strong>: 로봇 하드웨어·AI·센서 등 휴머노이드 로봇 밸류체인 21종목
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -245,14 +245,14 @@ categories: "ETF"
 | 7 | Meta Platforms Inc-CL A | META | 5.57% |
 | 8 | TERADYNE INC | TER | 4.31% |
 | 9 | ANALOG DEVICES | ADI | 3.74% |
-| 10~21 | Cognex, ABB, Zebra Technologies, Rockwell Automation, Keyence, IPG Photonics, Harmonic Drive 등 | - | 각 ~1~3% |
+| 10\~21 | Cognex, ABB, Zebra Technologies, Rockwell Automation, Keyence, IPG Photonics, Harmonic Drive 등 | - | 각 \~1\~3% |
 
 ---
 
 ## 11. KODEX 미국원자력SMR (0132H0)
 
-- **기초지수**: iSelect 미국원자력SMR 지수 (Price Return)
-- **특징**: 소형모듈원자로(SMR) 및 우라늄 채굴·농축 기업 집중
+- <strong>기초지수</strong>: iSelect 미국원자력SMR 지수 (Price Return)
+- <strong>특징</strong>: 소형모듈원자로(SMR) 및 우라늄 채굴·농축 기업 집중
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -271,8 +271,8 @@ categories: "ETF"
 
 ## 12. KODEX 미국클린에너지나스닥 (419420)
 
-- **기초지수**: Nasdaq Clean Edge Green Energy Index (Price Return)
-- **특징**: 나스닥 상장 클린에너지 기업 55종목 — 태양광, 전기차, 에너지저장, 수소 등
+- <strong>기초지수</strong>: Nasdaq Clean Edge Green Energy Index (Price Return)
+- <strong>특징</strong>: 나스닥 상장 클린에너지 기업 55종목 — 태양광, 전기차, 에너지저장, 수소 등
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -291,14 +291,14 @@ categories: "ETF"
 | 13 | ACUITY INC | AYI | 2.54% |
 | 14 | ORMAT TECHNOLOGIES INC | ORA | 1.96% |
 | 15 | ENERSYS | ENS | 1.90% |
-| 나머지 40종목 | Plug Power, SolarEdge, FuelCell Energy, Sunrun, Shoals Technologies 등 | - | 각 ~0.5~1.5% |
+| 나머지 40종목 | Plug Power, SolarEdge, FuelCell Energy, Sunrun, Shoals Technologies 등 | - | 각 \~0.5\~1.5% |
 
 ---
 
 ## 13. KODEX 미국스마트모빌리티S&P (390400)
 
-- **기초지수**: S&P Kensho Smart Transportation Index
-- **특징**: S&P Kensho 지수 기반 스마트 모빌리티 88종목 — 전기차, 자율주행, 드론, 항공우주 부품
+- <strong>기초지수</strong>: S&P Kensho Smart Transportation Index
+- <strong>특징</strong>: S&P Kensho 지수 기반 스마트 모빌리티 88종목 — 전기차, 자율주행, 드론, 항공우주 부품
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -317,14 +317,14 @@ categories: "ETF"
 | 13 | Iridium Communications Inc | IRDM | 1.47% |
 | 14 | CUMMINS INC | CMI | 1.43% |
 | 15 | Li Auto Inc | LI | 1.42% |
-| 나머지 73종목 | Luminar, Mobileye, Oshkosh, PACCAR, Methode Electronics 등 | - | 각 ~0.5~1.4% |
+| 나머지 73종목 | Luminar, Mobileye, Oshkosh, PACCAR, Methode Electronics 등 | - | 각 \~0.5\~1.4% |
 
 ---
 
 ## 14. KODEX 미국서학개미 (473460)
 
-- **기초지수**: iSelect 서학개미 지수 (PR)
-- **특징**: 한국 개인 투자자들이 실제로 많이 매수한 미국 주식 기반으로 구성
+- <strong>기초지수</strong>: iSelect 서학개미 지수 (PR)
+- <strong>특징</strong>: 한국 개인 투자자들이 실제로 많이 매수한 미국 주식 기반으로 구성
 
 | 순위 | 종목명 | 티커 | 비중 |
 |---|---|---|---|
@@ -345,7 +345,7 @@ categories: "ETF"
 | 15 | IREN Ltd | IREN | 1.53% |
 | 16 | Rocket Lab Corp | RKLB | 1.47% |
 | 17 | ADVANCED MICRO DEVICES | AMD | 1.34% |
-| 18~25 | ARM Holdings, Joby Aviation, Super Micro Computer, MARA Holdings 등 | - | 각 ~0.5~1.3% |
+| 18\~25 | ARM Holdings, Joby Aviation, Super Micro Computer, MARA Holdings 등 | - | 각 \~0.5\~1.3% |
 
 ---
 
@@ -357,8 +357,8 @@ categories: "ETF"
 
 ## KODEX 미국AI광통신네트워크
 
-- **기초지수**: Akros 미국 AI광통신 및 네트워크 인프라 지수
-- **특징**: 미국 증시에 상장된 광통신 부품·모듈 업체, 데이터센터·통신 네트워크 장비사, AI 데이터센터용 네트워크·스위칭 칩/ASIC 등 반도체 기업
+- <strong>기초지수</strong>: Akros 미국 AI광통신 및 네트워크 인프라 지수
+- <strong>특징</strong>: 미국 증시에 상장된 광통신 부품·모듈 업체, 데이터센터·통신 네트워크 장비사, AI 데이터센터용 네트워크·스위칭 칩/ASIC 등 반도체 기업
 
 | Rank | Name | Ticker | Weight |
 |---|---|---|---|
@@ -381,11 +381,11 @@ categories: "ETF"
 엔비디아를 편입한 ETF는 총 9개로, 비중이 가장 높은 것은 <strong>미국테크TOP3플러스(26.27%)</strong>, 가장 낮은 것은 <strong>미국반도체(19.37%)</strong>입니다.
 
 ### 테마별 집중도
-- **고농축 (5~12종목)**: AI반도체TOP3플러스, AI소프트웨어TOP10, 원자력SMR, 드론UAM TOP10 → 개별 종목 리스크 높지만 테마 수익 극대화
-- **분산형 (25~88종목)**: 미국반도체, 서학개미, 스마트모빌리티 → 테마 내 분산 효과
+- <strong>고농축 (5\~12종목)</strong>: AI반도체TOP3플러스, AI소프트웨어TOP10, 원자력SMR, 드론UAM TOP10 → 개별 종목 리스크 높지만 테마 수익 극대화
+- <strong>분산형 (25\~88종목)</strong>: 미국반도체, 서학개미, 스마트모빌리티 → 테마 내 분산 효과
 
-### 신흥 테마 라인업 (2025~2026 신규 상장)
-삼성자산운용은 2025~2026년 사이 AI 전력·인프라·물리 AI(휴머노이드·드론·우주항공) 관련 신규 ETF를 집중 출시하고 있습니다.
+### 신흥 테마 라인업 (2025\~2026 신규 상장)
+삼성자산운용은 2025\~2026년 사이 AI 전력·인프라·물리 AI(휴머노이드·드론·우주항공) 관련 신규 ETF를 집중 출시하고 있습니다.
 
 ---
 

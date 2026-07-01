@@ -7,7 +7,7 @@ categories: "Semiconductor"
 
 ## 1) 한 문장 정의
 
-> **Tensor Core는 텐서(큰 숫자 상자) 계산을 아주 빠르게 해주는 GPU 안의 특별한 계산 엔진이야.**
+> <strong>Tensor Core는 텐서(큰 숫자 상자) 계산을 아주 빠르게 해주는 GPU 안의 특별한 계산 엔진이야.</strong>
 
 ---
 
@@ -16,12 +16,12 @@ categories: "Semiconductor"
 GPU를 큰 공장이라고 생각해보자.
 
 * 일반 코어 = 여러 가지 일을 하는 일반 직원
-* **Tensor Core** = 행렬/텐서 계산만 엄청 잘하는 **전문 직원**
+* <strong>Tensor Core</strong> = 행렬/텐서 계산만 엄청 잘하는 <strong>전문 직원</strong>
 
 즉,
 
 * 평범한 계산은 일반 직원이 하고
-* AI에서 많이 쓰는 행렬·텐서 계산은 **전문 직원(Tensor Core)** 이 맡아서 훨씬 빨리 처리하는 거야.
+* AI에서 많이 쓰는 행렬·텐서 계산은 <strong>전문 직원(Tensor Core)</strong> 이 맡아서 훨씬 빨리 처리하는 거야.
 
 마치:
 
@@ -33,14 +33,14 @@ GPU를 큰 공장이라고 생각해보자.
 
 ## 3) 실제 예시
 
-Tensor Core는 대표적으로 **NVIDIA GPU**에서 아주 유명해.
+Tensor Core는 대표적으로 <strong>NVIDIA GPU</strong>에서 아주 유명해.
 
 예:
 
-* **NVIDIA A100**
-* **H100**
-* **H200**
-* **B200**
+* <strong>NVIDIA A100</strong>
+* <strong>H100</strong>
+* <strong>H200</strong>
+* <strong>B200</strong>
 * RTX 시리즈 일부
 
 이 GPU들은 AI 학습과 추론을 빠르게 하려고 Tensor Core를 넣었어.
@@ -65,14 +65,14 @@ Tensor Core는 대표적으로 **NVIDIA GPU**에서 아주 유명해.
   * 일반 계산 구역
   * 메모리 구역
   * 캐시 구역
-  * 그리고 **Tensor Core 구역**이 따로 있음
+  * 그리고 <strong>Tensor Core 구역</strong>이 따로 있음
 
-이 Tensor Core 구역은 **숫자 표(행렬)를 한꺼번에 집어서 빠르게 계산하는 공장 라인**처럼 생겼다고 상상하면 돼.
+이 Tensor Core 구역은 <strong>숫자 표(행렬)를 한꺼번에 집어서 빠르게 계산하는 공장 라인</strong>처럼 생겼다고 상상하면 돼.
 
 즉,
 
 * 일반 코어는 손으로 하나씩 계산
-* Tensor Core는 **큰 숫자판을 통째로 넣고 바로 계산해주는 기계**
+* Tensor Core는 <strong>큰 숫자판을 통째로 넣고 바로 계산해주는 기계</strong>
 
 같은 느낌이야.
 
@@ -88,7 +88,7 @@ Tensor Core가 중요한 이유는 엄청 커.
 
 예를 들어:
 
-* NVIDIA가 AI 시대의 강자가 된 이유 중 하나도 **Tensor Core 같은 AI 전용 계산 구조를 잘 만들었기 때문**이야.
+* NVIDIA가 AI 시대의 강자가 된 이유 중 하나도 <strong>Tensor Core 같은 AI 전용 계산 구조를 잘 만들었기 때문</strong>이야.
 
 그래서 시장에서는:
 
@@ -99,7 +99,7 @@ Tensor Core가 중요한 이유는 엄청 커.
 
 같은 게 중요하게 언급돼.
 
-즉, **Tensor Core는 AI GPU의 핵심 무기**라고 보면 돼.
+즉, <strong>Tensor Core는 AI GPU의 핵심 무기</strong>라고 보면 돼.
 
 ---
 

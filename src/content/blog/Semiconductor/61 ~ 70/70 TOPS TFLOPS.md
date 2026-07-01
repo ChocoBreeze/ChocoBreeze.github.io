@@ -7,7 +7,7 @@ categories: "Semiconductor"
 
 ## 1) 한 문장 정의
 
-> **TOPS와 TFLOPS는 반도체가 1초에 얼마나 많은 계산을 할 수 있는지 보여주는 성능 숫자야.**
+> <strong>TOPS와 TFLOPS는 반도체가 1초에 얼마나 많은 계산을 할 수 있는지 보여주는 성능 숫자야.</strong>
 
 ---
 
@@ -22,9 +22,9 @@ categories: "Semiconductor"
 
 반도체도 비슷해.
 
-* **1초에 계산을 얼마나 많이 하느냐**
+* <strong>1초에 계산을 얼마나 많이 하느냐</strong>
 
-를 숫자로 나타낸 게 **TOPS / TFLOPS**야.
+를 숫자로 나타낸 게 <strong>TOPS / TFLOPS</strong>야.
 
 ---
 
@@ -32,7 +32,7 @@ categories: "Semiconductor"
 
 ### TFLOPS
 
-* 주로 **소수점 계산(Floating Point)** 성능을 볼 때 써
+* 주로 <strong>소수점 계산(Floating Point)</strong> 성능을 볼 때 써
 * GPU, AI 학습, 과학 계산에서 자주 등장
 
 예:
@@ -42,7 +42,7 @@ categories: "Semiconductor"
 
 ### TOPS
 
-* 주로 **정수 연산(Int)이나 AI 추론 성능**을 볼 때 많이 써
+* 주로 <strong>정수 연산(Int)이나 AI 추론 성능</strong>을 볼 때 많이 써
 * 스마트폰 NPU, 자동차 AI 칩, 엣지 AI 칩에서 자주 보임
 
 예:
@@ -58,7 +58,7 @@ categories: "Semiconductor"
 
 머릿속에 이렇게 그리면 돼:
 
-* TFLOPS/TOPS가 높은 칩 = **초당 엄청 많은 숫자 블록을 처리하는 거대한 계산 공장**
+* TFLOPS/TOPS가 높은 칩 = <strong>초당 엄청 많은 숫자 블록을 처리하는 거대한 계산 공장</strong>
 
 즉,
 
@@ -94,7 +94,7 @@ categories: "Semiconductor"
 
 실제 성능이 안 나올 수 있어
 
-즉, **TOPS/TFLOPS는 “엔진 출력” 같은 숫자지만, 차 전체 성능은 그것만으로 결정되지 않는다**라고 생각하면 좋아.
+즉, <strong>TOPS/TFLOPS는 “엔진 출력” 같은 숫자지만, 차 전체 성능은 그것만으로 결정되지 않는다</strong>라고 생각하면 좋아.
 
 ---
 

@@ -5,13 +5,13 @@ pubDate: '2026-01-21T00:00:00Z'
 categories: "Semiconductor"
 ---
 
-## 1) **한 문장 정의**
+## 1) <strong>한 문장 정의</strong>
 
-> **메모리 계층 구조는 CPU·GPU가 필요로 하는 데이터를 ‘빠르고 비싼 것 → 느리고 싸고 큰 것’ 순서로 배치한 구조예요.**
+> <strong>메모리 계층 구조는 CPU·GPU가 필요로 하는 데이터를 ‘빠르고 비싼 것 → 느리고 싸고 큰 것’ 순서로 배치한 구조예요.</strong>
 
 ---
 
-## 2) **비유로 쉽게 설명**
+## 2) <strong>비유로 쉽게 설명</strong>
 
 집에서 물건을 꺼내 쓰는 상황을 떠올려보자!
 
@@ -31,7 +31,7 @@ categories: "Semiconductor"
 * 방에 가서 꺼내야 해서 조금 느림
 * 대신 용량이 훨씬 큼
 
-### 🧠 4) HBM = 책장이지만 **바로 옆 방**에 있음
+### 🧠 4) HBM = 책장이지만 <strong>바로 옆 방</strong>에 있음
 
 * DRAM보다 훨씬 넓은 통로로 연결되어 빨리 가져올 수 있음
 * AI 연산을 위해 특별히 만든 “초고속 책장”
@@ -43,7 +43,7 @@ categories: "Semiconductor"
 
 ---
 
-📌 즉, 데이터는 **가까운 곳일수록 빠르고 비싸고 작다**  
+📌 즉, 데이터는 <strong>가까운 곳일수록 빠르고 비싸고 작다</strong>  
 📌 먼 곳일수록 느리고 싸고 크다
 
 ---
@@ -52,12 +52,12 @@ categories: "Semiconductor"
 
 ### CPU·GPU 속도 예시
 
-* **레지스터** → 나노초(ns) 단위
-* **캐시** → 수 ns
-* **DRAM** → 수십~수백 ns
-* **HBM** → DRAM보다 빠름(극단적 병렬 통로 덕분)
-* **SSD** → 마이크로초(µs) 수준
-* **HDD** → 밀리초(ms) 수준(엄청 느림)
+* <strong>레지스터</strong> → 나노초(ns) 단위
+* <strong>캐시</strong> → 수 ns
+* <strong>DRAM</strong> → 수십\~수백 ns
+* <strong>HBM</strong> → DRAM보다 빠름(극단적 병렬 통로 덕분)
+* <strong>SSD</strong> → 마이크로초(µs) 수준
+* <strong>HDD</strong> → 밀리초(ms) 수준(엄청 느림)
 
 ### 실제 제품 안에서
 
@@ -120,16 +120,16 @@ AI 시대의 핵심은:
 
 기업 관점:
 
-* **SK하이닉스·삼성** → HBM 시장 주도
-* **NVIDIA·AMD·Google TPU** → HBM 없으면 성능 절반 이하
-* **TSMC·삼성 파운드리** → 인터포저·CoWoS 같은 구조 필수
-* **SSD 기업(삼성, SK, WD)** → 저장 공간 확장
+* <strong>SK하이닉스·삼성</strong> → HBM 시장 주도
+* <strong>NVIDIA·AMD·Google TPU</strong> → HBM 없으면 성능 절반 이하
+* <strong>TSMC·삼성 파운드리</strong> → 인터포저·CoWoS 같은 구조 필수
+* <strong>SSD 기업(삼성, SK, WD)</strong> → 저장 공간 확장
 
 ---
 
 ## 6) 초보자 체크 질문
 
-다음 중 **가장 빠르지만 용량이 가장 작은 메모리**는 무엇일까?
+다음 중 <strong>가장 빠르지만 용량이 가장 작은 메모리</strong>는 무엇일까?
 
 1. DRAM
 2. Register(레지스터)

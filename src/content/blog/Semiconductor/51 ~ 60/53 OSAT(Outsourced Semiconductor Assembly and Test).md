@@ -7,7 +7,7 @@ categories: "Semiconductor"
 
 ## 1) 한 문장 정의
 
-> **OSAT는 반도체를 대신 조립(패키징)하고 검사(테스트)해주는 전문 회사야.**
+> <strong>OSAT는 반도체를 대신 조립(패키징)하고 검사(테스트)해주는 전문 회사야.</strong>
 
 ---
 
@@ -17,9 +17,9 @@ categories: "Semiconductor"
 
 * 어떤 회사는 장난감 설계만 해
 * 어떤 회사는 장난감 본체만 만들어
-* 그런데 마지막으로 **조립하고, 포장하고, 제대로 작동하는지 검사해주는 전문 업체**가 있어
+* 그런데 마지막으로 <strong>조립하고, 포장하고, 제대로 작동하는지 검사해주는 전문 업체</strong>가 있어
 
-그게 바로 **OSAT**야.
+그게 바로 <strong>OSAT</strong>야.
 
 즉,
 
@@ -34,11 +34,11 @@ categories: "Semiconductor"
 
 대표적인 OSAT 회사들은:
 
-* **ASE** (세계 1위권)
-* **Amkor(앰코)**
-* **JCET**
-* **PTI**
-* **SPIL**
+* <strong>ASE</strong> (세계 1위권)
+* <strong>Amkor(앰코)</strong>
+* <strong>JCET</strong>
+* <strong>PTI</strong>
+* <strong>SPIL</strong>
 
 이런 회사들은
 
@@ -50,7 +50,7 @@ categories: "Semiconductor"
 
 등을 패키징/테스트해.
 
-특히 AI 시대에는 **고급 패키징까지 가능한 OSAT**가 더 중요해지고 있어.
+특히 AI 시대에는 <strong>고급 패키징까지 가능한 OSAT</strong>가 더 중요해지고 있어.
 
 ---
 
@@ -64,7 +64,7 @@ OSAT 공장을 떠올려보면:
 * 몰딩으로 덮고
 * 마지막엔 테스트 장비가 동작을 확인하는 모습
 
-즉, **“반도체 조립 공장 + 품질 검사 공장”** 이 합쳐진 느낌이야.
+즉, <strong>“반도체 조립 공장 + 품질 검사 공장”</strong> 이 합쳐진 느낌이야.
 
 ---
 
@@ -83,7 +83,7 @@ OSAT가 중요한 이유는 아주 커.
 * 칩렛
 * 2.5D/3D 패키징
 
-이 늘어나서 단순한 조립 회사가 아니라 **고급 패키징 기술 회사**로 변신하는 OSAT가 주목받고 있어.
+이 늘어나서 단순한 조립 회사가 아니라 <strong>고급 패키징 기술 회사</strong>로 변신하는 OSAT가 주목받고 있어.
 
 그래서 ASE, Amkor 같은 기업이 산업에서 계속 중요하게 언급돼.
 

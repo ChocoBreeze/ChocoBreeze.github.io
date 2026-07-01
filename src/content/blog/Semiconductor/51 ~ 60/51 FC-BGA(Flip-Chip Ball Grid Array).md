@@ -7,19 +7,19 @@ categories: "Semiconductor"
 
 ## 1) 한 문장 정의
 
-> **FC-BGA는 플립칩 방식으로 칩을 붙이고, 아래쪽에는 작은 납볼(ball)을 촘촘히 깔아 메인보드와 연결하는 패키지 방식이야.**
+> <strong>FC-BGA는 플립칩 방식으로 칩을 붙이고, 아래쪽에는 작은 납볼(ball)을 촘촘히 깔아 메인보드와 연결하는 패키지 방식이야.</strong>
 
 ---
 
 ## 2) 비유
 
-FC-BGA를 **샌드위치**처럼 생각해보자.
+FC-BGA를 <strong>샌드위치</strong>처럼 생각해보자.
 
 * 맨 위: 칩
 * 가운데: 기판
 * 맨 아래: 동글동글한 작은 공들(납볼)
 
-이 작은 공들이 메인보드와 연결되는 **다리** 역할을 해.
+이 작은 공들이 메인보드와 연결되는 <strong>다리</strong> 역할을 해.
 
 즉,
 
@@ -32,9 +32,9 @@ FC-BGA를 **샌드위치**처럼 생각해보자.
 
 FC-BGA는 아주 널리 쓰여.
 
-* **인텔 CPU**
-* **AMD CPU/GPU**
-* **NVIDIA GPU**
+* <strong>인텔 CPU</strong>
+* <strong>AMD CPU/GPU</strong>
+* <strong>NVIDIA GPU</strong>
 * 고성능 네트워크 칩
 * 서버용 프로세서
 
@@ -48,7 +48,7 @@ FC-BGA는 아주 널리 쓰여.
 
 * 위에 네모 칩 1개
 * 그 아래 네모 기판 1장
-* 맨 밑에 작은 공들이 바둑판처럼 수백~수천 개 배열
+* 맨 밑에 작은 공들이 바둑판처럼 수백\~수천 개 배열
 
 옆에서 보면:
 
@@ -82,10 +82,10 @@ FC-BGA가 중요한 이유:
 
 특히 FC-BGA 기판을 만드는 회사들도 산업에서 중요해. 예를 들면:
 
-* **Ibiden**
-* **Shinko**
-* **Unimicron**
-* **삼성전기**
+* <strong>Ibiden</strong>
+* <strong>Shinko</strong>
+* <strong>Unimicron</strong>
+* <strong>삼성전기</strong>
 
 같은 회사들이 관련 시장에서 자주 언급돼.
 

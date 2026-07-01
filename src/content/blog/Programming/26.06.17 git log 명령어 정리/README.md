@@ -7,7 +7,7 @@ categories: "Programming"
 tags: ["Git", "Git Log", "CLI", "Version Control", "Developer Tools"]
 ---
 
-`git log`는 Git에서 **커밋 기록을 확인하는 명령어**입니다.
+`git log`는 Git에서 <strong>커밋 기록을 확인하는 명령어</strong>입니다.
 
 Git은 작업 내용을 커밋 단위로 저장합니다. `git log`를 사용하면 지금까지 어떤 커밋들이 만들어졌는지, 누가 작성했는지, 언제 작성했는지, 어떤 메시지로 커밋했는지 확인할 수 있습니다.
 
@@ -44,7 +44,7 @@ Date    → 커밋 날짜
 메시지  → 커밋 메시지
 ```
 
-여기서 `commit` 뒤에 나오는 긴 문자열은 **커밋 해시**입니다.
+여기서 `commit` 뒤에 나오는 긴 문자열은 <strong>커밋 해시</strong>입니다.
 
 ```text
 a1b2c3d4e5f67890abcdef1234567890abcdef12
@@ -81,7 +81,7 @@ git revert <commit-hash>
 git log --oneline
 ```
 
-`git log --oneline`은 커밋 기록을 **한 줄씩 짧게 보여주는 명령어**입니다.
+`git log --oneline`은 커밋 기록을 <strong>한 줄씩 짧게 보여주는 명령어</strong>입니다.
 
 기본 `git log`는 커밋 하나마다 여러 줄을 사용하기 때문에, 커밋이 많으면 한눈에 보기 어렵습니다.
 
@@ -183,7 +183,7 @@ git log --oneline --graph --all
 
 Git에서는 자주 사용하는 긴 명령어를 짧은 별칭으로 등록할 수 있습니다.
 
-이 별칭을 **alias**라고 합니다.
+이 별칭을 <strong>alias</strong>라고 합니다.
 
 현재 설정된 Git alias를 확인하려면 다음 명령어를 사용할 수 있습니다.
 

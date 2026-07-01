@@ -25,7 +25,7 @@ tags: ["ETF", "USD", "ProShares", "Semiconductor", "Leveraged", "2X"]
 
 ### 개요: 2배 레버리지의 최적 선택
 
-ProShares Ultra Semiconductors (USD)는 2007년 1월 30일에 출시되어 **일일 반도체 지수 수익률의 2배를 추구하는 레버리지 ETF**입니다. 현재 \$57.48 NAV와 \$1.69B AUM을 보유하고 있으며, **SOXL의 3배 레버리지보다 훨씬 우수한 장기 성과를 기록**했습니다.[^1][^2][^3]
+ProShares Ultra Semiconductors (USD)는 2007년 1월 30일에 출시되어 <strong>일일 반도체 지수 수익률의 2배를 추구하는 레버리지 ETF</strong>입니다. 현재 \$57.48 NAV와 \$1.69B AUM을 보유하고 있으며, <strong>SOXL의 3배 레버리지보다 훨씬 우수한 장기 성과를 기록</strong>했습니다.[^1][^2][^3]
 
 ### 핵심 성과: 2X가 3X를 압도
 
@@ -33,31 +33,31 @@ ProShares Ultra Semiconductors (USD)는 2007년 1월 30일에 출시되어 **일
 
 USD (2X Leverage) vs SOXL (3X Leverage): Why Lower Leverage Beats Higher Leverage
 
-**USD vs SOXL 비교**:
+<strong>USD vs SOXL 비교</strong>:
 
-- **1년**: USD +62.02% vs SOXL -63.74% = 125.76포인트 격차[^2]
-- **3년 연환산**: USD +133.77% vs SOXL -76.27% = 210.04포인트 격차[^2]
-- **5년 연환산**: USD +52.27% vs SOXL -73.18% = 125.45포인트 격차[^2]
+- <strong>1년</strong>: USD +62.02% vs SOXL -63.74% = 125.76포인트 격차[^2]
+- <strong>3년 연환산</strong>: USD +133.77% vs SOXL -76.27% = 210.04포인트 격차[^2]
+- <strong>5년 연환산</strong>: USD +52.27% vs SOXL -73.18% = 125.45포인트 격차[^2]
 
-이는 **수학적 불가피성**입니다: **2배 레버리지는 3배 레버리지보다 변동성 감쇠가 현저히 낮습니다**.[^3][^2]
+이는 <strong>수학적 불가피성</strong>입니다: <strong>2배 레버리지는 3배 레버리지보다 변동성 감쇠가 현저히 낮습니다</strong>.[^3][^2]
 
 ### 왜 2X가 3X를 능가하는가?
 
 변동성 감쇠의 수학:
 
-**3X 예시** (SOXL):
+<strong>3X 예시</strong> (SOXL):
 
 - 1일차: 지수 +5% → SOXL +15%
 - 2일차: 지수 -4.5% → SOXL -13.5%
 - 3일차: 지수 +4.5% → SOXL +13.5%
-- **결과**: 지수 +5.05%, SOXL 심각한 손실
+- <strong>결과</strong>: 지수 +5.05%, SOXL 심각한 손실
 
-**2X 예시** (USD):
+<strong>2X 예시</strong> (USD):
 
 - 1일차: 지수 +5% → USD +10%
 - 2일차: 지수 -4.5% → USD -9%
 - 3일차: 지수 +4.5% → USD +9%
-- **결과**: 지수 +5.05%, USD 여전히 수익[^2][^3]
+- <strong>결과</strong>: 지수 +5.05%, USD 여전히 수익[^2][^3]
 
 
 ### 비용 분석: 높지만 정당화됨
@@ -72,10 +72,10 @@ USD의 0.95% 비용은 높지만:[^1]
 
 | 지표 | USD | 평가 |
 | :-- | :-- | :-- |
-| **베타** | ~3.0 | 시장의 3배 변동성[^4] |
-| **표준편차** | 62.5% | 극도로 높음[^5] |
-| **최대 낙폭** | -88.6% | 심각한 하방 위험[^5] |
-| **Sharpe 비율** | 0.69 | 낮음[^5] |
+| <strong>베타</strong> | \~3.0 | 시장의 3배 변동성[^4] |
+| <strong>표준편차</strong> | 62.5% | 극도로 높음[^5] |
+| <strong>최대 낙폭</strong> | -88.6% | 심각한 하방 위험[^5] |
+| <strong>Sharpe 비율</strong> | 0.69 | 낮음[^5] |
 
 ### 최적 보유 기간: 2-6개월
 
@@ -85,20 +85,20 @@ Semiconductor ETF Positioning by Holding Period: USD's Optimal Window (2-6 Month
 
 USD는 다음 기간에 최적입니다:
 
-**완벽한 사용**: 2-6개월 강세 반도체 전망 + 정확한 진입/출장
-**선호 가능**: 1개월-1년 중기 거래
-**비추천**: 1일 (레버리지 감쇠 심함)
-**강하게 비추천**: 5년+ (unleveraged가 우월)
+<strong>완벽한 사용</strong>: 2-6개월 강세 반도체 전망 + 정확한 진입/출장
+<strong>선호 가능</strong>: 1개월-1년 중기 거래
+<strong>비추천</strong>: 1일 (레버리지 감쇠 심함)
+<strong>강하게 비추천</strong>: 5년+ (unleveraged가 우월)
 
 ### 투자 권장안
 
-**USD 매수 시나리오**:
+<strong>USD 매수 시나리오</strong>:
 
 - 반도체 강세 확신 + 2-6개월 타이밍 계획
 - 60% 변동성 수용 가능
 - 명확한 손익분기점 (예: SOXX \$320 하락 시 손절)
 
-**USD 회피 이유**:
+<strong>USD 회피 이유</strong>:
 
 - 장기 투자 목표 (SOXX/SMH 선택)
 - 일일 거래 (옵션이 더 나음)
@@ -107,9 +107,9 @@ USD는 다음 기간에 최적입니다:
 
 ### 최종 평가
 
-USD는 **"중도의 길"**입니다 — SOXL의 극도 위험 회피와 SMH의 보수성 사이. 2배 레버리지는 학문적으로 증명된 최적 장기 레버리지이며, USD의 19년 역사가 이를 입증합니다.[^2]
+USD는 <strong>"중도의 길"</strong>입니다 — SOXL의 극도 위험 회피와 SMH의 보수성 사이. 2배 레버리지는 학문적으로 증명된 최적 장기 레버리지이며, USD의 19년 역사가 이를 입증합니다.[^2]
 
-**결론**: 중기(2-6개월) 반도체 강세 베팅에 USD는 우수한 선택입니다. 그러나 장기 투자자는 여전히 unleveraged SOXX/SMH/SOXQ를 선택해야 합니다.
+<strong>결론</strong>: 중기(2-6개월) 반도체 강세 베팅에 USD는 우수한 선택입니다. 그러나 장기 투자자는 여전히 unleveraged SOXX/SMH/SOXQ를 선택해야 합니다.
 <div align="center">⁂</div>
 
 [^1]: https://www.proshares.com/our-etfs/leveraged-and-inverse/usd

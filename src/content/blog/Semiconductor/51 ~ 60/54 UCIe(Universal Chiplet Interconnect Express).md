@@ -7,7 +7,7 @@ categories: "Semiconductor"
 
 ## 1) 한 문장 정의
 
-> **UCIe는 서로 다른 회사가 만든 칩렛들도 쉽게 연결할 수 있게 해주는 ‘공통 연결 규칙’이야.**
+> <strong>UCIe는 서로 다른 회사가 만든 칩렛들도 쉽게 연결할 수 있게 해주는 ‘공통 연결 규칙’이야.</strong>
 
 ---
 
@@ -20,7 +20,7 @@ categories: "Semiconductor"
 * A회사 블록은 A회사끼리만 잘 맞고
 * B회사 블록은 B회사끼리만 잘 맞으면 불편하겠지?
 
-그래서 필요한 게 **“모든 회사 블록이 서로 맞게 만드는 공통 규칙”** 이야.
+그래서 필요한 게 <strong>“모든 회사 블록이 서로 맞게 만드는 공통 규칙”</strong> 이야.
 
 그게 UCIe야.
 
@@ -30,7 +30,7 @@ categories: "Semiconductor"
 * 칩렛 B
 * 칩렛 C
 
-가 서로 다른 회사에서 나와도 **같은 약속(규칙)** 을 따르면 함께 붙여 쓸 수 있어.
+가 서로 다른 회사에서 나와도 <strong>같은 약속(규칙)</strong> 을 따르면 함께 붙여 쓸 수 있어.
 
 ---
 
@@ -38,17 +38,17 @@ categories: "Semiconductor"
 
 UCIe를 중요하게 보는 회사들:
 
-* **인텔**
-* **AMD**
-* **TSMC**
-* **삼성**
-* **Arm**
-* **Qualcomm**
-* **Google**
-* **Microsoft**
-* **ASE / Amkor** 같은 생태계 기업들
+* <strong>인텔</strong>
+* <strong>AMD</strong>
+* <strong>TSMC</strong>
+* <strong>삼성</strong>
+* <strong>Arm</strong>
+* <strong>Qualcomm</strong>
+* <strong>Google</strong>
+* <strong>Microsoft</strong>
+* <strong>ASE / Amkor</strong> 같은 생태계 기업들
 
-이 개념이 중요한 이유는 앞으로 칩이 “한 덩어리”보다 **칩렛 조합형**으로 갈 가능성이 크기 때문이야.
+이 개념이 중요한 이유는 앞으로 칩이 “한 덩어리”보다 <strong>칩렛 조합형</strong>으로 갈 가능성이 크기 때문이야.
 
 예를 들어 미래에는:
 
@@ -72,7 +72,7 @@ UCIe를 중요하게 보는 회사들:
 한 시스템처럼 동작
 ```
 
-즉, UCIe는 **칩렛 세계의 USB 같은 것**이라고 생각하면 쉬워.
+즉, UCIe는 <strong>칩렛 세계의 USB 같은 것</strong>이라고 생각하면 쉬워.
 
 * USB 규격이 있으면 키보드 회사가 달라도 컴퓨터에 꽂을 수 있지?
 * UCIe도 비슷하게 칩렛끼리 연결하는 공통 약속이야.
@@ -94,7 +94,7 @@ UCIe가 왜 중요하냐면:
 * 설계 재사용 증가
 * 원가 절감
 
-즉, UCIe는 **미래 반도체 산업의 ‘칩렛 공용 언어’** 같은 개념이야.
+즉, UCIe는 <strong>미래 반도체 산업의 ‘칩렛 공용 언어’</strong> 같은 개념이야.
 
 ---
 
