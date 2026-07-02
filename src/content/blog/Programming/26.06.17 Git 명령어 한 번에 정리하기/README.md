@@ -79,6 +79,8 @@ git commit --amend
 
 브랜치는 작업 흐름을 나누는 데 사용한다.
 
+- [`git switch`, `git checkout`, `git branch` 브랜치 생성·이동·삭제 정리](/blog/git-branch-create-switch-delete-guide)
+
 ```bash
 git switch <branch>
 git switch -c <new-branch>
