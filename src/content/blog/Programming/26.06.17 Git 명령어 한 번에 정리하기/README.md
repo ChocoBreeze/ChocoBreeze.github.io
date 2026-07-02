@@ -127,6 +127,8 @@ git push -u origin <branch>
 
 다른 브랜치의 변경 사항을 현재 브랜치에 합칠 때 사용한다.
 
+- [`git merge`, `git rebase`, `git rebase origin/main` 브랜치 합치기 정리](/blog/git-merge-rebase-command-guide)
+
 ```bash
 git merge <branch>
 git rebase <branch>
