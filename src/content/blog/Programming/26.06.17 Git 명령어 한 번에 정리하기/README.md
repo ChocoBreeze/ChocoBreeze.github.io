@@ -95,6 +95,8 @@ git branch -D <branch>
 
 로컬 저장소와 GitHub 같은 원격 저장소의 연결 상태를 확인하거나 바꿀 때 사용한다.
 
+- [`git remote`, `git remote -v`, `git remote add/set-url/remove` 원격 저장소 관리 정리](/blog/git-remote-command-guide)
+
 ```bash
 git remote
 git remote -v
