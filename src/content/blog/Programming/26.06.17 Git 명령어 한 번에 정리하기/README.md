@@ -37,6 +37,7 @@ git log --oneline --graph --all
 파일을 수정한 뒤에는 어떤 내용이 바뀌었는지 확인해야 한다.
 
 - [`git diff`, `git diff --staged`, `git diff --cached`, `git diff HEAD` 정리](/blog/git-diff-command-guide)
+- [`git show`, `git show <commit-hash>` 정리](/blog/git-show-command-guide)
 
 ```bash
 git diff
