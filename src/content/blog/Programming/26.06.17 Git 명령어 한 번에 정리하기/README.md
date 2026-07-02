@@ -52,6 +52,8 @@ git show <commit-hash>
 
 커밋에 포함할 파일을 고르는 단계다.
 
+- [`git add <file>`, `git add .`, `git add -A` 정리](/blog/git-add-command-guide)
+
 ```bash
 git add <file>
 git add .
