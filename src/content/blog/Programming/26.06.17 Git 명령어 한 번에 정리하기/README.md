@@ -110,6 +110,7 @@ git remote remove origin
 원격 저장소의 변경 사항을 가져오거나, 로컬 커밋을 원격 저장소로 올릴 때 사용한다.
 
 - [`git fetch`, `git fetch --prune`, `git pull` 원격 변경 사항 가져오기 정리](/blog/git-fetch-pull-command-guide)
+- [`git push`, `git push origin`, `git push -u origin` 원격 저장소에 올리기 정리](/blog/git-push-command-guide)
 
 ```bash
 git fetch
