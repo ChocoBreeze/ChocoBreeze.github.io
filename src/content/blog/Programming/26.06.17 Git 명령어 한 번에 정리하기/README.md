@@ -67,6 +67,8 @@ git reset <file>
 
 스테이징된 변경 사항을 하나의 기록으로 저장한다.
 
+- [`git commit`, `git commit -m`, `git commit --amend` 정리](/blog/git-commit-command-guide)
+
 ```bash
 git commit
 git commit -m "message"
