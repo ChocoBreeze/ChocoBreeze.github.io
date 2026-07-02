@@ -53,6 +53,7 @@ git show <commit-hash>
 커밋에 포함할 파일을 고르는 단계다.
 
 - [`git add <file>`, `git add .`, `git add -A` 정리](/blog/git-add-command-guide)
+- [`git restore --staged`, `git reset` 스테이징 취소 정리](/blog/git-unstage-command-guide)
 
 ```bash
 git add <file>
