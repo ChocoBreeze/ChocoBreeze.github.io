@@ -143,6 +143,8 @@ git rebase --continue
 
 수정한 파일을 되돌리거나, 커밋 단위로 작업 상태를 되돌릴 때 사용한다.
 
+- [`git restore <file>`, `git restore .`, `git restore --source` 파일 되돌리기 정리](/blog/git-restore-command-guide)
+
 ```bash
 git restore <file>
 git restore .
