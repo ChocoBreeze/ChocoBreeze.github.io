@@ -194,6 +194,8 @@ git tag -d <tag-name>
 
 원격에서 삭제된 브랜치 정보를 로컬에서도 정리하거나, 원격 브랜치를 삭제할 때 사용한다.
 
+- [`git branch -r`, `git fetch --prune`, `git remote prune origin`, `git push origin --delete` 원격 브랜치 정리 정리](/blog/git-remote-branch-cleanup-guide)
+
 ```bash
 git remote prune origin
 git fetch --prune
