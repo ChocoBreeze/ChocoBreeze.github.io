@@ -145,6 +145,7 @@ git rebase --continue
 
 - [`git restore <file>`, `git restore .`, `git restore --source` 파일 되돌리기 정리](/blog/git-restore-command-guide)
 - [`git reset HEAD~1`, `--soft`, `--mixed`, `--hard` 커밋 취소 정리](/blog/git-reset-command-guide)
+- [`git revert <commit-hash>` 커밋 되돌리기 정리](/blog/git-revert-command-guide)
 
 ```bash
 git restore <file>
