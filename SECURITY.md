@@ -4,25 +4,29 @@ This project is a static Astro blog deployed to GitHub Pages.
 
 ## Dependency Audit
 
-Last checked: 2026-05-21
+Last checked: 2026-07-06
 
 Command:
 
 ```sh
-npm audit --json
+npm audit
 ```
 
 Current known audit result:
 
-- 5 moderate vulnerabilities remain.
-- The remaining chain is `@astrojs/check` -> `@astrojs/language-server` -> `volar-service-yaml` -> `yaml-language-server` -> `yaml`.
-- `npm audit fix --force` currently proposes downgrading `@astrojs/check` to `0.9.2`.
+- 8 vulnerabilities (1 low, 5 moderate, 2 high).
+- `astro` (high): XSS via unescaped spread props, Host header SSRF in prerendered error page fetch.
+- `esbuild` 0.27.3–0.28.0 (moderate): arbitrary file read on Windows dev server.
+- `js-yaml` 4.0.0–4.1.1 (moderate): quadratic-complexity DoS via merge key aliases.
+- `vite` 7.0.0–7.3.3 (high): NTLMv2 hash disclosure via UNC path, `server.fs.deny` bypass on Windows.
+- `yaml` chain (moderate): stack overflow via deeply nested YAML — `@astrojs/language-server` → `volar-service-yaml` → `yaml-language-server` → `yaml`.
+- `npm audit fix` claims to resolve all items without `--force`.
 
 Decision:
 
-- Do not apply the forced downgrade while this project uses Astro 6.
-- Keep `@astrojs/check` on the latest compatible release and re-check when a newer `@astrojs/check` or `@astrojs/language-server` release is available.
-- The remaining issue affects development tooling, not generated static site runtime code.
+- `astro`, `esbuild`, `js-yaml`, `vite` issues are in the dev/build toolchain, not in generated static site runtime.
+- Re-run `npm audit fix` after verifying Astro version compatibility to check if safe to apply.
+- The `yaml` chain continues to affect `@astrojs/check` dev tooling only.
 
 ## Recheck Guidance
 

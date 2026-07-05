@@ -26,24 +26,32 @@ npm run dev
 - `npm run dev`: 개발 서버 실행
 - `npm run build`: 프로덕션 빌드
 - `npm run preview`: 빌드 결과 미리보기
+- `npm run check`: TypeScript/Astro 타입 검사
+- `npm run check:content`: 블로그 포스트 frontmatter 및 콘텐츠 품질 검사
+- `npm run new:post`: 새 블로그 포스트 스캐폴드 생성
 - `npm run astro`: Astro CLI 실행
-- `npm run astro -- check`: Astro 검사
 
 ## Project Structure
 
 ```text
 .
+├─ .claude/
+│  └─ commands/         # 슬래시 커맨드 스킬 정의
+├─ docs/                # 운영 가이드 문서
 ├─ public/
+├─ scripts/             # check:content 등 유틸리티 스크립트
 ├─ src/
 │  ├─ components/
 │  ├─ content/
-│  │  └─ blog/
+│  │  └─ blog/          # 카테고리별 하위 폴더로 관리
 │  ├─ data/
 │  ├─ layouts/
+│  ├─ lib/
 │  ├─ pages/
 │  └─ styles/
 ├─ astro.config.mjs
-├─ agent.md
+├─ AGENTS.md
+├─ CLAUDE.md
 ├─ package.json
 └─ README.md
 ```
@@ -114,11 +122,12 @@ Astro 6 기준으로 배포 환경도 Node `22.12.0+`를 유지하는 것이 좋
 의미 있는 레이아웃 변경이나 글 추가 후에는 아래 순서로 확인하는 것을 권장합니다.
 
 ```sh
-npm run astro -- check
+npm run check:content
+npm run check
 npm run build
 ```
 
 ## Agent Guide
 
-자동화 에이전트나 협업용 작업 규칙은 `agent.md`에 정리되어 있습니다.  
-이 문서는 프로젝트 전용 운영 규칙용이며, 개인 전용 메모가 아니라면 보통 `.gitignore`에 넣지 않고 저장소에 포함합니다.
+자동화 에이전트나 협업용 작업 규칙은 `AGENTS.md`에 정리되어 있습니다.  
+Claude Code 전용 가이드는 `CLAUDE.md`를 참고하세요.
