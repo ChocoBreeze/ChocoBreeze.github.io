@@ -207,6 +207,8 @@ git push origin --delete <branch>
 
 Git이 추적하는 파일을 삭제하거나 이름을 바꿀 때 사용한다.
 
+- [`git rm`, `git rm --cached`, `git mv`, `git clean -n`, `git clean -fd` 파일 추적/삭제/정리 정리](/blog/git-rm-mv-clean-command-guide)
+
 ```bash
 git rm <file>
 git rm --cached <file>
