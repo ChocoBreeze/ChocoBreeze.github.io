@@ -223,6 +223,8 @@ git clean -fd
 
 Git 사용자 정보나 설정값을 확인하고 변경할 때 사용한다.
 
+- [`git config --list`, `git config user.name/email`, `git config --global` 설정 확인/변경 정리](/blog/git-config-command-guide)
+
 ```bash
 git config --list
 git config user.name
