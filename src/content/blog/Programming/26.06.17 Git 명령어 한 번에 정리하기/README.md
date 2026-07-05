@@ -237,6 +237,8 @@ git config --global user.email "email"
 
 커밋 기록을 복구하거나, 특정 변경의 원인을 찾거나, 문제가 생긴 커밋을 추적할 때 사용한다.
 
+- [`git reflog` 작업 복구하기 정리](/blog/git-reflog-command-guide)
+
 ```bash
 git reflog
 git cherry-pick <commit-hash>
