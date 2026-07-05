@@ -164,6 +164,8 @@ git revert <commit-hash>
 
 아직 커밋하기 애매한 작업 내용을 잠시 치워둘 때 사용한다.
 
+- [`git stash`, `git stash list`, `git stash pop/apply/drop/clear` 임시 저장 정리](/blog/git-stash-command-guide)
+
 ```bash
 git stash
 git stash list
