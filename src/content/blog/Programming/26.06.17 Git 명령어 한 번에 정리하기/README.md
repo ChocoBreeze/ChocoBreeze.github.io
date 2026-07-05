@@ -239,6 +239,7 @@ git config --global user.email "email"
 
 - [`git reflog` 작업 복구하기 정리](/blog/git-reflog-command-guide)
 - [`git cherry-pick <commit-hash>` 특정 커밋 가져오기 정리](/blog/git-cherry-pick-command-guide)
+- [`git blame <file>`, `git blame -L`, `git blame --follow` 코드 변경 추적 정리](/blog/git-blame-command-guide)
 
 ```bash
 git reflog
