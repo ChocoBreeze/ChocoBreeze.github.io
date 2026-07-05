@@ -179,6 +179,8 @@ git stash clear
 
 릴리스 버전이나 특정 시점을 표시할 때 사용한다.
 
+- [`git tag`, `git tag -a`, `git push origin --tags`, `git tag -d` 태그 관리 정리](/blog/git-tag-command-guide)
+
 ```bash
 git tag
 git tag <tag-name>
