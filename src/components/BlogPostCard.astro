@@ -13,7 +13,7 @@ const href = `/blog/${post.data.slug || post.id}/`;
 const topics = post.data.topics?.slice(0, 3) ?? [];
 ---
 
-<li class={`blog-post-card${image ? '' : ' no-image'}`} data-pub-date={date ? new Date(date).getTime().toString() : '0'}>
+<li class={`blog-post-card${image ? '' : ' no-image'}`} data-pub-date={date ? new Date(date).getTime().toString() : '0'} data-difficulty={post.data.difficulty ?? ''}>
 	<a href={href}>
 		{
 			image && (

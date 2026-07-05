@@ -53,10 +53,14 @@ const topicSummary = Array.from(
 		<div class="difficulty-grid">
 			{
 				difficultySummary.map((item) => (
-					<article class={`difficulty-card difficulty-${item.difficulty.toLowerCase()}`}>
+					<button
+						class={`difficulty-card difficulty-${item.difficulty.toLowerCase()}`}
+						data-filter-difficulty={item.difficulty}
+						aria-pressed="false"
+					>
 						<span>{item.difficulty}</span>
 						<strong>{item.count}개</strong>
-					</article>
+					</button>
 				))
 			}
 		</div>
@@ -117,6 +121,25 @@ const topicSummary = Array.from(
 		border: 1px solid var(--border-color);
 		border-radius: 18px;
 		background: color-mix(in srgb, var(--card-bg) 92%, var(--accent) 8%);
+		cursor: pointer;
+		text-align: left;
+		font-family: inherit;
+		width: 100%;
+		transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+	}
+
+	.difficulty-card:hover {
+		border-color: color-mix(in srgb, var(--border-color) 50%, var(--accent) 50%);
+		transform: translateY(-1px);
+	}
+
+	.difficulty-card:focus-visible {
+		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+		outline-offset: 3px;
+	}
+
+	.difficulty-card[aria-pressed="true"] {
+		box-shadow: 0 0 0 2px currentColor;
 	}
 
 	.difficulty-card span {
@@ -137,14 +160,32 @@ const topicSummary = Array.from(
 
 	.difficulty-easy {
 		background: color-mix(in srgb, #2da44e 14%, var(--card-bg));
+		color: #2da44e;
+	}
+
+	.difficulty-easy[aria-pressed="true"] {
+		background: color-mix(in srgb, #2da44e 24%, var(--card-bg));
+		border-color: #2da44e;
 	}
 
 	.difficulty-medium {
 		background: color-mix(in srgb, #bf8700 14%, var(--card-bg));
+		color: #bf8700;
+	}
+
+	.difficulty-medium[aria-pressed="true"] {
+		background: color-mix(in srgb, #bf8700 24%, var(--card-bg));
+		border-color: #bf8700;
 	}
 
 	.difficulty-hard {
 		background: color-mix(in srgb, #cf222e 12%, var(--card-bg));
+		color: #cf222e;
+	}
+
+	.difficulty-hard[aria-pressed="true"] {
+		background: color-mix(in srgb, #cf222e 22%, var(--card-bg));
+		border-color: #cf222e;
 	}
 
 	.topic-strip {
@@ -169,3 +210,52 @@ const topicSummary = Array.from(
 		}
 	}
 </style>
+
+<script>
+	const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-filter-difficulty]');
+	const grid = document.querySelector('.regular-post-grid');
+	const difficulties = ['Easy', 'Medium', 'Hard'];
+
+	const items = grid
+		? [...grid.querySelectorAll<HTMLLIElement>('li[data-difficulty]')]
+		: [];
+
+	let activeFilter: string | null = null;
+
+	function applyFilter(difficulty: string | null, historyMode: 'push' | 'replace' = 'push') {
+		activeFilter = difficulty;
+
+		items.forEach(item => {
+			item.hidden = difficulty !== null && item.dataset.difficulty !== difficulty;
+		});
+
+		filterBtns.forEach(btn => {
+			const isActive = btn.dataset.filterDifficulty === difficulty;
+			btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+		});
+
+		const url = new URL(window.location.href);
+		difficulty
+			? url.searchParams.set('difficulty', difficulty.toLowerCase())
+			: url.searchParams.delete('difficulty');
+
+		window.history[historyMode === 'replace' ? 'replaceState' : 'pushState']({}, '', url.toString());
+	}
+
+	const rawDifficulty = new URLSearchParams(window.location.search).get('difficulty');
+	const initial = difficulties.find(d => d.toLowerCase() === rawDifficulty) ?? null;
+	applyFilter(initial, 'replace');
+
+	filterBtns.forEach(btn => {
+		btn.addEventListener('click', () => {
+			const d = btn.dataset.filterDifficulty ?? null;
+			applyFilter(activeFilter === d ? null : d);
+		});
+	});
+
+	window.addEventListener('popstate', () => {
+		const raw = new URLSearchParams(window.location.search).get('difficulty');
+		const d = difficulties.find(d => d.toLowerCase() === raw) ?? null;
+		applyFilter(d, 'replace');
+	});
+</script>
