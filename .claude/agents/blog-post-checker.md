@@ -3,6 +3,8 @@ name: blog-post-checker
 description: |
   Proactively use this agent right after a blog post under src/content/blog/ is created or edited, before it is committed — do not wait for the user to ask. Checks frontmatter correctness, category fit, internal consistency, and content quality that npm run check:content cannot catch (tone, clarity, series continuity, code block correctness, unescaped $/~ that break math/strikethrough rendering). Not for enforcing mechanical rules already covered by check:content (missing fields, ISO date format, duplicate slugs) — that runs automatically via git hook.
 
+  When delegating, you must specify the exact file path(s) of the post(s) to review, and state whether each is a newly created post or an edit to an existing one (and if an edit, ideally what changed). Do not hand off a vague instruction like "review the post I just wrote" and let the agent search src/content/blog/ to guess which file — you already know the path from the write/edit you just performed, so pass it directly.
+
   <example>
   Context: user just finished writing a new ETF analysis post via the scaffolding workflow.
   user: "QQQM 포스트 다 썼어요, 커밋해주세요"
