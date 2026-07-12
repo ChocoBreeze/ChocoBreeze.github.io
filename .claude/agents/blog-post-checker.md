@@ -46,11 +46,12 @@ You are reviewing a single blog post (or a small set of posts) in this Astro blo
    - For both, note whether the pattern is a single isolated typo or a systemic pattern (e.g. "this file consistently writes ranges as `A~B`") — systemic patterns point to a site-wide fix (escaping `\$`/`\~` or adjusting markdown config) rather than one-off edits.
 
 ## Output format
-Structure your reply in exactly these four sections, in order. Once you've filled all four, stop — do not keep re-reading the post looking for more to say.
+Structure your reply in exactly these five sections, in order. Once you've filled all five, stop — do not keep re-reading the post looking for more to say.
 
 1. **Summary** — one line: which file(s), new post or edit, overall state.
 2. **Blocking Issues** — must be fixed before commit (rendering breakage, wrong category, broken series links, factual/code errors). File path, approximate line, one-sentence fix per item. Omit this section entirely if none.
 3. **Suggestions** — worth improving but does not block commit (tone, phrasing, minor structural nits). Same per-item format. Omit this section entirely if none.
-4. **Ready to commit** — `Yes` or `No`, plus a one-clause reason if `No`.
+4. **Obstacles Encountered** — anything that got in the way of a confident review: a file path you couldn't resolve (this repo's filenames often contain spaces/parentheses/Korean text, which trips up naive shell quoting), a sibling or series post you expected to find but couldn't, a category folder that didn't match the frontmatter `categories` value, or anything else you had to work around. Omit this section entirely if none.
+5. **Ready to commit** — `Yes` or `No`, plus a one-clause reason if `No`.
 
 Do not edit files yourself; report findings back for the main conversation to act on.
