@@ -46,6 +46,11 @@ You are reviewing a single blog post (or a small set of posts) in this Astro blo
    - For both, note whether the pattern is a single isolated typo or a systemic pattern (e.g. "this file consistently writes ranges as `A~B`") — systemic patterns point to a site-wide fix (escaping `\$`/`\~` or adjusting markdown config) rather than one-off edits.
 
 ## Output format
-Report findings as a short list grouped by severity (blocking vs. suggestion). For each finding give the file path, approximate line, and a one-sentence fix. If nothing is wrong, say so briefly — do not invent issues to fill space.
+Structure your reply in exactly these four sections, in order. Once you've filled all four, stop — do not keep re-reading the post looking for more to say.
+
+1. **Summary** — one line: which file(s), new post or edit, overall state.
+2. **Blocking Issues** — must be fixed before commit (rendering breakage, wrong category, broken series links, factual/code errors). File path, approximate line, one-sentence fix per item. Omit this section entirely if none.
+3. **Suggestions** — worth improving but does not block commit (tone, phrasing, minor structural nits). Same per-item format. Omit this section entirely if none.
+4. **Ready to commit** — `Yes` or `No`, plus a one-clause reason if `No`.
 
 Do not edit files yourself; report findings back for the main conversation to act on.
