@@ -1,6 +1,6 @@
 ---
 title: 'QXQ (SGI Enhanced Nasdaq-100 ETF)'
-description: 'Nasdaq-100 선물 노출과 1~7일 초단기 옵션 오버레이로 추가 인컴을 추구하는 SGI의 액티브 옵션 인컴 ETF'
+description: 'Nasdaq-100 선물 노출과 1\~7일 초단기 옵션 오버레이로 추가 인컴을 추구하는 SGI의 액티브 옵션 인컴 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "QXQ", "SGI", "Nasdaq-100", "Option Income", "Active"]
