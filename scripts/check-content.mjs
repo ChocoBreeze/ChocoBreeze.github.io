@@ -438,7 +438,7 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
 }
 
 function stripCodeBlocks(content) {
-  return content.replace(/```[\s\S]*?```/g, '');
+  return content.replace(/```[\s\S]*?```/g, (match) => match.replace(/[^\n]/g, ''));
 }
 
 function checkMarkdownSyntax(filePath, content, warnings) {
@@ -473,6 +473,63 @@ function checkMarkdownSyntax(filePath, content, warnings) {
         filePath,
         1,
         `Unbalanced HTML tag detected: <${tag}>.`,
+      );
+    }
+  }
+}
+
+const UNESCAPED_DOLLAR_REGEX = /(?<!\\)\$/g;
+const UNESCAPED_TILDE_REGEX = /(?<!\\)~/g;
+// $ and ~ are also legitimate remark-math / code syntax (LeetCode complexity notation,
+// `HEAD~1`, etc.) in the Computing categories, so this check only runs where $ and ~
+// are essentially always plain-text currency/date ranges: the Finance categories.
+const FINANCE_CATEGORIES_FOR_DELIMITER_CHECK = new Set(['ETF', 'Reports', 'Market Brief', 'Economics']);
+
+function stripInlineCode(content) {
+  return content.replace(/`[^`\n]*`/g, (match) => match.replace(/[^\n]/g, ''));
+}
+
+function getPrimaryCategory(content) {
+  const frontmatterMatch = content.match(FRONTMATTER_REGEX);
+  if (!frontmatterMatch) {
+    return undefined;
+  }
+
+  const categoryField = parseFrontmatterFields(frontmatterMatch[1]).get('categories');
+  if (!categoryField) {
+    return undefined;
+  }
+
+  const [firstCategory] = parseFrontmatterListValue(categoryField.rawValue);
+  return firstCategory ? normalizeCategoryValue(firstCategory) : undefined;
+}
+
+function checkMathStrikethroughCollisions(filePath, content, warnings) {
+  const contentWithoutCode = stripInlineCode(stripCodeBlocks(content));
+  const lines = contentWithoutCode.split(/\r?\n/);
+
+  for (const [index, line] of lines.entries()) {
+    const sanitizedLine = line.replace(/\$\$[^$]*\$\$/g, '').replace(/~~[^~]*~~/g, '');
+
+    const dollarCount = (sanitizedLine.match(UNESCAPED_DOLLAR_REGEX) ?? []).length;
+    if (dollarCount >= 2) {
+      addIssue(
+        warnings,
+        'warning',
+        filePath,
+        index + 1,
+        `Line has ${dollarCount} unescaped "$" characters; remark-math may parse text between a pair of them as inline math. Escape currency figures as "\\$" if not intentional math.`,
+      );
+    }
+
+    const tildeCount = (sanitizedLine.match(UNESCAPED_TILDE_REGEX) ?? []).length;
+    if (tildeCount >= 2) {
+      addIssue(
+        warnings,
+        'warning',
+        filePath,
+        index + 1,
+        `Line has ${tildeCount} unescaped "~" characters; GFM may parse text between a pair of them as strikethrough. Escape range separators as "\\~" if not intentional strikethrough.`,
       );
     }
   }
@@ -627,12 +684,29 @@ function checkDuplicatePostRoutes(postRoutes, issues) {
   }
 }
 
+function getStagedFileSet() {
+  const listArg = process.argv.find((arg) => arg.startsWith('--staged-file-list='));
+  if (!listArg) {
+    return null;
+  }
+
+  const listPath = listArg.slice('--staged-file-list='.length);
+  const raw = readFileSync(listPath, 'utf8');
+  return new Set(
+    raw
+      .split(/\r?\n/)
+      .map((line) => line.trim().replace(/\\/g, '/'))
+      .filter(Boolean),
+  );
+}
+
 function main() {
   if (!statSync(CONTENT_DIR).isDirectory()) {
     console.error(`Content directory not found: ${CONTENT_DIR}`);
     process.exit(1);
   }
 
+  const stagedFileSet = getStagedFileSet();
   const files = walkMarkdownFiles(CONTENT_DIR);
   const issues = [];
   const warnings = [];
@@ -645,6 +719,9 @@ function main() {
     const content = readFileSync(filePath, 'utf8');
     checkFrontmatter(filePath, content, issues, warnings, titleIndex);
     checkMarkdownSyntax(filePath, content, warnings);
+    if (FINANCE_CATEGORIES_FOR_DELIMITER_CHECK.has(getPrimaryCategory(content))) {
+      checkMathStrikethroughCollisions(filePath, content, warnings);
+    }
     checkImages(filePath, content, warnings);
     checkPatterns(filePath, content, issues, warnings);
     checkInternalLinks(filePath, content, warnings, postRoutes);
@@ -666,7 +743,15 @@ function main() {
     }
   }
 
-  if (issues.length === 0 && warnings.length === 0) {
+  // Errors always apply repo-wide (correctness must always hold). Warnings are
+  // noisier and lower-stakes, so when a staged-file list is provided (from the
+  // pre-commit hook) only surface warnings for files actually being committed —
+  // otherwise every commit re-prints warnings for the entire legacy corpus.
+  const reportedWarnings = stagedFileSet
+    ? warnings.filter((warning) => stagedFileSet.has(warning.filePath.replace(/\\/g, '/')))
+    : warnings;
+
+  if (issues.length === 0 && reportedWarnings.length === 0) {
     console.log(`Content quality check passed for ${files.length} files.`);
     return;
   }
@@ -675,16 +760,18 @@ function main() {
     console.error(`ERROR ${issue.filePath}:${issue.line} ${issue.message}`);
   }
 
-  for (const warning of warnings) {
+  for (const warning of reportedWarnings) {
     console.warn(`WARN  ${warning.filePath}:${warning.line} ${warning.message}`);
   }
 
   if (issues.length > 0) {
-    console.error(`\nContent quality check failed with ${issues.length} error(s) and ${warnings.length} warning(s).`);
+    console.error(
+      `\nContent quality check failed with ${issues.length} error(s) and ${reportedWarnings.length} warning(s).`,
+    );
     process.exit(1);
   }
 
-  console.warn(`\nContent quality check passed with ${warnings.length} warning(s).`);
+  console.warn(`\nContent quality check passed with ${reportedWarnings.length} warning(s).`);
 }
 
 main();

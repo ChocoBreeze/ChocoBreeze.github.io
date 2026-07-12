@@ -25,12 +25,12 @@ categories: "ETF"
 | 연도 | 내용 |
 |:---:|:---:|
 | 2011 | 캐나다 Horizons ETFs 인수 → Global X Canada로 리브랜딩 |
-| 2018 | 미국 Global X ETFs 인수 ($4,880억원) |
+| 2018 | 미국 Global X ETFs 인수 (\$4,880억원) |
 | 2019 | 일본 다이와증권과 합작 → Global X Japan 설립 |
 | 2022 | 호주 ETF Securities 인수 → Global X Australia |
-| 2023 | 호주 로보어드바이저 Stockspot 인수, 영국 GHCO 인수 ($35M) |
+| 2023 | 호주 로보어드바이저 Stockspot 인수, 영국 GHCO 인수 (\$35M) |
 
-현재 전 세계 13개국에서 624개 ETF, 운용자산 $1,410억(약 200조원) 규모로 세계 12위 ETF 운용사로 올라섰습니다.
+현재 전 세계 13개국에서 624개 ETF, 운용자산 \$1,410억(약 200조원) 규모로 세계 12위 ETF 운용사로 올라섰습니다.
 
 ### 삼성자산운용 
 지분 참여 방식
@@ -323,51 +323,51 @@ categories: "ETF"
 
 | 테마 | ETF명 | 티커 | AUM(USD) |
 |:---:|:---:|:---:|:---:|
-| AI/테크 | Artificial Intelligence & Technology ETF | AIQ | $7.68B |
-| 로봇/AI | Robotics & Artificial Intelligence ETF | BOTZ | $3.20B |
-| 방산/우주기술 | Defense Tech ETF | SHLD | $8.54B |
-| 사이버보안 | Cybersecurity ETF | BUG | $770M |
-| 데이터센터 | Data Center & Digital Infrastructure ETF | DTCR | $1.37B |
-| AI 반도체/양자 | AI Semiconductor & Quantum ETF | CHPX | $27M |
-| 클라우드 | Cloud Computing ETF | CLOU | $187M |
-| 핀테크 | FinTech ETF | FINX | $176M |
-| 자율주행/EV | Autonomous & Electric Vehicles ETF | DRIV | $358M |
-| 인프라 | U.S. Infrastructure Development ETF | PAVE | $12.54B |
-| 전기화 | U.S. Electrification ETF | ZAP | $405M |
-| 원자력/우라늄 | Uranium ETF | URA | $7.01B |
-| 리튬/배터리 | Lithium & Battery Tech ETF | LIT | $1.81B |
-| 희토류/핵심광물 | Rare Earth & Critical Materials ETF | EART | $39M |
-| 구리 광산 | Copper Miners ETF | COPX | $7.46B |
-| 게놈/바이오 | Genomics & Biotechnology ETF | GNOM | $49M |
-| IoT | Internet of Things ETF | SNSR | $199M |
-| 소셜미디어 | Social Media ETF | SOCL | $91M |
-| 수소 | Hydrogen ETF | HYDR | $64M |
-| 블록체인 | Blockchain ETF | BKCH | $226M |
-| 게임/e스포츠 | Video Games & Esports ETF | HERO | $81M |
+| AI/테크 | Artificial Intelligence & Technology ETF | AIQ | \$7.68B |
+| 로봇/AI | Robotics & Artificial Intelligence ETF | BOTZ | \$3.20B |
+| 방산/우주기술 | Defense Tech ETF | SHLD | \$8.54B |
+| 사이버보안 | Cybersecurity ETF | BUG | \$770M |
+| 데이터센터 | Data Center & Digital Infrastructure ETF | DTCR | \$1.37B |
+| AI 반도체/양자 | AI Semiconductor & Quantum ETF | CHPX | \$27M |
+| 클라우드 | Cloud Computing ETF | CLOU | \$187M |
+| 핀테크 | FinTech ETF | FINX | \$176M |
+| 자율주행/EV | Autonomous & Electric Vehicles ETF | DRIV | \$358M |
+| 인프라 | U.S. Infrastructure Development ETF | PAVE | \$12.54B |
+| 전기화 | U.S. Electrification ETF | ZAP | \$405M |
+| 원자력/우라늄 | Uranium ETF | URA | \$7.01B |
+| 리튬/배터리 | Lithium & Battery Tech ETF | LIT | \$1.81B |
+| 희토류/핵심광물 | Rare Earth & Critical Materials ETF | EART | \$39M |
+| 구리 광산 | Copper Miners ETF | COPX | \$7.46B |
+| 게놈/바이오 | Genomics & Biotechnology ETF | GNOM | \$49M |
+| IoT | Internet of Things ETF | SNSR | \$199M |
+| 소셜미디어 | Social Media ETF | SOCL | \$91M |
+| 수소 | Hydrogen ETF | HYDR | \$64M |
+| 블록체인 | Blockchain ETF | BKCH | \$226M |
+| 게임/e스포츠 | Video Games & Esports ETF | HERO | \$81M |
 
 | 테마 | 티커 | AUM | 주요 구성 상위 종목 |
 |:---:|:---:|:---:|:---:|
-| AI/테크 | AIQ | $7.7B | SK하이닉스·삼성전자·NFLX·AVGO·TSM·CSCO·MU·AAPL·NVDA·AMZN |
-| 로봇/AI | BOTZ | $3.2B | ABB·NVDA·키엔스·화낙·ISRG·SMC·Inovance·레인보우로봇 |
-| 방산/우주기술 | SHLD | $8.5B | LMT·RTX·GD·RHM·PLTR·한화에어로스페이스·BAE·LHX·NOC·Thales |
-| 사이버보안 | BUG | $770M | PANW·FTNT·AKAM·CRWD·CHKP·BB·OKTA·S·ATEN·GEN |
-| 데이터센터 | DTCR | $1.4B | EQIX·DLR·AMT·CCI·SBAC·NEXTDC·Keppel DC·GDS |
-| AI 반도체/양자 | CHPX | $27M | ASML·TSM·AVGO·NVDA·MU·INTC·SK하이닉스·ANET·ARM |
-| 클라우드 | CLOU | $187M | DOCN·AKAM·DLR·ZM·TWLO·DBX·FSLY·SHOP·PAYC·CRM |
-| 핀테크 | FINX | $176M | PYPL·XYZ·FISV·HOOD·COIN·INTU·ADYEN·FIS·SOFI·CRCL |
-| 자율주행/EV | DRIV | $358M | INTC·NVDA·GOOGL·Toyota·HON·MSFT·TSLA·COHR |
-| 인프라 | PAVE | $12.5B | PWR·ETN·TT·CSX·HWM·DE·SRE·FAST·UNP·PH |
-| 전기화 | ZAP | $405M | 미국 전력·전기화 인프라 기업 |
-| 원자력/우라늄 | URA | $7.0B | Cameco·NexGen·UEC·OKLO·현대건설·대우건설·두산에너빌리티·삼성물산·한전기술 |
-| 리튬/배터리 | LIT | $1.8B | RIO·ALB·삼성SDI·Panasonic·CATL·BYD·LG에너지솔루션·에코프로BM·TSLA |
-| 희토류/핵심광물 | EART | $39M | ALB·SCCO·Sumitomo·Lynas·RIO·FCX·Anglo American·MP Materials |
-| 구리 광산 | COPX | $7.5B | Lundin·Sumitomo·KGHM·FCX·Glencore·SCCO·BHP·Teck |
-| 게놈/바이오 | GNOM | $49M | MRNA·ARWR·ILMN·GH·BMRN·VRTX·NTRA·BNTX·CRSP |
-| IoT | SNSR | $199M | IoT 관련 센서·연결성 기업 |
-| 소셜미디어 | SOCL | $91M | 글로벌 소셜미디어 기업 |
-| 수소 | HYDR | $64M | 수소 생산·연료전지 기업 |
-| 블록체인 | BKCH | $226M | 블록체인 인프라·암호화폐 관련 기업 |
-| 게임/e스포츠 | HERO | $81M | 게임 개발사·e스포츠 관련 기업 |
+| AI/테크 | AIQ | \$7.7B | SK하이닉스·삼성전자·NFLX·AVGO·TSM·CSCO·MU·AAPL·NVDA·AMZN |
+| 로봇/AI | BOTZ | \$3.2B | ABB·NVDA·키엔스·화낙·ISRG·SMC·Inovance·레인보우로봇 |
+| 방산/우주기술 | SHLD | \$8.5B | LMT·RTX·GD·RHM·PLTR·한화에어로스페이스·BAE·LHX·NOC·Thales |
+| 사이버보안 | BUG | \$770M | PANW·FTNT·AKAM·CRWD·CHKP·BB·OKTA·S·ATEN·GEN |
+| 데이터센터 | DTCR | \$1.4B | EQIX·DLR·AMT·CCI·SBAC·NEXTDC·Keppel DC·GDS |
+| AI 반도체/양자 | CHPX | \$27M | ASML·TSM·AVGO·NVDA·MU·INTC·SK하이닉스·ANET·ARM |
+| 클라우드 | CLOU | \$187M | DOCN·AKAM·DLR·ZM·TWLO·DBX·FSLY·SHOP·PAYC·CRM |
+| 핀테크 | FINX | \$176M | PYPL·XYZ·FISV·HOOD·COIN·INTU·ADYEN·FIS·SOFI·CRCL |
+| 자율주행/EV | DRIV | \$358M | INTC·NVDA·GOOGL·Toyota·HON·MSFT·TSLA·COHR |
+| 인프라 | PAVE | \$12.5B | PWR·ETN·TT·CSX·HWM·DE·SRE·FAST·UNP·PH |
+| 전기화 | ZAP | \$405M | 미국 전력·전기화 인프라 기업 |
+| 원자력/우라늄 | URA | \$7.0B | Cameco·NexGen·UEC·OKLO·현대건설·대우건설·두산에너빌리티·삼성물산·한전기술 |
+| 리튬/배터리 | LIT | \$1.8B | RIO·ALB·삼성SDI·Panasonic·CATL·BYD·LG에너지솔루션·에코프로BM·TSLA |
+| 희토류/핵심광물 | EART | \$39M | ALB·SCCO·Sumitomo·Lynas·RIO·FCX·Anglo American·MP Materials |
+| 구리 광산 | COPX | \$7.5B | Lundin·Sumitomo·KGHM·FCX·Glencore·SCCO·BHP·Teck |
+| 게놈/바이오 | GNOM | \$49M | MRNA·ARWR·ILMN·GH·BMRN·VRTX·NTRA·BNTX·CRSP |
+| IoT | SNSR | \$199M | IoT 관련 센서·연결성 기업 |
+| 소셜미디어 | SOCL | \$91M | 글로벌 소셜미디어 기업 |
+| 수소 | HYDR | \$64M | 수소 생산·연료전지 기업 |
+| 블록체인 | BKCH | \$226M | 블록체인 인프라·암호화폐 관련 기업 |
+| 게임/e스포츠 | HERO | \$81M | 게임 개발사·e스포츠 관련 기업 |
 
 ---
 
