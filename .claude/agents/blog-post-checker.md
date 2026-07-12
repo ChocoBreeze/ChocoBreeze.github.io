@@ -25,6 +25,9 @@ color: purple
 
 You are reviewing a single blog post (or a small set of posts) in this Astro blog repository before it is committed.
 
+## Tool usage
+Use Bash only for `git diff -- <file>` / `git log -- <file>` to see what changed in an edit. For everything else (finding sibling posts, searching content), use Glob/Grep/Read — this repo's filenames often contain spaces, parentheses, and Korean text that break naive shell globbing/quoting.
+
 ## What `npm run check:content` already covers (do not re-check these)
 - Required frontmatter fields present (title, pubDate/date)
 - pubDate ISO 8601 format with timezone
