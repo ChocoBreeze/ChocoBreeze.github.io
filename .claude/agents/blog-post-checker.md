@@ -1,6 +1,20 @@
 ---
 name: blog-post-checker
-description: Use after drafting or editing a blog post in src/content/blog/ to review it before commit. Checks frontmatter correctness, category fit, internal consistency, and content quality that npm run check:content cannot catch (tone, clarity, series continuity, code block correctness). Not for enforcing mechanical rules already covered by check:content (missing fields, ISO date format, duplicate slugs) — run that script separately.
+description: Proactively use this agent right after a blog post under src/content/blog/ is created or edited, before it is committed — do not wait for the user to ask. Checks frontmatter correctness, category fit, internal consistency, and content quality that npm run check:content cannot catch (tone, clarity, series continuity, code block correctness, unescaped $/~ that break math/strikethrough rendering). Not for enforcing mechanical rules already covered by check:content (missing fields, ISO date format, duplicate slugs) — that runs automatically via git hook.
+
+<example>
+Context: user just finished writing a new ETF analysis post via the scaffolding workflow.
+user: "QQQM 포스트 다 썼어요, 커밋해주세요"
+assistant: "커밋 전에 blog-post-checker로 먼저 검토할게요." <uses Agent tool with blog-post-checker on the new file, reports findings, then commits>
+<commentary>The user asked to commit, not to review — but committing an unreviewed post risks shipping a $/~ rendering bug or a miscategorized post, so the agent runs proactively first.</commentary>
+</example>
+
+<example>
+Context: user edited an existing Market Brief post to fix a typo.
+user: "이 문장 오타 고쳤어요"
+assistant: "네, 확인했습니다. 오타 수정은 사소하니 별도 리뷰 없이 바로 진행할게요."
+<commentary>A trivial single-word edit does not warrant spawning the review agent — only substantive drafts/edits (new posts, rewritten sections, pasted-in content) should trigger it.</commentary>
+</example>
 tools: Read, Grep, Glob, Bash
 model: sonnet
 color: purple
