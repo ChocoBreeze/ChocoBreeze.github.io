@@ -38,9 +38,13 @@ Required frontmatter fields: `title`, and either `pubDate` (full ISO 8601 with t
 
 Optional but important fields: `categories`, `slug`, `description`, `tags`, `difficulty`, `topics`, `pinned`, `order`.
 
+Legacy Jekyll fields (`date`, `image`) are still accepted by the schema, but new posts should use `pubDate` and `heroImage`.
+
 ### Categories
 
-Defined in `src/data/blogCategories.ts` as `BLOG_CATEGORIES`. Each category maps to a page route (e.g. `ETF` → `/etf`). The `normalizeCategory()` function handles alias variants (e.g. `"cs"` → `"Computer Science"`). Finance categories (`ETF`, `Economics`, `Reports`, `Market Brief`) and Computing categories (`Computer Science`, `Programming`, `Problem_Solving`) are grouped in the nav under `/finance` and `/computing` index pages.
+Defined in `src/data/blogCategories.ts` as `BLOG_CATEGORIES`. Each category maps to a page route (e.g. `ETF` → `/etf`). The `normalizeCategory()` function handles alias variants (e.g. `"cs"` → `"Computer Science"`). Finance categories (`ETF`, `Economics`, `Reports`, `Market Brief`) and Computing categories (`Computer Science`, `Programming`, `Problem_Solving`) are grouped in the nav under `/finance` and `/computing` index pages; `Semiconductor` is a standalone top-level nav item.
+
+Physical folder names under `src/content/blog/` can differ from category keys (folder `Problem Solving` ↔ key `Problem_Solving`). Never place non-post markdown (guides, references, notes) under `src/content/blog/` — every `.md`/`.mdx` file there becomes a published post.
 
 ### URL / slug resolution
 
@@ -69,8 +73,16 @@ A post's URL is `/blog/<slug>` where `<slug>` is the frontmatter `slug` field if
 - No absolute local paths or secret patterns in content
 - Missing image alt text, unbalanced bold markers
 
-CI runs this check on every pull request (`check:content` → `astro check` → `build`).
+CI runs this check on every pull request (`check:content` → `astro check` → `build`). A local git pre-commit hook also runs `check-content.mjs` against any staged `.md`/`.mdx` files, so a commit with a broken post will fail — fix the reported errors rather than bypassing the hook.
 
 ### Deployment
 
-Push to `main` triggers GitHub Actions (`deploy.yml`) which builds with `npm run build` and deploys `./dist` to GitHub Pages.
+Push to `main` triggers GitHub Actions (`deploy.yml`) which builds with `npm run build` and deploys `./dist` to GitHub Pages. The workflow pins Node 22.12.0; keep it on Node 22.12+ for Astro 6 compatibility.
+
+## Operational guides
+
+- `AGENTS.md` — working rules for this repo: review checklist, commit gate (separate commits for content vs. UI vs. validation vs. deployment changes), content security checks.
+- `docs/market-brief-prompts.md` — current Daily/Weekly Market Brief prompt rules (also driven by the `/market-daily` and `/market-weekly` slash commands in `.claude/commands/`).
+- `docs/etf/etf-content-guide.md` and `docs/etf/미국상장_ETF_분류_기준_Codex용_v2.md` — ETF post placement and U.S.-listed ETF classification rules.
+- `docs/image-management.md` — post-local `images/` folders for single-post images; `public/images/` for shared assets.
+- `docs/blog-routing-and-related-posts.md` — read before changing prev/next or related-posts logic in `src/pages/blog/[...slug].astro` (category-and-order based, not similarity based).
