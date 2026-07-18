@@ -24,6 +24,7 @@ type Props = Pick<
 	| 'topics'
 > & {
 	headings?: MarkdownHeading[];
+	ogImage?: string;
 };
 
 const {
@@ -37,9 +38,13 @@ const {
 	difficulty,
 	topics,
 	headings,
+	ogImage,
 } = Astro.props;
 const date = pubDate || jekyllDate;
 const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
+// The on-page hero uses only a real image; the social card falls back to the
+// generated OG image when the post has none.
+const socialImage = image ?? ogImage;
 const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
 const visibleTopics = topics?.slice(0, 6) ?? [];
 ---
@@ -49,7 +54,7 @@ const visibleTopics = topics?.slice(0, 6) ?? [];
 		<BaseHead
 			title={title}
 			description={description}
-			image={image}
+			image={socialImage}
 			type="article"
 			publishedTime={date}
 			modifiedTime={updatedDate}

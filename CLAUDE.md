@@ -65,6 +65,10 @@ A post's URL is `/blog/<slug>` where `<slug>` is the frontmatter `slug` field if
 - `src/pages/code-search.json.ts` emits a code-only search index (`src/lib/codeSearchIndex.ts`).
 - RSS feeds: `/rss.xml` (all posts) and `/rss/<category>.xml` per category, implemented in `src/lib/rss.js`.
 
+### Open Graph images
+
+Posts without their own `heroImage`/`image` get an auto-generated OG card at `/og/<slug>.png`, built at build time by `src/pages/og/[...slug].png.ts` via `src/lib/og.ts` (satori lays out the title + category and converts text to vector paths; sharp rasterizes to PNG). The font is vendored at `src/assets/og/Pretendard-Bold.otf` (OFL). `src/pages/blog/[...slug].astro` passes the `/og/<slug>.png` URL to `BlogPost` as `ogImage`, and `BaseHead` uses it as the social image only when the post has no real image. The endpoint's `getStaticPaths` filters to exactly the imageless posts, so the two stay consistent — keep that filter and the `BlogPost` fallback in sync if you change either.
+
 ### Content quality checks (`npm run check:content`)
 
 `scripts/check-content.mjs` validates every markdown file for:

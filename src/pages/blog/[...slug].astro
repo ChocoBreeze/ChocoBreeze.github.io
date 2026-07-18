@@ -53,9 +53,13 @@ const relatedPosts = allPosts
 
 const getSlug = (p: CollectionEntry<'blog'>) => p.data.slug || p.id;
 const getDate = (p: CollectionEntry<'blog'>) => p.data.pubDate || p.data.date;
+
+// Posts without their own image fall back to a generated OG card at /og/<slug>.png
+// (produced by src/pages/og/[...slug].png.ts for exactly these posts).
+const ogImage = `/og/${post.data.slug || post.id}.png`;
 ---
 
-<BlogPost {...post.data} headings={headings}>
+<BlogPost {...post.data} headings={headings} ogImage={ogImage}>
 	<Content />
 
 	{

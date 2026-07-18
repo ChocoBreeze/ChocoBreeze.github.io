@@ -1,2 +1,5 @@
 # Shell hooks must stay LF so /bin/sh does not choke on CRLF line endings
 scripts/hooks/* text eol=lf
+
+# Vendored font is binary — never apply line-ending conversion or text diffs
+*.otf binary
