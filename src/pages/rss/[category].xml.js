@@ -23,7 +23,9 @@ export function getStaticPaths() {
 
 export async function GET(context) {
 	const category = context.props.category ?? getCategoryByFeedSlug(context.params.category);
-	const posts = (await getPublishedPosts()).filter((post) => postMatchesCategory(post, category.key));
+	const posts = (await getPublishedPosts()).filter((post) =>
+		postMatchesCategory(post, category.key),
+	);
 
 	return rss({
 		title: `${category.title} | ${SITE_TITLE}`,

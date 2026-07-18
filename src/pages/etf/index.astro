@@ -45,7 +45,7 @@ const etfSections = Array.from(
 		current.push(entry);
 		sections.set(section, current);
 		return sections;
-	}, new Map<string, { title: string; href: string; subPath: string; ticker?: string }[]>())
+	}, new Map<string, { title: string; href: string; subPath: string; ticker?: string }[]>()),
 )
 	.map(([section, entries]) => ({
 		section,
@@ -65,8 +65,8 @@ const etfSections = Array.from(
 			<p class="section-eyebrow">ETF Classification</p>
 			<h2 id="etf-classification-heading">분류별 ETF 빠른 탐색</h2>
 			<p>
-				ETF 글은 운용 목적과 노출 자산에 따라 물리 폴더를 나눠 정리합니다.
-				아래 카드는 현재 작성된 글을 분류별로 모은 인덱스입니다.
+				ETF 글은 운용 목적과 노출 자산에 따라 물리 폴더를 나눠 정리합니다. 아래 카드는 현재 작성된
+				글을 분류별로 모은 인덱스입니다.
 			</p>
 		</div>
 		<div class="etf-section-grid">
@@ -87,7 +87,9 @@ const etfSections = Array.from(
 								</li>
 							))}
 						</ul>
-						{entries.length > 8 && <p class="more-count">+ {entries.length - 8} more in this section</p>}
+						{entries.length > 8 && (
+							<p class="more-count">+ {entries.length - 8} more in this section</p>
+						)}
 					</article>
 				))
 			}

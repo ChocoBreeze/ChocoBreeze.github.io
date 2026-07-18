@@ -7,7 +7,9 @@ const posts = (await getPublishedPosts())
 	.filter((post) => {
 		const cats = post.data.categories;
 		return Array.isArray(cats)
-			? cats.some((category) => ['Economics', 'economics', 'economy', 'macro', 'macroeconomics'].includes(category))
+			? cats.some((category) =>
+					['Economics', 'economics', 'economy', 'macro', 'macroeconomics'].includes(category),
+				)
 			: ['Economics', 'economics', 'economy', 'macro', 'macroeconomics'].includes(cats || '');
 	})
 	.sort((a, b) => {

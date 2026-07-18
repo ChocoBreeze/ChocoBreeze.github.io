@@ -19,7 +19,9 @@ export function sortPostsByDateDesc(posts: BlogPost[]) {
 }
 
 export function getPostTags(post: BlogPost) {
-	return toList(post.data.tags).filter((tag): tag is string => typeof tag === 'string' && tag.trim().length > 0);
+	return toList(post.data.tags).filter(
+		(tag): tag is string => typeof tag === 'string' && tag.trim().length > 0,
+	);
 }
 
 export function getTagGroups(posts: BlogPost[]) {

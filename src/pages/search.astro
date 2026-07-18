@@ -40,7 +40,9 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 				outline: none;
 				background: var(--card-bg);
 				color: var(--text-color);
-				transition: border-color 0.2s, box-shadow 0.2s;
+				transition:
+					border-color 0.2s,
+					box-shadow 0.2s;
 			}
 			#search-input::placeholder {
 				color: var(--muted-text);
@@ -72,7 +74,11 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 				background: var(--card-bg);
 				border: 1px solid var(--border-color);
 				box-shadow: 0 10px 24px rgba(var(--gray), 0.08);
-				transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+				transition:
+					background-color 0.2s,
+					border-color 0.2s,
+					box-shadow 0.2s,
+					transform 0.2s;
 			}
 			.result-item:hover {
 				background-color: color-mix(in srgb, var(--card-bg) 82%, var(--muted-text) 18%);
@@ -169,11 +175,13 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 					</select>
 					<select id="search-category" aria-label="검색 카테고리" disabled>
 						<option value="/search.json">전체 카테고리</option>
-						{BLOG_CATEGORIES.map((category) => (
-							<option value={`/search/${getSearchCategorySlug(category.key)}.json`}>
-								{category.label}
-							</option>
-						))}
+						{
+							BLOG_CATEGORIES.map((category) => (
+								<option value={`/search/${getSearchCategorySlug(category.key)}.json`}>
+									{category.label}
+								</option>
+							))
+						}
 					</select>
 				</div>
 			</div>
@@ -224,7 +232,9 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 			}
 
 			function getCurrentIndexPath() {
-				return searchMode?.value === 'code' ? '/code-search.json' : searchCategory?.value || '/search.json';
+				return searchMode?.value === 'code'
+					? '/code-search.json'
+					: searchCategory?.value || '/search.json';
 			}
 
 			async function loadSearchIndex(indexPath = '/search.json') {
@@ -271,7 +281,8 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 					searchCategory.disabled = false;
 					searchInput.placeholder = '검색을 사용할 수 없습니다.';
 					resultsCount.classList.add('error');
-					resultsCount.textContent = '검색 인덱스를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
+					resultsCount.textContent =
+						'검색 인덱스를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
 				}
 			}
 
@@ -335,13 +346,7 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 			}
 
 			function getMatchSnippet(item: SearchItem, query: string) {
-				const sources = [
-					item.d,
-					...(item.h ?? []),
-					item.e,
-					item.f,
-					item.x,
-				];
+				const sources = [item.d, ...(item.h ?? []), item.e, item.f, item.x];
 
 				for (const source of sources) {
 					if (!source) continue;

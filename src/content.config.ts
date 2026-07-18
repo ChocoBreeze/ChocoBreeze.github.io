@@ -17,7 +17,10 @@ const blog = defineCollection({
 		heroImage: z.string().optional().nullable(),
 		image: z.string().optional().nullable(), // Jekyll field
 		tags: z.array(z.string()).optional().nullable(),
-		categories: z.union([z.string(), z.array(z.string())]).optional().nullable(),
+		categories: z
+			.union([z.string(), z.array(z.string())])
+			.optional()
+			.nullable(),
 		difficulty: z.string().optional().nullable(),
 		topics: z.array(z.string()).optional().nullable(),
 		pinned: z.boolean().optional().default(false),

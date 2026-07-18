@@ -9,7 +9,9 @@ const posts = await getPublishedPosts();
 const categoryCounts = new Map<string, number>();
 
 for (const post of posts) {
-	const categories = Array.isArray(post.data.categories) ? post.data.categories : [post.data.categories];
+	const categories = Array.isArray(post.data.categories)
+		? post.data.categories
+		: [post.data.categories];
 	for (const category of categories) {
 		const normalized = normalizeCategory(category);
 		if (!normalized) continue;
@@ -94,7 +96,11 @@ const sections = [
 		background:
 			radial-gradient(circle at top left, rgba(52, 152, 219, 0.18), transparent 32%),
 			radial-gradient(circle at top right, rgba(46, 204, 113, 0.16), transparent 28%),
-			linear-gradient(135deg, var(--card-bg), color-mix(in srgb, var(--card-bg) 88%, var(--accent) 12%));
+			linear-gradient(
+				135deg,
+				var(--card-bg),
+				color-mix(in srgb, var(--card-bg) 88%, var(--accent) 12%)
+			);
 		border: 1px solid var(--border-color);
 		box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
 	}

@@ -9,33 +9,49 @@ import HeaderLink from './HeaderLink.astro';
 	<nav>
 		<h2 class="site-title">
 			<svg class="site-logo" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
-				<path d="M18.33 2c-1.01 0-1.91.61-2.26 1.55-.35-.94-1.25-1.55-2.26-1.55s-1.91.61-2.26 1.55c-.35-.94-1.25-1.55-2.26-1.55S7.39 2.61 7.04 3.55C6.69 2.61 5.79 2 4.78 2 3.24 2 2 3.24 2 4.78V20c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4.78c0-1.54-1.24-2.78-2.78-2.78-.3 0-.59.05-.89.15zM11 20H4v-5h7v5zm0-7H4V8h7v5zm9 7h-7v-5h7v5zm0-7h-7V8h7v5z" />
+				<path
+					d="M18.33 2c-1.01 0-1.91.61-2.26 1.55-.35-.94-1.25-1.55-2.26-1.55s-1.91.61-2.26 1.55c-.35-.94-1.25-1.55-2.26-1.55S7.39 2.61 7.04 3.55C6.69 2.61 5.79 2 4.78 2 3.24 2 2 3.24 2 4.78V20c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4.78c0-1.54-1.24-2.78-2.78-2.78-.3 0-.59.05-.89.15zM11 20H4v-5h7v5zm0-7H4V8h7v5zm9 7h-7v-5h7v5zm0-7h-7V8h7v5z"
+				></path>
 			</svg>
 			<a href="/">{SITE_TITLE}</a>
 		</h2>
 		<div class="internal-links">
-			<HeaderLink href="/finance" matchPaths={['finance', 'etf', 'reports', 'market-brief', 'economics']}>Finance</HeaderLink>
+			<HeaderLink
+				href="/finance"
+				matchPaths={['finance', 'etf', 'reports', 'market-brief', 'economics']}>Finance</HeaderLink
+			>
 			<HeaderLink href="/semiconductor">Semiconductor</HeaderLink>
-			<HeaderLink href="/computing" matchPaths={['computing', 'cs', 'programming', 'problem-solving']}>Computing</HeaderLink>
+			<HeaderLink
+				href="/computing"
+				matchPaths={['computing', 'cs', 'programming', 'problem-solving']}>Computing</HeaderLink
+			>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
 		<div class="social-links">
 			<a href="/search">
 				<span class="sr-only">Search posts</span>
-				<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<svg
+					viewBox="0 0 24 24"
+					width="24"
+					height="24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
 					<circle cx="11" cy="11" r="8"></circle>
 					<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
 				</svg>
 			</a>
 			<a href="https://blog.naver.com/chocobreeze" target="_blank" rel="noopener noreferrer">
 				<span class="sr-only">Follow me on Naver Blog</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true" width="28" height="28">
-                <path
-                  fill="currentColor"
-                  d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"
-                ></path>
-              </svg>
-            </a>
+				<svg viewBox="0 0 24 24" aria-hidden="true" width="28" height="28">
+					<path
+						fill="currentColor"
+						d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"></path>
+				</svg>
+			</a>
 			<a href="https://github.com/ChocoBreeze" target="_blank" rel="noopener noreferrer">
 				<span class="sr-only">Go to my GitHub repo</span>
 				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
@@ -45,8 +61,23 @@ import HeaderLink from './HeaderLink.astro';
 					></path>
 				</svg>
 			</a>
-			<button id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false" class="theme-toggle">
-				<svg id="sun-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+			<button
+				id="theme-toggle"
+				aria-label="Toggle dark mode"
+				aria-pressed="false"
+				class="theme-toggle"
+			>
+				<svg
+					id="sun-icon"
+					viewBox="0 0 24 24"
+					width="24"
+					height="24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
 					<circle cx="12" cy="12" r="5"></circle>
 					<line x1="12" y1="1" x2="12" y2="3"></line>
 					<line x1="12" y1="21" x2="12" y2="23"></line>
@@ -57,7 +88,17 @@ import HeaderLink from './HeaderLink.astro';
 					<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
 					<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
 				</svg>
-				<svg id="moon-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<svg
+					id="moon-icon"
+					viewBox="0 0 24 24"
+					width="24"
+					height="24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
 					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
 				</svg>
 			</button>
@@ -67,16 +108,23 @@ import HeaderLink from './HeaderLink.astro';
 
 <script>
 	const header = document.querySelector('header');
-	window.addEventListener('scroll', () => {
-		header?.classList.toggle('scrolled', window.scrollY > 0);
-	}, { passive: true });
+	window.addEventListener(
+		'scroll',
+		() => {
+			header?.classList.toggle('scrolled', window.scrollY > 0);
+		},
+		{ passive: true },
+	);
 
 	const themeToggle = document.getElementById('theme-toggle');
 	const html = document.documentElement;
 
 	if (themeToggle) {
 		const syncPressedState = () => {
-			themeToggle.setAttribute('aria-pressed', html.getAttribute('data-theme') === 'dark' ? 'true' : 'false');
+			themeToggle.setAttribute(
+				'aria-pressed',
+				html.getAttribute('data-theme') === 'dark' ? 'true' : 'false',
+			);
 		};
 
 		syncPressedState();
@@ -84,7 +132,7 @@ import HeaderLink from './HeaderLink.astro';
 		themeToggle.addEventListener('click', () => {
 			const isDark = html.getAttribute('data-theme') === 'dark';
 			const newTheme = isDark ? 'light' : 'dark';
-			
+
 			html.setAttribute('data-theme', newTheme);
 			localStorage.setItem('theme', newTheme);
 			syncPressedState();
@@ -153,11 +201,19 @@ import HeaderLink from './HeaderLink.astro';
 	}
 	.theme-toggle svg {
 		position: absolute;
-		transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+		transition:
+			transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+			opacity 0.3s;
 	}
 
-	#sun-icon { opacity: 0; transform: rotate(90deg) scale(0); }
-	#moon-icon { opacity: 0; transform: rotate(-90deg) scale(0); }
+	#sun-icon {
+		opacity: 0;
+		transform: rotate(90deg) scale(0);
+	}
+	#moon-icon {
+		opacity: 0;
+		transform: rotate(-90deg) scale(0);
+	}
 
 	:global([data-theme='light']) #moon-icon {
 		opacity: 1;
@@ -207,7 +263,7 @@ import HeaderLink from './HeaderLink.astro';
 		header {
 			padding: 0 1em;
 		}
-		.social-links a:not([href="/search"]) {
+		.social-links a:not([href='/search']) {
 			display: none;
 		}
 		.internal-links {

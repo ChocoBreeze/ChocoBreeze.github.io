@@ -23,12 +23,14 @@ const archiveGroups = getArchiveGroups(await getPublishedPosts());
 				<p>월별로 정리된 글 목록입니다.</p>
 			</section>
 			<div class="archive-list">
-				{archiveGroups.map((group) => (
-					<a href={`/archive/${group.year}/${group.month}/`} class="archive-card">
-						<span>{group.label}</span>
-						<small>{group.posts.length} posts</small>
-					</a>
-				))}
+				{
+					archiveGroups.map((group) => (
+						<a href={`/archive/${group.year}/${group.month}/`} class="archive-card">
+							<span>{group.label}</span>
+							<small>{group.posts.length} posts</small>
+						</a>
+					))
+				}
 			</div>
 		</main>
 		<Footer />
@@ -78,7 +80,10 @@ const archiveGroups = getArchiveGroups(await getPublishedPosts());
 		background: var(--card-bg);
 		color: var(--text-color);
 		text-decoration: none;
-		transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			background-color 0.2s ease;
 	}
 	.archive-card:hover {
 		border-color: var(--accent);

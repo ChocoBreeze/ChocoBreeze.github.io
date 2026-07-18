@@ -84,7 +84,12 @@ export const BLOG_CATEGORIES: BlogCategoryDefinition[] = [
 	},
 ];
 
-export const FINANCE_CATEGORY_KEYS: BlogCategoryKey[] = ['ETF', 'Reports', 'Market Brief', 'Economics'];
+export const FINANCE_CATEGORY_KEYS: BlogCategoryKey[] = [
+	'ETF',
+	'Reports',
+	'Market Brief',
+	'Economics',
+];
 export const COMPUTING_CATEGORY_KEYS: BlogCategoryKey[] = [
 	'Computer Science',
 	'Programming',
@@ -110,7 +115,11 @@ export function normalizeCategory(category: unknown): string | undefined {
 	if (normalized === 'computer science' || normalized === 'cs') {
 		return 'Computer Science';
 	}
-	if (normalized === 'market brief' || normalized === 'market_brief' || normalized === 'us market brief') {
+	if (
+		normalized === 'market brief' ||
+		normalized === 'market_brief' ||
+		normalized === 'us market brief'
+	) {
 		return 'Market Brief';
 	}
 	if (normalized === 'semiconductor') {

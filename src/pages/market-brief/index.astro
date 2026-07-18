@@ -11,9 +11,7 @@ import { getCategoryFeedPath } from '../../lib/rss';
 const posts = (await getPublishedPosts())
 	.filter((post) => {
 		const cats = post.data.categories;
-		return Array.isArray(cats)
-			? cats.includes('Market Brief')
-			: cats === 'Market Brief';
+		return Array.isArray(cats) ? cats.includes('Market Brief') : cats === 'Market Brief';
 	})
 	.sort((a, b) => {
 		if (a.data.pinned && !b.data.pinned) return -1;
@@ -85,7 +83,10 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 				font-size: 0.9rem;
 				font-weight: 700;
 				text-decoration: none;
-				transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+				transition:
+					border-color 0.2s ease,
+					background-color 0.2s ease,
+					transform 0.2s ease;
 			}
 			.rss-subscribe-link:hover {
 				border-color: var(--accent);
@@ -115,7 +116,10 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 				line-height: 1.2;
 				white-space: normal;
 				cursor: pointer;
-				transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+				transition:
+					background-color 0.2s ease,
+					border-color 0.2s ease,
+					transform 0.2s ease;
 			}
 			.market-brief-filter:hover,
 			.market-brief-filter[aria-pressed='true'] {
@@ -129,7 +133,11 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 				border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--border-color));
 				border-radius: 24px;
 				background:
-					radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 18%, transparent), transparent 36%),
+					radial-gradient(
+						circle at top right,
+						color-mix(in srgb, var(--accent) 18%, transparent),
+						transparent 36%
+					),
 					var(--card-bg);
 				box-shadow: 0 16px 34px rgba(var(--gray), 0.12);
 			}
@@ -202,7 +210,10 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 				text-decoration: none;
 				color: var(--text-color);
 				box-shadow: 0 10px 24px rgba(var(--gray), 0.08);
-				transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+				transition:
+					transform 0.2s ease,
+					border-color 0.2s ease,
+					box-shadow 0.2s ease;
 			}
 			.market-brief-card a:hover {
 				transform: translateY(-3px);
@@ -277,62 +288,90 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 
 				<div class="market-brief-tools" aria-label="Market Brief filters">
 					<div class="market-brief-filter-group" data-filter-group="type">
-						<button class="market-brief-filter" type="button" data-type="all" aria-pressed="true">All</button>
-						<button class="market-brief-filter" type="button" data-type="Daily" aria-pressed="false">Daily</button>
-						<button class="market-brief-filter" type="button" data-type="Weekly" aria-pressed="false">Weekly</button>
+						<button class="market-brief-filter" type="button" data-type="all" aria-pressed="true"
+							>All</button
+						>
+						<button class="market-brief-filter" type="button" data-type="Daily" aria-pressed="false"
+							>Daily</button
+						>
+						<button
+							class="market-brief-filter"
+							type="button"
+							data-type="Weekly"
+							aria-pressed="false">Weekly</button
+						>
 					</div>
 					<div class="market-brief-filter-group" data-filter-group="month">
-						<button class="market-brief-filter" type="button" data-month="all" aria-pressed="true">All Months</button>
-						{monthKeys.map((monthKey) => (
-							<button class="market-brief-filter" type="button" data-month={monthKey} aria-pressed="false">
-								{monthKey}
-							</button>
-						))}
+						<button class="market-brief-filter" type="button" data-month="all" aria-pressed="true"
+							>All Months</button
+						>
+						{
+							monthKeys.map((monthKey) => (
+								<button
+									class="market-brief-filter"
+									type="button"
+									data-month={monthKey}
+									aria-pressed="false"
+								>
+									{monthKey}
+								</button>
+							))
+						}
 					</div>
 				</div>
 
-				{latestWeekly && (
-					<article class="latest-weekly">
-						<p class="latest-weekly-label">Latest Weekly</p>
-						<h2>
-							<a href={getPostHref(latestWeekly)}>{latestWeekly.data.title}</a>
-						</h2>
-						{latestWeekly.data.description && <p>{latestWeekly.data.description}</p>}
-						<a href={getPostHref(latestWeekly)}>주간 브리핑 읽기</a>
-					</article>
-				)}
+				{
+					latestWeekly && (
+						<article class="latest-weekly">
+							<p class="latest-weekly-label">Latest Weekly</p>
+							<h2>
+								<a href={getPostHref(latestWeekly)}>{latestWeekly.data.title}</a>
+							</h2>
+							{latestWeekly.data.description && <p>{latestWeekly.data.description}</p>}
+							<a href={getPostHref(latestWeekly)}>주간 브리핑 읽기</a>
+						</article>
+					)
+				}
 
-				<div id="market-empty" class="market-empty" hidden>선택한 조건에 맞는 브리핑이 없습니다.</div>
+				<div id="market-empty" class="market-empty" hidden>
+					선택한 조건에 맞는 브리핑이 없습니다.
+				</div>
 
-				{monthlyGroups.map(([monthKey, monthPosts]) => (
-					<section class="market-month" data-month-section={monthKey}>
-						<div class="market-month-header">
-							<div>
-								<p class="month-label">Month</p>
-								<h2>{monthKey}</h2>
+				{
+					monthlyGroups.map(([monthKey, monthPosts]) => (
+						<section class="market-month" data-month-section={monthKey}>
+							<div class="market-month-header">
+								<div>
+									<p class="month-label">Month</p>
+									<h2>{monthKey}</h2>
+								</div>
+								<span class="month-count">{monthPosts.length} posts</span>
 							</div>
-							<span class="month-count">{monthPosts.length} posts</span>
-						</div>
-						<ul class="market-brief-grid">
-							{monthPosts.map((post) => {
-								const date = getDate(post);
-								const briefType = getBriefType(post);
-								return (
-									<li class="market-brief-card" data-brief-type={briefType} data-brief-month={monthKey}>
-										<a href={getPostHref(post)}>
-											<div class="market-brief-meta">
-												<span class="market-brief-badge">{briefType}</span>
-												{date && <FormattedDate date={date} />}
-											</div>
-											<h3>{post.data.title}</h3>
-											{post.data.description && <p>{post.data.description}</p>}
-										</a>
-									</li>
-								);
-							})}
-						</ul>
-					</section>
-				))}
+							<ul class="market-brief-grid">
+								{monthPosts.map((post) => {
+									const date = getDate(post);
+									const briefType = getBriefType(post);
+									return (
+										<li
+											class="market-brief-card"
+											data-brief-type={briefType}
+											data-brief-month={monthKey}
+										>
+											<a href={getPostHref(post)}>
+												<div class="market-brief-meta">
+													<span class="market-brief-badge">{briefType}</span>
+													{date && <FormattedDate date={date} />}
+												</div>
+												<h3>{post.data.title}</h3>
+												{post.data.description && <p>{post.data.description}</p>}
+											</a>
+										</li>
+									);
+								})}
+							</ul>
+						</section>
+					))
+				}
 			</section>
 		</main>
 		<Footer />

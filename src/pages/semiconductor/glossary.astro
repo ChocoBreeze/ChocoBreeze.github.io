@@ -8,7 +8,9 @@ import Header from '../../components/Header.astro';
 const posts = (await getPublishedPosts())
 	.filter((post) => {
 		const cats = post.data.categories;
-		const isSemiconductor = Array.isArray(cats) ? cats.includes('Semiconductor') : cats === 'Semiconductor';
+		const isSemiconductor = Array.isArray(cats)
+			? cats.includes('Semiconductor')
+			: cats === 'Semiconductor';
 		return isSemiconductor && post.data.order !== 0 && /^\d+\./.test(post.data.title);
 	})
 	.sort((a, b) => {
@@ -48,8 +50,8 @@ const posts = (await getPublishedPosts())
 					<p class="section-eyebrow">Semiconductor Glossary</p>
 					<h1>반도체 용어집</h1>
 					<p>
-						`왕초보 반도체 뽀개기` 시리즈를 용어 단위로 다시 찾기 쉽게 정리했습니다.
-						처음부터 읽어도 되고, 모르는 용어만 골라서 확인해도 됩니다.
+						`왕초보 반도체 뽀개기` 시리즈를 용어 단위로 다시 찾기 쉽게 정리했습니다. 처음부터 읽어도
+						되고, 모르는 용어만 골라서 확인해도 됩니다.
 					</p>
 				</div>
 				<div class="glossary-summary">
@@ -162,7 +164,9 @@ const posts = (await getPublishedPosts())
 		background: var(--card-bg);
 		color: var(--heading-color);
 		text-decoration: none;
-		transition: border-color 0.2s ease, background-color 0.2s ease;
+		transition:
+			border-color 0.2s ease,
+			background-color 0.2s ease;
 	}
 
 	.glossary-card a:hover {

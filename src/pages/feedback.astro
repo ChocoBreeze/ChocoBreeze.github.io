@@ -26,7 +26,10 @@ const issueUrl =
 				</p>
 				<div class="notice">
 					<strong>공개 저장소에 남는 글입니다.</strong>
-					<p>개인정보, 계정 정보, 비공개 자료 링크, 투자 계좌 정보 등 민감한 내용은 포함하지 말아주세요.</p>
+					<p>
+						개인정보, 계정 정보, 비공개 자료 링크, 투자 계좌 정보 등 민감한 내용은 포함하지
+						말아주세요.
+					</p>
 				</div>
 				<a class="feedback-link" href={issueUrl} target="_blank" rel="noopener noreferrer">
 					GitHub Issue로 제보하기
@@ -49,7 +52,11 @@ const issueUrl =
 		border: 1px solid var(--border-color);
 		border-radius: 28px;
 		background:
-			radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 18%, transparent), transparent 34%),
+			radial-gradient(
+				circle at top right,
+				color-mix(in srgb, var(--accent) 18%, transparent),
+				transparent 34%
+			),
 			var(--card-bg);
 		box-shadow: 0 22px 70px color-mix(in srgb, var(--shadow-color) 55%, transparent);
 		color: var(--text-color);
@@ -107,7 +114,9 @@ const issueUrl =
 		color: var(--accent-text);
 		font-weight: 800;
 		text-decoration: none;
-		transition: filter 0.2s ease, transform 0.2s ease;
+		transition:
+			filter 0.2s ease,
+			transform 0.2s ease;
 	}
 
 	.feedback-link:hover {

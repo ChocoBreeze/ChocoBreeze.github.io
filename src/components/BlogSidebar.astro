@@ -17,7 +17,9 @@ const primaryCategories = BLOG_CATEGORIES.filter(
 	({ key }) => !COMPUTING_CATEGORY_KEYS.includes(key) && !FINANCE_CATEGORY_KEYS.includes(key),
 );
 const financeCategories = BLOG_CATEGORIES.filter(({ key }) => FINANCE_CATEGORY_KEYS.includes(key));
-const computingCategories = BLOG_CATEGORIES.filter(({ key }) => COMPUTING_CATEGORY_KEYS.includes(key));
+const computingCategories = BLOG_CATEGORIES.filter(({ key }) =>
+	COMPUTING_CATEGORY_KEYS.includes(key),
+);
 const isFinanceActive = activeCategory ? FINANCE_CATEGORY_KEYS.includes(activeCategory) : false;
 const isComputingActive = activeCategory ? COMPUTING_CATEGORY_KEYS.includes(activeCategory) : false;
 
@@ -28,10 +30,7 @@ for (const post of posts) {
 	const definition = getCategoryDefinition(post.data.categories);
 	if (!definition) continue;
 
-	categoryCounts.set(
-		definition.key,
-		(categoryCounts.get(definition.key) ?? 0) + 1,
-	);
+	categoryCounts.set(definition.key, (categoryCounts.get(definition.key) ?? 0) + 1);
 }
 ---
 
@@ -49,10 +48,7 @@ for (const post of posts) {
 							<li>
 								<a
 									href={category.href}
-									class:list={[
-										'blog-sidebar-link',
-										{ active: isActive },
-									]}
+									class:list={['blog-sidebar-link', { active: isActive }]}
 									aria-current={isActive ? 'page' : undefined}
 								>
 									<span>{category.label}</span>
@@ -74,10 +70,12 @@ for (const post of posts) {
 					>
 						<span>Finance</span>
 						<span class="count">
-							{financeCategories.reduce(
-								(total, category) => total + (categoryCounts.get(category.key) ?? 0),
-								0,
-							)}
+							{
+								financeCategories.reduce(
+									(total, category) => total + (categoryCounts.get(category.key) ?? 0),
+									0,
+								)
+							}
 						</span>
 					</a>
 					<ul class="blog-sidebar-sublist">
@@ -118,10 +116,12 @@ for (const post of posts) {
 					>
 						<span>Computing</span>
 						<span class="count">
-							{computingCategories.reduce(
-								(total, category) => total + (categoryCounts.get(category.key) ?? 0),
-								0,
-							)}
+							{
+								computingCategories.reduce(
+									(total, category) => total + (categoryCounts.get(category.key) ?? 0),
+									0,
+								)
+							}
 						</span>
 					</a>
 					<ul class="blog-sidebar-sublist">

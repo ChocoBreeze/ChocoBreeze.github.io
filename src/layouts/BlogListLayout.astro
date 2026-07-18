@@ -19,8 +19,8 @@ const { title, description, activeCategory, posts } = Astro.props;
 const category = BLOG_CATEGORIES.find(({ key }) => key === activeCategory);
 const rssHref = getCategoryFeedPath(activeCategory);
 
-const pinnedPosts = posts.filter(p => p.data.pinned);
-const regularPosts = posts.filter(p => !p.data.pinned);
+const pinnedPosts = posts.filter((p) => p.data.pinned);
+const regularPosts = posts.filter((p) => !p.data.pinned);
 ---
 
 <!doctype html>
@@ -42,42 +42,64 @@ const regularPosts = posts.filter(p => !p.data.pinned);
 					<p class="blog-list-eyebrow">Archive</p>
 					<h1>{title}</h1>
 					<p>{description}</p>
-					{rssHref && (
-						<a class="rss-subscribe-link" href={rssHref}>
-							<span aria-hidden="true">RSS</span>
-							<span>이 카테고리 구독</span>
-						</a>
-					)}
+					{
+						rssHref && (
+							<a class="rss-subscribe-link" href={rssHref}>
+								<span aria-hidden="true">RSS</span>
+								<span>이 카테고리 구독</span>
+							</a>
+						)
+					}
 				</div>
 				<slot />
-				{pinnedPosts.length > 0 && (
-					<div class="pinned-section">
-						<p class="pinned-label">
-							<svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">
-								<path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/>
-							</svg>
-							시작 가이드
-						</p>
-						<ul class="blog-post-grid">
-							{pinnedPosts.map((post) => <BlogPostCard post={post} />)}
-						</ul>
-					</div>
-				)}
-				{regularPosts.length > 0 && (
-					<>
-						<div class="sort-controls">
-							<span class="sort-label">정렬</span>
-							<div class="sort-btn-group" role="group" aria-label="정렬 순서">
-								<button class="sort-btn active" data-sort="desc" aria-pressed="true">최신순</button>
-								<button class="sort-btn" data-sort="asc" aria-pressed="false">오래된 순</button>
-							</div>
+				{
+					pinnedPosts.length > 0 && (
+						<div class="pinned-section">
+							<p class="pinned-label">
+								<svg
+									viewBox="0 0 24 24"
+									width="13"
+									height="13"
+									fill="currentColor"
+									aria-hidden="true"
+								>
+									<path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z" />
+								</svg>
+								시작 가이드
+							</p>
+							<ul class="blog-post-grid">
+								{pinnedPosts.map((post) => (
+									<BlogPostCard post={post} />
+								))}
+							</ul>
 						</div>
-						<ul class="blog-post-grid regular-post-grid">
-							{regularPosts.map((post) => <BlogPostCard post={post} />)}
-						</ul>
-						<button class="load-more-btn" type="button" hidden>더 보기</button>
-					</>
-				)}
+					)
+				}
+				{
+					regularPosts.length > 0 && (
+						<>
+							<div class="sort-controls">
+								<span class="sort-label">정렬</span>
+								<div class="sort-btn-group" role="group" aria-label="정렬 순서">
+									<button class="sort-btn active" data-sort="desc" aria-pressed="true">
+										최신순
+									</button>
+									<button class="sort-btn" data-sort="asc" aria-pressed="false">
+										오래된 순
+									</button>
+								</div>
+							</div>
+							<ul class="blog-post-grid regular-post-grid">
+								{regularPosts.map((post) => (
+									<BlogPostCard post={post} />
+								))}
+							</ul>
+							<button class="load-more-btn" type="button" hidden>
+								더 보기
+							</button>
+						</>
+					)
+				}
 			</section>
 		</main>
 		<Footer />
@@ -98,7 +120,9 @@ const regularPosts = posts.filter(p => !p.data.pinned);
 		font-size: 0.9rem;
 		font-weight: 700;
 		text-decoration: none;
-		transition: border-color 0.2s ease, background-color 0.2s ease;
+		transition:
+			border-color 0.2s ease,
+			background-color 0.2s ease;
 	}
 
 	.rss-subscribe-link:hover {
@@ -167,7 +191,9 @@ const regularPosts = posts.filter(p => !p.data.pinned);
 		cursor: pointer;
 		font-family: inherit;
 		line-height: 1.4;
-		transition: background-color 0.15s ease, color 0.15s ease;
+		transition:
+			background-color 0.15s ease,
+			color 0.15s ease;
 	}
 
 	.sort-btn:last-child {
@@ -210,7 +236,9 @@ const regularPosts = posts.filter(p => !p.data.pinned);
 		font-weight: 700;
 		font-family: inherit;
 		cursor: pointer;
-		transition: border-color 0.2s ease, background-color 0.2s ease;
+		transition:
+			border-color 0.2s ease,
+			background-color 0.2s ease;
 	}
 
 	.load-more-btn:hover {
@@ -231,10 +259,10 @@ const regularPosts = posts.filter(p => !p.data.pinned);
 	const loadMoreBtn = document.querySelector<HTMLButtonElement>('.load-more-btn');
 
 	const itemData = grid
-		? [...grid.querySelectorAll<HTMLLIElement>('li[data-pub-date]')].map(el => ({
+		? [...grid.querySelectorAll<HTMLLIElement>('li[data-pub-date]')].map((el) => ({
 				el,
 				t: parseInt(el.dataset.pubDate ?? '0'),
-		  }))
+			}))
 		: [];
 
 	// How many posts are currently revealed; persists across sort changes so
@@ -256,11 +284,11 @@ const regularPosts = posts.filter(p => !p.data.pinned);
 	function sortGrid(order: 'asc' | 'desc', historyMode: 'push' | 'replace' = 'push') {
 		if (!grid) return;
 
-		itemData.sort((a, b) => order === 'asc' ? a.t - b.t : b.t - a.t);
+		itemData.sort((a, b) => (order === 'asc' ? a.t - b.t : b.t - a.t));
 		itemData.forEach(({ el }) => grid.appendChild(el));
 		applyVisibility();
 
-		buttons.forEach(btn => {
+		buttons.forEach((btn) => {
 			const isActive = btn.dataset.sort === order;
 			btn.classList.toggle('active', isActive);
 			btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
@@ -285,9 +313,11 @@ const regularPosts = posts.filter(p => !p.data.pinned);
 		sortGrid(sort === 'asc' ? 'asc' : 'desc', 'replace');
 	});
 
-	buttons.forEach(btn => btn.addEventListener('click', () => {
-		sortGrid(btn.dataset.sort === 'asc' ? 'asc' : 'desc');
-	}));
+	buttons.forEach((btn) =>
+		btn.addEventListener('click', () => {
+			sortGrid(btn.dataset.sort === 'asc' ? 'asc' : 'desc');
+		}),
+	);
 
 	loadMoreBtn?.addEventListener('click', () => {
 		shownCount = Math.min(shownCount + PAGE_SIZE, itemData.length);

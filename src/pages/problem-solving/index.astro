@@ -29,7 +29,7 @@ const topicSummary = Array.from(
 			counts.set(topic, (counts.get(topic) ?? 0) + 1);
 		}
 		return counts;
-	}, new Map<string, number>())
+	}, new Map<string, number>()),
 )
 	.sort((a, b) => b[1] - a[1])
 	.slice(0, 8);
@@ -46,8 +46,8 @@ const topicSummary = Array.from(
 			<p class="roadmap-eyebrow">Difficulty Roadmap</p>
 			<h2 id="problem-roadmap-title">난이도별 풀이 흐름</h2>
 			<p>
-				문제 풀이 글의 frontmatter에 있는 난이도와 토픽을 기준으로 현재 학습 흐름을 요약합니다.
-				목록 카드와 글 상세에서도 같은 정보를 확인할 수 있습니다.
+				문제 풀이 글의 frontmatter에 있는 난이도와 토픽을 기준으로 현재 학습 흐름을 요약합니다. 목록
+				카드와 글 상세에서도 같은 정보를 확인할 수 있습니다.
 			</p>
 		</div>
 		<div class="difficulty-grid">
@@ -125,7 +125,10 @@ const topicSummary = Array.from(
 		text-align: left;
 		font-family: inherit;
 		width: 100%;
-		transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+		transition:
+			border-color 0.15s ease,
+			box-shadow 0.15s ease,
+			transform 0.1s ease;
 	}
 
 	.difficulty-card:hover {
@@ -138,7 +141,7 @@ const topicSummary = Array.from(
 		outline-offset: 3px;
 	}
 
-	.difficulty-card[aria-pressed="true"] {
+	.difficulty-card[aria-pressed='true'] {
 		box-shadow: 0 0 0 2px currentColor;
 	}
 
@@ -163,7 +166,7 @@ const topicSummary = Array.from(
 		color: #2da44e;
 	}
 
-	.difficulty-easy[aria-pressed="true"] {
+	.difficulty-easy[aria-pressed='true'] {
 		background: color-mix(in srgb, #2da44e 24%, var(--card-bg));
 		border-color: #2da44e;
 	}
@@ -173,7 +176,7 @@ const topicSummary = Array.from(
 		color: #bf8700;
 	}
 
-	.difficulty-medium[aria-pressed="true"] {
+	.difficulty-medium[aria-pressed='true'] {
 		background: color-mix(in srgb, #bf8700 24%, var(--card-bg));
 		border-color: #bf8700;
 	}
@@ -183,7 +186,7 @@ const topicSummary = Array.from(
 		color: #cf222e;
 	}
 
-	.difficulty-hard[aria-pressed="true"] {
+	.difficulty-hard[aria-pressed='true'] {
 		background: color-mix(in srgb, #cf222e 22%, var(--card-bg));
 		border-color: #cf222e;
 	}
@@ -216,20 +219,18 @@ const topicSummary = Array.from(
 	const grid = document.querySelector('.regular-post-grid');
 	const difficulties = ['Easy', 'Medium', 'Hard'];
 
-	const items = grid
-		? [...grid.querySelectorAll<HTMLLIElement>('li[data-difficulty]')]
-		: [];
+	const items = grid ? [...grid.querySelectorAll<HTMLLIElement>('li[data-difficulty]')] : [];
 
 	let activeFilter: string | null = null;
 
 	function applyFilter(difficulty: string | null, historyMode: 'push' | 'replace' = 'push') {
 		activeFilter = difficulty;
 
-		items.forEach(item => {
+		items.forEach((item) => {
 			item.hidden = difficulty !== null && item.dataset.difficulty !== difficulty;
 		});
 
-		filterBtns.forEach(btn => {
+		filterBtns.forEach((btn) => {
 			const isActive = btn.dataset.filterDifficulty === difficulty;
 			btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
 		});
@@ -239,14 +240,18 @@ const topicSummary = Array.from(
 			? url.searchParams.set('difficulty', difficulty.toLowerCase())
 			: url.searchParams.delete('difficulty');
 
-		window.history[historyMode === 'replace' ? 'replaceState' : 'pushState']({}, '', url.toString());
+		window.history[historyMode === 'replace' ? 'replaceState' : 'pushState'](
+			{},
+			'',
+			url.toString(),
+		);
 	}
 
 	const rawDifficulty = new URLSearchParams(window.location.search).get('difficulty');
-	const initial = difficulties.find(d => d.toLowerCase() === rawDifficulty) ?? null;
+	const initial = difficulties.find((d) => d.toLowerCase() === rawDifficulty) ?? null;
 	applyFilter(initial, 'replace');
 
-	filterBtns.forEach(btn => {
+	filterBtns.forEach((btn) => {
 		btn.addEventListener('click', () => {
 			const d = btn.dataset.filterDifficulty ?? null;
 			applyFilter(activeFilter === d ? null : d);
@@ -255,7 +260,7 @@ const topicSummary = Array.from(
 
 	window.addEventListener('popstate', () => {
 		const raw = new URLSearchParams(window.location.search).get('difficulty');
-		const d = difficulties.find(d => d.toLowerCase() === raw) ?? null;
+		const d = difficulties.find((d) => d.toLowerCase() === raw) ?? null;
 		applyFilter(d, 'replace');
 	});
 </script>

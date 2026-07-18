@@ -23,14 +23,16 @@ const tagGroups = getTagGroups(await getPublishedPosts());
 				<p>세부 주제별로 글을 빠르게 찾아볼 수 있습니다.</p>
 			</section>
 			<ul class="tag-grid">
-				{tagGroups.map((group) => (
-					<li>
-						<a href={`/tags/${group.slug}/`}>
-							<span>{group.tag}</span>
-							<small>{group.posts.length} posts</small>
-						</a>
-					</li>
-				))}
+				{
+					tagGroups.map((group) => (
+						<li>
+							<a href={`/tags/${group.slug}/`}>
+								<span>{group.tag}</span>
+								<small>{group.posts.length} posts</small>
+							</a>
+						</li>
+					))
+				}
 			</ul>
 		</main>
 		<Footer />
@@ -84,7 +86,10 @@ const tagGroups = getTagGroups(await getPublishedPosts());
 		background: var(--card-bg);
 		color: var(--text-color);
 		text-decoration: none;
-		transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			background-color 0.2s ease;
 	}
 	.tag-grid a:hover {
 		border-color: var(--accent);
