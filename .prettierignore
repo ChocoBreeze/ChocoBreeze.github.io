@@ -1,0 +1,13 @@
+dist/
+.astro/
+.claude/
+node_modules/
+public/
+package-lock.json
+
+# Prose stays hand-formatted: blog posts, operational docs, and every
+# Markdown file (tables, math, and wrapping should not be auto-reflowed).
+src/content/blog/
+docs/
+*.md
+**/*.md
