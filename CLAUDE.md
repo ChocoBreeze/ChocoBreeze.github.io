@@ -79,7 +79,7 @@ CI runs this check on every pull request (`check:content` → `astro check` → 
 
 ### Deployment
 
-Push to `main` triggers GitHub Actions (`deploy.yml`) which builds with `npm run build` and deploys `./dist` to GitHub Pages. The workflow pins Node 22.12.0; keep it on Node 22.12+ for Astro 6 compatibility.
+Push to `main` triggers GitHub Actions (`deploy.yml`) which builds with `npm run build` and deploys `./dist` to GitHub Pages. The Node version is single-sourced in `.nvmrc` (both workflows read it via `node-version-file`); bump that one file to upgrade, keeping it on Node 22.12+ for Astro 6 compatibility.
 
 ## Operational guides
 
