@@ -1,0 +1,2 @@
+# Shell hooks must stay LF so /bin/sh does not choke on CRLF line endings
+scripts/hooks/* text eol=lf

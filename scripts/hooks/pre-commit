@@ -1,0 +1,17 @@
+#!/bin/sh
+# Run content quality check when markdown files are staged
+
+staged_md=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(md|mdx)$')
+
+if [ -n "$staged_md" ]; then
+  echo "Markdown files staged — running content check..."
+  staged_list_file=$(mktemp)
+  printf '%s\n' "$staged_md" > "$staged_list_file"
+  node scripts/check-content.mjs "--staged-file-list=$staged_list_file"
+  status=$?
+  rm -f "$staged_list_file"
+  if [ $status -ne 0 ]; then
+    echo "Content check failed. Fix the errors above before committing."
+    exit 1
+  fi
+fi

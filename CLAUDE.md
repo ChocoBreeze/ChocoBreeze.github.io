@@ -73,7 +73,7 @@ A post's URL is `/blog/<slug>` where `<slug>` is the frontmatter `slug` field if
 - No absolute local paths or secret patterns in content
 - Missing image alt text, unbalanced bold markers
 
-CI runs this check on every pull request (`check:content` → `astro check` → `build`). A local git pre-commit hook also runs `check-content.mjs` against any staged `.md`/`.mdx` files, so a commit with a broken post will fail — fix the reported errors rather than bypassing the hook.
+CI runs this check on every pull request (`check:content` → `astro check` → `build`), and the deploy workflow reruns it before publishing. A versioned git pre-commit hook (`scripts/hooks/pre-commit`, activated via `core.hooksPath` by the `prepare` npm script on `npm install`) also runs `check-content.mjs` against any staged `.md`/`.mdx` files, so a commit with a broken post will fail — fix the reported errors rather than bypassing the hook.
 
 ### Deployment
 
