@@ -2,99 +2,42 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
+import {
+  ABSOLUTE_PATH_PATTERNS,
+  FINANCE_CATEGORIES_FOR_DELIMITER_CHECK,
+  FRONTMATTER_REGEX,
+  KNOWN_CATEGORIES,
+  MARKDOWN_IMAGE_REGEX,
+  MARKDOWN_LINK_REGEX,
+  MAX_DESCRIPTION_LENGTH,
+  MAX_FUTURE_DAYS,
+  MAX_PAST_YEARS,
+  MAX_TITLE_LENGTH,
+  PUB_DATE_ISO_REGEX,
+  SECRET_PATTERNS,
+  UNSAFE_SLUG_REGEX,
+  WARNING_PATTERNS,
+  countMathDelimiters,
+  findAllMatches,
+  getComparableLinkTarget,
+  getLineNumber,
+  getPrimaryCategory,
+  hasUnbalancedBold,
+  normalizeCategoryValue,
+  normalizeRoutePath,
+  parseFrontmatterFields,
+  parseFrontmatterListValue,
+  shouldCheckInternalLink,
+  slugifyPathSegment,
+  stripCodeBlocks,
+  stripInlineCode,
+  stripQuotes,
+} from './lib/content-rules.mjs';
+
 const ROOT_DIR = process.cwd();
 const CONTENT_DIR = path.join(ROOT_DIR, 'src', 'content', 'blog');
 const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
 const MARKDOWN_EXTENSIONS = new Set(['.md', '.mdx']);
-const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
-const MAX_FUTURE_DAYS = 370;
-const MAX_PAST_YEARS = 10;
-const MAX_TITLE_LENGTH = 100;
-const MAX_DESCRIPTION_LENGTH = 180;
-const UNSAFE_SLUG_REGEX = /[\s\\?#]/;
-const PUB_DATE_ISO_REGEX =
-  /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/;
-const KNOWN_CATEGORIES = new Set([
-  'ETF',
-  'Economics',
-  'Semiconductor',
-  'Computer Science',
-  'Programming',
-  'Problem_Solving',
-  'Reports',
-  'Market Brief',
-]);
-const CATEGORY_ALIASES = new Map([
-  ['report', 'Reports'],
-  ['reports', 'Reports'],
-  ['problem solving', 'Problem_Solving'],
-  ['problem_solving', 'Problem_Solving'],
-  ['computer science', 'Computer Science'],
-  ['cs', 'Computer Science'],
-  ['market brief', 'Market Brief'],
-  ['market_brief', 'Market Brief'],
-  ['us market brief', 'Market Brief'],
-  ['semiconductor', 'Semiconductor'],
-  ['programming', 'Programming'],
-  ['economics', 'Economics'],
-  ['economic', 'Economics'],
-  ['economy', 'Economics'],
-  ['macro', 'Economics'],
-  ['macroeconomics', 'Economics'],
-  ['etf', 'ETF'],
-]);
-const MARKDOWN_LINK_REGEX = /!?\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
-const MARKDOWN_IMAGE_REGEX = /!\[([^\]]*)]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
-
-const ABSOLUTE_PATH_PATTERNS = [
-  {
-    label: 'Windows absolute path',
-    regex: /(^|[\s("'`])(?:[A-Za-z]:\\|\\\\[A-Za-z0-9._ -]+\\[A-Za-z0-9._ -]+)/m,
-  },
-  {
-    label: 'Unix absolute path',
-    regex: /(^|[\s("'`])(?:\/Users\/|\/home\/|\/var\/|\/etc\/|\/opt\/|\/tmp\/)/m,
-  },
-  {
-    label: 'file URI',
-    regex: /file:\/\//i,
-  },
-];
-
-const SECRET_PATTERNS = [
-  {
-    label: 'OpenAI API key assignment',
-    regex: /OPENAI_API_KEY\s*=\s*([^\s"']+)/,
-    isAllowedMatch: (match) => match[1].includes('...') || match[1].includes('<'),
-  },
-  {
-    label: 'AWS access key',
-    regex: /\bAKIA[0-9A-Z]{16}\b/,
-  },
-  {
-    label: 'Bearer token with OpenAI-style key',
-    regex: /Bearer\s+(sk-[A-Za-z0-9_-]{20,})/,
-  },
-  {
-    label: 'Quoted OpenAI-style key',
-    regex: /["'](sk-[A-Za-z0-9_-]{20,})["']/,
-  },
-];
-
-const WARNING_PATTERNS = [
-  {
-    label: 'Placeholder API key example',
-    regex: /OPENAI_API_KEY\s*=\s*sk-\.\.\./,
-  },
-  {
-    label: 'Temporary hosted asset URL',
-    regex: /ppl-ai-code-interpreter-files\.s3\.amazonaws\.com/i,
-  },
-  {
-    label: 'Plain HTTP link',
-    regex: /(?<![`"'])http:\/\/[^\s)>"']+/i,
-  },
-];
 
 function walkMarkdownFiles(directory) {
   const results = [];
@@ -115,10 +58,6 @@ function walkMarkdownFiles(directory) {
   return results;
 }
 
-function getLineNumber(content, index) {
-  return content.slice(0, index).split(/\r?\n/).length;
-}
-
 function addIssue(collection, severity, filePath, line, message) {
   collection.push({
     severity,
@@ -126,68 +65,6 @@ function addIssue(collection, severity, filePath, line, message) {
     line,
     message,
   });
-}
-
-function findAllMatches(content, pattern) {
-  const regex = new RegExp(pattern.source, pattern.flags.includes('g') ? pattern.flags : `${pattern.flags}g`);
-  return Array.from(content.matchAll(regex));
-}
-
-function parseFrontmatterFields(frontmatter) {
-  const fields = new Map();
-
-  for (const match of frontmatter.matchAll(/^([A-Za-z][A-Za-z0-9_-]*):[ \t]*(.*)$/gm)) {
-    fields.set(match[1], {
-      rawValue: match[2].trim(),
-      index: match.index ?? 0,
-    });
-  }
-
-  return fields;
-}
-
-function stripQuotes(value) {
-  return value.replace(/^['"]|['"]$/g, '');
-}
-
-function parseFrontmatterListValue(rawValue) {
-  const value = rawValue.trim();
-  if (!value) {
-    return [];
-  }
-
-  if (value.startsWith('[') && value.endsWith(']')) {
-    return value
-      .slice(1, -1)
-      .split(',')
-      .map((item) => stripQuotes(item.trim()))
-      .filter(Boolean);
-  }
-
-  return [stripQuotes(value).trim()].filter(Boolean);
-}
-
-function normalizeCategoryValue(category) {
-  const normalized = category.trim().toLowerCase();
-  return CATEGORY_ALIASES.get(normalized) ?? category.trim();
-}
-
-function slugifyPathSegment(segment) {
-  return segment
-    .trim()
-    .toLowerCase()
-    .replace(/\.[ \t]+/g, '-')
-    .replace(/[()[\]{}]/g, '')
-    .replace(/[&+]/g, '-')
-    .replace(/[^\p{L}\p{N}_-]+/gu, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
-}
-
-function normalizeRoutePath(routePath) {
-  const withoutHashOrQuery = getComparableLinkTarget(routePath);
-  const withLeadingSlash = withoutHashOrQuery.startsWith('/') ? withoutHashOrQuery : `/${withoutHashOrQuery}`;
-  return withLeadingSlash.replace(/\/+$/g, '') || '/';
 }
 
 function getPostRoutePath(filePath, content) {
@@ -437,21 +314,12 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
   checkPubDateRange(filePath, pubDateLine, pubDateValue, warnings);
 }
 
-function stripCodeBlocks(content) {
-  return content.replace(/```[\s\S]*?```/g, (match) => match.replace(/[^\n]/g, ''));
-}
-
 function checkMarkdownSyntax(filePath, content, warnings) {
   const contentWithoutCode = stripCodeBlocks(content);
   const lines = contentWithoutCode.split(/\r?\n/);
 
   for (const [index, line] of lines.entries()) {
-    if (/^\s*\*{3,}\s*$/.test(line)) {
-      continue;
-    }
-
-    const boldMarkerMatches = line.match(/(?<!\\)\*\*/g) ?? [];
-    if (boldMarkerMatches.length % 2 !== 0) {
+    if (hasUnbalancedBold(line)) {
       addIssue(
         warnings,
         'warning',
@@ -478,40 +346,13 @@ function checkMarkdownSyntax(filePath, content, warnings) {
   }
 }
 
-const UNESCAPED_DOLLAR_REGEX = /(?<!\\)\$/g;
-const UNESCAPED_TILDE_REGEX = /(?<!\\)~/g;
-// $ and ~ are also legitimate remark-math / code syntax (LeetCode complexity notation,
-// `HEAD~1`, etc.) in the Computing categories, so this check only runs where $ and ~
-// are essentially always plain-text currency/date ranges: the Finance categories.
-const FINANCE_CATEGORIES_FOR_DELIMITER_CHECK = new Set(['ETF', 'Reports', 'Market Brief', 'Economics']);
-
-function stripInlineCode(content) {
-  return content.replace(/`[^`\n]*`/g, (match) => match.replace(/[^\n]/g, ''));
-}
-
-function getPrimaryCategory(content) {
-  const frontmatterMatch = content.match(FRONTMATTER_REGEX);
-  if (!frontmatterMatch) {
-    return undefined;
-  }
-
-  const categoryField = parseFrontmatterFields(frontmatterMatch[1]).get('categories');
-  if (!categoryField) {
-    return undefined;
-  }
-
-  const [firstCategory] = parseFrontmatterListValue(categoryField.rawValue);
-  return firstCategory ? normalizeCategoryValue(firstCategory) : undefined;
-}
-
 function checkMathStrikethroughCollisions(filePath, content, warnings) {
   const contentWithoutCode = stripInlineCode(stripCodeBlocks(content));
   const lines = contentWithoutCode.split(/\r?\n/);
 
   for (const [index, line] of lines.entries()) {
-    const sanitizedLine = line.replace(/\$\$[^$]*\$\$/g, '').replace(/~~[^~]*~~/g, '');
+    const { dollar: dollarCount, tilde: tildeCount } = countMathDelimiters(line);
 
-    const dollarCount = (sanitizedLine.match(UNESCAPED_DOLLAR_REGEX) ?? []).length;
     if (dollarCount >= 2) {
       addIssue(
         warnings,
@@ -522,7 +363,6 @@ function checkMathStrikethroughCollisions(filePath, content, warnings) {
       );
     }
 
-    const tildeCount = (sanitizedLine.match(UNESCAPED_TILDE_REGEX) ?? []).length;
     if (tildeCount >= 2) {
       addIssue(
         warnings,
@@ -599,22 +439,6 @@ function checkPatterns(filePath, content, issues, warnings) {
   }
 }
 
-function isExternalOrAnchorLink(href) {
-  return (
-    href.startsWith('#') ||
-    /^[a-z][a-z0-9+.-]*:/i.test(href) ||
-    href.startsWith('//')
-  );
-}
-
-function getComparableLinkTarget(href) {
-  try {
-    return decodeURIComponent(href.split(/[?#]/, 1)[0]);
-  } catch {
-    return href.split(/[?#]/, 1)[0];
-  }
-}
-
 function resolveInternalLinkTarget(filePath, href) {
   const target = getComparableLinkTarget(href);
   if (!target) {
@@ -626,15 +450,6 @@ function resolveInternalLinkTarget(filePath, href) {
   }
 
   return path.resolve(path.dirname(filePath), target);
-}
-
-function shouldCheckInternalLink(href) {
-  if (isExternalOrAnchorLink(href)) {
-    return false;
-  }
-
-  const target = getComparableLinkTarget(href);
-  return target.startsWith('/') || target.startsWith('.') || path.extname(target).length > 0;
 }
 
 function checkInternalLinks(filePath, content, warnings, postRoutes) {
