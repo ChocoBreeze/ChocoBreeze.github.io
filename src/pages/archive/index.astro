@@ -1,12 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../../lib/posts';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_TITLE } from '../../consts';
 import { getArchiveGroups } from '../../lib/taxonomy';
 
-const archiveGroups = getArchiveGroups(await getCollection('blog'));
+const archiveGroups = getArchiveGroups(await getPublishedPosts());
 ---
 
 <!doctype html>

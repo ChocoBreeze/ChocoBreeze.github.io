@@ -1,9 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../../lib/posts';
 import { BLOG_CATEGORIES } from '../../data/blogCategories';
 import BlogListLayout from '../../layouts/BlogListLayout.astro';
 
-const posts = (await getCollection('blog'))
+const posts = (await getPublishedPosts())
 	.filter((post) => {
 		const cats = post.data.categories;
 		return Array.isArray(cats) ? cats.includes('Computer Science') : cats === 'Computer Science';

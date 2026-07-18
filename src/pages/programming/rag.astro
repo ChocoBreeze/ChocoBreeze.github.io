@@ -1,11 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../../lib/posts';
 import BaseHead from '../../components/BaseHead.astro';
 import BlogSidebar from '../../components/BlogSidebar.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 
-const ragPosts = (await getCollection('blog'))
+const ragPosts = (await getPublishedPosts())
 	.filter((post) => post.data.tags?.some((tag) => tag.toLowerCase() === 'rag'))
 	.sort((a, b) => {
 		const weekA = Number(a.data.title.match(/Week\s*(\d+)/i)?.[1] ?? Number.MAX_SAFE_INTEGER);

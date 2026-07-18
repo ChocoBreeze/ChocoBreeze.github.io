@@ -36,9 +36,11 @@ All blog content lives in `src/content/blog/`, organized into category subfolder
 
 Required frontmatter fields: `title`, and either `pubDate` (full ISO 8601 with timezone: `"2026-06-29T00:00:00+09:00"`) or legacy `date`.
 
-Optional but important fields: `categories`, `slug`, `description`, `tags`, `difficulty`, `topics`, `pinned`, `order`.
+Optional but important fields: `categories`, `slug`, `description`, `tags`, `difficulty`, `topics`, `pinned`, `order`, `draft`.
 
 Legacy Jekyll fields (`date`, `image`) are still accepted by the schema, but new posts should use `pubDate` and `heroImage`.
+
+**Drafts:** a post with `draft: true` is visible while running `npm run dev` (for cross-session preview) but is excluded from every production build — no page, feed, sitemap, or search entry. This is enforced in one place: `src/lib/posts.ts` (`getPublishedPosts()` / `isPublished()`). **Any page, feed, or search index that lists posts must load them through `getPublishedPosts()`, never `getCollection('blog')` directly** — a raw `getCollection` call would leak drafts into that surface. Note `check:content` still validates draft files (frontmatter, duplicate routes/titles), so a draft must have valid frontmatter to be committed.
 
 ### Categories
 

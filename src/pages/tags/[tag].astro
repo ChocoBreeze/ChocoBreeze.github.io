@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../../lib/posts';
 import BaseHead from '../../components/BaseHead.astro';
 import BlogPostCard from '../../components/BlogPostCard.astro';
 import Footer from '../../components/Footer.astro';
@@ -8,7 +8,7 @@ import { SITE_TITLE } from '../../consts';
 import { getTagGroups } from '../../lib/taxonomy';
 
 export async function getStaticPaths() {
-	const tagGroups = getTagGroups(await getCollection('blog'));
+	const tagGroups = getTagGroups(await getPublishedPosts());
 
 	return tagGroups.map((group) => ({
 		params: { tag: group.slug },

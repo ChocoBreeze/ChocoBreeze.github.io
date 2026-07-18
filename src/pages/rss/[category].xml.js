@@ -1,4 +1,4 @@
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../../lib/posts';
 import rss from '@astrojs/rss';
 import { SITE_TITLE } from '../../consts';
 import {
@@ -23,7 +23,7 @@ export function getStaticPaths() {
 
 export async function GET(context) {
 	const category = context.props.category ?? getCategoryByFeedSlug(context.params.category);
-	const posts = (await getCollection('blog')).filter((post) => postMatchesCategory(post, category.key));
+	const posts = (await getPublishedPosts()).filter((post) => postMatchesCategory(post, category.key));
 
 	return rss({
 		title: `${category.title} | ${SITE_TITLE}`,

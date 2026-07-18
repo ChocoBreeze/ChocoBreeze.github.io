@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../../lib/posts';
 import BaseHead from '../../components/BaseHead.astro';
 import BlogSidebar from '../../components/BlogSidebar.astro';
 import Footer from '../../components/Footer.astro';
@@ -8,7 +8,7 @@ import Header from '../../components/Header.astro';
 import { BLOG_CATEGORIES } from '../../data/blogCategories';
 import { getCategoryFeedPath } from '../../lib/rss';
 
-const posts = (await getCollection('blog'))
+const posts = (await getPublishedPosts())
 	.filter((post) => {
 		const cats = post.data.categories;
 		return Array.isArray(cats)

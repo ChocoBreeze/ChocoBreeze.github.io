@@ -1,4 +1,4 @@
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../../lib/posts';
 import { BLOG_CATEGORIES, type BlogCategoryDefinition } from '../../data/blogCategories';
 import {
 	createSearchIndex,
@@ -18,7 +18,7 @@ export function getStaticPaths() {
 }
 
 export async function GET({ props }: { props: SearchCategoryProps }) {
-	const posts = (await getCollection('blog')).filter((post) =>
+	const posts = (await getPublishedPosts()).filter((post) =>
 		postMatchesSearchCategory(post, props.category.key),
 	);
 	const searchIndex = await createSearchIndex(posts);

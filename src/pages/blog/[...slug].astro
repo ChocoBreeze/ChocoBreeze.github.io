@@ -1,9 +1,10 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
+import { type CollectionEntry, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import { getPublishedPosts } from '../../lib/posts';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
+	const posts = await getPublishedPosts();
 	return posts.map((post) => ({
 		params: { slug: post.data.slug || post.id },
 		props: post,
@@ -16,7 +17,7 @@ const post = Astro.props;
 const { Content, headings } = await render(post);
 
 // "이전/다음 글" 찾기 로직
-const allPosts = (await getCollection('blog')).filter(p => {
+const allPosts = (await getPublishedPosts()).filter(p => {
 	const currentCats = post.data.categories;
 	const pCats = p.data.categories;
 	const normalize = (c: BlogCategory) => {

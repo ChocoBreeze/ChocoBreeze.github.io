@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../lib/posts';
 import {
 	BLOG_CATEGORIES,
 	COMPUTING_CATEGORY_KEYS,
@@ -21,7 +21,7 @@ const computingCategories = BLOG_CATEGORIES.filter(({ key }) => COMPUTING_CATEGO
 const isFinanceActive = activeCategory ? FINANCE_CATEGORY_KEYS.includes(activeCategory) : false;
 const isComputingActive = activeCategory ? COMPUTING_CATEGORY_KEYS.includes(activeCategory) : false;
 
-const posts = await getCollection('blog');
+const posts = await getPublishedPosts();
 const categoryCounts = new Map<BlogCategoryKey, number>();
 
 for (const post of posts) {

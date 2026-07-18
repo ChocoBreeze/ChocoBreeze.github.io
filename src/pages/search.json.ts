@@ -1,8 +1,8 @@
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../lib/posts';
 import { createSearchIndex } from '../lib/searchIndex';
 
 export async function GET() {
-	const posts = await getCollection('blog');
+	const posts = await getPublishedPosts();
 	const searchIndex = await createSearchIndex(posts);
 
 	return new Response(JSON.stringify(searchIndex), {
