@@ -54,19 +54,7 @@ Before committing new or edited posts, check for:
 
 ## Category Conventions
 
-Keep category values aligned with `src/data/blogCategories.ts`.
-
-Known categories:
-
-- `ETF`
-- `Semiconductor`
-- `Computer Science`
-- `Programming`
-- `Problem_Solving`
-- `Reports`
-- `Market Brief`
-
-If a post is intended to appear in a category page, make sure its `categories` frontmatter normalizes to one of the values above.
+`src/data/blogCategories.ts` (`BLOG_CATEGORIES`) is the single source of truth for the category keys, labels, and routes — do not maintain a parallel list here. If a post is intended to appear in a category page, make sure its `categories` frontmatter normalizes (via `normalizeCategory()`) to one of the keys defined there.
 
 ## ETF Classification Rules
 
@@ -103,14 +91,7 @@ Preserve the existing folder style unless there is an explicit request to reorga
 ## Routing Notes
 
 - Post URLs are generated from `post.data.slug || post.id`.
-- Category list pages exist under:
-  - `/etf`
-  - `/semiconductor`
-  - `/cs`
-  - `/programming`
-  - `/problem-solving`
-  - `/reports`
-  - `/market-brief`
+- Category list pages live at each category's `href` in `src/data/blogCategories.ts` (`/etf`, `/economics`, `/semiconductor`, `/cs`, `/programming`, `/problem-solving`, `/reports`, `/market-brief`).
 
 When adding or editing posts, avoid changes that would silently break these routes.
 

@@ -61,13 +61,7 @@ npm run dev
 - `/`: 홈
 - `/blog/[...slug]`: 개별 글
 - `/search`: 글 검색
-- `/etf`
-- `/semiconductor`
-- `/cs`
-- `/programming`
-- `/problem-solving`
-- `/reports`
-- `/market-brief`
+- 카테고리별 라우트: 각 카테고리의 `href`(`/etf`, `/economics`, `/semiconductor`, `/cs`, `/programming`, `/problem-solving`, `/reports`, `/market-brief`)는 `src/data/blogCategories.ts`의 `BLOG_CATEGORIES`에 정의되어 있습니다.
 
 ## Content Rules
 
@@ -89,17 +83,9 @@ npm run dev
 
 ## Categories
 
-현재 카테고리 정의는 `src/data/blogCategories.ts`에 있습니다.
+전체 카테고리 정의(키, 라벨, 라우트, 정렬 순서)는 `src/data/blogCategories.ts`의 `BLOG_CATEGORIES`가 유일한 출처입니다. 문서에 목록을 중복해서 나열하지 않으니 해당 파일을 참고하세요.
 
-- `ETF`
-- `Semiconductor`
-- `Computer Science`
-- `Programming`
-- `Problem_Solving`
-- `Reports`
-- `Market Brief`
-
-카테고리 페이지에 노출되어야 하는 글은 `categories` 값이 위 규칙과 맞아야 합니다.
+카테고리 페이지에 노출되어야 하는 글은 `categories` 값이 `BLOG_CATEGORIES`의 키(또는 `normalizeCategory()`가 처리하는 alias)로 정규화되어야 합니다.
 
 ## Writing Notes
 
