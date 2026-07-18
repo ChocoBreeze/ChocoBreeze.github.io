@@ -18,6 +18,12 @@
 | 9 | [Prettier 도입](09-prettier.md) | ✅ 완료 | `0d93a52` Add Prettier with an Astro-aware config · `69fa1e0` Apply Prettier formatting · `b9e3e7b` Ignore the bulk-format commit in git blame |
 | 10 | [문서 카테고리 목록 동기화](10-docs-category-sync.md) | ✅ 완료 | `d85ad2d` Delegate category lists in docs to blogCategories.ts |
 
+## 보류 항목
+
+| # | 계획 | 상태 | 비고 |
+|---|------|------|------|
+| 11 | [OG 이미지 생성 규모 축소](11-og-image-scaling.md) | ⏸️ 보류 | 현재 빌드 비용(~10초/~20MB)이 부담 없어 착수 불필요. 포스트 폭증 시 문서대로 진행. |
+
 ## 검증
 
 최종 게이트 전부 통과 후 `main`에 push 완료:
