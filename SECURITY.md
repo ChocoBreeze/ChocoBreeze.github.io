@@ -4,7 +4,7 @@ This project is a static Astro blog deployed to GitHub Pages.
 
 ## Dependency Audit
 
-Last checked: 2026-07-06
+Last checked: 2026-07-20
 
 Command:
 
@@ -40,6 +40,8 @@ npm view @astrojs/check version dependencies --json
 If `npm audit fix` can resolve the remaining items without `--force`, prefer applying it and then run:
 
 ```sh
+npm test
+npm run check:content
 npm run check
 npm run build
 ```

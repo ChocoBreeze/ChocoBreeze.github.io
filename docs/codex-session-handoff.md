@@ -1,12 +1,10 @@
 # Codex Session Handoff
 
-## Last Known State
+## Maintenance Context
 
-- Last updated: 2026-06-08
-- Last checked command: `git status --short`
-- Last known working tree: clean
+- Last reviewed: 2026-07-20
 - Common validation for content-only work: `npm run check:content`
-- Push status: confirm with `git status -sb` or `git log --oneline origin/main..HEAD`
+- Do not rely on a recorded working-tree or push state. Check the live repository with `git status -sb` and, when needed, `git log --oneline origin/main..HEAD`.
 
 This document records project-specific Codex work history and handoff notes.
 Use it as a compact reference when starting a new session. Keep persistent rules in `AGENTS.md`; keep completed work history and topic-specific context here.

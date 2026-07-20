@@ -10,7 +10,10 @@ npm run build         # Production build (output: ./dist)
 npm run preview       # Preview the built site locally
 npm run check         # TypeScript/Astro type-check
 npm run check:content # Validate all blog post frontmatter and content quality
+npm test              # Run content-rule unit tests
 npm run new:post      # Scaffold a new blog post (see below)
+npm run format        # Format supported files with Prettier
+npm run format:check  # Check Prettier formatting
 ```
 
 ### Scaffolding new posts
@@ -79,7 +82,7 @@ Posts without their own `heroImage`/`image` get an auto-generated OG card at `/o
 - No absolute local paths or secret patterns in content
 - Missing image alt text, unbalanced bold markers
 
-CI runs this check on every pull request (`check:content` → `astro check` → `build`), and the deploy workflow reruns it before publishing. A versioned git pre-commit hook (`scripts/hooks/pre-commit`, activated via `core.hooksPath` by the `prepare` npm script on `npm install`) also runs `check-content.mjs` against any staged `.md`/`.mdx` files, so a commit with a broken post will fail — fix the reported errors rather than bypassing the hook.
+CI runs unit tests and this check on every pull request (`npm test` → `check:content` → `astro check` → `build`), and the deploy workflow reruns the same sequence before publishing. A versioned git pre-commit hook (`scripts/hooks/pre-commit`, activated via `core.hooksPath` by the `prepare` npm script on `npm install`) also runs `check-content.mjs` against any staged `.md`/`.mdx` files, so a commit with a broken post will fail — fix the reported errors rather than bypassing the hook.
 
 ### Deployment
 

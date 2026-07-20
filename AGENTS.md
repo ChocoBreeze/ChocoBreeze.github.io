@@ -33,12 +33,18 @@ Common fields:
 - `description`: optional
 - `pubDate`: preferred publish date field; use full ISO 8601 with timezone, such as `2026-01-16T00:00:00+09:00`
 - `updatedDate`: optional
+- `heroImage`: optional
 - `categories`: optional, string or string array
 - `tags`: optional
+- `difficulty`: optional, used by problem-solving posts
+- `topics`: optional, used by problem-solving posts
 - `pinned`: optional, default `false`
+- `draft`: optional, default `false`
 - `order`: optional, useful for ordered series
 
 Legacy Jekyll-style fields such as `date` and `image` are also accepted, but new posts should prefer the Astro-side fields (`pubDate`, `heroImage`).
+
+Posts with `draft: true` remain visible in `npm run dev` but are excluded from production pages, search indexes, feeds, and the sitemap. Drafts are still checked by `npm run check:content`.
 
 For new posts, prefer including at least `title`, `description`, `pubDate`, and `categories`.
 
@@ -91,7 +97,7 @@ Preserve the existing folder style unless there is an explicit request to reorga
 ## Routing Notes
 
 - Post URLs are generated from `post.data.slug || post.id`.
-- Category list pages live at each category's `href` in `src/data/blogCategories.ts` (`/etf`, `/economics`, `/semiconductor`, `/cs`, `/programming`, `/problem-solving`, `/reports`, `/market-brief`).
+- Category list pages live at each category's `href` in `src/data/blogCategories.ts`; do not duplicate the route list in documentation.
 
 When adding or editing posts, avoid changes that would silently break these routes.
 
@@ -106,10 +112,12 @@ When adding or editing posts, avoid changes that would silently break these rout
 Run from repository root:
 
 - `npm run dev`
+- `npm test`
 - `npm run check:content`
 - `npm run check`
 - `npm run build`
 - `npm run preview`
+- `npm run format:check`
 
 Use `npm run check:content` for post-only changes. Use `npm run check` and `npm run build` after meaningful code, layout, route, or CI changes.
 
@@ -146,10 +154,11 @@ Use this checklist before committing non-trivial changes.
 
 GitHub Pages deployment currently uses:
 
-- `withastro/action@v5`
-- `node-version: 22.12.0`
+- `actions/setup-node@v4` with `node-version-file: .nvmrc`
+- `npm ci`, `npm test`, `npm run check:content`, `npm run check`, and `npm run build`
+- `actions/upload-pages-artifact@v3` and `actions/deploy-pages@v4`
 
-Keep deployment on Node `22.12.0+` for Astro 6 compatibility.
+`.nvmrc` is the deployment version source; keep it on Node `22.12.0+` for Astro 6 compatibility and keep `package.json`'s `engines` constraint aligned.
 
 ## Recommended Workflow
 

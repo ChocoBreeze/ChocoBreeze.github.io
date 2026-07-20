@@ -306,6 +306,8 @@ components:
 
 ## Overview
 
+> **Repository note:** This document preserves the NVIDIA marketing-site analysis that originally informed the blog's color tokens and angular base components. It is a design reference, not a literal specification of the current site. The implementation uses Inter and Noto Sans KR rather than the proprietary NVIDIA-EMEA font, and some newer content hubs and cards intentionally use larger radii, gradients, and shadows. Treat `src/styles/global.css` and component-local styles as the source of truth for shipped behavior.
+
 NVIDIA's marketing system is built like a piece of engineering documentation that learned graphic design — every page is a structured cascade of dense, factual information arranged on a paper-white grid, framed top and bottom by deep black hero/footer chapters. There is exactly one accent color in the entire system, and it is doing all the work: NVIDIA Green (`{colors.primary}` — `#76b900`), used for every primary CTA, every active tab, every link affordance on dark surfaces, and the small decorative corner squares that mark out card containers. Nothing else competes for attention.
 
 The system's character comes from extreme typographic restraint and an almost punishingly angular geometry. Every container, button, and image uses `{rounded.sm}` (2px) — a token that's barely-there but never zero, giving the system the precise, technical feel of CAD output rather than warm consumer software. Cards sit on plain `{colors.canvas}` with a hairline `{colors.hairline}` border (no shadow, no elevation), separated by tight 8px-base spacing rhythm. Long-form pages stack 6–10 of these cards into multi-column technical grids without ever introducing decorative breaks.
