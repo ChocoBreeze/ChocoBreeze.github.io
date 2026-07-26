@@ -125,14 +125,19 @@ function getMarketBriefDefaults(type, dateParts) {
 		category: 'Market Brief',
 		slug: `market-brief/${dateParts.yymm}/${dateParts.yymmdd}-${reportType.toLowerCase()}`,
 		file: path.join('Market Brief', dateParts.yymmFolder, `${dateParts.yymmdd} ${reportType}.md`),
+		// Weekly briefs are published alongside same-day Daily briefs but should sort as the
+		// more recent post, since every date-sort comparator in the site breaks ties by
+		// pubDate only (no secondary key). A later timestamp keeps Weekly on top everywhere
+		// (RSS, tags, archive, category index) without touching every comparator.
+		time: reportType === 'Weekly' ? '00:00:01' : '00:00:00',
 	};
 }
 
-function buildPostContent({ title, description, category, slug, date }) {
+function buildPostContent({ title, description, category, slug, date, time }) {
 	return `---
 title: "${title}"
 description: "${description}"
-pubDate: "${date}T00:00:00+09:00"
+pubDate: "${date}T${time}+09:00"
 categories: "${category}"
 slug: "${slug}"
 ---
@@ -172,6 +177,7 @@ function main() {
 	const description =
 		args.description ?? defaults.description ?? '글 내용을 한 문장으로 요약합니다.';
 	const slug = args.slug ?? defaults.slug ?? `${slugify(category)}/${slugify(title)}`;
+	const time = defaults.time ?? '00:00:00';
 	const categoryFolder = CATEGORY_FOLDERS[category];
 	const relativeFile =
 		args.file ?? defaults.file ?? path.join(categoryFolder, `${date} ${slugify(title)}.md`);
@@ -190,6 +196,7 @@ function main() {
 			category,
 			slug,
 			date,
+			time,
 		}),
 		'utf8',
 	);
