@@ -1,0 +1,235 @@
+---
+import { getPublishedPosts } from '../../lib/posts';
+import BaseHead from '../../components/BaseHead.astro';
+import BlogSidebar from '../../components/BlogSidebar.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+
+const gitPosts = (await getPublishedPosts())
+	.filter((post) => (post.data.slug ?? '').startsWith('git-internals-'))
+	.sort((a, b) => {
+		const dateA = a.data.pubDate || a.data.date || new Date(0);
+		const dateB = b.data.pubDate || b.data.date || new Date(0);
+		return dateA.valueOf() - dateB.valueOf();
+	})
+	.map((post, index) => ({
+		step: index + 1,
+		title: post.data.title,
+		description: post.data.description,
+		href: `/blog/${post.data.slug || post.id}/`,
+		tags: post.data.tags ?? [],
+	}));
+
+const phases = [
+	{
+		title: '저장 구조',
+		range: '1-3편',
+		description: 'Commit이 Tree를, Tree가 Blob을 가리키는 Git의 객체 저장 모델을 살펴봅니다.',
+	},
+	{
+		title: '작업 상태',
+		range: '4, 7편',
+		description:
+			'HEAD·Index·Working Tree 세 영역과 reset/restore/checkout이 각각 무엇을 바꾸는지 봅니다.',
+	},
+	{
+		title: '저장소 활용',
+		range: '5-6, 8편',
+		description: 'worktree·subtree·submodule로 여러 작업 공간과 저장소를 연결하는 방법을 다룹니다.',
+	},
+];
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title="Git Internals 학습 로드맵"
+			description="Commit/Tree/Blob부터 worktree/subtree/submodule까지, Git 내부 구조를 순서대로 읽을 수 있는 시리즈 허브입니다."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="blog-page-shell">
+			<BlogSidebar activeCategory="Programming" />
+			<section class="git-hub-panel">
+				<div class="git-hero">
+					<p class="section-eyebrow">Git Internals Learning Roadmap</p>
+					<h1>Git Internals 학습 로드맵</h1>
+					<p>
+						Git이 데이터를 어떻게 저장하고, 현재 작업 상태를 어떻게 관리하며, 여러 작업 공간과
+						저장소를 어떻게 연결하는지 순서대로 따라갈 수 있게 정리했습니다.
+					</p>
+				</div>
+
+				<div class="phase-grid">
+					{
+						phases.map((phase) => (
+							<article class="phase-card">
+								<span>{phase.range}</span>
+								<h2>{phase.title}</h2>
+								<p>{phase.description}</p>
+							</article>
+						))
+					}
+				</div>
+
+				<ol class="git-timeline">
+					{
+						gitPosts.map((post) => (
+							<li>
+								<a href={post.href} class="git-step-card">
+									<span class="step-badge">
+										{post.step}/{gitPosts.length}
+									</span>
+									<div>
+										<h2>{post.title}</h2>
+										{post.description && <p>{post.description}</p>}
+										<ul>
+											{post.tags.slice(0, 4).map((tag) => (
+												<li>{tag}</li>
+											))}
+										</ul>
+									</div>
+								</a>
+							</li>
+						))
+					}
+				</ol>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.git-hub-panel {
+		min-width: 0;
+	}
+
+	.git-hero {
+		margin-bottom: 1.2rem;
+		padding: 1.35rem;
+		border: 1px solid var(--border-color);
+		border-radius: 26px;
+		background:
+			linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, transparent), transparent 48%),
+			var(--card-bg);
+	}
+
+	.section-eyebrow {
+		margin: 0 0 0.45rem;
+		color: var(--accent);
+		font-size: 0.78rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.git-hero h1 {
+		margin-top: 0;
+	}
+
+	.git-hero p {
+		margin-bottom: 0;
+		color: var(--muted-text);
+	}
+
+	.phase-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+		gap: 0.9rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.phase-card,
+	.git-step-card {
+		border: 1px solid color-mix(in srgb, var(--border-color) 86%, var(--accent) 14%);
+		background: color-mix(in srgb, var(--card-bg) 96%, var(--accent) 4%);
+	}
+
+	.phase-card {
+		padding: 1rem;
+		border-radius: 18px;
+	}
+
+	.phase-card span,
+	.step-badge {
+		color: var(--accent);
+		font-size: 0.78rem;
+		font-weight: 800;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.phase-card h2 {
+		margin: 0.35rem 0;
+		font-size: 1.1rem;
+	}
+
+	.phase-card p {
+		margin: 0;
+		color: var(--muted-text);
+	}
+
+	.git-timeline {
+		display: grid;
+		gap: 0.85rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.git-step-card {
+		display: grid;
+		grid-template-columns: 5.5rem 1fr;
+		gap: 1rem;
+		padding: 1rem;
+		border-radius: 20px;
+		color: var(--heading-color);
+		text-decoration: none;
+		transition:
+			transform 0.2s ease,
+			border-color 0.2s ease,
+			background-color 0.2s ease;
+	}
+
+	.git-step-card:hover {
+		border-color: color-mix(in srgb, var(--accent) 55%, var(--border-color));
+		background: color-mix(in srgb, var(--card-bg) 88%, var(--accent) 12%);
+		transform: translateY(-2px);
+	}
+
+	.git-step-card h2 {
+		margin: 0 0 0.35rem;
+		font-size: 1.15rem;
+	}
+
+	.git-step-card p {
+		margin: 0 0 0.65rem;
+		color: var(--muted-text);
+	}
+
+	.git-step-card ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.git-step-card ul li {
+		padding: 0.18rem 0.5rem;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--accent) 12%, transparent);
+		color: var(--heading-color);
+		font-size: 0.78rem;
+	}
+
+	@media (max-width: 620px) {
+		.git-step-card {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
