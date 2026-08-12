@@ -1,0 +1,295 @@
+---
+import { getPublishedPosts } from '../../lib/posts';
+import BaseHead from '../../components/BaseHead.astro';
+import BlogSidebar from '../../components/BlogSidebar.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+
+const sectionDefs = [
+	{
+		number: 1,
+		title: '상태 확인',
+		slugs: ['git-status-command-guide', 'git-branch-command-guide', 'git-log-command-guide'],
+	},
+	{
+		number: 2,
+		title: '변경 내용 확인',
+		slugs: ['git-diff-command-guide', 'git-show-command-guide'],
+	},
+	{ number: 3, title: '스테이징', slugs: ['git-add-command-guide', 'git-unstage-command-guide'] },
+	{ number: 4, title: '커밋', slugs: ['git-commit-command-guide'] },
+	{ number: 5, title: '브랜치', slugs: ['git-branch-create-switch-delete-guide'] },
+	{ number: 6, title: '원격 저장소', slugs: ['git-remote-command-guide'] },
+	{ number: 7, title: '동기화', slugs: ['git-fetch-pull-command-guide', 'git-push-command-guide'] },
+	{
+		number: 8,
+		title: '병합',
+		slugs: ['git-merge-rebase-command-guide', 'git-conflict-resolution-guide'],
+	},
+	{
+		number: 9,
+		title: '되돌리기',
+		slugs: ['git-restore-command-guide', 'git-reset-command-guide', 'git-revert-command-guide'],
+	},
+	{ number: 10, title: '임시 저장', slugs: ['git-stash-command-guide'] },
+	{ number: 11, title: '태그', slugs: ['git-tag-command-guide'] },
+	{ number: 12, title: '원격 브랜치 정리', slugs: ['git-remote-branch-cleanup-guide'] },
+	{ number: 13, title: '파일 추적', slugs: ['git-rm-mv-clean-command-guide'] },
+	{ number: 14, title: '설정', slugs: ['git-config-command-guide'] },
+	{
+		number: 15,
+		title: '문제 해결',
+		slugs: [
+			'git-reflog-command-guide',
+			'git-cherry-pick-command-guide',
+			'git-blame-command-guide',
+			'git-bisect-command-guide',
+		],
+	},
+];
+
+const allPosts = await getPublishedPosts();
+const postBySlug = new Map(allPosts.map((post) => [post.data.slug, post]));
+
+const sections = sectionDefs.map((section) => ({
+	number: section.number,
+	title: section.title,
+	posts: section.slugs
+		.map((slug) => postBySlug.get(slug))
+		.filter((post): post is NonNullable<typeof post> => Boolean(post))
+		.map((post) => ({
+			title: post.data.title,
+			description: post.data.description,
+			href: `/blog/${post.data.slug || post.id}/`,
+		})),
+}));
+
+const totalCount = sections.reduce((sum, section) => sum + section.posts.length, 0);
+
+const indexPost = postBySlug.get('git-commands-guide');
+const indexHref = indexPost
+	? `/blog/${indexPost.data.slug || indexPost.id}/`
+	: '/blog/git-commands-guide/';
+
+const phases = [
+	{
+		title: '기본 흐름',
+		range: '1-4장',
+		description: '상태 확인, 변경 내용, 스테이징, 커밋까지 매일 쓰는 기본 흐름을 정리합니다.',
+	},
+	{
+		title: '브랜치와 협업',
+		range: '5-8장',
+		description: '브랜치, 원격 저장소, 동기화, 병합까지 여러 사람과 함께 작업하는 흐름을 다룹니다.',
+	},
+	{
+		title: '되돌리기와 정리',
+		range: '9-14장',
+		description:
+			'되돌리기, 임시 저장, 태그, 원격 브랜치 정리, 설정까지 저장소를 관리하는 명령을 모읍니다.',
+	},
+	{
+		title: '문제 해결',
+		range: '15장',
+		description:
+			'reflog, cherry-pick, blame, bisect로 과거 이력을 추적하고 문제를 찾는 명령을 정리합니다.',
+	},
+];
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title="Git 명령어 학습 로드맵"
+			description="상태 확인부터 문제 해결까지, Git 명령어 정리 시리즈 15개 섹션을 순서대로 읽을 수 있는 시리즈 허브입니다."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="blog-page-shell">
+			<BlogSidebar activeCategory="Programming" />
+			<section class="git-hub-panel">
+				<div class="git-hero">
+					<p class="section-eyebrow">Git Commands Learning Roadmap</p>
+					<h1>Git 명령어 학습 로드맵</h1>
+					<p>
+						상태 확인부터 스테이징, 커밋, 브랜치, 동기화, 되돌리기, 문제 해결까지 자주 쓰는 Git
+						명령어를 15개 섹션 {totalCount}편으로 정리했습니다.
+					</p>
+					<a class="index-link" href={indexHref}>한 페이지로 모아 보기 →</a>
+				</div>
+
+				<div class="phase-grid">
+					{
+						phases.map((phase) => (
+							<article class="phase-card">
+								<span>{phase.range}</span>
+								<h2>{phase.title}</h2>
+								<p>{phase.description}</p>
+							</article>
+						))
+					}
+				</div>
+
+				<div class="command-sections">
+					{
+						sections.map((section) => (
+							<article class="command-section">
+								<h2>
+									<span class="section-number">{section.number}</span>
+									{section.title}
+								</h2>
+								<ul>
+									{section.posts.map((post) => (
+										<li>
+											<a href={post.href}>{post.title}</a>
+										</li>
+									))}
+								</ul>
+							</article>
+						))
+					}
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.git-hub-panel {
+		min-width: 0;
+	}
+
+	.git-hero {
+		margin-bottom: 1.2rem;
+		padding: 1.35rem;
+		border: 1px solid var(--border-color);
+		border-radius: 26px;
+		background:
+			linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, transparent), transparent 48%),
+			var(--card-bg);
+	}
+
+	.section-eyebrow {
+		margin: 0 0 0.45rem;
+		color: var(--accent);
+		font-size: 0.78rem;
+		font-weight: 800;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.git-hero h1 {
+		margin-top: 0;
+	}
+
+	.git-hero p {
+		margin-bottom: 0.75rem;
+		color: var(--muted-text);
+	}
+
+	.index-link {
+		display: inline-block;
+		color: var(--accent);
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.index-link:hover {
+		text-decoration: underline;
+	}
+
+	.phase-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+		gap: 0.9rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.phase-card {
+		padding: 1rem;
+		border-radius: 18px;
+		border: 1px solid color-mix(in srgb, var(--border-color) 86%, var(--accent) 14%);
+		background: color-mix(in srgb, var(--card-bg) 96%, var(--accent) 4%);
+	}
+
+	.phase-card span {
+		color: var(--accent);
+		font-size: 0.78rem;
+		font-weight: 800;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.phase-card h2 {
+		margin: 0.35rem 0;
+		font-size: 1.1rem;
+	}
+
+	.phase-card p {
+		margin: 0;
+		color: var(--muted-text);
+	}
+
+	.command-sections {
+		display: grid;
+		gap: 0.85rem;
+	}
+
+	.command-section {
+		padding: 1rem 1.1rem;
+		border-radius: 20px;
+		border: 1px solid color-mix(in srgb, var(--border-color) 86%, var(--accent) 14%);
+		background: color-mix(in srgb, var(--card-bg) 96%, var(--accent) 4%);
+	}
+
+	.command-section h2 {
+		display: flex;
+		align-items: center;
+		gap: 0.55rem;
+		margin: 0 0 0.6rem;
+		font-size: 1.05rem;
+	}
+
+	.section-number {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.6rem;
+		height: 1.6rem;
+		border-radius: 50%;
+		background: color-mix(in srgb, var(--accent) 16%, transparent);
+		color: var(--accent);
+		font-size: 0.85rem;
+		font-weight: 800;
+	}
+
+	.command-section ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 0.9rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.command-section li {
+		flex: 0 0 auto;
+	}
+
+	.command-section a {
+		color: var(--heading-color);
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition:
+			border-color 0.15s ease,
+			color 0.15s ease;
+	}
+
+	.command-section a:hover {
+		color: var(--accent);
+		border-color: var(--accent);
+	}
+</style>
