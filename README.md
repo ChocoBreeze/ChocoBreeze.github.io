@@ -22,7 +22,10 @@ npm run dev
 ```
 
 기본 개발 서버는 `http://localhost:4321`에서 실행됩니다.
-`npm install` 후에는 버전 관리되는 pre-commit 훅(`scripts/hooks/pre-commit`)도 자동으로 활성화됩니다.
+`npm install` 후에는 `scripts/hooks/`의 버전 관리되는 Git 훅이 자동으로 활성화됩니다.
+`pre-commit`은 Markdown 콘텐츠 검사를 실행하고, `prepare-commit-msg`는 Codex 공동작성
+trailer가 있는 새 커밋에 `AI-Model` trailer를 추가합니다. 모델명은 `AI_MODEL` 환경변수,
+현재 저장소의 `ai.model`, 전역 `ai.model`, `unknown` 순서로 결정됩니다.
 
 ## Scripts
 
