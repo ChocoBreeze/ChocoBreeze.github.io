@@ -15,8 +15,7 @@
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"preview": "astro preview",
-		"astro": "astro",
-		"prepare": "git config core.hooksPath scripts/hooks || true"
+		"astro": "astro"
 	},
 	"dependencies": {
 		"@astrojs/mdx": "^5.0.3",
