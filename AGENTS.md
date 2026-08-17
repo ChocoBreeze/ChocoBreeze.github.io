@@ -20,6 +20,18 @@ This repository is an Astro-based personal blog. The root `README.md` documents 
 - If a change affects deployment, keep the GitHub Actions workflow aligned with Astro's supported Node version.
 - Keep content changes, UI/layout changes, validation changes, and deployment changes in separate commits when practical.
 
+## Git commits and AI provenance
+
+- Follow the repository's existing commit convention for titles, scopes, bodies, issue references, and changelog policy.
+- When AI meaningfully participates in a commit, record one final, continuous trailer block with the standard keys:
+  `AI-Agent`, `AI-Model`, `AI-Reasoning`, and `Co-authored-by`.
+- Use exact runtime agent, model, and reasoning metadata when it is reliably available. If only coarse runtime metadata is available, use the most specific reliable coarse value; use `unknown` when it cannot be confirmed.
+- Never guess runtime metadata. Do not use `config.toml`, Git `ai.*` config, environment fallbacks, previous commits, or prior conversation/session context as the current runtime source of truth.
+- Do not use ambiguous placeholder values such as `default`, `TBD`, `TODO`, `N/A`, `NA`, `null`, `placeholder`, or angle-bracket placeholders such as `<actual model>`.
+- `AI-Agent`, `AI-Model`, and `AI-Reasoning` each appear exactly once. `Co-authored-by` may appear multiple times for other contributors.
+- Keep the trailer block at the end of the commit message with no blank lines between trailers.
+- Do not bypass the global `commit-msg` validator or the global `pre-commit` dispatcher.
+
 ## Content Model
 
 All posts are loaded from `src/content/blog/**/*.{md,mdx}`.

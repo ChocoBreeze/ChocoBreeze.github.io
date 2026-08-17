@@ -1,11 +1,17 @@
 #!/bin/sh
 set -eu
 
+if [ "${GIT_GLOBAL_HOOK_DISPATCH:-}" = "1" ]; then
+  exit 0
+fi
+
 repo_root="$(git rev-parse --show-toplevel 2>/dev/null || exit 0)"
 project_hook="$repo_root/scripts/hooks/pre-commit"
 
-if [ -f "$project_hook" ]; then
-  exec sh "$project_hook" "$@"
+if [ ! -f "$project_hook" ]; then
+  exit 0
 fi
 
-exit 0
+GIT_GLOBAL_HOOK_DISPATCH=1
+export GIT_GLOBAL_HOOK_DISPATCH
+exec "$project_hook" "$@"

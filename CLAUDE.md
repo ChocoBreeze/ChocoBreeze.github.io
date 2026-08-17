@@ -82,7 +82,18 @@ Posts without their own `heroImage`/`image` get an auto-generated OG card at `/o
 - No absolute local paths or secret patterns in content
 - Missing image alt text, unbalanced bold markers
 
-CI runs unit tests and this check on every pull request (`npm test` → `check:content` → `astro check` → `build`), and the deploy workflow reruns the same sequence before publishing. A versioned git pre-commit hook (`scripts/hooks/pre-commit`, activated via `core.hooksPath` by the `prepare` npm script on `npm install`) also runs `check-content.mjs` against any staged `.md`/`.mdx` files, so a commit with a broken post will fail — fix the reported errors rather than bypassing the hook.
+CI runs unit tests and this check on every pull request (`npm test` → `check:content` → `astro check` → `build`), and the deploy workflow reruns the same sequence before publishing. The user-wide Git `pre-commit` dispatcher invokes this repository's `scripts/hooks/pre-commit` when it exists, so a commit with a broken post will fail — fix the reported errors rather than bypassing the hook. The global `commit-msg` hook validates AI provenance but does not generate metadata. This repository does not configure `core.hooksPath` or a `prepare` npm script.
+
+### Git commits and AI provenance
+
+- Keep the repository's existing commit convention for titles, scopes, bodies, issue references, and changelog policy.
+- When AI meaningfully participates in a commit, add one final, continuous trailer block:
+  `AI-Agent: <agent>`, `AI-Model: <actual model>`, `AI-Reasoning: <actual setting>`, and `Co-authored-by: <configured attribution>`.
+- Use exact runtime metadata from the current Claude Code or Codex session when it is reliably available. If only coarse metadata is available, use the most specific reliable coarse value; use `unknown` when it cannot be confirmed.
+- Never guess model or reasoning. Do not use `config.toml`, Git `ai.*` config, environment fallbacks, previous commits, or prior conversation/session context as the current runtime source of truth.
+- Do not use ambiguous placeholder values such as `default`, `TBD`, `TODO`, `N/A`, `NA`, `null`, `placeholder`, or angle-bracket placeholders such as `<actual model>`.
+- `AI-Agent`, `AI-Model`, and `AI-Reasoning` appear exactly once. Multiple `Co-authored-by` trailers are allowed for other contributors.
+- Keep trailers together at the end of the message with no blank lines between them, and do not bypass the global validator.
 
 ### Deployment
 

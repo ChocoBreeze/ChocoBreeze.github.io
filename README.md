@@ -24,9 +24,12 @@ npm run dev
 기본 개발 서버는 `http://localhost:4321`에서 실행됩니다.
 Git 훅은 사용자 전역 설정을 단일 진입점으로 사용합니다. 전역 `pre-commit` dispatcher가
 이 저장소의 `scripts/hooks/pre-commit`을 발견하면 Markdown 콘텐츠 검사를 실행합니다.
-전역 `prepare-commit-msg`는 Codex 공동작성 trailer가 있는 새 커밋에 `AI-Model` trailer를
-추가합니다. 모델명은 `AI_MODEL` 환경변수, 현재 저장소의 `ai.model`, 전역 `ai.model`,
-`unknown` 순서로 결정됩니다. 이 저장소의 `npm install`은 Git hook 경로를 변경하지 않습니다.
+전역 `commit-msg`는 AI provenance trailer를 검증하며 metadata를 자동 생성하지 않습니다. AI가
+의미 있게 참여한 커밋은 `AI-Agent`, `AI-Model`, `AI-Reasoning`, `Co-authored-by`를 하나의
+연속된 마지막 trailer block으로 기록해야 합니다. runtime metadata는 정확히 확인되면 exact 값을,
+coarse 정보만 확인되면 가장 구체적인 coarse 값을, 확인할 수 없으면 `unknown`을 사용합니다.
+`default`, `TBD`, `TODO`, `N/A`, `NA`, `null`, `placeholder` 및 `<...>` placeholder는 금지됩니다.
+이 저장소의 `npm install`은 Git hook 경로를 변경하지 않습니다.
 
 ## Scripts
 

@@ -1,0 +1,188 @@
+#!/bin/sh
+set -eu
+
+is_placeholder_value() {
+  case "$1" in
+    [dD][eE][fF][aA][uU][lL][tT]|[tT][bB][dD]|[tT][oO][dD][oO]|[nN]/[aA]|[nN][aA]|[nN][uU][lL][lL]|[pP][lL][aA][cC][eE][hH][oO][lL][dD][eE][rR]|'<'*'>')
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+message_file="${1:-}"
+if [ -z "$message_file" ] || [ ! -f "$message_file" ]; then
+  echo "ERROR: commit-msg hook requires Git's commit message file argument." >&2
+  exit 1
+fi
+
+ai_marker=0
+while IFS= read -r line || [ -n "$line" ]; do
+  case "$line" in
+    AI-Agent:*|AI-Model:*|AI-Reasoning:*) ai_marker=1 ;;
+    "Co-authored-by: Codex <noreply@openai.com>"*) ai_marker=1 ;;
+  esac
+done < "$message_file"
+
+if ! parsed_trailers="$(git interpret-trailers --parse -- "$message_file")"; then
+  echo "ERROR: Git could not parse the commit message trailers." >&2
+  exit 1
+fi
+
+trailer_stats="$(
+  printf '%s\n' "$parsed_trailers" |
+    (
+      agent_count=0
+      model_count=0
+      reasoning_count=0
+      coauthor_count=0
+      agent_empty=0
+      model_empty=0
+      reasoning_empty=0
+      coauthor_empty=0
+      model_placeholder=0
+      reasoning_placeholder=0
+
+      while IFS= read -r line || [ -n "$line" ]; do
+        case "$line" in
+          AI-Agent:*)
+            agent_count=$((agent_count + 1))
+            value=${line#AI-Agent:}
+            case "$value" in
+              *[![:space:]]*) ;;
+              *) agent_empty=1 ;;
+            esac
+            ;;
+          AI-Model:*)
+            model_count=$((model_count + 1))
+            value=${line#AI-Model:}
+            case "$value" in
+              *[![:space:]]*) ;;
+              *) model_empty=1 ;;
+            esac
+            trimmed_value=$value
+            while :; do
+              case "$trimmed_value" in
+                [[:space:]]*) trimmed_value=${trimmed_value#?} ;;
+                *) break ;;
+              esac
+            done
+            while :; do
+              case "$trimmed_value" in
+                *[[:space:]]) trimmed_value=${trimmed_value%?} ;;
+                *) break ;;
+              esac
+            done
+            if [ "$model_empty" -eq 0 ] && is_placeholder_value "$trimmed_value"; then
+              model_placeholder=1
+            fi
+            ;;
+          AI-Reasoning:*)
+            reasoning_count=$((reasoning_count + 1))
+            value=${line#AI-Reasoning:}
+            case "$value" in
+              *[![:space:]]*) ;;
+              *) reasoning_empty=1 ;;
+            esac
+            trimmed_value=$value
+            while :; do
+              case "$trimmed_value" in
+                [[:space:]]*) trimmed_value=${trimmed_value#?} ;;
+                *) break ;;
+              esac
+            done
+            while :; do
+              case "$trimmed_value" in
+                *[[:space:]]) trimmed_value=${trimmed_value%?} ;;
+                *) break ;;
+              esac
+            done
+            if [ "$reasoning_empty" -eq 0 ] && is_placeholder_value "$trimmed_value"; then
+              reasoning_placeholder=1
+            fi
+            ;;
+          Co-authored-by:*)
+            coauthor_count=$((coauthor_count + 1))
+            value=${line#Co-authored-by:}
+            case "$value" in
+              *[![:space:]]*) ;;
+              *) coauthor_empty=1 ;;
+            esac
+            ;;
+        esac
+      done
+
+      printf '%s %s %s %s %s %s %s %s %s %s\n' \
+        "$agent_count" "$model_count" "$reasoning_count" "$coauthor_count" \
+        "$agent_empty" "$model_empty" "$reasoning_empty" "$coauthor_empty" \
+        "$model_placeholder" "$reasoning_placeholder"
+    )
+ )"
+
+set -- $trailer_stats
+agent_count=$1
+model_count=$2
+reasoning_count=$3
+coauthor_count=$4
+agent_empty=$5
+model_empty=$6
+reasoning_empty=$7
+coauthor_empty=$8
+model_placeholder=$9
+reasoning_placeholder=${10}
+
+if [ "$ai_marker" -eq 0 ]; then
+  exit 0
+fi
+
+missing_keys=""
+duplicate_keys=""
+invalid_keys=""
+placeholder_keys=""
+
+if [ "$agent_count" -eq 0 ]; then missing_keys="$missing_keys AI-Agent"; fi
+if [ "$model_count" -eq 0 ]; then missing_keys="$missing_keys AI-Model"; fi
+if [ "$reasoning_count" -eq 0 ]; then missing_keys="$missing_keys AI-Reasoning"; fi
+if [ "$coauthor_count" -eq 0 ]; then missing_keys="$missing_keys Co-authored-by"; fi
+
+if [ "$agent_count" -gt 1 ]; then duplicate_keys="$duplicate_keys AI-Agent"; fi
+if [ "$model_count" -gt 1 ]; then duplicate_keys="$duplicate_keys AI-Model"; fi
+if [ "$reasoning_count" -gt 1 ]; then duplicate_keys="$duplicate_keys AI-Reasoning"; fi
+
+if [ "$agent_empty" -ne 0 ]; then invalid_keys="$invalid_keys AI-Agent"; fi
+if [ "$model_empty" -ne 0 ]; then invalid_keys="$invalid_keys AI-Model"; fi
+if [ "$reasoning_empty" -ne 0 ]; then invalid_keys="$invalid_keys AI-Reasoning"; fi
+if [ "$coauthor_empty" -ne 0 ]; then invalid_keys="$invalid_keys Co-authored-by"; fi
+
+if [ "$model_placeholder" -ne 0 ]; then placeholder_keys="$placeholder_keys AI-Model"; fi
+if [ "$reasoning_placeholder" -ne 0 ]; then placeholder_keys="$placeholder_keys AI-Reasoning"; fi
+
+if [ -z "$missing_keys" ] && [ -z "$duplicate_keys" ] && [ -z "$invalid_keys" ] && [ -z "$placeholder_keys" ]; then
+  exit 0
+fi
+
+echo "ERROR: AI-authored commit failed trailer validation." >&2
+
+if [ -n "$missing_keys" ]; then
+  echo "Missing required trailers:" >&2
+  for key in $missing_keys; do echo "- $key" >&2; done
+fi
+
+if [ -n "$duplicate_keys" ]; then
+  echo "Duplicate trailers are not allowed:" >&2
+  for key in $duplicate_keys; do echo "- $key" >&2; done
+fi
+
+if [ -n "$invalid_keys" ]; then
+  echo "Trailers must have non-empty values:" >&2
+  for key in $invalid_keys; do echo "- $key" >&2; done
+fi
+
+if [ -n "$placeholder_keys" ]; then
+  echo "Model and reasoning trailers must not use placeholder values:" >&2
+  for key in $placeholder_keys; do echo "- $key" >&2; done
+fi
+
+exit 1

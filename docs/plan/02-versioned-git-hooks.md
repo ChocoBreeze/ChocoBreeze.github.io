@@ -1,47 +1,47 @@
 # 2. git pre-commit 훅 버전 관리
 
-## 배경
+## 현재 구조
 
-- 현재 pre-commit 훅은 `.git/hooks/pre-commit`에 직접 설치되어 있다.
-  - 스테이징된 `.md`/`.mdx` 파일이 있으면 `node scripts/check-content.mjs --staged-file-list=<tmp>`를 실행한다.
-- `.git/hooks/`는 git이 추적하지 않으므로 **clone하거나 다른 기기에서 작업하면 훅이 사라진다.**
+- 전역 `core.hooksPath`가 사용자 공통 hook 디렉터리를 가리킨다.
+- 전역 `pre-commit` dispatcher는 현재 저장소의 `scripts/hooks/pre-commit`이 있을 때만 실행한다.
+- 이 저장소의 프로젝트 hook은 스테이징된 `.md`/`.mdx` 파일이 있으면
+  `node scripts/check-content.mjs --staged-file-list=<tmp>`를 실행한다.
+- 전역 `commit-msg` v2는 AI provenance trailer block을 검증하며 metadata를 생성하지 않는다.
+- 정확한 runtime 값, 신뢰할 수 있는 coarse 값, 확인 불가 시 `unknown`을 허용하고 모호한 placeholder는 거부한다.
 
 ## 목표
 
-훅 스크립트를 저장소 안에서 버전 관리하고, 별도 수동 설치 없이 활성화되도록 한다.
+프로젝트별 검사 로직은 저장소 안에서 버전 관리하되, hook 진입점은 전역 dispatcher 하나로 통일한다.
 
 ## 설계 선택
 
-`core.hooksPath` 방식을 사용한다 (심볼릭 링크·복사 스크립트보다 단순하고 Windows에서도 동작).
+전역 `core.hooksPath` 방식을 사용한다 (심볼릭 링크·복사 스크립트보다 단순하고 Windows에서도 동작).
 
-- 훅 파일 위치: `scripts/hooks/pre-commit` (현재 `.git/hooks/pre-commit` 내용 그대로 이동)
-- 활성화: `git config core.hooksPath scripts/hooks`
-- 자동화: `package.json`에 `"prepare": "git config core.hooksPath scripts/hooks"` 스크립트 추가
-  - `npm install` 시 자동 실행되므로 clone 후 별도 절차가 없다.
-  - CI(`npm ci`)에서도 실행되지만 무해하다 (git config만 설정).
+- 전역 진입점: `%USERPROFILE%/.config/git/hooks/`
+- 프로젝트 검사 hook: `scripts/hooks/pre-commit`
+- 저장소별 `core.hooksPath` 설정과 npm `prepare` 스크립트는 사용하지 않는다.
 
 ## 변경 대상
 
-1. **신규** `scripts/hooks/pre-commit` — 기존 `.git/hooks/pre-commit` 내용 복사. shebang(`#!/bin/sh`) 유지.
-2. `package.json` — `scripts`에 `"prepare"` 추가.
-3. `AGENTS.md` 또는 `CLAUDE.md` — 훅 위치가 `scripts/hooks/`로 바뀌었음을 반영.
+1. `scripts/hooks/pre-commit` — 프로젝트별 콘텐츠 검사 로직을 유지한다.
+2. 전역 dispatcher — 프로젝트 hook의 존재 여부와 종료 코드를 처리한다.
+3. `CLAUDE.md` — 전역 dispatcher 사용을 반영한다.
 
 ## 구현 단계
 
-1. `scripts/hooks/` 폴더 생성, `.git/hooks/pre-commit` 내용을 `scripts/hooks/pre-commit`으로 복사.
-2. 실행 권한 부여: `git update-index --chmod=+x scripts/hooks/pre-commit` (Windows에서는 git index 플래그로 처리해야 함).
-3. `package.json`에 `prepare` 스크립트 추가.
-4. `git config core.hooksPath scripts/hooks` 실행으로 즉시 전환.
-5. 기존 `.git/hooks/pre-commit`은 남아 있어도 무시되지만, 혼동 방지를 위해 삭제.
-6. 문서(CLAUDE.md의 pre-commit 언급) 업데이트.
+1. 전역 `core.hooksPath`를 확인하고 저장소별 override가 없음을 확인한다.
+2. 전역 dispatcher가 프로젝트 hook을 호출하는지 확인한다.
+3. 프로젝트 hook의 재귀 호출 방지와 종료 코드 전달을 검증한다.
+4. 전역 `commit-msg` validator의 정상/실패 trailer cases를 임시 저장소에서 검증한다.
 
 ## 검증
 
-1. `git config core.hooksPath` 출력이 `scripts/hooks`인지 확인.
-2. markdown 파일을 일부러 깨뜨려 스테이징 → `git commit` 이 훅에서 실패하는지 확인 → 원복.
-3. 정상 markdown 커밋이 통과하는지 확인.
+1. 전역/저장소별 `core.hooksPath` 우선순위를 확인한다.
+2. 일반 commit과 exact/coarse/unknown AI trailer block을 각각 확인한다.
+3. `AI-Model` 또는 `AI-Reasoning` 누락, 중복 AI key, placeholder 값이 거부되는지 확인한다.
+4. 프로젝트 hook의 부재·성공·실패·재귀 가드를 확인한다.
 
 ## 리스크 / 참고
 
-- `core.hooksPath` 설정 시 `.git/hooks/`의 다른 훅(현재 없음)은 모두 무시된다. 향후 훅 추가는 `scripts/hooks/`에만 한다.
+- 전역 `core.hooksPath`가 우선 진입점이다. 프로젝트별 `core.hooksPath` override를 다시 추가하면 전역 정책과 충돌한다.
 - Git Bash가 없는 환경에서는 sh 스크립트 훅이 실패할 수 있으나, 이 저장소는 Windows + Git Bash 환경이 확인되어 있어 문제 없다.

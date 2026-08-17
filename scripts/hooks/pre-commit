@@ -1,7 +1,7 @@
 #!/bin/sh
 # Run content quality check when markdown files are staged
 
-staged_md=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(md|mdx)$')
+staged_md=$(git diff --cached --name-only --diff-filter=ACM -- '*.md' '*.mdx')
 
 if [ -n "$staged_md" ]; then
   echo "Markdown files staged — running content check..."
