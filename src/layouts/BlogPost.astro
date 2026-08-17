@@ -7,6 +7,7 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { getCategoryDefinition } from '../data/blogCategories';
+import { buildFeedbackIssueUrl } from '../lib/postActions.mjs';
 import { estimateReadingTime } from '../lib/readingTime.mjs';
 
 type BlogPostData = CollectionEntry<'blog'>['data'];
@@ -56,6 +57,8 @@ const tocHeadings =
 	) ?? [];
 const hasPostBody = body !== undefined;
 const readingTime = estimateReadingTime(body);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const feedbackUrl = buildFeedbackIssueUrl(title, canonicalUrl);
 ---
 
 <html lang="ko">
@@ -206,6 +209,91 @@ const readingTime = estimateReadingTime(body);
 			.reading-time {
 				color: var(--muted-text);
 				font-size: 0.9rem;
+			}
+			.post-actions {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 0.5rem;
+				margin: 1rem 0 0;
+			}
+			.post-action {
+				display: inline-flex;
+				align-items: center;
+				min-height: 2.25rem;
+				padding: 0.45rem 0.75rem;
+				border: 1px solid var(--border-color);
+				border-radius: var(--nv-radius-sm);
+				background: var(--card-bg);
+				color: var(--text-color);
+				font: inherit;
+				font-size: 0.84rem;
+				font-weight: 700;
+				text-decoration: none;
+				cursor: pointer;
+				transition:
+					border-color 0.2s ease,
+					background-color 0.2s ease,
+					color 0.2s ease;
+			}
+			.post-action:hover,
+			.post-action:focus-visible {
+				border-color: var(--accent);
+				background: color-mix(in srgb, var(--accent) 10%, var(--card-bg));
+				color: var(--heading-color);
+			}
+			.post-action:focus-visible {
+				outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+				outline-offset: 2px;
+			}
+			.prose :global(.code-block) {
+				position: relative;
+				margin: 1.5rem 0;
+			}
+			.prose :global(.code-block pre) {
+				margin: 0;
+				padding-top: 3.35rem;
+			}
+			.prose :global(.code-block-toolbar) {
+				position: absolute;
+				top: 0.55rem;
+				right: 0.65rem;
+				left: 0.65rem;
+				z-index: 1;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 0.75rem;
+				pointer-events: none;
+			}
+			.prose :global(.code-language) {
+				min-width: 0;
+				color: rgba(255, 255, 255, 0.72);
+				font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+				font-size: 0.74rem;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+			.prose :global(.code-copy-button) {
+				pointer-events: auto;
+				padding: 0.35rem 0.6rem;
+				border: 1px solid rgba(255, 255, 255, 0.28);
+				border-radius: var(--nv-radius-sm);
+				background: rgba(0, 0, 0, 0.3);
+				color: #fff;
+				font: inherit;
+				font-size: 0.76rem;
+				font-weight: 700;
+				cursor: pointer;
+			}
+			.prose :global(.code-copy-button:hover),
+			.prose :global(.code-copy-button:focus-visible) {
+				background: rgba(0, 0, 0, 0.58);
+			}
+			.prose :global(.code-copy-button:focus-visible) {
+				outline: 2px solid #fff;
+				outline-offset: 2px;
 			}
 			.post-meta-chips {
 				display: flex;
@@ -546,6 +634,29 @@ const readingTime = estimateReadingTime(body);
 									</div>
 								)
 							}
+							{
+								hasPostBody && (
+									<div class="post-actions" aria-label="글 도구">
+										<button type="button" class="post-action" data-copy-post-url={canonicalUrl}>
+											글 링크 복사
+										</button>
+										{tocHeadings.length > 0 && (
+											<button type="button" class="post-action" data-copy-heading-url>
+												소제목 링크 복사
+											</button>
+										)}
+										<a
+											class="post-action post-action-link"
+											href={feedbackUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											오류 제보
+										</a>
+										<span class="post-action-status sr-only" role="status" aria-live="polite" />
+									</div>
+								)
+							}
 							<hr />
 						</div>
 						{
@@ -607,6 +718,8 @@ const readingTime = estimateReadingTime(body);
 		<Footer />
 
 		<script>
+			import { buildHeadingUrl } from '../lib/postActions.mjs';
+
 			const backToTop = document.getElementById('back-to-top');
 			const readingProgressBar = document.getElementById('reading-progress-bar');
 			const postBody = document.querySelector<HTMLElement>('.post-body');
@@ -625,6 +738,114 @@ const readingTime = estimateReadingTime(body);
 
 				headingElements.push({ link, element });
 			}
+
+			const postActionStatus = document.querySelector<HTMLElement>('.post-action-status');
+			let currentActiveId = '';
+
+			const announceAction = (message: string) => {
+				if (postActionStatus) postActionStatus.textContent = message;
+			};
+
+			const selectText = (element: Element) => {
+				const selection = window.getSelection();
+				if (!selection) return;
+
+				const range = document.createRange();
+				range.selectNodeContents(element);
+				selection.removeAllRanges();
+				selection.addRange(range);
+			};
+
+			const copyText = async (value: string, fallbackSelection?: Element) => {
+				if (navigator.clipboard?.writeText) {
+					try {
+						await navigator.clipboard.writeText(value);
+						return true;
+					} catch {
+						// Continue with the selectable text fallback.
+					}
+				}
+
+				if (fallbackSelection) selectText(fallbackSelection);
+				return false;
+			};
+
+			const postUrlButton = document.querySelector<HTMLButtonElement>('[data-copy-post-url]');
+			postUrlButton?.addEventListener('click', async () => {
+				const url = postUrlButton.dataset.copyPostUrl;
+				if (!url) return;
+
+				const copied = await copyText(url);
+				announceAction(
+					copied ? '글 링크를 복사했습니다.' : '글 링크를 자동으로 복사하지 못했습니다.',
+				);
+			});
+
+			const headingUrlButton = document.querySelector<HTMLButtonElement>('[data-copy-heading-url]');
+			headingUrlButton?.addEventListener('click', async () => {
+				const baseUrl = postUrlButton?.dataset.copyPostUrl;
+				if (!baseUrl) return;
+
+				const hash = window.location.hash.slice(1);
+				let headingId = currentActiveId;
+				if (hash) {
+					try {
+						headingId = decodeURIComponent(hash);
+					} catch {
+						headingId = hash;
+					}
+				}
+
+				const copied = await copyText(buildHeadingUrl(baseUrl, headingId));
+				announceAction(
+					copied
+						? '현재 소제목 링크를 복사했습니다.'
+						: '소제목 링크를 자동으로 복사하지 못했습니다.',
+				);
+			});
+
+			document.querySelectorAll<HTMLPreElement>('.post-body pre').forEach((pre) => {
+				const code = pre.querySelector('code');
+				const parent = pre.parentElement;
+				if (!code || !parent || parent.classList.contains('code-block')) return;
+
+				const wrapper = document.createElement('div');
+				wrapper.className = 'code-block';
+				parent.insertBefore(wrapper, pre);
+				wrapper.appendChild(pre);
+
+				const toolbar = document.createElement('div');
+				toolbar.className = 'code-block-toolbar';
+
+				const language = document.createElement('span');
+				language.className = 'code-language';
+				language.textContent = pre.dataset.language || 'text';
+
+				const button = document.createElement('button');
+				button.type = 'button';
+				button.className = 'code-copy-button';
+				button.textContent = '복사';
+				button.setAttribute('aria-label', '코드 복사');
+
+				const status = document.createElement('span');
+				status.className = 'sr-only';
+				status.setAttribute('role', 'status');
+				status.setAttribute('aria-live', 'polite');
+
+				button.addEventListener('click', async () => {
+					const copied = await copyText(code.textContent ?? '', code);
+					button.textContent = copied ? '복사됨' : '다시 시도';
+					status.textContent = copied
+						? '코드를 클립보드에 복사했습니다.'
+						: '코드를 자동으로 복사하지 못했습니다. 코드가 선택되었습니다.';
+					window.setTimeout(() => {
+						button.textContent = '복사';
+					}, 1800);
+				});
+
+				toolbar.append(language, button, status);
+				wrapper.insertBefore(toolbar, pre);
+			});
 
 			const updateReadingProgress = () => {
 				if (!postBody || !readingProgressBar) return;
@@ -718,8 +939,6 @@ const readingTime = estimateReadingTime(body);
 			});
 
 			if (headingElements.length > 0) {
-				let currentActiveId = '';
-
 				const setActiveLink = (activeId: string) => {
 					if (currentActiveId === activeId) return;
 					currentActiveId = activeId;
