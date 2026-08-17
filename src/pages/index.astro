@@ -1,8 +1,58 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
+import BlogPostCard from '../components/BlogPostCard.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import {
+	COMPUTING_CATEGORY_KEYS,
+	FINANCE_CATEGORY_KEYS,
+	getCategoryDefinition,
+	normalizeCategory,
+} from '../data/blogCategories';
+import { buildHomeFeed } from '../lib/homeFeed.mjs';
+import { getPublishedPosts } from '../lib/posts';
+
+type BlogPost = CollectionEntry<'blog'>;
+type HomeFeedCategorySection = {
+	key: string;
+	title: string;
+	href: string;
+	categories: string[];
+	posts: BlogPost[];
+};
+
+const homeFeed: {
+	featured: BlogPost[];
+	recent: BlogPost[];
+	categorySections: HomeFeedCategorySection[];
+} = buildHomeFeed(
+	await getPublishedPosts(),
+	(() => {
+		const semiconductorCategory = getCategoryDefinition('Semiconductor');
+		if (!semiconductorCategory) {
+			throw new Error('Semiconductor category definition is missing');
+		}
+
+		return [
+			{ key: 'finance', title: 'Finance', href: '/finance', categories: FINANCE_CATEGORY_KEYS },
+			{
+				key: semiconductorCategory.key.toLowerCase(),
+				title: semiconductorCategory.label,
+				href: semiconductorCategory.href,
+				categories: [semiconductorCategory.key],
+			},
+			{
+				key: 'computing',
+				title: 'Computing',
+				href: '/computing',
+				categories: COMPUTING_CATEGORY_KEYS,
+			},
+		];
+	})(),
+	normalizeCategory,
+);
 ---
 
 <!doctype html>
@@ -102,6 +152,78 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				color: var(--muted-text);
 				line-height: 1.67;
 			}
+			.home-feed {
+				display: grid;
+				gap: var(--nv-space-section);
+			}
+			.home-feed-section {
+				text-align: left;
+			}
+			.feed-heading {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-end;
+				gap: 1rem;
+				margin-bottom: 1.25rem;
+				padding-bottom: 1rem;
+				border-bottom: 1px solid var(--border-color);
+			}
+			.feed-heading h2 {
+				margin: 0 0 0.35rem;
+				color: var(--heading-color);
+				font-size: 1.5rem;
+			}
+			.feed-heading p {
+				margin: 0;
+				color: var(--muted-text);
+			}
+			.feed-eyebrow {
+				margin-bottom: 0.45rem !important;
+				color: var(--accent) !important;
+				font-size: 0.78rem;
+				font-weight: 800;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+			}
+			.feed-more {
+				flex-shrink: 0;
+				color: var(--accent);
+				font-weight: 700;
+				text-decoration: none;
+			}
+			.feed-more:hover {
+				text-decoration: underline;
+			}
+			.feed-more:focus-visible {
+				outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+				outline-offset: 4px;
+			}
+			.home-post-grid {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 1rem;
+			}
+			.empty-feed {
+				padding: 1rem;
+				border: 1px solid var(--border-color);
+				background: var(--card-bg);
+				color: var(--muted-text);
+			}
+			:global(.home-post-grid .blog-post-card img) {
+				height: 170px;
+			}
+			:global(.home-post-grid .blog-post-card .title) {
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+			}
+			:global(.home-post-grid .blog-post-card .excerpt) {
+				-webkit-line-clamp: 2;
+			}
 
 			.goals-section {
 				background: var(--card-bg);
@@ -156,6 +278,17 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				.features-grid {
 					grid-template-columns: 1fr;
 				}
+				.feed-heading {
+					align-items: flex-start;
+					flex-direction: column;
+				}
+				.home-post-grid {
+					grid-template-columns: 1fr;
+				}
+				:global(.home-post-grid .blog-post-card img) {
+					height: auto;
+					aspect-ratio: 16 / 9;
+				}
 				.goals-list {
 					grid-template-columns: 1fr;
 				}
@@ -193,6 +326,75 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 						<h3>Computing</h3>
 						<p>Computer Science, Programming, Problem Solving을 하나의 흐름으로 묶습니다.</p>
 					</a>
+				</div>
+
+				<div class="home-feed">
+					{
+						homeFeed.featured.length > 0 && (
+							<section class="home-feed-section" aria-labelledby="featured-posts-title">
+								<div class="feed-heading">
+									<div>
+										<p class="feed-eyebrow">Start here</p>
+										<h2 id="featured-posts-title">먼저 읽어볼 글</h2>
+										<p>블로그의 방향을 이해하기 좋은 글부터 살펴보세요.</p>
+									</div>
+									<a class="feed-more" href="/archive/">
+										전체 글 보기 →
+									</a>
+								</div>
+								<ul class="home-post-grid">
+									{homeFeed.featured.map((post) => (
+										<BlogPostCard post={post} />
+									))}
+								</ul>
+							</section>
+						)
+					}
+
+					<section class="home-feed-section" aria-labelledby="recent-posts-title">
+						<div class="feed-heading">
+							<div>
+								<p class="feed-eyebrow">Latest</p>
+								<h2 id="recent-posts-title">최근 글</h2>
+								<p>새로 기록한 글을 확인해 보세요.</p>
+							</div>
+							<a class="feed-more" href="/archive/">전체 아카이브 →</a>
+						</div>
+						{
+							homeFeed.recent.length > 0 ? (
+								<ul class="home-post-grid">
+									{homeFeed.recent.map((post) => (
+										<BlogPostCard post={post} />
+									))}
+								</ul>
+							) : (
+								<p class="empty-feed">아직 공개된 글이 없습니다.</p>
+							)
+						}
+					</section>
+
+					{
+						homeFeed.categorySections
+							.filter((section) => section.posts.length > 0)
+							.map((section) => (
+								<section class="home-feed-section" aria-labelledby={`${section.key}-posts-title`}>
+									<div class="feed-heading">
+										<div>
+											<p class="feed-eyebrow">Explore</p>
+											<h2 id={`${section.key}-posts-title`}>{section.title} 최근 글</h2>
+										</div>
+										<a class="feed-more" href={section.href}>
+											{section.title} 전체 보기 →
+										</a>
+									</div>
+									<ul class="home-post-grid">
+										{section.posts.map((post) => (
+											<BlogPostCard post={post} />
+										))}
+									</ul>
+								</section>
+							))
+					}
 				</div>
 
 				<div class="goals-section">
