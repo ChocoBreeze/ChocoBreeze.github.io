@@ -1,0 +1,147 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+const title = '페이지를 찾을 수 없습니다';
+const description =
+	'요청하신 페이지를 찾을 수 없습니다. 검색이나 아카이브에서 다른 글을 찾아보세요.';
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="not-found-shell">
+			<section class="not-found-card" aria-labelledby="not-found-title">
+				<p class="eyebrow">404 · Not Found</p>
+				<h1 id="not-found-title">페이지를 찾을 수 없습니다.</h1>
+				<p class="lead">
+					주소가 변경되었거나 존재하지 않는 페이지입니다. 아래 링크에서 원하는 글을 찾아보세요.
+				</p>
+				<nav class="recovery-links" aria-label="페이지 복구 메뉴">
+					<a class="primary-link" href="/">홈으로 돌아가기</a>
+					<a href="/search/">글 검색하기</a>
+					<a href="/archive/">아카이브 보기</a>
+					<a href="/finance/">Finance</a>
+					<a href="/computing/">Computing</a>
+				</nav>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.not-found-shell {
+		width: min(880px, calc(100% - 2rem));
+		margin: 0 auto;
+		padding: 5rem 0 6rem;
+	}
+
+	.not-found-card {
+		padding: clamp(2rem, 5vw, 3.5rem);
+		border: 1px solid var(--border-color);
+		border-radius: 28px;
+		background:
+			radial-gradient(
+				circle at top right,
+				color-mix(in srgb, var(--accent) 18%, transparent),
+				transparent 34%
+			),
+			var(--card-bg);
+		box-shadow: 0 22px 70px color-mix(in srgb, var(--shadow-color) 55%, transparent);
+		color: var(--text-color);
+		text-align: center;
+	}
+
+	.eyebrow {
+		margin: 0 0 0.75rem;
+		color: var(--accent);
+		font-size: 0.82rem;
+		font-weight: 800;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+	}
+
+	h1 {
+		margin: 0;
+		color: var(--heading-color);
+		font-size: clamp(2.2rem, 6vw, 4rem);
+		line-height: 1.05;
+	}
+
+	.lead {
+		max-width: 42rem;
+		margin: 1.25rem auto 0;
+		color: var(--muted-text);
+		font-size: 1.08rem;
+		line-height: 1.8;
+	}
+
+	.recovery-links {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.75rem;
+		margin-top: 2rem;
+	}
+
+	.recovery-links a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 2.8rem;
+		padding: 0.75rem 1.1rem;
+		border: 1px solid var(--border-color);
+		border-radius: 999px;
+		background: var(--card-bg);
+		color: var(--heading-color);
+		font-weight: 700;
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease,
+			filter 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.recovery-links a:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+		transform: translateY(-2px);
+	}
+
+	.recovery-links a:focus-visible {
+		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+		outline-offset: 4px;
+	}
+
+	.recovery-links .primary-link {
+		border-color: var(--accent);
+		background: var(--accent);
+		color: var(--nv-on-primary);
+	}
+
+	.recovery-links .primary-link:hover {
+		color: var(--nv-on-primary);
+		filter: brightness(1.05);
+	}
+
+	@media (max-width: 640px) {
+		.not-found-shell {
+			padding: 3rem 0 4rem;
+		}
+
+		.not-found-card {
+			border-radius: 22px;
+		}
+
+		.recovery-links a {
+			width: 100%;
+		}
+	}
+</style>
