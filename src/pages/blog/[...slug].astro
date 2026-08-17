@@ -10,11 +10,11 @@ export async function getStaticPaths() {
 		props: post,
 	}));
 }
-type Props = CollectionEntry<'blog'>;
 type BlogCategory = CollectionEntry<'blog'>['data']['categories'];
 
 const post = Astro.props;
 const { Content, headings } = await render(post);
+const postBody = (post as CollectionEntry<'blog'> & { body?: string }).body ?? '';
 
 // "이전/다음 글" 찾기 로직
 const allPosts = (await getPublishedPosts())
@@ -59,8 +59,10 @@ const getDate = (p: CollectionEntry<'blog'>) => p.data.pubDate || p.data.date;
 const ogImage = `/og/${post.data.slug || post.id}.png`;
 ---
 
-<BlogPost {...post.data} headings={headings} ogImage={ogImage}>
-	<Content />
+<BlogPost {...post.data} body={postBody} headings={headings} ogImage={ogImage}>
+	<div class="post-body">
+		<Content />
+	</div>
 
 	{
 		relatedPosts.length > 0 && (
