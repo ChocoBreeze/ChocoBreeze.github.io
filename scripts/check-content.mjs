@@ -5,6 +5,7 @@ import process from 'node:process';
 import {
 	ABSOLUTE_PATH_PATTERNS,
 	FINANCE_CATEGORIES_FOR_DELIMITER_CHECK,
+	FRESHNESS_DATE_FIELDS,
 	FRONTMATTER_REGEX,
 	KNOWN_CATEGORIES,
 	MARKDOWN_IMAGE_REGEX,
@@ -13,7 +14,6 @@ import {
 	MAX_FUTURE_DAYS,
 	MAX_PAST_YEARS,
 	MAX_TITLE_LENGTH,
-	PUB_DATE_ISO_REGEX,
 	SECRET_PATTERNS,
 	UNSAFE_SLUG_REGEX,
 	WARNING_PATTERNS,
@@ -23,6 +23,8 @@ import {
 	getLineNumber,
 	getPrimaryCategory,
 	hasUnbalancedBold,
+	isDataAsOfAfterVerifiedDate,
+	isValidDateFieldFormat,
 	normalizeCategoryValue,
 	normalizeRoutePath,
 	parseFrontmatterFields,
@@ -186,7 +188,7 @@ function checkDateFieldFormat(filePath, content, frontmatterMatch, fields, field
 	const value = stripQuotes(rawValue);
 	const line = getLineNumber(content, frontmatterMatch.index + field.index);
 
-	if (!PUB_DATE_ISO_REGEX.test(value)) {
+	if (!isValidDateFieldFormat(value)) {
 		addIssue(
 			issues,
 			'error',
@@ -195,6 +197,32 @@ function checkDateFieldFormat(filePath, content, frontmatterMatch, fields, field
 			`Invalid ${fieldName} format: ${rawValue}. Use full ISO 8601 with timezone, e.g. "2026-01-16T00:00:00+09:00".`,
 		);
 	}
+}
+
+function checkFreshnessDateOrder(filePath, content, frontmatterMatch, fields, issues) {
+	const dataAsOfField = fields.get('dataAsOf');
+	const verifiedDateField = fields.get('verifiedDate');
+	if (!dataAsOfField || !verifiedDateField) {
+		return;
+	}
+
+	const dataAsOf = stripQuotes(dataAsOfField.rawValue);
+	const verifiedDate = stripQuotes(verifiedDateField.rawValue);
+	if (!isValidDateFieldFormat(dataAsOf) || !isValidDateFieldFormat(verifiedDate)) {
+		return;
+	}
+
+	if (!isDataAsOfAfterVerifiedDate(dataAsOf, verifiedDate)) {
+		return;
+	}
+
+	addIssue(
+		issues,
+		'error',
+		filePath,
+		getLineNumber(content, frontmatterMatch.index + dataAsOfField.index),
+		'`dataAsOf` cannot be later than `verifiedDate`.',
+	);
 }
 
 function checkCategories(filePath, content, frontmatterMatch, fields, warnings) {
@@ -311,6 +339,10 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
 	);
 	checkSlug(filePath, content, frontmatterMatch, fields, warnings);
 	checkCategories(filePath, content, frontmatterMatch, fields, warnings);
+	for (const fieldName of FRESHNESS_DATE_FIELDS) {
+		checkDateFieldFormat(filePath, content, frontmatterMatch, fields, fieldName, issues);
+	}
+	checkFreshnessDateOrder(filePath, content, frontmatterMatch, fields, issues);
 
 	const titleField = fields.get('title');
 	if (titleField) {
@@ -336,7 +368,7 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
 	const pubDateValue = stripQuotes(rawValue);
 	const pubDateLine = getLineNumber(content, frontmatterMatch.index + pubDateField.index);
 
-	if (!PUB_DATE_ISO_REGEX.test(pubDateValue)) {
+	if (!isValidDateFieldFormat(pubDateValue)) {
 		addIssue(
 			issues,
 			'error',
@@ -347,7 +379,6 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
 		return;
 	}
 
-	checkDateFieldFormat(filePath, content, frontmatterMatch, fields, 'updatedDate', issues);
 	checkPubDateRange(filePath, pubDateLine, pubDateValue, warnings);
 }
 

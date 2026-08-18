@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { isDataAsOfAfterVerifiedDate, isValidCalendarDate } from './lib/content-rules.mjs';
 
 const ROOT_DIR = process.cwd();
 const CONTENT_DIR = path.join(ROOT_DIR, 'src', 'content', 'blog');
@@ -27,6 +28,9 @@ Options:
   --title      Post title. Auto-generated for market-daily and market-weekly.
   --category   Category key or name. Default: Programming
   --date       Publish date in YYYY-MM-DD. Default: today
+  --updated-date  Document revision date in YYYY-MM-DD.
+  --verified-date Fact verification date in YYYY-MM-DD.
+  --data-as-of   Data snapshot date in YYYY-MM-DD.
   --slug       Stable blog slug. Recommended for generic posts.
   --file       Output file path under src/content/blog.
   --help       Show this help message.`);
@@ -55,11 +59,11 @@ function parseArgs(argv) {
 }
 
 function getDateParts(dateValue) {
-	const match = dateValue.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-	if (!match) {
+	if (!isValidCalendarDate(dateValue)) {
 		throw new Error(`Invalid --date value: ${dateValue}. Use YYYY-MM-DD.`);
 	}
 
+	const match = dateValue.match(/^(\d{4})-(\d{2})-(\d{2})$/);
 	const [, year, month, day] = match;
 	return {
 		year,
@@ -72,6 +76,19 @@ function getDateParts(dateValue) {
 		yymmFolder: `${year.slice(2)}.${month}`,
 		yymmdd: `${year.slice(2)}${month}${day}`,
 	};
+}
+
+function toIsoDateField(dateValue, optionName) {
+	if (dateValue === undefined) {
+		return undefined;
+	}
+
+	try {
+		getDateParts(dateValue);
+	} catch {
+		throw new Error(`Invalid ${optionName} value: ${dateValue}. Use YYYY-MM-DD.`);
+	}
+	return `${dateValue}T00:00:00+09:00`;
 }
 
 function getTodayInSeoul() {
@@ -133,12 +150,31 @@ function getMarketBriefDefaults(type, dateParts) {
 	};
 }
 
-function buildPostContent({ title, description, category, slug, date, time }) {
+function buildPostContent({
+	title,
+	description,
+	category,
+	slug,
+	date,
+	time,
+	updatedDate,
+	verifiedDate,
+	dataAsOf,
+}) {
+	const optionalDates = [
+		updatedDate && `updatedDate: "${updatedDate}"`,
+		verifiedDate && `verifiedDate: "${verifiedDate}"`,
+		dataAsOf && `dataAsOf: "${dataAsOf}"`,
+	]
+		.filter(Boolean)
+		.join('\n');
+	const freshnessFields = optionalDates ? `${optionalDates}\n` : '';
+
 	return `---
 title: "${title}"
 description: "${description}"
 pubDate: "${date}T${time}+09:00"
-categories: "${category}"
+${freshnessFields}categories: "${category}"
 slug: "${slug}"
 ---
 
@@ -176,6 +212,12 @@ function main() {
 
 	const description =
 		args.description ?? defaults.description ?? '글 내용을 한 문장으로 요약합니다.';
+	const updatedDate = toIsoDateField(args['updated-date'], '--updated-date');
+	const verifiedDate = toIsoDateField(args['verified-date'], '--verified-date');
+	const dataAsOf = toIsoDateField(args['data-as-of'], '--data-as-of');
+	if (dataAsOf && verifiedDate && isDataAsOfAfterVerifiedDate(dataAsOf, verifiedDate)) {
+		throw new Error('Invalid freshness dates: --data-as-of cannot be later than --verified-date.');
+	}
 	const slug = args.slug ?? defaults.slug ?? `${slugify(category)}/${slugify(title)}`;
 	const time = defaults.time ?? '00:00:00';
 	const categoryFolder = CATEGORY_FOLDERS[category];
@@ -197,6 +239,9 @@ function main() {
 			slug,
 			date,
 			time,
+			updatedDate,
+			verifiedDate,
+			dataAsOf,
 		}),
 		'utf8',
 	);

@@ -8,6 +8,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { getCategoryDefinition } from '../data/blogCategories';
 import { buildFeedbackIssueUrl } from '../lib/postActions.mjs';
+import { getFreshnessStatus } from '../lib/contentFreshness.mjs';
 import { estimateReadingTime } from '../lib/readingTime.mjs';
 
 type BlogPostData = CollectionEntry<'blog'>['data'];
@@ -19,6 +20,8 @@ type Props = Pick<
 	| 'pubDate'
 	| 'date'
 	| 'updatedDate'
+	| 'verifiedDate'
+	| 'dataAsOf'
 	| 'heroImage'
 	| 'image'
 	| 'categories'
@@ -36,6 +39,8 @@ const {
 	pubDate,
 	date: jekyllDate,
 	updatedDate,
+	verifiedDate,
+	dataAsOf,
 	heroImage,
 	image: jekyllImage,
 	difficulty,
@@ -59,6 +64,8 @@ const hasPostBody = body !== undefined;
 const readingTime = estimateReadingTime(body);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 const feedbackUrl = buildFeedbackIssueUrl(title, canonicalUrl);
+const freshnessReferenceDate = dataAsOf ?? verifiedDate;
+const freshnessStatus = getFreshnessStatus(activeCategory, freshnessReferenceDate);
 ---
 
 <html lang="ko">
@@ -203,8 +210,13 @@ const feedbackUrl = buildFeedbackIssueUrl(title, canonicalUrl);
 				margin-bottom: 0;
 				color: var(--muted-text);
 			}
-			.last-updated-on {
-				font-style: italic;
+			.date-item {
+				display: block;
+			}
+			.freshness-notice {
+				margin: 0.45rem 0 0;
+				color: var(--warning-text, var(--muted-text));
+				font-size: 0.84rem;
 			}
 			.reading-time {
 				color: var(--muted-text);
@@ -599,12 +611,46 @@ const feedbackUrl = buildFeedbackIssueUrl(title, canonicalUrl);
 						<div class="title">
 							<div class="post-meta">
 								<div class="date">
-									{date && <FormattedDate date={date} />}
+									{
+										date && (
+											<span class="date-item">
+												게시 <FormattedDate date={date} />
+											</span>
+										)
+									}
 									{
 										updatedDate && (
-											<div class="last-updated-on">
-												Last updated on <FormattedDate date={updatedDate} />
-											</div>
+											<span class="date-item">
+												문서 수정 <FormattedDate date={updatedDate} />
+											</span>
+										)
+									}
+									{
+										verifiedDate && (
+											<span class="date-item">
+												사실 검증 <FormattedDate date={verifiedDate} />
+											</span>
+										)
+									}
+									{
+										dataAsOf && (
+											<span class="date-item">
+												수치 기준 <FormattedDate date={dataAsOf} />
+											</span>
+										)
+									}
+									{
+										freshnessStatus && freshnessReferenceDate && (
+											<p
+												class="freshness-notice"
+												data-freshness-notice
+												data-freshness-category={activeCategory}
+												data-freshness-date={freshnessReferenceDate.toISOString()}
+												hidden={!freshnessStatus.isStale}
+												role="status"
+											>
+												수치가 오래되었을 수 있습니다. 최신 출처를 확인하세요.
+											</p>
 										)
 									}
 								</div>
@@ -718,6 +764,7 @@ const feedbackUrl = buildFeedbackIssueUrl(title, canonicalUrl);
 		<Footer />
 
 		<script>
+			import { getFreshnessStatus } from '../lib/contentFreshness.mjs';
 			import { buildHeadingUrl } from '../lib/postActions.mjs';
 
 			const backToTop = document.getElementById('back-to-top');
@@ -740,6 +787,15 @@ const feedbackUrl = buildFeedbackIssueUrl(title, canonicalUrl);
 			}
 
 			const postActionStatus = document.querySelector<HTMLElement>('.post-action-status');
+			const freshnessNotice = document.querySelector<HTMLElement>('[data-freshness-notice]');
+			if (freshnessNotice) {
+				const status = getFreshnessStatus(
+					freshnessNotice.dataset.freshnessCategory,
+					freshnessNotice.dataset.freshnessDate,
+				);
+				if (status) freshnessNotice.hidden = !status.isStale;
+			}
+
 			let currentActiveId = '';
 
 			const announceAction = (message: string) => {

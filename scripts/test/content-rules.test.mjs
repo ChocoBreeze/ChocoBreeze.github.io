@@ -5,7 +5,9 @@ import {
 	countMathDelimiters,
 	getPrimaryCategory,
 	hasUnbalancedBold,
+	isDataAsOfAfterVerifiedDate,
 	isKnownCategory,
+	isValidCalendarDate,
 	isValidDateFieldFormat,
 	normalizeCategoryValue,
 	normalizeRoutePath,
@@ -37,6 +39,48 @@ describe('isValidDateFieldFormat', () => {
 
 	it('rejects a bare date', () => {
 		assert.equal(isValidDateFieldFormat('2026-01-16'), false);
+	});
+
+	it('rejects impossible calendar dates', () => {
+		assert.equal(isValidDateFieldFormat('2026-02-29T00:00:00+09:00'), false);
+		assert.equal(isValidDateFieldFormat('2026-99-99T00:00:00+09:00'), false);
+	});
+
+	it('rejects impossible clock values', () => {
+		assert.equal(isValidDateFieldFormat('2026-01-16T24:00:00+09:00'), false);
+		assert.equal(isValidDateFieldFormat('2026-01-16T00:60:00+09:00'), false);
+	});
+});
+
+describe('isValidCalendarDate', () => {
+	it('handles leap years and month lengths', () => {
+		assert.equal(isValidCalendarDate('2024-02-29'), true);
+		assert.equal(isValidCalendarDate('2026-02-29'), false);
+		assert.equal(isValidCalendarDate('2026-04-31'), false);
+	});
+});
+
+describe('isDataAsOfAfterVerifiedDate', () => {
+	it('flags a data snapshot newer than its verification date', () => {
+		assert.equal(
+			isDataAsOfAfterVerifiedDate('2026-08-02T00:00:00+09:00', '2026-08-01T00:00:00+09:00'),
+			true,
+		);
+	});
+
+	it('accepts the same day or an older data snapshot', () => {
+		assert.equal(
+			isDataAsOfAfterVerifiedDate('2026-08-01T00:00:00+09:00', '2026-08-01T00:00:00+09:00'),
+			false,
+		);
+		assert.equal(
+			isDataAsOfAfterVerifiedDate('2026-07-31T00:00:00+09:00', '2026-08-01T00:00:00+09:00'),
+			false,
+		);
+	});
+
+	it('does not compare invalid dates', () => {
+		assert.equal(isDataAsOfAfterVerifiedDate('not-a-date', '2026-08-01T00:00:00+09:00'), false);
 	});
 });
 

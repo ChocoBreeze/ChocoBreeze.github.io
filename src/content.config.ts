@@ -14,6 +14,8 @@ const blog = defineCollection({
 		pubDate: z.coerce.date().optional(),
 		date: z.coerce.date().optional(), // Jekyll field
 		updatedDate: z.coerce.date().optional(),
+		verifiedDate: z.coerce.date().optional(),
+		dataAsOf: z.coerce.date().optional(),
 		heroImage: z.string().optional().nullable(),
 		image: z.string().optional().nullable(), // Jekyll field
 		tags: z.array(z.string()).optional().nullable(),

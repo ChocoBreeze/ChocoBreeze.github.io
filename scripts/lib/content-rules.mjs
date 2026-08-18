@@ -14,6 +14,7 @@ export const MAX_DESCRIPTION_LENGTH = 180;
 export const UNSAFE_SLUG_REGEX = /[\s\\?#]/;
 export const PUB_DATE_ISO_REGEX =
 	/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/;
+export const FRESHNESS_DATE_FIELDS = ['updatedDate', 'verifiedDate', 'dataAsOf'];
 
 export const KNOWN_CATEGORIES = new Set([
 	'ETF',
@@ -166,8 +167,54 @@ export function isKnownCategory(category) {
 	return KNOWN_CATEGORIES.has(normalizeCategoryValue(category));
 }
 
+export function isValidCalendarDate(value) {
+	const match = String(value).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+	if (!match) {
+		return false;
+	}
+
+	const [, yearValue, monthValue, dayValue] = match;
+	const year = Number(yearValue);
+	const month = Number(monthValue);
+	const day = Number(dayValue);
+	const isLeapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+	const daysInMonth = [31, isLeapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+	return month >= 1 && month <= 12 && day >= 1 && day <= daysInMonth[month - 1];
+}
+
 export function isValidDateFieldFormat(rawValue) {
-	return PUB_DATE_ISO_REGEX.test(stripQuotes(rawValue));
+	const value = stripQuotes(rawValue);
+	if (!PUB_DATE_ISO_REGEX.test(value) || !isValidCalendarDate(value.slice(0, 10))) {
+		return false;
+	}
+
+	const timeMatch = value.match(/T(\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(Z|[+-](\d{2}):(\d{2}))$/);
+	if (!timeMatch) {
+		return false;
+	}
+
+	const [, hourValue, minuteValue, secondValue, timezone, offsetHourValue, offsetMinuteValue] =
+		timeMatch;
+	const hour = Number(hourValue);
+	const minute = Number(minuteValue);
+	const second = Number(secondValue);
+	if (hour > 23 || minute > 59 || second > 59 || timezone === 'Z') {
+		return hour <= 23 && minute <= 59 && second <= 59;
+	}
+
+	return Number(offsetHourValue) <= 23 && Number(offsetMinuteValue) <= 59;
+}
+
+export function isDataAsOfAfterVerifiedDate(dataAsOf, verifiedDate) {
+	const dataAsOfTime = new Date(stripQuotes(dataAsOf)).getTime();
+	const verifiedDateTime = new Date(stripQuotes(verifiedDate)).getTime();
+
+	if (Number.isNaN(dataAsOfTime) || Number.isNaN(verifiedDateTime)) {
+		return false;
+	}
+
+	return dataAsOfTime > verifiedDateTime;
 }
 
 export function slugifyPathSegment(segment) {

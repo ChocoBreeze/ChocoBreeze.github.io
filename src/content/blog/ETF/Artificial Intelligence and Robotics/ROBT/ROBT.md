@@ -2,6 +2,8 @@
 title: 'ROBT (First Trust Nasdaq Artificial Intelligence and Robotics ETF)'
 description: 'Nasdaq CTA Artificial Intelligence and Robotics Index를 추종해 AI·로보틱스 기업에 준동일 가중으로 투자하는 First Trust 테마 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+verifiedDate: '2026-06-07T00:00:00+09:00'
+dataAsOf: '2026-04-15T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "ROBT", "First Trust", "Artificial Intelligence", "Robotics", "Theme ETF"]
 ---
