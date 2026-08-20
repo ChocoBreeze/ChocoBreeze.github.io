@@ -50,7 +50,7 @@ describe('normalizePostTags', () => {
 });
 
 describe('matchesListFilters', () => {
-	const post = { year: '2026', tags: ['AI', 'ETF'] };
+	const post = { year: '2026', tags: ['AI', 'ETF'], difficulty: 'Medium' };
 
 	it('accepts every item when no filters are selected', () => {
 		assert.equal(matchesListFilters(post, {}), true);
@@ -66,8 +66,18 @@ describe('matchesListFilters', () => {
 		assert.equal(matchesListFilters(post, { tag: 'Semiconductor' }), false);
 	});
 
+	it('applies the difficulty filter', () => {
+		assert.equal(matchesListFilters(post, { difficulty: 'Medium' }), true);
+		assert.equal(matchesListFilters(post, { difficulty: 'Hard' }), false);
+	});
+
 	it('requires both filters to match', () => {
 		assert.equal(matchesListFilters(post, { year: '2026', tag: 'ETF' }), true);
 		assert.equal(matchesListFilters(post, { year: '2025', tag: 'ETF' }), false);
+		assert.equal(
+			matchesListFilters(post, { year: '2026', tag: 'ETF', difficulty: 'Medium' }),
+			true,
+		);
+		assert.equal(matchesListFilters(post, { year: '2026', tag: 'ETF', difficulty: 'Hard' }), false);
 	});
 });

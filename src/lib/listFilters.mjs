@@ -53,7 +53,12 @@ export function getListFilterOptions(posts) {
 export function matchesListFilters(item, filters = {}) {
 	const year = filters.year ?? '';
 	const tag = filters.tag ?? '';
+	const difficulty = filters.difficulty ?? '';
 	const tags = Array.isArray(item?.tags) ? item.tags : [];
 
-	return (!year || item?.year === year) && (!tag || tags.includes(tag));
+	return (
+		(!year || item?.year === year) &&
+		(!tag || tags.includes(tag)) &&
+		(!difficulty || item?.difficulty === difficulty)
+	);
 }

@@ -40,6 +40,7 @@ const topicSummary = Array.from(
 	description={category.description}
 	activeCategory={category.key}
 	posts={posts}
+	filters={{ difficulty: true }}
 >
 	<section class="problem-roadmap" aria-labelledby="problem-roadmap-title">
 		<div>
@@ -213,54 +214,3 @@ const topicSummary = Array.from(
 		}
 	}
 </style>
-
-<script>
-	const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-filter-difficulty]');
-	const grid = document.querySelector('.regular-post-grid');
-	const difficulties = ['Easy', 'Medium', 'Hard'];
-
-	const items = grid ? [...grid.querySelectorAll<HTMLLIElement>('li[data-difficulty]')] : [];
-
-	let activeFilter: string | null = null;
-
-	function applyFilter(difficulty: string | null, historyMode: 'push' | 'replace' = 'push') {
-		activeFilter = difficulty;
-
-		items.forEach((item) => {
-			item.hidden = difficulty !== null && item.dataset.difficulty !== difficulty;
-		});
-
-		filterBtns.forEach((btn) => {
-			const isActive = btn.dataset.filterDifficulty === difficulty;
-			btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-		});
-
-		const url = new URL(window.location.href);
-		difficulty
-			? url.searchParams.set('difficulty', difficulty.toLowerCase())
-			: url.searchParams.delete('difficulty');
-
-		window.history[historyMode === 'replace' ? 'replaceState' : 'pushState'](
-			{},
-			'',
-			url.toString(),
-		);
-	}
-
-	const rawDifficulty = new URLSearchParams(window.location.search).get('difficulty');
-	const initial = difficulties.find((d) => d.toLowerCase() === rawDifficulty) ?? null;
-	applyFilter(initial, 'replace');
-
-	filterBtns.forEach((btn) => {
-		btn.addEventListener('click', () => {
-			const d = btn.dataset.filterDifficulty ?? null;
-			applyFilter(activeFilter === d ? null : d);
-		});
-	});
-
-	window.addEventListener('popstate', () => {
-		const raw = new URLSearchParams(window.location.search).get('difficulty');
-		const d = difficulties.find((d) => d.toLowerCase() === raw) ?? null;
-		applyFilter(d, 'replace');
-	});
-</script>

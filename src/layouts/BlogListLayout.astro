@@ -17,6 +17,7 @@ type Props = {
 	filters?: {
 		year?: boolean;
 		tag?: boolean;
+		difficulty?: boolean;
 	};
 };
 
@@ -45,7 +46,10 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 		<Header />
 		<main id="main-content" class="blog-page-shell">
 			<BlogSidebar activeCategory={activeCategory} />
-			<section class="blog-list-panel">
+			<section
+				class="blog-list-panel"
+				data-filter-difficulty-enabled={filters.difficulty ? 'true' : undefined}
+			>
 				<div class="blog-list-heading">
 					<p class="blog-list-eyebrow">Archive</p>
 					<h1>{title}</h1>
@@ -367,7 +371,16 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 	const filterTagSelect = document.querySelector<HTMLSelectElement>('[data-filter-tag]');
 	const filterReset = document.querySelector<HTMLButtonElement>('[data-filter-reset]');
 	const filterResult = document.querySelector<HTMLElement>('[data-filter-result]');
+	const filterDifficultyButtons = document.querySelectorAll<HTMLButtonElement>(
+		'[data-filter-difficulty]',
+	);
+	const difficultyFilterSection = document.querySelector<HTMLElement>(
+		'[data-filter-difficulty-enabled]',
+	);
 	const filtersEnabled = Boolean(filterControls);
+	const difficultyFiltersEnabled = Boolean(
+		difficultyFilterSection || filterDifficultyButtons.length > 0,
+	);
 	const availableYears = new Set(
 		filterYearSelect
 			? [...filterYearSelect.options].map((option) => option.value).filter(Boolean)
@@ -378,6 +391,11 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 			? [...filterTagSelect.options].map((option) => option.value).filter(Boolean)
 			: [],
 	);
+	const availableDifficulties = new Set(
+		[...filterDifficultyButtons]
+			.map((button) => button.dataset.filterDifficulty)
+			.filter((difficulty): difficulty is string => Boolean(difficulty)),
+	);
 
 	const itemData = grid
 		? [...grid.querySelectorAll<HTMLLIElement>('li[data-pub-date]')].map((el) => ({
@@ -385,15 +403,17 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 				t: parseInt(el.dataset.pubDate ?? '0'),
 				year: el.dataset.year ?? '',
 				tags: parseTags(el.dataset.tags),
+				difficulty: el.dataset.difficulty ?? '',
 			}))
 		: [];
 
 	type FilterState = {
 		year: string | null;
 		tag: string | null;
+		difficulty: string | null;
 	};
 
-	let activeFilters: FilterState = { year: null, tag: null };
+	let activeFilters: FilterState = { year: null, tag: null, difficulty: null };
 	// How many posts are currently revealed; persists across sort changes so
 	// re-sorting keeps the same amount of content on screen (just reordered).
 	let shownCount = Math.min(PAGE_SIZE, itemData.length);
@@ -408,7 +428,7 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 	}
 
 	function hasActiveFilters() {
-		return Boolean(activeFilters.year || activeFilters.tag);
+		return Boolean(activeFilters.year || activeFilters.tag || activeFilters.difficulty);
 	}
 
 	function applyVisibility() {
@@ -454,6 +474,12 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 				: url.searchParams.delete('tag');
 		}
 
+		if (difficultyFiltersEnabled) {
+			activeFilters.difficulty
+				? url.searchParams.set('difficulty', activeFilters.difficulty.toLowerCase())
+				: url.searchParams.delete('difficulty');
+		}
+
 		window.history[historyMode === 'replace' ? 'replaceState' : 'pushState'](
 			{},
 			'',
@@ -468,6 +494,10 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 		if (filterTagSelect) {
 			filterTagSelect.value = activeFilters.tag ?? '';
 		}
+		filterDifficultyButtons.forEach((button) => {
+			const isActive = button.dataset.filterDifficulty === activeFilters.difficulty;
+			button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+		});
 	}
 
 	function sortGrid(order: 'asc' | 'desc', historyMode: 'push' | 'replace' = 'push') {
@@ -490,9 +520,14 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 		const params = new URLSearchParams(window.location.search);
 		const rawYear = params.get('year');
 		const rawTag = params.get('tag');
+		const rawDifficulty = params.get('difficulty')?.toLowerCase();
+		const difficulty = [...availableDifficulties].find(
+			(value) => value.toLowerCase() === rawDifficulty,
+		);
 		return {
 			year: rawYear && availableYears.has(rawYear) ? rawYear : null,
 			tag: rawTag && availableTags.has(rawTag) ? rawTag : null,
+			difficulty: difficulty ?? null,
 		};
 	}
 
@@ -533,8 +568,18 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 		applyFilters({ ...activeFilters, tag: filterTagSelect.value || null });
 	});
 
+	filterDifficultyButtons.forEach((button) =>
+		button.addEventListener('click', () => {
+			const difficulty = button.dataset.filterDifficulty ?? null;
+			applyFilters({
+				...activeFilters,
+				difficulty: activeFilters.difficulty === difficulty ? null : difficulty,
+			});
+		}),
+	);
+
 	filterReset?.addEventListener('click', () => {
-		applyFilters({ year: null, tag: null });
+		applyFilters({ year: null, tag: null, difficulty: null });
 	});
 
 	loadMoreBtn?.addEventListener('click', () => {
