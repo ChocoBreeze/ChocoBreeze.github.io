@@ -16,7 +16,9 @@ Use a stable `slug` in frontmatter when a filename contains spaces, Korean text,
 
 ## Category Matching
 
-Previous/next links and related posts are selected only from posts in the same category.
+Previous/next links are selected from posts in the same category. Related posts use the
+same-category list only as their final fallback; they can also come from another category
+when a series, an author-specified slug, or shared tags/topics provides a stronger match.
 
 Category comparison currently normalizes `categories` like this:
 
@@ -46,29 +48,21 @@ These links are rendered below each article.
 
 ## Related Posts
 
-Related posts are rendered as the `같이 읽기 좋은 글` section.
+Related posts are rendered as the `같이 읽기 좋은 글` section. The shared selector lives in
+`src/lib/relatedPosts.mjs` and returns up to three published posts in this priority order:
 
-Current behavior:
+1. Nearby posts in the same `seriesSlug`.
+2. `relatedSlugs` in the current post's frontmatter order.
+3. Posts sharing tags or topics, ranked by overlap (tags have greater weight than topics,
+   then newer publication date).
+4. Nearby posts from the current category as a final fallback.
 
-- Use posts from the same category sequence.
-- Exclude the current post.
-- Exclude the previous post.
-- Exclude the next post.
-- Take up to 3 posts around the current post position.
+The current post, drafts, previous/next posts, and series previous/next posts are excluded
+from the related cards. Missing `relatedSlugs` targets are content-check errors. The field is
+optional, so existing posts continue to use automatic matching without a bulk migration.
 
-This is not tag similarity, text similarity, or embedding-based recommendation. It is category-and-order based.
-
-## Known Limitation
-
-The current implementation filters out current/previous/next posts and then slices using the original current index. Because the array length changes after filtering, the selected related posts can be slightly offset from the intended "nearby posts" window.
-
-If this logic is improved later, prefer this behavior:
-
-1. Build same-category sorted posts.
-2. Find the current post index.
-3. Select nearby candidates around that index.
-4. Exclude current/previous/next posts.
-5. Fill up to 3 posts, with a predictable fallback such as latest same-category posts.
+This is not text similarity or embedding-based recommendation. It is metadata-driven and
+deterministic: series and manual links take precedence, then tags/topics, then category order.
 
 ## Change Checklist
 
@@ -79,4 +73,6 @@ When changing this logic, verify:
 - Previous and next links are correct for ordered series.
 - Related post cards do not include the current post.
 - Related post cards do not duplicate previous/next links.
+- Related post cards omit drafts and honor `relatedSlugs` order.
+- Unknown `relatedSlugs` targets fail `npm run check:content`.
 - Long Korean titles fit on mobile.

@@ -28,6 +28,7 @@ import {
 	normalizeCategoryValue,
 	normalizeRoutePath,
 	parseFrontmatterFields,
+	parseFrontmatterListField,
 	parseFrontmatterListValue,
 	shouldCheckInternalLink,
 	slugifyPathSegment,
@@ -35,6 +36,7 @@ import {
 	stripInlineCode,
 	stripQuotes,
 } from './lib/content-rules.mjs';
+import { normalizePostReference } from '../src/lib/postReferences.mjs';
 
 const ROOT_DIR = process.cwd();
 const CONTENT_DIR = path.join(ROOT_DIR, 'src', 'content', 'blog');
@@ -88,6 +90,32 @@ function getPostRoutePath(filePath, content) {
 		.join('/');
 
 	return normalizeRoutePath(`/blog/${slugPath}`);
+}
+
+function getPostReferenceKeys(filePath, content) {
+	const keys = [];
+	const frontmatterMatch = content.match(FRONTMATTER_REGEX);
+	const fields = frontmatterMatch ? parseFrontmatterFields(frontmatterMatch[1]) : new Map();
+	const slugField = fields.get('slug');
+	if (slugField) {
+		keys.push(stripQuotes(slugField.rawValue));
+	}
+
+	const relativePath = path.relative(CONTENT_DIR, filePath).replace(/\\/g, '/');
+	keys.push(relativePath);
+	keys.push(getPostRoutePath(filePath, content));
+	return keys.map(normalizePostReference).filter(Boolean);
+}
+
+function buildPostReferenceIndex(files) {
+	const references = new Map();
+	for (const filePath of files) {
+		const content = readFileSync(filePath, 'utf8');
+		for (const key of getPostReferenceKeys(filePath, content)) {
+			references.set(key, filePath);
+		}
+	}
+	return references;
 }
 
 function buildPostRouteIndex(files) {
@@ -250,6 +278,22 @@ function checkCategories(filePath, content, frontmatterMatch, fields, warnings) 
 	}
 }
 
+function checkRelatedSlugs(filePath, content, frontmatterMatch, fields, issues, postReferences) {
+	const field = fields.get('relatedSlugs');
+	if (!field) {
+		return;
+	}
+
+	const line = getLineNumber(content, frontmatterMatch.index + field.index);
+	for (const reference of parseFrontmatterListField(frontmatterMatch[1], 'relatedSlugs')) {
+		if (postReferences.has(normalizePostReference(reference))) {
+			continue;
+		}
+
+		addIssue(issues, 'error', filePath, line, `Related post target not found: ${reference}.`);
+	}
+}
+
 function checkFrontmatterTextLength(
 	filePath,
 	content,
@@ -298,7 +342,7 @@ function checkSlug(filePath, content, frontmatterMatch, fields, warnings) {
 	);
 }
 
-function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
+function checkFrontmatter(filePath, content, issues, warnings, titleIndex, postReferences) {
 	const frontmatterMatch = content.match(FRONTMATTER_REGEX);
 	if (!frontmatterMatch) {
 		addIssue(issues, 'error', filePath, 1, 'Missing frontmatter block.');
@@ -339,6 +383,7 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex) {
 	);
 	checkSlug(filePath, content, frontmatterMatch, fields, warnings);
 	checkCategories(filePath, content, frontmatterMatch, fields, warnings);
+	checkRelatedSlugs(filePath, content, frontmatterMatch, fields, issues, postReferences);
 	for (const fieldName of FRESHNESS_DATE_FIELDS) {
 		checkDateFieldFormat(filePath, content, frontmatterMatch, fields, fieldName, issues);
 	}
@@ -592,12 +637,13 @@ function main() {
 	const warnings = [];
 	const titleIndex = new Map();
 	const postRoutes = buildPostRouteIndex(files);
+	const postReferences = buildPostReferenceIndex(files);
 
 	checkDuplicatePostRoutes(postRoutes, issues);
 
 	for (const filePath of files) {
 		const content = readFileSync(filePath, 'utf8');
-		checkFrontmatter(filePath, content, issues, warnings, titleIndex);
+		checkFrontmatter(filePath, content, issues, warnings, titleIndex, postReferences);
 		checkMarkdownSyntax(filePath, content, warnings);
 		if (FINANCE_CATEGORIES_FOR_DELIMITER_CHECK.has(getPrimaryCategory(content))) {
 			checkMathStrikethroughCollisions(filePath, content, warnings);

@@ -34,6 +34,7 @@ Options:
   --series       Series display name.
   --series-slug  Stable series identifier.
   --series-order Series position as a non-negative integer.
+  --related-slugs Comma-separated stable slugs for manual related posts.
   --slug       Stable blog slug. Recommended for generic posts.
   --file       Output file path under src/content/blog.
   --help       Show this help message.`);
@@ -166,6 +167,7 @@ function buildPostContent({
 	series,
 	seriesSlug,
 	seriesOrder,
+	relatedSlugs = [],
 }) {
 	const optionalDates = [
 		updatedDate && `updatedDate: "${updatedDate}"`,
@@ -183,12 +185,15 @@ function buildPostContent({
 		.filter(Boolean)
 		.join('\n');
 	const seriesFields = optionalSeries ? `${optionalSeries}\n` : '';
+	const relatedFields = relatedSlugs.length
+		? `relatedSlugs: [${relatedSlugs.map((slug) => `"${slug}"`).join(', ')}]\n`
+		: '';
 
 	return `---
 title: "${title}"
 description: "${description}"
 pubDate: "${date}T${time}+09:00"
-${freshnessFields}${seriesFields}categories: "${category}"
+${freshnessFields}${seriesFields}${relatedFields}categories: "${category}"
 slug: "${slug}"
 ---
 
@@ -241,6 +246,10 @@ function main() {
 		}
 		seriesOrder = Number(seriesOrderValue);
 	}
+	const relatedSlugs = (args['related-slugs'] ?? '')
+		.split(',')
+		.map((slug) => slug.trim())
+		.filter(Boolean);
 	if (dataAsOf && verifiedDate && isDataAsOfAfterVerifiedDate(dataAsOf, verifiedDate)) {
 		throw new Error('Invalid freshness dates: --data-as-of cannot be later than --verified-date.');
 	}
@@ -271,6 +280,7 @@ function main() {
 			series,
 			seriesSlug,
 			seriesOrder,
+			relatedSlugs,
 		}),
 		'utf8',
 	);

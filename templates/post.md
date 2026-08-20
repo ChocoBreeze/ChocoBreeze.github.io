@@ -10,6 +10,7 @@ pubDate: "2026-01-16T00:00:00+09:00"
 # seriesOrder: 1
 categories: "Programming"
 tags: ["tag-one", "tag-two"]
+# relatedSlugs: ["another-post-slug"]
 slug: "stable-url-slug"
 ---
 

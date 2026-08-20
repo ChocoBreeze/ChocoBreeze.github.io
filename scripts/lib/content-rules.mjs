@@ -158,6 +158,125 @@ export function parseFrontmatterListValue(rawValue) {
 	return [stripQuotes(value).trim()].filter(Boolean);
 }
 
+function stripYamlComment(value) {
+	let quote = '';
+
+	for (let index = 0; index < value.length; index += 1) {
+		const character = value[index];
+		if (quote) {
+			if (character === quote && value[index - 1] !== '\\') {
+				quote = '';
+			}
+			continue;
+		}
+
+		if (character === '"' || character === "'") {
+			quote = character;
+			continue;
+		}
+		if (character === '#' && (index === 0 || /\s/.test(value[index - 1]))) {
+			return value.slice(0, index).trim();
+		}
+	}
+
+	return value.trim();
+}
+
+function updateFlowSequenceState(value, state) {
+	let depth = state.depth;
+	let quote = state.quote;
+
+	for (let index = 0; index < value.length; index += 1) {
+		const character = value[index];
+		if (quote) {
+			if (character === quote && value[index - 1] !== '\\') {
+				quote = '';
+			}
+			continue;
+		}
+
+		if (character === '"' || character === "'") {
+			quote = character;
+			continue;
+		}
+		if (character === '[') {
+			depth += 1;
+		} else if (character === ']') {
+			depth -= 1;
+		}
+	}
+
+	return { depth, quote };
+}
+
+function parseMultilineFlowValue(frontmatter, field, rawValue) {
+	if (!rawValue.trim().startsWith('[')) {
+		return null;
+	}
+
+	const lines = frontmatter.slice(field.index).split(/\r?\n/);
+	const values = [];
+	let state = { depth: 0, quote: '' };
+
+	for (let index = 0; index < lines.length; index += 1) {
+		const lineValue = index === 0 ? rawValue : stripYamlComment(lines[index]).trim();
+		if (index > 0 && !lineValue) {
+			continue;
+		}
+
+		state = updateFlowSequenceState(lineValue, state);
+		values.push(lineValue);
+		if (state.depth === 0) {
+			return values.join(' ');
+		}
+	}
+
+	return null;
+}
+
+export function parseFrontmatterListField(frontmatter, fieldName) {
+	const field = parseFrontmatterFields(frontmatter).get(fieldName);
+	if (!field) {
+		return [];
+	}
+
+	const rawValue = stripYamlComment(field.rawValue);
+	const multilineFlowValue = parseMultilineFlowValue(frontmatter, field, rawValue);
+	if (multilineFlowValue) {
+		return parseFrontmatterListValue(multilineFlowValue);
+	}
+	if (rawValue && !['null', '~'].includes(rawValue.toLowerCase())) {
+		return parseFrontmatterListValue(rawValue);
+	}
+	if (rawValue) {
+		return [];
+	}
+
+	const values = [];
+	const lines = frontmatter.slice(field.index).split(/\r?\n/).slice(1);
+	for (const line of lines) {
+		const trimmedLine = line.trim();
+		if (!trimmedLine || trimmedLine.startsWith('#')) {
+			continue;
+		}
+		if (/^[A-Za-z][A-Za-z0-9_-]*:[ \t]*/.test(line)) {
+			break;
+		}
+
+		const itemMatch = line.match(/^[ \t]*-[ \t]*(.*?)\s*$/);
+		if (!itemMatch) {
+			break;
+		}
+
+		const item = stripQuotes(stripYamlComment(itemMatch[1]));
+		if (item) {
+			values.push(item);
+		}
+	}
+
+	return values;
+}
+
 export function normalizeCategoryValue(category) {
 	const normalized = category.trim().toLowerCase();
 	return CATEGORY_ALIASES.get(normalized) ?? category.trim();

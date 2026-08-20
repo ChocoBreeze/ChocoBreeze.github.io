@@ -12,6 +12,7 @@ import {
 	normalizeCategoryValue,
 	normalizeRoutePath,
 	parseFrontmatterFields,
+	parseFrontmatterListField,
 	parseFrontmatterListValue,
 	shouldCheckInternalLink,
 	slugifyPathSegment,
@@ -136,6 +137,62 @@ describe('parseFrontmatterListValue', () => {
 
 	it('returns an empty array for blank input', () => {
 		assert.deepEqual(parseFrontmatterListValue('   '), []);
+	});
+});
+
+describe('parseFrontmatterListField', () => {
+	it('strips comments after an inline list', () => {
+		assert.deepEqual(
+			parseFrontmatterListField(
+				'relatedSlugs: [first-post] # links\ncategories: Programming',
+				'relatedSlugs',
+			),
+			['first-post'],
+		);
+	});
+
+	it('parses a YAML block sequence', () => {
+		assert.deepEqual(
+			parseFrontmatterListField(
+				'relatedSlugs:\n  - first-post\n  - "second-post"\ncategories: Programming',
+				'relatedSlugs',
+			),
+			['first-post', 'second-post'],
+		);
+	});
+
+	it('parses an indentationless YAML block sequence', () => {
+		assert.deepEqual(
+			parseFrontmatterListField(
+				'relatedSlugs:\n- first-post # first\n- second-post\ncategories: Programming',
+				'relatedSlugs',
+			),
+			['first-post', 'second-post'],
+		);
+	});
+
+	it('continues a block sequence after a comment line', () => {
+		assert.deepEqual(
+			parseFrontmatterListField(
+				'relatedSlugs:\n  - first-post\n  # Keep this list curated\n  - missing-post\ncategories: Programming',
+				'relatedSlugs',
+			),
+			['first-post', 'missing-post'],
+		);
+	});
+
+	it('parses a multiline YAML flow sequence', () => {
+		assert.deepEqual(
+			parseFrontmatterListField(
+				'relatedSlugs: [\n  first-post, # first\n  "second-post"\n] # links\ncategories: Programming',
+				'relatedSlugs',
+			),
+			['first-post', 'second-post'],
+		);
+	});
+
+	it('treats explicit null as an empty list', () => {
+		assert.deepEqual(parseFrontmatterListField('relatedSlugs: null', 'relatedSlugs'), []);
 	});
 });
 

@@ -2,6 +2,7 @@
 import { type CollectionEntry, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 import { getPublishedPosts } from '../../lib/posts';
+import { getRelatedPosts } from '../../lib/relatedPosts.mjs';
 import { buildSeriesNavigation } from '../../lib/series.mjs';
 
 export async function getStaticPaths() {
@@ -49,13 +50,19 @@ const allPosts = publishedPosts
 const index = allPosts.findIndex((p) => p.id === post.id);
 const prevPost = index > 0 ? allPosts[index - 1] : null;
 const nextPost = index < allPosts.length - 1 ? allPosts[index + 1] : null;
-const relatedPosts = allPosts
-	.filter((p) => p.id !== post.id && p.id !== prevPost?.id && p.id !== nextPost?.id)
-	.slice(Math.max(0, index - 2), index + 4)
-	.slice(0, 3);
-
 const getDate = (p: CollectionEntry<'blog'>) => p.data.pubDate || p.data.date;
 const rawSeriesNavigation = buildSeriesNavigation(publishedPosts, post);
+const relatedPosts = getRelatedPosts({
+	posts: publishedPosts,
+	currentPost: post,
+	categoryPosts: allPosts,
+	excludedIds: [
+		prevPost?.id,
+		nextPost?.id,
+		rawSeriesNavigation?.previous?.id,
+		rawSeriesNavigation?.next?.id,
+	],
+});
 const seriesNavigation = rawSeriesNavigation
 	? {
 			...rawSeriesNavigation,
