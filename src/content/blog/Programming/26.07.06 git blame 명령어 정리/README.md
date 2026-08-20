@@ -3,6 +3,9 @@ title: "Git 코드 변경 추적하기: git blame 정리"
 slug: "git-blame-command-guide"
 description: "git blame으로 파일의 각 줄이 어떤 커밋에서 수정되었는지 확인하고, -L, --follow, -w 옵션까지 정리합니다."
 pubDate: "2026-07-06T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 25
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

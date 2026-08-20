@@ -3,6 +3,9 @@ title: "Git 임시 저장하기: git stash 정리"
 slug: "git-stash-command-guide"
 description: "git stash, git stash list, git stash pop, git stash apply, git stash drop, git stash clear로 작업 내용을 임시 저장하는 방법을 정리합니다."
 pubDate: "2026-07-05T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 18
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

@@ -3,6 +3,9 @@ title: "Git 설정 확인/변경하기: git config 정리"
 slug: "git-config-command-guide"
 description: "git config --list, git config user.name/email, git config --global로 Git 사용자 설정을 확인하고 변경하는 방법을 정리합니다."
 pubDate: "2026-07-05T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 22
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

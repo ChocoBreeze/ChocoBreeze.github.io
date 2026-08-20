@@ -3,6 +3,9 @@ title: "Git 스테이징 취소하기: git restore --staged, git reset"
 slug: "git-unstage-command-guide"
 description: "git restore --staged와 git reset으로 스테이징을 취소하는 방법과 두 명령어의 차이를 정리합니다."
 pubDate: "2026-07-02T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 7
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

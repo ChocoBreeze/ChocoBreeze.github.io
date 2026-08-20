@@ -31,6 +31,9 @@ Options:
   --updated-date  Document revision date in YYYY-MM-DD.
   --verified-date Fact verification date in YYYY-MM-DD.
   --data-as-of   Data snapshot date in YYYY-MM-DD.
+  --series       Series display name.
+  --series-slug  Stable series identifier.
+  --series-order Series position as a non-negative integer.
   --slug       Stable blog slug. Recommended for generic posts.
   --file       Output file path under src/content/blog.
   --help       Show this help message.`);
@@ -160,6 +163,9 @@ function buildPostContent({
 	updatedDate,
 	verifiedDate,
 	dataAsOf,
+	series,
+	seriesSlug,
+	seriesOrder,
 }) {
 	const optionalDates = [
 		updatedDate && `updatedDate: "${updatedDate}"`,
@@ -169,12 +175,20 @@ function buildPostContent({
 		.filter(Boolean)
 		.join('\n');
 	const freshnessFields = optionalDates ? `${optionalDates}\n` : '';
+	const optionalSeries = [
+		series && `series: "${series}"`,
+		seriesSlug && `seriesSlug: "${seriesSlug}"`,
+		seriesOrder !== undefined && `seriesOrder: ${seriesOrder}`,
+	]
+		.filter(Boolean)
+		.join('\n');
+	const seriesFields = optionalSeries ? `${optionalSeries}\n` : '';
 
 	return `---
 title: "${title}"
 description: "${description}"
 pubDate: "${date}T${time}+09:00"
-${freshnessFields}categories: "${category}"
+${freshnessFields}${seriesFields}categories: "${category}"
 slug: "${slug}"
 ---
 
@@ -215,6 +229,18 @@ function main() {
 	const updatedDate = toIsoDateField(args['updated-date'], '--updated-date');
 	const verifiedDate = toIsoDateField(args['verified-date'], '--verified-date');
 	const dataAsOf = toIsoDateField(args['data-as-of'], '--data-as-of');
+	const series = args.series?.trim() || undefined;
+	const seriesSlug = args['series-slug']?.trim() || undefined;
+	const seriesOrderValue = args['series-order'];
+	let seriesOrder;
+	if (seriesOrderValue !== undefined) {
+		if (!/^\d+$/.test(seriesOrderValue)) {
+			throw new Error(
+				`Invalid --series-order value: ${seriesOrderValue}. Use a non-negative integer.`,
+			);
+		}
+		seriesOrder = Number(seriesOrderValue);
+	}
 	if (dataAsOf && verifiedDate && isDataAsOfAfterVerifiedDate(dataAsOf, verifiedDate)) {
 		throw new Error('Invalid freshness dates: --data-as-of cannot be later than --verified-date.');
 	}
@@ -242,6 +268,9 @@ function main() {
 			updatedDate,
 			verifiedDate,
 			dataAsOf,
+			series,
+			seriesSlug,
+			seriesOrder,
 		}),
 		'utf8',
 	);

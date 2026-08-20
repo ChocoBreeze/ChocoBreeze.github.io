@@ -3,6 +3,9 @@ title: "Git 커밋 취소하기: git reset 정리"
 slug: "git-reset-command-guide"
 description: "git reset HEAD~1, --soft, --mixed, --hard의 차이와 커밋을 되돌리는 방법을 정리합니다."
 pubDate: "2026-07-05T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 16
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

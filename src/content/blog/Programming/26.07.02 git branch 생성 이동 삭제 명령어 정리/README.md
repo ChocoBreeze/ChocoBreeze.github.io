@@ -3,6 +3,9 @@ title: "Git 브랜치 생성·이동·삭제 명령어 정리"
 slug: "git-branch-create-switch-delete-guide"
 description: "git switch, git checkout, git branch로 브랜치를 생성하고 이동하고 삭제하는 방법을 정리합니다."
 pubDate: "2026-07-02T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 9
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

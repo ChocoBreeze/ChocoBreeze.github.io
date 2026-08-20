@@ -3,6 +3,9 @@ title: "Git 버그 발생 커밋 찾기: git bisect 정리"
 slug: "git-bisect-command-guide"
 description: "git bisect로 버그가 처음 발생한 커밋을 이진 탐색으로 찾는 방법과 git bisect run으로 자동화하는 방법을 정리합니다."
 pubDate: "2026-07-06T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 26
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

@@ -3,6 +3,9 @@ title: "Git 원격 변경 사항 가져오기: git fetch와 git pull 정리"
 slug: "git-fetch-pull-command-guide"
 description: "git fetch와 git pull의 차이, git fetch --prune, git pull origin 브랜치 사용법을 정리합니다."
 pubDate: "2026-07-03T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 11
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

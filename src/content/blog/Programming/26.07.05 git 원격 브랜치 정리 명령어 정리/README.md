@@ -3,6 +3,9 @@ title: "Git 원격 브랜치 정리하기: git remote prune, git fetch --prune, 
 slug: "git-remote-branch-cleanup-guide"
 description: "git branch -r, git fetch --prune, git remote prune origin, git push origin --delete로 원격 브랜치를 확인하고 정리하는 방법을 정리합니다."
 pubDate: "2026-07-05T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 20
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

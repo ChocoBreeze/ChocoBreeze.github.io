@@ -3,6 +3,9 @@ title: "git commit 명령어 정리"
 slug: "git-commit-command-guide"
 description: "git commit, git commit -m, git commit --amend의 차이와 좋은 커밋 메시지 작성법을 정리합니다."
 pubDate: "2026-07-02T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 8
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

@@ -3,6 +3,9 @@ title: "Git 태그 관리하기: git tag 정리"
 slug: "git-tag-command-guide"
 description: "git tag, git tag -a, git push origin --tags, git tag -d로 태그를 생성하고 관리하는 방법을 정리합니다."
 pubDate: "2026-07-05T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 19
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

@@ -4,58 +4,65 @@ import BaseHead from '../../components/BaseHead.astro';
 import BlogSidebar from '../../components/BlogSidebar.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
+import { getSeriesPosts } from '../../lib/series.mjs';
 
 const sectionDefs = [
 	{
 		number: 1,
 		title: '상태 확인',
-		slugs: ['git-status-command-guide', 'git-branch-command-guide', 'git-log-command-guide'],
+		start: 1,
+		end: 3,
 	},
 	{
 		number: 2,
 		title: '변경 내용 확인',
-		slugs: ['git-diff-command-guide', 'git-show-command-guide'],
+		start: 4,
+		end: 5,
 	},
-	{ number: 3, title: '스테이징', slugs: ['git-add-command-guide', 'git-unstage-command-guide'] },
-	{ number: 4, title: '커밋', slugs: ['git-commit-command-guide'] },
-	{ number: 5, title: '브랜치', slugs: ['git-branch-create-switch-delete-guide'] },
-	{ number: 6, title: '원격 저장소', slugs: ['git-remote-command-guide'] },
-	{ number: 7, title: '동기화', slugs: ['git-fetch-pull-command-guide', 'git-push-command-guide'] },
+	{ number: 3, title: '스테이징', start: 6, end: 7 },
+	{ number: 4, title: '커밋', start: 8, end: 8 },
+	{ number: 5, title: '브랜치', start: 9, end: 9 },
+	{ number: 6, title: '원격 저장소', start: 10, end: 10 },
+	{ number: 7, title: '동기화', start: 11, end: 12 },
 	{
 		number: 8,
 		title: '병합',
-		slugs: ['git-merge-rebase-command-guide', 'git-conflict-resolution-guide'],
+		start: 13,
+		end: 14,
 	},
 	{
 		number: 9,
 		title: '되돌리기',
-		slugs: ['git-restore-command-guide', 'git-reset-command-guide', 'git-revert-command-guide'],
+		start: 15,
+		end: 17,
 	},
-	{ number: 10, title: '임시 저장', slugs: ['git-stash-command-guide'] },
-	{ number: 11, title: '태그', slugs: ['git-tag-command-guide'] },
-	{ number: 12, title: '원격 브랜치 정리', slugs: ['git-remote-branch-cleanup-guide'] },
-	{ number: 13, title: '파일 추적', slugs: ['git-rm-mv-clean-command-guide'] },
-	{ number: 14, title: '설정', slugs: ['git-config-command-guide'] },
+	{ number: 10, title: '임시 저장', start: 18, end: 18 },
+	{ number: 11, title: '태그', start: 19, end: 19 },
+	{ number: 12, title: '원격 브랜치 정리', start: 20, end: 20 },
+	{ number: 13, title: '파일 추적', start: 21, end: 21 },
+	{ number: 14, title: '설정', start: 22, end: 22 },
 	{
 		number: 15,
 		title: '문제 해결',
-		slugs: [
-			'git-reflog-command-guide',
-			'git-cherry-pick-command-guide',
-			'git-blame-command-guide',
-			'git-bisect-command-guide',
-		],
+		start: 23,
+		end: 26,
 	},
 ];
 
 const allPosts = await getPublishedPosts();
+const seriesPosts = getSeriesPosts(allPosts, {
+	data: { seriesSlug: 'git-commands', draft: false },
+});
 const postBySlug = new Map(allPosts.map((post) => [post.data.slug, post]));
 
 const sections = sectionDefs.map((section) => ({
 	number: section.number,
 	title: section.title,
-	posts: section.slugs
-		.map((slug) => postBySlug.get(slug))
+	posts: seriesPosts
+		.filter((post) => {
+			const order = post.data.seriesOrder ?? Number.POSITIVE_INFINITY;
+			return order >= section.start && order <= section.end;
+		})
 		.filter((post): post is NonNullable<typeof post> => Boolean(post))
 		.map((post) => ({
 			title: post.data.title,

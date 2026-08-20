@@ -3,6 +3,9 @@ title: "Git 커밋 되돌리기: git revert 정리"
 slug: "git-revert-command-guide"
 description: "git revert로 특정 커밋의 변경 사항을 안전하게 되돌리는 방법과 git reset과의 차이를 정리합니다."
 pubDate: "2026-07-05T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 17
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

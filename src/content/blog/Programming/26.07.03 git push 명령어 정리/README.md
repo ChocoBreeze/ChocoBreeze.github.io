@@ -3,6 +3,9 @@ title: "Git 원격 저장소에 올리기: git push 정리"
 slug: "git-push-command-guide"
 description: "git push, git push origin 브랜치, git push -u origin 브랜치의 차이와 upstream 설정 방법을 정리합니다."
 pubDate: "2026-07-03T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 12
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

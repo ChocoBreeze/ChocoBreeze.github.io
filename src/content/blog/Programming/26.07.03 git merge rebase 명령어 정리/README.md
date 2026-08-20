@@ -3,6 +3,9 @@ title: "Git 브랜치 합치기: git merge와 git rebase 정리"
 slug: "git-merge-rebase-command-guide"
 description: "git merge와 git rebase의 차이, git rebase origin/main 사용법과 각 명령어를 언제 쓰면 좋은지 정리합니다."
 pubDate: "2026-07-03T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 13
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

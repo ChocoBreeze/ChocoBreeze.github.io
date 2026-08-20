@@ -3,6 +3,9 @@ title: "git status 명령어 정리"
 slug: "git-status-command-guide"
 description: "git status와 git status -sb로 Git 저장소의 현재 상태를 확인하는 방법을 정리합니다."
 pubDate: "2026-06-17T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 1
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

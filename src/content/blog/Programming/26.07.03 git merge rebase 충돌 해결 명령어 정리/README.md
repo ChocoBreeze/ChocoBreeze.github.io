@@ -3,6 +3,9 @@ title: "Git merge/rebase 충돌 해결 명령어 정리"
 slug: "git-conflict-resolution-guide"
 description: "git merge --abort, git rebase --abort, git rebase --continue로 merge와 rebase 충돌을 해결하는 방법을 정리합니다."
 pubDate: "2026-07-03T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 14
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

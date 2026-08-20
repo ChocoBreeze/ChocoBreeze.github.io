@@ -3,6 +3,9 @@ title: "git show 명령어 정리"
 slug: "git-show-command-guide"
 description: "git show와 git show <commit-hash>로 특정 커밋의 상세 내용을 확인하는 방법을 정리합니다."
 pubDate: "2026-07-02T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 5
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

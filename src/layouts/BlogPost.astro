@@ -13,6 +13,19 @@ import { estimateReadingTime } from '../lib/readingTime.mjs';
 
 type BlogPostData = CollectionEntry<'blog'>['data'];
 
+type SeriesNavigationItem = {
+	title: string;
+	href: string;
+};
+
+type SeriesNavigation = {
+	name: string;
+	current: number;
+	total: number;
+	previous?: SeriesNavigationItem;
+	next?: SeriesNavigationItem;
+};
+
 type Props = Pick<
 	BlogPostData,
 	| 'title'
@@ -31,6 +44,7 @@ type Props = Pick<
 	body?: string;
 	headings?: MarkdownHeading[];
 	ogImage?: string;
+	seriesNavigation?: SeriesNavigation;
 };
 
 const {
@@ -48,6 +62,7 @@ const {
 	body,
 	headings,
 	ogImage,
+	seriesNavigation,
 } = Astro.props;
 const date = pubDate || jekyllDate;
 const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
@@ -257,6 +272,76 @@ const freshnessStatus = getFreshnessStatus(activeCategory, freshnessReferenceDat
 			.post-action:focus-visible {
 				outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
 				outline-offset: 2px;
+			}
+			.series-navigation {
+				margin: 0 0 1.5rem;
+				padding: 1rem;
+				border: 1px solid color-mix(in srgb, var(--border-color) 82%, var(--accent) 18%);
+				border-radius: var(--nv-radius-sm);
+				background: color-mix(in srgb, var(--card-bg) 94%, var(--accent) 6%);
+			}
+			.series-navigation-heading {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: baseline;
+				gap: 0.45rem 0.7rem;
+				margin-bottom: 0.75rem;
+			}
+			.series-navigation-label,
+			.series-navigation-progress {
+				color: var(--muted-text);
+				font-size: 0.78rem;
+				font-weight: 700;
+			}
+			.series-navigation-heading strong {
+				color: var(--heading-color);
+			}
+			.series-navigation-links {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 0.6rem;
+			}
+			.series-navigation-link {
+				display: flex;
+				min-width: 0;
+				flex-direction: column;
+				gap: 0.25rem;
+				padding: 0.65rem 0.75rem;
+				border: 1px solid var(--border-color);
+				border-radius: var(--nv-radius-sm);
+				color: var(--text-color);
+				text-decoration: none;
+				transition:
+					border-color 0.2s ease,
+					background-color 0.2s ease;
+			}
+			.series-navigation-link:hover,
+			.series-navigation-link:focus-visible {
+				border-color: var(--accent);
+				background: color-mix(in srgb, var(--accent) 8%, var(--card-bg));
+			}
+			.series-navigation-link:focus-visible {
+				outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+				outline-offset: 2px;
+			}
+			.series-navigation-link span {
+				color: var(--muted-text);
+				font-size: 0.75rem;
+				font-weight: 700;
+			}
+			.series-navigation-link strong {
+				display: -webkit-box;
+				overflow: hidden;
+				color: var(--heading-color);
+				line-height: 1.35;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+			}
+			.series-navigation-link.next {
+				text-align: right;
+			}
+			.series-navigation-placeholder {
+				display: block;
 			}
 			.prose :global(.code-block) {
 				position: relative;
@@ -718,6 +803,38 @@ const freshnessStatus = getFreshnessStatus(activeCategory, freshnessReferenceDat
 											))}
 										</ul>
 									</details>
+								</nav>
+							)
+						}
+						{
+							seriesNavigation && (
+								<nav class="series-navigation" aria-label={`${seriesNavigation.name} 시리즈 탐색`}>
+									<div class="series-navigation-heading">
+										<span class="series-navigation-label">시리즈</span>
+										<strong>{seriesNavigation.name}</strong>
+										<span class="series-navigation-progress">
+											{seriesNavigation.current}/{seriesNavigation.total}편
+										</span>
+									</div>
+									<div class="series-navigation-links">
+										{seriesNavigation.previous ? (
+											<a
+												href={seriesNavigation.previous.href}
+												class="series-navigation-link previous"
+											>
+												<span>← 이전 편</span>
+												<strong>{seriesNavigation.previous.title}</strong>
+											</a>
+										) : (
+											<span class="series-navigation-placeholder" />
+										)}
+										{seriesNavigation.next && (
+											<a href={seriesNavigation.next.href} class="series-navigation-link next">
+												<span>다음 편 →</span>
+												<strong>{seriesNavigation.next.title}</strong>
+											</a>
+										)}
+									</div>
 								</nav>
 							)
 						}

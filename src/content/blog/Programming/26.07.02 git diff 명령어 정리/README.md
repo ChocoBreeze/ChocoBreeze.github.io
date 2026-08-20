@@ -3,6 +3,9 @@ title: "git diff 명령어 정리"
 slug: "git-diff-command-guide"
 description: "git diff, git diff --staged, git diff --cached, git diff HEAD의 차이와 사용 시점을 정리합니다."
 pubDate: "2026-07-02T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 4
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

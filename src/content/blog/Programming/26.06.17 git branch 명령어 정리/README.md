@@ -3,6 +3,9 @@ title: "git branch 명령어 정리"
 slug: "git-branch-command-guide"
 description: "git branch, git branch -a, git branch -vv로 브랜치를 확인하고 관리하는 방법을 정리합니다."
 pubDate: "2026-06-17T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 2
 categories: "Programming"
 tags: ["Git", "Branch", "CLI", "Version Control", "Developer Tools"]
 ---

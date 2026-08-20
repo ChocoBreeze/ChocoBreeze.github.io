@@ -3,6 +3,9 @@ title: "Git 특정 커밋 가져오기: git cherry-pick 정리"
 slug: "git-cherry-pick-command-guide"
 description: "git cherry-pick으로 특정 커밋을 현재 브랜치에 적용하는 방법과 충돌 해결, --no-commit 옵션까지 정리합니다."
 pubDate: "2026-07-06T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 24
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

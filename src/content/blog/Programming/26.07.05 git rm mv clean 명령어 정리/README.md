@@ -3,6 +3,9 @@ title: "Git 파일 추적/삭제/정리 명령어 정리: git rm, git mv, git cl
 slug: "git-rm-mv-clean-command-guide"
 description: "git rm, git rm --cached, git mv, git clean -n, git clean -fd로 파일을 삭제하고 정리하는 방법을 정리합니다."
 pubDate: "2026-07-05T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 21
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

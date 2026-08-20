@@ -2,6 +2,7 @@
 import { type CollectionEntry, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 import { getPublishedPosts } from '../../lib/posts';
+import { buildSeriesNavigation } from '../../lib/series.mjs';
 
 export async function getStaticPaths() {
 	const posts = await getPublishedPosts();
@@ -15,9 +16,11 @@ type BlogCategory = CollectionEntry<'blog'>['data']['categories'];
 const post = Astro.props;
 const { Content, headings } = await render(post);
 const postBody = (post as CollectionEntry<'blog'> & { body?: string }).body ?? '';
+const getSlug = (p: CollectionEntry<'blog'>) => p.data.slug || p.id;
 
 // "이전/다음 글" 찾기 로직
-const allPosts = (await getPublishedPosts())
+const publishedPosts = await getPublishedPosts();
+const allPosts = publishedPosts
 	.filter((p) => {
 		const currentCats = post.data.categories;
 		const pCats = p.data.categories;
@@ -51,15 +54,38 @@ const relatedPosts = allPosts
 	.slice(Math.max(0, index - 2), index + 4)
 	.slice(0, 3);
 
-const getSlug = (p: CollectionEntry<'blog'>) => p.data.slug || p.id;
 const getDate = (p: CollectionEntry<'blog'>) => p.data.pubDate || p.data.date;
+const rawSeriesNavigation = buildSeriesNavigation(publishedPosts, post);
+const seriesNavigation = rawSeriesNavigation
+	? {
+			...rawSeriesNavigation,
+			previous: rawSeriesNavigation.previous
+				? {
+						title: rawSeriesNavigation.previous.title,
+						href: `/blog/${rawSeriesNavigation.previous.slug}/`,
+					}
+				: undefined,
+			next: rawSeriesNavigation.next
+				? {
+						title: rawSeriesNavigation.next.title,
+						href: `/blog/${rawSeriesNavigation.next.slug}/`,
+					}
+				: undefined,
+		}
+	: undefined;
 
 // Posts without their own image fall back to a generated OG card at /og/<slug>.png
 // (produced by src/pages/og/[...slug].png.ts for exactly these posts).
 const ogImage = `/og/${post.data.slug || post.id}.png`;
 ---
 
-<BlogPost {...post.data} body={postBody} headings={headings} ogImage={ogImage}>
+<BlogPost
+	{...post.data}
+	body={postBody}
+	headings={headings}
+	ogImage={ogImage}
+	seriesNavigation={seriesNavigation}
+>
 	<div class="post-body">
 		<Content />
 	</div>

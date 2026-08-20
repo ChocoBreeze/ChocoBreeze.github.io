@@ -3,6 +3,9 @@ title: "git remote 명령어 정리"
 slug: "git-remote-command-guide"
 description: "git remote, git remote -v, git remote add/set-url/remove로 원격 저장소를 확인하고 관리하는 방법을 정리합니다."
 pubDate: "2026-07-03T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 10
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

@@ -3,6 +3,9 @@ title: "git log 명령어 정리"
 slug: "git-log-command-guide"
 description: "git log, git log --oneline, git log --graph --all, Git alias로 커밋 기록을 확인하는 방법을 정리합니다."
 pubDate: "2026-06-17T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 3
 categories: "Programming"
 tags: ["Git", "Git Log", "CLI", "Version Control", "Developer Tools"]
 ---

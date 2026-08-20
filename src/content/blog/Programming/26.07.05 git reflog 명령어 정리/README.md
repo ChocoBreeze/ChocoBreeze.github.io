@@ -3,6 +3,9 @@ title: "Git 작업 복구하기: git reflog 정리"
 slug: "git-reflog-command-guide"
 description: "git reflog로 HEAD 이동 기록을 확인하고, 실수로 사라진 커밋을 복구하는 방법을 정리합니다."
 pubDate: "2026-07-05T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 23
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

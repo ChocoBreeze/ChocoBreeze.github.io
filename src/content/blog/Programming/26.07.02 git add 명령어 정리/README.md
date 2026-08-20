@@ -3,6 +3,9 @@ title: "git add 명령어 정리"
 slug: "git-add-command-guide"
 description: "git add <file>, git add ., git add -A의 차이와 스테이징 영역의 개념을 정리합니다."
 pubDate: "2026-07-02T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 6
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

@@ -28,6 +28,9 @@ const blog = defineCollection({
 		pinned: z.boolean().optional().default(false),
 		draft: z.boolean().optional().default(false),
 		order: z.number().optional(),
+		series: z.string().optional(),
+		seriesSlug: z.string().optional(),
+		seriesOrder: z.number().int().nonnegative().optional(),
 	}),
 });
 

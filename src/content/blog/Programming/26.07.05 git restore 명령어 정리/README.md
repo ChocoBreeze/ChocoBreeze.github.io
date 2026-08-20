@@ -3,6 +3,9 @@ title: "Git 파일 되돌리기: git restore 정리"
 slug: "git-restore-command-guide"
 description: "git restore <file>, git restore ., git restore --source로 파일 변경 내용을 되돌리는 방법을 정리합니다."
 pubDate: "2026-07-05T00:00:00+09:00"
+series: "Git 명령어"
+seriesSlug: "git-commands"
+seriesOrder: 15
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---
