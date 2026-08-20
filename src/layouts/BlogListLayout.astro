@@ -6,6 +6,7 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import type { CollectionEntry } from 'astro:content';
 import { BLOG_CATEGORIES, type BlogCategoryKey } from '../data/blogCategories';
+import { getListFilterOptions } from '../lib/listFilters.mjs';
 import { getCategoryFeedPath } from '../lib/rss';
 
 type Props = {
@@ -13,14 +14,21 @@ type Props = {
 	description: string;
 	activeCategory: BlogCategoryKey;
 	posts: CollectionEntry<'blog'>[];
+	filters?: {
+		year?: boolean;
+		tag?: boolean;
+	};
 };
 
-const { title, description, activeCategory, posts } = Astro.props;
+const { title, description, activeCategory, posts, filters = {} } = Astro.props;
 const category = BLOG_CATEGORIES.find(({ key }) => key === activeCategory);
 const rssHref = getCategoryFeedPath(activeCategory);
 
 const pinnedPosts = posts.filter((p) => p.data.pinned);
 const regularPosts = posts.filter((p) => !p.data.pinned);
+const filterOptions = getListFilterOptions(regularPosts);
+const filterYears = filters.year ? filterOptions.years : [];
+const filterTags = filters.tag ? filterOptions.tags : [];
 ---
 
 <!doctype html>
@@ -78,6 +86,36 @@ const regularPosts = posts.filter((p) => !p.data.pinned);
 				{
 					regularPosts.length > 0 && (
 						<>
+							{(filterYears.length > 0 || filterTags.length > 0) && (
+								<div class="filter-controls" data-filter-controls>
+									{filterYears.length > 0 && (
+										<label class="filter-field">
+											<span>연도</span>
+											<select data-filter-year aria-label="연도 필터">
+												<option value="">모든 연도</option>
+												{filterYears.map((year) => (
+													<option value={year}>{year}</option>
+												))}
+											</select>
+										</label>
+									)}
+									{filterTags.length > 0 && (
+										<label class="filter-field">
+											<span>태그</span>
+											<select data-filter-tag aria-label="태그 필터">
+												<option value="">모든 태그</option>
+												{filterTags.map((tag) => (
+													<option value={tag}>{tag}</option>
+												))}
+											</select>
+										</label>
+									)}
+									<button class="filter-reset" type="button" data-filter-reset hidden>
+										필터 초기화
+									</button>
+									<p class="filter-result" data-filter-result aria-live="polite" />
+								</div>
+							)}
 							<div class="sort-controls">
 								<span class="sort-label">정렬</span>
 								<div class="sort-btn-group" role="group" aria-label="정렬 순서">
@@ -154,6 +192,71 @@ const regularPosts = posts.filter((p) => !p.data.pinned);
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.07em;
+	}
+
+	.filter-controls {
+		display: flex;
+		align-items: end;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin: 1.25rem 0 1.5rem;
+		padding: 0.9rem;
+		border: 1px solid var(--border-color);
+		border-radius: var(--nv-radius-sm);
+		background: color-mix(in srgb, var(--card-bg) 94%, var(--accent) 6%);
+	}
+
+	.filter-field {
+		display: grid;
+		gap: 0.3rem;
+		min-width: 9rem;
+		color: var(--muted-text);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+	}
+
+	.filter-field select {
+		min-width: 9rem;
+		padding: 0.45rem 0.6rem;
+		border: 1px solid var(--border-color);
+		border-radius: var(--nv-radius-sm);
+		background: var(--card-bg);
+		color: var(--text-color);
+		font: inherit;
+		font-size: 0.84rem;
+		letter-spacing: normal;
+		text-transform: none;
+	}
+
+	.filter-field select:focus-visible,
+	.filter-reset:focus-visible {
+		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+		outline-offset: 2px;
+	}
+
+	.filter-reset {
+		padding: 0.45rem 0.7rem;
+		border: 1px solid var(--border-color);
+		border-radius: var(--nv-radius-sm);
+		background: transparent;
+		color: var(--heading-color);
+		font: inherit;
+		font-size: 0.82rem;
+		font-weight: 700;
+		cursor: pointer;
+	}
+
+	.filter-reset:hover {
+		border-color: var(--accent);
+		background: color-mix(in srgb, var(--card-bg) 80%, var(--accent) 20%);
+	}
+
+	.filter-result {
+		margin: 0 0 0 0.25rem;
+		color: var(--muted-text);
+		font-size: 0.8rem;
 	}
 
 	.sort-controls {
@@ -253,31 +356,117 @@ const regularPosts = posts.filter((p) => !p.data.pinned);
 </style>
 
 <script>
+	import { matchesListFilters } from '../lib/listFilters.mjs';
+
 	const PAGE_SIZE = 30;
 	const grid = document.querySelector('.regular-post-grid');
 	const buttons = document.querySelectorAll<HTMLButtonElement>('.sort-btn');
 	const loadMoreBtn = document.querySelector<HTMLButtonElement>('.load-more-btn');
+	const filterControls = document.querySelector<HTMLElement>('[data-filter-controls]');
+	const filterYearSelect = document.querySelector<HTMLSelectElement>('[data-filter-year]');
+	const filterTagSelect = document.querySelector<HTMLSelectElement>('[data-filter-tag]');
+	const filterReset = document.querySelector<HTMLButtonElement>('[data-filter-reset]');
+	const filterResult = document.querySelector<HTMLElement>('[data-filter-result]');
+	const filtersEnabled = Boolean(filterControls);
+	const availableYears = new Set(
+		filterYearSelect
+			? [...filterYearSelect.options].map((option) => option.value).filter(Boolean)
+			: [],
+	);
+	const availableTags = new Set(
+		filterTagSelect
+			? [...filterTagSelect.options].map((option) => option.value).filter(Boolean)
+			: [],
+	);
 
 	const itemData = grid
 		? [...grid.querySelectorAll<HTMLLIElement>('li[data-pub-date]')].map((el) => ({
 				el,
 				t: parseInt(el.dataset.pubDate ?? '0'),
+				year: el.dataset.year ?? '',
+				tags: parseTags(el.dataset.tags),
 			}))
 		: [];
 
+	type FilterState = {
+		year: string | null;
+		tag: string | null;
+	};
+
+	let activeFilters: FilterState = { year: null, tag: null };
 	// How many posts are currently revealed; persists across sort changes so
 	// re-sorting keeps the same amount of content on screen (just reordered).
 	let shownCount = Math.min(PAGE_SIZE, itemData.length);
 
+	function parseTags(rawTags: string | undefined) {
+		try {
+			const tags = JSON.parse(rawTags ?? '[]');
+			return Array.isArray(tags) ? tags.filter((tag) => typeof tag === 'string') : [];
+		} catch {
+			return [];
+		}
+	}
+
+	function hasActiveFilters() {
+		return Boolean(activeFilters.year || activeFilters.tag);
+	}
+
 	function applyVisibility() {
-		itemData.forEach(({ el }, index) => {
-			el.classList.toggle('is-hidden', index >= shownCount);
+		let matchedCount = 0;
+		itemData.forEach((item) => {
+			const matches = matchesListFilters(item, activeFilters);
+			const isVisible = matches && matchedCount < shownCount;
+			item.el.classList.toggle('is-hidden', !isVisible);
+			if (matches) {
+				matchedCount += 1;
+			}
 		});
 
 		if (loadMoreBtn) {
-			const remaining = itemData.length - shownCount;
+			const remaining = matchedCount - shownCount;
 			loadMoreBtn.hidden = remaining <= 0;
 			loadMoreBtn.textContent = remaining > 0 ? `더 보기 (${remaining}개 남음)` : '더 보기';
+		}
+
+		if (filterResult) {
+			filterResult.textContent = hasActiveFilters()
+				? `${matchedCount}개 글`
+				: `전체 ${matchedCount}개 글`;
+		}
+
+		if (filterReset) {
+			filterReset.hidden = !hasActiveFilters();
+		}
+	}
+
+	function updateUrl(historyMode: 'push' | 'replace') {
+		const url = new URL(window.location.href);
+		const sort =
+			[...buttons].find((button) => button.classList.contains('active'))?.dataset.sort ?? 'desc';
+		sort === 'desc' ? url.searchParams.delete('sort') : url.searchParams.set('sort', sort);
+
+		if (filtersEnabled) {
+			activeFilters.year
+				? url.searchParams.set('year', activeFilters.year)
+				: url.searchParams.delete('year');
+			activeFilters.tag
+				? url.searchParams.set('tag', activeFilters.tag)
+				: url.searchParams.delete('tag');
+		}
+
+		window.history[historyMode === 'replace' ? 'replaceState' : 'pushState'](
+			{},
+			'',
+			url.toString(),
+		);
+	}
+
+	function updateFilterControls() {
+		if (filterYearSelect) {
+			filterYearSelect.value = activeFilters.year ?? '';
+		}
+		if (filterTagSelect) {
+			filterTagSelect.value = activeFilters.tag ?? '';
 		}
 	}
 
@@ -294,22 +483,39 @@ const regularPosts = posts.filter((p) => !p.data.pinned);
 			btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
 		});
 
-		const url = new URL(window.location.href);
-		order === 'desc' ? url.searchParams.delete('sort') : url.searchParams.set('sort', order);
-		if (historyMode === 'replace') {
-			window.history.replaceState({}, '', url.toString());
-		} else {
-			window.history.pushState({}, '', url.toString());
-		}
+		updateUrl(historyMode);
+	}
+
+	function readFilters(): FilterState {
+		const params = new URLSearchParams(window.location.search);
+		const rawYear = params.get('year');
+		const rawTag = params.get('tag');
+		return {
+			year: rawYear && availableYears.has(rawYear) ? rawYear : null,
+			tag: rawTag && availableTags.has(rawTag) ? rawTag : null,
+		};
+	}
+
+	function applyFilters(nextFilters: FilterState, historyMode: 'push' | 'replace' = 'push') {
+		activeFilters = nextFilters;
+		shownCount = Math.min(PAGE_SIZE, itemData.length);
+		updateFilterControls();
+		applyVisibility();
+		updateUrl(historyMode);
 	}
 
 	const rawSort = new URLSearchParams(window.location.search).get('sort');
 	const initialSort: 'asc' | 'desc' = rawSort === 'asc' ? 'asc' : 'desc';
 
+	activeFilters = readFilters();
+	updateFilterControls();
 	sortGrid(initialSort, 'replace');
 
 	window.addEventListener('popstate', () => {
 		const sort = new URLSearchParams(window.location.search).get('sort');
+		activeFilters = readFilters();
+		shownCount = Math.min(PAGE_SIZE, itemData.length);
+		updateFilterControls();
 		sortGrid(sort === 'asc' ? 'asc' : 'desc', 'replace');
 	});
 
@@ -319,8 +525,21 @@ const regularPosts = posts.filter((p) => !p.data.pinned);
 		}),
 	);
 
+	filterYearSelect?.addEventListener('change', () => {
+		applyFilters({ ...activeFilters, year: filterYearSelect.value || null });
+	});
+
+	filterTagSelect?.addEventListener('change', () => {
+		applyFilters({ ...activeFilters, tag: filterTagSelect.value || null });
+	});
+
+	filterReset?.addEventListener('click', () => {
+		applyFilters({ year: null, tag: null });
+	});
+
 	loadMoreBtn?.addEventListener('click', () => {
-		shownCount = Math.min(shownCount + PAGE_SIZE, itemData.length);
+		const matchedCount = itemData.filter((item) => matchesListFilters(item, activeFilters)).length;
+		shownCount = Math.min(shownCount + PAGE_SIZE, matchedCount);
 		applyVisibility();
 	});
 </script>

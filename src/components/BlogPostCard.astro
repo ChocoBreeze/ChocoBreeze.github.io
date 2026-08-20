@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from './FormattedDate.astro';
+import { getPostYear, normalizePostTags } from '../lib/listFilters.mjs';
 
 type Props = {
 	post: CollectionEntry<'blog'>;
@@ -11,12 +12,16 @@ const date = post.data.pubDate || post.data.date;
 const image = post.data.heroImage || (post.data.image ? `/images/${post.data.image}` : undefined);
 const href = `/blog/${post.data.slug || post.id}/`;
 const topics = post.data.topics?.slice(0, 3) ?? [];
+const tags = normalizePostTags(post.data.tags);
+const year = getPostYear(post);
 ---
 
 <li
 	class={`blog-post-card${image ? '' : ' no-image'}`}
 	data-pub-date={date ? new Date(date).getTime().toString() : '0'}
 	data-difficulty={post.data.difficulty ?? ''}
+	data-year={year}
+	data-tags={JSON.stringify(tags)}
 >
 	<a href={href}>
 		{image && <img width={720} height={360} src={image} alt="" loading="lazy" />}
