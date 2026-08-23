@@ -2,6 +2,7 @@
 import { getPublishedPosts } from '../../lib/posts';
 import { BLOG_CATEGORIES } from '../../data/blogCategories';
 import BlogListLayout from '../../layouts/BlogListLayout.astro';
+import { getTopicSummary } from '../../lib/listFilters.mjs';
 
 const posts = (await getPublishedPosts())
 	.filter((post) => {
@@ -23,16 +24,7 @@ const difficultySummary = difficultyOrder.map((difficulty) => ({
 	difficulty,
 	count: posts.filter((post) => post.data.difficulty === difficulty).length,
 }));
-const topicSummary = Array.from(
-	posts.reduce((counts, post) => {
-		for (const topic of post.data.topics ?? []) {
-			counts.set(topic, (counts.get(topic) ?? 0) + 1);
-		}
-		return counts;
-	}, new Map<string, number>()),
-)
-	.sort((a, b) => b[1] - a[1])
-	.slice(0, 8);
+const topicSummary = getTopicSummary(posts, { excludePinned: true }).slice(0, 8);
 ---
 
 <BlogListLayout
@@ -40,7 +32,7 @@ const topicSummary = Array.from(
 	description={category.description}
 	activeCategory={category.key}
 	posts={posts}
-	filters={{ difficulty: true }}
+	filters={{ difficulty: true, topic: true }}
 >
 	<section class="problem-roadmap" aria-labelledby="problem-roadmap-title">
 		<div>
@@ -69,9 +61,9 @@ const topicSummary = Array.from(
 			topicSummary.length > 0 && (
 				<div class="topic-strip" aria-label="주요 알고리즘 토픽">
 					{topicSummary.map(([topic, count]) => (
-						<span>
+						<button type="button" data-filter-topic={topic} aria-pressed="false">
 							{topic} · {count}
-						</span>
+						</button>
 					))}
 				</div>
 			)
@@ -198,14 +190,27 @@ const topicSummary = Array.from(
 		gap: 0.45rem;
 	}
 
-	.topic-strip span {
+	.topic-strip button {
 		padding: 0.25rem 0.58rem;
 		border: 1px solid color-mix(in srgb, var(--border-color) 82%, var(--accent) 18%);
 		border-radius: 999px;
 		background: color-mix(in srgb, var(--card-bg) 90%, var(--accent) 10%);
 		color: var(--heading-color);
+		cursor: pointer;
 		font-size: 0.8rem;
 		font-weight: 700;
+		font-family: inherit;
+	}
+
+	.topic-strip button:hover,
+	.topic-strip button[aria-pressed='true'] {
+		border-color: var(--accent);
+		background: color-mix(in srgb, var(--card-bg) 78%, var(--accent) 22%);
+	}
+
+	.topic-strip button:focus-visible {
+		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+		outline-offset: 3px;
 	}
 
 	@media (max-width: 640px) {

@@ -29,6 +29,31 @@ export function normalizePostTags(tags) {
 		: [];
 }
 
+export function normalizePostTopics(topics) {
+	return Array.isArray(topics)
+		? topics
+				.filter((topic) => typeof topic === 'string')
+				.map((topic) => topic.trim())
+				.filter(Boolean)
+		: [];
+}
+
+export function getTopicSummary(posts, { excludePinned = false } = {}) {
+	const counts = new Map();
+
+	for (const post of posts) {
+		if (excludePinned && post?.data?.pinned) {
+			continue;
+		}
+
+		for (const topic of normalizePostTopics(post?.data?.topics)) {
+			counts.set(topic, (counts.get(topic) ?? 0) + 1);
+		}
+	}
+
+	return [...counts].sort((a, b) => b[1] - a[1]);
+}
+
 export function getListFilterOptions(posts) {
 	const years = new Set();
 	const tags = new Set();
@@ -54,11 +79,14 @@ export function matchesListFilters(item, filters = {}) {
 	const year = filters.year ?? '';
 	const tag = filters.tag ?? '';
 	const difficulty = filters.difficulty ?? '';
+	const topic = filters.topic ?? '';
 	const tags = Array.isArray(item?.tags) ? item.tags : [];
+	const topics = Array.isArray(item?.topics) ? item.topics : [];
 
 	return (
 		(!year || item?.year === year) &&
 		(!tag || tags.includes(tag)) &&
-		(!difficulty || item?.difficulty === difficulty)
+		(!difficulty || item?.difficulty === difficulty) &&
+		(!topic || topics.includes(topic))
 	);
 }

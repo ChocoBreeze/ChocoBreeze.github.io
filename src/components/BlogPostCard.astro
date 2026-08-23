@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from './FormattedDate.astro';
-import { getPostYear, normalizePostTags } from '../lib/listFilters.mjs';
+import { getPostYear, normalizePostTags, normalizePostTopics } from '../lib/listFilters.mjs';
 
 type Props = {
 	post: CollectionEntry<'blog'>;
@@ -11,7 +11,7 @@ const { post } = Astro.props;
 const date = post.data.pubDate || post.data.date;
 const image = post.data.heroImage || (post.data.image ? `/images/${post.data.image}` : undefined);
 const href = `/blog/${post.data.slug || post.id}/`;
-const topics = post.data.topics?.slice(0, 3) ?? [];
+const topics = normalizePostTopics(post.data.topics);
 const tags = normalizePostTags(post.data.tags);
 const year = getPostYear(post);
 ---
@@ -22,6 +22,7 @@ const year = getPostYear(post);
 	data-difficulty={post.data.difficulty ?? ''}
 	data-year={year}
 	data-tags={JSON.stringify(tags)}
+	data-topics={JSON.stringify(topics)}
 >
 	<a href={href}>
 		{image && <img width={720} height={360} src={image} alt="" loading="lazy" />}
@@ -35,7 +36,7 @@ const year = getPostYear(post);
 								{post.data.difficulty}
 							</span>
 						)}
-						{topics.map((topic) => (
+						{topics.slice(0, 3).map((topic) => (
 							<span class="post-meta-chip">{topic}</span>
 						))}
 					</div>

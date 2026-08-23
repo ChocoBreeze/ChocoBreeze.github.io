@@ -4,8 +4,10 @@ import { describe, it } from 'node:test';
 import {
 	getListFilterOptions,
 	getPostYear,
+	getTopicSummary,
 	matchesListFilters,
 	normalizePostTags,
+	normalizePostTopics,
 } from '../../src/lib/listFilters.mjs';
 
 describe('getPostYear', () => {
@@ -49,8 +51,37 @@ describe('normalizePostTags', () => {
 	});
 });
 
+describe('normalizePostTopics', () => {
+	it('trims topics and removes empty values', () => {
+		assert.deepEqual(normalizePostTopics([' Array ', '  ', 'Graph']), ['Array', 'Graph']);
+	});
+});
+
+describe('getTopicSummary', () => {
+	it('can exclude pinned posts from filter counts', () => {
+		assert.deepEqual(
+			getTopicSummary(
+				[
+					{ data: { pinned: true, topics: ['Pinned Only', 'Array'] } },
+					{ data: { pinned: false, topics: ['Array', 'Graph'] } },
+				],
+				{ excludePinned: true },
+			),
+			[
+				['Array', 1],
+				['Graph', 1],
+			],
+		);
+	});
+});
+
 describe('matchesListFilters', () => {
-	const post = { year: '2026', tags: ['AI', 'ETF'], difficulty: 'Medium' };
+	const post = {
+		year: '2026',
+		tags: ['AI', 'ETF'],
+		difficulty: 'Medium',
+		topics: ['Array', 'Graph'],
+	};
 
 	it('accepts every item when no filters are selected', () => {
 		assert.equal(matchesListFilters(post, {}), true);
@@ -71,6 +102,11 @@ describe('matchesListFilters', () => {
 		assert.equal(matchesListFilters(post, { difficulty: 'Hard' }), false);
 	});
 
+	it('applies the topic filter', () => {
+		assert.equal(matchesListFilters(post, { topic: 'Graph' }), true);
+		assert.equal(matchesListFilters(post, { topic: 'String' }), false);
+	});
+
 	it('requires both filters to match', () => {
 		assert.equal(matchesListFilters(post, { year: '2026', tag: 'ETF' }), true);
 		assert.equal(matchesListFilters(post, { year: '2025', tag: 'ETF' }), false);
@@ -79,5 +115,23 @@ describe('matchesListFilters', () => {
 			true,
 		);
 		assert.equal(matchesListFilters(post, { year: '2026', tag: 'ETF', difficulty: 'Hard' }), false);
+		assert.equal(
+			matchesListFilters(post, {
+				year: '2026',
+				tag: 'ETF',
+				difficulty: 'Medium',
+				topic: 'Graph',
+			}),
+			true,
+		);
+		assert.equal(
+			matchesListFilters(post, {
+				year: '2026',
+				tag: 'ETF',
+				difficulty: 'Medium',
+				topic: 'String',
+			}),
+			false,
+		);
 	});
 });
