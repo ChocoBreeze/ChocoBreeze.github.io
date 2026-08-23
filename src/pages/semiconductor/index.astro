@@ -29,6 +29,7 @@ const category = BLOG_CATEGORIES.find(({ key }) => key === 'Semiconductor')!;
 	description={category.description}
 	activeCategory={category.key}
 	posts={posts}
+	filters={{ year: true, tag: true }}
 >
 	<section class="semiconductor-guide-card" aria-labelledby="semiconductor-guide-heading">
 		<div>

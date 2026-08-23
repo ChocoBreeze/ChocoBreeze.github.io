@@ -29,4 +29,5 @@ const category = BLOG_CATEGORIES.find(({ key }) => key === 'Economics')!;
 	description={category.description}
 	activeCategory={category.key}
 	posts={posts}
+	filters={{ year: true, tag: true }}
 />

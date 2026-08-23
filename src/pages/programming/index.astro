@@ -29,6 +29,7 @@ const category = BLOG_CATEGORIES.find(({ key }) => key === 'Programming')!;
 	description={category.description}
 	activeCategory={category.key}
 	posts={posts}
+	filters={{ year: true, tag: true }}
 >
 	<section class="programming-guide-card" aria-labelledby="programming-guide-heading">
 		<div>
