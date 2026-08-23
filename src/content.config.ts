@@ -26,6 +26,8 @@ const blog = defineCollection({
 			.nullable(),
 		difficulty: z.string().optional().nullable(),
 		topics: z.array(z.string()).optional().nullable(),
+		platform: z.string().trim().min(1).optional().nullable(),
+		problemNumber: z.coerce.number().int().positive().optional().nullable(),
 		pinned: z.boolean().optional().default(false),
 		draft: z.boolean().optional().default(false),
 		order: z.number().optional(),

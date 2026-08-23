@@ -5,6 +5,8 @@ pubDate: "2026-01-16T00:00:00+09:00"
 # updatedDate: "2026-01-16T00:00:00+09:00"
 # verifiedDate: "2026-01-16T00:00:00+09:00"
 # dataAsOf: "2026-01-16T00:00:00+09:00"
+# platform: "LeetCode"
+# problemNumber: 1
 # series: "시리즈 표시 이름"
 # seriesSlug: "stable-series-id"
 # seriesOrder: 1

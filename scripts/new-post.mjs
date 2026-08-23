@@ -35,6 +35,8 @@ Options:
   --series-slug  Stable series identifier.
   --series-order Series position as a non-negative integer.
   --related-slugs Comma-separated stable slugs for manual related posts.
+  --platform     Problem-solving platform, such as LeetCode.
+  --problem-number Problem number as a positive integer.
   --slug       Stable blog slug. Recommended for generic posts.
   --file       Output file path under src/content/blog.
   --help       Show this help message.`);
@@ -168,6 +170,8 @@ function buildPostContent({
 	seriesSlug,
 	seriesOrder,
 	relatedSlugs = [],
+	platform,
+	problemNumber,
 }) {
 	const optionalDates = [
 		updatedDate && `updatedDate: "${updatedDate}"`,
@@ -185,6 +189,13 @@ function buildPostContent({
 		.filter(Boolean)
 		.join('\n');
 	const seriesFields = optionalSeries ? `${optionalSeries}\n` : '';
+	const optionalProblem = [
+		platform && `platform: "${platform}"`,
+		problemNumber !== undefined && `problemNumber: ${problemNumber}`,
+	]
+		.filter(Boolean)
+		.join('\n');
+	const problemFields = optionalProblem ? `${optionalProblem}\n` : '';
 	const relatedFields = relatedSlugs.length
 		? `relatedSlugs: [${relatedSlugs.map((slug) => `"${slug}"`).join(', ')}]\n`
 		: '';
@@ -193,7 +204,7 @@ function buildPostContent({
 title: "${title}"
 description: "${description}"
 pubDate: "${date}T${time}+09:00"
-${freshnessFields}${seriesFields}${relatedFields}categories: "${category}"
+${freshnessFields}${problemFields}${seriesFields}${relatedFields}categories: "${category}"
 slug: "${slug}"
 ---
 
@@ -250,6 +261,20 @@ function main() {
 		.split(',')
 		.map((slug) => slug.trim())
 		.filter(Boolean);
+	const platform = args.platform?.trim() || undefined;
+	if (args.platform !== undefined && !platform) {
+		throw new Error('Invalid --platform value: it cannot be empty.');
+	}
+	const problemNumberValue = args['problem-number'];
+	let problemNumber;
+	if (problemNumberValue !== undefined) {
+		if (!/^\d+$/.test(problemNumberValue) || Number(problemNumberValue) <= 0) {
+			throw new Error(
+				`Invalid --problem-number value: ${problemNumberValue}. Use a positive integer.`,
+			);
+		}
+		problemNumber = Number(problemNumberValue);
+	}
 	if (dataAsOf && verifiedDate && isDataAsOfAfterVerifiedDate(dataAsOf, verifiedDate)) {
 		throw new Error('Invalid freshness dates: --data-as-of cannot be later than --verified-date.');
 	}
@@ -281,6 +306,8 @@ function main() {
 			seriesSlug,
 			seriesOrder,
 			relatedSlugs,
+			platform,
+			problemNumber,
 		}),
 		'utf8',
 	);

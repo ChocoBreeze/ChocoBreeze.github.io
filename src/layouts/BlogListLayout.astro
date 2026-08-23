@@ -19,6 +19,8 @@ type Props = {
 		tag?: boolean;
 		difficulty?: boolean;
 		topic?: boolean;
+		platform?: boolean;
+		problemNumber?: boolean;
 	};
 };
 
@@ -31,6 +33,8 @@ const regularPosts = posts.filter((p) => !p.data.pinned);
 const filterOptions = getListFilterOptions(regularPosts);
 const filterYears = filters.year ? filterOptions.years : [];
 const filterTags = filters.tag ? filterOptions.tags : [];
+const filterPlatforms = filters.platform ? filterOptions.platforms : [];
+const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumbers : [];
 ---
 
 <!doctype html>
@@ -92,7 +96,10 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 				{
 					regularPosts.length > 0 && (
 						<>
-							{(filterYears.length > 0 || filterTags.length > 0) && (
+							{(filterYears.length > 0 ||
+								filterTags.length > 0 ||
+								filterPlatforms.length > 0 ||
+								filterProblemNumbers.length > 0) && (
 								<div class="filter-controls" data-filter-controls>
 									{filterYears.length > 0 && (
 										<label class="filter-field">
@@ -112,6 +119,28 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 												<option value="">모든 태그</option>
 												{filterTags.map((tag) => (
 													<option value={tag}>{tag}</option>
+												))}
+											</select>
+										</label>
+									)}
+									{filterPlatforms.length > 0 && (
+										<label class="filter-field">
+											<span>플랫폼</span>
+											<select data-filter-platform aria-label="플랫폼 필터">
+												<option value="">모든 플랫폼</option>
+												{filterPlatforms.map((platform) => (
+													<option value={platform}>{platform}</option>
+												))}
+											</select>
+										</label>
+									)}
+									{filterProblemNumbers.length > 0 && (
+										<label class="filter-field">
+											<span>문제 번호</span>
+											<select data-filter-problem-number aria-label="문제 번호 필터">
+												<option value="">모든 문제</option>
+												{filterProblemNumbers.map((problemNumber) => (
+													<option value={problemNumber}>{problemNumber}</option>
 												))}
 											</select>
 										</label>
@@ -371,6 +400,10 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 	const filterControls = document.querySelector<HTMLElement>('[data-filter-controls]');
 	const filterYearSelect = document.querySelector<HTMLSelectElement>('[data-filter-year]');
 	const filterTagSelect = document.querySelector<HTMLSelectElement>('[data-filter-tag]');
+	const filterPlatformSelect = document.querySelector<HTMLSelectElement>('[data-filter-platform]');
+	const filterProblemNumberSelect = document.querySelector<HTMLSelectElement>(
+		'[data-filter-problem-number]',
+	);
 	const filterReset = document.querySelector<HTMLButtonElement>('[data-filter-reset]');
 	const filterResult = document.querySelector<HTMLElement>('[data-filter-result]');
 	const filterDifficultyButtons = document.querySelectorAll<HTMLButtonElement>(
@@ -396,6 +429,16 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 			? [...filterTagSelect.options].map((option) => option.value).filter(Boolean)
 			: [],
 	);
+	const availablePlatforms = new Set(
+		filterPlatformSelect
+			? [...filterPlatformSelect.options].map((option) => option.value).filter(Boolean)
+			: [],
+	);
+	const availableProblemNumbers = new Set(
+		filterProblemNumberSelect
+			? [...filterProblemNumberSelect.options].map((option) => option.value).filter(Boolean)
+			: [],
+	);
 	const availableDifficulties = new Set(
 		[...filterDifficultyButtons]
 			.map((button) => button.dataset.filterDifficulty)
@@ -415,6 +458,8 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 				tags: parseTags(el.dataset.tags),
 				difficulty: el.dataset.difficulty ?? '',
 				topics: parseTags(el.dataset.topics),
+				platform: el.dataset.platform ?? '',
+				problemNumber: el.dataset.problemNumber ?? '',
 			}))
 		: [];
 
@@ -423,9 +468,18 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 		tag: string | null;
 		difficulty: string | null;
 		topic: string | null;
+		platform: string | null;
+		problemNumber: string | null;
 	};
 
-	let activeFilters: FilterState = { year: null, tag: null, difficulty: null, topic: null };
+	let activeFilters: FilterState = {
+		year: null,
+		tag: null,
+		difficulty: null,
+		topic: null,
+		platform: null,
+		problemNumber: null,
+	};
 	// How many posts are currently revealed; persists across sort changes so
 	// re-sorting keeps the same amount of content on screen (just reordered).
 	let shownCount = Math.min(PAGE_SIZE, itemData.length);
@@ -441,7 +495,12 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 
 	function hasActiveFilters() {
 		return Boolean(
-			activeFilters.year || activeFilters.tag || activeFilters.difficulty || activeFilters.topic,
+			activeFilters.year ||
+			activeFilters.tag ||
+			activeFilters.difficulty ||
+			activeFilters.topic ||
+			activeFilters.platform ||
+			activeFilters.problemNumber,
 		);
 	}
 
@@ -486,6 +545,12 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 			activeFilters.tag
 				? url.searchParams.set('tag', activeFilters.tag)
 				: url.searchParams.delete('tag');
+			activeFilters.platform
+				? url.searchParams.set('platform', activeFilters.platform)
+				: url.searchParams.delete('platform');
+			activeFilters.problemNumber
+				? url.searchParams.set('problem', activeFilters.problemNumber)
+				: url.searchParams.delete('problem');
 		}
 
 		if (difficultyFiltersEnabled) {
@@ -513,6 +578,12 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 		}
 		if (filterTagSelect) {
 			filterTagSelect.value = activeFilters.tag ?? '';
+		}
+		if (filterPlatformSelect) {
+			filterPlatformSelect.value = activeFilters.platform ?? '';
+		}
+		if (filterProblemNumberSelect) {
+			filterProblemNumberSelect.value = activeFilters.problemNumber ?? '';
 		}
 		filterDifficultyButtons.forEach((button) => {
 			const isActive = button.dataset.filterDifficulty === activeFilters.difficulty;
@@ -544,6 +615,11 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 		const params = new URLSearchParams(window.location.search);
 		const rawYear = params.get('year');
 		const rawTag = params.get('tag');
+		const rawPlatform = params.get('platform');
+		const platform = [...availablePlatforms].find(
+			(value) => value.toLowerCase() === rawPlatform?.toLowerCase(),
+		);
+		const rawProblemNumber = params.get('problem');
 		const rawDifficulty = params.get('difficulty')?.toLowerCase();
 		const difficulty = [...availableDifficulties].find(
 			(value) => value.toLowerCase() === rawDifficulty,
@@ -557,6 +633,9 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 			tag: rawTag && availableTags.has(rawTag) ? rawTag : null,
 			difficulty: difficulty ?? null,
 			topic: topic ?? null,
+			platform: platform ?? null,
+			problemNumber:
+				rawProblemNumber && availableProblemNumbers.has(rawProblemNumber) ? rawProblemNumber : null,
 		};
 	}
 
@@ -597,6 +676,14 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 		applyFilters({ ...activeFilters, tag: filterTagSelect.value || null });
 	});
 
+	filterPlatformSelect?.addEventListener('change', () => {
+		applyFilters({ ...activeFilters, platform: filterPlatformSelect.value || null });
+	});
+
+	filterProblemNumberSelect?.addEventListener('change', () => {
+		applyFilters({ ...activeFilters, problemNumber: filterProblemNumberSelect.value || null });
+	});
+
 	filterDifficultyButtons.forEach((button) =>
 		button.addEventListener('click', () => {
 			const difficulty = button.dataset.filterDifficulty ?? null;
@@ -618,7 +705,14 @@ const filterTags = filters.tag ? filterOptions.tags : [];
 	);
 
 	filterReset?.addEventListener('click', () => {
-		applyFilters({ year: null, tag: null, difficulty: null, topic: null });
+		applyFilters({
+			year: null,
+			tag: null,
+			difficulty: null,
+			topic: null,
+			platform: null,
+			problemNumber: null,
+		});
 	});
 
 	loadMoreBtn?.addEventListener('click', () => {

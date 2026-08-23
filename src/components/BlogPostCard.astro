@@ -1,7 +1,13 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from './FormattedDate.astro';
-import { getPostYear, normalizePostTags, normalizePostTopics } from '../lib/listFilters.mjs';
+import {
+	getPostYear,
+	normalizePostPlatform,
+	normalizePostTags,
+	normalizePostTopics,
+	normalizeProblemNumber,
+} from '../lib/listFilters.mjs';
 
 type Props = {
 	post: CollectionEntry<'blog'>;
@@ -13,6 +19,8 @@ const image = post.data.heroImage || (post.data.image ? `/images/${post.data.ima
 const href = `/blog/${post.data.slug || post.id}/`;
 const topics = normalizePostTopics(post.data.topics);
 const tags = normalizePostTags(post.data.tags);
+const platform = normalizePostPlatform(post.data.platform);
+const problemNumber = normalizeProblemNumber(post.data.problemNumber);
 const year = getPostYear(post);
 ---
 
@@ -23,17 +31,26 @@ const year = getPostYear(post);
 	data-year={year}
 	data-tags={JSON.stringify(tags)}
 	data-topics={JSON.stringify(topics)}
+	data-platform={platform}
+	data-problem-number={problemNumber}
 >
 	<a href={href}>
 		{image && <img width={720} height={360} src={image} alt="" loading="lazy" />}
 		<div class="blog-post-card-body">
 			<h2 class="title">{post.data.title}</h2>
 			{
-				(post.data.difficulty || topics.length > 0) && (
+				(post.data.difficulty || platform || problemNumber || topics.length > 0) && (
 					<div class="post-meta-chips" aria-label="Post metadata">
 						{post.data.difficulty && (
 							<span class={`post-meta-chip difficulty-${post.data.difficulty.toLowerCase()}`}>
 								{post.data.difficulty}
+							</span>
+						)}
+						{(platform || problemNumber) && (
+							<span class="post-meta-chip">
+								{platform}
+								{platform && problemNumber ? ' · ' : ''}
+								{problemNumber && `#${problemNumber}`}
 							</span>
 						)}
 						{topics.slice(0, 3).map((topic) => (

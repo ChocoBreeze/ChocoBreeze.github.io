@@ -32,7 +32,7 @@ const topicSummary = getTopicSummary(posts, { excludePinned: true }).slice(0, 8)
 	description={category.description}
 	activeCategory={category.key}
 	posts={posts}
-	filters={{ difficulty: true, topic: true }}
+	filters={{ difficulty: true, topic: true, platform: true, problemNumber: true }}
 >
 	<section class="problem-roadmap" aria-labelledby="problem-roadmap-title">
 		<div>

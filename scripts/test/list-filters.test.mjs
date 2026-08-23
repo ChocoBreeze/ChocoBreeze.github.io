@@ -6,8 +6,10 @@ import {
 	getPostYear,
 	getTopicSummary,
 	matchesListFilters,
+	normalizePostPlatform,
 	normalizePostTags,
 	normalizePostTopics,
+	normalizeProblemNumber,
 } from '../../src/lib/listFilters.mjs';
 
 describe('getPostYear', () => {
@@ -40,7 +42,12 @@ describe('getListFilterOptions', () => {
 				{ data: { pubDate: new Date('2026-01-01'), tags: ['ETF', 'Robotics'] } },
 				{ data: { pubDate: new Date('2025-04-01'), tags: null } },
 			]),
-			{ years: ['2026', '2025'], tags: ['AI', 'ETF', 'Robotics'] },
+			{
+				years: ['2026', '2025'],
+				tags: ['AI', 'ETF', 'Robotics'],
+				platforms: [],
+				problemNumbers: [],
+			},
 		);
 	});
 });
@@ -54,6 +61,32 @@ describe('normalizePostTags', () => {
 describe('normalizePostTopics', () => {
 	it('trims topics and removes empty values', () => {
 		assert.deepEqual(normalizePostTopics([' Array ', '  ', 'Graph']), ['Array', 'Graph']);
+	});
+});
+
+describe('problem-solving metadata normalization', () => {
+	it('trims platforms and validates positive problem numbers', () => {
+		assert.equal(normalizePostPlatform(' LeetCode '), 'LeetCode');
+		assert.equal(normalizePostPlatform(null), '');
+		assert.equal(normalizeProblemNumber(1234), '1234');
+		assert.equal(normalizeProblemNumber('0'), '');
+		assert.equal(normalizeProblemNumber('not-a-number'), '');
+	});
+
+	it('collects platform and problem number options in stable order', () => {
+		assert.deepEqual(
+			getListFilterOptions([
+				{ data: { platform: 'LeetCode', problemNumber: 200 } },
+				{ data: { platform: ' Baekjoon ', problemNumber: 1 } },
+				{ data: { platform: 'LeetCode', problemNumber: 50 } },
+			]),
+			{
+				years: [],
+				tags: [],
+				platforms: ['Baekjoon', 'LeetCode'],
+				problemNumbers: ['1', '50', '200'],
+			},
+		);
 	});
 });
 
@@ -81,6 +114,8 @@ describe('matchesListFilters', () => {
 		tags: ['AI', 'ETF'],
 		difficulty: 'Medium',
 		topics: ['Array', 'Graph'],
+		platform: 'LeetCode',
+		problemNumber: '1234',
 	};
 
 	it('accepts every item when no filters are selected', () => {
@@ -105,6 +140,13 @@ describe('matchesListFilters', () => {
 	it('applies the topic filter', () => {
 		assert.equal(matchesListFilters(post, { topic: 'Graph' }), true);
 		assert.equal(matchesListFilters(post, { topic: 'String' }), false);
+	});
+
+	it('applies platform and problem number filters', () => {
+		assert.equal(matchesListFilters(post, { platform: 'LeetCode' }), true);
+		assert.equal(matchesListFilters(post, { platform: 'Baekjoon' }), false);
+		assert.equal(matchesListFilters(post, { problemNumber: '1234' }), true);
+		assert.equal(matchesListFilters(post, { problemNumber: '1' }), false);
 	});
 
 	it('requires both filters to match', () => {
@@ -132,6 +174,13 @@ describe('matchesListFilters', () => {
 				topic: 'String',
 			}),
 			false,
+		);
+		assert.equal(
+			matchesListFilters(post, {
+				platform: 'LeetCode',
+				problemNumber: '1234',
+			}),
+			true,
 		);
 	});
 });
