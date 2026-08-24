@@ -37,6 +37,13 @@ Options:
   --related-slugs Comma-separated stable slugs for manual related posts.
   --platform     Problem-solving platform, such as LeetCode.
   --problem-number Problem number as a positive integer.
+  --ticker      ETF ticker symbol.
+  --issuer      ETF issuer or provider.
+  --asset-class Stable ETF asset class.
+  --strategy    Stable ETF strategy.
+  --exposure    Stable ETF index, sector, or theme exposure.
+  --leverage    Leverage or inverse description, such as 3x or -3x.
+  --income-style ETF income style, such as Core or Option Income.
   --slug       Stable blog slug. Recommended for generic posts.
   --file       Output file path under src/content/blog.
   --help       Show this help message.`);
@@ -172,6 +179,13 @@ function buildPostContent({
 	relatedSlugs = [],
 	platform,
 	problemNumber,
+	ticker,
+	issuer,
+	assetClass,
+	strategy,
+	exposure,
+	leverage,
+	incomeStyle,
 }) {
 	const optionalDates = [
 		updatedDate && `updatedDate: "${updatedDate}"`,
@@ -196,6 +210,18 @@ function buildPostContent({
 		.filter(Boolean)
 		.join('\n');
 	const problemFields = optionalProblem ? `${optionalProblem}\n` : '';
+	const optionalEtf = [
+		ticker && `ticker: "${ticker}"`,
+		issuer && `issuer: "${issuer}"`,
+		assetClass && `assetClass: "${assetClass}"`,
+		strategy && `strategy: "${strategy}"`,
+		exposure && `exposure: "${exposure}"`,
+		leverage && `leverage: "${leverage}"`,
+		incomeStyle && `incomeStyle: "${incomeStyle}"`,
+	]
+		.filter(Boolean)
+		.join('\n');
+	const etfFields = optionalEtf ? `${optionalEtf}\n` : '';
 	const relatedFields = relatedSlugs.length
 		? `relatedSlugs: [${relatedSlugs.map((slug) => `"${slug}"`).join(', ')}]\n`
 		: '';
@@ -204,7 +230,7 @@ function buildPostContent({
 title: "${title}"
 description: "${description}"
 pubDate: "${date}T${time}+09:00"
-${freshnessFields}${problemFields}${seriesFields}${relatedFields}categories: "${category}"
+${freshnessFields}${problemFields}${etfFields}${seriesFields}${relatedFields}categories: "${category}"
 slug: "${slug}"
 ---
 
@@ -275,6 +301,24 @@ function main() {
 		}
 		problemNumber = Number(problemNumberValue);
 	}
+	const optionalTextFields = {
+		ticker: 'ticker',
+		issuer: 'issuer',
+		assetClass: 'asset-class',
+		strategy: 'strategy',
+		exposure: 'exposure',
+		leverage: 'leverage',
+		incomeStyle: 'income-style',
+	};
+	const etfFields = Object.fromEntries(
+		Object.entries(optionalTextFields).map(([field, option]) => {
+			const value = args[option]?.trim() || undefined;
+			if (args[option] !== undefined && !value) {
+				throw new Error(`Invalid --${option} value: it cannot be empty.`);
+			}
+			return [field, value];
+		}),
+	);
 	if (dataAsOf && verifiedDate && isDataAsOfAfterVerifiedDate(dataAsOf, verifiedDate)) {
 		throw new Error('Invalid freshness dates: --data-as-of cannot be later than --verified-date.');
 	}
@@ -308,6 +352,7 @@ function main() {
 			relatedSlugs,
 			platform,
 			problemNumber,
+			...etfFields,
 		}),
 		'utf8',
 	);

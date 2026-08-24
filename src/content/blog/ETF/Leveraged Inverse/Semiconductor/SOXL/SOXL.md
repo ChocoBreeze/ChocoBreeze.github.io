@@ -4,6 +4,13 @@ description: 'NYSE Semiconductor Index 일일 수익률의 3배를 목표로 하
 pubDate: '2026-06-07T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "SOXL", "Direxion", "Semiconductor", "Leveraged", "3X"]
+ticker: "SOXL"
+issuer: "Direxion"
+assetClass: "Equity"
+strategy: "Leveraged"
+exposure: "Semiconductor"
+leverage: "3x"
+incomeStyle: "None"
 ---
 
 # Direxion Daily Semiconductor Bull 3X Shares (SOXL): 종합 분석 보고서

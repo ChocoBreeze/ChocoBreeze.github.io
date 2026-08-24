@@ -7,6 +7,13 @@ pubDate: "2026-01-16T00:00:00+09:00"
 # dataAsOf: "2026-01-16T00:00:00+09:00"
 # platform: "LeetCode"
 # problemNumber: 1
+# ticker: "QQQ"
+# issuer: "Invesco"
+# assetClass: "Equity"
+# strategy: "Index"
+# exposure: "Nasdaq-100"
+# leverage: "1x"
+# incomeStyle: "Core"
 # series: "시리즈 표시 이름"
 # seriesSlug: "stable-series-id"
 # seriesOrder: 1

@@ -4,6 +4,13 @@ description: 'Nasdaq-100 일일 수익률의 -3배를 목표로 하는 ProShares
 pubDate: '2026-06-07T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "SQQQ", "ProShares", "Nasdaq-100", "Leveraged", "Inverse"]
+ticker: "SQQQ"
+issuer: "ProShares"
+assetClass: "Equity"
+strategy: "Inverse"
+exposure: "Nasdaq-100"
+leverage: "-3x"
+incomeStyle: "Hedge"
 ---
 
 # SQQQ (ProShares UltraPro Short QQQ) 종합 분석 보고서

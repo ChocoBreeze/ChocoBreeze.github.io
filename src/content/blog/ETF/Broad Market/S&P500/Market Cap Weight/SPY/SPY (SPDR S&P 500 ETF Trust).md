@@ -3,6 +3,13 @@ title: 'SPY (SPDR S&P 500 ETF Trust)'
 description: 'S&P 500 Index를 추종하는 세계 최대·최초 ETF'
 pubDate: '2026-01-31T09:00:00Z'
 categories: "ETF"
+ticker: "SPY"
+issuer: "State Street"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "S&P 500"
+leverage: "1x"
+incomeStyle: "Core"
 ---
 
 ## 요약

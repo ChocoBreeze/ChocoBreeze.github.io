@@ -6,11 +6,14 @@ import {
 	getPostYear,
 	getTopicSummary,
 	matchesListFilters,
+	normalizePostAssetClass,
 	normalizePostPlatform,
 	normalizeSearchQuery,
 	normalizePostTags,
 	normalizePostTopics,
 	normalizeProblemNumber,
+	normalizePostStrategy,
+	normalizePostTicker,
 } from '../../src/lib/listFilters.mjs';
 
 describe('getPostYear', () => {
@@ -48,6 +51,8 @@ describe('getListFilterOptions', () => {
 				tags: ['AI', 'ETF', 'Robotics'],
 				platforms: [],
 				problemNumbers: [],
+				assetClasses: [],
+				strategies: [],
 			},
 		);
 	});
@@ -86,6 +91,8 @@ describe('problem-solving metadata normalization', () => {
 				tags: [],
 				platforms: ['Baekjoon', 'LeetCode'],
 				problemNumbers: ['1', '50', '200'],
+				assetClasses: [],
+				strategies: [],
 			},
 		);
 	});
@@ -96,6 +103,31 @@ describe('normalizeSearchQuery', () => {
 		assert.equal(normalizeSearchQuery('  QQQ ETF  '), 'qqq etf');
 		assert.equal(normalizeSearchQuery(null), '');
 		assert.equal(normalizeSearchQuery('IAU'), 'iau');
+	});
+});
+
+describe('ETF metadata normalization', () => {
+	it('normalizes stable ETF fields for filters and cards', () => {
+		assert.equal(normalizePostTicker(' qqq '), 'QQQ');
+		assert.equal(normalizePostAssetClass(' Equity '), 'Equity');
+		assert.equal(normalizePostStrategy(' Index '), 'Index');
+	});
+
+	it('collects stable ETF filter options', () => {
+		assert.deepEqual(
+			getListFilterOptions([
+				{ data: { assetClass: 'Equity', strategy: 'Index' } },
+				{ data: { assetClass: ' Commodity ', strategy: 'Physical' } },
+			]),
+			{
+				years: [],
+				tags: [],
+				platforms: [],
+				problemNumbers: [],
+				assetClasses: ['Commodity', 'Equity'],
+				strategies: ['Index', 'Physical'],
+			},
+		);
 	});
 });
 
@@ -125,6 +157,8 @@ describe('matchesListFilters', () => {
 		topics: ['Array', 'Graph'],
 		platform: 'LeetCode',
 		problemNumber: '1234',
+		assetClass: 'Equity',
+		strategy: 'Index',
 		search: 'QQQ Nasdaq-100',
 	};
 
@@ -163,6 +197,13 @@ describe('matchesListFilters', () => {
 		assert.equal(matchesListFilters(post, { search: ' qqq ' }), true);
 		assert.equal(matchesListFilters(post, { search: 'sp500' }), false);
 		assert.equal(matchesListFilters({ search: 'IAU iShares Gold Trust' }, { search: 'iau' }), true);
+	});
+
+	it('applies ETF asset class and strategy filters', () => {
+		assert.equal(matchesListFilters(post, { assetClass: 'Equity' }), true);
+		assert.equal(matchesListFilters(post, { assetClass: 'Commodity' }), false);
+		assert.equal(matchesListFilters(post, { strategy: 'Index' }), true);
+		assert.equal(matchesListFilters(post, { strategy: 'Physical' }), false);
 	});
 
 	it('requires both filters to match', () => {

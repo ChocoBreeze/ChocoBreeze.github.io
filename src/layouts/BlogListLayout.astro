@@ -22,6 +22,8 @@ type Props = {
 		topic?: boolean;
 		platform?: boolean;
 		problemNumber?: boolean;
+		assetClass?: boolean;
+		strategy?: boolean;
 	};
 };
 
@@ -37,6 +39,8 @@ const filterYears = filters.year ? filterOptions.years : [];
 const filterTags = filters.tag ? filterOptions.tags : [];
 const filterPlatforms = filters.platform ? filterOptions.platforms : [];
 const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumbers : [];
+const filterAssetClasses = filters.assetClass ? filterOptions.assetClasses : [];
+const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 ---
 
 <!doctype html>
@@ -102,7 +106,9 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 								filterYears.length > 0 ||
 								filterTags.length > 0 ||
 								filterPlatforms.length > 0 ||
-								filterProblemNumbers.length > 0) && (
+								filterProblemNumbers.length > 0 ||
+								filterAssetClasses.length > 0 ||
+								filterStrategies.length > 0) && (
 								<div class="filter-controls" data-filter-controls>
 									{searchFilterEnabled && (
 										<label class="filter-field filter-search-field">
@@ -155,6 +161,28 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 												<option value="">모든 문제</option>
 												{filterProblemNumbers.map((problemNumber) => (
 													<option value={problemNumber}>{problemNumber}</option>
+												))}
+											</select>
+										</label>
+									)}
+									{filterAssetClasses.length > 0 && (
+										<label class="filter-field">
+											<span>자산군</span>
+											<select data-filter-asset-class aria-label="자산군 필터">
+												<option value="">모든 자산군</option>
+												{filterAssetClasses.map((assetClass) => (
+													<option value={assetClass}>{assetClass}</option>
+												))}
+											</select>
+										</label>
+									)}
+									{filterStrategies.length > 0 && (
+										<label class="filter-field">
+											<span>전략</span>
+											<select data-filter-strategy aria-label="전략 필터">
+												<option value="">모든 전략</option>
+												{filterStrategies.map((strategy) => (
+													<option value={strategy}>{strategy}</option>
 												))}
 											</select>
 										</label>
@@ -422,6 +450,10 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 	const filterProblemNumberSelect = document.querySelector<HTMLSelectElement>(
 		'[data-filter-problem-number]',
 	);
+	const filterAssetClassSelect = document.querySelector<HTMLSelectElement>(
+		'[data-filter-asset-class]',
+	);
+	const filterStrategySelect = document.querySelector<HTMLSelectElement>('[data-filter-strategy]');
 	const filterReset = document.querySelector<HTMLButtonElement>('[data-filter-reset]');
 	const filterResult = document.querySelector<HTMLElement>('[data-filter-result]');
 	const filterDifficultyButtons = document.querySelectorAll<HTMLButtonElement>(
@@ -457,6 +489,16 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 			? [...filterProblemNumberSelect.options].map((option) => option.value).filter(Boolean)
 			: [],
 	);
+	const availableAssetClasses = new Set(
+		filterAssetClassSelect
+			? [...filterAssetClassSelect.options].map((option) => option.value).filter(Boolean)
+			: [],
+	);
+	const availableStrategies = new Set(
+		filterStrategySelect
+			? [...filterStrategySelect.options].map((option) => option.value).filter(Boolean)
+			: [],
+	);
 	const availableDifficulties = new Set(
 		[...filterDifficultyButtons]
 			.map((button) => button.dataset.filterDifficulty)
@@ -478,6 +520,8 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 				topics: parseTags(el.dataset.topics),
 				platform: el.dataset.platform ?? '',
 				problemNumber: el.dataset.problemNumber ?? '',
+				assetClass: el.dataset.assetClass ?? '',
+				strategy: el.dataset.strategy ?? '',
 				search: el.dataset.search ?? '',
 			}))
 		: [];
@@ -489,6 +533,8 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 		topic: string | null;
 		platform: string | null;
 		problemNumber: string | null;
+		assetClass: string | null;
+		strategy: string | null;
 		search: string | null;
 	};
 
@@ -499,6 +545,8 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 		topic: null,
 		platform: null,
 		problemNumber: null,
+		assetClass: null,
+		strategy: null,
 		search: null,
 	};
 	// How many posts are currently revealed; persists across sort changes so
@@ -522,6 +570,8 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 			activeFilters.topic ||
 			activeFilters.platform ||
 			activeFilters.problemNumber ||
+			activeFilters.assetClass ||
+			activeFilters.strategy ||
 			activeFilters.search,
 		);
 	}
@@ -573,6 +623,12 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 			activeFilters.problemNumber
 				? url.searchParams.set('problem', activeFilters.problemNumber)
 				: url.searchParams.delete('problem');
+			activeFilters.assetClass
+				? url.searchParams.set('assetClass', activeFilters.assetClass)
+				: url.searchParams.delete('assetClass');
+			activeFilters.strategy
+				? url.searchParams.set('strategy', activeFilters.strategy)
+				: url.searchParams.delete('strategy');
 		}
 		if (searchFilterEnabled) {
 			activeFilters.search
@@ -611,6 +667,12 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 		}
 		if (filterProblemNumberSelect) {
 			filterProblemNumberSelect.value = activeFilters.problemNumber ?? '';
+		}
+		if (filterAssetClassSelect) {
+			filterAssetClassSelect.value = activeFilters.assetClass ?? '';
+		}
+		if (filterStrategySelect) {
+			filterStrategySelect.value = activeFilters.strategy ?? '';
 		}
 		if (filterSearchInput) {
 			filterSearchInput.value = activeFilters.search ?? '';
@@ -651,6 +713,8 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 			(value) => value.toLowerCase() === rawPlatform?.toLowerCase(),
 		);
 		const rawProblemNumber = params.get('problem');
+		const rawAssetClass = params.get('assetClass');
+		const rawStrategy = params.get('strategy');
 		const rawDifficulty = params.get('difficulty')?.toLowerCase();
 		const difficulty = [...availableDifficulties].find(
 			(value) => value.toLowerCase() === rawDifficulty,
@@ -667,6 +731,8 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 			platform: platform ?? null,
 			problemNumber:
 				rawProblemNumber && availableProblemNumbers.has(rawProblemNumber) ? rawProblemNumber : null,
+			assetClass: rawAssetClass && availableAssetClasses.has(rawAssetClass) ? rawAssetClass : null,
+			strategy: rawStrategy && availableStrategies.has(rawStrategy) ? rawStrategy : null,
 			search: searchFilterEnabled ? rawSearch?.trim() || null : null,
 		};
 	}
@@ -716,6 +782,14 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 		applyFilters({ ...activeFilters, problemNumber: filterProblemNumberSelect.value || null });
 	});
 
+	filterAssetClassSelect?.addEventListener('change', () => {
+		applyFilters({ ...activeFilters, assetClass: filterAssetClassSelect.value || null });
+	});
+
+	filterStrategySelect?.addEventListener('change', () => {
+		applyFilters({ ...activeFilters, strategy: filterStrategySelect.value || null });
+	});
+
 	filterSearchInput?.addEventListener('input', () => {
 		applyFilters({ ...activeFilters, search: filterSearchInput.value.trim() || null }, 'replace');
 	});
@@ -748,6 +822,8 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 			topic: null,
 			platform: null,
 			problemNumber: null,
+			assetClass: null,
+			strategy: null,
 			search: null,
 		});
 	});

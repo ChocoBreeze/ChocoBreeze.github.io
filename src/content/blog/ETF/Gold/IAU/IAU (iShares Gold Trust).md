@@ -3,6 +3,13 @@ title: 'IAU (iShares Gold Trust)'
 description: 'BlackRock이 운용하는 실물 금 ETF, GLD 대비 낮은 보수와 충분한 유동성으로 중장기 투자자에게 균형 잡힌 선택지'
 pubDate: '2026-07-22T17:00:00+09:00'
 categories: "ETF"
+ticker: "IAU"
+issuer: "BlackRock"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Gold"
+leverage: "1x"
+incomeStyle: "None"
 ---
 
 ## 분류 근거
@@ -586,5 +593,4 @@ IAU는 2026년 혼돈의 시장 환경에서 포트폴리오의 방어막 역할
 [^70]: https://etfdb.com/etf/IAU/
 
 [^71]: https://blog.naver.com/robot_a/223078399122
-
 

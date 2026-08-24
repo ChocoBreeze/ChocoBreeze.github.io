@@ -4,6 +4,13 @@ description: 'Nasdaq-100 Index를 추종하는 Invesco의 대표 대형 성장�
 pubDate: '2026-06-07T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "QQQ", "Invesco", "Nasdaq-100", "Growth"]
+ticker: "QQQ"
+issuer: "Invesco"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Nasdaq-100"
+leverage: "1x"
+incomeStyle: "Core"
 ---
 
 # QQQ (Invesco QQQ Trust) 종합 분석 보고서

@@ -3,6 +3,13 @@ title: 'GLD (SPDR Gold Shares)'
 description: '2004년 출시된 세계 최대 실물 금 ETF, 최고 수준의 유동성과 옵션 시장을 갖춘 기관 투자자용 표준'
 pubDate: '2026-07-22T15:00:00+09:00'
 categories: "ETF"
+ticker: "GLD"
+issuer: "State Street"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Gold"
+leverage: "1x"
+incomeStyle: "None"
 ---
 
 ## 분류 근거
@@ -873,5 +880,4 @@ GLDM(0.10% 관리비)의 등장(2018년)은 GLD를 대체하지 않고 **시장 
 [^21]: https://www.barchart.com/etfs-funds/quotes/GLD/options-flow
 
 [^22]: https://www.etfreplay.com/etf/gld
-
 

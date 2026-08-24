@@ -3,6 +3,13 @@ title: 'XAR (SPDR S&P Aerospace & Defense ETF)'
 description: '미국 항공우주 및 방위 기업에 동일가중 방식으로 투자하는 SPDR ETF'
 pubDate: '2026-01-31T17:00:00Z'
 categories: "ETF"
+ticker: "XAR"
+issuer: "State Street"
+assetClass: "Equity"
+strategy: "Equal Weight"
+exposure: "Aerospace & Defense"
+leverage: "1x"
+incomeStyle: "None"
 ---
 
 ## Executive Summary

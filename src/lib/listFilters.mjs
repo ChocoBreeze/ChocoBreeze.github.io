@@ -42,6 +42,18 @@ export function normalizePostPlatform(platform) {
 	return typeof platform === 'string' ? platform.trim() : '';
 }
 
+export function normalizePostTicker(ticker) {
+	return typeof ticker === 'string' ? ticker.trim().toUpperCase() : '';
+}
+
+export function normalizePostAssetClass(assetClass) {
+	return typeof assetClass === 'string' ? assetClass.trim() : '';
+}
+
+export function normalizePostStrategy(strategy) {
+	return typeof strategy === 'string' ? strategy.trim() : '';
+}
+
 export function normalizeProblemNumber(problemNumber) {
 	const value = Number(problemNumber);
 	return Number.isInteger(value) && value > 0 ? String(value) : '';
@@ -72,6 +84,8 @@ export function getListFilterOptions(posts) {
 	const tags = new Set();
 	const platforms = new Set();
 	const problemNumbers = new Set();
+	const assetClasses = new Set();
+	const strategies = new Set();
 
 	for (const post of posts) {
 		const year = getPostYear(post);
@@ -92,6 +106,16 @@ export function getListFilterOptions(posts) {
 		if (problemNumber) {
 			problemNumbers.add(problemNumber);
 		}
+
+		const assetClass = normalizePostAssetClass(post?.data?.assetClass);
+		if (assetClass) {
+			assetClasses.add(assetClass);
+		}
+
+		const strategy = normalizePostStrategy(post?.data?.strategy);
+		if (strategy) {
+			strategies.add(strategy);
+		}
 	}
 
 	return {
@@ -99,6 +123,8 @@ export function getListFilterOptions(posts) {
 		tags: [...tags].sort((a, b) => a.localeCompare(b, 'ko')),
 		platforms: [...platforms].sort((a, b) => a.localeCompare(b, 'en')),
 		problemNumbers: [...problemNumbers].sort((a, b) => Number(a) - Number(b)),
+		assetClasses: [...assetClasses].sort((a, b) => a.localeCompare(b, 'en')),
+		strategies: [...strategies].sort((a, b) => a.localeCompare(b, 'en')),
 	};
 }
 
@@ -109,6 +135,8 @@ export function matchesListFilters(item, filters = {}) {
 	const topic = filters.topic ?? '';
 	const platform = filters.platform ?? '';
 	const problemNumber = filters.problemNumber ?? '';
+	const assetClass = filters.assetClass ?? '';
+	const strategy = filters.strategy ?? '';
 	const search = normalizeSearchQuery(filters.search);
 	const tags = Array.isArray(item?.tags) ? item.tags : [];
 	const topics = Array.isArray(item?.topics) ? item.topics : [];
@@ -121,6 +149,8 @@ export function matchesListFilters(item, filters = {}) {
 		(!difficulty || item?.difficulty === difficulty) &&
 		(!topic || topics.includes(topic)) &&
 		(!platform || item?.platform === platform) &&
-		(!problemNumber || item?.problemNumber === problemNumber)
+		(!problemNumber || item?.problemNumber === problemNumber) &&
+		(!assetClass || item?.assetClass === assetClass) &&
+		(!strategy || item?.strategy === strategy)
 	);
 }

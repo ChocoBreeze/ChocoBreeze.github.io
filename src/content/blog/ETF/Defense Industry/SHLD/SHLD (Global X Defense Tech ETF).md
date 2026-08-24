@@ -3,6 +3,13 @@ title: 'SHLD (Global X Defense Tech ETF)'
 description: '방위 기술 기업에 투자하는 Global X 테마 ETF'
 pubDate: '2026-01-31T16:00:00Z'
 categories: "ETF"
+ticker: "SHLD"
+issuer: "Global X"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Defense Technology"
+leverage: "1x"
+incomeStyle: "None"
 ---
 
 ## Executive Summary

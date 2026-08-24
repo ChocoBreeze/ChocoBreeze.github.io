@@ -4,9 +4,12 @@ import FormattedDate from './FormattedDate.astro';
 import {
 	getPostYear,
 	normalizePostPlatform,
+	normalizePostAssetClass,
 	normalizePostTags,
 	normalizePostTopics,
 	normalizeProblemNumber,
+	normalizePostStrategy,
+	normalizePostTicker,
 } from '../lib/listFilters.mjs';
 
 type Props = {
@@ -21,6 +24,9 @@ const topics = normalizePostTopics(post.data.topics);
 const tags = normalizePostTags(post.data.tags);
 const platform = normalizePostPlatform(post.data.platform);
 const problemNumber = normalizeProblemNumber(post.data.problemNumber);
+const ticker = normalizePostTicker(post.data.ticker);
+const assetClass = normalizePostAssetClass(post.data.assetClass);
+const strategy = normalizePostStrategy(post.data.strategy);
 const year = getPostYear(post);
 const searchText = [
 	post.data.title,
@@ -30,6 +36,9 @@ const searchText = [
 	...topics,
 	platform,
 	problemNumber,
+	ticker,
+	assetClass,
+	strategy,
 ]
 	.filter(Boolean)
 	.join(' ');
@@ -44,6 +53,9 @@ const searchText = [
 	data-topics={JSON.stringify(topics)}
 	data-platform={platform}
 	data-problem-number={problemNumber}
+	data-ticker={ticker}
+	data-asset-class={assetClass}
+	data-strategy={strategy}
 	data-search={searchText}
 >
 	<a href={href}>
@@ -51,7 +63,13 @@ const searchText = [
 		<div class="blog-post-card-body">
 			<h2 class="title">{post.data.title}</h2>
 			{
-				(post.data.difficulty || platform || problemNumber || topics.length > 0) && (
+				(post.data.difficulty ||
+					platform ||
+					problemNumber ||
+					ticker ||
+					assetClass ||
+					strategy ||
+					topics.length > 0) && (
 					<div class="post-meta-chips" aria-label="Post metadata">
 						{post.data.difficulty && (
 							<span class={`post-meta-chip difficulty-${post.data.difficulty.toLowerCase()}`}>
@@ -63,6 +81,15 @@ const searchText = [
 								{platform}
 								{platform && problemNumber ? ' · ' : ''}
 								{problemNumber && `#${problemNumber}`}
+							</span>
+						)}
+						{(ticker || assetClass || strategy) && (
+							<span class="post-meta-chip">
+								{ticker}
+								{ticker && (assetClass || strategy) ? ' · ' : ''}
+								{assetClass}
+								{assetClass && strategy ? ' · ' : ''}
+								{strategy}
 							</span>
 						)}
 						{topics.slice(0, 3).map((topic) => (
