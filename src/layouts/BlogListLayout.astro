@@ -15,6 +15,7 @@ type Props = {
 	activeCategory: BlogCategoryKey;
 	posts: CollectionEntry<'blog'>[];
 	filters?: {
+		search?: boolean;
 		year?: boolean;
 		tag?: boolean;
 		difficulty?: boolean;
@@ -31,6 +32,7 @@ const rssHref = getCategoryFeedPath(activeCategory);
 const pinnedPosts = posts.filter((p) => p.data.pinned);
 const regularPosts = posts.filter((p) => !p.data.pinned);
 const filterOptions = getListFilterOptions(regularPosts);
+const searchFilterEnabled = Boolean(filters.search);
 const filterYears = filters.year ? filterOptions.years : [];
 const filterTags = filters.tag ? filterOptions.tags : [];
 const filterPlatforms = filters.platform ? filterOptions.platforms : [];
@@ -96,11 +98,23 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 				{
 					regularPosts.length > 0 && (
 						<>
-							{(filterYears.length > 0 ||
+							{(searchFilterEnabled ||
+								filterYears.length > 0 ||
 								filterTags.length > 0 ||
 								filterPlatforms.length > 0 ||
 								filterProblemNumbers.length > 0) && (
 								<div class="filter-controls" data-filter-controls>
+									{searchFilterEnabled && (
+										<label class="filter-field filter-search-field">
+											<span>검색</span>
+											<input
+												type="search"
+												data-filter-search
+												placeholder="제목, 티커, 태그 검색"
+												aria-label="글 검색"
+											/>
+										</label>
+									)}
 									{filterYears.length > 0 && (
 										<label class="filter-field">
 											<span>연도</span>
@@ -252,7 +266,8 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 		text-transform: uppercase;
 	}
 
-	.filter-field select {
+	.filter-field select,
+	.filter-field input {
 		min-width: 9rem;
 		padding: 0.45rem 0.6rem;
 		border: 1px solid var(--border-color);
@@ -266,6 +281,7 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 	}
 
 	.filter-field select:focus-visible,
+	.filter-field input:focus-visible,
 	.filter-reset:focus-visible {
 		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
 		outline-offset: 2px;
@@ -398,6 +414,8 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 	const buttons = document.querySelectorAll<HTMLButtonElement>('.sort-btn');
 	const loadMoreBtn = document.querySelector<HTMLButtonElement>('.load-more-btn');
 	const filterControls = document.querySelector<HTMLElement>('[data-filter-controls]');
+	const filterSearchInput = document.querySelector<HTMLInputElement>('[data-filter-search]');
+	const searchFilterEnabled = Boolean(filterSearchInput);
 	const filterYearSelect = document.querySelector<HTMLSelectElement>('[data-filter-year]');
 	const filterTagSelect = document.querySelector<HTMLSelectElement>('[data-filter-tag]');
 	const filterPlatformSelect = document.querySelector<HTMLSelectElement>('[data-filter-platform]');
@@ -460,6 +478,7 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 				topics: parseTags(el.dataset.topics),
 				platform: el.dataset.platform ?? '',
 				problemNumber: el.dataset.problemNumber ?? '',
+				search: el.dataset.search ?? '',
 			}))
 		: [];
 
@@ -470,6 +489,7 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 		topic: string | null;
 		platform: string | null;
 		problemNumber: string | null;
+		search: string | null;
 	};
 
 	let activeFilters: FilterState = {
@@ -479,6 +499,7 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 		topic: null,
 		platform: null,
 		problemNumber: null,
+		search: null,
 	};
 	// How many posts are currently revealed; persists across sort changes so
 	// re-sorting keeps the same amount of content on screen (just reordered).
@@ -500,7 +521,8 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 			activeFilters.difficulty ||
 			activeFilters.topic ||
 			activeFilters.platform ||
-			activeFilters.problemNumber,
+			activeFilters.problemNumber ||
+			activeFilters.search,
 		);
 	}
 
@@ -552,6 +574,11 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 				? url.searchParams.set('problem', activeFilters.problemNumber)
 				: url.searchParams.delete('problem');
 		}
+		if (searchFilterEnabled) {
+			activeFilters.search
+				? url.searchParams.set('q', activeFilters.search)
+				: url.searchParams.delete('q');
+		}
 
 		if (difficultyFiltersEnabled) {
 			activeFilters.difficulty
@@ -585,6 +612,9 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 		if (filterProblemNumberSelect) {
 			filterProblemNumberSelect.value = activeFilters.problemNumber ?? '';
 		}
+		if (filterSearchInput) {
+			filterSearchInput.value = activeFilters.search ?? '';
+		}
 		filterDifficultyButtons.forEach((button) => {
 			const isActive = button.dataset.filterDifficulty === activeFilters.difficulty;
 			button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
@@ -613,6 +643,7 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 
 	function readFilters(): FilterState {
 		const params = new URLSearchParams(window.location.search);
+		const rawSearch = params.get('q');
 		const rawYear = params.get('year');
 		const rawTag = params.get('tag');
 		const rawPlatform = params.get('platform');
@@ -636,6 +667,7 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 			platform: platform ?? null,
 			problemNumber:
 				rawProblemNumber && availableProblemNumbers.has(rawProblemNumber) ? rawProblemNumber : null,
+			search: searchFilterEnabled ? rawSearch?.trim() || null : null,
 		};
 	}
 
@@ -684,6 +716,10 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 		applyFilters({ ...activeFilters, problemNumber: filterProblemNumberSelect.value || null });
 	});
 
+	filterSearchInput?.addEventListener('input', () => {
+		applyFilters({ ...activeFilters, search: filterSearchInput.value.trim() || null }, 'replace');
+	});
+
 	filterDifficultyButtons.forEach((button) =>
 		button.addEventListener('click', () => {
 			const difficulty = button.dataset.filterDifficulty ?? null;
@@ -712,6 +748,7 @@ const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumber
 			topic: null,
 			platform: null,
 			problemNumber: null,
+			search: null,
 		});
 	});
 

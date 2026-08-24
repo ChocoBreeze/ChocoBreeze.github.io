@@ -47,6 +47,10 @@ export function normalizeProblemNumber(problemNumber) {
 	return Number.isInteger(value) && value > 0 ? String(value) : '';
 }
 
+export function normalizeSearchQuery(value) {
+	return typeof value === 'string' ? value.trim().toLowerCase() : '';
+}
+
 export function getTopicSummary(posts, { excludePinned = false } = {}) {
 	const counts = new Map();
 
@@ -105,10 +109,13 @@ export function matchesListFilters(item, filters = {}) {
 	const topic = filters.topic ?? '';
 	const platform = filters.platform ?? '';
 	const problemNumber = filters.problemNumber ?? '';
+	const search = normalizeSearchQuery(filters.search);
 	const tags = Array.isArray(item?.tags) ? item.tags : [];
 	const topics = Array.isArray(item?.topics) ? item.topics : [];
+	const itemSearch = normalizeSearchQuery(item?.search);
 
 	return (
+		(!search || itemSearch.includes(search)) &&
 		(!year || item?.year === year) &&
 		(!tag || tags.includes(tag)) &&
 		(!difficulty || item?.difficulty === difficulty) &&

@@ -7,6 +7,7 @@ import {
 	getTopicSummary,
 	matchesListFilters,
 	normalizePostPlatform,
+	normalizeSearchQuery,
 	normalizePostTags,
 	normalizePostTopics,
 	normalizeProblemNumber,
@@ -90,6 +91,14 @@ describe('problem-solving metadata normalization', () => {
 	});
 });
 
+describe('normalizeSearchQuery', () => {
+	it('trims and lowercases search text', () => {
+		assert.equal(normalizeSearchQuery('  QQQ ETF  '), 'qqq etf');
+		assert.equal(normalizeSearchQuery(null), '');
+		assert.equal(normalizeSearchQuery('IAU'), 'iau');
+	});
+});
+
 describe('getTopicSummary', () => {
 	it('can exclude pinned posts from filter counts', () => {
 		assert.deepEqual(
@@ -116,6 +125,7 @@ describe('matchesListFilters', () => {
 		topics: ['Array', 'Graph'],
 		platform: 'LeetCode',
 		problemNumber: '1234',
+		search: 'QQQ Nasdaq-100',
 	};
 
 	it('accepts every item when no filters are selected', () => {
@@ -147,6 +157,12 @@ describe('matchesListFilters', () => {
 		assert.equal(matchesListFilters(post, { platform: 'Baekjoon' }), false);
 		assert.equal(matchesListFilters(post, { problemNumber: '1234' }), true);
 		assert.equal(matchesListFilters(post, { problemNumber: '1' }), false);
+	});
+
+	it('matches normalized search text', () => {
+		assert.equal(matchesListFilters(post, { search: ' qqq ' }), true);
+		assert.equal(matchesListFilters(post, { search: 'sp500' }), false);
+		assert.equal(matchesListFilters({ search: 'IAU iShares Gold Trust' }, { search: 'iau' }), true);
 	});
 
 	it('requires both filters to match', () => {

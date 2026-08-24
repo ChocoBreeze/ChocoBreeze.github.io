@@ -22,6 +22,17 @@ const tags = normalizePostTags(post.data.tags);
 const platform = normalizePostPlatform(post.data.platform);
 const problemNumber = normalizeProblemNumber(post.data.problemNumber);
 const year = getPostYear(post);
+const searchText = [
+	post.data.title,
+	post.id,
+	post.data.slug,
+	...tags,
+	...topics,
+	platform,
+	problemNumber,
+]
+	.filter(Boolean)
+	.join(' ');
 ---
 
 <li
@@ -33,6 +44,7 @@ const year = getPostYear(post);
 	data-topics={JSON.stringify(topics)}
 	data-platform={platform}
 	data-problem-number={problemNumber}
+	data-search={searchText}
 >
 	<a href={href}>
 		{image && <img width={720} height={360} src={image} alt="" loading="lazy" />}
