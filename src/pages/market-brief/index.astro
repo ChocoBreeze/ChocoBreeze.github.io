@@ -7,6 +7,14 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { BLOG_CATEGORIES } from '../../data/blogCategories';
 import { getCategoryFeedPath } from '../../lib/rss';
+import {
+	buildCalendarCells,
+	formatBriefMonthKey,
+	getBriefMonthKey,
+	getBriefType,
+	getRelatedDailyPosts,
+	getRelatedWeeklyPosts,
+} from '../../lib/marketBrief.mjs';
 
 const posts = (await getPublishedPosts())
 	.filter((post) => {
@@ -22,23 +30,20 @@ const posts = (await getPublishedPosts())
 		return dateB.valueOf() - dateA.valueOf();
 	});
 
+type BriefPost = (typeof posts)[number];
+type CalendarCell = { day: number; dateKey: string; posts: BriefPost[] } | null;
+const getCalendarCells = (monthKey: string, monthPosts: BriefPost[]) =>
+	buildCalendarCells(monthKey, monthPosts) as CalendarCell[];
+
 const category = BLOG_CATEGORIES.find(({ key }) => key === 'Market Brief')!;
 const rssHref = getCategoryFeedPath(category.key);
-const getDate = (post: (typeof posts)[number]) => post.data.pubDate || post.data.date;
-const getBriefType = (post: (typeof posts)[number]) =>
-	post.data.title.toLowerCase().includes('weekly') ? 'Weekly' : 'Daily';
-const getMonthKey = (post: (typeof posts)[number]) => {
-	const date = getDate(post);
-	if (!date) return 'Unknown';
-	const year = String(date.getFullYear()).slice(2);
-	const month = String(date.getMonth() + 1).padStart(2, '0');
-	return `${year}.${month}`;
-};
+const getDate = (post: (typeof posts)[number]) =>
+	post.data.marketDate || post.data.pubDate || post.data.date;
 const getPostHref = (post: (typeof posts)[number]) => `/blog/${post.data.slug || post.id}/`;
 
 const monthlyGroups = Array.from(
 	posts.reduce((groups, post) => {
-		const monthKey = getMonthKey(post);
+		const monthKey = getBriefMonthKey(post) ?? 'unknown';
 		const group = groups.get(monthKey) ?? [];
 		group.push(post);
 		groups.set(monthKey, group);
@@ -166,7 +171,10 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 				margin-bottom: 2rem;
 			}
 			.market-month[hidden],
-			.market-brief-card[hidden] {
+			.calendar-month[hidden],
+			.calendar-post[hidden],
+			.market-brief-card[hidden],
+			.latest-weekly[hidden] {
 				display: none;
 			}
 			.market-month-header {
@@ -194,10 +202,139 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 				grid-template-columns: repeat(2, minmax(0, 1fr));
 				gap: 1rem;
 			}
+			.market-calendar {
+				margin: 0 0 2.25rem;
+			}
+			.market-calendar[hidden],
+			.market-list-view[hidden] {
+				display: none;
+			}
+			.market-view-toggle {
+				display: flex;
+				gap: 0.55rem;
+				margin: 0 0 1.1rem;
+			}
+			.market-view-toggle button {
+				border: 1px solid var(--border-color);
+				border-radius: 999px;
+				padding: 0.45rem 0.8rem;
+				background: var(--card-bg);
+				color: var(--text-color);
+				font: inherit;
+				font-size: 0.85rem;
+				font-weight: 700;
+				cursor: pointer;
+			}
+			.market-view-toggle button[aria-pressed='true'],
+			.market-view-toggle button:hover {
+				border-color: color-mix(in srgb, var(--accent) 42%, var(--border-color));
+				background: color-mix(in srgb, var(--accent) 14%, var(--card-bg));
+			}
+			.market-calendar > h2 {
+				margin: 0 0 1rem;
+			}
+			.calendar-month {
+				margin-bottom: 1.5rem;
+			}
+			.calendar-month h3 {
+				margin: 0 0 0.65rem;
+				font-size: 1.1rem;
+			}
+			.market-calendar table {
+				width: 100%;
+				border-collapse: separate;
+				border-spacing: 0;
+				table-layout: fixed;
+				border: 1px solid var(--border-color);
+				border-radius: 14px;
+				overflow: hidden;
+			}
+			.market-calendar caption {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				padding: 0;
+				margin: -1px;
+				overflow: hidden;
+				clip: rect(0, 0, 0, 0);
+				white-space: nowrap;
+				border: 0;
+			}
+			.market-calendar th {
+				padding: 0.55rem 0.35rem;
+				background: color-mix(in srgb, var(--card-bg) 82%, var(--accent) 18%);
+				color: var(--heading-color);
+				font-size: 0.8rem;
+				font-weight: 800;
+			}
+			.market-calendar td {
+				width: 14.28%;
+				height: 6.8rem;
+				vertical-align: top;
+				padding: 0.4rem;
+				border-top: 1px solid var(--border-color);
+				border-left: 1px solid var(--border-color);
+				background: var(--card-bg);
+			}
+			.market-calendar td:first-child {
+				border-left: 0;
+			}
+			.calendar-day-number {
+				display: block;
+				margin-bottom: 0.25rem;
+				color: var(--muted-text);
+				font-size: 0.75rem;
+				font-weight: 800;
+			}
+			.calendar-posts {
+				display: grid;
+				gap: 0.25rem;
+			}
+			.calendar-post {
+				display: block;
+				padding: 0.22rem 0.3rem;
+				border-radius: 6px;
+				background: color-mix(in srgb, var(--accent) 12%, var(--card-bg));
+				color: var(--heading-color);
+				font-size: 0.72rem;
+				line-height: 1.25;
+				text-decoration: none;
+			}
+			.calendar-post:hover,
+			.calendar-post:focus-visible {
+				background: color-mix(in srgb, var(--accent) 24%, var(--card-bg));
+			}
+			.calendar-post-type {
+				display: block;
+				margin-bottom: 0.12rem;
+				color: var(--accent);
+				font-size: 0.65rem;
+				font-weight: 800;
+			}
+			.brief-connections {
+				margin-top: 0.7rem;
+				padding: 0 0.15rem;
+				color: var(--muted-text);
+				font-size: 0.8rem;
+			}
+			.brief-connections p {
+				margin: 0 0 0.25rem;
+				font-weight: 700;
+			}
+			.brief-connections ul {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.3rem 0.6rem;
+				margin: 0;
+				padding-left: 1rem;
+			}
+			.brief-connections a {
+				color: var(--accent);
+			}
 			.market-brief-card {
 				min-width: 0;
 			}
-			.market-brief-card a {
+			.market-brief-card > a {
 				box-sizing: border-box;
 				display: flex;
 				min-height: 100%;
@@ -215,7 +352,7 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 					border-color 0.2s ease,
 					box-shadow 0.2s ease;
 			}
-			.market-brief-card a:hover {
+			.market-brief-card > a:hover {
 				transform: translateY(-3px);
 				border-color: color-mix(in srgb, var(--accent) 35%, var(--border-color));
 				box-shadow: 0 16px 34px rgba(var(--gray), 0.14);
@@ -319,59 +456,154 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 						}
 					</div>
 				</div>
-
-				{
-					latestWeekly && (
-						<article class="latest-weekly">
-							<p class="latest-weekly-label">Latest Weekly</p>
-							<h2>
-								<a href={getPostHref(latestWeekly)}>{latestWeekly.data.title}</a>
-							</h2>
-							{latestWeekly.data.description && <p>{latestWeekly.data.description}</p>}
-							<a href={getPostHref(latestWeekly)}>주간 브리핑 읽기</a>
-						</article>
-					)
-				}
-
+				<div class="market-view-toggle" data-view-toggle role="group" aria-label="보기 방식">
+					<button type="button" data-view="list" aria-pressed="true">목록</button>
+					<button type="button" data-view="calendar" aria-pressed="false">달력</button>
+				</div>
 				<div id="market-empty" class="market-empty" hidden>
 					선택한 조건에 맞는 브리핑이 없습니다.
 				</div>
 
-				{
-					monthlyGroups.map(([monthKey, monthPosts]) => (
-						<section class="market-month" data-month-section={monthKey}>
-							<div class="market-month-header">
-								<div>
-									<p class="month-label">Month</p>
-									<h2>{monthKey}</h2>
+				<section
+					class="market-calendar"
+					data-market-view="calendar"
+					aria-labelledby="market-calendar-heading"
+					hidden
+				>
+					<h2 id="market-calendar-heading">월간 달력</h2>
+					{
+						monthlyGroups.map(([monthKey, monthPosts]) => {
+							const cells = getCalendarCells(monthKey, monthPosts);
+							if (cells.length === 0) return null;
+							return (
+								<section class="calendar-month" data-calendar-section={monthKey}>
+									<h3>{formatBriefMonthKey(monthKey)}</h3>
+									<table>
+										<caption>{formatBriefMonthKey(monthKey)} Market Brief calendar</caption>
+										<thead>
+											<tr>
+												{['일', '월', '화', '수', '목', '금', '토'].map((day) => (
+													<th scope="col">{day}</th>
+												))}
+											</tr>
+										</thead>
+										<tbody>
+											{Array.from({ length: cells.length / 7 }, (_, weekIndex) => (
+												<tr>
+													{cells.slice(weekIndex * 7, weekIndex * 7 + 7).map((cell) =>
+														cell ? (
+															<td data-calendar-day={cell.dateKey}>
+																<span class="calendar-day-number">{cell.day}</span>
+																<div class="calendar-posts">
+																	{cell.posts.map((post: BriefPost) => {
+																		const briefType = getBriefType(post);
+																		return (
+																			<a
+																				class="calendar-post"
+																				data-brief-type={briefType}
+																				data-brief-month={monthKey}
+																				href={getPostHref(post)}
+																				aria-label={`${briefType}: ${post.data.title}`}
+																			>
+																				<span class="calendar-post-type">{briefType}</span>
+																				<span>{post.data.title}</span>
+																			</a>
+																		);
+																	})}
+																</div>
+															</td>
+														) : (
+															<td aria-hidden="true" />
+														),
+													)}
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</section>
+							);
+						})
+					}
+				</section>
+
+				<div class="market-list-view" data-market-view="list">
+					{
+						latestWeekly && (
+							<article
+								class="latest-weekly"
+								data-latest-weekly
+								data-brief-month={getBriefMonthKey(latestWeekly)}
+							>
+								<p class="latest-weekly-label">Latest Weekly</p>
+								<h2>
+									<a href={getPostHref(latestWeekly)}>{latestWeekly.data.title}</a>
+								</h2>
+								{latestWeekly.data.description && <p>{latestWeekly.data.description}</p>}
+								<a href={getPostHref(latestWeekly)}>주간 브리핑 읽기</a>
+							</article>
+						)
+					}
+
+					{
+						monthlyGroups.map(([monthKey, monthPosts]) => (
+							<section class="market-month" data-month-section={monthKey}>
+								<div class="market-month-header">
+									<div>
+										<p class="month-label">Month</p>
+										<h2>{monthKey}</h2>
+									</div>
+									<span class="month-count">{monthPosts.length} posts</span>
 								</div>
-								<span class="month-count">{monthPosts.length} posts</span>
-							</div>
-							<ul class="market-brief-grid">
-								{monthPosts.map((post) => {
-									const date = getDate(post);
-									const briefType = getBriefType(post);
-									return (
-										<li
-											class="market-brief-card"
-											data-brief-type={briefType}
-											data-brief-month={monthKey}
-										>
-											<a href={getPostHref(post)}>
-												<div class="market-brief-meta">
-													<span class="market-brief-badge">{briefType}</span>
-													{date && <FormattedDate date={date} />}
-												</div>
-												<h3>{post.data.title}</h3>
-												{post.data.description && <p>{post.data.description}</p>}
-											</a>
-										</li>
-									);
-								})}
-							</ul>
-						</section>
-					))
-				}
+								<ul class="market-brief-grid">
+									{monthPosts.map((post) => {
+										const date = getDate(post);
+										const briefType = getBriefType(post);
+										return (
+											<li
+												class="market-brief-card"
+												data-brief-type={briefType}
+												data-brief-month={monthKey}
+											>
+												<a href={getPostHref(post)}>
+													<div class="market-brief-meta">
+														<span class="market-brief-badge">{briefType}</span>
+														{date && <FormattedDate date={date} />}
+													</div>
+													<h3>{post.data.title}</h3>
+													{post.data.description && <p>{post.data.description}</p>}
+												</a>
+												{briefType === 'Weekly' && getRelatedDailyPosts(post, posts).length > 0 && (
+													<div class="brief-connections">
+														<p>포함된 Daily</p>
+														<ul>
+															{getRelatedDailyPosts(post, posts).map((daily: BriefPost) => (
+																<li>
+																	<a href={getPostHref(daily)}>{daily.data.title}</a>
+																</li>
+															))}
+														</ul>
+													</div>
+												)}
+												{briefType === 'Daily' && getRelatedWeeklyPosts(post, posts).length > 0 && (
+													<div class="brief-connections">
+														<p>관련 Weekly</p>
+														<ul>
+															{getRelatedWeeklyPosts(post, posts).map((weekly: BriefPost) => (
+																<li>
+																	<a href={getPostHref(weekly)}>{weekly.data.title}</a>
+																</li>
+															))}
+														</ul>
+													</div>
+												)}
+											</li>
+										);
+									})}
+								</ul>
+							</section>
+						))
+					}
+				</div>
 			</section>
 		</main>
 		<Footer />
@@ -381,9 +613,33 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 			const monthButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-month]'));
 			const cards = Array.from(document.querySelectorAll<HTMLElement>('.market-brief-card'));
 			const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-month-section]'));
+			const calendarPosts = Array.from(document.querySelectorAll<HTMLElement>('.calendar-post'));
+			const calendarSections = Array.from(
+				document.querySelectorAll<HTMLElement>('[data-calendar-section]'),
+			);
+			const viewButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-view]'));
+			const views = Array.from(document.querySelectorAll<HTMLElement>('[data-market-view]'));
+			const latestWeekly = document.querySelector<HTMLElement>('[data-latest-weekly]');
 			const emptyState = document.getElementById('market-empty');
-			let activeType = 'all';
-			let activeMonth = 'all';
+			const availableTypes = new Set(
+				typeButtons.map((button) => button.dataset.type).filter(Boolean),
+			);
+			const availableMonths = new Set(
+				monthButtons
+					.map((button) => button.dataset.month)
+					.filter((month) => month && month !== 'all'),
+			);
+			const initialParams = new URLSearchParams(window.location.search);
+			const initialType = initialParams.get('type');
+			const initialMonth = initialParams.get('month');
+			const initialView = initialParams.get('view');
+			let activeType: string = availableTypes.has(initialType ?? '')
+				? (initialType ?? 'all')
+				: 'all';
+			let activeMonth: string = availableMonths.has(initialMonth ?? '')
+				? (initialMonth ?? 'all')
+				: 'all';
+			let activeView: string = initialView === 'calendar' ? 'calendar' : 'list';
 
 			function setPressed(buttons: HTMLButtonElement[], activeButton: HTMLButtonElement) {
 				for (const button of buttons) {
@@ -391,7 +647,25 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 				}
 			}
 
-			function applyFilters() {
+			function updateUrl(historyMode: 'push' | 'replace' = 'push') {
+				const url = new URL(window.location.href);
+				activeType === 'all'
+					? url.searchParams.delete('type')
+					: url.searchParams.set('type', activeType);
+				activeMonth === 'all'
+					? url.searchParams.delete('month')
+					: url.searchParams.set('month', activeMonth);
+				activeView === 'list'
+					? url.searchParams.delete('view')
+					: url.searchParams.set('view', activeView);
+				window.history[historyMode === 'replace' ? 'replaceState' : 'pushState'](
+					{},
+					'',
+					url.toString(),
+				);
+			}
+
+			function applyFilters(historyMode: 'push' | 'replace' = 'push') {
 				let visibleCount = 0;
 
 				for (const card of cards) {
@@ -402,20 +676,56 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 					if (visible) visibleCount += 1;
 				}
 
+				for (const calendarPost of calendarPosts) {
+					const matchesType = activeType === 'all' || calendarPost.dataset.briefType === activeType;
+					const matchesMonth =
+						activeMonth === 'all' || calendarPost.dataset.briefMonth === activeMonth;
+					calendarPost.hidden = !(matchesType && matchesMonth);
+				}
+
 				for (const section of sections) {
 					const visibleCards = section.querySelectorAll('.market-brief-card:not([hidden])');
 					section.hidden = visibleCards.length === 0;
 				}
 
+				for (const section of calendarSections) {
+					const visiblePosts = section.querySelectorAll('.calendar-post:not([hidden])');
+					section.hidden = visiblePosts.length === 0;
+				}
+
+				for (const view of views) {
+					view.hidden = view.dataset.marketView !== activeView;
+				}
+
+				if (latestWeekly) {
+					const matchesType = activeType === 'all' || activeType === 'Weekly';
+					const matchesMonth =
+						activeMonth === 'all' || latestWeekly.dataset.briefMonth === activeMonth;
+					latestWeekly.hidden = !(matchesType && matchesMonth);
+				}
+
 				if (emptyState) {
 					emptyState.hidden = visibleCount > 0;
 				}
+
+				setPressed(
+					typeButtons,
+					typeButtons.find((button) => button.dataset.type === activeType) ?? typeButtons[0],
+				);
+				setPressed(
+					monthButtons,
+					monthButtons.find((button) => button.dataset.month === activeMonth) ?? monthButtons[0],
+				);
+				setPressed(
+					viewButtons,
+					viewButtons.find((button) => button.dataset.view === activeView) ?? viewButtons[0],
+				);
+				updateUrl(historyMode);
 			}
 
 			for (const button of typeButtons) {
 				button.addEventListener('click', () => {
 					activeType = button.dataset.type ?? 'all';
-					setPressed(typeButtons, button);
 					applyFilters();
 				});
 			}
@@ -423,10 +733,29 @@ const latestWeekly = posts.find((post) => getBriefType(post) === 'Weekly');
 			for (const button of monthButtons) {
 				button.addEventListener('click', () => {
 					activeMonth = button.dataset.month ?? 'all';
-					setPressed(monthButtons, button);
 					applyFilters();
 				});
 			}
+
+			for (const button of viewButtons) {
+				button.addEventListener('click', () => {
+					activeView = button.dataset.view ?? 'list';
+					applyFilters();
+				});
+			}
+
+			window.addEventListener('popstate', () => {
+				const params = new URLSearchParams(window.location.search);
+				const nextType = params.get('type');
+				const nextMonth = params.get('month');
+				const nextView = params.get('view');
+				activeType = availableTypes.has(nextType ?? '') ? (nextType ?? 'all') : 'all';
+				activeMonth = availableMonths.has(nextMonth ?? '') ? (nextMonth ?? 'all') : 'all';
+				activeView = nextView === 'calendar' ? 'calendar' : 'list';
+				applyFilters('replace');
+			});
+
+			applyFilters('replace');
 		</script>
 	</body>
 </html>

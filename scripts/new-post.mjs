@@ -31,6 +31,10 @@ Options:
   --updated-date  Document revision date in YYYY-MM-DD.
   --verified-date Fact verification date in YYYY-MM-DD.
   --data-as-of   Data snapshot date in YYYY-MM-DD.
+  --brief-type   Market Brief type: Daily or Weekly.
+  --market-date U.S. market date in YYYY-MM-DD.
+  --coverage-start Weekly coverage start date in YYYY-MM-DD.
+  --coverage-end Weekly coverage end date in YYYY-MM-DD.
   --series       Series display name.
   --series-slug  Stable series identifier.
   --series-order Series position as a non-negative integer.
@@ -153,6 +157,7 @@ function getMarketBriefDefaults(type, dateParts) {
 				? '이번 주 미국 주식시장과 주요 투자 테마 흐름을 정리합니다.'
 				: '전일 미국 주식시장 마감 흐름과 주요 섹터·스타일 변화를 정리합니다.',
 		category: 'Market Brief',
+		briefType: reportType,
 		slug: `market-brief/${dateParts.yymm}/${dateParts.yymmdd}-${reportType.toLowerCase()}`,
 		file: path.join('Market Brief', dateParts.yymmFolder, `${dateParts.yymmdd} ${reportType}.md`),
 		// Weekly briefs are published alongside same-day Daily briefs but should sort as the
@@ -173,6 +178,10 @@ function buildPostContent({
 	updatedDate,
 	verifiedDate,
 	dataAsOf,
+	briefType,
+	marketDate,
+	coverageStart,
+	coverageEnd,
 	series,
 	seriesSlug,
 	seriesOrder,
@@ -195,6 +204,15 @@ function buildPostContent({
 		.filter(Boolean)
 		.join('\n');
 	const freshnessFields = optionalDates ? `${optionalDates}\n` : '';
+	const optionalMarketBrief = [
+		briefType && `briefType: "${briefType}"`,
+		marketDate && `marketDate: "${marketDate}"`,
+		coverageStart && `coverageStart: "${coverageStart}"`,
+		coverageEnd && `coverageEnd: "${coverageEnd}"`,
+	]
+		.filter(Boolean)
+		.join('\n');
+	const marketBriefFields = optionalMarketBrief ? `${optionalMarketBrief}\n` : '';
 	const optionalSeries = [
 		series && `series: "${series}"`,
 		seriesSlug && `seriesSlug: "${seriesSlug}"`,
@@ -230,7 +248,7 @@ function buildPostContent({
 title: "${title}"
 description: "${description}"
 pubDate: "${date}T${time}+09:00"
-${freshnessFields}${problemFields}${etfFields}${seriesFields}${relatedFields}categories: "${category}"
+${freshnessFields}${marketBriefFields}${problemFields}${etfFields}${seriesFields}${relatedFields}categories: "${category}"
 slug: "${slug}"
 ---
 
@@ -271,6 +289,29 @@ function main() {
 	const updatedDate = toIsoDateField(args['updated-date'], '--updated-date');
 	const verifiedDate = toIsoDateField(args['verified-date'], '--verified-date');
 	const dataAsOf = toIsoDateField(args['data-as-of'], '--data-as-of');
+	const briefTypeValue = args['brief-type'] ?? defaults.briefType;
+	let briefType;
+	if (briefTypeValue !== undefined) {
+		const normalizedBriefType = briefTypeValue.trim().toLowerCase();
+		if (normalizedBriefType !== 'daily' && normalizedBriefType !== 'weekly') {
+			throw new Error(`Invalid --brief-type value: ${briefTypeValue}. Use Daily or Weekly.`);
+		}
+		briefType = normalizedBriefType === 'weekly' ? 'Weekly' : 'Daily';
+	}
+	const marketDate = toIsoDateField(args['market-date'], '--market-date');
+	const coverageStart = toIsoDateField(args['coverage-start'], '--coverage-start');
+	const coverageEnd = toIsoDateField(args['coverage-end'], '--coverage-end');
+	if ((coverageStart && !coverageEnd) || (!coverageStart && coverageEnd)) {
+		throw new Error('Weekly coverage requires both --coverage-start and --coverage-end.');
+	}
+	if (briefType !== 'Weekly' && (coverageStart || coverageEnd)) {
+		throw new Error('Coverage dates are only valid for Weekly Market Brief posts.');
+	}
+	if (coverageStart && coverageEnd && coverageStart > coverageEnd) {
+		throw new Error(
+			'Invalid coverage dates: --coverage-start cannot be later than --coverage-end.',
+		);
+	}
 	const series = args.series?.trim() || undefined;
 	const seriesSlug = args['series-slug']?.trim() || undefined;
 	const seriesOrderValue = args['series-order'];
@@ -346,6 +387,10 @@ function main() {
 			updatedDate,
 			verifiedDate,
 			dataAsOf,
+			briefType,
+			marketDate,
+			coverageStart,
+			coverageEnd,
 			series,
 			seriesSlug,
 			seriesOrder,
