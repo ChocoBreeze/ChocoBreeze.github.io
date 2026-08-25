@@ -6,10 +6,16 @@ import BlogSidebar from '../components/BlogSidebar.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
 import { getCategoryDefinition } from '../data/blogCategories';
 import { buildFeedbackIssueUrl } from '../lib/postActions.mjs';
 import { getFreshnessStatus } from '../lib/contentFreshness.mjs';
 import { estimateReadingTime } from '../lib/readingTime.mjs';
+import {
+	buildBlogPostingJsonLd,
+	buildBreadcrumbJsonLd,
+	serializeJsonLd,
+} from '../lib/structuredData.mjs';
 
 type BlogPostData = CollectionEntry<'blog'>['data'];
 
@@ -69,7 +75,8 @@ const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
 // The on-page hero uses only a real image; the social card falls back to the
 // generated OG image when the post has none.
 const socialImage = image ?? ogImage;
-const activeCategory = getCategoryDefinition(Astro.props.categories)?.key;
+const categoryDefinition = getCategoryDefinition(Astro.props.categories);
+const activeCategory = categoryDefinition?.key;
 const visibleTopics = topics?.slice(0, 6) ?? [];
 const tocHeadings =
 	headings?.filter(
@@ -81,6 +88,30 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 const feedbackUrl = buildFeedbackIssueUrl(title, canonicalUrl);
 const freshnessReferenceDate = dataAsOf ?? verifiedDate;
 const freshnessStatus = getFreshnessStatus(activeCategory, freshnessReferenceDate);
+const structuredData = hasPostBody
+	? {
+			'@context': 'https://schema.org',
+			'@graph': [
+				buildBlogPostingJsonLd({
+					title,
+					description,
+					canonicalUrl,
+					imageUrl: socialImage ? new URL(socialImage, Astro.site).toString() : undefined,
+					datePublished: date?.toISOString(),
+					dateModified: updatedDate?.toISOString(),
+					articleSection: categoryDefinition?.label,
+					authorName: SITE_TITLE,
+				}),
+				buildBreadcrumbJsonLd({
+					siteUrl: new URL('/', Astro.site).toString(),
+					canonicalUrl,
+					title,
+					category: categoryDefinition,
+				}),
+			],
+		}
+	: undefined;
+const structuredDataJson = structuredData ? serializeJsonLd(structuredData) : undefined;
 ---
 
 <html lang="ko">
@@ -93,6 +124,11 @@ const freshnessStatus = getFreshnessStatus(activeCategory, freshnessReferenceDat
 			publishedTime={date}
 			modifiedTime={updatedDate}
 		/>
+		{
+			structuredDataJson && (
+				<script is:inline type="application/ld+json" set:html={structuredDataJson} />
+			)
+		}
 		<style>
 			.reading-progress {
 				position: fixed;
