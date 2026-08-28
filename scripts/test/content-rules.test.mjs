@@ -4,8 +4,12 @@ import { describe, it } from 'node:test';
 import {
 	countMathDelimiters,
 	getPrimaryCategory,
+	getStaticPageRoutePath,
 	hasUnbalancedBold,
+	hasTrailingSlash,
 	isDataAsOfAfterVerifiedDate,
+	isAstroPublicPagePath,
+	isAstroEndpointPath,
 	isDraftFrontmatter,
 	isMarkdownImageLink,
 	isMissingPostRoute,
@@ -270,6 +274,60 @@ describe('normalizeRoutePath', () => {
 
 	it('collapses an empty path to root', () => {
 		assert.equal(normalizeRoutePath('/'), '/');
+	});
+});
+
+describe('getStaticPageRoutePath', () => {
+	it('maps Astro page and endpoint extensions to public routes', () => {
+		assert.equal(getStaticPageRoutePath('about.astro'), '/about');
+		for (const extension of [
+			'.html',
+			'.markdown',
+			'.mdown',
+			'.mkdn',
+			'.mkd',
+			'.mdwn',
+			'.md',
+			'.mdx',
+		]) {
+			assert.equal(getStaticPageRoutePath(`help${extension}`), '/help');
+		}
+		assert.equal(getStaticPageRoutePath('archive/index.astro'), '/archive');
+		assert.equal(getStaticPageRoutePath('rss.xml.js'), '/rss.xml');
+		assert.equal(getStaticPageRoutePath('search.json.ts'), '/search.json');
+		assert.equal(getStaticPageRoutePath('index.astro'), '/');
+		assert.equal(getStaticPageRoutePath('404.astro'), '/404.html');
+		assert.equal(getStaticPageRoutePath('500.astro'), '/500.html');
+	});
+
+	it('normalizes Windows separators and excludes dynamic routes', () => {
+		assert.equal(
+			getStaticPageRoutePath('programming\\git-commands.astro'),
+			'/programming/git-commands',
+		);
+		assert.equal(getStaticPageRoutePath('archive/[year]/[month].astro'), undefined);
+		assert.equal(getStaticPageRoutePath('tags/[tag].astro'), undefined);
+	});
+
+	it('excludes Astro-ignored files while allowing .well-known', () => {
+		assert.equal(isAstroPublicPagePath('_internal.astro'), false);
+		assert.equal(isAstroPublicPagePath('private/_secret.astro'), false);
+		assert.equal(isAstroPublicPagePath('.hidden.astro'), false);
+		assert.equal(isAstroPublicPagePath('.well-known/security.html'), true);
+		assert.equal(getStaticPageRoutePath('_internal.astro'), undefined);
+		assert.equal(getStaticPageRoutePath('.well-known/security.html'), '/.well-known/security');
+		assert.equal(isAstroEndpointPath('rss.xml.js'), true);
+		assert.equal(isAstroEndpointPath('rss.astro'), false);
+		assert.equal(isAstroEndpointPath('rss/[category].xml.js'), false);
+	});
+});
+
+describe('hasTrailingSlash', () => {
+	it('preserves endpoint slash information after removing query and hash', () => {
+		assert.equal(hasTrailingSlash('/rss.xml/'), true);
+		assert.equal(hasTrailingSlash('/rss.xml/?format=atom#top'), true);
+		assert.equal(hasTrailingSlash('/rss.xml?format=atom'), false);
+		assert.equal(hasTrailingSlash('/'), false);
 	});
 });
 

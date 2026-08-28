@@ -14,6 +14,7 @@ import {
 	MAX_FUTURE_DAYS,
 	MAX_PAST_YEARS,
 	MAX_TITLE_LENGTH,
+	PAGE_ROUTE_EXTENSIONS,
 	SECRET_PATTERNS,
 	UNSAFE_SLUG_REGEX,
 	WARNING_PATTERNS,
@@ -22,9 +23,12 @@ import {
 	getComparableLinkTarget,
 	getLineNumber,
 	getPrimaryCategory,
+	getStaticPageRoutePath,
 	hasUnbalancedBold,
+	hasTrailingSlash,
 	isDataAsOfAfterVerifiedDate,
 	isMarkdownImageLink,
+	isAstroEndpointPath,
 	isMissingPostRoute,
 	shouldIndexPostRoute,
 	isValidDateFieldFormat,
@@ -33,6 +37,7 @@ import {
 	parseFrontmatterFields,
 	parseFrontmatterListField,
 	parseFrontmatterListValue,
+	isAstroPublicPagePath,
 	shouldCheckInternalLink,
 	slugifyPathSegment,
 	stripCodeBlocks,
@@ -44,8 +49,10 @@ import { normalizePostReference } from '../src/lib/postReferences.mjs';
 
 const ROOT_DIR = process.cwd();
 const CONTENT_DIR = path.join(ROOT_DIR, 'src', 'content', 'blog');
+const PAGES_DIR = path.join(ROOT_DIR, 'src', 'pages');
 const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
 const MARKDOWN_EXTENSIONS = new Set(['.md', '.mdx']);
+const PAGE_EXTENSIONS = PAGE_ROUTE_EXTENSIONS;
 
 function walkMarkdownFiles(directory) {
 	const results = [];
@@ -59,6 +66,29 @@ function walkMarkdownFiles(directory) {
 		}
 
 		if (MARKDOWN_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+			results.push(fullPath);
+		}
+	}
+
+	return results;
+}
+
+function walkPageFiles(directory) {
+	const results = [];
+
+	for (const entry of readdirSync(directory, { withFileTypes: true })) {
+		const fullPath = path.join(directory, entry.name);
+		const relativePath = path.relative(PAGES_DIR, fullPath);
+		if (!isAstroPublicPagePath(relativePath)) {
+			continue;
+		}
+
+		if (entry.isDirectory()) {
+			results.push(...walkPageFiles(fullPath));
+			continue;
+		}
+
+		if (PAGE_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
 			results.push(fullPath);
 		}
 	}
@@ -139,6 +169,24 @@ function buildPostRouteIndex(files, includeDrafts = true) {
 	}
 
 	return routes;
+}
+
+function buildStaticPageRouteIndex(files) {
+	const routes = new Set();
+	const fileRoutes = new Set();
+
+	for (const filePath of files) {
+		const relativePath = path.relative(PAGES_DIR, filePath);
+		const routePath = getStaticPageRoutePath(relativePath);
+		if (routePath) {
+			routes.add(routePath);
+			if (isAstroEndpointPath(relativePath) || ['/404.html', '/500.html'].includes(routePath)) {
+				fileRoutes.add(routePath);
+			}
+		}
+	}
+
+	return { fileRoutes, routes };
 }
 
 function checkRequiredFrontmatterField(
@@ -571,8 +619,9 @@ function resolveInternalLinkTarget(filePath, href) {
 	return path.resolve(path.dirname(filePath), target);
 }
 
-function checkInternalLinks(filePath, content, issues, warnings, postRoutes) {
+function checkInternalLinks(filePath, content, issues, warnings, postRoutes, staticPageIndex) {
 	const contentWithoutCode = stripCodeBlocks(content);
+	const { fileRoutes, routes: staticPageRoutes } = staticPageIndex;
 
 	for (const match of findAllMatches(contentWithoutCode, MARKDOWN_LINK_REGEX)) {
 		const href = match[1];
@@ -595,6 +644,11 @@ function checkInternalLinks(filePath, content, issues, warnings, postRoutes) {
 				`Internal post route not found: ${href}.`,
 			);
 			continue;
+		}
+		if (!isImageLink && href.startsWith('/') && staticPageRoutes.has(routePath)) {
+			if (!(fileRoutes.has(routePath) && hasTrailingSlash(href))) {
+				continue;
+			}
 		}
 
 		const targetPath = resolveInternalLinkTarget(filePath, href);
@@ -659,6 +713,7 @@ function main() {
 	const titleIndex = new Map();
 	const postRoutes = buildPostRouteIndex(files);
 	const publishedPostRoutes = buildPostRouteIndex(files, false);
+	const staticPageIndex = buildStaticPageRouteIndex(walkPageFiles(PAGES_DIR));
 	const postReferences = buildPostReferenceIndex(files);
 
 	checkDuplicatePostRoutes(postRoutes, issues);
@@ -672,7 +727,7 @@ function main() {
 		}
 		checkImages(filePath, content, warnings);
 		checkPatterns(filePath, content, issues, warnings);
-		checkInternalLinks(filePath, content, issues, warnings, publishedPostRoutes);
+		checkInternalLinks(filePath, content, issues, warnings, publishedPostRoutes, staticPageIndex);
 	}
 
 	for (const [title, entries] of titleIndex) {

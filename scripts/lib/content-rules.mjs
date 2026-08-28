@@ -49,6 +49,19 @@ export const CATEGORY_ALIASES = new Map([
 
 export const MARKDOWN_LINK_REGEX = /!?\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
 export const MARKDOWN_IMAGE_REGEX = /!\[([^\]]*)]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
+export const PAGE_ROUTE_EXTENSIONS = new Set([
+	'.astro',
+	'.html',
+	'.markdown',
+	'.mdown',
+	'.mkdn',
+	'.mkd',
+	'.mdwn',
+	'.md',
+	'.mdx',
+	'.js',
+	'.ts',
+]);
 
 export const ABSOLUTE_PATH_PATTERNS = [
 	{
@@ -373,6 +386,71 @@ export function normalizeRoutePath(routePath) {
 		? withoutHashOrQuery
 		: `/${withoutHashOrQuery}`;
 	return withLeadingSlash.replace(/\/+$/g, '') || '/';
+}
+
+export function hasTrailingSlash(routePath) {
+	const target = getComparableLinkTarget(routePath);
+	return target.length > 1 && target.endsWith('/');
+}
+
+export function isAstroPublicPagePath(relativePagePath) {
+	const segments = String(relativePagePath).replace(/\\/g, '/').split('/').filter(Boolean);
+
+	return segments.every(
+		(segment) =>
+			!segment.startsWith('_') && (!segment.startsWith('.') || segment === '.well-known'),
+	);
+}
+
+export function getStaticPageRoutePath(relativePagePath) {
+	const normalizedPath = String(relativePagePath).replace(/\\/g, '/');
+	if (!isAstroPublicPagePath(normalizedPath)) {
+		return undefined;
+	}
+
+	const segments = normalizedPath.split('/').filter(Boolean);
+	if (segments.length === 0) {
+		return undefined;
+	}
+
+	const fileName = segments.pop();
+	const extension = path.posix.extname(fileName);
+	if (!PAGE_ROUTE_EXTENSIONS.has(extension)) {
+		return undefined;
+	}
+
+	const routeName = fileName.slice(0, -extension.length);
+	const routeSegments = [...segments, routeName];
+	if (routeSegments.some((segment) => segment.includes('[') || segment.includes(']'))) {
+		return undefined;
+	}
+
+	if (routeName === 'index') {
+		routeSegments.pop();
+	}
+	if (routeSegments.length === 0) {
+		return '/';
+	}
+	if (routeSegments.length === 1 && ['404', '500'].includes(routeSegments[0])) {
+		return `/${routeSegments[0]}.html`;
+	}
+
+	return normalizeRoutePath(`/${routeSegments.join('/')}`);
+}
+
+export function isAstroEndpointPath(relativePagePath) {
+	const normalizedPath = String(relativePagePath).replace(/\\/g, '/');
+	if (!isAstroPublicPagePath(normalizedPath)) {
+		return false;
+	}
+
+	const fileName = normalizedPath.split('/').filter(Boolean).at(-1);
+	if (!fileName || fileName.includes('[') || fileName.includes(']')) {
+		return false;
+	}
+
+	const extension = path.posix.extname(fileName);
+	return extension === '.js' || extension === '.ts';
 }
 
 export function isMissingPostRoute(href, postRoutes) {
