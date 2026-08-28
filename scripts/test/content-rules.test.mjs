@@ -6,6 +6,9 @@ import {
 	getPrimaryCategory,
 	hasUnbalancedBold,
 	isDataAsOfAfterVerifiedDate,
+	isDraftFrontmatter,
+	isMarkdownImageLink,
+	isMissingPostRoute,
 	isKnownCategory,
 	isValidCalendarDate,
 	isValidDateFieldFormat,
@@ -15,9 +18,11 @@ import {
 	parseFrontmatterListField,
 	parseFrontmatterListValue,
 	shouldCheckInternalLink,
+	shouldIndexPostRoute,
 	slugifyPathSegment,
 	stripCodeBlocks,
 	stripQuotes,
+	stripYamlComment,
 } from '../lib/content-rules.mjs';
 
 describe('isValidDateFieldFormat', () => {
@@ -126,6 +131,28 @@ describe('parseFrontmatterFields', () => {
 	});
 });
 
+describe('isDraftFrontmatter', () => {
+	it('recognizes true draft values, including quoted values', () => {
+		assert.equal(isDraftFrontmatter('title: Draft\ndraft: true'), true);
+		assert.equal(isDraftFrontmatter('title: Draft\ndraft: "TRUE"'), true);
+		assert.equal(isDraftFrontmatter('title: Draft\ndraft: true # preview only'), true);
+	});
+
+	it('keeps published and missing draft values out of the draft set', () => {
+		assert.equal(isDraftFrontmatter('title: Published\ndraft: false'), false);
+		assert.equal(isDraftFrontmatter('title: Published'), false);
+	});
+});
+
+describe('shouldIndexPostRoute', () => {
+	it('keeps drafts for duplicate-route checks but excludes them from published links', () => {
+		const draft = 'title: Draft\ndraft: true';
+		assert.equal(shouldIndexPostRoute(draft), true);
+		assert.equal(shouldIndexPostRoute(draft, false), false);
+		assert.equal(shouldIndexPostRoute('title: Published\ndraft: false', false), true);
+	});
+});
+
 describe('parseFrontmatterListValue', () => {
 	it('parses an inline array', () => {
 		assert.deepEqual(parseFrontmatterListValue('[ETF, "Market Brief"]'), ['ETF', 'Market Brief']);
@@ -207,6 +234,16 @@ describe('stripQuotes', () => {
 	});
 });
 
+describe('stripYamlComment', () => {
+	it('removes comments outside quoted values', () => {
+		assert.equal(stripYamlComment('my-post # note'), 'my-post');
+	});
+
+	it('preserves hash characters inside quoted values', () => {
+		assert.equal(stripYamlComment('"my#post" # note'), '"my#post"');
+	});
+});
+
 describe('slugifyPathSegment', () => {
 	it('lowercases and dash-collapses spaces and specials', () => {
 		assert.equal(slugifyPathSegment('My Post (v2)'), 'my-post-v2');
@@ -233,6 +270,32 @@ describe('normalizeRoutePath', () => {
 
 	it('collapses an empty path to root', () => {
 		assert.equal(normalizeRoutePath('/'), '/');
+	});
+});
+
+describe('isMissingPostRoute', () => {
+	const routes = new Map([['/blog/existing-post', ['/content/existing.md']]]);
+
+	it('accepts known post routes with query, hash, or trailing slash', () => {
+		assert.equal(isMissingPostRoute('/blog/existing-post/', routes), false);
+		assert.equal(isMissingPostRoute('/blog/existing-post?view=full#heading', routes), false);
+	});
+
+	it('flags unknown blog routes', () => {
+		assert.equal(isMissingPostRoute('/blog/missing-post', routes), true);
+	});
+
+	it('does not classify non-blog links as missing post routes', () => {
+		assert.equal(isMissingPostRoute('/images/missing.png', routes), false);
+		assert.equal(isMissingPostRoute('blog/missing-post', routes), false);
+		assert.equal(isMissingPostRoute('https://example.com/blog/missing-post', routes), false);
+	});
+});
+
+describe('isMarkdownImageLink', () => {
+	it('separates image matches from ordinary Markdown links', () => {
+		assert.equal(isMarkdownImageLink('![chart](/blog/chart.png)'), true);
+		assert.equal(isMarkdownImageLink('[post](/blog/post/)'), false);
 	});
 });
 

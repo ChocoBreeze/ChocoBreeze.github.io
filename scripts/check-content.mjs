@@ -24,6 +24,9 @@ import {
 	getPrimaryCategory,
 	hasUnbalancedBold,
 	isDataAsOfAfterVerifiedDate,
+	isMarkdownImageLink,
+	isMissingPostRoute,
+	shouldIndexPostRoute,
 	isValidDateFieldFormat,
 	normalizeCategoryValue,
 	normalizeRoutePath,
@@ -34,6 +37,7 @@ import {
 	slugifyPathSegment,
 	stripCodeBlocks,
 	stripInlineCode,
+	stripYamlComment,
 	stripQuotes,
 } from './lib/content-rules.mjs';
 import { normalizePostReference } from '../src/lib/postReferences.mjs';
@@ -77,7 +81,8 @@ function getPostRoutePath(filePath, content) {
 	const slugField = fields.get('slug');
 
 	if (slugField) {
-		return normalizeRoutePath(`/blog/${stripQuotes(slugField.rawValue)}`);
+		const slug = stripQuotes(stripYamlComment(slugField.rawValue));
+		return normalizeRoutePath(`/blog/${slug}`);
 	}
 
 	const relativePath = path.relative(CONTENT_DIR, filePath);
@@ -98,7 +103,7 @@ function getPostReferenceKeys(filePath, content) {
 	const fields = frontmatterMatch ? parseFrontmatterFields(frontmatterMatch[1]) : new Map();
 	const slugField = fields.get('slug');
 	if (slugField) {
-		keys.push(stripQuotes(slugField.rawValue));
+		keys.push(stripQuotes(stripYamlComment(slugField.rawValue)));
 	}
 
 	const relativePath = path.relative(CONTENT_DIR, filePath).replace(/\\/g, '/');
@@ -118,11 +123,15 @@ function buildPostReferenceIndex(files) {
 	return references;
 }
 
-function buildPostRouteIndex(files) {
+function buildPostRouteIndex(files, includeDrafts = true) {
 	const routes = new Map();
 
 	for (const filePath of files) {
 		const content = readFileSync(filePath, 'utf8');
+		const frontmatterMatch = content.match(FRONTMATTER_REGEX);
+		if (frontmatterMatch && !shouldIndexPostRoute(frontmatterMatch[1], includeDrafts)) {
+			continue;
+		}
 		const routePath = getPostRoutePath(filePath, content);
 		const entries = routes.get(routePath) ?? [];
 		entries.push(filePath);
@@ -562,7 +571,7 @@ function resolveInternalLinkTarget(filePath, href) {
 	return path.resolve(path.dirname(filePath), target);
 }
 
-function checkInternalLinks(filePath, content, warnings, postRoutes) {
+function checkInternalLinks(filePath, content, issues, warnings, postRoutes) {
 	const contentWithoutCode = stripCodeBlocks(content);
 
 	for (const match of findAllMatches(contentWithoutCode, MARKDOWN_LINK_REGEX)) {
@@ -571,8 +580,20 @@ function checkInternalLinks(filePath, content, warnings, postRoutes) {
 			continue;
 		}
 
+		const isImageLink = isMarkdownImageLink(match[0]);
 		const routePath = normalizeRoutePath(href);
-		if (routePath.startsWith('/blog/') && postRoutes.has(routePath)) {
+		if (!isImageLink && href.startsWith('/') && routePath.startsWith('/blog/')) {
+			if (!isMissingPostRoute(href, postRoutes)) {
+				continue;
+			}
+
+			addIssue(
+				issues,
+				'error',
+				filePath,
+				getLineNumber(contentWithoutCode, match.index ?? 0),
+				`Internal post route not found: ${href}.`,
+			);
 			continue;
 		}
 
@@ -637,6 +658,7 @@ function main() {
 	const warnings = [];
 	const titleIndex = new Map();
 	const postRoutes = buildPostRouteIndex(files);
+	const publishedPostRoutes = buildPostRouteIndex(files, false);
 	const postReferences = buildPostReferenceIndex(files);
 
 	checkDuplicatePostRoutes(postRoutes, issues);
@@ -650,7 +672,7 @@ function main() {
 		}
 		checkImages(filePath, content, warnings);
 		checkPatterns(filePath, content, issues, warnings);
-		checkInternalLinks(filePath, content, warnings, postRoutes);
+		checkInternalLinks(filePath, content, issues, warnings, publishedPostRoutes);
 	}
 
 	for (const [title, entries] of titleIndex) {

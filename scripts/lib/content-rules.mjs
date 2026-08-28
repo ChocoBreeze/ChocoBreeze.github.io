@@ -137,6 +137,17 @@ export function parseFrontmatterFields(frontmatter) {
 	return fields;
 }
 
+export function isDraftFrontmatter(frontmatter) {
+	const draftField = parseFrontmatterFields(frontmatter).get('draft');
+	return draftField
+		? stripQuotes(stripYamlComment(draftField.rawValue)).trim().toLowerCase() === 'true'
+		: false;
+}
+
+export function shouldIndexPostRoute(frontmatter, includeDrafts = true) {
+	return includeDrafts || !isDraftFrontmatter(frontmatter);
+}
+
 export function stripQuotes(value) {
 	return value.replace(/^['"]|['"]$/g, '');
 }
@@ -158,7 +169,7 @@ export function parseFrontmatterListValue(rawValue) {
 	return [stripQuotes(value).trim()].filter(Boolean);
 }
 
-function stripYamlComment(value) {
+export function stripYamlComment(value) {
 	let quote = '';
 
 	for (let index = 0; index < value.length; index += 1) {
@@ -362,6 +373,15 @@ export function normalizeRoutePath(routePath) {
 		? withoutHashOrQuery
 		: `/${withoutHashOrQuery}`;
 	return withLeadingSlash.replace(/\/+$/g, '') || '/';
+}
+
+export function isMissingPostRoute(href, postRoutes) {
+	const routePath = normalizeRoutePath(href);
+	return href.startsWith('/') && routePath.startsWith('/blog/') && !postRoutes.has(routePath);
+}
+
+export function isMarkdownImageLink(matchText) {
+	return matchText.startsWith('!');
 }
 
 export function isExternalOrAnchorLink(href) {
