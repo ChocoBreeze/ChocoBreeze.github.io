@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { parseFrontmatter } from '@astrojs/markdown-remark';
 
 import {
 	ABSOLUTE_PATH_PATTERNS,
@@ -23,6 +24,8 @@ import {
 	getComparableLinkTarget,
 	getLineNumber,
 	getPrimaryCategory,
+	getLinkFragment,
+	getMarkdownHeadingIds,
 	getStaticPageRoutePath,
 	hasUnbalancedBold,
 	hasTrailingSlash,
@@ -39,13 +42,15 @@ import {
 	parseFrontmatterListValue,
 	isAstroPublicPagePath,
 	shouldCheckInternalLink,
-	slugifyPathSegment,
+	slugifyAstroPathSegment,
 	stripCodeBlocks,
 	stripInlineCode,
 	stripYamlComment,
 	stripQuotes,
 } from './lib/content-rules.mjs';
 import { normalizePostReference } from '../src/lib/postReferences.mjs';
+import { getRelatedPosts } from '../src/lib/relatedPosts.mjs';
+import { buildSeriesNavigation } from '../src/lib/series.mjs';
 
 const ROOT_DIR = process.cwd();
 const CONTENT_DIR = path.join(ROOT_DIR, 'src', 'content', 'blog');
@@ -53,6 +58,8 @@ const PAGES_DIR = path.join(ROOT_DIR, 'src', 'pages');
 const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
 const MARKDOWN_EXTENSIONS = new Set(['.md', '.mdx']);
 const PAGE_EXTENSIONS = PAGE_ROUTE_EXTENSIONS;
+// This ID is emitted by the blog page template, not by post Markdown.
+const RELATED_POSTS_HEADING_ID = 'related-posts-title';
 
 function walkMarkdownFiles(directory) {
 	const results = [];
@@ -112,7 +119,9 @@ function getPostRoutePath(filePath, content) {
 
 	if (slugField) {
 		const slug = stripQuotes(stripYamlComment(slugField.rawValue));
-		return normalizeRoutePath(`/blog/${slug}`);
+		if (slug) {
+			return normalizeRoutePath(`/blog/${slug}`);
+		}
 	}
 
 	const relativePath = path.relative(CONTENT_DIR, filePath);
@@ -121,8 +130,9 @@ function getPostRoutePath(filePath, content) {
 	const slugPath = relativeWithoutExtension
 		.split(path.sep)
 		.filter(Boolean)
-		.map(slugifyPathSegment)
-		.join('/');
+		.map(slugifyAstroPathSegment)
+		.join('/')
+		.replace(/\/index$/, '');
 
 	return normalizeRoutePath(`/blog/${slugPath}`);
 }
@@ -169,6 +179,116 @@ function buildPostRouteIndex(files, includeDrafts = true) {
 	}
 
 	return routes;
+}
+
+function getComparablePostDate(post) {
+	const value = post.data.pubDate ?? post.data.date;
+	return value instanceof Date ? value.valueOf() : new Date(value ?? 0).valueOf();
+}
+
+function getCategoryKey(value) {
+	return Array.isArray(value) ? value[0] : value;
+}
+
+function buildPostMetadata(filePath, content) {
+	let data;
+	try {
+		data = parseFrontmatter(content, { frontmatter: 'empty-with-spaces' }).frontmatter ?? {};
+	} catch {
+		// Frontmatter validation reports malformed values separately. A post that
+		// cannot be parsed must not be used to whitelist generated anchors.
+		return undefined;
+	}
+
+	const routePath = getPostRoutePath(filePath, content);
+	return {
+		// The glob loader exposes the generated slug as post.id. Keep this in
+		// sync so relatedSlugs and series exclusions resolve like Astro does.
+		id: routePath.replace(/^\/blog\//, ''),
+		filePath,
+		routePath,
+		data,
+	};
+}
+
+function buildGeneratedAnchorRouteIndex(files) {
+	const posts = files
+		.map((filePath) => buildPostMetadata(filePath, readFileSync(filePath, 'utf8')))
+		.filter(Boolean);
+	const publishedPosts = posts.filter((post) => !post.data.draft);
+	const postsByRoute = new Map();
+
+	for (const post of publishedPosts) {
+		const routePath = post.routePath;
+		const entries = postsByRoute.get(routePath) ?? [];
+		entries.push(post);
+		postsByRoute.set(routePath, entries);
+	}
+
+	const generatedAnchorRoutes = new Set();
+	for (const [routePath, routePosts] of postsByRoute) {
+		for (const currentPost of routePosts) {
+			const categoryPosts = publishedPosts
+				.filter(
+					(post) =>
+						getCategoryKey(post.data.categories) === getCategoryKey(currentPost.data.categories),
+				)
+				.sort((a, b) => {
+					if (a.data.pinned && !b.data.pinned) return -1;
+					if (!a.data.pinned && b.data.pinned) return 1;
+
+					const orderA = a.data.order ?? 999;
+					const orderB = b.data.order ?? 999;
+					if (orderA !== orderB) return orderA - orderB;
+
+					return getComparablePostDate(a) - getComparablePostDate(b);
+				});
+			const currentIndex = categoryPosts.findIndex((post) => post.id === currentPost.id);
+			const prevPost = currentIndex > 0 ? categoryPosts[currentIndex - 1] : undefined;
+			const nextPost =
+				currentIndex >= 0 && currentIndex < categoryPosts.length - 1
+					? categoryPosts[currentIndex + 1]
+					: undefined;
+			const seriesNavigation = buildSeriesNavigation(publishedPosts, currentPost);
+			const relatedPosts = getRelatedPosts({
+				posts: publishedPosts,
+				currentPost,
+				categoryPosts,
+				excludedIds: [
+					prevPost?.id,
+					nextPost?.id,
+					seriesNavigation?.previous?.id,
+					seriesNavigation?.next?.id,
+				],
+			});
+
+			if (relatedPosts.length > 0) {
+				generatedAnchorRoutes.add(routePath);
+			}
+		}
+	}
+
+	return generatedAnchorRoutes;
+}
+
+function createPostHeadingResolver(postRoutes) {
+	const cache = new Map();
+
+	return async (routePath) => {
+		if (!cache.has(routePath)) {
+			const filePaths = postRoutes.get(routePath) ?? [];
+			cache.set(
+				routePath,
+				Promise.all(
+					filePaths.map((filePath) =>
+						getMarkdownHeadingIds(readFileSync(filePath, 'utf8'), filePath),
+					),
+				),
+			);
+		}
+
+		return cache.get(routePath);
+	};
 }
 
 function buildStaticPageRouteIndex(files) {
@@ -619,7 +739,16 @@ function resolveInternalLinkTarget(filePath, href) {
 	return path.resolve(path.dirname(filePath), target);
 }
 
-function checkInternalLinks(filePath, content, issues, warnings, postRoutes, staticPageIndex) {
+async function checkInternalLinks(
+	filePath,
+	content,
+	issues,
+	warnings,
+	postRoutes,
+	getPostHeadingSets,
+	generatedAnchorRoutes,
+	staticPageIndex,
+) {
 	const contentWithoutCode = stripCodeBlocks(content);
 	const { fileRoutes, routes: staticPageRoutes } = staticPageIndex;
 
@@ -632,17 +761,37 @@ function checkInternalLinks(filePath, content, issues, warnings, postRoutes, sta
 		const isImageLink = isMarkdownImageLink(match[0]);
 		const routePath = normalizeRoutePath(href);
 		if (!isImageLink && href.startsWith('/') && routePath.startsWith('/blog/')) {
-			if (!isMissingPostRoute(href, postRoutes)) {
+			if (isMissingPostRoute(href, postRoutes)) {
+				addIssue(
+					issues,
+					'error',
+					filePath,
+					getLineNumber(contentWithoutCode, match.index ?? 0),
+					`Internal post route not found: ${href}.`,
+				);
 				continue;
 			}
 
-			addIssue(
-				issues,
-				'error',
-				filePath,
-				getLineNumber(contentWithoutCode, match.index ?? 0),
-				`Internal post route not found: ${href}.`,
-			);
+			const fragment = getLinkFragment(href);
+			if (
+				fragment &&
+				!(fragment === RELATED_POSTS_HEADING_ID && generatedAnchorRoutes.has(routePath))
+			) {
+				const headingSets = await getPostHeadingSets(routePath);
+				if (
+					headingSets.length > 0 &&
+					headingSets.every((headingIds) => !headingIds.hasUnresolvedIds) &&
+					headingSets.every((headingIds) => !headingIds.has(fragment))
+				) {
+					addIssue(
+						issues,
+						'error',
+						filePath,
+						getLineNumber(contentWithoutCode, match.index ?? 0),
+						`Internal post heading anchor not found: ${href}.`,
+					);
+				}
+			}
 			continue;
 		}
 		if (!isImageLink && href.startsWith('/') && staticPageRoutes.has(routePath)) {
@@ -700,7 +849,7 @@ function getStagedFileSet() {
 	);
 }
 
-function main() {
+async function main() {
 	if (!statSync(CONTENT_DIR).isDirectory()) {
 		console.error(`Content directory not found: ${CONTENT_DIR}`);
 		process.exit(1);
@@ -713,6 +862,8 @@ function main() {
 	const titleIndex = new Map();
 	const postRoutes = buildPostRouteIndex(files);
 	const publishedPostRoutes = buildPostRouteIndex(files, false);
+	const getPostHeadingSets = createPostHeadingResolver(publishedPostRoutes);
+	const generatedAnchorRoutes = buildGeneratedAnchorRouteIndex(files);
 	const staticPageIndex = buildStaticPageRouteIndex(walkPageFiles(PAGES_DIR));
 	const postReferences = buildPostReferenceIndex(files);
 
@@ -727,7 +878,16 @@ function main() {
 		}
 		checkImages(filePath, content, warnings);
 		checkPatterns(filePath, content, issues, warnings);
-		checkInternalLinks(filePath, content, issues, warnings, publishedPostRoutes, staticPageIndex);
+		await checkInternalLinks(
+			filePath,
+			content,
+			issues,
+			warnings,
+			publishedPostRoutes,
+			getPostHeadingSets,
+			generatedAnchorRoutes,
+			staticPageIndex,
+		);
 	}
 
 	for (const [title, entries] of titleIndex) {

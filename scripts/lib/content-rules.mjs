@@ -5,6 +5,20 @@
 // by scripts/check-content.mjs, which owns file walking and reporting.
 
 import path from 'node:path';
+import {
+	createMarkdownProcessor,
+	parseFrontmatter,
+	rehypeHeadingIds,
+} from '@astrojs/markdown-remark';
+import { createProcessor, nodeTypes } from '@mdx-js/mdx';
+import { slug as githubSlug } from 'github-slugger';
+import { fromHtml } from 'hast-util-from-html';
+import rehypeKatex from 'rehype-katex';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import remarkSmartypants from 'remark-smartypants';
+import { VFile } from 'vfile';
 
 export const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
 export const MAX_FUTURE_DAYS = 370;
@@ -372,6 +386,11 @@ export function slugifyPathSegment(segment) {
 		.replace(/^-|-$/g, '');
 }
 
+// Astro's glob loader uses github-slugger for path-derived content IDs.
+export function slugifyAstroPathSegment(segment) {
+	return githubSlug(segment);
+}
+
 export function getComparableLinkTarget(href) {
 	try {
 		return decodeURIComponent(href.split(/[?#]/, 1)[0]);
@@ -391,6 +410,311 @@ export function normalizeRoutePath(routePath) {
 export function hasTrailingSlash(routePath) {
 	const target = getComparableLinkTarget(routePath);
 	return target.length > 1 && target.endsWith('/');
+}
+
+export function getLinkFragment(href) {
+	const hashIndex = String(href).indexOf('#');
+	if (hashIndex === -1 || hashIndex === String(href).length - 1) {
+		return undefined;
+	}
+
+	const rawFragment = String(href)
+		.slice(hashIndex + 1)
+		.replace(/\\([\s\S])/g, (match, character) => {
+			const code = character.codePointAt(0);
+			const isAsciiPunctuation =
+				(code >= 33 && code <= 47) ||
+				(code >= 58 && code <= 64) ||
+				(code >= 91 && code <= 96) ||
+				(code >= 123 && code <= 126);
+			return isAsciiPunctuation ? character : match;
+		});
+	const entityDecodedFragment = decodeHtmlCharacterReferences(rawFragment);
+	try {
+		return decodeURIComponent(entityDecodedFragment);
+	} catch {
+		return entityDecodedFragment;
+	}
+}
+
+function decodeHtmlCharacterReferences(value) {
+	const safeText = String(value).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	const root = fromHtml(`<span>${safeText}</span>`, { fragment: true });
+	return root.children
+		.filter((node) => node.type === 'element' && node.tagName === 'span')
+		.flatMap((node) => node.children ?? [])
+		.filter((node) => node.type === 'text')
+		.map((node) => node.value)
+		.join('');
+}
+
+function createHeadingIdSet() {
+	const headingIds = new Set();
+	Object.defineProperty(headingIds, 'hasUnresolvedIds', {
+		configurable: true,
+		value: false,
+		writable: true,
+	});
+	return headingIds;
+}
+
+const KNOWN_MDX_HTML_ELEMENTS = new Set([
+	'a',
+	'abbr',
+	'address',
+	'area',
+	'article',
+	'aside',
+	'audio',
+	'b',
+	'base',
+	'bdi',
+	'bdo',
+	'blockquote',
+	'body',
+	'br',
+	'button',
+	'canvas',
+	'caption',
+	'cite',
+	'code',
+	'col',
+	'colgroup',
+	'data',
+	'datalist',
+	'dd',
+	'del',
+	'details',
+	'dfn',
+	'dialog',
+	'div',
+	'dl',
+	'dt',
+	'em',
+	'embed',
+	'fieldset',
+	'figcaption',
+	'figure',
+	'footer',
+	'form',
+	'h1',
+	'h2',
+	'h3',
+	'h4',
+	'h5',
+	'h6',
+	'head',
+	'header',
+	'hgroup',
+	'hr',
+	'html',
+	'i',
+	'iframe',
+	'img',
+	'input',
+	'ins',
+	'kbd',
+	'label',
+	'legend',
+	'li',
+	'link',
+	'main',
+	'map',
+	'mark',
+	'menu',
+	'meta',
+	'meter',
+	'nav',
+	'noscript',
+	'object',
+	'ol',
+	'optgroup',
+	'option',
+	'output',
+	'p',
+	'picture',
+	'pre',
+	'progress',
+	'q',
+	'rp',
+	'rt',
+	'ruby',
+	's',
+	'samp',
+	'search',
+	'section',
+	'select',
+	'slot',
+	'small',
+	'source',
+	'span',
+	'strong',
+	'style',
+	'sub',
+	'summary',
+	'sup',
+	'table',
+	'tbody',
+	'td',
+	'template',
+	'textarea',
+	'tfoot',
+	'th',
+	'thead',
+	'time',
+	'title',
+	'tr',
+	'track',
+	'u',
+	'ul',
+	'var',
+	'video',
+	'wbr',
+	'circle',
+	'clipPath',
+	'defs',
+	'ellipse',
+	'foreignObject',
+	'g',
+	'line',
+	'path',
+	'polygon',
+	'polyline',
+	'rect',
+	'svg',
+	'symbol',
+	'text',
+	'use',
+]);
+
+function resolveMdxAttributeString(value, frontmatter) {
+	if (typeof value === 'string') {
+		return value;
+	}
+
+	if (value?.type !== 'mdxJsxAttributeValueExpression') {
+		return undefined;
+	}
+
+	const expression = value.data?.estree?.body?.[0]?.expression;
+	if (expression?.type === 'Literal' && typeof expression.value === 'string') {
+		return expression.value;
+	}
+
+	const expressionPath = [];
+	let current = expression;
+	while (current?.type === 'MemberExpression') {
+		if (current.computed) {
+			if (current.property?.type !== 'Literal' || typeof current.property.value !== 'string') {
+				return undefined;
+			}
+			expressionPath.unshift(current.property.value);
+		} else if (current.property?.type === 'Identifier') {
+			expressionPath.unshift(current.property.name);
+		} else {
+			return undefined;
+		}
+		current = current.object;
+	}
+
+	if (current?.type !== 'Identifier' || current.name !== 'frontmatter') {
+		return undefined;
+	}
+
+	let resolved = frontmatter;
+	for (const key of expressionPath) {
+		if (resolved == null) {
+			return undefined;
+		}
+		resolved = resolved[key];
+	}
+
+	return typeof resolved === 'string' ? resolved : undefined;
+}
+
+function collectHeadingIds(node, headingIds, frontmatter) {
+	if (node.type === 'element' && /^h[1-6]$/.test(node.tagName)) {
+		if (typeof node.properties?.id === 'string') {
+			headingIds.add(node.properties.id);
+		}
+	} else if (
+		(node.type === 'mdxJsxFlowElement' || node.type === 'mdxJsxTextElement') &&
+		/^h[1-6]$/.test(node.name)
+	) {
+		const attributes = node.attributes ?? [];
+		const idAttribute = attributes.find(
+			(attribute) => attribute.type === 'mdxJsxAttribute' && attribute.name === 'id',
+		);
+		const hasSpreadAttribute = attributes.some(
+			(attribute) => attribute.type === 'mdxJsxExpressionAttribute',
+		);
+		const id = resolveMdxAttributeString(idAttribute?.value, frontmatter);
+		if (hasSpreadAttribute) {
+			headingIds.hasUnresolvedIds = true;
+		} else if (id !== undefined) {
+			headingIds.add(id);
+		} else if (idAttribute) {
+			headingIds.hasUnresolvedIds = true;
+		}
+	} else if (
+		(node.type === 'mdxJsxFlowElement' || node.type === 'mdxJsxTextElement') &&
+		!KNOWN_MDX_HTML_ELEMENTS.has(node.name)
+	) {
+		headingIds.hasUnresolvedIds = true;
+	}
+
+	for (const child of node.children ?? []) {
+		collectHeadingIds(child, headingIds, frontmatter);
+	}
+}
+
+function collectMdxHeadingIds() {
+	return (tree, file) => {
+		const headingIds = createHeadingIdSet();
+		collectHeadingIds(tree, headingIds, file.data.astro?.frontmatter);
+		file.data.headingIds = headingIds;
+	};
+}
+
+const markdownProcessorPromise = createMarkdownProcessor({
+	syntaxHighlight: false,
+	remarkPlugins: [remarkMath],
+	rehypePlugins: [[rehypeKatex, { strict: 'ignore' }]],
+});
+const mdxProcessor = createProcessor({
+	remarkPlugins: [remarkGfm, remarkSmartypants, remarkMath],
+	rehypePlugins: [
+		[rehypeRaw, { passThrough: nodeTypes }],
+		[rehypeKatex, { strict: 'ignore' }],
+		rehypeHeadingIds,
+		collectMdxHeadingIds,
+	],
+	jsxImportSource: 'astro',
+	format: 'mdx',
+	mdExtensions: [],
+});
+
+export async function getMarkdownHeadingIds(content, sourcePath = 'content.md') {
+	const parsed = parseFrontmatter(content, { frontmatter: 'empty-with-spaces' });
+
+	if (path.extname(sourcePath).toLowerCase() === '.mdx') {
+		const file = new VFile({
+			value: parsed.content,
+			path: sourcePath,
+			data: { astro: { frontmatter: parsed.frontmatter } },
+		});
+		await mdxProcessor.process(file);
+		return file.data.headingIds ?? createHeadingIdSet();
+	}
+
+	const processor = await markdownProcessorPromise;
+	const rendered = await processor.render(parsed.content, {
+		frontmatter: parsed.frontmatter,
+	});
+	const root = fromHtml(rendered.code, { fragment: true });
+	const headingIds = createHeadingIdSet();
+	collectHeadingIds(root, headingIds);
+	return headingIds;
 }
 
 export function isAstroPublicPagePath(relativePagePath) {

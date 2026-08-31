@@ -5,7 +5,9 @@
 - `BaseHead.astro`는 canonical, Open Graph, Twitter, RSS 메타데이터를 제공합니다.
 - JSON-LD는 없습니다.
 - `check:content`는 Markdown 내부 링크, 생성된 `/blog/...` 경로, `src/pages`의 정적 경로를 검사합니다.
-- `#소제목`만 있는 앵커와 대상 문서의 실제 heading ID는 검사하지 않습니다.
+- `/blog/...#fragment` 링크는 대상 글의 heading ID와 비교합니다.
+- `.mdx` 글은 Astro MDX processor와 frontmatter를 사용해 heading ID를 계산합니다.
+- `#소제목`만 있는 앵커와 일반 정적 페이지의 fragment는 검사하지 않습니다.
 
 ## 목표
 
@@ -45,7 +47,7 @@ JSON-LD는 검색 순위나 리치 결과를 보장하는 기능으로 표현하
 3. [완료] `BlogPosting`을 글 상세 레이아웃에 적용하고 빌드 HTML을 검증합니다.
 4. [완료] 실제 사용자 경로를 반영한 `BreadcrumbList`를 추가합니다.
 5. [완료] 링크 검사를 `확실한 오류`와 `레거시 경고`로 구분합니다.
-6. [진행 중] `/blog/...` 누락을 오류로 승격하고 정적 Astro 경로를 인덱싱했습니다. 앵커 검사는 후속 단계로 남깁니다.
+6. [완료] `/blog/...` 누락을 오류로 승격하고 정적 Astro 경로와 대상 글의 heading ID를 인덱싱합니다. 파일형 엔드포인트의 후행 슬래시와 `404`·`500` 상태 페이지 출력도 반영합니다.
 
 ## 테스트 설계
 

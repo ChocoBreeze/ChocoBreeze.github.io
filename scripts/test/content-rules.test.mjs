@@ -4,6 +4,8 @@ import { describe, it } from 'node:test';
 import {
 	countMathDelimiters,
 	getPrimaryCategory,
+	getLinkFragment,
+	getMarkdownHeadingIds,
 	getStaticPageRoutePath,
 	hasUnbalancedBold,
 	hasTrailingSlash,
@@ -23,6 +25,7 @@ import {
 	parseFrontmatterListValue,
 	shouldCheckInternalLink,
 	shouldIndexPostRoute,
+	slugifyAstroPathSegment,
 	slugifyPathSegment,
 	stripCodeBlocks,
 	stripQuotes,
@@ -262,6 +265,15 @@ describe('slugifyPathSegment', () => {
 	});
 });
 
+describe('slugifyAstroPathSegment', () => {
+	it('matches Astro github-slugger output for content paths', () => {
+		assert.equal(
+			slugifyAstroPathSegment('ITA (iShares US Aerospace & Defense ETF)'),
+			'ita-ishares-us-aerospace--defense-etf',
+		);
+	});
+});
+
 describe('normalizeRoutePath', () => {
 	it('strips trailing slashes and query/hash', () => {
 		assert.equal(normalizeRoutePath('/blog/foo/'), '/blog/foo');
@@ -328,6 +340,103 @@ describe('hasTrailingSlash', () => {
 		assert.equal(hasTrailingSlash('/rss.xml/?format=atom#top'), true);
 		assert.equal(hasTrailingSlash('/rss.xml?format=atom'), false);
 		assert.equal(hasTrailingSlash('/'), false);
+	});
+});
+
+describe('getLinkFragment', () => {
+	it('decodes fragments without including the path query', () => {
+		assert.equal(getLinkFragment('/blog/post#한글%20heading?ignored'), '한글 heading?ignored');
+		assert.equal(getLinkFragment('/blog/post?view=full#section'), 'section');
+		assert.equal(getLinkFragment('/blog/post#foo\\_bar'), 'foo_bar');
+		assert.equal(getLinkFragment('/blog/post#foo&amp;bar'), 'foo&bar');
+		assert.equal(getLinkFragment('/blog/post#foo%26amp%3Bbar'), 'foo&amp;bar');
+		assert.equal(getLinkFragment('/blog/post'), undefined);
+		assert.equal(getLinkFragment('/blog/post#'), undefined);
+	});
+});
+
+describe('getMarkdownHeadingIds', () => {
+	it('matches Astro heading slugs and duplicate suffixes', async () => {
+		const content =
+			'---\ntitle: Example\n---\n\n# 첫 번째 제목\n\n## C++ & C#\n\n## C++ & C#\n\n## JAVA_HOME and _emphasis_';
+		assert.deepEqual(
+			[...(await getMarkdownHeadingIds(content))],
+			['첫-번째-제목', 'c--c', 'c--c-1', 'java_home-and-emphasis'],
+		);
+	});
+
+	it('matches rendered block headings and explicit HTML heading IDs', async () => {
+		const content =
+			'> ### 왜 최소 스왑?\n\n| A | B |\n| --- | --- |\n| 1 | 2 |\n---\n\n````md\n```\n## not-a-heading\n```\n````\n\n<h2 id=custom-anchor>Visible</h2>\n\nTitle\n---';
+		assert.deepEqual(
+			[...(await getMarkdownHeadingIds(content))],
+			['왜-최소-스왑', 'custom-anchor', 'title'],
+		);
+	});
+
+	it('preserves inline code and image heading behavior from Astro', async () => {
+		const content =
+			'## git add `<file>`\n\n## ![Alt](https://example.com/image.png) Link\n\n## Link ![Alt](https://example.com/image.png)';
+		assert.deepEqual(
+			[...(await getMarkdownHeadingIds(content))],
+			['git-add-file', '-link', 'link-'],
+		);
+	});
+
+	it('uses MDX frontmatter values when generating heading IDs', async () => {
+		const content =
+			'---\ntitle: World\n---\n\n# Hello {frontmatter.title}\n\n## Hello {frontmatter.title}';
+		assert.deepEqual(
+			[...(await getMarkdownHeadingIds(content, 'example.mdx'))],
+			['hello-world', 'hello-world-1'],
+		);
+	});
+
+	it('collects explicit IDs from MDX JSX headings', async () => {
+		const content =
+			'<h2 id="custom-anchor">Visible</h2>\n\n<div><h3 id="nested-anchor">Nested</h3></div>';
+		assert.deepEqual(
+			[...(await getMarkdownHeadingIds(content, 'example.mdx'))],
+			['custom-anchor', 'nested-anchor'],
+		);
+	});
+
+	it('resolves expression-valued MDX JSX heading IDs', async () => {
+		const content =
+			"---\nanchor: from-frontmatter\n---\n\n<h2 id={'literal-anchor'}>Literal</h2>\n\n<h3 id={frontmatter.anchor}>From frontmatter</h3>";
+		assert.deepEqual(
+			[...(await getMarkdownHeadingIds(content, 'example.mdx'))],
+			['literal-anchor', 'from-frontmatter'],
+		);
+	});
+
+	it('marks dynamic MDX JSX heading IDs as unresolved', async () => {
+		const content =
+			'<h2 id={42}>Numeric</h2>\n\n<h3 id={makeId()}>Computed</h3>\n\n<h4>No explicit ID</h4>';
+		const headingIds = await getMarkdownHeadingIds(content, 'example.mdx');
+		assert.equal(headingIds.hasUnresolvedIds, true);
+		assert.deepEqual([...headingIds], []);
+	});
+
+	it('marks spread-based MDX JSX heading IDs as unresolved', async () => {
+		const content = "<h2 {...{ id: 'spread-anchor' }}>Spread</h2>";
+		const headingIds = await getMarkdownHeadingIds(content, 'example.mdx');
+		assert.equal(headingIds.hasUnresolvedIds, true);
+		assert.deepEqual([...headingIds], []);
+	});
+
+	it('marks explicit IDs followed by MDX spreads as unresolved', async () => {
+		const content = '<h2 id="known" {...props}>Spread override</h2>';
+		const headingIds = await getMarkdownHeadingIds(content, 'example.mdx');
+		assert.equal(headingIds.hasUnresolvedIds, true);
+		assert.deepEqual([...headingIds], []);
+	});
+
+	it('marks custom MDX components as unresolved', async () => {
+		const content = '<CustomHeading id="custom-anchor">Custom</CustomHeading>';
+		const headingIds = await getMarkdownHeadingIds(content, 'example.mdx');
+		assert.equal(headingIds.hasUnresolvedIds, true);
+		assert.deepEqual([...headingIds], []);
 	});
 });
 
