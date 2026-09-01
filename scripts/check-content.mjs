@@ -51,6 +51,11 @@ import {
 import { normalizePostReference } from '../src/lib/postReferences.mjs';
 import { getRelatedPosts } from '../src/lib/relatedPosts.mjs';
 import { buildSeriesNavigation } from '../src/lib/series.mjs';
+import {
+	ETF_METADATA_FIELDS,
+	getEtfMetadataValidationMessage,
+	isValidEtfMetadataValue,
+} from '../src/data/etfMetadata.mjs';
 
 const ROOT_DIR = process.cwd();
 const CONTENT_DIR = path.join(ROOT_DIR, 'src', 'content', 'blog');
@@ -519,6 +524,34 @@ function checkSlug(filePath, content, frontmatterMatch, fields, warnings) {
 	);
 }
 
+function checkEtfMetadata(filePath, content, frontmatterMatch, fields, issues) {
+	if (getPrimaryCategory(content) !== 'ETF') {
+		return;
+	}
+
+	for (const fieldName of ETF_METADATA_FIELDS) {
+		const field = fields.get(fieldName);
+		if (!field) {
+			continue;
+		}
+
+		const value = stripQuotes(stripYamlComment(field.rawValue)).trim();
+		if (!value || ['null', '~'].includes(value.toLowerCase())) {
+			continue;
+		}
+
+		if (!isValidEtfMetadataValue(fieldName, value)) {
+			addIssue(
+				issues,
+				'error',
+				filePath,
+				getLineNumber(content, frontmatterMatch.index + field.index),
+				`Invalid ETF metadata value for \`${fieldName}\`: ${value}; ${getEtfMetadataValidationMessage(fieldName)}.`,
+			);
+		}
+	}
+}
+
 function checkFrontmatter(filePath, content, issues, warnings, titleIndex, postReferences) {
 	const frontmatterMatch = content.match(FRONTMATTER_REGEX);
 	if (!frontmatterMatch) {
@@ -559,6 +592,7 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex, postR
 		warnings,
 	);
 	checkSlug(filePath, content, frontmatterMatch, fields, warnings);
+	checkEtfMetadata(filePath, content, frontmatterMatch, fields, issues);
 	checkCategories(filePath, content, frontmatterMatch, fields, warnings);
 	checkRelatedSlugs(filePath, content, frontmatterMatch, fields, issues, postReferences);
 	for (const fieldName of FRESHNESS_DATE_FIELDS) {

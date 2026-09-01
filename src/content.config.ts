@@ -1,6 +1,16 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'zod';
+import { isValidEtfMetadataValue } from './data/etfMetadata.mjs';
+
+const etfMetadataField = (field: string) =>
+	z
+		.string()
+		.trim()
+		.min(1)
+		.refine((value) => isValidEtfMetadataValue(field, value), {
+			message: `Invalid ETF metadata value for ${field}.`,
+		});
 
 const blog = defineCollection({
 	// Load Markdown and MDX files in the `src/content/blog/` directory.
@@ -32,13 +42,13 @@ const blog = defineCollection({
 		topics: z.array(z.string()).optional().nullable(),
 		platform: z.string().trim().min(1).optional().nullable(),
 		problemNumber: z.coerce.number().int().positive().optional().nullable(),
-		ticker: z.string().trim().min(1).optional().nullable(),
-		issuer: z.string().trim().min(1).optional().nullable(),
-		assetClass: z.string().trim().min(1).optional().nullable(),
-		strategy: z.string().trim().min(1).optional().nullable(),
-		exposure: z.string().trim().min(1).optional().nullable(),
-		leverage: z.string().trim().min(1).optional().nullable(),
-		incomeStyle: z.string().trim().min(1).optional().nullable(),
+		ticker: etfMetadataField('ticker').optional().nullable(),
+		issuer: etfMetadataField('issuer').optional().nullable(),
+		assetClass: etfMetadataField('assetClass').optional().nullable(),
+		strategy: etfMetadataField('strategy').optional().nullable(),
+		exposure: etfMetadataField('exposure').optional().nullable(),
+		leverage: etfMetadataField('leverage').optional().nullable(),
+		incomeStyle: etfMetadataField('incomeStyle').optional().nullable(),
 		pinned: z.boolean().optional().default(false),
 		draft: z.boolean().optional().default(false),
 		order: z.number().optional(),

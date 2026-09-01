@@ -2,6 +2,10 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { isDataAsOfAfterVerifiedDate, isValidCalendarDate } from './lib/content-rules.mjs';
+import {
+	getEtfMetadataValidationMessage,
+	isValidEtfMetadataValue,
+} from '../src/data/etfMetadata.mjs';
 
 const ROOT_DIR = process.cwd();
 const CONTENT_DIR = path.join(ROOT_DIR, 'src', 'content', 'blog');
@@ -360,6 +364,13 @@ function main() {
 			return [field, value];
 		}),
 	);
+	for (const [field, value] of Object.entries(etfFields)) {
+		if (value !== undefined && !isValidEtfMetadataValue(field, value)) {
+			throw new Error(
+				`Invalid --${field.replace(/[A-Z]/g, (character) => `-${character.toLowerCase()}`)} value: ${value}; ${getEtfMetadataValidationMessage(field)}.`,
+			);
+		}
+	}
 	if (dataAsOf && verifiedDate && isDataAsOfAfterVerifiedDate(dataAsOf, verifiedDate)) {
 		throw new Error('Invalid freshness dates: --data-as-of cannot be later than --verified-date.');
 	}
