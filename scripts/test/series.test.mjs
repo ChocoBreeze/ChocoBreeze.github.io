@@ -115,6 +115,8 @@ describe('new-post series options', () => {
 					'2',
 					'--related-slugs',
 					'related-one, related-two',
+					'--prerequisite-slugs',
+					'prerequisite-one, prerequisite-two',
 					'--file',
 					relativeFile,
 				],
@@ -127,10 +129,12 @@ describe('new-post series options', () => {
 			assert.equal((content.match(/^seriesSlug:/gm) ?? []).length, 1);
 			assert.equal((content.match(/^seriesOrder:/gm) ?? []).length, 1);
 			assert.equal((content.match(/^relatedSlugs:/gm) ?? []).length, 1);
+			assert.equal((content.match(/^prerequisiteSlugs:/gm) ?? []).length, 1);
 			assert.match(content, /^series: "Fixture series"$/m);
 			assert.match(content, /^seriesSlug: "fixture-series"$/m);
 			assert.match(content, /^seriesOrder: 2$/m);
 			assert.match(content, /^relatedSlugs: \["related-one", "related-two"\]$/m);
+			assert.match(content, /^prerequisiteSlugs: \["prerequisite-one", "prerequisite-two"\]$/m);
 		} finally {
 			rmSync(expectedPath, { force: true });
 		}

@@ -6,6 +6,7 @@ pubDate: "2026-07-03T00:00:00+09:00"
 series: "Git 명령어"
 seriesSlug: "git-commands"
 seriesOrder: 13
+prerequisiteSlugs: ["git-branch-create-switch-delete-guide", "git-commit-command-guide"]
 categories: "Programming"
 tags: ["Git", "CLI", "Version Control", "Developer Tools"]
 ---

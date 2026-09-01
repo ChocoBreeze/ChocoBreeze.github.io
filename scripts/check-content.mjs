@@ -51,6 +51,7 @@ import {
 import { normalizePostReference } from '../src/lib/postReferences.mjs';
 import { getRelatedPosts } from '../src/lib/relatedPosts.mjs';
 import { buildSeriesNavigation } from '../src/lib/series.mjs';
+import { findMissingPostReferences } from './lib/post-reference-rules.mjs';
 import {
 	ETF_METADATA_FIELDS,
 	ETF_VOLATILE_METADATA_FIELDS,
@@ -463,19 +464,61 @@ function checkCategories(filePath, content, frontmatterMatch, fields, warnings) 
 }
 
 function checkRelatedSlugs(filePath, content, frontmatterMatch, fields, issues, postReferences) {
-	const field = fields.get('relatedSlugs');
+	checkPostReferenceField(
+		filePath,
+		content,
+		frontmatterMatch,
+		fields,
+		issues,
+		postReferences,
+		'relatedSlugs',
+		'Related post',
+	);
+}
+
+function checkPostReferenceField(
+	filePath,
+	content,
+	frontmatterMatch,
+	fields,
+	issues,
+	postReferences,
+	fieldName,
+	label,
+) {
+	const field = fields.get(fieldName);
 	if (!field) {
 		return;
 	}
 
 	const line = getLineNumber(content, frontmatterMatch.index + field.index);
-	for (const reference of parseFrontmatterListField(frontmatterMatch[1], 'relatedSlugs')) {
-		if (postReferences.has(normalizePostReference(reference))) {
-			continue;
-		}
-
-		addIssue(issues, 'error', filePath, line, `Related post target not found: ${reference}.`);
+	for (const reference of findMissingPostReferences(
+		frontmatterMatch[1],
+		fieldName,
+		postReferences,
+	)) {
+		addIssue(issues, 'error', filePath, line, `${label} target not found: ${reference}.`);
 	}
+}
+
+function checkPrerequisiteSlugs(
+	filePath,
+	content,
+	frontmatterMatch,
+	fields,
+	issues,
+	postReferences,
+) {
+	checkPostReferenceField(
+		filePath,
+		content,
+		frontmatterMatch,
+		fields,
+		issues,
+		postReferences,
+		'prerequisiteSlugs',
+		'Prerequisite post',
+	);
 }
 
 function checkFrontmatterTextLength(
@@ -631,6 +674,7 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex, postR
 	checkEtfMetadata(filePath, content, frontmatterMatch, fields, issues);
 	checkCategories(filePath, content, frontmatterMatch, fields, warnings);
 	checkRelatedSlugs(filePath, content, frontmatterMatch, fields, issues, postReferences);
+	checkPrerequisiteSlugs(filePath, content, frontmatterMatch, fields, issues, postReferences);
 	for (const fieldName of FRESHNESS_DATE_FIELDS) {
 		checkDateFieldFormat(filePath, content, frontmatterMatch, fields, fieldName, issues);
 	}

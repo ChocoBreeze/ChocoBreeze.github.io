@@ -44,6 +44,7 @@ Options:
   --series-slug  Stable series identifier.
   --series-order Series position as a non-negative integer.
   --related-slugs Comma-separated stable slugs for manual related posts.
+  --prerequisite-slugs Comma-separated stable slugs for prerequisite posts.
   --platform     Problem-solving platform, such as LeetCode.
   --problem-number Problem number as a positive integer.
   --ticker      ETF ticker symbol.
@@ -194,6 +195,7 @@ function buildPostContent({
 	seriesSlug,
 	seriesOrder,
 	relatedSlugs = [],
+	prerequisiteSlugs = [],
 	platform,
 	problemNumber,
 	ticker,
@@ -257,12 +259,15 @@ function buildPostContent({
 	const relatedFields = relatedSlugs.length
 		? `relatedSlugs: [${relatedSlugs.map((slug) => `"${slug}"`).join(', ')}]\n`
 		: '';
+	const prerequisiteFields = prerequisiteSlugs.length
+		? `prerequisiteSlugs: [${prerequisiteSlugs.map((slug) => `"${slug}"`).join(', ')}]\n`
+		: '';
 
 	return `---
 title: "${title}"
 description: "${description}"
 pubDate: "${date}T${time}+09:00"
-${freshnessFields}${marketBriefFields}${problemFields}${etfFields}${seriesFields}${relatedFields}categories: "${category}"
+${freshnessFields}${marketBriefFields}${problemFields}${etfFields}${seriesFields}${relatedFields}${prerequisiteFields}categories: "${category}"
 slug: "${slug}"
 ---
 
@@ -339,6 +344,10 @@ function main() {
 		seriesOrder = Number(seriesOrderValue);
 	}
 	const relatedSlugs = (args['related-slugs'] ?? '')
+		.split(',')
+		.map((slug) => slug.trim())
+		.filter(Boolean);
+	const prerequisiteSlugs = (args['prerequisite-slugs'] ?? '')
 		.split(',')
 		.map((slug) => slug.trim())
 		.filter(Boolean);
@@ -443,6 +452,7 @@ function main() {
 			seriesSlug,
 			seriesOrder,
 			relatedSlugs,
+			prerequisiteSlugs,
 			platform,
 			problemNumber,
 			...etfFields,
