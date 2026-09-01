@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import {
 	createComparableEtfs,
+	getEtfComparisonCoverage,
 	parseCompareTickers,
 	selectComparableEtfs,
 } from '../../src/lib/etfCompare.mjs';
@@ -78,5 +79,23 @@ describe('ETF comparison data', () => {
 			selectComparableEtfs(entries, 'IAU,UNKNOWN,QQQ,SPY,GLD').map(({ ticker }) => ticker),
 			['IAU', 'QQQ', 'SPY', 'GLD'],
 		);
+	});
+
+	it('summarizes the comparison coverage without changing the source counts', () => {
+		assert.deepEqual(getEtfComparisonCoverage(new Array(135), new Array(10)), {
+			total: 135,
+			comparable: 10,
+			percentage: 7,
+		});
+		assert.deepEqual(getEtfComparisonCoverage([], []), {
+			total: 0,
+			comparable: 0,
+			percentage: 0,
+		});
+		assert.deepEqual(getEtfComparisonCoverage(undefined, undefined), {
+			total: 0,
+			comparable: 0,
+			percentage: 0,
+		});
 	});
 });

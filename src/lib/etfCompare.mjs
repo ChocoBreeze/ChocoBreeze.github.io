@@ -45,6 +45,17 @@ export function createComparableEtfs(posts) {
 	);
 }
 
+export function getEtfComparisonCoverage(posts, comparableEtfs) {
+	const total = Array.isArray(posts) ? posts.length : 0;
+	const comparable = Array.isArray(comparableEtfs) ? comparableEtfs.length : 0;
+
+	return {
+		total,
+		comparable,
+		percentage: total > 0 ? Math.round((comparable / total) * 100) : 0,
+	};
+}
+
 export function parseCompareTickers(value, max = MAX_COMPARE_ETFS) {
 	const limit = Number.isInteger(max) && max > 0 ? max : MAX_COMPARE_ETFS;
 	const values = Array.isArray(value) ? value : [value];
