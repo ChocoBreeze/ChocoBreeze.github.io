@@ -1,6 +1,7 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import GlobalSearchPalette from './GlobalSearchPalette.astro';
 ---
 
 <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -28,7 +29,7 @@ import HeaderLink from './HeaderLink.astro';
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
 		<div class="social-links">
-			<a href="/search">
+			<a href="/search" data-global-search-trigger>
 				<span class="sr-only">Search posts</span>
 				<svg
 					viewBox="0 0 24 24"
@@ -105,6 +106,8 @@ import HeaderLink from './HeaderLink.astro';
 		</div>
 	</nav>
 </header>
+
+<GlobalSearchPalette />
 
 <script>
 	const header = document.querySelector('header');

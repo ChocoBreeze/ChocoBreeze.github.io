@@ -1,0 +1,324 @@
+<dialog id="global-search-palette" aria-labelledby="global-search-title">
+	<div class="global-search-panel">
+		<div class="global-search-header">
+			<h2 id="global-search-title">빠른 검색</h2>
+			<form method="dialog">
+				<button type="submit" class="global-search-close" aria-label="검색 닫기">×</button>
+			</form>
+		</div>
+		<label class="sr-only" for="global-search-input">게시글 검색</label>
+		<input
+			type="search"
+			id="global-search-input"
+			placeholder="제목이나 카테고리를 검색하세요"
+			autocomplete="off"
+			spellcheck="false"
+			aria-controls="global-search-results"
+		/>
+		<p id="global-search-status" class="global-search-status" role="status" aria-live="polite">
+			두 글자 이상 입력하면 검색합니다.
+		</p>
+		<ul id="global-search-results" class="global-search-results"></ul>
+		<div class="global-search-footer">
+			<button type="button" id="global-search-retry" hidden>다시 시도</button>
+			<a href="/search/">전체 검색으로 이동</a>
+			<span aria-hidden="true">Esc 닫기 · ↑↓ 이동 · Enter 열기</span>
+		</div>
+	</div>
+</dialog>
+
+<script>
+	import {
+		isQuickSearchItem,
+		normalizeQuickSearchQuery,
+		searchQuickIndex,
+	} from '../lib/quickSearch.mjs';
+
+	type QuickSearchItem = {
+		t: string;
+		d?: string;
+		c?: string | string[];
+		s: string;
+	};
+
+	const dialog = document.getElementById('global-search-palette') as HTMLDialogElement | null;
+	const trigger = document.querySelector(
+		'[data-global-search-trigger]',
+	) as HTMLAnchorElement | null;
+	const input = document.getElementById('global-search-input') as HTMLInputElement | null;
+	const status = document.getElementById('global-search-status');
+	const results = document.getElementById('global-search-results');
+	const retry = document.getElementById('global-search-retry') as HTMLButtonElement | null;
+
+	let searchIndex: QuickSearchItem[] = [];
+	let indexPromise: Promise<QuickSearchItem[]> | undefined;
+
+	function canOpenDialog() {
+		return Boolean(dialog && typeof dialog.showModal === 'function');
+	}
+
+	function setStatus(message: string, isError = false) {
+		if (!status) return;
+		status.textContent = message;
+		status.classList.toggle('error', isError);
+	}
+
+	function getCategoryLabel(category: QuickSearchItem['c']) {
+		if (Array.isArray(category)) return category[0] || 'Uncategorized';
+		return category || 'Uncategorized';
+	}
+
+	function getPostHref(slug: string) {
+		const normalizedSlug = slug
+			.split('/')
+			.filter(Boolean)
+			.map((segment) => encodeURIComponent(segment))
+			.join('/');
+		return `/blog/${normalizedSlug}/`;
+	}
+
+	function renderResults() {
+		if (!results || !input) return;
+		results.replaceChildren();
+
+		const query = normalizeQuickSearchQuery(input.value);
+		if (query.length < 2) {
+			setStatus('두 글자 이상 입력하면 검색합니다.');
+			return;
+		}
+
+		const matches = searchQuickIndex(searchIndex, query);
+		if (matches.length === 0) {
+			setStatus('검색 결과가 없습니다.');
+			return;
+		}
+
+		setStatus(`${matches.length}개의 빠른 검색 결과`);
+		for (const { item } of matches) {
+			const listItem = document.createElement('li');
+			const link = document.createElement('a');
+			link.href = getPostHref(item.s);
+
+			const category = document.createElement('span');
+			category.className = 'global-search-category';
+			category.textContent = getCategoryLabel(item.c);
+
+			const title = document.createElement('strong');
+			title.textContent = item.t;
+
+			link.append(category, title);
+			if (item.d) {
+				const description = document.createElement('span');
+				description.className = 'global-search-description';
+				description.textContent = item.d;
+				link.append(description);
+			}
+			listItem.append(link);
+			results.append(listItem);
+		}
+	}
+
+	async function loadSearchIndex() {
+		if (!indexPromise) {
+			indexPromise = fetch('/search/quick.json', { headers: { Accept: 'application/json' } })
+				.then(async (response) => {
+					if (!response.ok) throw new Error(`Quick search request failed: ${response.status}`);
+					const data: unknown = await response.json();
+					if (!Array.isArray(data)) throw new Error('Quick search response is not an array');
+					return data.filter(isQuickSearchItem) as QuickSearchItem[];
+				})
+				.catch((error) => {
+					indexPromise = undefined;
+					throw error;
+				});
+		}
+
+		searchIndex = await indexPromise;
+	}
+
+	async function openPalette({ retryLoad = false } = {}) {
+		if (!dialog || !canOpenDialog() || (dialog.open && !retryLoad)) return;
+		if (!dialog.open) dialog.showModal();
+		input?.focus();
+		setStatus('빠른 검색 인덱스를 불러오는 중...');
+		if (retry) retry.hidden = true;
+
+		try {
+			await loadSearchIndex();
+			renderResults();
+		} catch {
+			setStatus('빠른 검색을 불러오지 못했습니다. 다시 시도해 주세요.', true);
+			if (retry) retry.hidden = false;
+		}
+	}
+
+	trigger?.addEventListener('click', (event) => {
+		if (!canOpenDialog()) return;
+		event.preventDefault();
+		void openPalette();
+	});
+
+	retry?.addEventListener('click', () => {
+		void openPalette({ retryLoad: true });
+	});
+
+	input?.addEventListener('input', renderResults);
+	dialog?.addEventListener('keydown', (event) => {
+		const links = results?.querySelectorAll<HTMLAnchorElement>('a') ?? [];
+		const currentIndex = Array.from(links).indexOf(document.activeElement as HTMLAnchorElement);
+		if (event.key === 'ArrowDown' && links.length > 0) {
+			event.preventDefault();
+			links[Math.min(currentIndex + 1, links.length - 1)]?.focus();
+		} else if (event.key === 'ArrowUp' && links.length > 0) {
+			event.preventDefault();
+			if (currentIndex <= 0) input?.focus();
+			else links[currentIndex - 1]?.focus();
+		} else if (event.key === 'Enter' && currentIndex >= 0) {
+			event.preventDefault();
+			links[currentIndex]?.click();
+		}
+	});
+
+	dialog?.addEventListener('click', (event) => {
+		if (event.target === dialog) dialog.close();
+	});
+
+	dialog?.addEventListener('close', () => {
+		trigger?.focus();
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (event.isComposing || event.key.toLowerCase() !== 'k' || (!event.metaKey && !event.ctrlKey))
+			return;
+		if (!canOpenDialog()) return;
+		event.preventDefault();
+		void openPalette();
+	});
+</script>
+
+<style>
+	dialog {
+		width: min(560px, calc(100vw - 2rem));
+		padding: 0;
+		border: 1px solid var(--border-color);
+		border-radius: var(--nv-radius-lg, 18px);
+		background: var(--card-bg);
+		color: var(--text-color);
+		box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+	}
+	dialog::backdrop {
+		background: rgba(15, 23, 42, 0.56);
+		backdrop-filter: blur(3px);
+	}
+	.global-search-panel {
+		padding: 1.15rem;
+	}
+	.global-search-header,
+	.global-search-footer {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+	.global-search-header {
+		justify-content: space-between;
+		margin-bottom: 0.85rem;
+	}
+	.global-search-header h2 {
+		margin: 0;
+		font-size: 1.1rem;
+	}
+	.global-search-close {
+		border: 0;
+		background: transparent;
+		color: var(--muted-text);
+		font-size: 1.6rem;
+		line-height: 1;
+		cursor: pointer;
+		padding: 0.1rem 0.35rem;
+	}
+	#global-search-input {
+		box-sizing: border-box;
+		width: 100%;
+		padding: 0.8rem 0.9rem;
+		border: 2px solid var(--border-color);
+		border-radius: 12px;
+		background: var(--bg-color);
+		color: var(--text-color);
+		font-size: 1rem;
+	}
+	#global-search-input:focus-visible,
+	.global-search-close:focus-visible,
+	.global-search-footer button:focus-visible,
+	.global-search-footer a:focus-visible,
+	.global-search-results a:focus-visible {
+		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+		outline-offset: 3px;
+	}
+	.global-search-status {
+		min-height: 1.3em;
+		margin: 0.7rem 0;
+		color: var(--muted-text);
+		font-size: 0.85rem;
+	}
+	.global-search-status.error {
+		color: #c2410c;
+	}
+	:global([data-theme='dark']) .global-search-status.error {
+		color: #fb923c;
+	}
+	.global-search-results {
+		list-style: none;
+		max-height: min(48vh, 24rem);
+		overflow-y: auto;
+		padding: 0;
+		margin: 0;
+	}
+	.global-search-results li + li {
+		border-top: 1px solid var(--border-color);
+	}
+	.global-search-results a {
+		display: grid;
+		gap: 0.25rem;
+		padding: 0.75rem 0.35rem;
+		color: var(--text-color);
+		text-decoration: none;
+	}
+	.global-search-results a:hover {
+		background: color-mix(in srgb, var(--card-bg) 82%, var(--muted-text) 18%);
+	}
+	.global-search-category {
+		color: var(--muted-text);
+		font-size: 0.75rem;
+	}
+	.global-search-description {
+		overflow: hidden;
+		color: var(--muted-text);
+		font-size: 0.82rem;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.global-search-footer {
+		justify-content: space-between;
+		margin-top: 0.9rem;
+		color: var(--muted-text);
+		font-size: 0.75rem;
+	}
+	.global-search-footer a,
+	.global-search-footer button {
+		border: 0;
+		background: transparent;
+		color: var(--accent);
+		cursor: pointer;
+		font: inherit;
+		padding: 0;
+		text-decoration: underline;
+	}
+	.global-search-footer span {
+		text-align: right;
+	}
+	@media (max-width: 540px) {
+		.global-search-footer span {
+			display: none;
+		}
+	}
+</style>
