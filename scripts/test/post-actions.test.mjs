@@ -1,7 +1,37 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { buildFeedbackIssueUrl, buildHeadingUrl } from '../../src/lib/postActions.mjs';
+import {
+	buildCitationText,
+	buildFeedbackIssueUrl,
+	buildHeadingUrl,
+} from '../../src/lib/postActions.mjs';
+
+describe('buildCitationText', () => {
+	it('builds a Markdown citation with the display date and canonical URL', () => {
+		assert.equal(
+			buildCitationText({
+				title: 'ETF 비교: 나스닥 100',
+				siteTitle: 'ChocoBreeze',
+				date: '2026-01-16T00:00:00+09:00',
+				pageUrl: 'https://chocobreeze.github.io/blog/qqq/',
+			}),
+			'> ETF 비교: 나스닥 100\n> ChocoBreeze · 2026년 1월 16일\n> https://chocobreeze.github.io/blog/qqq/',
+		);
+	});
+
+	it('keeps a citation usable when the publication date is unavailable', () => {
+		assert.equal(
+			buildCitationText({
+				title: '레거시 글',
+				siteTitle: 'ChocoBreeze',
+				date: 'not-a-date',
+				pageUrl: 'https://chocobreeze.github.io/blog/legacy/',
+			}),
+			'> 레거시 글\n> ChocoBreeze\n> https://chocobreeze.github.io/blog/legacy/',
+		);
+	});
+});
 
 describe('buildFeedbackIssueUrl', () => {
 	it('encodes the post title and canonical URL in the issue form', () => {

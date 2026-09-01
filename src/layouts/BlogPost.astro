@@ -8,7 +8,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_TITLE } from '../consts';
 import { getCategoryDefinition } from '../data/blogCategories';
-import { buildFeedbackIssueUrl } from '../lib/postActions.mjs';
+import { buildCitationText, buildFeedbackIssueUrl } from '../lib/postActions.mjs';
 import { getFreshnessStatus } from '../lib/contentFreshness.mjs';
 import { estimateReadingTime } from '../lib/readingTime.mjs';
 import {
@@ -94,6 +94,12 @@ const hasPostBody = body !== undefined;
 const readingTime = estimateReadingTime(body);
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 const feedbackUrl = buildFeedbackIssueUrl(title, canonicalUrl);
+const citationText = buildCitationText({
+	title,
+	siteTitle: SITE_TITLE,
+	date,
+	pageUrl: canonicalUrl,
+});
 const freshnessReferenceDate = dataAsOf ?? verifiedDate;
 const freshnessStatus = getFreshnessStatus(activeCategory, freshnessReferenceDate);
 const structuredData = hasPostBody
@@ -316,6 +322,27 @@ const structuredDataJson = structuredData ? serializeJsonLd(structuredData) : un
 			.post-action:focus-visible {
 				outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
 				outline-offset: 2px;
+			}
+			.citation-copy-source.sr-only {
+				white-space: pre-wrap;
+			}
+			.citation-copy-fallback {
+				display: block;
+				flex-basis: 100%;
+				width: 100%;
+				max-width: 100%;
+				margin: 0;
+				padding: 0.75rem;
+				border: 1px solid var(--border-color);
+				border-radius: var(--nv-radius-sm);
+				background: var(--card-bg);
+				color: var(--text-color);
+				font: inherit;
+				font-size: 0.85rem;
+				line-height: 1.5;
+				white-space: pre-wrap;
+				overflow-wrap: anywhere;
+				user-select: text;
 			}
 			.series-navigation {
 				margin: 0 0 1.5rem;
@@ -852,6 +879,16 @@ const structuredDataJson = structuredData ? serializeJsonLd(structuredData) : un
 												소제목 링크 복사
 											</button>
 										)}
+										<button type="button" class="post-action" data-copy-citation>
+											인용문 복사
+										</button>
+										<span
+											class="citation-copy-source sr-only"
+											data-citation-copy-source
+											aria-hidden="true"
+										>
+											{citationText}
+										</span>
 										<a
 											class="post-action post-action-link"
 											href={feedbackUrl}
@@ -1066,6 +1103,35 @@ const structuredDataJson = structuredData ? serializeJsonLd(structuredData) : un
 					copied
 						? '현재 소제목 링크를 복사했습니다.'
 						: '소제목 링크를 자동으로 복사하지 못했습니다.',
+				);
+			});
+
+			const citationButton = document.querySelector<HTMLButtonElement>('[data-copy-citation]');
+			const citationSource = document.querySelector<HTMLElement>('[data-citation-copy-source]');
+			const revealCitationFallback = () => {
+				if (!citationSource) return;
+
+				citationSource.classList.remove('sr-only');
+				citationSource.classList.add('citation-copy-fallback');
+				citationSource.removeAttribute('aria-hidden');
+				citationSource.setAttribute('tabindex', '0');
+				selectText(citationSource);
+			};
+			citationButton?.addEventListener('click', async () => {
+				if (!citationSource) return;
+
+				const citation = citationSource.textContent?.trim();
+				if (!citation) return;
+
+				const copied = await copyText(citation);
+				if (!copied) {
+					citationSource.textContent = citation;
+					revealCitationFallback();
+				}
+				announceAction(
+					copied
+						? '인용문을 복사했습니다.'
+						: '인용문을 자동으로 복사하지 못했습니다. 텍스트를 선택했습니다.',
 				);
 			});
 
