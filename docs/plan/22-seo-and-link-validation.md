@@ -3,11 +3,11 @@
 ## 현재 동작
 
 - `BaseHead.astro`는 canonical, Open Graph, Twitter, RSS 메타데이터를 제공합니다.
-- JSON-LD는 없습니다.
-- `check:content`는 Markdown 내부 링크, 생성된 `/blog/...` 경로, `src/pages`의 정적 경로를 검사합니다.
-- `/blog/...#fragment` 링크는 대상 글의 heading ID와 비교합니다.
+- 글 상세는 `BlogPosting`과 `BreadcrumbList` JSON-LD를 출력합니다.
+- `check:content`는 Markdown 내부 링크, 생성된 `/blog/...` 경로, `src/pages`의 정적 경로와 파일형 엔드포인트를 검사합니다.
+- `/blog/...#fragment` 링크는 대상 글의 Markdown·MDX heading ID와 템플릿에서 조건부 생성되는 앵커를 비교합니다.
 - `.mdx` 글은 Astro MDX processor와 frontmatter를 사용해 heading ID를 계산합니다.
-- `#소제목`만 있는 앵커와 일반 정적 페이지의 fragment는 검사하지 않습니다.
+- 일반 정적 페이지의 fragment와 외부 링크의 네트워크 생존 여부는 검사하지 않습니다.
 
 ## 목표
 
@@ -20,7 +20,7 @@
 - 글 상세: `BlogPosting`
 - 탐색 계층: `BreadcrumbList`
 - 제목, 설명, canonical URL, 대표 이미지, 발행일, 수정일, 작성자
-- 16·17번이 구현된 경우 시리즈·검증일 중 표준 속성에 맞는 정보만 선택적으로 연결
+- 시리즈·검증일·기준일은 현재 JSON-LD에 별도 속성으로 연결하지 않습니다.
 
 JSON-LD는 검색 순위나 리치 결과를 보장하는 기능으로 표현하지 않습니다.
 

@@ -4,7 +4,7 @@
 
 - 공통 카테고리 목록은 최신순·오래된 순 정렬과 30개 단위 더 보기를 제공합니다.
 - ETF·Programming·Semiconductor·Reports·Economics·Computer Science 페이지는 연도·태그 필터를 제공하며 선택값을 `year`·`tag` URL 파라미터에 보존합니다.
-- Problem Solving 페이지는 Easy·Medium·Hard 집계와 공통 상태 기반 난이도·토픽 필터를 제공하며, 플랫폼·문제 번호 필터를 신규 메타데이터에 연결할 수 있습니다.
+- Problem Solving 페이지는 Easy·Medium·Hard 집계와 공통 상태 기반 난이도·토픽 필터를 제공하며, `platform`·`problemNumber`가 있는 글은 해당 필터로 탐색할 수 있습니다.
 - 필터·정렬·더 보기 로직은 공통 레이아웃에서 관리하고, Problem Solving의 난이도·토픽 카드는 공통 상태를 사용합니다.
 
 ## 목표
