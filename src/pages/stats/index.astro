@@ -1,0 +1,317 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { BLOG_CATEGORIES, getCategoryDefinition } from '../../data/blogCategories';
+import { buildBlogStats } from '../../lib/blogStats.mjs';
+import { getPublishedPosts } from '../../lib/posts';
+
+const posts = await getPublishedPosts();
+const stats = buildBlogStats(posts, {
+	getCategory: (post) => getCategoryDefinition(post.data.categories)?.key ?? 'Uncategorized',
+});
+const categoryDefinitions = new Map(BLOG_CATEGORIES.map((category) => [category.key, category]));
+const maxCategoryCount = Math.max(1, ...stats.categories.map(({ count }) => count));
+const maxYearCount = Math.max(1, ...stats.years.map(({ count }) => count));
+const monthCounts = new Map(stats.months.map(({ key, count }) => [key, count]));
+const yearActivity = stats.years.map(({ year, count }) => ({
+	year,
+	count,
+	months: Array.from({ length: 12 }, (_, index) => {
+		const month = String(index + 1).padStart(2, '0');
+		return { month, count: monthCounts.get(`${year}-${month}`) ?? 0 };
+	}),
+}));
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title="사이트 통계"
+			description="공개된 글의 발행 현황과 카테고리 분포를 확인합니다."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="stats-page">
+			<section class="stats-hero">
+				<p class="eyebrow">Blog Stats</p>
+				<h1>사이트 통계</h1>
+				<p>지금까지 공개한 글을 발행일과 대표 카테고리 기준으로 정리했습니다.</p>
+			</section>
+
+			<section class="stats-overview" aria-label="전체 통계">
+				<article class="stats-card">
+					<span>전체 글</span>
+					<strong>{stats.totalPosts}</strong>
+					<small>공개된 글 기준</small>
+				</article>
+				<article class="stats-card">
+					<span>날짜가 있는 글</span>
+					<strong>{stats.datedPosts}</strong>
+					<small
+						>{
+							stats.undatedPosts > 0
+								? `${stats.undatedPosts}개는 날짜 없음`
+								: '모든 글에 발행일 있음'
+						}</small
+					>
+				</article>
+				<article class="stats-card">
+					<span>활동 연도</span>
+					<strong>{stats.years.length}</strong>
+					<small>발행 기록이 있는 연도</small>
+				</article>
+			</section>
+
+			<section class="stats-section" aria-labelledby="category-stats-heading">
+				<div class="section-heading">
+					<p class="eyebrow">Categories</p>
+					<h2 id="category-stats-heading">카테고리 분포</h2>
+				</div>
+				<ul class="category-stats-list">
+					{
+						stats.categories.map(({ key, count }) => {
+							const category = categoryDefinitions.get(key);
+							return (
+								<li>
+									<div class="stat-label-row">
+										{category ? <a href={category.href}>{category.label}</a> : <span>{key}</span>}
+										<strong>{count}</strong>
+									</div>
+									<div class="stat-bar" aria-hidden="true">
+										<span style={`width: ${(count / maxCategoryCount) * 100}%`} />
+									</div>
+								</li>
+							);
+						})
+					}
+				</ul>
+			</section>
+
+			<section class="stats-section" aria-labelledby="year-stats-heading">
+				<div class="section-heading">
+					<p class="eyebrow">Timeline</p>
+					<h2 id="year-stats-heading">연도별 발행</h2>
+				</div>
+				<ul class="year-stats-list">
+					{
+						stats.years.map(({ year, count }) => (
+							<li>
+								<div class="stat-label-row">
+									<span>{year}년</span>
+									<strong>{count}</strong>
+								</div>
+								<div class="stat-bar" aria-hidden="true">
+									<span style={`width: ${(count / maxYearCount) * 100}%`} />
+								</div>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+
+			<section class="stats-section" aria-labelledby="month-stats-heading">
+				<div class="section-heading">
+					<p class="eyebrow">Monthly Activity</p>
+					<h2 id="month-stats-heading">월별 활동</h2>
+					<p>색이 들어간 칸은 해당 월에 발행된 글이 있는 달입니다.</p>
+				</div>
+				<div class="activity-years">
+					{
+						yearActivity.map(({ year, count, months }) => (
+							<section class="activity-year" aria-labelledby={`activity-${year}`}>
+								<div class="activity-year-heading">
+									<h3 id={`activity-${year}`}>{year}년</h3>
+									<span>{count} posts</span>
+								</div>
+								<div class="month-grid">
+									{months.map(({ month, count: monthCount }) => (
+										<div
+											class:list={['month-cell', { active: monthCount > 0 }]}
+											aria-label={`${year}년 ${Number(month)}월 ${monthCount}개`}
+											title={`${year}년 ${Number(month)}월: ${monthCount}개`}
+										>
+											<span>{Number(month)}월</span>
+											<strong>{monthCount}</strong>
+										</div>
+									))}
+								</div>
+							</section>
+						))
+					}
+				</div>
+			</section>
+
+			<p class="stats-note">통계는 빌드 시점에 공개 상태인 글을 기준으로 생성됩니다.</p>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.stats-page {
+		width: min(100%, 960px);
+		margin: 0 auto;
+		padding: 3rem 1rem 4rem;
+	}
+	.stats-hero {
+		margin-bottom: 1.5rem;
+		padding: 2rem;
+		border: 1px solid var(--border-color);
+		border-radius: 28px;
+		background: color-mix(in srgb, var(--card-bg) 86%, transparent);
+	}
+	.eyebrow {
+		margin: 0 0 0.5rem;
+		color: var(--accent);
+		font-size: 0.8rem;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+	.stats-hero h1,
+	.section-heading h2 {
+		margin: 0 0 0.5rem;
+	}
+	.stats-hero > p:last-child,
+	.section-heading > p:last-child {
+		margin: 0;
+		color: var(--muted-text);
+	}
+	.stats-overview {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.75rem;
+		margin-bottom: 1.5rem;
+	}
+	.stats-card,
+	.stats-section {
+		border: 1px solid var(--border-color);
+		border-radius: 20px;
+		background: var(--card-bg);
+	}
+	.stats-card {
+		display: grid;
+		gap: 0.3rem;
+		padding: 1.1rem 1.2rem;
+	}
+	.stats-card span,
+	.stats-card small,
+	.activity-year-heading span {
+		color: var(--muted-text);
+	}
+	.stats-card strong {
+		font-size: clamp(2rem, 5vw, 3rem);
+		line-height: 1;
+	}
+	.stats-card small {
+		font-size: 0.8rem;
+	}
+	.stats-section {
+		margin-bottom: 1.5rem;
+		padding: 1.25rem;
+	}
+	.section-heading {
+		margin-bottom: 1rem;
+	}
+	.category-stats-list,
+	.year-stats-list {
+		display: grid;
+		gap: 0.85rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.stat-label-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.35rem;
+	}
+	.stat-label-row a {
+		color: var(--text-color);
+		font-weight: 700;
+		text-decoration: none;
+	}
+	.stat-label-row a:hover {
+		color: var(--accent);
+	}
+	.stat-label-row strong {
+		font-variant-numeric: tabular-nums;
+	}
+	.stat-bar {
+		height: 0.5rem;
+		overflow: hidden;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--border-color) 70%, transparent);
+	}
+	.stat-bar span {
+		display: block;
+		height: 100%;
+		border-radius: inherit;
+		background: var(--accent);
+	}
+	.activity-years {
+		display: grid;
+		gap: 1.25rem;
+	}
+	.activity-year-heading {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.6rem;
+	}
+	.activity-year-heading h3 {
+		margin: 0;
+		font-size: 1rem;
+	}
+	.activity-year-heading span {
+		font-size: 0.8rem;
+	}
+	.month-grid {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		gap: 0.35rem;
+	}
+	.month-cell {
+		display: grid;
+		gap: 0.2rem;
+		min-width: 0;
+		padding: 0.45rem 0.15rem;
+		border: 1px solid var(--border-color);
+		border-radius: 8px;
+		color: var(--muted-text);
+		font-size: 0.7rem;
+		text-align: center;
+	}
+	.month-cell.active {
+		border-color: color-mix(in srgb, var(--accent) 55%, var(--border-color));
+		background: color-mix(in srgb, var(--accent) 15%, var(--card-bg));
+		color: var(--text-color);
+	}
+	.month-cell strong {
+		font-size: 0.85rem;
+		font-variant-numeric: tabular-nums;
+	}
+	.stats-note {
+		margin: 0;
+		color: var(--muted-text);
+		font-size: 0.85rem;
+		text-align: center;
+	}
+	@media (max-width: 700px) {
+		.stats-page {
+			padding: 2rem 1rem 3rem;
+		}
+		.stats-overview {
+			grid-template-columns: 1fr;
+		}
+		.month-grid {
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+		}
+	}
+</style>
