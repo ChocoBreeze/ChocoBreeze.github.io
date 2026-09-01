@@ -2,6 +2,7 @@
 import { getPublishedPosts } from '../../lib/posts';
 import { BLOG_CATEGORIES } from '../../data/blogCategories';
 import BlogListLayout from '../../layouts/BlogListLayout.astro';
+import { createComparableEtfs } from '../../lib/etfCompare.mjs';
 
 const posts = (await getPublishedPosts())
 	.filter((post) => {
@@ -22,6 +23,7 @@ const posts = (await getPublishedPosts())
 	});
 
 const category = BLOG_CATEGORIES.find(({ key }) => key === 'ETF')!;
+const comparableEtfs = createComparableEtfs(posts);
 
 const etfSections = Array.from(
 	posts.reduce((sections, post) => {
@@ -61,6 +63,89 @@ const etfSections = Array.from(
 	posts={posts}
 	filters={{ search: true, year: true, tag: true, assetClass: true, strategy: true }}
 >
+	<section class="etf-comparison" data-etf-comparison aria-labelledby="etf-comparison-heading">
+		<div class="etf-comparison-heading">
+			<p class="section-eyebrow">ETF Comparison</p>
+			<h2 id="etf-comparison-heading">ETF 비교</h2>
+			<p>안정적인 분류 정보가 있는 ETF를 2~4개 선택해 한눈에 비교할 수 있습니다.</p>
+		</div>
+		{
+			comparableEtfs.length > 0 ? (
+				<>
+					<form class="etf-comparison-form" data-etf-comparison-form>
+						<fieldset>
+							<legend>비교할 ETF 선택 (2~4개)</legend>
+							<div class="etf-comparison-options">
+								{comparableEtfs.map((etf) => (
+									<label class="etf-comparison-option">
+										<input
+											type="checkbox"
+											name="compare"
+											value={etf.ticker}
+											data-etf-compare-option
+											data-title={etf.title}
+											data-href={etf.href}
+											data-issuer={etf.issuer || undefined}
+											data-asset-class={etf.assetClass || undefined}
+											data-strategy={etf.strategy || undefined}
+											data-exposure={etf.exposure || undefined}
+											data-leverage={etf.leverage || undefined}
+											data-income-style={etf.incomeStyle || undefined}
+										/>
+										<span>
+											<strong>{etf.ticker}</strong>
+											<small>{etf.title}</small>
+										</span>
+									</label>
+								))}
+							</div>
+						</fieldset>
+						<div class="etf-comparison-actions">
+							<button type="submit" class="etf-compare-submit" data-etf-compare-submit>
+								선택한 ETF 비교
+							</button>
+							<button type="button" class="etf-compare-clear" data-etf-compare-clear hidden>
+								선택 해제
+							</button>
+							<p
+								class="etf-comparison-status"
+								data-etf-comparison-status
+								role="status"
+								aria-live="polite"
+							>
+								2~4개를 선택하세요.
+							</p>
+						</div>
+					</form>
+					<div class="etf-comparison-result" data-etf-comparison-result hidden>
+						<div class="etf-comparison-result-heading">
+							<h3>선택한 ETF 비교</h3>
+							<p data-etf-comparison-selection aria-live="polite" />
+						</div>
+						<div class="etf-comparison-table-wrap">
+							<table class="etf-comparison-table">
+								<caption class="sr-only">선택한 ETF의 안정 메타데이터 비교</caption>
+								<thead>
+									<tr data-etf-comparison-header>
+										<th scope="col">항목</th>
+									</tr>
+								</thead>
+								<tbody data-etf-comparison-body />
+							</table>
+						</div>
+					</div>
+					<noscript>
+						<p class="etf-comparison-noscript">
+							ETF 비교는 브라우저의 JavaScript가 필요합니다. 아래 목록에서 전체 ETF 글을 확인할 수
+							있습니다.
+						</p>
+					</noscript>
+				</>
+			) : (
+				<p class="etf-comparison-empty">비교에 필요한 ETF 메타데이터가 아직 없습니다.</p>
+			)
+		}
+	</section>
 	<section class="etf-classification-index" aria-labelledby="etf-classification-heading">
 		<div class="etf-classification-heading">
 			<p class="section-eyebrow">ETF Classification</p>
@@ -192,4 +277,412 @@ const etfSections = Array.from(
 	.more-count {
 		margin: 0.75rem 0 0;
 	}
+
+	.etf-comparison {
+		margin: 0 0 2.5rem;
+		padding: 1.25rem;
+		border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--border-color));
+		border-radius: 24px;
+		background: color-mix(in srgb, var(--card-bg) 96%, var(--accent) 4%);
+	}
+
+	.etf-comparison-heading {
+		margin-bottom: 1rem;
+	}
+
+	.etf-comparison-heading h2 {
+		margin-top: 0;
+	}
+
+	.etf-comparison-heading p:not(.section-eyebrow) {
+		margin: 0;
+		color: var(--muted-text);
+	}
+
+	.etf-comparison-form fieldset {
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	.etf-comparison-form legend {
+		margin-bottom: 0.75rem;
+		font-weight: 700;
+	}
+
+	.etf-comparison-options {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 0.55rem;
+	}
+
+	.etf-comparison-option {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.6rem;
+		min-width: 0;
+		padding: 0.65rem 0.75rem;
+		border: 1px solid var(--border-color);
+		border-radius: 12px;
+		background: var(--card-bg);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background-color 0.2s ease;
+	}
+
+	.etf-comparison-option:hover,
+	.etf-comparison-option:has(input:checked) {
+		border-color: var(--accent);
+		background: color-mix(in srgb, var(--card-bg) 84%, var(--accent) 16%);
+	}
+
+	.etf-comparison-option input {
+		flex: 0 0 auto;
+		margin-top: 0.25rem;
+		accent-color: var(--accent);
+	}
+
+	.etf-comparison-option span {
+		display: grid;
+		min-width: 0;
+		gap: 0.1rem;
+	}
+
+	.etf-comparison-option strong {
+		color: var(--heading-color);
+	}
+
+	.etf-comparison-option small {
+		overflow: hidden;
+		color: var(--muted-text);
+		font-size: 0.78rem;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.etf-comparison-actions {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+		margin-top: 1rem;
+	}
+
+	.etf-compare-submit,
+	.etf-compare-clear {
+		padding: 0.55rem 0.85rem;
+		border: 1px solid var(--border-color);
+		border-radius: var(--nv-radius-sm);
+		font: inherit;
+		font-size: 0.84rem;
+		font-weight: 700;
+		cursor: pointer;
+	}
+
+	.etf-compare-submit {
+		border-color: var(--nv-primary);
+		background: var(--nv-primary);
+		color: var(--nv-on-primary);
+	}
+
+	.etf-compare-submit:hover {
+		background: var(--nv-primary-dark);
+	}
+
+	.etf-compare-clear {
+		background: transparent;
+		color: var(--heading-color);
+	}
+
+	.etf-compare-clear:hover {
+		border-color: var(--accent);
+		background: color-mix(in srgb, var(--card-bg) 80%, var(--accent) 20%);
+	}
+
+	.etf-compare-submit:focus-visible,
+	.etf-compare-clear:focus-visible,
+	.etf-comparison-option:has(input:focus-visible) {
+		outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+		outline-offset: 3px;
+	}
+
+	.etf-compare-submit:disabled {
+		cursor: not-allowed;
+		opacity: 0.55;
+	}
+
+	.etf-comparison-status,
+	.etf-comparison-selection,
+	.etf-comparison-noscript,
+	.etf-comparison-empty {
+		margin: 0;
+		color: var(--muted-text);
+		font-size: 0.82rem;
+	}
+
+	.etf-comparison-result {
+		margin-top: 1.5rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--border-color);
+	}
+
+	.etf-comparison-result-heading {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.8rem;
+	}
+
+	.etf-comparison-result-heading h3 {
+		margin: 0;
+	}
+
+	.etf-comparison-table-wrap {
+		overflow-x: auto;
+	}
+
+	.etf-comparison-table {
+		width: 100%;
+		min-width: 560px;
+		border-collapse: collapse;
+		font-size: 0.88rem;
+	}
+
+	.etf-comparison-table th,
+	.etf-comparison-table td {
+		padding: 0.7rem 0.75rem;
+		border: 1px solid var(--border-color);
+		text-align: left;
+		vertical-align: top;
+	}
+
+	.etf-comparison-table thead th {
+		background: var(--table-head-bg);
+		color: var(--heading-color);
+		white-space: nowrap;
+	}
+
+	.etf-comparison-table tbody th {
+		width: 7rem;
+		background: var(--table-row-alt-bg);
+		color: var(--heading-color);
+		white-space: nowrap;
+	}
+
+	.etf-comparison-table tbody tr:nth-child(even) td {
+		background: var(--table-row-alt-bg);
+	}
+
+	.etf-comparison-table a {
+		color: var(--heading-color);
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.etf-comparison-table a:hover {
+		color: var(--accent);
+		text-decoration: underline;
+	}
+
+	@media (max-width: 640px) {
+		.etf-comparison-result-heading {
+			align-items: flex-start;
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+	}
 </style>
+
+<script>
+	import {
+		MAX_COMPARE_ETFS,
+		parseCompareTickers,
+		selectComparableEtfs,
+	} from '../../lib/etfCompare.mjs';
+
+	const comparison = document.querySelector<HTMLElement>('[data-etf-comparison]');
+
+	if (comparison) {
+		const form = comparison.querySelector<HTMLFormElement>('[data-etf-comparison-form]');
+		const options = [...comparison.querySelectorAll<HTMLInputElement>('[data-etf-compare-option]')];
+		const submit = comparison.querySelector<HTMLButtonElement>('[data-etf-compare-submit]');
+		const clear = comparison.querySelector<HTMLButtonElement>('[data-etf-compare-clear]');
+		const status = comparison.querySelector<HTMLElement>('[data-etf-comparison-status]');
+		const result = comparison.querySelector<HTMLElement>('[data-etf-comparison-result]');
+		const selection = comparison.querySelector<HTMLElement>('[data-etf-comparison-selection]');
+		const header = comparison.querySelector<HTMLTableRowElement>('[data-etf-comparison-header]');
+		const body = comparison.querySelector<HTMLTableSectionElement>('[data-etf-comparison-body]');
+
+		const fields = [
+			['issuer', '운용사'],
+			['assetClass', '자산군'],
+			['strategy', '전략'],
+			['exposure', '주요 노출'],
+			['leverage', '레버리지'],
+			['incomeStyle', '인컴 성격'],
+		] as const;
+		let selectedOrder: string[] = [];
+
+		function getEntries() {
+			return options.map((option) => ({
+				ticker: option.value,
+				title: option.dataset.title ?? option.value,
+				href: option.dataset.href ?? '',
+				issuer: option.dataset.issuer ?? '',
+				assetClass: option.dataset.assetClass ?? '',
+				strategy: option.dataset.strategy ?? '',
+				exposure: option.dataset.exposure ?? '',
+				leverage: option.dataset.leverage ?? '',
+				incomeStyle: option.dataset.incomeStyle ?? '',
+			}));
+		}
+
+		function getSelectedTickers() {
+			const checked = new Set(
+				options.filter((option) => option.checked).map((option) => option.value),
+			);
+			return [
+				...selectedOrder.filter((ticker) => checked.has(ticker)),
+				...options
+					.filter((option) => option.checked && !selectedOrder.includes(option.value))
+					.map((option) => option.value),
+			];
+		}
+
+		function updateControls() {
+			const count = getSelectedTickers().length;
+			if (submit) submit.disabled = count < 2;
+			if (clear) clear.hidden = count === 0;
+			if (status) {
+				status.textContent = count
+					? `${count}개 선택됨${count >= MAX_COMPARE_ETFS ? ' · 최대 선택' : ''}`
+					: '2~4개를 선택하세요.';
+			}
+		}
+
+		function readRequestedTickers() {
+			const params = new URLSearchParams(window.location.search);
+			return parseCompareTickers(params.getAll('compare'), Number.MAX_SAFE_INTEGER);
+		}
+
+		function setSelectedTickers(tickers: string[]) {
+			const selected = new Set(tickers);
+			selectedOrder = tickers.filter((ticker) => selected.has(ticker));
+			options.forEach((option) => {
+				option.checked = selected.has(option.value);
+			});
+		}
+
+		function updateUrl(tickers: string[], historyMode: 'push' | 'replace' = 'push') {
+			const url = new URL(window.location.href);
+			url.searchParams.delete('compare');
+			if (tickers.length > 0) {
+				url.searchParams.set('compare', tickers.join(','));
+			}
+			window.history[historyMode === 'replace' ? 'replaceState' : 'pushState']({}, '', url);
+		}
+
+		function renderComparison() {
+			if (!header || !body || !result || !selection) return;
+
+			const entries = selectComparableEtfs(getEntries(), getSelectedTickers());
+			header.replaceChildren(
+				Object.assign(document.createElement('th'), { scope: 'col', textContent: '항목' }),
+			);
+			entries.forEach((entry) => {
+				const th = document.createElement('th');
+				th.scope = 'col';
+				const link = document.createElement('a');
+				link.href = entry.href;
+				link.textContent = entry.ticker;
+				link.title = entry.title;
+				th.append(link);
+				header.append(th);
+			});
+
+			body.replaceChildren();
+			fields.forEach(([key, label]) => {
+				const row = document.createElement('tr');
+				const fieldHeader = document.createElement('th');
+				fieldHeader.scope = 'row';
+				fieldHeader.textContent = label;
+				row.append(fieldHeader);
+
+				entries.forEach((entry) => {
+					const cell = document.createElement('td');
+					cell.textContent = entry[key] || '—';
+					row.append(cell);
+				});
+				body.append(row);
+			});
+
+			result.hidden = entries.length < 2;
+			selection.textContent = entries.length
+				? `${entries.map((entry) => entry.ticker).join(' · ')} · 안정 메타데이터 기준`
+				: '2개 이상의 ETF를 선택하면 비교 표가 표시됩니다.';
+		}
+
+		function syncFromUrl(historyMode: 'push' | 'replace' = 'replace') {
+			const entries = getEntries();
+			const requested = readRequestedTickers();
+			const selected = selectComparableEtfs(entries, requested);
+			setSelectedTickers(selected.map((entry) => entry.ticker));
+			if (requested.length !== selected.length && requested.length > 0) {
+				updateUrl(
+					selected.map((entry) => entry.ticker),
+					historyMode,
+				);
+			}
+			updateControls();
+			renderComparison();
+		}
+
+		options.forEach((option) => {
+			option.addEventListener('change', () => {
+				let exceededLimit = false;
+				if (option.checked) {
+					selectedOrder = [
+						...selectedOrder.filter((ticker) => ticker !== option.value),
+						option.value,
+					];
+				} else {
+					selectedOrder = selectedOrder.filter((ticker) => ticker !== option.value);
+				}
+				if (selectedOrder.length > MAX_COMPARE_ETFS) {
+					exceededLimit = true;
+					option.checked = false;
+					selectedOrder = selectedOrder.filter((ticker) => ticker !== option.value);
+				}
+				updateControls();
+				if (exceededLimit && status) {
+					status.textContent = `최대 ${MAX_COMPARE_ETFS}개까지 선택할 수 있습니다.`;
+				}
+				renderComparison();
+			});
+		});
+
+		form?.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const selected = getSelectedTickers();
+			if (selected.length < 2) {
+				if (status) status.textContent = '비교하려면 ETF를 2개 이상 선택하세요.';
+				return;
+			}
+			updateUrl(selected);
+			updateControls();
+			renderComparison();
+		});
+
+		clear?.addEventListener('click', () => {
+			setSelectedTickers([]);
+			updateUrl([]);
+			updateControls();
+			renderComparison();
+		});
+
+		window.addEventListener('popstate', () => syncFromUrl());
+		syncFromUrl();
+	}
+</script>
