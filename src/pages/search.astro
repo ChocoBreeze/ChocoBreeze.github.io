@@ -162,18 +162,17 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 					<input
 						type="text"
 						id="search-input"
-						placeholder="검색 인덱스를 불러오는 중..."
+						placeholder="두 글자 이상 입력하면 검색합니다..."
 						aria-label="게시글 검색"
 						aria-describedby="results-count"
 						autocomplete="off"
-						disabled
 						autofocus
 					/>
-					<select id="search-mode" aria-label="검색 대상" disabled>
+					<select id="search-mode" aria-label="검색 대상">
 						<option value="post">글 검색</option>
 						<option value="code">코드 검색</option>
 					</select>
-					<select id="search-category" aria-label="검색 카테고리" disabled>
+					<select id="search-category" aria-label="검색 카테고리">
 						<option value="/search.json">전체 카테고리</option>
 						{
 							BLOG_CATEGORIES.map((category) => (
@@ -191,6 +190,12 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 		<Footer />
 
 		<script>
+			import {
+				getSearchIndexPath,
+				normalizeSearchAccessQuery,
+				shouldLoadSearchIndex,
+			} from '../lib/searchAccess.mjs';
+
 			type SearchItem = {
 				t: string;
 				d?: string;
@@ -211,6 +216,10 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 			};
 
 			let searchIndex: SearchItem[] = [];
+			let activeIndexPath = '';
+			const indexCache = new Map<string, SearchItem[]>();
+			const indexRequests = new Map<string, Promise<SearchItem[]>>();
+			let requestToken = 0;
 			const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
 			const searchMode = document.getElementById('search-mode') as HTMLSelectElement | null;
 			const searchCategory = document.getElementById('search-category') as HTMLSelectElement | null;
@@ -218,72 +227,127 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 			const resultsCount = document.getElementById('results-count');
 
 			if (searchInput && searchMode && searchCategory && resultsList && resultsCount) {
-				loadSearchIndex();
-
 				searchInput.addEventListener('input', () => {
-					updateResults(searchInput.value);
+					void handleSearchInput();
 				});
 				searchMode.addEventListener('change', () => {
-					loadSearchIndex(getCurrentIndexPath());
+					void handleIndexSelectionChange();
 				});
 				searchCategory.addEventListener('change', () => {
-					loadSearchIndex(searchCategory.value);
+					void handleIndexSelectionChange();
 				});
+				setIdleState();
 			}
 
 			function getCurrentIndexPath() {
-				return searchMode?.value === 'code'
-					? '/code-search.json'
-					: searchCategory?.value || '/search.json';
+				return getSearchIndexPath(searchMode?.value, searchCategory?.value);
 			}
 
-			async function loadSearchIndex(indexPath = '/search.json') {
+			function setIdleState() {
+				if (!searchInput || !resultsCount || !resultsList) return;
+				searchInput.placeholder = '두 글자 이상 입력하면 검색합니다...';
+				resultsList.replaceChildren();
+				resultsCount.classList.remove('error');
+				resultsCount.textContent = '두 글자 이상 입력하면 검색합니다.';
+			}
+
+			function updateLoadingState() {
+				if (!searchInput || !resultsCount || !resultsList) return;
+				searchInput.placeholder = '검색 인덱스를 불러오는 중...';
+				resultsList.replaceChildren();
+				resultsCount.classList.remove('error');
+				resultsCount.textContent = '';
+			}
+
+			function updateIndexControls(indexPath: string) {
+				if (!searchInput || !searchCategory) return;
+				const isCodeSearch = indexPath === '/code-search.json';
+				searchCategory.disabled = isCodeSearch;
+				searchInput.placeholder = isCodeSearch
+					? '함수명, API 호출, 코드 구문으로 검색하세요...'
+					: '제목, 설명, 태그, 소제목, 본문 요약으로 검색하세요...';
+			}
+
+			async function loadSearchIndex(indexPath: string, token: number) {
 				if (!searchInput || !searchMode || !searchCategory || !resultsCount || !resultsList) return;
-				const isCodeSearch = searchMode.value === 'code';
-				const resolvedIndexPath = isCodeSearch ? '/code-search.json' : indexPath;
+				const resolvedIndexPath = getSearchIndexPath(searchMode.value, indexPath);
+
+				if (indexCache.has(resolvedIndexPath)) {
+					if (token !== requestToken || getCurrentIndexPath() !== resolvedIndexPath) return;
+					searchIndex = indexCache.get(resolvedIndexPath) ?? [];
+					activeIndexPath = resolvedIndexPath;
+					updateIndexControls(resolvedIndexPath);
+					return;
+				}
 
 				try {
-					searchInput.disabled = true;
-					searchMode.disabled = true;
-					searchCategory.disabled = true;
-					searchInput.placeholder = '검색 인덱스를 불러오는 중...';
-					resultsList.replaceChildren();
-					resultsCount.classList.remove('error');
-					resultsCount.textContent = '';
+					updateLoadingState();
+					let request = indexRequests.get(resolvedIndexPath);
+					if (!request) {
+						request = fetch(resolvedIndexPath, {
+							headers: { Accept: 'application/json' },
+						})
+							.then(async (response) => {
+								if (!response.ok) {
+									throw new Error(`Search index request failed: ${response.status}`);
+								}
 
-					const response = await fetch(resolvedIndexPath, {
-						headers: { Accept: 'application/json' },
-					});
-					if (!response.ok) {
-						throw new Error(`Search index request failed: ${response.status}`);
+								const data: unknown = await response.json();
+								if (!Array.isArray(data)) {
+									throw new Error('Search index response is not an array');
+								}
+
+								return data.filter(isSearchItem);
+							})
+							.finally(() => indexRequests.delete(resolvedIndexPath));
+						indexRequests.set(resolvedIndexPath, request);
 					}
 
-					const data: unknown = await response.json();
-					if (!Array.isArray(data)) {
-						throw new Error('Search index response is not an array');
-					}
-
-					searchIndex = data.filter(isSearchItem);
-					searchInput.disabled = false;
-					searchMode.disabled = false;
-					searchCategory.disabled = isCodeSearch;
-					searchInput.placeholder = isCodeSearch
-						? '함수명, API 호출, 코드 구문으로 검색하세요...'
-						: '제목, 설명, 태그, 소제목, 본문 요약으로 검색하세요...';
-					resultsCount.classList.remove('error');
-
-					if (searchInput.value.trim()) {
-						updateResults(searchInput.value);
-					}
+					const data = await request;
+					indexCache.set(resolvedIndexPath, data);
+					if (token !== requestToken || getCurrentIndexPath() !== resolvedIndexPath) return;
+					searchIndex = data;
+					activeIndexPath = resolvedIndexPath;
+					updateIndexControls(resolvedIndexPath);
 				} catch {
-					searchInput.disabled = true;
-					searchMode.disabled = false;
-					searchCategory.disabled = false;
+					if (token !== requestToken || getCurrentIndexPath() !== resolvedIndexPath) return;
+					searchIndex = [];
+					activeIndexPath = '';
 					searchInput.placeholder = '검색을 사용할 수 없습니다.';
 					resultsCount.classList.add('error');
 					resultsCount.textContent =
 						'검색 인덱스를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
 				}
+			}
+
+			async function handleSearchInput() {
+				if (!searchInput || !shouldLoadSearchIndex(searchInput.value)) {
+					requestToken += 1;
+					searchIndex = [];
+					activeIndexPath = '';
+					setIdleState();
+					return;
+				}
+
+				const token = ++requestToken;
+				const indexPath = getCurrentIndexPath();
+				if (activeIndexPath !== indexPath) {
+					await loadSearchIndex(indexPath, token);
+				}
+				if (token === requestToken && activeIndexPath === indexPath) {
+					updateResults(searchInput.value);
+				}
+			}
+
+			async function handleIndexSelectionChange() {
+				requestToken += 1;
+				searchIndex = [];
+				activeIndexPath = '';
+				if (!searchInput || !shouldLoadSearchIndex(searchInput.value)) {
+					setIdleState();
+					return;
+				}
+				await handleSearchInput();
 			}
 
 			function isSearchItem(item: unknown): item is SearchItem {
@@ -296,11 +360,11 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 			function updateResults(value: string) {
 				if (!resultsList || !resultsCount) return;
 
-				const query = value.toLowerCase().trim();
+				const query = normalizeSearchAccessQuery(value).toLowerCase();
 				if (query.length < 2) {
 					resultsList.replaceChildren();
 					resultsCount.classList.remove('error');
-					resultsCount.textContent = '';
+					resultsCount.textContent = '두 글자 이상 입력하면 검색합니다.';
 					return;
 				}
 
