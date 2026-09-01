@@ -10,6 +10,7 @@
 		"build": "astro build",
 		"check": "astro check",
 		"check:content": "node scripts/check-content.mjs",
+		"report:search-size": "node scripts/report-search-size.mjs",
 		"test": "node --test \"scripts/test/*.test.mjs\"",
 		"new:post": "node scripts/new-post.mjs",
 		"format": "prettier --write .",
