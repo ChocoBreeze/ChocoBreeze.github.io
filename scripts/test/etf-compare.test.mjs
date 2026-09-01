@@ -3,6 +3,7 @@ import { describe, it } from 'node:test';
 import {
 	createComparableEtfs,
 	getEtfComparisonCoverage,
+	hasDatedEtfVolatileValue,
 	parseCompareTickers,
 	selectComparableEtfs,
 } from '../../src/lib/etfCompare.mjs';
@@ -20,6 +21,10 @@ function post(id, data = {}) {
 			exposure: data.exposure,
 			leverage: data.leverage,
 			incomeStyle: data.incomeStyle,
+			expenseRatio: data.expenseRatio,
+			aum: data.aum,
+			yield: data.yield,
+			dataAsOf: data.dataAsOf,
 		},
 	};
 }
@@ -54,7 +59,35 @@ describe('ETF comparison data', () => {
 			exposure: '',
 			leverage: '',
 			incomeStyle: '',
+			expenseRatio: '',
+			aum: '',
+			yield: '',
+			dataAsOf: '',
 		});
+	});
+
+	it('keeps volatile values available only with a valid snapshot date', () => {
+		const entries = createComparableEtfs([
+			post('dated', {
+				ticker: 'DATED',
+				expenseRatio: '0.20%',
+				dataAsOf: '2026-08-24T00:00:00+09:00',
+			}),
+			post('undated', {
+				ticker: 'UNDATED',
+				aum: '$10B',
+			}),
+		]);
+
+		const dated = entries.find((entry) => entry.ticker === 'DATED');
+		const undated = entries.find((entry) => entry.ticker === 'UNDATED');
+		assert.equal(dated.expenseRatio, '0.20%');
+		assert.equal(dated.dataAsOf, '2026-08-23T15:00:00.000Z');
+		assert.equal(undated.aum, '$10B');
+		assert.equal(undated.dataAsOf, '');
+		assert.equal(hasDatedEtfVolatileValue(dated, 'expenseRatio'), true);
+		assert.equal(hasDatedEtfVolatileValue(undated, 'aum'), false);
+		assert.equal(hasDatedEtfVolatileValue(dated, 'issuer'), false);
 	});
 
 	it('parses comma-separated and repeated query values with a four-item limit', () => {

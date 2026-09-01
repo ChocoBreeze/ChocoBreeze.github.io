@@ -3,6 +3,7 @@ import {
 	normalizePostStrategy,
 	normalizePostTicker,
 } from './listFilters.mjs';
+import { ETF_VOLATILE_METADATA_FIELDS } from '../data/etfMetadata.mjs';
 
 export const MAX_COMPARE_ETFS = 4;
 
@@ -12,7 +13,20 @@ function getPostHref(post) {
 }
 
 function normalizeValue(value) {
-	return typeof value === 'string' ? value.trim() : '';
+	if (typeof value === 'string') return value.trim();
+	if (typeof value === 'number' && Number.isFinite(value)) return String(value);
+	return '';
+}
+
+function normalizeDateValue(value) {
+	if (value === undefined || value === null || value === '') return '';
+	const date = value instanceof Date ? value : new Date(value);
+	return Number.isNaN(date.getTime()) ? '' : date.toISOString();
+}
+
+export function hasDatedEtfVolatileValue(entry, field) {
+	if (!ETF_VOLATILE_METADATA_FIELDS.includes(field)) return false;
+	return normalizeValue(entry?.[field]) !== '' && normalizeDateValue(entry?.dataAsOf) !== '';
 }
 
 export function createComparableEtfs(posts) {
@@ -36,6 +50,10 @@ export function createComparableEtfs(posts) {
 			exposure: normalizeValue(post?.data?.exposure),
 			leverage: normalizeValue(post?.data?.leverage),
 			incomeStyle: normalizeValue(post?.data?.incomeStyle),
+			expenseRatio: normalizeValue(post?.data?.expenseRatio),
+			aum: normalizeValue(post?.data?.aum),
+			yield: normalizeValue(post?.data?.yield),
+			dataAsOf: normalizeDateValue(post?.data?.dataAsOf),
 		});
 	}
 

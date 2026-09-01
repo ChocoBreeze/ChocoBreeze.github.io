@@ -11,6 +11,10 @@ export const ETF_METADATA_FIELDS = Object.freeze([
 	'incomeStyle',
 ]);
 
+// These values change over time and must never be shown without a matching
+// dataAsOf snapshot date.
+export const ETF_VOLATILE_METADATA_FIELDS = Object.freeze(['expenseRatio', 'aum', 'yield']);
+
 export const ETF_METADATA_ALLOWED_VALUES = Object.freeze({
 	assetClass: Object.freeze([
 		'Equity',
@@ -89,4 +93,14 @@ export function getEtfMetadataValidationMessage(field) {
 	return allowedValues.length
 		? `use one of: ${allowedValues.join(', ')}`
 		: 'use a non-empty string';
+}
+
+export function hasEtfVolatileMetadata(data) {
+	return ETF_VOLATILE_METADATA_FIELDS.some((field) => {
+		const value = data?.[field];
+		return (
+			(typeof value === 'string' && value.trim().length > 0) ||
+			(typeof value === 'number' && Number.isFinite(value))
+		);
+	});
 }

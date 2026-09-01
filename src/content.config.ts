@@ -12,6 +12,11 @@ const etfMetadataField = (field: string) =>
 			message: `Invalid ETF metadata value for ${field}.`,
 		});
 
+const etfVolatileMetadataField = z
+	.union([z.string().trim().min(1), z.number().refine(Number.isFinite)])
+	.optional()
+	.nullable();
+
 const blog = defineCollection({
 	// Load Markdown and MDX files in the `src/content/blog/` directory.
 	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
@@ -49,6 +54,9 @@ const blog = defineCollection({
 		exposure: etfMetadataField('exposure').optional().nullable(),
 		leverage: etfMetadataField('leverage').optional().nullable(),
 		incomeStyle: etfMetadataField('incomeStyle').optional().nullable(),
+		expenseRatio: etfVolatileMetadataField,
+		aum: etfVolatileMetadataField,
+		yield: etfVolatileMetadataField,
 		pinned: z.boolean().optional().default(false),
 		draft: z.boolean().optional().default(false),
 		order: z.number().optional(),

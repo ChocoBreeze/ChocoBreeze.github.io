@@ -53,7 +53,9 @@ import { getRelatedPosts } from '../src/lib/relatedPosts.mjs';
 import { buildSeriesNavigation } from '../src/lib/series.mjs';
 import {
 	ETF_METADATA_FIELDS,
+	ETF_VOLATILE_METADATA_FIELDS,
 	getEtfMetadataValidationMessage,
+	hasEtfVolatileMetadata,
 	isValidEtfMetadataValue,
 } from '../src/data/etfMetadata.mjs';
 
@@ -525,7 +527,8 @@ function checkSlug(filePath, content, frontmatterMatch, fields, warnings) {
 }
 
 function checkEtfMetadata(filePath, content, frontmatterMatch, fields, issues) {
-	if (getPrimaryCategory(content) !== 'ETF') {
+	const categories = parseFrontmatterListField(frontmatterMatch[1], 'categories');
+	if (!categories.some((category) => normalizeCategoryValue(category) === 'ETF')) {
 		return;
 	}
 
@@ -549,6 +552,39 @@ function checkEtfMetadata(filePath, content, frontmatterMatch, fields, issues) {
 				`Invalid ETF metadata value for \`${fieldName}\`: ${value}; ${getEtfMetadataValidationMessage(fieldName)}.`,
 			);
 		}
+	}
+
+	const volatileValues = Object.fromEntries(
+		ETF_VOLATILE_METADATA_FIELDS.map((fieldName) => {
+			const field = fields.get(fieldName);
+			if (!field) {
+				return [fieldName, undefined];
+			}
+			const value = stripQuotes(stripYamlComment(field.rawValue)).trim();
+			return [fieldName, ['null', '~'].includes(value.toLowerCase()) ? undefined : value];
+		}),
+	);
+	const dataAsOfField = fields.get('dataAsOf');
+	const dataAsOfValue = dataAsOfField
+		? stripQuotes(stripYamlComment(dataAsOfField.rawValue)).trim()
+		: '';
+	if (
+		hasEtfVolatileMetadata(volatileValues) &&
+		(!dataAsOfValue || dataAsOfValue === '~' || dataAsOfValue.toLowerCase() === 'null')
+	) {
+		const firstVolatileField = ETF_VOLATILE_METADATA_FIELDS.map((fieldName) => {
+			const field = fields.get(fieldName);
+			if (!field) return undefined;
+			const value = stripQuotes(stripYamlComment(field.rawValue)).trim();
+			return value && !['null', '~'].includes(value.toLowerCase()) ? field : undefined;
+		}).find(Boolean);
+		addIssue(
+			issues,
+			'error',
+			filePath,
+			getLineNumber(content, frontmatterMatch.index + firstVolatileField.index),
+			'ETF volatile metadata requires `dataAsOf` so changing values are not shown without a snapshot date.',
+		);
 	}
 }
 

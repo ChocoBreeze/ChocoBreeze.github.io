@@ -68,7 +68,10 @@ const etfSections = Array.from(
 		<div class="etf-comparison-heading">
 			<p class="section-eyebrow">ETF Comparison</p>
 			<h2 id="etf-comparison-heading">ETF 비교</h2>
-			<p>안정적인 분류 정보가 있는 ETF를 2~4개 선택해 한눈에 비교할 수 있습니다.</p>
+			<p>
+				안정적인 분류 정보가 있는 ETF를 2~4개 선택해 한눈에 비교할 수 있습니다. 변동 값은 기준일이
+				있는 경우에만 표시됩니다.
+			</p>
 			<p class="etf-comparison-coverage" aria-live="polite">
 				현재 비교 가능 {comparisonCoverage.comparable}개 / 전체 ETF 글 {comparisonCoverage.total}개
 				({comparisonCoverage.percentage}%)
@@ -96,6 +99,10 @@ const etfSections = Array.from(
 											data-exposure={etf.exposure || undefined}
 											data-leverage={etf.leverage || undefined}
 											data-income-style={etf.incomeStyle || undefined}
+											data-expense-ratio={etf.expenseRatio || undefined}
+											data-aum={etf.aum || undefined}
+											data-yield={etf.yield || undefined}
+											data-data-as-of={etf.dataAsOf || undefined}
 										/>
 										<span>
 											<strong>{etf.ticker}</strong>
@@ -129,7 +136,9 @@ const etfSections = Array.from(
 						</div>
 						<div class="etf-comparison-table-wrap">
 							<table class="etf-comparison-table">
-								<caption class="sr-only">선택한 ETF의 안정 메타데이터 비교</caption>
+								<caption class="sr-only">
+									선택한 ETF의 안정 메타데이터와 기준일 있는 변동 메타데이터 비교
+								</caption>
 								<thead>
 									<tr data-etf-comparison-header>
 										<th scope="col">항목</th>
@@ -503,6 +512,7 @@ const etfSections = Array.from(
 <script>
 	import {
 		MAX_COMPARE_ETFS,
+		hasDatedEtfVolatileValue,
 		parseCompareTickers,
 		selectComparableEtfs,
 	} from '../../lib/etfCompare.mjs';
@@ -528,6 +538,11 @@ const etfSections = Array.from(
 			['leverage', '레버리지'],
 			['incomeStyle', '인컴 성격'],
 		] as const;
+		const volatileFields = [
+			['expenseRatio', '총보수'],
+			['aum', '운용 규모'],
+			['yield', '분배율·수익률'],
+		] as const;
 		let selectedOrder: string[] = [];
 
 		function getEntries() {
@@ -541,7 +556,20 @@ const etfSections = Array.from(
 				exposure: option.dataset.exposure ?? '',
 				leverage: option.dataset.leverage ?? '',
 				incomeStyle: option.dataset.incomeStyle ?? '',
+				expenseRatio: option.dataset.expenseRatio ?? '',
+				aum: option.dataset.aum ?? '',
+				yield: option.dataset.yield ?? '',
+				dataAsOf: option.dataset.dataAsOf ?? '',
 			}));
+		}
+
+		function formatDataAsOf(value: string) {
+			const date = new Date(value);
+			if (Number.isNaN(date.getTime())) return '';
+			return new Intl.DateTimeFormat('ko-KR', {
+				timeZone: 'Asia/Seoul',
+				dateStyle: 'medium',
+			}).format(date);
 		}
 
 		function getSelectedTickers() {
@@ -608,7 +636,10 @@ const etfSections = Array.from(
 			});
 
 			body.replaceChildren();
-			fields.forEach(([key, label]) => {
+			const visibleVolatileFields = volatileFields.filter(([key]) =>
+				entries.some((entry) => hasDatedEtfVolatileValue(entry, key)),
+			);
+			[...fields, ...visibleVolatileFields].forEach(([key, label]) => {
 				const row = document.createElement('tr');
 				const fieldHeader = document.createElement('th');
 				fieldHeader.scope = 'row';
@@ -617,7 +648,14 @@ const etfSections = Array.from(
 
 				entries.forEach((entry) => {
 					const cell = document.createElement('td');
-					cell.textContent = entry[key] || '—';
+					const value = entry[key];
+					const isVolatile = volatileFields.some(([volatileKey]) => volatileKey === key);
+					const dateLabel = isVolatile ? formatDataAsOf(entry.dataAsOf) : '';
+					cell.textContent = isVolatile
+						? hasDatedEtfVolatileValue(entry, key) && dateLabel
+							? `${value} (기준일 ${dateLabel})`
+							: '—'
+						: value || '—';
 					row.append(cell);
 				});
 				body.append(row);
@@ -625,7 +663,7 @@ const etfSections = Array.from(
 
 			result.hidden = entries.length < 2;
 			selection.textContent = entries.length
-				? `${entries.map((entry) => entry.ticker).join(' · ')} · 안정 메타데이터 기준`
+				? `${entries.map((entry) => entry.ticker).join(' · ')} · 기준일 있는 메타데이터 기준`
 				: '2개 이상의 ETF를 선택하면 비교 표가 표시됩니다.';
 		}
 

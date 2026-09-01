@@ -4,6 +4,7 @@ import process from 'node:process';
 import { isDataAsOfAfterVerifiedDate, isValidCalendarDate } from './lib/content-rules.mjs';
 import {
 	getEtfMetadataValidationMessage,
+	hasEtfVolatileMetadata,
 	isValidEtfMetadataValue,
 } from '../src/data/etfMetadata.mjs';
 
@@ -52,6 +53,9 @@ Options:
   --exposure    Stable ETF index, sector, or theme exposure.
   --leverage    Leverage or inverse description, such as 3x or -3x.
   --income-style ETF income style, such as Core or Option Income.
+  --expense-ratio ETF expense ratio. Requires --data-as-of.
+  --aum ETF assets under management. Requires --data-as-of.
+  --yield ETF distribution or yield value. Requires --data-as-of.
   --slug       Stable blog slug. Recommended for generic posts.
   --file       Output file path under src/content/blog.
   --help       Show this help message.`);
@@ -199,6 +203,9 @@ function buildPostContent({
 	exposure,
 	leverage,
 	incomeStyle,
+	expenseRatio,
+	aum,
+	yieldValue,
 }) {
 	const optionalDates = [
 		updatedDate && `updatedDate: "${updatedDate}"`,
@@ -240,6 +247,9 @@ function buildPostContent({
 		exposure && `exposure: "${exposure}"`,
 		leverage && `leverage: "${leverage}"`,
 		incomeStyle && `incomeStyle: "${incomeStyle}"`,
+		expenseRatio && `expenseRatio: "${expenseRatio}"`,
+		aum && `aum: "${aum}"`,
+		yieldValue && `yield: "${yieldValue}"`,
 	]
 		.filter(Boolean)
 		.join('\n');
@@ -364,6 +374,33 @@ function main() {
 			return [field, value];
 		}),
 	);
+	const optionalVolatileFields = {
+		expenseRatio: 'expense-ratio',
+		aum: 'aum',
+		yieldValue: 'yield',
+	};
+	const volatileFields = Object.fromEntries(
+		Object.entries(optionalVolatileFields).map(([field, option]) => {
+			const value = args[option]?.trim() || undefined;
+			if (args[option] !== undefined && !value) {
+				throw new Error(`Invalid --${option} value: it cannot be empty.`);
+			}
+			return [field, value];
+		}),
+	);
+	const volatileMetadata = {
+		expenseRatio: volatileFields.expenseRatio,
+		aum: volatileFields.aum,
+		yield: volatileFields.yieldValue,
+	};
+	if (category !== 'ETF' && hasEtfVolatileMetadata(volatileMetadata)) {
+		throw new Error('ETF volatile metadata options are only valid for --category ETF.');
+	}
+	if (hasEtfVolatileMetadata(volatileMetadata) && !dataAsOf) {
+		throw new Error(
+			'ETF volatile metadata requires --data-as-of so changing values have a snapshot date.',
+		);
+	}
 	for (const [field, value] of Object.entries(etfFields)) {
 		if (value !== undefined && !isValidEtfMetadataValue(field, value)) {
 			throw new Error(
@@ -409,6 +446,7 @@ function main() {
 			platform,
 			problemNumber,
 			...etfFields,
+			...volatileFields,
 		}),
 		'utf8',
 	);
