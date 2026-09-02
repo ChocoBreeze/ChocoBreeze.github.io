@@ -27,7 +27,7 @@
 - `prerequisiteSlugs`: 선수 글
 
 `series`, `seriesSlug`, `seriesOrder`, `relatedSlugs`는 구현되었습니다.
-`prerequisiteSlugs`는 선수 글 목록 UI와 검증에 사용되며, 더 큰 그래프형 학습 경로는 별도 범위입니다.
+`prerequisiteSlugs`는 선수 글 목록과 한 단계 역방향 다음 글 추천에 사용되며, 무제한 재귀 그래프 탐색은 지원하지 않습니다.
 
 ## 변경 후보
 
@@ -48,7 +48,8 @@
 4. [완료] Git Commands 일부 글을 파일럿으로 전환했습니다. 편집형 허브는 유지합니다.
 5. [완료] 관련 글 우선순위를 `같은 시리즈 → 수동 지정 → 태그·주제 → 카테고리 폴백`으로 구현했습니다.
 6. [완료] 기존 관련 글 오프셋 한계를 제거했습니다.
-7. [완료] `prerequisiteSlugs` 기반 선수 글 패널과 대상 검증을 추가했습니다. 그래프형 학습 경로와 자동 다음 글 추천은 보류합니다.
+7. [완료] `prerequisiteSlugs` 기반 선수 글 패널과 대상 검증을 추가했습니다.
+8. [완료] 현재 글을 선수 글로 지정한 공개 글을 한 단계 다음 글로 추천합니다. 순환·재귀 탐색은 하지 않습니다.
 
 ## 테스트 설계
 
@@ -57,7 +58,7 @@
 - draft가 시리즈와 관련 글에 노출되지 않는지 확인
 - 현재 글과 이전·다음 글이 관련 글 카드에 중복되지 않는지 확인
 - 존재하지 않는 `relatedSlugs` 검증
-- `prerequisiteSlugs` 검증은 학습 경로 기능 도입 시 추가
+- `prerequisiteSlugs` 대상 검증과 한 단계 역방향 추천을 유지합니다.
 - 기존 비시리즈 글의 이전·다음 동작 회귀 확인
 - `npm test`, `npm run check:content`, `npm run check`, `npm run build`
 

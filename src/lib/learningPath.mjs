@@ -23,6 +23,14 @@ function buildReferenceIndex(posts) {
 	return index;
 }
 
+function getPostReferenceSet(post) {
+	return new Set(
+		[post?.id, post?.data?.slug, post?.filePath]
+			.map((reference) => normalizePostReference(reference))
+			.filter(Boolean),
+	);
+}
+
 /**
  * Resolve the explicitly ordered prerequisite posts for a published post.
  * Unknown, draft, duplicate, and self-references are omitted defensively; the
@@ -61,4 +69,58 @@ export function getLearningPath({ posts = [], currentPost } = {}) {
 	}
 
 	return prerequisites;
+}
+
+/**
+ * Resolve the published posts that explicitly list the current post as a
+ * prerequisite. This is the one-hop reverse edge of the learning graph.
+ *
+ * @param {{ posts?: BlogPost[], currentPost?: BlogPost, limit?: number }} options
+ * @returns {{ id: string, title: string, href: string }[]}
+ */
+export function getNextLearningPath({ posts = [], currentPost, limit = 3 } = {}) {
+	if (!currentPost || currentPost.data?.draft) {
+		return [];
+	}
+
+	const maxItems = Number.isInteger(limit) && limit > 0 ? limit : 0;
+	if (maxItems === 0) {
+		return [];
+	}
+
+	const currentReferences = getPostReferenceSet(currentPost);
+	const seen = new Set([currentPost.id, getPostKey(currentPost)].filter(Boolean));
+	const nextPosts = [];
+
+	for (const post of posts) {
+		if (post.data?.draft || post.id === currentPost.id) {
+			continue;
+		}
+
+		const isNextPost = getList(post.data?.prerequisiteSlugs).some((reference) =>
+			currentReferences.has(normalizePostReference(reference)),
+		);
+		if (!isNextPost) {
+			continue;
+		}
+
+		const key = getPostKey(post);
+		if (!key || seen.has(post.id) || seen.has(key)) {
+			continue;
+		}
+
+		seen.add(post.id);
+		seen.add(key);
+		nextPosts.push({
+			id: post.id,
+			title: post.data.title,
+			href: `/blog/${key}/`,
+		});
+
+		if (nextPosts.length >= maxItems) {
+			break;
+		}
+	}
+
+	return nextPosts;
 }

@@ -4,7 +4,7 @@ import BlogPost from '../../layouts/BlogPost.astro';
 import { getPublishedPosts } from '../../lib/posts';
 import { getRelatedPosts } from '../../lib/relatedPosts.mjs';
 import { buildSeriesNavigation } from '../../lib/series.mjs';
-import { getLearningPath } from '../../lib/learningPath.mjs';
+import { getLearningPath, getNextLearningPath } from '../../lib/learningPath.mjs';
 
 export async function getStaticPaths() {
 	const posts = await getPublishedPosts();
@@ -54,6 +54,12 @@ const nextPost = index < allPosts.length - 1 ? allPosts[index + 1] : null;
 const getDate = (p: CollectionEntry<'blog'>) => p.data.pubDate || p.data.date;
 const rawSeriesNavigation = buildSeriesNavigation(publishedPosts, post);
 const learningPath = getLearningPath({ posts: publishedPosts, currentPost: post });
+const seriesNavigationIds = new Set(
+	[rawSeriesNavigation?.previous?.id, rawSeriesNavigation?.next?.id].filter(Boolean),
+);
+const nextLearningPath = getNextLearningPath({ posts: publishedPosts, currentPost: post }).filter(
+	(item) => !seriesNavigationIds.has(item.id),
+);
 const relatedPosts = getRelatedPosts({
 	posts: publishedPosts,
 	currentPost: post,
@@ -63,6 +69,7 @@ const relatedPosts = getRelatedPosts({
 		nextPost?.id,
 		rawSeriesNavigation?.previous?.id,
 		rawSeriesNavigation?.next?.id,
+		...nextLearningPath.map((item) => item.id),
 	],
 });
 const seriesNavigation = rawSeriesNavigation
@@ -95,6 +102,7 @@ const ogImage = `/og/${post.data.slug || post.id}.png`;
 	ogImage={ogImage}
 	seriesNavigation={seriesNavigation}
 	learningPath={learningPath}
+	nextLearningPath={nextLearningPath}
 >
 	<div class="post-body">
 		<Content />

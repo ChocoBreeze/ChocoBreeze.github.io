@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
-import { getLearningPath } from '../../src/lib/learningPath.mjs';
+import { getLearningPath, getNextLearningPath } from '../../src/lib/learningPath.mjs';
 import { findMissingPostReferences } from '../lib/post-reference-rules.mjs';
 
 function post(id, options = {}) {
@@ -42,6 +42,54 @@ describe('getLearningPath', () => {
 		assert.deepEqual(
 			getLearningPath({ posts: [current, published, draft], currentPost: current }),
 			[{ id: 'published', title: 'published', href: '/blog/published/' }],
+		);
+	});
+});
+
+describe('getNextLearningPath', () => {
+	it('resolves one-hop dependents by slug and source path with a limit', () => {
+		const current = post('current', {
+			slug: 'current-post',
+			filePath: 'src/content/blog/Programming/Current Post.md',
+		});
+		const bySlug = post('by-slug', {
+			prerequisiteSlugs: ['current-post'],
+		});
+		const byPath = post('by-path', {
+			prerequisiteSlugs: ['Programming/Current Post.md'],
+		});
+		const overLimit = post('over-limit', {
+			prerequisiteSlugs: ['current-post'],
+		});
+
+		assert.deepEqual(
+			getNextLearningPath({
+				posts: [current, bySlug, byPath, overLimit],
+				currentPost: current,
+				limit: 2,
+			}),
+			[
+				{ id: 'by-slug', title: 'by-slug', href: '/blog/by-slug/' },
+				{ id: 'by-path', title: 'by-path', href: '/blog/by-path/' },
+			],
+		);
+	});
+
+	it('omits drafts and the current post from reverse edges', () => {
+		const current = post('current', { slug: 'current' });
+		const draft = post('draft', { draft: true, prerequisiteSlugs: ['current'] });
+		const self = post('self', { slug: 'self', prerequisiteSlugs: ['self'] });
+
+		assert.deepEqual(
+			getNextLearningPath({ posts: [current, draft, self], currentPost: current }),
+			[],
+		);
+		assert.deepEqual(
+			getNextLearningPath({
+				posts: [current],
+				currentPost: { ...current, data: { ...current.data, draft: true } },
+			}),
+			[],
 		);
 	});
 });

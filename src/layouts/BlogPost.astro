@@ -58,6 +58,7 @@ type Props = Pick<
 	ogImage?: string;
 	seriesNavigation?: SeriesNavigation;
 	learningPath?: LearningPathItem[];
+	nextLearningPath?: LearningPathItem[];
 };
 
 const {
@@ -77,6 +78,7 @@ const {
 	ogImage,
 	seriesNavigation,
 	learningPath,
+	nextLearningPath,
 } = Astro.props;
 const date = pubDate || jekyllDate;
 const image = heroImage || (jekyllImage ? `/images/${jekyllImage}` : undefined);
@@ -959,6 +961,22 @@ const structuredDataJson = structuredData ? serializeJsonLd(structuredData) : un
 									</h2>
 									<ol class="learning-path-list">
 										{learningPath.map((item) => (
+											<li>
+												<a href={item.href}>{item.title}</a>
+											</li>
+										))}
+									</ol>
+								</section>
+							)
+						}
+						{
+							nextLearningPath && nextLearningPath.length > 0 && (
+								<section class="learning-path" aria-labelledby="next-learning-path-title">
+									<h2 id="next-learning-path-title" class="learning-path-heading">
+										다음에 읽을 수 있는 글
+									</h2>
+									<ol class="learning-path-list">
+										{nextLearningPath.map((item) => (
 											<li>
 												<a href={item.href}>{item.title}</a>
 											</li>
