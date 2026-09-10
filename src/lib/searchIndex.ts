@@ -1,5 +1,6 @@
 import { render, type CollectionEntry } from 'astro:content';
 import { normalizeCategory, type BlogCategoryKey } from '../data/blogCategories';
+import { getSearchTextSegment } from './searchText.mjs';
 
 const EXCERPT_LENGTH = 480;
 const SEARCH_TEXT_LENGTH = 5000;
@@ -40,7 +41,10 @@ function getExcerpt(content: string) {
 }
 
 function getSearchText(content: string) {
-	return stripMarkdown(content).slice(0, SEARCH_TEXT_LENGTH).trim();
+	return getSearchTextSegment(stripMarkdown(content), {
+		excerptLength: EXCERPT_LENGTH,
+		maxLength: SEARCH_TEXT_LENGTH,
+	});
 }
 
 export function getSearchCategorySlug(category: BlogCategoryKey) {

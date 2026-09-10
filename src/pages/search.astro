@@ -195,6 +195,7 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 				normalizeSearchAccessQuery,
 				shouldLoadSearchIndex,
 			} from '../lib/searchAccess.mjs';
+			import { getSearchTextCandidates } from '../lib/searchText.mjs';
 
 			type SearchItem = {
 				t: string;
@@ -389,8 +390,13 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 
 				if (includesQuery(item.t, query)) score += 60;
 				if (includesQuery(item.d, query)) score += 30;
-				if (includesQuery(item.e, query)) score += 12;
-				if (includesQuery(item.x, query)) score += 12;
+				if (
+					getSearchTextCandidates(item.e ?? '', item.x ?? '').some((source) =>
+						includesQuery(source, query),
+					)
+				) {
+					score += 12;
+				}
 				if (includesQuery(item.f, query)) score += 35;
 
 				if ((item.g ?? []).some((tag) => includesQuery(tag, query))) {
@@ -410,7 +416,12 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 			}
 
 			function getMatchSnippet(item: SearchItem, query: string) {
-				const sources = [item.d, ...(item.h ?? []), item.e, item.f, item.x];
+				const sources = [
+					item.d,
+					...(item.h ?? []),
+					...getSearchTextCandidates(item.e ?? '', item.x ?? ''),
+					item.f,
+				];
 
 				for (const source of sources) {
 					if (!source) continue;
