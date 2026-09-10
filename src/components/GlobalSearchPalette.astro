@@ -1,4 +1,12 @@
-<dialog id="global-search-palette" aria-labelledby="global-search-title">
+---
+const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
+---
+
+<dialog
+	id="global-search-palette"
+	aria-labelledby="global-search-title"
+	data-search-cache-version={searchCacheVersion}
+>
 	<div class="global-search-panel">
 		<div class="global-search-header">
 			<h2 id="global-search-title">빠른 검색</h2>
@@ -33,6 +41,7 @@
 		normalizeQuickSearchQuery,
 		searchQuickIndex,
 	} from '../lib/quickSearch.mjs';
+	import { addSearchCacheVersion } from '../lib/searchAccess.mjs';
 
 	type QuickSearchItem = {
 		t: string;
@@ -49,6 +58,7 @@
 	const status = document.getElementById('global-search-status');
 	const results = document.getElementById('global-search-results');
 	const retry = document.getElementById('global-search-retry') as HTMLButtonElement | null;
+	const cacheVersion = dialog?.dataset.searchCacheVersion || 'dev';
 
 	let searchIndex: QuickSearchItem[] = [];
 	let indexPromise: Promise<QuickSearchItem[]> | undefined;
@@ -120,7 +130,9 @@
 
 	async function loadSearchIndex() {
 		if (!indexPromise) {
-			indexPromise = fetch('/search/quick.json', { headers: { Accept: 'application/json' } })
+			indexPromise = fetch(addSearchCacheVersion('/search/quick.json', cacheVersion), {
+				headers: { Accept: 'application/json' },
+			})
 				.then(async (response) => {
 					if (!response.ok) throw new Error(`Quick search request failed: ${response.status}`);
 					const data: unknown = await response.json();

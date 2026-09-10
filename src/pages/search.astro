@@ -5,6 +5,8 @@ import Header from '../components/Header.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { BLOG_CATEGORIES } from '../data/blogCategories';
 import { getSearchCategorySlug } from '../lib/searchIndex';
+
+const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 ---
 
 <!doctype html>
@@ -155,7 +157,7 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 	</head>
 	<body>
 		<Header />
-		<main id="main-content">
+		<main id="main-content" data-search-cache-version={searchCacheVersion}>
 			<div class="search-container">
 				<h1>검색</h1>
 				<div class="search-controls">
@@ -191,6 +193,7 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 
 		<script>
 			import {
+				addSearchCacheVersion,
 				getSearchIndexPath,
 				normalizeSearchAccessQuery,
 				shouldLoadSearchIndex,
@@ -226,6 +229,9 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 			const searchCategory = document.getElementById('search-category') as HTMLSelectElement | null;
 			const resultsList = document.getElementById('results-list');
 			const resultsCount = document.getElementById('results-count');
+			const searchCacheVersion =
+				document.querySelector<HTMLElement>('[data-search-cache-version]')?.dataset
+					.searchCacheVersion || 'dev';
 
 			if (searchInput && searchMode && searchCategory && resultsList && resultsCount) {
 				searchInput.addEventListener('input', () => {
@@ -285,7 +291,7 @@ import { getSearchCategorySlug } from '../lib/searchIndex';
 					updateLoadingState();
 					let request = indexRequests.get(resolvedIndexPath);
 					if (!request) {
-						request = fetch(resolvedIndexPath, {
+						request = fetch(addSearchCacheVersion(resolvedIndexPath, searchCacheVersion), {
 							headers: { Accept: 'application/json' },
 						})
 							.then(async (response) => {

@@ -4,6 +4,7 @@ import { describe, it } from 'node:test';
 import {
 	CODE_SEARCH_INDEX_PATH,
 	DEFAULT_SEARCH_INDEX_PATH,
+	addSearchCacheVersion,
 	getSearchIndexPath,
 	normalizeSearchAccessQuery,
 	shouldLoadSearchIndex,
@@ -22,5 +23,14 @@ describe('search index access', () => {
 		assert.equal(getSearchIndexPath('post', '/search/etf.json'), '/search/etf.json');
 		assert.equal(getSearchIndexPath('post'), DEFAULT_SEARCH_INDEX_PATH);
 		assert.equal(getSearchIndexPath('post', '/private/index.json'), DEFAULT_SEARCH_INDEX_PATH);
+	});
+
+	it('adds a deployment version without dropping existing query or hash values', () => {
+		assert.equal(addSearchCacheVersion('/search.json', 'abc123'), '/search.json?v=abc123');
+		assert.equal(
+			addSearchCacheVersion('/search.json?mode=post#results', 'build 1'),
+			'/search.json?mode=post&v=build%201#results',
+		);
+		assert.equal(addSearchCacheVersion('/search.json', '  '), '/search.json');
 	});
 });
