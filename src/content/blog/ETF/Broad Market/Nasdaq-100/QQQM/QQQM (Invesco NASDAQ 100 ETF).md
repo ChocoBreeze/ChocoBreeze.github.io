@@ -2,6 +2,7 @@
 title: 'QQQM (Invesco NASDAQ 100 ETF)'
 description: 'Nasdaq-100 Index를 추종하는 QQQ의 저비용 대안 ETF'
 pubDate: '2026-01-31T11:00:00Z'
+dataAsOf: '2026-01-31T00:00:00+09:00'
 categories: "ETF"
 ticker: "QQQM"
 issuer: "Invesco"

@@ -2,6 +2,7 @@
 title: 'GPIQ (Goldman Sachs Nasdaq-100 Core Premium Income ETF)'
 description: 'Nasdaq-100 주식 노출과 콜옵션 매도 전략을 결합한 Goldman Sachs의 프리미엄 인컴 ETF'
 pubDate: '2026-01-31T00:00:00+09:00'
+dataAsOf: '2026-01-28T00:00:00+09:00'
 categories: "ETF"
 ---
 

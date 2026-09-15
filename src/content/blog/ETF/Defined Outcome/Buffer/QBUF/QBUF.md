@@ -2,6 +2,7 @@
 title: 'QBUF (Innovator Nasdaq-100 10 Buffer ETF)'
 description: 'QQQ 기반 FLEX 옵션으로 분기별 10% 하락 버퍼와 제한된 상방 참여를 제공하는 Innovator의 정의된 결과 ETF'
 pubDate: '2026-06-06T00:00:00+09:00'
+dataAsOf: '2026-05-03T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "QBUF", "Innovator", "Defined Outcome", "Buffer"]
 ---

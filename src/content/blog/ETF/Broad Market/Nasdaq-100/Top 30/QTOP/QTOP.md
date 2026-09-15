@@ -2,6 +2,7 @@
 title: 'QTOP (iShares Nasdaq Top 30 Stocks ETF)'
 description: 'Nasdaq-100 구성 종목 중 시가총액 상위 30개 대형 성장주에 집중 투자하는 iShares ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+dataAsOf: '2026-05-03T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "QTOP", "iShares", "BlackRock", "Nasdaq-100", "Top 30"]
 ---

@@ -2,6 +2,7 @@
 title: 'QQQJ (Invesco NASDAQ Next Gen 100 ETF)'
 description: 'Nasdaq-100에 포함되지 않은 나스닥 상장 비금융 중대형 성장주 100개에 투자하는 Invesco의 Nasdaq Next Gen 100 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+dataAsOf: '2026-03-24T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "QQQJ", "Invesco", "Nasdaq", "Nasdaq Next Gen 100", "Growth"]
 ---

@@ -2,6 +2,7 @@
 title: 'IQQQ (ProShares Nasdaq-100 High Income ETF)'
 description: 'Nasdaq-100 일일 커버드콜 전략을 통해 높은 월분배 인컴을 추구하는 ProShares ETF'
 pubDate: '2026-05-02T00:00:00+09:00'
+dataAsOf: '2026-05-02T00:00:00+09:00'
 categories: "ETF"
 ---
 

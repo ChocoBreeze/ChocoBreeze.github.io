@@ -2,6 +2,7 @@
 title: 'QQQY (Defiance Nasdaq 100 Weekly Distribution ETF)'
 description: 'Nasdaq-100 옵션 포지션과 일일 콜스프레드 전략으로 주간 분배를 추구하는 Defiance의 옵션 인컴 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+dataAsOf: '2026-05-03T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "QQQY", "Defiance", "Nasdaq-100", "Option Income", "Weekly Distribution"]
 ---

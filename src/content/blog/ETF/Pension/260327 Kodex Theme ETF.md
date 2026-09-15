@@ -2,6 +2,7 @@
 title: '삼성자산운용 KODEX 미국 주식 테마 ETF 종합 보고서'
 description: 'Kodex Theme ETF'
 pubDate: '2026-03-27T00:00:00Z'
+dataAsOf: '2026-03-27T00:00:00+09:00'
 categories: "ETF"
 ---
 

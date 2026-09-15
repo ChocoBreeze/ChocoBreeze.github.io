@@ -2,6 +2,7 @@
 title: 'QFLR (Innovator Nasdaq-100 Managed Floor ETF)'
 description: 'Nasdaq-100 현물 노출에 래더형 풋옵션과 단기 콜매도 전략을 결합해 하방 floor 관리를 추구하는 Innovator의 액티브 ETF'
 pubDate: '2026-06-06T00:00:00+09:00'
+dataAsOf: '2026-04-21T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "QFLR", "Innovator", "Defined Outcome", "Managed Floor", "Nasdaq-100"]
 ---

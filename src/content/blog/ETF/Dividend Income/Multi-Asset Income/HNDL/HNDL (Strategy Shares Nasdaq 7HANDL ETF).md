@@ -2,6 +2,7 @@
 title: 'HNDL (Strategy Shares Nasdaq 7HANDL Index ETF)'
 description: 'ETF of ETFs 구조로 월배당과 연 7% 분배 목표를 추구하는 멀티에셋 인컴 ETF'
 pubDate: '2026-04-16T00:00:00+09:00'
+dataAsOf: '2026-04-16T00:00:00+09:00'
 categories: "ETF"
 ---
 

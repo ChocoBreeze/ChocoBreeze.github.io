@@ -2,6 +2,7 @@
 title: 'QYLD (Global X Nasdaq 100 Covered Call ETF)'
 description: 'Nasdaq-100 보유와 ATM 월간 커버드콜 전략으로 월간 옵션 인컴을 추구하는 Global X의 대표 커버드콜 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+dataAsOf: '2026-01-31T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "QYLD", "Global X", "Nasdaq-100", "Covered Call", "Option Income"]
 ---

@@ -2,6 +2,7 @@
 title: 'QYLG (Global X Nasdaq 100 Covered Call & Growth ETF)'
 description: 'Nasdaq-100 포트폴리오의 약 50%에 콜옵션을 매도해 월배당과 성장 참여를 함께 추구하는 Global X의 하프 커버드콜 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+dataAsOf: '2026-03-27T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "QYLG", "Global X", "Nasdaq-100", "Covered Call", "Option Income"]
 ---

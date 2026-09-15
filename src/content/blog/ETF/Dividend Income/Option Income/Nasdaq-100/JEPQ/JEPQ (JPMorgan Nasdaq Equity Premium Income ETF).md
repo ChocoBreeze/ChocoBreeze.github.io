@@ -2,6 +2,7 @@
 title: 'JEPQ (JPMorgan Nasdaq Equity Premium Income ETF)'
 description: 'Nasdaq-100 주식 노출과 옵션 프리미엄 전략을 결합한 JPMorgan의 월배당 인컴 ETF'
 pubDate: '2026-01-31T00:00:00+09:00'
+dataAsOf: '2026-01-31T00:00:00+09:00'
 categories: "ETF"
 ---
 

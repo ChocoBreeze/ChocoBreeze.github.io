@@ -2,6 +2,7 @@
 title: 'QLD (ProShares Ultra QQQ)'
 description: 'Nasdaq-100 Index 일일 수익률 2배를 추구하는 레버리지 ETF'
 pubDate: '2026-01-31T12:00:00Z'
+dataAsOf: '2026-01-31T00:00:00+09:00'
 categories: "ETF"
 ---
 

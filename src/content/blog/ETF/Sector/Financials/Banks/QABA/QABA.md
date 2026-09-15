@@ -2,6 +2,7 @@
 title: 'QABA (First Trust NASDAQ ABA Community Bank Index Fund)'
 description: '미국 커뮤니티 은행 주식에 집중 투자하는 First Trust의 금융 섹터 ETF'
 pubDate: '2026-06-06T00:00:00+09:00'
+dataAsOf: '2026-05-11T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "QABA", "First Trust", "Financials", "Banks"]
 ---
