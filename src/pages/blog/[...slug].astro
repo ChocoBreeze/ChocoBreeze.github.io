@@ -5,6 +5,8 @@ import { getPublishedPosts } from '../../lib/posts';
 import { getRelatedPosts } from '../../lib/relatedPosts.mjs';
 import { buildSeriesNavigation } from '../../lib/series.mjs';
 import { getLearningPath, getNextLearningPath } from '../../lib/learningPath.mjs';
+import { getPagefindCategoryValues } from '../../lib/pagefindFilters.mjs';
+import { normalizeCategory } from '../../data/blogCategories';
 
 export async function getStaticPaths() {
 	const posts = await getPublishedPosts();
@@ -19,6 +21,7 @@ const post = Astro.props;
 const { Content, headings } = await render(post);
 const postBody = (post as CollectionEntry<'blog'> & { body?: string }).body ?? '';
 const getSlug = (p: CollectionEntry<'blog'>) => p.data.slug || p.id;
+const pagefindCategories = getPagefindCategoryValues(post.data.categories, normalizeCategory);
 
 // "이전/다음 글" 찾기 로직
 const publishedPosts = await getPublishedPosts();
@@ -105,6 +108,11 @@ const ogImage = `/og/${post.data.slug || post.id}.png`;
 	nextLearningPath={nextLearningPath}
 >
 	<div class="post-body">
+		{
+			pagefindCategories.map((category) => (
+				<span data-pagefind-filter={`category:${category}`} aria-hidden="true" />
+			))
+		}
 		<Content />
 	</div>
 

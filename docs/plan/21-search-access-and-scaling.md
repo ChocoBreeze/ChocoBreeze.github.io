@@ -42,6 +42,19 @@ Pagefind는 다음 항목을 같은 질의 세트로 비교한 뒤에만 채택�
 - 초기 전송량과 첫 결과 시간
 - 카테고리 필터와 결과 스니펫
 
+벤치마크 도구는 `npm run build && npm run benchmark:search`로 실행합니다. Pagefind는
+`.post-body`를 루트로 사용해 공개 글 503개만 색인하고, 기존 `search.json`, ETF
+카테고리 인덱스, `code-search.json`을 같은 질의로 함께 측정합니다. Pagefind에는
+`category:ETF` 필터 메타데이터를 부여해 ETF 인덱스와 동일한 범위를 별도로 검색합니다.
+결과에는 각 엔진의 결과 수와 상위 결과, 상위 결과에 실제로 표시되는 스니펫, 기존
+검색의 메모리 내 검색 시간, Pagefind의 초기 전송량·첫 결과 시간·질의별 검색 및
+지연 결과 데이터 fetch를 포함한 전체 및 ETF 필터 검색 시간·전송량이 포함됩니다. 2026-09-14 실행에서는 현재
+JSON 인덱스 전체가 10,404,962바이트, Pagefind 산출물 전체가 8,418,498바이트였고,
+Pagefind 초기 전송량은 118,355바이트였습니다(엔트리·메타데이터·WASM 준비 포함). `ETF`, `반도체`, `IAU`,
+`git diff --cached`, 결과 없음 질의를 실행했으며, Pagefind는 한국어 stemming을
+지원하지 않았습니다. 제목·태그 가중치와 별도 코드 검색의 결과가 서로 다르므로
+**Pagefind 전면 교체는 보류**하고, 동일한 측정 절차로 재검토합니다.
+
 ## 변경 후보
 
 - `src/components/Header.astro`

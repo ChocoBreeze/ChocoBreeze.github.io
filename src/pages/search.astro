@@ -198,7 +198,7 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 				normalizeSearchAccessQuery,
 				shouldLoadSearchIndex,
 			} from '../lib/searchAccess.mjs';
-			import { getSearchTextCandidates } from '../lib/searchText.mjs';
+			import { getCategoryLabel, searchIndexedItems } from '../lib/searchRanking.mjs';
 
 			type SearchItem = {
 				t: string;
@@ -367,88 +367,14 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 			function updateResults(value: string) {
 				if (!resultsList || !resultsCount) return;
 
-				const query = normalizeSearchAccessQuery(value).toLowerCase();
-				if (query.length < 2) {
+				if (normalizeSearchAccessQuery(value).length < 2) {
 					resultsList.replaceChildren();
 					resultsCount.classList.remove('error');
 					resultsCount.textContent = '두 글자 이상 입력하면 검색합니다.';
 					return;
 				}
 
-				const results = searchIndex
-					.map((item) => ({
-						item,
-						score: getSearchScore(item, query),
-						snippet: getMatchSnippet(item, query),
-					}))
-					.filter((result) => result.score > 0)
-					.sort((a, b) => b.score - a.score);
-
-				displayResults(results);
-			}
-
-			function includesQuery(value: string | undefined, query: string) {
-				return typeof value === 'string' && value.toLowerCase().includes(query);
-			}
-
-			function getSearchScore(item: SearchItem, query: string) {
-				let score = 0;
-
-				if (includesQuery(item.t, query)) score += 60;
-				if (includesQuery(item.d, query)) score += 30;
-				if (
-					getSearchTextCandidates(item.e ?? '', item.x ?? '').some((source) =>
-						includesQuery(source, query),
-					)
-				) {
-					score += 12;
-				}
-				if (includesQuery(item.f, query)) score += 35;
-
-				if ((item.g ?? []).some((tag) => includesQuery(tag, query))) {
-					score += 25;
-				}
-
-				if ((item.h ?? []).some((heading) => includesQuery(heading, query))) {
-					score += 20;
-				}
-
-				const category = getCategoryLabel(item.c);
-				if (includesQuery(category, query)) {
-					score += 15;
-				}
-
-				return score;
-			}
-
-			function getMatchSnippet(item: SearchItem, query: string) {
-				const sources = [
-					item.d,
-					...(item.h ?? []),
-					...getSearchTextCandidates(item.e ?? '', item.x ?? ''),
-					item.f,
-				];
-
-				for (const source of sources) {
-					if (!source) continue;
-
-					const index = source.toLowerCase().indexOf(query);
-					if (index === -1) continue;
-
-					const contextLength = 90;
-					const start = Math.max(0, index - contextLength);
-					const end = Math.min(source.length, index + query.length + contextLength);
-					const prefix = start > 0 ? '...' : '';
-					const suffix = end < source.length ? '...' : '';
-					return `${prefix}${source.slice(start, end).trim()}${suffix}`;
-				}
-
-				return item.d || item.e || '';
-			}
-
-			function getCategoryLabel(categories: SearchItem['c']) {
-				if (Array.isArray(categories)) return categories[0] || 'Uncategorized';
-				return categories || 'Uncategorized';
+				displayResults(searchIndexedItems(searchIndex, value));
 			}
 
 			function getPostHref(slug: string) {
