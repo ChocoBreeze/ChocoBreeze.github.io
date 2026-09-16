@@ -2,6 +2,13 @@
 title: 'SLV (iShares Silver Trust)'
 description: '물리적 은을 100% 현물로 보유하는 세계 최대 규모의 은 ETF'
 pubDate: '2026-07-20T09:02:00+09:00'
+ticker: "SLV"
+issuer: "BlackRock"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Silver"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

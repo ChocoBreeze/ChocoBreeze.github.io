@@ -2,6 +2,13 @@
 title: 'XSD (State Street SPDR S&P Semiconductor ETF)'
 description: 'S&P Semiconductor Select Industry Index를 등가중 방식으로 추종하는 State Street의 반도체 ETF 분석'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "XSD"
+issuer: "State Street"
+assetClass: "Equity"
+strategy: "Equal Weight"
+exposure: "Semiconductor"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "XSD", "State Street", "SPDR", "Semiconductor", "Equal Weight"]
 ---

@@ -2,6 +2,13 @@
 title: 'ROKT (SPDR S&P Kensho Final Frontiers ETF)'
 description: '우주 및 심해 탐사 관련 기업에 투자하는 SPDR ETF'
 pubDate: '2026-01-31T21:00:00Z'
+ticker: "ROKT"
+issuer: "State Street"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Space & Deep Sea"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

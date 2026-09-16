@@ -2,6 +2,13 @@
 title: 'UFO (Procure Space ETF)'
 description: '글로벌 우주 산업 관련 기업에 투자하는 Procure Space ETF'
 pubDate: '2026-01-31T22:00:00Z'
+ticker: "UFO"
+issuer: "ProcureAM"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Space"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

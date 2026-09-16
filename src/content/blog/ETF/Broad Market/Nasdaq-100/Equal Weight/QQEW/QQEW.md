@@ -2,6 +2,13 @@
 title: 'QQEW (First Trust Nasdaq-100 Select Equal Weight ETF)'
 description: 'Nasdaq-100 구성 종목 중 품질·성장 기준으로 선별한 종목을 동일가중으로 편입하는 First Trust의 Nasdaq-100 변형 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "QQEW"
+issuer: "First Trust"
+assetClass: "Equity"
+strategy: "Equal Weight"
+exposure: "Nasdaq-100 Select"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "QQEW", "First Trust", "Nasdaq-100", "Equal Weight"]
 ---

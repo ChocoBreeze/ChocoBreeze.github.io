@@ -2,6 +2,13 @@
 title: 'QQXT (First Trust NASDAQ-100 Ex-Technology Sector Index Fund)'
 description: 'Nasdaq-100에서 기술 섹터를 제외한 비기술 종목에 동일가중으로 투자하는 First Trust의 Ex-Technology ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "QQXT"
+issuer: "First Trust"
+assetClass: "Equity"
+strategy: "Equal Weight"
+exposure: "Nasdaq-100 ex Technology"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "QQXT", "First Trust", "Nasdaq-100", "Ex Technology", "Equal Weight"]
 ---

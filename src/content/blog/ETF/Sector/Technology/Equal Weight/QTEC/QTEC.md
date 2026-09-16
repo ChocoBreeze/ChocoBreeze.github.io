@@ -2,6 +2,13 @@
 title: 'QTEC (First Trust NASDAQ-100 Technology Sector Index Fund)'
 description: 'Nasdaq-100 내 기술 섹터 종목을 동일가중으로 추종해 메가캡 집중 리스크를 낮추는 First Trust의 기술 섹터 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "QTEC"
+issuer: "First Trust"
+assetClass: "Equity"
+strategy: "Equal Weight"
+exposure: "Nasdaq-100 Technology"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "QTEC", "First Trust", "Technology", "Nasdaq-100", "Equal Weight"]
 ---

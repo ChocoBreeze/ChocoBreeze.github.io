@@ -2,6 +2,13 @@
 title: 'AAAU (Goldman Sachs Physical Gold ETF)'
 description: '골드만삭스가 운용하는 실물 금 그랜터 신탁 ETF, GLD 대비 절반 이하의 저비용이 강점'
 pubDate: '2026-07-22T10:00:00+09:00'
+ticker: "AAAU"
+issuer: "Goldman Sachs"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Gold"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -139,5 +146,4 @@ AAAU는 금에 대한 효율적이고 저비용의 현물 노출을 원하는 �
 [^17]: https://finance.yahoo.com/news/gold-etfs-boom-gld-larger-144447874.html
 
 [^18]: https://www.etfstrategy.com/goldman-sachs-completes-acquisition-of-physical-gold-etf-aaau-perth-mint-384954/
-
 

@@ -2,6 +2,13 @@
 title: 'SOXX (iShares PHLX Semiconductor ETF)'
 description: 'ICE Semiconductor Index를 추종하는 iShares의 대표 반도체 섹터 ETF 분석'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "SOXX"
+issuer: "BlackRock"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Semiconductor"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "SOXX", "iShares", "BlackRock", "Semiconductor", "PHLX Semiconductor"]
 ---

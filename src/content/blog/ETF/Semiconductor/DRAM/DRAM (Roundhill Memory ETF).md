@@ -2,6 +2,13 @@
 title: 'DRAM (Roundhill Memory ETF)'
 description: 'AI 메모리, HBM, DRAM, NAND 밸류체인에 집중 투자하는 Roundhill의 메모리 반도체 ETF'
 pubDate: '2026-05-30T00:00:00+09:00'
+ticker: "DRAM"
+issuer: "Roundhill Investments"
+assetClass: "Equity"
+strategy: "Active"
+exposure: "Memory Semiconductor"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "Semiconductor", "Memory", "DRAM", "HBM"]
 slug: "etf/semiconductor/dram/roundhill-memory-etf"

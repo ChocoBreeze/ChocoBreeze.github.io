@@ -2,6 +2,13 @@
 title: 'PPA (Invesco Aerospace & Defense ETF)'
 description: 'SPADE Defense Index를 추종하는 미국 항공우주 및 방위 산업 ETF'
 pubDate: '2026-01-31T15:00:00Z'
+ticker: "PPA"
+issuer: "Invesco"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Aerospace & Defense"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

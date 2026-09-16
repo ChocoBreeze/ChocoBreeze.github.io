@@ -2,6 +2,13 @@
 title: 'ITA (iShares U.S. Aerospace & Defense ETF)'
 description: '미국 항공우주 및 방위 산업에 투자하는 iShares ETF'
 pubDate: '2026-01-31T14:00:00Z'
+ticker: "ITA"
+issuer: "BlackRock"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Aerospace & Defense"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

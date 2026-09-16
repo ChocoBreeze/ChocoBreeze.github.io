@@ -2,6 +2,13 @@
 title: 'GDXJ (VanEck Junior Gold Miners ETF)'
 description: '중소형 금 채굴기업에 투자하는 공격적 성장형 ETF, GDX 대비 높은 변동성과 레버리지 효과'
 pubDate: '2026-07-22T13:00:00+09:00'
+ticker: "GDXJ"
+issuer: "VanEck"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Gold Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -288,5 +295,4 @@ GDXJ는 포트폴리오의 "벤처 캐피털 할당"으로 생각해야 합니�
 [^18]: https://discoveryalert.com.au/gold-mid-tier-junior-mining-fundamentals-2025/
 
 [^19]: https://www.digrin.com/stocks/detail/GDXJ/
-
 

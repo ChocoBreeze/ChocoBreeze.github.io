@@ -18,7 +18,7 @@
 | 16 | [시리즈·관련 글·학습 경로](16-series-related-learning-paths.md) | 완료(무제한 그래프 제외) | P2 | 없음 | 대 |
 | 17 | [콘텐츠 기준일과 검증일](17-content-freshness-metadata.md) | 부분 완료(34개 기준일 백필, 잔여 수동 검토) | P2 | 없음 | 중~대 |
 | 18 | [카테고리 탐색과 Problem Solving 확장](18-category-discovery-and-problem-solving.md) | 완료(UI, 백필 제외) | P2 | 없음 | 대 |
-| 19 | [ETF 탐색기와 비교](19-etf-explorer-and-comparison.md) | 부분 완료(34개 안정 메타데이터, 잔여 백필) | P3 | 17, 18 | 대 |
+| 19 | [ETF 탐색기와 비교](19-etf-explorer-and-comparison.md) | 부분 완료(51개 안정 메타데이터, 잔여 백필) | P3 | 17, 18 | 대 |
 | 20 | [Market Brief 캘린더](20-market-brief-calendar.md) | 완료 | P3 | 17 일부 | 중~대 |
 | 21 | [검색 접근성과 인덱스 확장성](21-search-access-and-scaling.md) | 부분 완료(비교 벤치마크 완료, Pagefind 교체 보류) | P2 | 없음 | 중~대 |
 | 22 | [구조화 데이터와 링크 검증 강화](22-seo-and-link-validation.md) | 완료 | P2 | 16, 17 일부 | 중 |
@@ -28,7 +28,7 @@
 ## 현재 남은 작업
 
 - 17번: 기준일이 본문에 명시된 34개 ETF·Reports 글 백필 완료, 나머지 수동 검토
-- 19번: 34개 ETF 안정 메타데이터 적용 완료, 나머지 ETF 안정·변동 메타데이터 백필
+- 19번: 51개 ETF 안정 메타데이터 적용 완료, 나머지 ETF 안정·변동 메타데이터 백필
 - 21번: 동일 질의·범위·전송량 기준으로 Pagefind 전면 교체 여부 재검토(현재는 기존 검색 유지)
 - 23번: 방문 통계, Mermaid, 뉴스레터, 자산 셀프 호스팅의 착수 조건 검토
 

@@ -4,6 +4,13 @@ description: 'Nasdaq CTA Artificial Intelligence and Robotics Index를 추종해
 pubDate: '2026-06-07T00:00:00+09:00'
 verifiedDate: '2026-06-07T00:00:00+09:00'
 dataAsOf: '2026-04-15T00:00:00+09:00'
+ticker: "ROBT"
+issuer: "First Trust"
+assetClass: "Equity"
+strategy: "Equal Weight"
+exposure: "AI & Robotics"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "ROBT", "First Trust", "Artificial Intelligence", "Robotics", "Theme ETF"]
 ---

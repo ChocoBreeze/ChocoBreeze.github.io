@@ -2,6 +2,13 @@
 title: 'GDX (VanEck Gold Miners ETF)'
 description: '세계 최대 금 채굴기업 ETF, 운영 레버리지로 금 가격 변동을 증폭시키는 대형 채굴주 중심'
 pubDate: '2026-07-22T12:00:00+09:00'
+ticker: "GDX"
+issuer: "VanEck"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Gold Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -244,5 +251,4 @@ GDX와 물리적 금 간의 0.06 상관관계는 포트폴리오 다각화 측�
 [^14]: https://finance.yahoo.com/news/gold-gld-gold-mining-gdx-155800075.html
 
 [^16]: https://www.ebc.com/forex/-things-to-know-before-buying-gdxj
-
 
