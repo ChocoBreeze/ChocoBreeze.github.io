@@ -2,6 +2,13 @@
 title: 'TSSD (Truth Social American Security & Defense ETF)'
 description: '미국 국방·항공우주·사이버보안 기업에 투자하는 Truth.Fi 계열 지수추종 ETF'
 pubDate: '2026-07-20T09:00:00+09:00'
+ticker: "TSSD"
+issuer: "Yorkville America"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "American Security & Defense"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

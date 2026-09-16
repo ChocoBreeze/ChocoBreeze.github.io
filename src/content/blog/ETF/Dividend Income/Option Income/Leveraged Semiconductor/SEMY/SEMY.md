@@ -2,6 +2,13 @@
 title: 'SEMY (GraniteShares YieldBOOST Semiconductor ETF)'
 description: 'SOXL 풋옵션 매도 전략으로 높은 주간 옵션 인컴을 추구하는 GraniteShares의 고위험 반도체 옵션 인컴 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "SEMY"
+issuer: "GraniteShares"
+assetClass: "Equity"
+strategy: "Option Income"
+exposure: "Semiconductor"
+leverage: "1x"
+incomeStyle: "Option Income"
 categories: "ETF"
 tags: ["ETF", "SEMY", "GraniteShares", "Option Income", "Semiconductor", "SOXL"]
 ---

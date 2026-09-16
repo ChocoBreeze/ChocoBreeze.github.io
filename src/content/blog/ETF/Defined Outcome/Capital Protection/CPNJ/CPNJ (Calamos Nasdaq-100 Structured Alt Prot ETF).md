@@ -2,6 +2,13 @@
 title: 'CPNJ (Calamos Nasdaq-100 Structured Alt Protection ETF - June)'
 description: 'QQQ 가격 수익률을 기준으로 1년 아웃컴 기간의 하방 보호와 제한된 상방 참여를 제공하는 구조적 보호 ETF'
 pubDate: '2026-05-25T00:00:00+09:00'
+ticker: "CPNJ"
+issuer: "Calamos"
+assetClass: "Equity"
+strategy: "Defined Outcome"
+exposure: "Nasdaq-100"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

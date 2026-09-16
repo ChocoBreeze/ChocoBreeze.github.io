@@ -2,6 +2,13 @@
 title: 'TSNF (Truth Social American Next Frontiers ETF)'
 description: 'AI·우주·반도체·바이오·원자력·암호화폐 등 신흥 기술 전반에 분산 투자하는 Truth.Fi 계열 혁신 테마 ETF'
 pubDate: '2026-07-20T09:00:00+09:00'
+ticker: "TSNF"
+issuer: "Yorkville America"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Next Frontiers"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

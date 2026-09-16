@@ -2,6 +2,13 @@
 title: 'JEDI (Defiance Drone and Modern Warfare ETF)'
 description: '드론과 현대전 기술 기업에 투자하는 Defiance ETF'
 pubDate: '2026-01-31T20:00:00Z'
+ticker: "JEDI"
+issuer: "Defiance"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Drone & Modern Warfare"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

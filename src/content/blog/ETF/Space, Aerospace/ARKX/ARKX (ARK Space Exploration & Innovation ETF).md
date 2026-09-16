@@ -2,6 +2,13 @@
 title: 'ARKX (ARK Space Exploration & Innovation ETF)'
 description: '우주 탐사와 방위 산업 혁신에 투자하는 ARK 액티브 ETF'
 pubDate: '2026-01-31T13:00:00Z'
+ticker: "ARKX"
+issuer: "ARK Invest"
+assetClass: "Equity"
+strategy: "Active"
+exposure: "Space & Defense"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

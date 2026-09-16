@@ -2,6 +2,13 @@
 title: 'TSRS (Truth Social American Red State REITs ETF)'
 description: '공화당 우세주(Red State) 매출 비중이 높은 REIT에 투자하는 Truth.Fi 계열 ETF'
 pubDate: '2026-07-20T09:00:00+09:00'
+ticker: "TSRS"
+issuer: "Yorkville America"
+assetClass: "REIT"
+strategy: "Index"
+exposure: "REITs"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

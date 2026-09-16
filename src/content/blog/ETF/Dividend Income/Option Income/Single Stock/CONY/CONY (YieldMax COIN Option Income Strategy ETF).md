@@ -2,6 +2,13 @@
 title: 'CONY (YieldMax COIN Option Income Strategy ETF)'
 description: 'Coinbase(COIN) 주식에 대한 합성 커버드콜 ETF'
 pubDate: '2026-01-15T12:00:00Z'
+ticker: "CONY"
+issuer: "YieldMax"
+assetClass: "Equity"
+strategy: "Option Income"
+exposure: "Coinbase"
+leverage: "1x"
+incomeStyle: "Option Income"
 categories: "ETF"
 ---
 

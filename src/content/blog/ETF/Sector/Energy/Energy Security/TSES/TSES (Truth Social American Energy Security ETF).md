@@ -2,6 +2,13 @@
 title: 'TSES (Truth Social American Energy Security ETF)'
 description: '전통 석유가스와 원자력을 함께 편입하는 미국 에너지 안보 테마 ETF'
 pubDate: '2026-07-20T09:00:00+09:00'
+ticker: "TSES"
+issuer: "Yorkville America"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Energy Security"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

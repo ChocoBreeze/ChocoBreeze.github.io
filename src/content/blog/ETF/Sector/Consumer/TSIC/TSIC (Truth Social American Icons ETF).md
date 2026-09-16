@@ -2,6 +2,13 @@
 title: 'TSIC (Truth Social American Icons ETF)'
 description: '넷플릭스·월마트·코스트코 등 미국 대표 소비자 브랜드 기업에 투자하는 "Made in America" 테마 ETF'
 pubDate: '2026-07-20T09:00:00+09:00'
+ticker: "TSIC"
+issuer: "Yorkville America"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Consumer Brands"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

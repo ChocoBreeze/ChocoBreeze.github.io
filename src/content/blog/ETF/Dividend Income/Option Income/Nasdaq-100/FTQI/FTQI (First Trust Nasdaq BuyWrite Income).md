@@ -2,6 +2,13 @@
 title: 'FTQI (First Trust Nasdaq BuyWrite Income ETF)'
 description: '미국 대형주 포트폴리오와 Nasdaq-100 콜옵션 매도 전략을 결합한 액티브 바이라이트 인컴 ETF'
 pubDate: '2026-03-06T00:00:00+09:00'
+ticker: "FTQI"
+issuer: "First Trust"
+assetClass: "Equity"
+strategy: "Option Income"
+exposure: "Nasdaq-100"
+leverage: "1x"
+incomeStyle: "Option Income"
 categories: "ETF"
 ---
 
