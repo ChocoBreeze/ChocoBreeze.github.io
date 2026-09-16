@@ -2,6 +2,13 @@
 title: 'CPER (United States Copper Index Fund, LP)'
 description: '구리 선물 추적 펀드'
 pubDate: '2026-01-16T03:00:00Z'
+ticker: "CPER"
+issuer: "United States Commodity Funds"
+assetClass: "Commodity"
+strategy: "Futures"
+exposure: "Copper"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

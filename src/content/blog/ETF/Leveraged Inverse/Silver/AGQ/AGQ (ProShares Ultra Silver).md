@@ -2,6 +2,13 @@
 title: 'AGQ (ProShares Ultra Silver)'
 description: 'Bloomberg Silver Subindex 일일 수익률을 2배로 추종하는 레버리지 은 선물·스왑 ETF'
 pubDate: '2026-07-20T09:00:00+09:00'
+ticker: "AGQ"
+issuer: "ProShares"
+assetClass: "Commodity"
+strategy: "Leveraged"
+exposure: "Silver"
+leverage: "2x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

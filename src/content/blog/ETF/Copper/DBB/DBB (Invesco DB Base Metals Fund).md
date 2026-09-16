@@ -2,6 +2,13 @@
 title: 'DBB (Invesco DB Base Metals Fund)'
 description: '3개 산업용 금속(구리, 알루미늄, 아연) 선물 추적 펀드'
 pubDate: '2026-01-16T04:00:00Z'
+ticker: "DBB"
+issuer: "Invesco"
+assetClass: "Commodity"
+strategy: "Futures"
+exposure: "Base Metals"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

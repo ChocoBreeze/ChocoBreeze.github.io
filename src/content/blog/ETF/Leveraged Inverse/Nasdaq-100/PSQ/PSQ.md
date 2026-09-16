@@ -2,6 +2,13 @@
 title: 'PSQ (ProShares Short QQQ)'
 description: 'Nasdaq-100 지수의 일일 -1배 수익률을 추구하는 ProShares의 인버스 ETF'
 pubDate: '2026-06-06T00:00:00+09:00'
+ticker: "PSQ"
+issuer: "ProShares"
+assetClass: "Equity"
+strategy: "Inverse"
+exposure: "Nasdaq-100"
+leverage: "-1x"
+incomeStyle: "Hedge"
 dataAsOf: '2026-04-21T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "PSQ", "ProShares", "Nasdaq-100", "Inverse"]

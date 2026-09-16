@@ -2,6 +2,13 @@
 title: 'ZSL (ProShares UltraShort Silver ETF)'
 description: '은 가격 하락에 일일 -2배로 베팅하는 인버스 레버리지 ETF'
 pubDate: '2026-07-20T09:01:00+09:00'
+ticker: "ZSL"
+issuer: "ProShares"
+assetClass: "Commodity"
+strategy: "Inverse"
+exposure: "Silver"
+leverage: "-2x"
+incomeStyle: "Hedge"
 categories: "ETF"
 ---
 

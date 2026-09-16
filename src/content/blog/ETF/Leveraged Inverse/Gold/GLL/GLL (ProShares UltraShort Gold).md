@@ -2,6 +2,13 @@
 title: 'GLL (ProShares UltraShort Gold)'
 description: 'Bloomberg Gold Subindex의 일일 -2배 수익률을 추구하는 인버스 ETF, 초단기 거래 전용 고위험 상품'
 pubDate: '2026-07-22T19:00:00+09:00'
+ticker: "GLL"
+issuer: "ProShares"
+assetClass: "Commodity"
+strategy: "Inverse"
+exposure: "Gold"
+leverage: "-2x"
+incomeStyle: "Hedge"
 categories: "ETF"
 ---
 
@@ -851,5 +858,4 @@ GLL은 다음과 같은 극소수 투자자에게만 적합하다:
 [^35]: https://www.linkedin.com/pulse/navigating-regulatory-risks-leveraged-inverse-etfs-kmt9c
 
 [^36]: https://www.kraken.com/stocks/gll
-
 

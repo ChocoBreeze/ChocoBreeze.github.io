@@ -2,6 +2,13 @@
 title: 'UGL (ProShares Ultra Gold)'
 description: 'Bloomberg Gold Subindex 선물의 일일 수익률을 2배로 추종하는 ETF, K-1 발행과 콘탱고 비용에 유의'
 pubDate: '2026-07-23T11:00:00+09:00'
+ticker: "UGL"
+issuer: "ProShares"
+assetClass: "Commodity"
+strategy: "Leveraged"
+exposure: "Gold"
+leverage: "2x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -831,5 +838,4 @@ UGL은 3배 레버리지 SHNY와 비레버리지 GLD 사이의 최적 균형점(
 [^38]: https://www.fxstreet.com/news/gold-bullish-outlook-for-2026-td-securities-202601271355
 
 [^39]: https://tickeron.com/blogs/ugl-climbs-amid-gold-record-highs-and-rising-volatility-11676/
-
 

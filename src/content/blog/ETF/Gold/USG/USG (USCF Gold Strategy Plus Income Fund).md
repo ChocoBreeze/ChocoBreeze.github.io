@@ -2,6 +2,13 @@
 title: 'USG (USCF Gold Strategy Plus Income Fund)'
 description: 'COMEX 금 워런트·선물 보유에 커버드콜 매도를 결합한 인컴형 금 ETF, 강세장에서는 상승 제한'
 pubDate: '2026-07-23T11:30:00+09:00'
+ticker: "USG"
+issuer: "USCF"
+assetClass: "Commodity"
+strategy: "Covered Call"
+exposure: "Gold"
+leverage: "1x"
+incomeStyle: "Option Income"
 categories: "ETF"
 ---
 
@@ -403,5 +410,4 @@ USG는 일반적인 금 투자자에게 "최선의 선택(Best Choice)"이 아�
 [^78]: https://www.sec.gov/Archives/edgar/data/1327068/000141057825000228/uso-20241231x10k.htm
 
 [^79]: https://www.tradingview.com/symbols/NZX-USG/analysis/
-
 

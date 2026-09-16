@@ -2,6 +2,13 @@
 title: 'NUGT (Direxion Daily Gold Miners Index Bull 2X Shares)'
 description: '금광주 지수의 일일 +2배 수익률을 추구하는 레버리지 ETF, 장기 보유 시 변동성 소모로 손실 위험이 큼'
 pubDate: '2026-07-22T22:00:00+09:00'
+ticker: "NUGT"
+issuer: "Direxion"
+assetClass: "Equity"
+strategy: "Leveraged"
+exposure: "Gold Miners"
+leverage: "2x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -633,5 +640,4 @@ NUGT는 2026년 금광주 시장의 변동성을 공격적으로 포착하려는
 [^27]: https://bbn.kiwoom.com/rfTP719
 
 [^28]: https://www.youtube.com/watch?v=Txp16yScFKQ
-
 

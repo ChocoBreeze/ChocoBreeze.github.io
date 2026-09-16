@@ -2,6 +2,13 @@
 title: 'USD (ProShares Ultra Semiconductors)'
 description: '반도체 지수의 일일 수익률 2배를 목표로 하는 ProShares의 반도체 레버리지 ETF 분석'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "USD"
+issuer: "ProShares"
+assetClass: "Equity"
+strategy: "Leveraged"
+exposure: "Semiconductor"
+leverage: "2x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "USD", "ProShares", "Semiconductor", "Leveraged", "2X"]
 ---

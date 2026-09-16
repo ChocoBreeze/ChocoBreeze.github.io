@@ -2,6 +2,13 @@
 title: 'SOXS (Direxion Daily Semiconductor Bear 3X Shares)'
 description: 'NYSE Semiconductor Index 일일 수익률의 -3배를 목표로 하는 Direxion의 초단기 전술용 반도체 인버스 레버리지 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "SOXS"
+issuer: "Direxion"
+assetClass: "Equity"
+strategy: "Inverse"
+exposure: "Semiconductor"
+leverage: "-3x"
+incomeStyle: "Hedge"
 categories: "ETF"
 tags: ["ETF", "SOXS", "Direxion", "Semiconductor", "Inverse", "Leveraged", "3X"]
 ---

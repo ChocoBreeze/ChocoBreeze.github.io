@@ -2,6 +2,13 @@
 title: 'SLVR (Sprott Silver Miners & Physical Silver ETF)'
 description: '은 매출 비중 50% 이상인 채굴기업 지분과 물리적 은(약 17.5%)을 결합한 하이브리드 ETF'
 pubDate: '2026-07-20T09:09:00+09:00'
+ticker: "SLVR"
+issuer: "Sprott"
+assetClass: "Multi-Asset"
+strategy: "Index"
+exposure: "Silver"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

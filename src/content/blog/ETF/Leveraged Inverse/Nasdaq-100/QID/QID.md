@@ -2,6 +2,13 @@
 title: 'QID (ProShares UltraShort QQQ)'
 description: 'Nasdaq-100 지수의 일일 -2배 수익률을 추구하는 ProShares의 레버리지 인버스 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "QID"
+issuer: "ProShares"
+assetClass: "Equity"
+strategy: "Inverse"
+exposure: "Nasdaq-100"
+leverage: "-2x"
+incomeStyle: "Hedge"
 dataAsOf: '2026-05-03T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "QID", "ProShares", "Nasdaq-100", "Inverse", "Leveraged"]
