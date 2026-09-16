@@ -2,6 +2,13 @@
 title: 'GOAU (U.S. Global GO Gold and Precious Metal Miners ETF)'
 description: '로열티·스트리밍 기업 30%를 포함한 액티브 운용 금광주 ETF, GDX 대비 우수한 위험조정수익률'
 pubDate: '2026-07-22T18:00:00+09:00'
+ticker: "GOAU"
+issuer: "U.S. Global"
+assetClass: "Equity"
+strategy: "Active"
+exposure: "Gold & Precious Metal Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -781,5 +788,4 @@ GOAU는 금 강세장에서 레버리지를 극대화하려는 적극적 투자�
 [^55]: https://www.vaneck.com/us/en/investments/junior-gold-miners-etf-gdxj/
 
 [^56]: https://ecrresearch.com/sites/default/files/research_downloads/Methodology%20SAA%20model_0.pdf
-
 

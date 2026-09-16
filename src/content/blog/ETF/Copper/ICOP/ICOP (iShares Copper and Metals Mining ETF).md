@@ -2,6 +2,13 @@
 title: 'ICOP (iShares Copper and Metals Mining ETF)'
 description: '광범위 구리 및 금속 광산 회사 전문 ETF'
 pubDate: '2026-01-16T05:00:00Z'
+ticker: "ICOP"
+issuer: "BlackRock"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Copper & Metals Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

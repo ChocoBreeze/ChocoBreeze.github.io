@@ -2,6 +2,13 @@
 title: 'SGDM (Sprott Gold Miners ETF)'
 description: 'Revenue Growth·FCF Yield·부채비율 팩터 가중 방식의 대형 금광주 ETF, 실제 성과는 시가총액 가중 대비 저조'
 pubDate: '2026-07-23T09:30:00+09:00'
+ticker: "SGDM"
+issuer: "Sprott"
+assetClass: "Equity"
+strategy: "Factor"
+exposure: "Gold Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -532,5 +539,4 @@ SGDM은 Sprott 브랜드와 Factor-Based 가중의 이론적 매력에도 불구
 [^19]: https://sprott.com/investment-strategies/exchange-listed-products/sprott-etfs/
 
 [^20]: https://www.solactive.com/Indices/?index=DE000SLA6V44
-
 

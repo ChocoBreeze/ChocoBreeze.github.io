@@ -2,6 +2,13 @@
 title: 'REMX (VanEck Rare Earth, Strategic Metals ETF)'
 description: '희토류와 전략 금속 관련 기업에 투자하는 VanEck ETF'
 pubDate: '2026-01-31T18:00:00Z'
+ticker: "REMX"
+issuer: "VanEck"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Rare Earth & Strategic Metals"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

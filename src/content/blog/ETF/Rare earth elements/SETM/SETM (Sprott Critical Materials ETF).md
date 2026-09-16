@@ -2,6 +2,13 @@
 title: 'SETM (Sprott Critical Materials ETF)'
 description: '에너지 전환 핵심 자재 기업에 투자하는 Sprott ETF'
 pubDate: '2026-01-31T19:00:00Z'
+ticker: "SETM"
+issuer: "Sprott"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Critical Materials"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

@@ -2,6 +2,13 @@
 title: 'COPJ (Sprott Junior Copper Miners ETF)'
 description: '초기단계 구리 광산 회사 전문 ETF'
 pubDate: '2026-01-16T00:00:00Z'
+ticker: "COPJ"
+issuer: "Sprott"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Junior Copper Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

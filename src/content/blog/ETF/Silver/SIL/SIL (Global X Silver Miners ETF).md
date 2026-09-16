@@ -2,6 +2,13 @@
 title: 'SIL (Global X Silver Miners ETF)'
 description: '전 세계 대형 은 광산 기업에 투자하는 은 채굴주 ETF'
 pubDate: '2026-07-20T09:06:00+09:00'
+ticker: "SIL"
+issuer: "Global X"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Silver Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

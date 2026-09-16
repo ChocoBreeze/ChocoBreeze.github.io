@@ -2,6 +2,13 @@
 title: 'SGDJ (Sprott Junior Gold Miners ETF)'
 description: 'Revenue Growth·Price Momentum 팩터 가중 방식의 주니어 금광주 ETF, 2025년 GDXJ 상회 성과'
 pubDate: '2026-07-23T09:00:00+09:00'
+ticker: "SGDJ"
+issuer: "Sprott"
+assetClass: "Equity"
+strategy: "Factor"
+exposure: "Junior Gold Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -590,5 +597,4 @@ SGDJ는 2026년 금 시장의 구조적 강세 속에서 금 가격 상승에 �
 [^26]: https://finance.yahoo.com/quote/SGDJ/performance/
 
 [^27]: https://robinhood.com/us/en/stocks/SGDJ/
-
 

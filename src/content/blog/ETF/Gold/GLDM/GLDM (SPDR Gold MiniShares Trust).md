@@ -2,6 +2,13 @@
 title: 'GLDM (SPDR Gold MiniShares Trust)'
 description: 'GLD의 저비용 미니 버전 실물 금 ETF, 업계 최저 수준(0.10%) 보수와 낮은 주가로 접근성 확보'
 pubDate: '2026-07-22T16:00:00+09:00'
+ticker: "GLDM"
+issuer: "State Street"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Gold"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -921,5 +928,4 @@ GLDM은 이러한 환경에서 **최저 비용으로 금에 노출하는 최선�
 [^19]: https://stockinvest.us/stock/GLDM
 
 [^20]: https://www.bullionvault.com/gold-guide/gold-etf
-
 

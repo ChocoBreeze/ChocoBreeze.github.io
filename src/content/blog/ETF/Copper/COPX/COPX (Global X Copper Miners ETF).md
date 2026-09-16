@@ -2,6 +2,13 @@
 title: 'COPX (Global X Copper Miners ETF)'
 description: '글로벌 구리 광산 회사 전문 ETF 중 가장 오래되고 가장 큰 규모'
 pubDate: '2026-01-16T02:00:00Z'
+ticker: "COPX"
+issuer: "Global X"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Copper Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

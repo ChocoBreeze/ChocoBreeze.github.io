@@ -2,6 +2,13 @@
 title: 'SIVR (abrdn Physical Silver Shares ETF)'
 description: '업계 최저 수준 보수(0.30%)로 물리적 은을 보유하는 ETF'
 pubDate: '2026-07-20T09:03:00+09:00'
+ticker: "SIVR"
+issuer: "abrdn"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Silver"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

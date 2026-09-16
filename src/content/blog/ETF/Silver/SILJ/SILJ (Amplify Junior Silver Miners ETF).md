@@ -2,6 +2,13 @@
 title: 'SILJ (Amplify Junior Silver Miners ETF)'
 description: '소형·중형 은 광산 기업에 투자하는 세계 유일의 주니어 은 채굴주 ETF'
 pubDate: '2026-07-20T09:07:00+09:00'
+ticker: "SILJ"
+issuer: "Amplify"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Junior Silver Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

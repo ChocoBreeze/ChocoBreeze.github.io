@@ -2,6 +2,13 @@
 title: 'COPP (Sprott Copper Miners ETF)'
 description: '글로벌 대형 및 중형 구리 광산 회사 전문 ETF'
 pubDate: '2026-01-16T01:00:00Z'
+ticker: "COPP"
+issuer: "Sprott"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Copper Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

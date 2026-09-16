@@ -2,6 +2,13 @@
 title: 'IAUM (iShares Gold Trust Micro)'
 description: 'IAU의 저비용 미니 버전 실물 금 ETF, 업계 최저 수준(0.09%) 보수와 낮은 주가로 소액 투자자에 최적화'
 pubDate: '2026-07-22T20:00:00+09:00'
+ticker: "IAUM"
+issuer: "BlackRock"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Gold"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -602,5 +609,4 @@ IAUM은 2026년 혼돈의 시장 환경에서 포트폴리오의 방어막 역�
 [^66]: https://www.cnbc.com/2026/01/26/gold-record-surges-past-new-5000-record.html
 
 [^67]: https://www.ishares.com/us/literature/fact-sheet/iaum-ishares-gold-trust-micro-fund-fact-sheet-en-us.pdf
-
 

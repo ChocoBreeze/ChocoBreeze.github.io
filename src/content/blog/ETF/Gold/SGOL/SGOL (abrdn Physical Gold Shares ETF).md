@@ -2,6 +2,13 @@
 title: 'SGOL (abrdn Physical Gold Shares ETF)'
 description: '런던·취리히 이중 금고에 실물 금을 보관하는 중간 규모 금 ETF, GLD/IAU보다 낮은 보수'
 pubDate: '2026-07-23T10:00:00+09:00'
+ticker: "SGOL"
+issuer: "abrdn"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Gold"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -582,5 +589,4 @@ SGOL은 물리적 금 투자에 대한 접근을 원하지만 직접 보유의 �
 [^65]: https://foundico.com/blog/what-is-the-regulatory-framework-for-gold-in-south-korea-.html
 
 [^66]: https://www.counos.io/what-laws-pertain-to-gold-in-south-korea-
-
 

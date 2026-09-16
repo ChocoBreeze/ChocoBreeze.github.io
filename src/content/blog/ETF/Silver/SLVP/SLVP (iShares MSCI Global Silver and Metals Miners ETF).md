@@ -2,6 +2,13 @@
 title: 'SLVP (iShares MSCI Global Silver and Metals Miners ETF)'
 description: '은·귀금속 채굴 기업 주식에 투자하는 글로벌 광산주 ETF'
 pubDate: '2026-07-20T09:08:00+09:00'
+ticker: "SLVP"
+issuer: "BlackRock"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Silver & Metals Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

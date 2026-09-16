@@ -2,6 +2,13 @@
 title: 'OUNZ (VanEck Merk Gold Trust)'
 description: '개인 투자자가 실물 금으로 인출 가능한 유일한 ETF, IAU와 동일한 보수에 최소 1온스부터 인출 지원'
 pubDate: '2026-07-22T20:30:00+09:00'
+ticker: "OUNZ"
+issuer: "VanEck"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Gold"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -702,5 +709,4 @@ OUNZ는 2026년 금 시장의 구조적 강세 속에서 안전자산·인플레
 [^24]: https://global.morningstar.com/en-gb/funds/gold-rally-continue-2026-top-performing-fund-manager-says
 
 [^25]: https://blog.naver.com/m_invest/224145904260?fromRss=true&trackingCode=rss
-
 

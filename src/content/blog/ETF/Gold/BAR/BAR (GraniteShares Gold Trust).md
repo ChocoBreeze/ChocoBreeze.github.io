@@ -2,6 +2,13 @@
 title: 'BAR (GraniteShares Gold Trust)'
 description: 'ICBC Standard Bank이 보관하는 런던 실물 금 ETF, 업계 최저 수준(0.17%) 경비율이 강점'
 pubDate: '2026-07-22T11:00:00+09:00'
+ticker: "BAR"
+issuer: "GraniteShares"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Gold"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -209,5 +216,4 @@ BAR(GraniteShares Gold Trust)은 물리적 금에 대한 저비용 노출을 추
 [^28]: https://www.onegold.com/education-center/investing-guide/best-gold-etfs
 
 [^29]: https://www.nasdaq.com/articles/gold-etfs-spdr-gold-shares-offers-scale-while-aaau-more-affordable
-
 

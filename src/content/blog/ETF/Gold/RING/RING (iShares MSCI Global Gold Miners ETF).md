@@ -2,6 +2,13 @@
 title: 'RING (iShares MSCI Global Gold Miners ETF)'
 description: 'GDX보다 낮은 보수의 글로벌 금광주 패시브 ETF, MSCI 25/50 규칙으로 집중도 제한'
 pubDate: '2026-07-22T21:30:00+09:00'
+ticker: "RING"
+issuer: "BlackRock"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Gold Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 
@@ -521,5 +528,4 @@ RING은 2026년 금 시장의 구조적 강세 속에서 금 가격 상승에 �
 [^21]: https://portfolioslab.com/tools/stock-comparison/GDX/RING
 
 [^22]: https://stockanalysis.com/etf/ring/dividend/
-
 
