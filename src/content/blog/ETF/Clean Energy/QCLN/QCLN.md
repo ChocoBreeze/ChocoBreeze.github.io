@@ -3,6 +3,13 @@ title: 'QCLN (First Trust NASDAQ Clean Edge Green Energy Index Fund)'
 description: '태양광, 전기차, 연료전지, 배터리 소재 등 청정에너지 가치사슬에 투자하는 First Trust의 클린에너지 테마 ETF'
 pubDate: '2026-06-06T00:00:00+09:00'
 dataAsOf: '2026-04-08T00:00:00+09:00'
+ticker: "QCLN"
+issuer: "First Trust"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Clean Energy"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "QCLN", "First Trust", "Clean Energy", "Green Energy"]
 ---

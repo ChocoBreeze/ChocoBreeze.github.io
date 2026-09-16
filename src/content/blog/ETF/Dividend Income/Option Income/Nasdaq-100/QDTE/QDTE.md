@@ -3,6 +3,13 @@ title: 'QDTE (Roundhill Innovation-100 0DTE Covered Call Strategy ETF)'
 description: 'Innovation-100/Nasdaq-100 노출에 0DTE 커버드콜 전략을 결합해 주간 분배를 추구하는 Roundhill의 옵션 인컴 ETF'
 pubDate: '2026-06-06T00:00:00+09:00'
 dataAsOf: '2026-03-25T00:00:00+09:00'
+ticker: "QDTE"
+issuer: "Roundhill"
+assetClass: "Equity"
+strategy: "Covered Call"
+exposure: "Innovation-100"
+leverage: "1x"
+incomeStyle: "Option Income"
 categories: "ETF"
 tags: ["ETF", "QDTE", "Roundhill", "Option Income", "Nasdaq-100", "0DTE"]
 ---

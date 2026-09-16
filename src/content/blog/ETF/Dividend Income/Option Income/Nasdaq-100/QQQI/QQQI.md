@@ -3,6 +3,13 @@ title: 'QQQI (NEOS Nasdaq 100 High Income ETF)'
 description: 'Nasdaq-100 주식 노출에 OTM 콜옵션 전략을 결합해 월배당과 세금 효율을 추구하는 NEOS의 옵션 인컴 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 dataAsOf: '2026-01-31T00:00:00+09:00'
+ticker: "QQQI"
+issuer: "NEOS"
+assetClass: "Equity"
+strategy: "Covered Call"
+exposure: "Nasdaq-100"
+leverage: "1x"
+incomeStyle: "Option Income"
 categories: "ETF"
 tags: ["ETF", "QQQI", "NEOS", "Nasdaq-100", "Option Income", "Covered Call"]
 ---
