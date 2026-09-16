@@ -3,6 +3,13 @@ title: 'FTXL (First Trust Nasdaq Semiconductor ETF)'
 description: 'Nasdaq US Smart Semiconductor Index를 추종하는 팩터 기반 반도체 ETF'
 pubDate: '2026-04-15T00:00:00+09:00'
 dataAsOf: '2026-04-15T00:00:00+09:00'
+ticker: "FTXL"
+issuer: "First Trust"
+assetClass: "Equity"
+strategy: "Factor"
+exposure: "Semiconductor"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

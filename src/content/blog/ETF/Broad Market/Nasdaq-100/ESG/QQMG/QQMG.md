@@ -3,6 +3,13 @@ title: 'QQMG (Invesco ESG NASDAQ 100 ETF)'
 description: 'Nasdaq-100 구성 종목에 ESG 필터와 ESG 리스크 기반 가중치 조정을 적용하는 Invesco의 Nasdaq-100 ESG ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 dataAsOf: '2026-05-11T00:00:00+09:00'
+ticker: "QQMG"
+issuer: "Invesco"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Nasdaq-100 ESG"
+leverage: "1x"
+incomeStyle: "Core"
 categories: "ETF"
 tags: ["ETF", "QQMG", "Invesco", "Nasdaq-100", "ESG"]
 ---

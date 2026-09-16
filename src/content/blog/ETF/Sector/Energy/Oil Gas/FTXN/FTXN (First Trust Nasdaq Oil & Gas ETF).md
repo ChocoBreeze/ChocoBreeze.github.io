@@ -3,6 +3,13 @@ title: 'FTXN (First Trust Nasdaq Oil & Gas ETF)'
 description: 'Nasdaq US Smart Oil & Gas Index를 추종하는 미국 석유·가스 섹터 스마트베타 ETF'
 pubDate: '2026-05-11T00:00:00+09:00'
 dataAsOf: '2026-05-11T00:00:00+09:00'
+ticker: "FTXN"
+issuer: "First Trust"
+assetClass: "Equity"
+strategy: "Factor"
+exposure: "Oil & Gas"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

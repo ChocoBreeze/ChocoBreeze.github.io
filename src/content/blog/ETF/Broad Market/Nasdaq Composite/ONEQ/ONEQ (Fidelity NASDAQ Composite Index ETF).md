@@ -3,6 +3,13 @@ title: 'ONEQ (Fidelity NASDAQ Composite Index ETF)'
 description: 'NASDAQ Composite Index를 추종해 나스닥 상장 전반에 투자하는 Fidelity 대표지수 ETF'
 pubDate: '2026-03-27T00:00:00+09:00'
 dataAsOf: '2026-03-27T00:00:00+09:00'
+ticker: "ONEQ"
+issuer: "Fidelity"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Nasdaq Composite"
+leverage: "1x"
+incomeStyle: "Core"
 categories: "ETF"
 ---
 

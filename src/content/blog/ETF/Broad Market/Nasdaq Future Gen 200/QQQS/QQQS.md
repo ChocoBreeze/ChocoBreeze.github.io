@@ -3,6 +3,13 @@ title: 'QQQS (Invesco NASDAQ Future Gen 200 ETF)'
 description: 'Nasdaq Composite 하위 유니버스에서 특허 가치 기반으로 소형·중형 혁신 기업 200개에 투자하는 Invesco의 Future Gen ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 dataAsOf: '2026-04-08T00:00:00+09:00'
+ticker: "QQQS"
+issuer: "Invesco"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Nasdaq Future Gen 200"
+leverage: "1x"
+incomeStyle: "Core"
 categories: "ETF"
 tags: ["ETF", "QQQS", "Invesco", "Nasdaq", "Nasdaq Future Gen 200", "Innovation"]
 ---

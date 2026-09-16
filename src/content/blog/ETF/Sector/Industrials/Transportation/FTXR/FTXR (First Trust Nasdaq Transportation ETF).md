@@ -3,6 +3,13 @@ title: 'FTXR (First Trust Nasdaq Transportation ETF)'
 description: 'Nasdaq US Smart Transportation Index를 추종하는 미국 운송 섹터 스마트베타 ETF'
 pubDate: '2026-05-25T00:00:00+09:00'
 dataAsOf: '2026-05-25T00:00:00+09:00'
+ticker: "FTXR"
+issuer: "First Trust"
+assetClass: "Equity"
+strategy: "Factor"
+exposure: "Transportation"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

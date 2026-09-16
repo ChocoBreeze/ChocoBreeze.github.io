@@ -3,6 +3,13 @@ title: 'GRID (First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund
 description: '글로벌 스마트그리드와 전력 인프라 기업에 투자하는 First Trust의 전력 인프라 테마 ETF'
 pubDate: '2026-04-08T00:00:00+09:00'
 dataAsOf: '2026-04-08T00:00:00+09:00'
+ticker: "GRID"
+issuer: "First Trust"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Smart Grid"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

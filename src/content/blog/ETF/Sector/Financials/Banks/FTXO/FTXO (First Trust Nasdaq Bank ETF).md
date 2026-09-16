@@ -3,6 +3,13 @@ title: 'FTXO (First Trust Nasdaq Bank ETF)'
 description: 'Nasdaq US Smart Banks Index를 추종하는 미국 은행 섹터 스마트베타 ETF'
 pubDate: '2026-05-03T00:00:00+09:00'
 dataAsOf: '2026-05-03T00:00:00+09:00'
+ticker: "FTXO"
+issuer: "First Trust"
+assetClass: "Equity"
+strategy: "Factor"
+exposure: "Banks"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

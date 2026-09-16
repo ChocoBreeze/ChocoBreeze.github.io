@@ -3,6 +3,13 @@ title: 'SPYM (State Street SPDR Portfolio S&P 500 ETF)'
 description: 'S&P 500 Index를 추종하는 초저비용 ETF'
 pubDate: '2026-01-31T10:00:00Z'
 dataAsOf: '2026-01-30T00:00:00+09:00'
+ticker: "SPYM"
+issuer: "State Street"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "S&P 500"
+leverage: "1x"
+incomeStyle: "Core"
 categories: "ETF"
 ---
 
