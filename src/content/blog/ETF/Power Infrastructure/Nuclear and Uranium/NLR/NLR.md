@@ -2,6 +2,13 @@
 title: 'NLR (VanEck Uranium and Nuclear ETF)'
 description: '우라늄 채굴, 원전 유틸리티, 원자력 서비스 기업에 분산 투자하는 VanEck의 원전·우라늄 ETF 분석'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "NLR"
+issuer: "VanEck"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Nuclear & Uranium"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "NLR", "VanEck", "Uranium", "Nuclear Energy", "Power Infrastructure"]
 ---

@@ -2,6 +2,13 @@
 title: 'PSI (Invesco Semiconductors ETF)'
 description: 'Dynamic Semiconductor Intellidex Index를 추종해 반도체 기업에 수정 동일가중 방식으로 투자하는 Invesco의 반도체 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "PSI"
+issuer: "Invesco"
+assetClass: "Equity"
+strategy: "Equal Weight"
+exposure: "Semiconductor"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "PSI", "Invesco", "Semiconductor", "Technology", "Theme ETF"]
 ---

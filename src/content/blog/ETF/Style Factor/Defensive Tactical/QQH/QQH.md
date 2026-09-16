@@ -2,6 +2,13 @@
 title: 'QQH (HCM Defender 100 Index ETF)'
 description: 'Nasdaq-100 주식 노출과 단기 국채 노출을 시장 국면에 따라 전환하는 HCM의 전술적 방어 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "QQH"
+issuer: "HCM"
+assetClass: "Equity"
+strategy: "Factor"
+exposure: "Nasdaq-100 Defensive Tactical"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "QQH", "HCM", "Nasdaq-100", "Tactical", "Defensive"]
 ---

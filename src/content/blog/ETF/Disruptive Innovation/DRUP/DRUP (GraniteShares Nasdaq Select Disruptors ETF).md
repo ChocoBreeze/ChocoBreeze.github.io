@@ -2,6 +2,13 @@
 title: 'DRUP (GraniteShares Nasdaq Select Disruptors ETF)'
 description: 'Nasdaq US Large Cap Select Disruptors Index를 추종하는 미국 대형 혁신기업 테마 ETF'
 pubDate: '2026-05-25T00:00:00+09:00'
+ticker: "DRUP"
+issuer: "GraniteShares"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Disruptive Innovation"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

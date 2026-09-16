@@ -2,6 +2,13 @@
 title: 'SHOC (Strive U.S. Semiconductor ETF)'
 description: 'Bloomberg U.S.-listed semiconductor index를 추종하면서 Strive의 주주활동 성격을 결합한 미국 반도체 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "SHOC"
+issuer: "Strive"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Semiconductor"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "SHOC", "Strive", "Semiconductor", "Anti-ESG", "Theme ETF"]
 ---

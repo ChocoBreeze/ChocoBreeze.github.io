@@ -2,6 +2,13 @@
 title: 'URA (Global X Uranium ETF)'
 description: '우라늄 채굴과 원전 부품·기술 기업에 투자하는 Global X의 대표 우라늄 ETF 분석'
 pubDate: '2026-06-08T00:00:00+09:00'
+ticker: "URA"
+issuer: "Global X"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Uranium & Nuclear"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "URA", "Global X", "Uranium", "Nuclear Energy", "Power Infrastructure"]
 ---

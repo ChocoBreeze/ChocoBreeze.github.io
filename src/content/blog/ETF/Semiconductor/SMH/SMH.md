@@ -2,6 +2,13 @@
 title: 'SMH (VanEck Semiconductor ETF)'
 description: 'MVIS US Listed Semiconductor 25 Index를 추종해 미국 상장 대형 반도체 기업에 시가총액 가중으로 투자하는 VanEck ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "SMH"
+issuer: "VanEck"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Semiconductor"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "SMH", "VanEck", "Semiconductor", "NVIDIA", "Theme ETF"]
 ---

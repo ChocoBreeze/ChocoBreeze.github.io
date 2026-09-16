@@ -2,6 +2,13 @@
 title: 'QTUM (Defiance Quantum ETF)'
 description: '양자컴퓨팅과 머신러닝 관련 글로벌 혁신 기업에 투자하는 Defiance의 대표 양자컴퓨팅 테마 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "QTUM"
+issuer: "Defiance"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Quantum Computing & Machine Learning"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "QTUM", "Defiance", "Quantum Computing", "Machine Learning", "Theme ETF"]
 ---

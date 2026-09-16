@@ -2,6 +2,13 @@
 title: 'PNQI (Invesco NASDAQ Internet ETF)'
 description: '미국 상장 인터넷 비즈니스 기업에 집중 투자하는 Invesco의 인터넷 테마 ETF'
 pubDate: '2026-06-06T00:00:00+09:00'
+ticker: "PNQI"
+issuer: "Invesco"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Internet"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "PNQI", "Internet", "Invesco", "Nasdaq"]
 ---

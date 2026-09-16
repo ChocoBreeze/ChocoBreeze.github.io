@@ -2,6 +2,13 @@
 title: 'IBIT (iShares Bitcoin Trust ETF)'
 description: '스팟 비트코인 ETF'
 pubDate: '2026-01-15T10:00:00Z'
+ticker: "IBIT"
+issuer: "BlackRock"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Bitcoin"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

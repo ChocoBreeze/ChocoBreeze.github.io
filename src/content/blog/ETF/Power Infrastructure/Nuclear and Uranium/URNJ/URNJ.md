@@ -2,6 +2,13 @@
 title: 'URNJ (Sprott Junior Uranium Miners ETF)'
 description: '주니어 우라늄 채굴 기업에 집중 투자하는 Sprott의 원전·우라늄 고변동성 ETF 분석'
 pubDate: '2026-06-08T00:00:00+09:00'
+ticker: "URNJ"
+issuer: "Sprott"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Junior Uranium Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "URNJ", "Sprott", "Uranium", "Junior Miners", "Nuclear Energy"]
 ---

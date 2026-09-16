@@ -2,6 +2,13 @@
 title: 'CHPX (Global X AI Semiconductor & Quantum ETF)'
 description: 'AI 반도체, HBM, 데이터센터 인프라, 양자컴퓨팅 밸류체인에 집중 투자하는 Global X 테마형 ETF'
 pubDate: '2026-05-30T00:00:00+09:00'
+ticker: "CHPX"
+issuer: "Global X"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "AI Semiconductor & Quantum"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "Semiconductor", "AI", "Quantum", "CHPX"]
 slug: "etf/semiconductor/chpx/global-x-ai-semiconductor-quantum-etf"

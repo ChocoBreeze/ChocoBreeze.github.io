@@ -2,6 +2,13 @@
 title: 'SMHX (VanEck Fabless Semiconductor ETF)'
 description: 'MarketVector US Listed Fabless Semiconductor Index를 추종해 팹리스 반도체 설계 기업에 집중 투자하는 VanEck ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+ticker: "SMHX"
+issuer: "VanEck"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Fabless Semiconductor"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "SMHX", "VanEck", "Semiconductor", "Fabless", "AI Chips"]
 ---

@@ -2,6 +2,13 @@
 title: 'FBTC (Fidelity Wise Origin Bitcoin Fund)'
 description: '스팟 비트코인 ETF'
 pubDate: '2026-01-15T09:00:00Z'
+ticker: "FBTC"
+issuer: "Fidelity"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Bitcoin"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

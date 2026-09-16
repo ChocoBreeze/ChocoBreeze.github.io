@@ -2,6 +2,13 @@
 title: 'URNM (Sprott Uranium Miners ETF)'
 description: '우라늄 채굴 기업과 물리적 우라늄 신탁에 집중 투자하는 Sprott의 우라늄 채굴 ETF 분석'
 pubDate: '2026-06-08T00:00:00+09:00'
+ticker: "URNM"
+issuer: "Sprott"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Uranium Miners"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "URNM", "Sprott", "Uranium", "Uranium Miners", "Nuclear Energy"]
 ---

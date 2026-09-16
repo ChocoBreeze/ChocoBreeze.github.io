@@ -2,6 +2,13 @@
 title: 'BITO (ProShares Bitcoin Strategy ETF)'
 description: '미국 최초의 비트코인 연계 ETF'
 pubDate: '2026-01-15T13:00:00Z'
+ticker: "BITO"
+issuer: "ProShares"
+assetClass: "Commodity"
+strategy: "Futures"
+exposure: "Bitcoin"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 ---
 

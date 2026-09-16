@@ -2,6 +2,13 @@
 title: 'DISK (Tema Memory ETF)'
 description: 'SemiAnalysis와 협업해 HBM·DRAM·NAND 등 메모리 반도체 밸류체인에 집중 투자하는 Tema ETFs의 액티브 메모리 ETF'
 pubDate: '2026-08-04T00:00:00+09:00'
+ticker: "DISK"
+issuer: "Tema"
+assetClass: "Equity"
+strategy: "Active"
+exposure: "Memory Semiconductor"
+leverage: "1x"
+incomeStyle: "None"
 categories: "ETF"
 tags: ["ETF", "Semiconductor", "Memory", "HBM", "Active"]
 slug: "etf/semiconductor/disk/tema-memory-etf"
