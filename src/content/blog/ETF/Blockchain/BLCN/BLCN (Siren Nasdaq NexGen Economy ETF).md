@@ -3,6 +3,7 @@ title: 'BLCN (Siren NexGen Economy ETF)'
 description: '블록체인과 차세대 경제 관련 글로벌 주식에 투자하는 액티브 테마 ETF'
 pubDate: '2026-05-25T00:00:00+09:00'
 dataAsOf: '2026-05-25T00:00:00+09:00'
+expenseRatio: '0.68%'
 ticker: "BLCN"
 issuer: "Siren"
 assetClass: "Equity"
