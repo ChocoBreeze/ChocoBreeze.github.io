@@ -3,6 +3,8 @@ title: 'SPHCF (Sprott Physical Copper Trust / COP.UN)'
 description: '세계 최초 물리적 구리 투자 신탁'
 pubDate: '2026-01-16T06:00:00Z'
 categories: "ETF"
+instrumentType: "CEF"
+ticker: "SPHCF"
 ---
 
 ## 요약 및 투자 개요

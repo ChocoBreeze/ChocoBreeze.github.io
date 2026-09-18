@@ -3,6 +3,8 @@ title: 'SHNY (MicroSectors Gold 3X Leveraged ETNs)'
 description: 'GLD의 일일 수익률을 3배로 추종하는 BMO 발행 ETN, 발행사 신용위험이 있는 초단기 거래 전용 상품'
 pubDate: '2026-07-23T10:30:00+09:00'
 categories: "ETF"
+instrumentType: "ETN"
+ticker: "SHNY"
 ---
 
 ## 분류 근거
@@ -725,5 +727,3 @@ SHNY는 양날의 검입니다. 2025년처럼 금이 강한 상승 트렌드를 
 [^50]: https://www.ssga.com/ch/fr/intermediary/insights/gold-2026-outlook-can-the-structural-bull-cycle-continue-to-5000
 
 [^51]: https://www.equiti.com/sc-en/news/global-macro-analysis/gold-consolidation-paves-the-way-for-new-highs-in-2026/
-
-

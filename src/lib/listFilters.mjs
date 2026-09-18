@@ -46,6 +46,10 @@ export function normalizePostTicker(ticker) {
 	return typeof ticker === 'string' ? ticker.trim().toUpperCase() : '';
 }
 
+export function normalizePostInstrumentType(instrumentType) {
+	return typeof instrumentType === 'string' ? instrumentType.trim() : '';
+}
+
 export function normalizePostAssetClass(assetClass) {
 	return typeof assetClass === 'string' ? assetClass.trim() : '';
 }

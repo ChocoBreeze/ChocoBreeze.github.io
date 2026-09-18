@@ -3,6 +3,8 @@ title: 'PHYS (Sprott Physical Gold Trust)'
 description: '캐나다 Royal Canadian Mint에 실물 금을 보관하는 폐쇄형 신탁, 400온스 이상 실물 인출 가능'
 pubDate: '2026-07-22T21:00:00+09:00'
 categories: "ETF"
+instrumentType: "CEF"
+ticker: "PHYS"
 ---
 
 ## 분류 근거
@@ -764,5 +766,3 @@ PHYS는 2026년 금 시장의 구조적 강세 속에서 캐나다 보관과 대
 [^31]: https://rockflow.ai/stocks/phys/
 
 [^32]: https://seekingalpha.com/article/4855916-the-sprott-physical-gold-trust-in-2025-and-the-outlook-for-2026
-
-

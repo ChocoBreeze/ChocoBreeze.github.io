@@ -48,6 +48,7 @@ const blog = defineCollection({
 		topics: z.array(z.string()).optional().nullable(),
 		platform: z.string().trim().min(1).optional().nullable(),
 		problemNumber: z.coerce.number().int().positive().optional().nullable(),
+		instrumentType: etfMetadataField('instrumentType').optional().nullable(),
 		ticker: etfMetadataField('ticker').optional().nullable(),
 		issuer: etfMetadataField('issuer').optional().nullable(),
 		assetClass: etfMetadataField('assetClass').optional().nullable(),

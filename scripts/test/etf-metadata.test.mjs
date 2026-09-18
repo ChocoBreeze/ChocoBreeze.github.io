@@ -20,6 +20,7 @@ describe('ETF metadata validation', () => {
 		assert.equal(isValidEtfMetadataValue('leverage', '-3x'), true);
 		assert.equal(isValidEtfMetadataValue('leverage', '2.5x'), true);
 		assert.equal(isValidEtfMetadataValue('incomeStyle', 'None'), true);
+		assert.equal(isValidEtfMetadataValue('instrumentType', 'CEF'), true);
 	});
 
 	it('rejects malformed or unregistered values', () => {
@@ -30,6 +31,7 @@ describe('ETF metadata validation', () => {
 		assert.equal(isValidEtfMetadataValue('leverage', 'three times'), false);
 		assert.equal(isValidEtfMetadataValue('leverage', '0x'), false);
 		assert.equal(isValidEtfMetadataValue('incomeStyle', 'Tactical'), false);
+		assert.equal(isValidEtfMetadataValue('instrumentType', 'Fund'), false);
 		assert.deepEqual(getEtfMetadataAllowedValues('strategy').includes('Index'), true);
 	});
 

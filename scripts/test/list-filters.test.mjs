@@ -14,6 +14,7 @@ import {
 	normalizeProblemNumber,
 	normalizePostStrategy,
 	normalizePostTicker,
+	normalizePostInstrumentType,
 } from '../../src/lib/listFilters.mjs';
 
 describe('getPostYear', () => {
@@ -61,6 +62,13 @@ describe('getListFilterOptions', () => {
 describe('normalizePostTags', () => {
 	it('trims tags and removes empty values', () => {
 		assert.deepEqual(normalizePostTags([' ETF ', '  ', 'AI']), ['ETF', 'AI']);
+	});
+});
+
+describe('ETF instrument type normalization', () => {
+	it('trims explicit product types and ignores non-string values', () => {
+		assert.equal(normalizePostInstrumentType(' CEF '), 'CEF');
+		assert.equal(normalizePostInstrumentType(null), '');
 	});
 });
 

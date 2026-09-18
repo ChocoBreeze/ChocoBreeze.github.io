@@ -2,6 +2,7 @@
 // new-post scaffold. Keep volatile market data out of this module.
 
 export const ETF_METADATA_FIELDS = Object.freeze([
+	'instrumentType',
 	'ticker',
 	'issuer',
 	'assetClass',
@@ -16,6 +17,7 @@ export const ETF_METADATA_FIELDS = Object.freeze([
 export const ETF_VOLATILE_METADATA_FIELDS = Object.freeze(['expenseRatio', 'aum', 'yield']);
 
 export const ETF_METADATA_ALLOWED_VALUES = Object.freeze({
+	instrumentType: Object.freeze(['ETF', 'ETN', 'CEF', 'UCITS', 'Other']),
 	assetClass: Object.freeze([
 		'Equity',
 		'Bond',

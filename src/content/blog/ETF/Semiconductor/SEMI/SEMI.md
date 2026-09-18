@@ -3,6 +3,8 @@ title: 'SEMI (iShares MSCI Global Semiconductors UCITS ETF)'
 description: 'MSCI Global Semiconductors Index를 추종해 미국과 해외 반도체 기업에 투자하는 iShares의 UCITS 반도체 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 categories: "ETF"
+instrumentType: "UCITS"
+ticker: "SEMI"
 tags: ["ETF", "SEMI", "iShares", "Semiconductor", "UCITS", "Global"]
 ---
 

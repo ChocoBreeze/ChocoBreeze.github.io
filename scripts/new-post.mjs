@@ -47,6 +47,7 @@ Options:
   --prerequisite-slugs Comma-separated stable slugs for prerequisite posts.
   --platform     Problem-solving platform, such as LeetCode.
   --problem-number Problem number as a positive integer.
+  --instrument-type ETF, ETN, CEF, UCITS, or Other.
   --ticker      ETF ticker symbol.
   --issuer      ETF issuer or provider.
   --asset-class Stable ETF asset class.
@@ -198,6 +199,7 @@ function buildPostContent({
 	prerequisiteSlugs = [],
 	platform,
 	problemNumber,
+	instrumentType,
 	ticker,
 	issuer,
 	assetClass,
@@ -242,6 +244,7 @@ function buildPostContent({
 		.join('\n');
 	const problemFields = optionalProblem ? `${optionalProblem}\n` : '';
 	const optionalEtf = [
+		instrumentType && `instrumentType: "${instrumentType}"`,
 		ticker && `ticker: "${ticker}"`,
 		issuer && `issuer: "${issuer}"`,
 		assetClass && `assetClass: "${assetClass}"`,
@@ -366,6 +369,7 @@ function main() {
 		problemNumber = Number(problemNumberValue);
 	}
 	const optionalTextFields = {
+		instrumentType: 'instrument-type',
 		ticker: 'ticker',
 		issuer: 'issuer',
 		assetClass: 'asset-class',

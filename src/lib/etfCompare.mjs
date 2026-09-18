@@ -1,5 +1,6 @@
 import {
 	normalizePostAssetClass,
+	normalizePostInstrumentType,
 	normalizePostStrategy,
 	normalizePostTicker,
 } from './listFilters.mjs';
@@ -33,6 +34,10 @@ export function createComparableEtfs(posts) {
 	const byTicker = new Map();
 
 	for (const post of Array.isArray(posts) ? posts : []) {
+		const instrumentType = normalizePostInstrumentType(post?.data?.instrumentType) || 'ETF';
+		if (instrumentType !== 'ETF') {
+			continue;
+		}
 		const ticker = normalizePostTicker(post?.data?.ticker);
 		const href = getPostHref(post);
 		const title = normalizeValue(post?.data?.title);
@@ -41,6 +46,7 @@ export function createComparableEtfs(posts) {
 		}
 
 		byTicker.set(ticker, {
+			instrumentType,
 			ticker,
 			title,
 			href,

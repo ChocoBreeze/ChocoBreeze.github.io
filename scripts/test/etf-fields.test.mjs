@@ -23,6 +23,8 @@ describe('new-post ETF fields', () => {
 					'2026-08-24',
 					'--ticker',
 					'QQQ',
+					'--instrument-type',
+					'ETF',
 					'--issuer',
 					'Invesco',
 					'--asset-class',
@@ -44,6 +46,7 @@ describe('new-post ETF fields', () => {
 			assert.equal(result.status, 0, result.stderr);
 			const content = readFileSync(expectedPath, 'utf8');
 			assert.match(content, /^ticker: "QQQ"$/m);
+			assert.match(content, /^instrumentType: "ETF"$/m);
 			assert.match(content, /^issuer: "Invesco"$/m);
 			assert.match(content, /^assetClass: "Equity"$/m);
 			assert.match(content, /^strategy: "Index"$/m);

@@ -10,6 +10,7 @@ import {
 	normalizeProblemNumber,
 	normalizePostStrategy,
 	normalizePostTicker,
+	normalizePostInstrumentType,
 } from '../lib/listFilters.mjs';
 
 type Props = {
@@ -25,6 +26,8 @@ const tags = normalizePostTags(post.data.tags);
 const platform = normalizePostPlatform(post.data.platform);
 const problemNumber = normalizeProblemNumber(post.data.problemNumber);
 const ticker = normalizePostTicker(post.data.ticker);
+const instrumentType = normalizePostInstrumentType(post.data.instrumentType);
+const displayedInstrumentType = instrumentType && instrumentType !== 'ETF' ? instrumentType : '';
 const assetClass = normalizePostAssetClass(post.data.assetClass);
 const strategy = normalizePostStrategy(post.data.strategy);
 const year = getPostYear(post);
@@ -37,6 +40,7 @@ const searchText = [
 	platform,
 	problemNumber,
 	ticker,
+	displayedInstrumentType,
 	assetClass,
 	strategy,
 ]
@@ -54,6 +58,7 @@ const searchText = [
 	data-platform={platform}
 	data-problem-number={problemNumber}
 	data-ticker={ticker}
+	data-instrument-type={displayedInstrumentType}
 	data-asset-class={assetClass}
 	data-strategy={strategy}
 	data-search={searchText}
@@ -67,6 +72,7 @@ const searchText = [
 					platform ||
 					problemNumber ||
 					ticker ||
+					displayedInstrumentType ||
 					assetClass ||
 					strategy ||
 					topics.length > 0) && (
@@ -83,10 +89,12 @@ const searchText = [
 								{problemNumber && `#${problemNumber}`}
 							</span>
 						)}
-						{(ticker || assetClass || strategy) && (
+						{(ticker || displayedInstrumentType || assetClass || strategy) && (
 							<span class="post-meta-chip">
 								{ticker}
-								{ticker && (assetClass || strategy) ? ' · ' : ''}
+								{ticker && (displayedInstrumentType || assetClass || strategy) ? ' · ' : ''}
+								{displayedInstrumentType}
+								{displayedInstrumentType && (assetClass || strategy) ? ' · ' : ''}
 								{assetClass}
 								{assetClass && strategy ? ' · ' : ''}
 								{strategy}

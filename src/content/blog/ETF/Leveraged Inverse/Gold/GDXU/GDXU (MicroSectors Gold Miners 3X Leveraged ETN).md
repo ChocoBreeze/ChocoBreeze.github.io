@@ -3,6 +3,8 @@ title: 'GDXU (MicroSectors Gold Miners 3X Leveraged ETN)'
 description: 'GDX/GDXJ 지수를 일일 3배 레버리지로 추종하는 ETN, 장기 보유 시 감소 효과로 손실 위험이 큼'
 pubDate: '2026-07-22T14:00:00+09:00'
 categories: "ETF"
+instrumentType: "ETN"
+ticker: "GDXU"
 ---
 
 ## 분류 근거
@@ -260,5 +262,3 @@ GDXU는 "기술적으로는 가능하지만 실제로는 파괴적인" 투자입
 [^9]: https://kr.tradingview.com/symbols/AMEX-GDXU/analysis/
 
 [^10]: https://stockanalysis.com/etf/compare/gdxu/
-
-

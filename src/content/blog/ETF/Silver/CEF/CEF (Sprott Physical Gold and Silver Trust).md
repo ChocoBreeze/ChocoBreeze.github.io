@@ -3,6 +3,8 @@ title: 'CEF (Sprott Physical Gold and Silver Trust)'
 description: '금과 은을 함께 물리적으로 보유하는 폐쇄형 이중 귀금속 신탁'
 pubDate: '2026-07-20T09:05:00+09:00'
 categories: "ETF"
+instrumentType: "CEF"
+ticker: "CEF"
 ---
 
 ## 분류 근거

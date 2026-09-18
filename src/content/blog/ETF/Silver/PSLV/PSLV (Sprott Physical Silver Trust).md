@@ -3,6 +3,8 @@ title: 'PSLV (Sprott Physical Silver Trust)'
 description: '일정 수량 이상 보유 시 실물 인출이 가능한 폐쇄형 물리적 은 투자신탁'
 pubDate: '2026-07-20T09:04:00+09:00'
 categories: "ETF"
+instrumentType: "CEF"
+ticker: "PSLV"
 ---
 
 ## 분류 근거

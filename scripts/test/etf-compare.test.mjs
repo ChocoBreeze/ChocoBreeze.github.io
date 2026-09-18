@@ -13,6 +13,7 @@ function post(id, data = {}) {
 		id,
 		data: {
 			title: data.title ?? id,
+			instrumentType: data.instrumentType,
 			ticker: data.ticker,
 			slug: data.slug,
 			issuer: data.issuer,
@@ -50,6 +51,7 @@ describe('ETF comparison data', () => {
 			['QQQ', 'SPY'],
 		);
 		assert.deepEqual(entries[1], {
+			instrumentType: 'ETF',
 			ticker: 'SPY',
 			title: 'SPY guide',
 			href: '/blog/spy-guide/',
@@ -64,6 +66,20 @@ describe('ETF comparison data', () => {
 			yield: '',
 			dataAsOf: '',
 		});
+	});
+
+	it('excludes explicitly non-ETF instruments while preserving legacy defaults', () => {
+		const entries = createComparableEtfs([
+			post('legacy-etf', { ticker: 'SPY' }),
+			post('cef', { ticker: 'CEF', instrumentType: 'CEF' }),
+			post('etn', { ticker: 'SHNY', instrumentType: 'ETN' }),
+			post('ucits', { ticker: 'SEMI', instrumentType: 'UCITS' }),
+		]);
+
+		assert.deepEqual(
+			entries.map(({ ticker }) => ticker),
+			['SPY'],
+		);
 	});
 
 	it('keeps volatile values available only with a valid snapshot date', () => {

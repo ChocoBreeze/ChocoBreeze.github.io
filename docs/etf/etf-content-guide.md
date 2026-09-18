@@ -9,7 +9,7 @@ Use `docs/etf/미국상장_ETF_분류_기준_Codex용_v2.md` as the primary refe
 ## Core Classification Rules
 
 - Classify by the ETF's actual investment purpose, strategy, income structure, holdings, and index exposure. Do not classify by ticker or ETF name alone.
-- The target universe is U.S.-listed ETFs. If the product may be an ETN, CEF, mutual fund, non-U.S. product, delisted product, or unclear instrument, classify as `Other/Needs Review`.
+- The target universe is U.S.-listed ETFs. If a product is an ETN, CEF, non-U.S. UCITS product, or another non-ETF instrument, keep it in the relevant ETF folder only when useful for discovery but set `instrumentType` to `ETN`, `CEF`, `UCITS`, or `Other`; these products are excluded from ETF comparison.
 - Always check for leverage or inverse exposure first. Leveraged and inverse products go under `Leveraged Inverse` even if they track a major index or theme.
 - If the ETF uses covered calls, option premium, buy-write, equity premium income, ELNs, or similar income strategies, classify it as income-oriented before treating it as a representative index ETF.
 - If the ETF clearly belongs to an asset class such as bonds, commodities, currencies, or REITs, prefer that asset class over broad equity index, sector, or theme labels.
@@ -91,6 +91,7 @@ Suggested classification fields:
 
 ```yaml
 ticker:
+instrumentType: ETF | ETN | CEF | UCITS | Other
 name:
 listed_market: US
 asset_class:
