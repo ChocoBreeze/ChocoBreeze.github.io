@@ -3,6 +3,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { isDataAsOfAfterVerifiedDate, isValidCalendarDate } from './lib/content-rules.mjs';
 import {
+	ETF_VOLATILE_METADATA_DATE_FIELDS,
 	getEtfMetadataValidationMessage,
 	hasEtfVolatileMetadata,
 	isValidEtfMetadataValue,
@@ -55,9 +56,12 @@ Options:
   --exposure    Stable ETF index, sector, or theme exposure.
   --leverage    Leverage or inverse description, such as 3x or -3x.
   --income-style ETF income style, such as Core or Option Income.
-  --expense-ratio ETF expense ratio. Requires --data-as-of.
-  --aum ETF assets under management. Requires --data-as-of.
-  --yield ETF distribution or yield value. Requires --data-as-of.
+  --expense-ratio ETF expense ratio. Requires --data-as-of or --expense-ratio-as-of.
+  --expense-ratio-as-of Expense ratio snapshot date; overrides --data-as-of for this field.
+  --aum ETF assets under management. Requires --data-as-of or --aum-as-of.
+  --aum-as-of AUM snapshot date; overrides --data-as-of for this field.
+  --yield ETF distribution or yield value. Requires --data-as-of or --yield-as-of.
+  --yield-as-of Yield snapshot date; overrides --data-as-of for this field.
   --slug       Stable blog slug. Recommended for generic posts.
   --file       Output file path under src/content/blog.
   --help       Show this help message.`);
@@ -208,8 +212,11 @@ function buildPostContent({
 	leverage,
 	incomeStyle,
 	expenseRatio,
+	expenseRatioAsOf,
 	aum,
+	aumAsOf,
 	yieldValue,
+	yieldAsOf,
 }) {
 	const optionalDates = [
 		updatedDate && `updatedDate: "${updatedDate}"`,
@@ -253,8 +260,11 @@ function buildPostContent({
 		leverage && `leverage: "${leverage}"`,
 		incomeStyle && `incomeStyle: "${incomeStyle}"`,
 		expenseRatio && `expenseRatio: "${expenseRatio}"`,
+		expenseRatioAsOf && `expenseRatioAsOf: "${expenseRatioAsOf}"`,
 		aum && `aum: "${aum}"`,
+		aumAsOf && `aumAsOf: "${aumAsOf}"`,
 		yieldValue && `yield: "${yieldValue}"`,
+		yieldAsOf && `yieldAsOf: "${yieldAsOf}"`,
 	]
 		.filter(Boolean)
 		.join('\n');
@@ -311,6 +321,9 @@ function main() {
 	const updatedDate = toIsoDateField(args['updated-date'], '--updated-date');
 	const verifiedDate = toIsoDateField(args['verified-date'], '--verified-date');
 	const dataAsOf = toIsoDateField(args['data-as-of'], '--data-as-of');
+	const expenseRatioAsOf = toIsoDateField(args['expense-ratio-as-of'], '--expense-ratio-as-of');
+	const aumAsOf = toIsoDateField(args['aum-as-of'], '--aum-as-of');
+	const yieldAsOf = toIsoDateField(args['yield-as-of'], '--yield-as-of');
 	const briefTypeValue = args['brief-type'] ?? defaults.briefType;
 	let briefType;
 	if (briefTypeValue !== undefined) {
@@ -406,13 +419,30 @@ function main() {
 		aum: volatileFields.aum,
 		yield: volatileFields.yieldValue,
 	};
-	if (category !== 'ETF' && hasEtfVolatileMetadata(volatileMetadata)) {
+	const volatileDateFields = {
+		expenseRatioAsOf,
+		aumAsOf,
+		yieldAsOf,
+	};
+	if (
+		category !== 'ETF' &&
+		(hasEtfVolatileMetadata(volatileMetadata) || Object.values(volatileDateFields).some(Boolean))
+	) {
 		throw new Error('ETF volatile metadata options are only valid for --category ETF.');
 	}
-	if (hasEtfVolatileMetadata(volatileMetadata) && !dataAsOf) {
-		throw new Error(
-			'ETF volatile metadata requires --data-as-of so changing values have a snapshot date.',
-		);
+	for (const [field, dateField] of Object.entries(ETF_VOLATILE_METADATA_DATE_FIELDS)) {
+		const value = volatileMetadata[field];
+		const fieldDate = volatileDateFields[dateField];
+		const valueOption = field.replace(/[A-Z]/g, (character) => `-${character.toLowerCase()}`);
+		const dateOption = dateField.replace(/[A-Z]/g, (character) => `-${character.toLowerCase()}`);
+		if (fieldDate && !value) {
+			throw new Error(`--${dateOption} requires --${valueOption}.`);
+		}
+		if (value && !dataAsOf && !fieldDate) {
+			throw new Error(
+				`ETF volatile metadata --${valueOption} requires --data-as-of or --${dateOption}.`,
+			);
+		}
 	}
 	for (const [field, value] of Object.entries(etfFields)) {
 		if (value !== undefined && !isValidEtfMetadataValue(field, value)) {
@@ -423,6 +453,15 @@ function main() {
 	}
 	if (dataAsOf && verifiedDate && isDataAsOfAfterVerifiedDate(dataAsOf, verifiedDate)) {
 		throw new Error('Invalid freshness dates: --data-as-of cannot be later than --verified-date.');
+	}
+	for (const [option, value] of Object.entries({
+		'expense-ratio-as-of': expenseRatioAsOf,
+		'aum-as-of': aumAsOf,
+		'yield-as-of': yieldAsOf,
+	})) {
+		if (value && verifiedDate && isDataAsOfAfterVerifiedDate(value, verifiedDate)) {
+			throw new Error(`Invalid freshness dates: --${option} cannot be later than --verified-date.`);
+		}
 	}
 	const slug = args.slug ?? defaults.slug ?? `${slugify(category)}/${slugify(title)}`;
 	const time = defaults.time ?? '00:00:00';
@@ -448,6 +487,9 @@ function main() {
 			updatedDate,
 			verifiedDate,
 			dataAsOf,
+			expenseRatioAsOf,
+			aumAsOf,
+			yieldAsOf,
 			briefType,
 			marketDate,
 			coverageStart,

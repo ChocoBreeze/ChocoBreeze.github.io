@@ -26,6 +26,9 @@ function post(id, data = {}) {
 			aum: data.aum,
 			yield: data.yield,
 			dataAsOf: data.dataAsOf,
+			expenseRatioAsOf: data.expenseRatioAsOf,
+			aumAsOf: data.aumAsOf,
+			yieldAsOf: data.yieldAsOf,
 		},
 	};
 }
@@ -65,6 +68,9 @@ describe('ETF comparison data', () => {
 			aum: '',
 			yield: '',
 			dataAsOf: '',
+			expenseRatioAsOf: '',
+			aumAsOf: '',
+			yieldAsOf: '',
 		});
 	});
 

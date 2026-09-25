@@ -152,7 +152,7 @@ describe('new-post ETF metadata validation', () => {
 });
 
 describe('content check ETF volatile metadata validation', () => {
-	it('rejects changing ETF values without a dataAsOf field', () => {
+	it('rejects changing ETF values without a field-specific or fallback snapshot date', () => {
 		const relativeFile = `__review-etf-content-${process.pid}.md`;
 		const expectedPath = path.join(process.cwd(), 'src', 'content', 'blog', relativeFile);
 		assert.equal(existsSync(expectedPath), false);
@@ -168,7 +168,10 @@ describe('content check ETF volatile metadata validation', () => {
 				encoding: 'utf8',
 			});
 			assert.notEqual(result.status, 0);
-			assert.match(result.stderr, /ETF volatile metadata requires `dataAsOf`/);
+			assert.match(
+				result.stderr,
+				/ETF volatile metadata `yield` requires `yieldAsOf` or `dataAsOf`/i,
+			);
 		} finally {
 			rmSync(expectedPath, { force: true });
 		}

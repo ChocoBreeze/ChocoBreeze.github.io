@@ -54,8 +54,10 @@ import { buildSeriesNavigation } from '../src/lib/series.mjs';
 import { findMissingPostReferences } from './lib/post-reference-rules.mjs';
 import {
 	ETF_METADATA_FIELDS,
+	ETF_VOLATILE_METADATA_DATE_FIELDS,
 	ETF_VOLATILE_METADATA_FIELDS,
 	getEtfMetadataValidationMessage,
+	getEtfVolatileMetadataDate,
 	hasEtfVolatileMetadata,
 	isValidEtfMetadataValue,
 } from '../src/data/etfMetadata.mjs';
@@ -68,6 +70,10 @@ const MARKDOWN_EXTENSIONS = new Set(['.md', '.mdx']);
 const PAGE_EXTENSIONS = PAGE_ROUTE_EXTENSIONS;
 // This ID is emitted by the blog page template, not by post Markdown.
 const RELATED_POSTS_HEADING_ID = 'related-posts-title';
+const CONTENT_DATE_FIELDS = [
+	...FRESHNESS_DATE_FIELDS,
+	...Object.values(ETF_VOLATILE_METADATA_DATE_FIELDS),
+];
 
 function walkMarkdownFiles(directory) {
 	const results = [];
@@ -398,7 +404,7 @@ function checkDateFieldFormat(filePath, content, frontmatterMatch, fields, field
 	}
 
 	const rawValue = field.rawValue;
-	const value = stripQuotes(rawValue);
+	const value = stripQuotes(stripYamlComment(rawValue)).trim();
 	const line = getLineNumber(content, frontmatterMatch.index + field.index);
 
 	if (!isValidDateFieldFormat(value)) {
@@ -413,29 +419,34 @@ function checkDateFieldFormat(filePath, content, frontmatterMatch, fields, field
 }
 
 function checkFreshnessDateOrder(filePath, content, frontmatterMatch, fields, issues) {
-	const dataAsOfField = fields.get('dataAsOf');
 	const verifiedDateField = fields.get('verifiedDate');
-	if (!dataAsOfField || !verifiedDateField) {
-		return;
-	}
+	if (!verifiedDateField) return;
 
-	const dataAsOf = stripQuotes(dataAsOfField.rawValue);
-	const verifiedDate = stripQuotes(verifiedDateField.rawValue);
-	if (!isValidDateFieldFormat(dataAsOf) || !isValidDateFieldFormat(verifiedDate)) {
-		return;
-	}
+	const verifiedDate = stripQuotes(stripYamlComment(verifiedDateField.rawValue)).trim();
+	if (!isValidDateFieldFormat(verifiedDate)) return;
 
-	if (!isDataAsOfAfterVerifiedDate(dataAsOf, verifiedDate)) {
-		return;
-	}
+	for (const fieldName of ['dataAsOf', ...Object.values(ETF_VOLATILE_METADATA_DATE_FIELDS)]) {
+		const snapshotField = fields.get(fieldName);
+		if (!snapshotField) continue;
 
-	addIssue(
-		issues,
-		'error',
-		filePath,
-		getLineNumber(content, frontmatterMatch.index + dataAsOfField.index),
-		'`dataAsOf` cannot be later than `verifiedDate`.',
-	);
+		const snapshotDate = stripQuotes(stripYamlComment(snapshotField.rawValue)).trim();
+		if (
+			!isValidDateFieldFormat(snapshotDate) ||
+			!isDataAsOfAfterVerifiedDate(snapshotDate, verifiedDate)
+		) {
+			continue;
+		}
+
+		addIssue(
+			issues,
+			'error',
+			filePath,
+			getLineNumber(content, frontmatterMatch.index + snapshotField.index),
+			fieldName === 'dataAsOf'
+				? '`dataAsOf` cannot be later than `verifiedDate`.'
+				: `\`${fieldName}\` cannot be later than \`verifiedDate\`.`,
+		);
+	}
 }
 
 function checkCategories(filePath, content, frontmatterMatch, fields, warnings) {
@@ -607,26 +618,48 @@ function checkEtfMetadata(filePath, content, frontmatterMatch, fields, issues) {
 			return [fieldName, ['null', '~'].includes(value.toLowerCase()) ? undefined : value];
 		}),
 	);
-	const dataAsOfField = fields.get('dataAsOf');
-	const dataAsOfValue = dataAsOfField
-		? stripQuotes(stripYamlComment(dataAsOfField.rawValue)).trim()
-		: '';
-	if (
-		hasEtfVolatileMetadata(volatileValues) &&
-		(!dataAsOfValue || dataAsOfValue === '~' || dataAsOfValue.toLowerCase() === 'null')
-	) {
-		const firstVolatileField = ETF_VOLATILE_METADATA_FIELDS.map((fieldName) => {
-			const field = fields.get(fieldName);
-			if (!field) return undefined;
-			const value = stripQuotes(stripYamlComment(field.rawValue)).trim();
-			return value && !['null', '~'].includes(value.toLowerCase()) ? field : undefined;
-		}).find(Boolean);
+	const readOptionalValue = (fieldName) => {
+		const field = fields.get(fieldName);
+		if (!field) return undefined;
+		const value = stripQuotes(stripYamlComment(field.rawValue)).trim();
+		return !value || ['null', '~'].includes(value.toLowerCase()) ? undefined : value;
+	};
+	const snapshotDates = {
+		dataAsOf: readOptionalValue('dataAsOf'),
+		...Object.fromEntries(
+			Object.values(ETF_VOLATILE_METADATA_DATE_FIELDS).map((fieldName) => [
+				fieldName,
+				readOptionalValue(fieldName),
+			]),
+		),
+	};
+
+	for (const [valueField, dateField] of Object.entries(ETF_VOLATILE_METADATA_DATE_FIELDS)) {
+		if (snapshotDates[dateField] && !volatileValues[valueField]) {
+			const field = fields.get(dateField);
+			addIssue(
+				issues,
+				'error',
+				filePath,
+				getLineNumber(content, frontmatterMatch.index + field.index),
+				`\`${dateField}\` requires its matching \`${valueField}\` value.`,
+			);
+		}
+	}
+
+	if (hasEtfVolatileMetadata(volatileValues)) {
+		const firstVolatileField = ETF_VOLATILE_METADATA_FIELDS.find(
+			(fieldName) =>
+				volatileValues[fieldName] && !getEtfVolatileMetadataDate(snapshotDates, fieldName),
+		);
+		if (!firstVolatileField) return;
+		const field = fields.get(firstVolatileField);
 		addIssue(
 			issues,
 			'error',
 			filePath,
-			getLineNumber(content, frontmatterMatch.index + firstVolatileField.index),
-			'ETF volatile metadata requires `dataAsOf` so changing values are not shown without a snapshot date.',
+			getLineNumber(content, frontmatterMatch.index + field.index),
+			`ETF volatile metadata \`${firstVolatileField}\` requires \`${ETF_VOLATILE_METADATA_DATE_FIELDS[firstVolatileField]}\` or \`dataAsOf\` so changing values are not shown without a snapshot date.`,
 		);
 	}
 }
@@ -675,7 +708,7 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex, postR
 	checkCategories(filePath, content, frontmatterMatch, fields, warnings);
 	checkRelatedSlugs(filePath, content, frontmatterMatch, fields, issues, postReferences);
 	checkPrerequisiteSlugs(filePath, content, frontmatterMatch, fields, issues, postReferences);
-	for (const fieldName of FRESHNESS_DATE_FIELDS) {
+	for (const fieldName of CONTENT_DATE_FIELDS) {
 		checkDateFieldFormat(filePath, content, frontmatterMatch, fields, fieldName, issues);
 	}
 	checkFreshnessDateOrder(filePath, content, frontmatterMatch, fields, issues);

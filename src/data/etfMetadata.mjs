@@ -13,8 +13,32 @@ export const ETF_METADATA_FIELDS = Object.freeze([
 ]);
 
 // These values change over time and must never be shown without a matching
-// dataAsOf snapshot date.
+// snapshot date. A field-specific date takes precedence over the post-wide date.
 export const ETF_VOLATILE_METADATA_FIELDS = Object.freeze(['expenseRatio', 'aum', 'yield']);
+export const ETF_VOLATILE_METADATA_DATE_FIELDS = Object.freeze({
+	expenseRatio: 'expenseRatioAsOf',
+	aum: 'aumAsOf',
+	yield: 'yieldAsOf',
+});
+
+export function getEtfVolatileMetadataDate(data, field) {
+	if (!Object.prototype.hasOwnProperty.call(ETF_VOLATILE_METADATA_DATE_FIELDS, field)) {
+		return undefined;
+	}
+	const dateField = ETF_VOLATILE_METADATA_DATE_FIELDS[field];
+
+	const fieldDate = data?.[dateField];
+	if (
+		fieldDate !== undefined &&
+		fieldDate !== null &&
+		!(typeof fieldDate === 'string' && ['null', '~'].includes(fieldDate.trim().toLowerCase())) &&
+		!(typeof fieldDate === 'string' && fieldDate.trim() === '')
+	) {
+		return fieldDate;
+	}
+
+	return data?.dataAsOf;
+}
 
 export const ETF_METADATA_ALLOWED_VALUES = Object.freeze({
 	instrumentType: Object.freeze(['ETF', 'ETN', 'CEF', 'UCITS', 'Other']),

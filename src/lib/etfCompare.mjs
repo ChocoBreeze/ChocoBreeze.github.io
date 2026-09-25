@@ -4,7 +4,11 @@ import {
 	normalizePostStrategy,
 	normalizePostTicker,
 } from './listFilters.mjs';
-import { ETF_VOLATILE_METADATA_FIELDS } from '../data/etfMetadata.mjs';
+import {
+	ETF_VOLATILE_METADATA_DATE_FIELDS,
+	ETF_VOLATILE_METADATA_FIELDS,
+	getEtfVolatileMetadataDate,
+} from '../data/etfMetadata.mjs';
 
 export const MAX_COMPARE_ETFS = 4;
 
@@ -27,7 +31,13 @@ function normalizeDateValue(value) {
 
 export function hasDatedEtfVolatileValue(entry, field) {
 	if (!ETF_VOLATILE_METADATA_FIELDS.includes(field)) return false;
-	return normalizeValue(entry?.[field]) !== '' && normalizeDateValue(entry?.dataAsOf) !== '';
+	const snapshotDate = getEtfVolatileMetadataDate(entry, field);
+	return normalizeValue(entry?.[field]) !== '' && normalizeDateValue(snapshotDate) !== '';
+}
+
+export function getEtfVolatileMetadataDateValue(entry, field) {
+	if (!ETF_VOLATILE_METADATA_FIELDS.includes(field)) return '';
+	return normalizeDateValue(getEtfVolatileMetadataDate(entry, field));
 }
 
 export function createComparableEtfs(posts) {
@@ -60,6 +70,12 @@ export function createComparableEtfs(posts) {
 			aum: normalizeValue(post?.data?.aum),
 			yield: normalizeValue(post?.data?.yield),
 			dataAsOf: normalizeDateValue(post?.data?.dataAsOf),
+			...Object.fromEntries(
+				Object.values(ETF_VOLATILE_METADATA_DATE_FIELDS).map((field) => [
+					field,
+					normalizeDateValue(post?.data?.[field]),
+				]),
+			),
 		});
 	}
 

@@ -113,6 +113,9 @@ const etfSections = Array.from(
 											data-aum={etf.aum || undefined}
 											data-yield={etf.yield || undefined}
 											data-data-as-of={etf.dataAsOf || undefined}
+											data-expense-ratio-as-of={etf.expenseRatioAsOf || undefined}
+											data-aum-as-of={etf.aumAsOf || undefined}
+											data-yield-as-of={etf.yieldAsOf || undefined}
 										/>
 										<span>
 											<strong>{etf.ticker}</strong>
@@ -523,6 +526,7 @@ const etfSections = Array.from(
 	import {
 		MAX_COMPARE_ETFS,
 		hasDatedEtfVolatileValue,
+		getEtfVolatileMetadataDateValue,
 		parseCompareTickers,
 		selectComparableEtfs,
 	} from '../../lib/etfCompare.mjs';
@@ -570,6 +574,9 @@ const etfSections = Array.from(
 				aum: option.dataset.aum ?? '',
 				yield: option.dataset.yield ?? '',
 				dataAsOf: option.dataset.dataAsOf ?? '',
+				expenseRatioAsOf: option.dataset.expenseRatioAsOf ?? '',
+				aumAsOf: option.dataset.aumAsOf ?? '',
+				yieldAsOf: option.dataset.yieldAsOf ?? '',
 			}));
 		}
 
@@ -660,7 +667,9 @@ const etfSections = Array.from(
 					const cell = document.createElement('td');
 					const value = entry[key];
 					const isVolatile = volatileFields.some(([volatileKey]) => volatileKey === key);
-					const dateLabel = isVolatile ? formatDataAsOf(entry.dataAsOf) : '';
+					const dateLabel = isVolatile
+						? formatDataAsOf(getEtfVolatileMetadataDateValue(entry, key))
+						: '';
 					cell.textContent = isVolatile
 						? hasDatedEtfVolatileValue(entry, key) && dateLabel
 							? `${value} (기준일 ${dateLabel})`
