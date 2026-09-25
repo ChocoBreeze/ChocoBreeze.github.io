@@ -2,6 +2,8 @@
 title: 'CIBR (First Trust Nasdaq Cybersecurity ETF)'
 description: 'Nasdaq CTA Cybersecurity Index를 추종하는 미국 사이버보안 테마 ETF'
 pubDate: '2026-03-06T00:00:00+09:00'
+aum: '~$9.97B'
+aumAsOf: '2026-03-06T00:00:00+09:00'
 ticker: "CIBR"
 issuer: "First Trust"
 assetClass: "Equity"

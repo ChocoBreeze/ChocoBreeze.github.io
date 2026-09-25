@@ -2,6 +2,8 @@
 title: 'TDIV (First Trust NASDAQ Technology Dividend Index Fund)'
 description: '배당을 지급하는 기술·통신 기업에 투자해 기술 섹터 성장성과 배당 소득을 함께 추구하는 First Trust ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+aum: '$3.705B'
+aumAsOf: '2026-03-05T00:00:00+09:00'
 ticker: "TDIV"
 issuer: "First Trust"
 assetClass: "Equity"

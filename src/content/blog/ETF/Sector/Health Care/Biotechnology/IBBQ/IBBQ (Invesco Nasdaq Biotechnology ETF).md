@@ -3,6 +3,8 @@ title: 'IBBQ (Invesco Nasdaq Biotechnology ETF)'
 description: 'Nasdaq Biotechnology Index를 추종하는 저비용 바이오테크·제약 섹터 ETF'
 pubDate: '2026-05-25T00:00:00+09:00'
 dataAsOf: '2026-05-25T00:00:00+09:00'
+aum: '$66.27M'
+aumAsOf: '2026-05-22T00:00:00+09:00'
 ticker: "IBBQ"
 issuer: "Invesco"
 assetClass: "Equity"

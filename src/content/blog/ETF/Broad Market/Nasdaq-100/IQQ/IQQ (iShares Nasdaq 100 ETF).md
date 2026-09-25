@@ -2,6 +2,8 @@
 title: 'IQQ (iShares Nasdaq 100 ETF)'
 description: 'BlackRock iShares가 2026년 7월 출시한 Nasdaq-100 추종 ETF, 업계 최저 수준 보수가 강점'
 pubDate: '2026-07-22T09:00:00+09:00'
+aum: '~$113.65M'
+aumAsOf: '2026-07-13T00:00:00+09:00'
 ticker: "IQQ"
 issuer: "BlackRock"
 assetClass: "Equity"
