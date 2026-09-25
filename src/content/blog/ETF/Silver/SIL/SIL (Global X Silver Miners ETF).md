@@ -9,6 +9,8 @@ strategy: "Index"
 exposure: "Silver Miners"
 leverage: "1x"
 incomeStyle: "None"
+aum: "$6.78B"
+aumAsOf: '2026-01-27T00:00:00+09:00'
 categories: "ETF"
 ---
 
