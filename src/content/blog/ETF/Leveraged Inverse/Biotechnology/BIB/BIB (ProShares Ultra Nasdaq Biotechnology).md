@@ -3,6 +3,8 @@ title: 'BIB (ProShares Ultra Nasdaq Biotechnology)'
 description: 'Nasdaq Biotechnology Index 일일 수익률 2배를 추구하는 바이오테크 레버리지 ETF'
 pubDate: '2026-05-25T00:00:00+09:00'
 dataAsOf: '2026-05-25T00:00:00+09:00'
+aum: '~$71.33M'
+aumAsOf: '2026-05-22T00:00:00+09:00'
 ticker: "BIB"
 issuer: "ProShares"
 assetClass: "Equity"
