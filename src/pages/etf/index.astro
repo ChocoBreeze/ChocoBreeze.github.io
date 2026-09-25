@@ -62,7 +62,14 @@ const etfSections = Array.from(
 	description={category.description}
 	activeCategory={category.key}
 	posts={posts}
-	filters={{ search: true, year: true, tag: true, assetClass: true, strategy: true }}
+	filters={{
+		search: true,
+		year: true,
+		tag: true,
+		assetClass: true,
+		strategy: true,
+		instrumentType: true,
+	}}
 >
 	<section class="etf-comparison" data-etf-comparison aria-labelledby="etf-comparison-heading">
 		<div class="etf-comparison-heading">

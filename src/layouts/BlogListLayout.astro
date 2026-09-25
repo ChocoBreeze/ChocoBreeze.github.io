@@ -24,6 +24,7 @@ type Props = {
 		problemNumber?: boolean;
 		assetClass?: boolean;
 		strategy?: boolean;
+		instrumentType?: boolean;
 	};
 };
 
@@ -33,7 +34,9 @@ const rssHref = getCategoryFeedPath(activeCategory);
 
 const pinnedPosts = posts.filter((p) => p.data.pinned);
 const regularPosts = posts.filter((p) => !p.data.pinned);
-const filterOptions = getListFilterOptions(regularPosts);
+const filterOptions = getListFilterOptions(regularPosts, {
+	defaultInstrumentType: Boolean(filters.instrumentType),
+});
 const searchFilterEnabled = Boolean(filters.search);
 const filterYears = filters.year ? filterOptions.years : [];
 const filterTags = filters.tag ? filterOptions.tags : [];
@@ -41,6 +44,7 @@ const filterPlatforms = filters.platform ? filterOptions.platforms : [];
 const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumbers : [];
 const filterAssetClasses = filters.assetClass ? filterOptions.assetClasses : [];
 const filterStrategies = filters.strategy ? filterOptions.strategies : [];
+const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentTypes : [];
 ---
 
 <!doctype html>
@@ -108,7 +112,8 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 								filterPlatforms.length > 0 ||
 								filterProblemNumbers.length > 0 ||
 								filterAssetClasses.length > 0 ||
-								filterStrategies.length > 0) && (
+								filterStrategies.length > 0 ||
+								filterInstrumentTypes.length > 0) && (
 								<div class="filter-controls" data-filter-controls>
 									{searchFilterEnabled && (
 										<label class="filter-field filter-search-field">
@@ -183,6 +188,17 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 												<option value="">모든 전략</option>
 												{filterStrategies.map((strategy) => (
 													<option value={strategy}>{strategy}</option>
+												))}
+											</select>
+										</label>
+									)}
+									{filterInstrumentTypes.length > 0 && (
+										<label class="filter-field">
+											<span>상품 유형</span>
+											<select data-filter-instrument-type aria-label="상품 유형 필터">
+												<option value="">모든 상품 유형</option>
+												{filterInstrumentTypes.map((instrumentType) => (
+													<option value={instrumentType}>{instrumentType}</option>
 												))}
 											</select>
 										</label>
@@ -454,6 +470,9 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 		'[data-filter-asset-class]',
 	);
 	const filterStrategySelect = document.querySelector<HTMLSelectElement>('[data-filter-strategy]');
+	const filterInstrumentTypeSelect = document.querySelector<HTMLSelectElement>(
+		'[data-filter-instrument-type]',
+	);
 	const filterReset = document.querySelector<HTMLButtonElement>('[data-filter-reset]');
 	const filterResult = document.querySelector<HTMLElement>('[data-filter-result]');
 	const filterDifficultyButtons = document.querySelectorAll<HTMLButtonElement>(
@@ -499,6 +518,11 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 			? [...filterStrategySelect.options].map((option) => option.value).filter(Boolean)
 			: [],
 	);
+	const availableInstrumentTypes = new Set(
+		filterInstrumentTypeSelect
+			? [...filterInstrumentTypeSelect.options].map((option) => option.value).filter(Boolean)
+			: [],
+	);
 	const availableDifficulties = new Set(
 		[...filterDifficultyButtons]
 			.map((button) => button.dataset.filterDifficulty)
@@ -522,6 +546,7 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 				problemNumber: el.dataset.problemNumber ?? '',
 				assetClass: el.dataset.assetClass ?? '',
 				strategy: el.dataset.strategy ?? '',
+				instrumentType: el.dataset.instrumentType ?? 'ETF',
 				search: el.dataset.search ?? '',
 			}))
 		: [];
@@ -535,6 +560,7 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 		problemNumber: string | null;
 		assetClass: string | null;
 		strategy: string | null;
+		instrumentType: string | null;
 		search: string | null;
 	};
 
@@ -547,6 +573,7 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 		problemNumber: null,
 		assetClass: null,
 		strategy: null,
+		instrumentType: null,
 		search: null,
 	};
 	// How many posts are currently revealed; persists across sort changes so
@@ -572,6 +599,7 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 			activeFilters.problemNumber ||
 			activeFilters.assetClass ||
 			activeFilters.strategy ||
+			activeFilters.instrumentType ||
 			activeFilters.search,
 		);
 	}
@@ -629,6 +657,9 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 			activeFilters.strategy
 				? url.searchParams.set('strategy', activeFilters.strategy)
 				: url.searchParams.delete('strategy');
+			activeFilters.instrumentType
+				? url.searchParams.set('instrumentType', activeFilters.instrumentType)
+				: url.searchParams.delete('instrumentType');
 		}
 		if (searchFilterEnabled) {
 			activeFilters.search
@@ -674,6 +705,9 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 		if (filterStrategySelect) {
 			filterStrategySelect.value = activeFilters.strategy ?? '';
 		}
+		if (filterInstrumentTypeSelect) {
+			filterInstrumentTypeSelect.value = activeFilters.instrumentType ?? '';
+		}
 		if (filterSearchInput) {
 			filterSearchInput.value = activeFilters.search ?? '';
 		}
@@ -715,6 +749,7 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 		const rawProblemNumber = params.get('problem');
 		const rawAssetClass = params.get('assetClass');
 		const rawStrategy = params.get('strategy');
+		const rawInstrumentType = params.get('instrumentType');
 		const rawDifficulty = params.get('difficulty')?.toLowerCase();
 		const difficulty = [...availableDifficulties].find(
 			(value) => value.toLowerCase() === rawDifficulty,
@@ -733,6 +768,10 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 				rawProblemNumber && availableProblemNumbers.has(rawProblemNumber) ? rawProblemNumber : null,
 			assetClass: rawAssetClass && availableAssetClasses.has(rawAssetClass) ? rawAssetClass : null,
 			strategy: rawStrategy && availableStrategies.has(rawStrategy) ? rawStrategy : null,
+			instrumentType:
+				rawInstrumentType && availableInstrumentTypes.has(rawInstrumentType)
+					? rawInstrumentType
+					: null,
 			search: searchFilterEnabled ? rawSearch?.trim() || null : null,
 		};
 	}
@@ -790,6 +829,10 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 		applyFilters({ ...activeFilters, strategy: filterStrategySelect.value || null });
 	});
 
+	filterInstrumentTypeSelect?.addEventListener('change', () => {
+		applyFilters({ ...activeFilters, instrumentType: filterInstrumentTypeSelect.value || null });
+	});
+
 	filterSearchInput?.addEventListener('input', () => {
 		applyFilters({ ...activeFilters, search: filterSearchInput.value.trim() || null }, 'replace');
 	});
@@ -824,6 +867,7 @@ const filterStrategies = filters.strategy ? filterOptions.strategies : [];
 			problemNumber: null,
 			assetClass: null,
 			strategy: null,
+			instrumentType: null,
 			search: null,
 		});
 	});

@@ -83,13 +83,14 @@ export function getTopicSummary(posts, { excludePinned = false } = {}) {
 	return [...counts].sort((a, b) => b[1] - a[1]);
 }
 
-export function getListFilterOptions(posts) {
+export function getListFilterOptions(posts, { defaultInstrumentType = false } = {}) {
 	const years = new Set();
 	const tags = new Set();
 	const platforms = new Set();
 	const problemNumbers = new Set();
 	const assetClasses = new Set();
 	const strategies = new Set();
+	const instrumentTypes = new Set();
 
 	for (const post of posts) {
 		const year = getPostYear(post);
@@ -120,6 +121,13 @@ export function getListFilterOptions(posts) {
 		if (strategy) {
 			strategies.add(strategy);
 		}
+
+		const instrumentType = normalizePostInstrumentType(post?.data?.instrumentType);
+		if (instrumentType) {
+			instrumentTypes.add(instrumentType);
+		} else if (defaultInstrumentType) {
+			instrumentTypes.add('ETF');
+		}
 	}
 
 	return {
@@ -129,6 +137,7 @@ export function getListFilterOptions(posts) {
 		problemNumbers: [...problemNumbers].sort((a, b) => Number(a) - Number(b)),
 		assetClasses: [...assetClasses].sort((a, b) => a.localeCompare(b, 'en')),
 		strategies: [...strategies].sort((a, b) => a.localeCompare(b, 'en')),
+		instrumentTypes: [...instrumentTypes].sort((a, b) => a.localeCompare(b, 'en')),
 	};
 }
 
@@ -141,10 +150,12 @@ export function matchesListFilters(item, filters = {}) {
 	const problemNumber = filters.problemNumber ?? '';
 	const assetClass = filters.assetClass ?? '';
 	const strategy = filters.strategy ?? '';
+	const instrumentType = filters.instrumentType ?? '';
 	const search = normalizeSearchQuery(filters.search);
 	const tags = Array.isArray(item?.tags) ? item.tags : [];
 	const topics = Array.isArray(item?.topics) ? item.topics : [];
 	const itemSearch = normalizeSearchQuery(item?.search);
+	const itemInstrumentType = normalizePostInstrumentType(item?.instrumentType) || 'ETF';
 
 	return (
 		(!search || itemSearch.includes(search)) &&
@@ -155,6 +166,7 @@ export function matchesListFilters(item, filters = {}) {
 		(!platform || item?.platform === platform) &&
 		(!problemNumber || item?.problemNumber === problemNumber) &&
 		(!assetClass || item?.assetClass === assetClass) &&
-		(!strategy || item?.strategy === strategy)
+		(!strategy || item?.strategy === strategy) &&
+		(!instrumentType || itemInstrumentType === instrumentType)
 	);
 }

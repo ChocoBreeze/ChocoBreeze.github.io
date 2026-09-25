@@ -27,6 +27,7 @@ const platform = normalizePostPlatform(post.data.platform);
 const problemNumber = normalizeProblemNumber(post.data.problemNumber);
 const ticker = normalizePostTicker(post.data.ticker);
 const instrumentType = normalizePostInstrumentType(post.data.instrumentType);
+const filterInstrumentType = instrumentType || 'ETF';
 const displayedInstrumentType = instrumentType && instrumentType !== 'ETF' ? instrumentType : '';
 const assetClass = normalizePostAssetClass(post.data.assetClass);
 const strategy = normalizePostStrategy(post.data.strategy);
@@ -40,7 +41,7 @@ const searchText = [
 	platform,
 	problemNumber,
 	ticker,
-	displayedInstrumentType,
+	filterInstrumentType,
 	assetClass,
 	strategy,
 ]
@@ -58,7 +59,7 @@ const searchText = [
 	data-platform={platform}
 	data-problem-number={problemNumber}
 	data-ticker={ticker}
-	data-instrument-type={displayedInstrumentType}
+	data-instrument-type={filterInstrumentType}
 	data-asset-class={assetClass}
 	data-strategy={strategy}
 	data-search={searchText}

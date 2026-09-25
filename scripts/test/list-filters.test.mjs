@@ -54,6 +54,7 @@ describe('getListFilterOptions', () => {
 				problemNumbers: [],
 				assetClasses: [],
 				strategies: [],
+				instrumentTypes: [],
 			},
 		);
 	});
@@ -101,6 +102,7 @@ describe('problem-solving metadata normalization', () => {
 				problemNumbers: ['1', '50', '200'],
 				assetClasses: [],
 				strategies: [],
+				instrumentTypes: [],
 			},
 		);
 	});
@@ -134,7 +136,16 @@ describe('ETF metadata normalization', () => {
 				problemNumbers: [],
 				assetClasses: ['Commodity', 'Equity'],
 				strategies: ['Index', 'Physical'],
+				instrumentTypes: [],
 			},
+		);
+	});
+
+	it('defaults missing ETF instrument types only when requested', () => {
+		assert.deepEqual(
+			getListFilterOptions([{ data: { ticker: 'QQQ' } }], { defaultInstrumentType: true })
+				.instrumentTypes,
+			['ETF'],
 		);
 	});
 });
@@ -212,6 +223,15 @@ describe('matchesListFilters', () => {
 		assert.equal(matchesListFilters(post, { assetClass: 'Commodity' }), false);
 		assert.equal(matchesListFilters(post, { strategy: 'Index' }), true);
 		assert.equal(matchesListFilters(post, { strategy: 'Physical' }), false);
+		assert.equal(matchesListFilters(post, { instrumentType: 'ETF' }), true);
+		assert.equal(
+			matchesListFilters({ ...post, instrumentType: 'CEF' }, { instrumentType: 'ETF' }),
+			false,
+		);
+		assert.equal(
+			matchesListFilters({ ...post, instrumentType: 'CEF' }, { instrumentType: 'CEF' }),
+			true,
+		);
 	});
 
 	it('requires both filters to match', () => {
