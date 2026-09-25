@@ -58,6 +58,14 @@ export function normalizePostStrategy(strategy) {
 	return typeof strategy === 'string' ? strategy.trim() : '';
 }
 
+export function normalizePostLeverage(leverage) {
+	return typeof leverage === 'string' ? leverage.trim() : '';
+}
+
+export function normalizePostIncomeStyle(incomeStyle) {
+	return typeof incomeStyle === 'string' ? incomeStyle.trim() : '';
+}
+
 export function normalizeProblemNumber(problemNumber) {
 	const value = Number(problemNumber);
 	return Number.isInteger(value) && value > 0 ? String(value) : '';
@@ -90,6 +98,8 @@ export function getListFilterOptions(posts, { defaultInstrumentType = false } = 
 	const problemNumbers = new Set();
 	const assetClasses = new Set();
 	const strategies = new Set();
+	const leverages = new Set();
+	const incomeStyles = new Set();
 	const instrumentTypes = new Set();
 
 	for (const post of posts) {
@@ -122,6 +132,16 @@ export function getListFilterOptions(posts, { defaultInstrumentType = false } = 
 			strategies.add(strategy);
 		}
 
+		const leverage = normalizePostLeverage(post?.data?.leverage);
+		if (leverage) {
+			leverages.add(leverage);
+		}
+
+		const incomeStyle = normalizePostIncomeStyle(post?.data?.incomeStyle);
+		if (incomeStyle) {
+			incomeStyles.add(incomeStyle);
+		}
+
 		const instrumentType = normalizePostInstrumentType(post?.data?.instrumentType);
 		if (instrumentType) {
 			instrumentTypes.add(instrumentType);
@@ -137,6 +157,8 @@ export function getListFilterOptions(posts, { defaultInstrumentType = false } = 
 		problemNumbers: [...problemNumbers].sort((a, b) => Number(a) - Number(b)),
 		assetClasses: [...assetClasses].sort((a, b) => a.localeCompare(b, 'en')),
 		strategies: [...strategies].sort((a, b) => a.localeCompare(b, 'en')),
+		leverages: [...leverages].sort((a, b) => a.localeCompare(b, 'en')),
+		incomeStyles: [...incomeStyles].sort((a, b) => a.localeCompare(b, 'en')),
 		instrumentTypes: [...instrumentTypes].sort((a, b) => a.localeCompare(b, 'en')),
 	};
 }
@@ -150,6 +172,8 @@ export function matchesListFilters(item, filters = {}) {
 	const problemNumber = filters.problemNumber ?? '';
 	const assetClass = filters.assetClass ?? '';
 	const strategy = filters.strategy ?? '';
+	const leverage = filters.leverage ?? '';
+	const incomeStyle = filters.incomeStyle ?? '';
 	const instrumentType = filters.instrumentType ?? '';
 	const search = normalizeSearchQuery(filters.search);
 	const tags = Array.isArray(item?.tags) ? item.tags : [];
@@ -167,6 +191,8 @@ export function matchesListFilters(item, filters = {}) {
 		(!problemNumber || item?.problemNumber === problemNumber) &&
 		(!assetClass || item?.assetClass === assetClass) &&
 		(!strategy || item?.strategy === strategy) &&
+		(!leverage || item?.leverage === leverage) &&
+		(!incomeStyle || item?.incomeStyle === incomeStyle) &&
 		(!instrumentType || itemInstrumentType === instrumentType)
 	);
 }

@@ -24,6 +24,8 @@ type Props = {
 		problemNumber?: boolean;
 		assetClass?: boolean;
 		strategy?: boolean;
+		leverage?: boolean;
+		incomeStyle?: boolean;
 		instrumentType?: boolean;
 	};
 };
@@ -44,6 +46,8 @@ const filterPlatforms = filters.platform ? filterOptions.platforms : [];
 const filterProblemNumbers = filters.problemNumber ? filterOptions.problemNumbers : [];
 const filterAssetClasses = filters.assetClass ? filterOptions.assetClasses : [];
 const filterStrategies = filters.strategy ? filterOptions.strategies : [];
+const filterLeverages = filters.leverage ? filterOptions.leverages : [];
+const filterIncomeStyles = filters.incomeStyle ? filterOptions.incomeStyles : [];
 const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentTypes : [];
 ---
 
@@ -113,6 +117,8 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 								filterProblemNumbers.length > 0 ||
 								filterAssetClasses.length > 0 ||
 								filterStrategies.length > 0 ||
+								filterLeverages.length > 0 ||
+								filterIncomeStyles.length > 0 ||
 								filterInstrumentTypes.length > 0) && (
 								<div class="filter-controls" data-filter-controls>
 									{searchFilterEnabled && (
@@ -188,6 +194,28 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 												<option value="">모든 전략</option>
 												{filterStrategies.map((strategy) => (
 													<option value={strategy}>{strategy}</option>
+												))}
+											</select>
+										</label>
+									)}
+									{filterLeverages.length > 0 && (
+										<label class="filter-field">
+											<span>레버리지</span>
+											<select data-filter-leverage aria-label="레버리지 필터">
+												<option value="">모든 레버리지</option>
+												{filterLeverages.map((leverage) => (
+													<option value={leverage}>{leverage}</option>
+												))}
+											</select>
+										</label>
+									)}
+									{filterIncomeStyles.length > 0 && (
+										<label class="filter-field">
+											<span>인컴 성격</span>
+											<select data-filter-income-style aria-label="인컴 성격 필터">
+												<option value="">모든 인컴 성격</option>
+												{filterIncomeStyles.map((incomeStyle) => (
+													<option value={incomeStyle}>{incomeStyle}</option>
 												))}
 											</select>
 										</label>
@@ -470,6 +498,10 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 		'[data-filter-asset-class]',
 	);
 	const filterStrategySelect = document.querySelector<HTMLSelectElement>('[data-filter-strategy]');
+	const filterLeverageSelect = document.querySelector<HTMLSelectElement>('[data-filter-leverage]');
+	const filterIncomeStyleSelect = document.querySelector<HTMLSelectElement>(
+		'[data-filter-income-style]',
+	);
 	const filterInstrumentTypeSelect = document.querySelector<HTMLSelectElement>(
 		'[data-filter-instrument-type]',
 	);
@@ -518,6 +550,16 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 			? [...filterStrategySelect.options].map((option) => option.value).filter(Boolean)
 			: [],
 	);
+	const availableLeverages = new Set(
+		filterLeverageSelect
+			? [...filterLeverageSelect.options].map((option) => option.value).filter(Boolean)
+			: [],
+	);
+	const availableIncomeStyles = new Set(
+		filterIncomeStyleSelect
+			? [...filterIncomeStyleSelect.options].map((option) => option.value).filter(Boolean)
+			: [],
+	);
 	const availableInstrumentTypes = new Set(
 		filterInstrumentTypeSelect
 			? [...filterInstrumentTypeSelect.options].map((option) => option.value).filter(Boolean)
@@ -546,6 +588,8 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 				problemNumber: el.dataset.problemNumber ?? '',
 				assetClass: el.dataset.assetClass ?? '',
 				strategy: el.dataset.strategy ?? '',
+				leverage: el.dataset.leverage ?? '',
+				incomeStyle: el.dataset.incomeStyle ?? '',
 				instrumentType: el.dataset.instrumentType ?? 'ETF',
 				search: el.dataset.search ?? '',
 			}))
@@ -560,6 +604,8 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 		problemNumber: string | null;
 		assetClass: string | null;
 		strategy: string | null;
+		leverage: string | null;
+		incomeStyle: string | null;
 		instrumentType: string | null;
 		search: string | null;
 	};
@@ -573,6 +619,8 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 		problemNumber: null,
 		assetClass: null,
 		strategy: null,
+		leverage: null,
+		incomeStyle: null,
 		instrumentType: null,
 		search: null,
 	};
@@ -599,6 +647,8 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 			activeFilters.problemNumber ||
 			activeFilters.assetClass ||
 			activeFilters.strategy ||
+			activeFilters.leverage ||
+			activeFilters.incomeStyle ||
 			activeFilters.instrumentType ||
 			activeFilters.search,
 		);
@@ -657,6 +707,12 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 			activeFilters.strategy
 				? url.searchParams.set('strategy', activeFilters.strategy)
 				: url.searchParams.delete('strategy');
+			activeFilters.leverage
+				? url.searchParams.set('leverage', activeFilters.leverage)
+				: url.searchParams.delete('leverage');
+			activeFilters.incomeStyle
+				? url.searchParams.set('incomeStyle', activeFilters.incomeStyle)
+				: url.searchParams.delete('incomeStyle');
 			activeFilters.instrumentType
 				? url.searchParams.set('instrumentType', activeFilters.instrumentType)
 				: url.searchParams.delete('instrumentType');
@@ -705,6 +761,12 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 		if (filterStrategySelect) {
 			filterStrategySelect.value = activeFilters.strategy ?? '';
 		}
+		if (filterLeverageSelect) {
+			filterLeverageSelect.value = activeFilters.leverage ?? '';
+		}
+		if (filterIncomeStyleSelect) {
+			filterIncomeStyleSelect.value = activeFilters.incomeStyle ?? '';
+		}
 		if (filterInstrumentTypeSelect) {
 			filterInstrumentTypeSelect.value = activeFilters.instrumentType ?? '';
 		}
@@ -749,6 +811,8 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 		const rawProblemNumber = params.get('problem');
 		const rawAssetClass = params.get('assetClass');
 		const rawStrategy = params.get('strategy');
+		const rawLeverage = params.get('leverage');
+		const rawIncomeStyle = params.get('incomeStyle');
 		const rawInstrumentType = params.get('instrumentType');
 		const rawDifficulty = params.get('difficulty')?.toLowerCase();
 		const difficulty = [...availableDifficulties].find(
@@ -768,6 +832,9 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 				rawProblemNumber && availableProblemNumbers.has(rawProblemNumber) ? rawProblemNumber : null,
 			assetClass: rawAssetClass && availableAssetClasses.has(rawAssetClass) ? rawAssetClass : null,
 			strategy: rawStrategy && availableStrategies.has(rawStrategy) ? rawStrategy : null,
+			leverage: rawLeverage && availableLeverages.has(rawLeverage) ? rawLeverage : null,
+			incomeStyle:
+				rawIncomeStyle && availableIncomeStyles.has(rawIncomeStyle) ? rawIncomeStyle : null,
 			instrumentType:
 				rawInstrumentType && availableInstrumentTypes.has(rawInstrumentType)
 					? rawInstrumentType
@@ -829,6 +896,14 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 		applyFilters({ ...activeFilters, strategy: filterStrategySelect.value || null });
 	});
 
+	filterLeverageSelect?.addEventListener('change', () => {
+		applyFilters({ ...activeFilters, leverage: filterLeverageSelect.value || null });
+	});
+
+	filterIncomeStyleSelect?.addEventListener('change', () => {
+		applyFilters({ ...activeFilters, incomeStyle: filterIncomeStyleSelect.value || null });
+	});
+
 	filterInstrumentTypeSelect?.addEventListener('change', () => {
 		applyFilters({ ...activeFilters, instrumentType: filterInstrumentTypeSelect.value || null });
 	});
@@ -867,6 +942,8 @@ const filterInstrumentTypes = filters.instrumentType ? filterOptions.instrumentT
 			problemNumber: null,
 			assetClass: null,
 			strategy: null,
+			leverage: null,
+			incomeStyle: null,
 			instrumentType: null,
 			search: null,
 		});

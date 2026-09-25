@@ -15,6 +15,8 @@ import {
 	normalizePostStrategy,
 	normalizePostTicker,
 	normalizePostInstrumentType,
+	normalizePostLeverage,
+	normalizePostIncomeStyle,
 } from '../../src/lib/listFilters.mjs';
 
 describe('getPostYear', () => {
@@ -54,6 +56,8 @@ describe('getListFilterOptions', () => {
 				problemNumbers: [],
 				assetClasses: [],
 				strategies: [],
+				leverages: [],
+				incomeStyles: [],
 				instrumentTypes: [],
 			},
 		);
@@ -102,6 +106,8 @@ describe('problem-solving metadata normalization', () => {
 				problemNumbers: ['1', '50', '200'],
 				assetClasses: [],
 				strategies: [],
+				leverages: [],
+				incomeStyles: [],
 				instrumentTypes: [],
 			},
 		);
@@ -121,13 +127,22 @@ describe('ETF metadata normalization', () => {
 		assert.equal(normalizePostTicker(' qqq '), 'QQQ');
 		assert.equal(normalizePostAssetClass(' Equity '), 'Equity');
 		assert.equal(normalizePostStrategy(' Index '), 'Index');
+		assert.equal(normalizePostLeverage(' 3x '), '3x');
+		assert.equal(normalizePostIncomeStyle(' Core '), 'Core');
 	});
 
 	it('collects stable ETF filter options', () => {
 		assert.deepEqual(
 			getListFilterOptions([
-				{ data: { assetClass: 'Equity', strategy: 'Index' } },
-				{ data: { assetClass: ' Commodity ', strategy: 'Physical' } },
+				{ data: { assetClass: 'Equity', strategy: 'Index', leverage: '1x', incomeStyle: 'Core' } },
+				{
+					data: {
+						assetClass: ' Commodity ',
+						strategy: 'Physical',
+						leverage: ' -2x ',
+						incomeStyle: ' None ',
+					},
+				},
 			]),
 			{
 				years: [],
@@ -136,6 +151,8 @@ describe('ETF metadata normalization', () => {
 				problemNumbers: [],
 				assetClasses: ['Commodity', 'Equity'],
 				strategies: ['Index', 'Physical'],
+				leverages: ['-2x', '1x'],
+				incomeStyles: ['Core', 'None'],
 				instrumentTypes: [],
 			},
 		);
@@ -178,6 +195,8 @@ describe('matchesListFilters', () => {
 		problemNumber: '1234',
 		assetClass: 'Equity',
 		strategy: 'Index',
+		leverage: '1x',
+		incomeStyle: 'Core',
 		search: 'QQQ Nasdaq-100',
 	};
 
@@ -223,6 +242,12 @@ describe('matchesListFilters', () => {
 		assert.equal(matchesListFilters(post, { assetClass: 'Commodity' }), false);
 		assert.equal(matchesListFilters(post, { strategy: 'Index' }), true);
 		assert.equal(matchesListFilters(post, { strategy: 'Physical' }), false);
+		assert.equal(matchesListFilters(post, { leverage: '1x' }), true);
+		assert.equal(matchesListFilters(post, { leverage: '3x' }), false);
+		assert.equal(matchesListFilters({ ...post, leverage: '' }, { leverage: '1x' }), false);
+		assert.equal(matchesListFilters(post, { incomeStyle: 'Core' }), true);
+		assert.equal(matchesListFilters(post, { incomeStyle: 'None' }), false);
+		assert.equal(matchesListFilters({ ...post, incomeStyle: '' }, { incomeStyle: 'Core' }), false);
 		assert.equal(matchesListFilters(post, { instrumentType: 'ETF' }), true);
 		assert.equal(
 			matchesListFilters({ ...post, instrumentType: 'CEF' }, { instrumentType: 'ETF' }),

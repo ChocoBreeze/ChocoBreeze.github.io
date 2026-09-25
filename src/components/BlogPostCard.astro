@@ -11,6 +11,8 @@ import {
 	normalizePostStrategy,
 	normalizePostTicker,
 	normalizePostInstrumentType,
+	normalizePostLeverage,
+	normalizePostIncomeStyle,
 } from '../lib/listFilters.mjs';
 
 type Props = {
@@ -31,6 +33,8 @@ const filterInstrumentType = instrumentType || 'ETF';
 const displayedInstrumentType = instrumentType && instrumentType !== 'ETF' ? instrumentType : '';
 const assetClass = normalizePostAssetClass(post.data.assetClass);
 const strategy = normalizePostStrategy(post.data.strategy);
+const leverage = normalizePostLeverage(post.data.leverage);
+const incomeStyle = normalizePostIncomeStyle(post.data.incomeStyle);
 const year = getPostYear(post);
 const searchText = [
 	post.data.title,
@@ -44,6 +48,8 @@ const searchText = [
 	filterInstrumentType,
 	assetClass,
 	strategy,
+	leverage,
+	incomeStyle,
 ]
 	.filter(Boolean)
 	.join(' ');
@@ -62,6 +68,8 @@ const searchText = [
 	data-instrument-type={filterInstrumentType}
 	data-asset-class={assetClass}
 	data-strategy={strategy}
+	data-leverage={leverage}
+	data-income-style={incomeStyle}
 	data-search={searchText}
 >
 	<a href={href}>
@@ -76,6 +84,8 @@ const searchText = [
 					displayedInstrumentType ||
 					assetClass ||
 					strategy ||
+					leverage ||
+					incomeStyle ||
 					topics.length > 0) && (
 					<div class="post-meta-chips" aria-label="Post metadata">
 						{post.data.difficulty && (
@@ -90,15 +100,29 @@ const searchText = [
 								{problemNumber && `#${problemNumber}`}
 							</span>
 						)}
-						{(ticker || displayedInstrumentType || assetClass || strategy) && (
+						{(ticker ||
+							displayedInstrumentType ||
+							assetClass ||
+							strategy ||
+							leverage ||
+							incomeStyle) && (
 							<span class="post-meta-chip">
 								{ticker}
-								{ticker && (displayedInstrumentType || assetClass || strategy) ? ' · ' : ''}
+								{ticker &&
+								(displayedInstrumentType || assetClass || strategy || leverage || incomeStyle)
+									? ' · '
+									: ''}
 								{displayedInstrumentType}
-								{displayedInstrumentType && (assetClass || strategy) ? ' · ' : ''}
+								{displayedInstrumentType && (assetClass || strategy || leverage || incomeStyle)
+									? ' · '
+									: ''}
 								{assetClass}
-								{assetClass && strategy ? ' · ' : ''}
+								{assetClass && (strategy || leverage || incomeStyle) ? ' · ' : ''}
 								{strategy}
+								{strategy && (leverage || incomeStyle) ? ' · ' : ''}
+								{leverage}
+								{leverage && incomeStyle ? ' · ' : ''}
+								{incomeStyle}
 							</span>
 						)}
 						{topics.slice(0, 3).map((topic) => (
