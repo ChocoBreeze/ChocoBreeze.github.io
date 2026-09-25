@@ -2,6 +2,8 @@
 title: 'SQQQ (ProShares UltraPro Short QQQ)'
 description: 'Nasdaq-100 일일 수익률의 -3배를 목표로 하는 ProShares의 초단기 전술용 인버스 레버리지 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+aum: '$2.52B'
+aumAsOf: '2026-03-06T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "SQQQ", "ProShares", "Nasdaq-100", "Leveraged", "Inverse"]
 ticker: "SQQQ"
