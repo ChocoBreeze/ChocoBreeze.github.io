@@ -5,6 +5,12 @@ pubDate: '2026-01-16T06:00:00Z'
 categories: "ETF"
 instrumentType: "CEF"
 ticker: "SPHCF"
+issuer: "Sprott"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Copper"
+leverage: "1x"
+incomeStyle: "None"
 ---
 
 ## 요약 및 투자 개요

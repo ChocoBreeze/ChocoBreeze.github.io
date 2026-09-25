@@ -5,6 +5,12 @@ pubDate: '2026-07-20T09:04:00+09:00'
 categories: "ETF"
 instrumentType: "CEF"
 ticker: "PSLV"
+issuer: "Sprott"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Silver"
+leverage: "1x"
+incomeStyle: "None"
 ---
 
 ## 분류 근거

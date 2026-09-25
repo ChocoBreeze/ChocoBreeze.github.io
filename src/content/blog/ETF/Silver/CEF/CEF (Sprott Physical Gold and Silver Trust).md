@@ -5,6 +5,12 @@ pubDate: '2026-07-20T09:05:00+09:00'
 categories: "ETF"
 instrumentType: "CEF"
 ticker: "CEF"
+issuer: "Sprott"
+assetClass: "Commodity"
+strategy: "Physical"
+exposure: "Gold & Silver"
+leverage: "1x"
+incomeStyle: "None"
 ---
 
 ## 분류 근거

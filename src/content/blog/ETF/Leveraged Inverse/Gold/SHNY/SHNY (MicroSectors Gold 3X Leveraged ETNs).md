@@ -5,6 +5,12 @@ pubDate: '2026-07-23T10:30:00+09:00'
 categories: "ETF"
 instrumentType: "ETN"
 ticker: "SHNY"
+issuer: "Bank of Montreal"
+assetClass: "Commodity"
+strategy: "Leveraged"
+exposure: "Gold"
+leverage: "3x"
+incomeStyle: "None"
 ---
 
 ## 분류 근거

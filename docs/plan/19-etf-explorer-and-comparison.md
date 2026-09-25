@@ -4,7 +4,7 @@
 
 - ETF 페이지는 물리 폴더 경로에서 분류를 추출해 분류별 빠른 탐색 카드를 제공합니다.
 - ETF 페이지는 기존 제목·티커 폴더명·태그를 대상으로 `q` URL 파라미터 기반 텍스트 검색을 제공합니다.
-- ETF 글은 약 135개이며, 현재 121개 글에 티커·운용사·자산군·전략·노출·레버리지·인컴 스타일 선택 필드를 적용했습니다.
+- ETF 글은 약 135개이며, 현재 128개 글에 티커·운용사·자산군·전략·노출·레버리지·인컴 스타일 선택 필드를 적용했습니다.
 - ETF 카테고리에 함께 보관된 특수 상품은 `instrumentType`으로 `CEF`·`ETN`·`UCITS`를 구분하며, ETF 비교에서는 제외합니다. 유형이 없는 기존 글은 하위 호환을 위해 `ETF`로 간주합니다.
 - `/etf` 목록은 상품 유형 필터를 제공하고, 선택 상태를 `instrumentType` URL 파라미터로 보존합니다.
 - 파일럿 글은 `assetClass`·`strategy` 필터와 카드 메타데이터에 연결됩니다. 기존 글의 보수율·AUM·수익률 백필은 기준일이 명확한 파일럿부터 진행합니다.
@@ -64,7 +64,7 @@
 ## 구현 단계
 
 1. [완료] UI에 필요한 최소 안정 데이터 사전과 평면 frontmatter 형식을 파일럿 기준으로 정했습니다.
-2. [진행 중] 기존 파일럿과 QCLN·QBUF·QFLR·QDTE·QQQI·QQQY·QYLD·QYLG·GPIQ·IQQQ·JEPQ·ONEQ·QQQS·QQQJ·QQMG·QTOP·SPYM·GRID·FTXN·FTXO·QABA·IBBQ·FTXR·FTXL·ROBT·BLCN·QQXT·QQEW·IQQ·UFO·ROKT·GDXJ·GDX·AAAU·SLV·XSD·SOXX·QTEC·DRAM·ITA·PPA·IBIT·FBTC·BITO·CIBR·QTUM·PNQI·DRUP·NLR·URA·URNJ·URNM·SOXQ·SMH·SHOC·SMHX·PSI·CHPX·DISK·QQH·CPNQ·TDIV·HNDL·GLDM·IAUM·SGOL·BAR·SIVR·OUNZ·SIL·SILJ·SLVP·RING·SGDM·SGDJ·GOAU·SETM·REMX·COPX·COPJ·COPP·ICOP·CPER·DBB·USG·SLVR·BIB·BITU·BITX·GLL·NUGT·UGL·PSQ·QID·QLD·SOXS·USD·AGQ·ZSL·JEDI·TSSD·CPNJ·TSNF·SEMY·FTQI·QXQ·CONY·TSRS·TSIC·TSES·ARKX 백필을 포함해 121개 ETF에 메타데이터를 적용했습니다.
+- 2. [진행 중] 기존 파일럿과 QCLN·QBUF·QFLR·QDTE·QQQI·QQQY·QYLD·QYLG·GPIQ·IQQQ·JEPQ·ONEQ·QQQS·QQQJ·QQMG·QTOP·SPYM·GRID·FTXN·FTXO·QABA·IBBQ·FTXR·FTXL·ROBT·BLCN·QQXT·QQEW·IQQ·UFO·ROKT·GDXJ·GDX·AAAU·SLV·XSD·SOXX·QTEC·DRAM·ITA·PPA·IBIT·FBTC·BITO·CIBR·QTUM·PNQI·DRUP·NLR·URA·URNJ·URNM·SOXQ·SMH·SHOC·SMHX·PSI·CHPX·DISK·QQH·CPNQ·TDIV·HNDL·GLDM·IAUM·SGOL·BAR·SIVR·OUNZ·SIL·SILJ·SLVP·RING·SGDM·SGDJ·GOAU·SETM·REMX·COPX·COPJ·COPP·ICOP·CPER·DBB·USG·SLVR·BIB·BITU·BITX·GLL·NUGT·UGL·PSQ·QID·QLD·SOXS·USD·AGQ·ZSL·JEDI·TSSD·CPNJ·TSNF·SEMY·FTQI·QXQ·CONY·TSRS·TSIC·TSES·ARKX·SPHCF·PHYS·GDXU·SHNY·SEMI·CEF·PSLV 백필을 포함해 128개 ETF에 메타데이터를 적용했습니다.
 3. [완료] 선택 필드의 타입·허용값 검사를 추가했습니다. 기존 글의 선택 필드 누락은 허용하고, 값이 있는 필드만 공통 규칙으로 검사합니다.
 4. [완료] `/etf`에 기존 글에서 안전하게 얻을 수 있는 텍스트 검색과 파일럿 안정 데이터 기반 자산군·전략 필터를 추가했습니다.
 5. [완료] URL에 선택된 티커를 보존하는 2~4개 비교 화면과 비교 가능 메타데이터 커버리지 안내를 추가했습니다.

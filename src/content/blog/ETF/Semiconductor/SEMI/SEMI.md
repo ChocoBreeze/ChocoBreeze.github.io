@@ -5,6 +5,12 @@ pubDate: '2026-06-07T00:00:00+09:00'
 categories: "ETF"
 instrumentType: "UCITS"
 ticker: "SEMI"
+issuer: "BlackRock"
+assetClass: "Equity"
+strategy: "Index"
+exposure: "Global Semiconductors"
+leverage: "1x"
+incomeStyle: "None"
 tags: ["ETF", "SEMI", "iShares", "Semiconductor", "UCITS", "Global"]
 ---
 

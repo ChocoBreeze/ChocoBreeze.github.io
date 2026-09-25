@@ -5,6 +5,12 @@ pubDate: '2026-07-22T14:00:00+09:00'
 categories: "ETF"
 instrumentType: "ETN"
 ticker: "GDXU"
+issuer: "Bank of Montreal"
+assetClass: "Equity"
+strategy: "Leveraged"
+exposure: "Gold Miners"
+leverage: "3x"
+incomeStyle: "None"
 ---
 
 ## 분류 근거
