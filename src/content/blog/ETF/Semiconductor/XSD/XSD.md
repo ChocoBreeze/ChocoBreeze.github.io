@@ -9,6 +9,8 @@ strategy: "Equal Weight"
 exposure: "Semiconductor"
 leverage: "1x"
 incomeStyle: "None"
+aum: "$3.03B"
+aumAsOf: '2026-09-21T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "XSD", "State Street", "SPDR", "Semiconductor", "Equal Weight"]
 ---
