@@ -10,6 +10,8 @@ strategy: "Physical"
 exposure: "Gold"
 leverage: "1x"
 incomeStyle: "None"
+aum: "$63.93B"
+aumAsOf: '2026-09-23T00:00:00+09:00'
 ---
 
 ## 분류 근거
@@ -593,4 +595,3 @@ IAU는 2026년 혼돈의 시장 환경에서 포트폴리오의 방어막 역할
 [^70]: https://etfdb.com/etf/IAU/
 
 [^71]: https://blog.naver.com/robot_a/223078399122
-

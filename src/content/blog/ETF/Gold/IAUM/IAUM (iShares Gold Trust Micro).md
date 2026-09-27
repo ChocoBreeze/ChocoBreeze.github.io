@@ -9,6 +9,8 @@ strategy: "Physical"
 exposure: "Gold"
 leverage: "1x"
 incomeStyle: "None"
+aum: "$8.04B"
+aumAsOf: '2026-09-21T00:00:00+09:00'
 categories: "ETF"
 ---
 
@@ -609,4 +611,3 @@ IAUM은 2026년 혼돈의 시장 환경에서 포트폴리오의 방어막 역�
 [^66]: https://www.cnbc.com/2026/01/26/gold-record-surges-past-new-5000-record.html
 
 [^67]: https://www.ishares.com/us/literature/fact-sheet/iaum-ishares-gold-trust-micro-fund-fact-sheet-en-us.pdf
-

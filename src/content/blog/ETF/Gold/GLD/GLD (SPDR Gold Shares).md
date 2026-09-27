@@ -10,6 +10,10 @@ strategy: "Physical"
 exposure: "Gold"
 leverage: "1x"
 incomeStyle: "None"
+aum: "$145.05B"
+aumAsOf: '2026-09-15T00:00:00+09:00'
+expenseRatio: '0.40%'
+expenseRatioAsOf: '2026-09-17T00:00:00+09:00'
 ---
 
 ## 분류 근거
@@ -880,4 +884,3 @@ GLDM(0.10% 관리비)의 등장(2018년)은 GLD를 대체하지 않고 **시장 
 [^21]: https://www.barchart.com/etfs-funds/quotes/GLD/options-flow
 
 [^22]: https://www.etfreplay.com/etf/gld
-
