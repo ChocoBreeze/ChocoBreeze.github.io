@@ -9,6 +9,8 @@ strategy: "Physical"
 exposure: "Bitcoin"
 leverage: "1x"
 incomeStyle: "None"
+aum: "$67.07B"
+aumAsOf: '2026-09-25T00:00:00+09:00'
 categories: "ETF"
 ---
 
