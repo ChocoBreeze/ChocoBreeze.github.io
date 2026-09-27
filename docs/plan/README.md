@@ -16,7 +16,7 @@
 | 14 | [홈 콘텐츠 피드](14-home-content-feed.md) | 완료 | P0 | 12 권장 | 중 |
 | 15 | [코드 블록과 글 단위 액션](15-code-and-post-actions.md) | 완료 | P1 | 없음 | 중 |
 | 16 | [시리즈·관련 글·학습 경로](16-series-related-learning-paths.md) | 완료(무제한 그래프 제외) | P2 | 없음 | 대 |
-| 17 | [콘텐츠 기준일과 검증일](17-content-freshness-metadata.md) | 부분 완료(47개 기준일 백필, 잔여 수동 검토) | P2 | 없음 | 중~대 |
+| 17 | [콘텐츠 기준일과 검증일](17-content-freshness-metadata.md) | 부분 완료(48개 기준일 백필, 잔여 수동 검토) | P2 | 없음 | 중~대 |
 | 18 | [카테고리 탐색과 Problem Solving 확장](18-category-discovery-and-problem-solving.md) | 완료(UI, 백필 제외) | P2 | 없음 | 대 |
 | 19 | [ETF 탐색기와 비교](19-etf-explorer-and-comparison.md) | 부분 완료(128개 상품 안정 메타데이터, 16개 AUM 기준일 적용) | P3 | 17, 18 | 대 |
 | 20 | [Market Brief 캘린더](20-market-brief-calendar.md) | 완료 | P3 | 17 일부 | 중~대 |
@@ -27,7 +27,7 @@
 
 ## 현재 남은 작업
 
-- 17번: 기준일이 본문에 명시된 47개 ETF·Reports 글 백필 완료, 나머지 수동 검토
+- 17번: 기준일이 본문에 명시된 48개 ETF·Reports 글 백필 완료, 나머지 수동 검토
 - 19번: ETF 개별 상품 128개 안정 메타데이터, AUM 16개, 보수율 5개 적용. 나머지 변동값은 정확한 기준일·출처 확인 후 수동 백필
 - 21번: 동일 질의·범위·전송량 기준으로 Pagefind 전면 교체 여부 재검토(현재는 기존 검색 유지)
 - 23번: 방문 통계, Mermaid, 뉴스레터, 자산 셀프 호스팅의 착수 조건 검토
