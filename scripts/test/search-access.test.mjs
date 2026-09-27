@@ -5,6 +5,7 @@ import {
 	CODE_SEARCH_INDEX_PATH,
 	DEFAULT_SEARCH_INDEX_PATH,
 	addSearchCacheVersion,
+	findSearchMatchRange,
 	getSearchIndexPath,
 	normalizeSearchAccessQuery,
 	shouldLoadSearchIndex,
@@ -13,9 +14,18 @@ import {
 describe('search index access', () => {
 	it('loads only after two non-whitespace characters', () => {
 		assert.equal(normalizeSearchAccessQuery('  '), '');
+		assert.equal(normalizeSearchAccessQuery('  ＳＰＲＩＮＧ  '), 'spring');
 		assert.equal(shouldLoadSearchIndex(''), false);
 		assert.equal(shouldLoadSearchIndex(' 한 '), false);
 		assert.equal(shouldLoadSearchIndex(' 한글 '), true);
+	});
+
+	it('maps normalized Unicode matches back to their source text', () => {
+		assert.deepEqual(findSearchMatchRange('Use ＳＰＲＩＮＧ here', 'spring'), {
+			start: 4,
+			end: 10,
+		});
+		assert.equal(findSearchMatchRange('nothing here', 'spring'), undefined);
 	});
 
 	it('chooses code, category, and safe fallback paths', () => {

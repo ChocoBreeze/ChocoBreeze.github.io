@@ -39,7 +39,8 @@ function getImageURL(value: ImageMetadata | string) {
 	return new URL(value.src, Astro.site);
 }
 
-const pageTitle = title === SITE_TITLE ? title : `${title} | ${SITE_TITLE}`;
+const pageTitle =
+	title === SITE_TITLE || title.endsWith(` | ${SITE_TITLE}`) ? title : `${title} | ${SITE_TITLE}`;
 const metaDescription = description || SITE_DESCRIPTION;
 const imageURL = getImageURL(image);
 ---

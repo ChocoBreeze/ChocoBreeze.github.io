@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_DESCRIPTION } from '../consts';
 import { BLOG_CATEGORIES } from '../data/blogCategories';
 import { getSearchCategorySlug } from '../lib/searchIndex';
 
@@ -12,7 +12,7 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 <!doctype html>
 <html lang="ko">
 	<head>
-		<BaseHead title={`Search | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<BaseHead title="Search" description={SITE_DESCRIPTION} />
 		<style>
 			main {
 				width: 100%;
@@ -145,6 +145,19 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 			#results-count.error {
 				color: #c2410c;
 			}
+			#search-retry {
+				margin: 0 0 1rem;
+				padding: 0.55rem 0.9rem;
+				border: 1px solid var(--border-color);
+				border-radius: 0.6rem;
+				background: var(--card-bg);
+				color: var(--text-color);
+				cursor: pointer;
+			}
+			#search-retry:focus-visible {
+				outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+				outline-offset: 2px;
+			}
 			[data-theme='dark'] #results-count.error {
 				color: #fb923c;
 			}
@@ -187,6 +200,7 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 				</div>
 			</div>
 			<div id="results-count" role="status" aria-live="polite"></div>
+			<button type="button" id="search-retry" hidden>다시 시도</button>
 			<ul id="results-list"></ul>
 		</main>
 		<Footer />
@@ -194,11 +208,13 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 		<script>
 			import {
 				addSearchCacheVersion,
+				findSearchMatchRange,
 				getSearchIndexPath,
 				normalizeSearchAccessQuery,
 				shouldLoadSearchIndex,
 			} from '../lib/searchAccess.mjs';
 			import { getCategoryLabel, searchIndexedItems } from '../lib/searchRanking.mjs';
+			import { readSearchState, serializeSearchState } from '../lib/searchState.mjs';
 
 			type SearchItem = {
 				t: string;
@@ -229,21 +245,62 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 			const searchCategory = document.getElementById('search-category') as HTMLSelectElement | null;
 			const resultsList = document.getElementById('results-list');
 			const resultsCount = document.getElementById('results-count');
+			const searchRetry = document.getElementById('search-retry') as HTMLButtonElement | null;
 			const searchCacheVersion =
 				document.querySelector<HTMLElement>('[data-search-cache-version]')?.dataset
 					.searchCacheVersion || 'dev';
+			const validCategoryPaths = searchCategory
+				? Array.from(searchCategory.options, (option) => option.value)
+				: [];
 
 			if (searchInput && searchMode && searchCategory && resultsList && resultsCount) {
 				searchInput.addEventListener('input', () => {
+					updateSearchUrl('replaceState');
 					void handleSearchInput();
 				});
 				searchMode.addEventListener('change', () => {
+					if (searchMode.value === 'code' && searchCategory) {
+						searchCategory.value = '/search.json';
+					}
+					updateSearchUrl('pushState');
 					void handleIndexSelectionChange();
 				});
 				searchCategory.addEventListener('change', () => {
+					updateSearchUrl('pushState');
 					void handleIndexSelectionChange();
 				});
-				setIdleState();
+				searchRetry?.addEventListener('click', () => {
+					void handleSearchInput();
+				});
+				restoreSearchState();
+				window.addEventListener('popstate', restoreSearchState);
+			}
+
+			function getSearchStateFromControls() {
+				return {
+					query: searchInput?.value ?? '',
+					mode: searchMode?.value ?? 'post',
+					categoryPath: searchCategory?.value ?? '/search.json',
+				};
+			}
+
+			function updateSearchUrl(method: 'pushState' | 'replaceState') {
+				const state = getSearchStateFromControls();
+				const search = serializeSearchState(state);
+				const nextUrl = `${window.location.pathname}${search}${window.location.hash}`;
+				const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+				if (nextUrl !== currentUrl) history[method](null, '', nextUrl);
+			}
+
+			function restoreSearchState() {
+				if (!searchInput || !searchMode || !searchCategory) return;
+				const state = readSearchState(window.location.search, validCategoryPaths);
+				searchInput.value = state.query;
+				searchMode.value = state.mode;
+				searchCategory.value = state.categoryPath;
+				updateSearchUrl('replaceState');
+				updateIndexControls(getCurrentIndexPath());
+				void handleIndexSelectionChange();
 			}
 
 			function getCurrentIndexPath() {
@@ -256,6 +313,7 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 				resultsList.replaceChildren();
 				resultsCount.classList.remove('error');
 				resultsCount.textContent = '두 글자 이상 입력하면 검색합니다.';
+				if (searchRetry) searchRetry.hidden = true;
 			}
 
 			function updateLoadingState() {
@@ -264,6 +322,7 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 				resultsList.replaceChildren();
 				resultsCount.classList.remove('error');
 				resultsCount.textContent = '';
+				if (searchRetry) searchRetry.hidden = true;
 			}
 
 			function updateIndexControls(indexPath: string) {
@@ -324,6 +383,7 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 					resultsCount.classList.add('error');
 					resultsCount.textContent =
 						'검색 인덱스를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
+					if (searchRetry) searchRetry.hidden = false;
 				}
 			}
 
@@ -371,6 +431,7 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 					resultsList.replaceChildren();
 					resultsCount.classList.remove('error');
 					resultsCount.textContent = '두 글자 이상 입력하면 검색합니다.';
+					if (searchRetry) searchRetry.hidden = true;
 					return;
 				}
 
@@ -392,6 +453,7 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 
 				resultsCount.classList.remove('error');
 				resultsCount.textContent = `${results.length}개의 결과를 찾았습니다.`;
+				if (searchRetry) searchRetry.hidden = true;
 				const resultItems = results.map(({ item, snippet }) => {
 					const listItem = document.createElement('li');
 					listItem.className = 'result-item';
@@ -419,7 +481,7 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 					if (snippet && snippet !== description.textContent) {
 						const snippetElement = document.createElement('p');
 						snippetElement.className = 'result-snippet';
-						appendHighlightedText(snippetElement, snippet, searchInput?.value.trim() ?? '');
+						appendHighlightedText(snippetElement, snippet, searchInput?.value ?? '');
 						link.append(snippetElement);
 					}
 					listItem.append(link);
@@ -431,21 +493,18 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 			}
 
 			function appendHighlightedText(parent: HTMLElement, text: string, query: string) {
-				const normalizedQuery = query.toLowerCase();
-				const normalizedText = text.toLowerCase();
-				const index = normalizedQuery ? normalizedText.indexOf(normalizedQuery) : -1;
-
-				if (index === -1) {
+				const match = findSearchMatchRange(text, query);
+				if (!match) {
 					parent.textContent = text;
 					return;
 				}
 
 				parent.append(
-					document.createTextNode(text.slice(0, index)),
+					document.createTextNode(text.slice(0, match.start)),
 					Object.assign(document.createElement('mark'), {
-						textContent: text.slice(index, index + query.length),
+						textContent: text.slice(match.start, match.end),
 					}),
-					document.createTextNode(text.slice(index + query.length)),
+					document.createTextNode(text.slice(match.end)),
 				);
 			}
 		</script>

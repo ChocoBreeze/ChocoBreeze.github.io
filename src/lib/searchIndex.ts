@@ -1,5 +1,6 @@
 import { render, type CollectionEntry } from 'astro:content';
 import { normalizeCategory, type BlogCategoryKey } from '../data/blogCategories';
+import { stripMarkdown } from './searchMarkdown.mjs';
 import { getSearchTextSegment } from './searchText.mjs';
 
 const EXCERPT_LENGTH = 480;
@@ -17,19 +18,6 @@ const SEARCH_CATEGORY_SLUGS: Record<BlogCategoryKey, string> = {
 };
 
 type BlogPost = CollectionEntry<'blog'>;
-
-function stripMarkdown(content: string) {
-	return content
-		.replace(/---[\s\S]*?---/, ' ')
-		.replace(/```[\s\S]*?```/g, ' ')
-		.replace(/`([^`]+)`/g, '$1')
-		.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-		.replace(/!\[[^\]]*\]\([^)]+\)/g, ' ')
-		.replace(/<[^>]+>/g, ' ')
-		.replace(/[#>*_\-|]+/g, ' ')
-		.replace(/\s+/g, ' ')
-		.trim();
-}
 
 function getExcerpt(content: string) {
 	const plainText = stripMarkdown(content);

@@ -1,8 +1,8 @@
-import { normalizeSearchAccessQuery } from './searchAccess.mjs';
+import { findSearchMatchRange, normalizeSearchAccessQuery } from './searchAccess.mjs';
 import { getSearchTextCandidates } from './searchText.mjs';
 
 function includesQuery(value, query) {
-	return typeof value === 'string' && value.toLowerCase().includes(query);
+	return typeof value === 'string' && normalizeSearchAccessQuery(value).includes(query);
 }
 
 export function getCategoryLabel(categories) {
@@ -50,12 +50,12 @@ export function getMatchSnippet(item, query) {
 	for (const source of sources) {
 		if (!source) continue;
 
-		const index = source.toLowerCase().indexOf(query);
-		if (index === -1) continue;
+		const match = findSearchMatchRange(source, query);
+		if (!match) continue;
 
 		const contextLength = 90;
-		const start = Math.max(0, index - contextLength);
-		const end = Math.min(source.length, index + query.length + contextLength);
+		const start = Math.max(0, match.start - contextLength);
+		const end = Math.min(source.length, match.end + contextLength);
 		const prefix = start > 0 ? '...' : '';
 		const suffix = end < source.length ? '...' : '';
 		return `${prefix}${source.slice(start, end).trim()}${suffix}`;
@@ -65,7 +65,7 @@ export function getMatchSnippet(item, query) {
 }
 
 export function searchIndexedItems(items, value, { limit = Number.POSITIVE_INFINITY } = {}) {
-	const query = normalizeSearchAccessQuery(value).toLowerCase();
+	const query = normalizeSearchAccessQuery(value);
 	if (query.length < 2) return [];
 
 	return items

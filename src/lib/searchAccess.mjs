@@ -3,7 +3,32 @@ export const CODE_SEARCH_INDEX_PATH = '/code-search.json';
 export const MIN_SEARCH_QUERY_LENGTH = 2;
 
 export function normalizeSearchAccessQuery(value) {
-	return typeof value === 'string' ? value.trim() : '';
+	return typeof value === 'string' ? value.normalize('NFKC').trim().toLowerCase() : '';
+}
+
+export function findSearchMatchRange(value, query) {
+	const source = String(value ?? '');
+	const normalizedQuery = normalizeSearchAccessQuery(query);
+	if (!normalizedQuery) return undefined;
+
+	let normalizedSource = '';
+	const sourceRanges = [];
+	let sourceOffset = 0;
+	for (const character of source) {
+		const normalizedCharacter = character.normalize('NFKC').toLowerCase();
+		for (let index = 0; index < normalizedCharacter.length; index += 1) {
+			sourceRanges.push({ start: sourceOffset, end: sourceOffset + character.length });
+		}
+		normalizedSource += normalizedCharacter;
+		sourceOffset += character.length;
+	}
+
+	const matchIndex = normalizedSource.indexOf(normalizedQuery);
+	if (matchIndex === -1) return undefined;
+	return {
+		start: sourceRanges[matchIndex].start,
+		end: sourceRanges[matchIndex + normalizedQuery.length - 1].end,
+	};
 }
 
 export function shouldLoadSearchIndex(value) {

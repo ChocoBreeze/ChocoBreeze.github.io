@@ -23,4 +23,20 @@ describe('search ranking', () => {
 		assert.equal(getSearchScore(item, 'query'), 12);
 		assert.match(getMatchSnippet(item, 'query'), /query/);
 	});
+
+	it('matches normalized Unicode in body text and highlights the original characters', () => {
+		const item = {
+			t: 'Spring guide',
+			d: '',
+			g: [],
+			h: [],
+			c: 'Programming',
+			e: 'Use ＳＰＲＩＮＧ here',
+			x: '',
+		};
+
+		assert.equal(getSearchScore(item, 'spring'), 60 + 12);
+		assert.equal(searchIndexedItems([item], 'ＳＰＲＩＮＧ')[0].score, 72);
+		assert.match(getMatchSnippet(item, 'spring'), /ＳＰＲＩＮＧ/);
+	});
 });

@@ -1,7 +1,9 @@
+import { normalizeSearchAccessQuery } from './searchAccess.mjs';
+
 const DEFAULT_RESULT_LIMIT = 8;
 
 export function normalizeQuickSearchQuery(value) {
-	return typeof value === 'string' ? value.normalize('NFKC').trim().toLowerCase() : '';
+	return normalizeSearchAccessQuery(value);
 }
 
 function normalizeCategories(value) {
