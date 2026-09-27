@@ -9,6 +9,8 @@ strategy: "Index"
 exposure: "Aerospace & Defense"
 leverage: "1x"
 incomeStyle: "None"
+aum: "$12.56B"
+aumAsOf: '2026-09-25T00:00:00+09:00'
 categories: "ETF"
 ---
 

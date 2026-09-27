@@ -9,6 +9,8 @@ strategy: "Index"
 exposure: "Aerospace & Defense"
 leverage: "1x"
 incomeStyle: "None"
+expenseRatio: '0.58%'
+expenseRatioAsOf: '2026-03-31T00:00:00+09:00'
 categories: "ETF"
 ---
 
