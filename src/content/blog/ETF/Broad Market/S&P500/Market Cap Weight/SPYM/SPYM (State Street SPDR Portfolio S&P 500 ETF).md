@@ -10,6 +10,10 @@ strategy: "Index"
 exposure: "S&P 500"
 leverage: "1x"
 incomeStyle: "Core"
+aum: "$174.88B"
+aumAsOf: '2026-09-24T00:00:00+09:00'
+expenseRatio: '0.02%'
+expenseRatioAsOf: '2026-09-27T00:00:00+09:00'
 categories: "ETF"
 ---
 
