@@ -7,10 +7,10 @@
 - ETF 경로의 글은 약 135개이며, ETF 개별 상품 128개에 티커·운용사·자산군·전략·노출·레버리지·인컴 스타일 선택 필드를 적용했습니다. 나머지는 ETF 기초 교육글과 운용사별 상품 종합 보고서라 개별 상품 메타데이터 대상에서 제외했습니다.
 - ETF 카테고리에 함께 보관된 특수 상품은 `instrumentType`으로 `CEF`·`ETN`·`UCITS`를 구분하며, ETF 비교에서는 제외합니다. 유형이 없는 기존 글은 하위 호환을 위해 `ETF`로 간주합니다.
 - `/etf` 목록은 자산군·전략·레버리지·인컴 성격·상품 유형 필터를 제공하고, 선택 상태를 각각의 URL 파라미터로 보존합니다.
-- 파일럿 글은 `assetClass`·`strategy`·`leverage`·`incomeStyle` 필터와 카드 메타데이터에 연결됩니다. 현재 기준일이 확인된 AUM 22개와 보수율 8개를 적용했습니다.
+- 파일럿 글은 `assetClass`·`strategy`·`leverage`·`incomeStyle` 필터와 카드 메타데이터에 연결됩니다. 현재 기준일이 확인된 AUM 25개와 보수율 9개를 적용했습니다.
 - 비교 패널은 현재 비교 가능한 글 수와 전체 ETF 카테고리 글 수를 함께 표시해 파일럿 범위를 안내합니다.
 - `expenseRatio`·`aum`·`yield` 같은 변동 필드는 대응하는 필드별 기준일(`expenseRatioAsOf`·`aumAsOf`·`yieldAsOf`)을 우선 사용하고, 없으면 `dataAsOf`를 fallback으로 비교표에 표시합니다.
-- 보수율 5개는 공통 `dataAsOf`, SPY·SPYM·PPA 3개는 `expenseRatioAsOf`로 기준일을 표시하며, AUM 22개는 각 수치에 대응하는 `aumAsOf`를 사용합니다. 최근 추가한 PPA 보수율은 Invesco의 2026년 1분기 자료 기준입니다. AUM에는 iShares IBIT와 Fidelity FBTC의 공식 기준일 자료를 추가했습니다. 수익률 메타데이터는 아직 없으며, 나머지 변동값은 글의 출처와 수치별 기준일이 확인될 때만 백필합니다.
+- 보수율 5개는 공통 `dataAsOf`, SPY·SPYM·PPA·GLD 4개는 `expenseRatioAsOf`로 기준일을 표시하며, AUM 25개는 각 수치에 대응하는 `aumAsOf`를 사용합니다. PPA 보수율은 Invesco의 2026년 1분기 자료, GLD 보수율은 State Street의 2026년 9월 17일 펀드 정보 기준입니다. AUM에는 iShares IBIT·IAU·IAUM, Fidelity FBTC의 공식 기준일 자료도 포함합니다. 수익률 메타데이터는 아직 없으며, 나머지 변동값은 글의 출처와 수치별 기준일이 확인될 때만 백필합니다.
 - `docs/etf/`에 분류 기준과 콘텐츠 가이드가 이미 있습니다.
 
 ## 목표
