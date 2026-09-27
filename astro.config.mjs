@@ -1,6 +1,7 @@
 // @ts-check
 
 import mdx from '@astrojs/mdx';
+import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import remarkMath from 'remark-math';
@@ -10,9 +11,12 @@ import rehypeKatex from 'rehype-katex';
 export default defineConfig({
 	site: 'https://chocobreeze.github.io',
 	integrations: [mdx(), sitemap()],
+	compressHTML: true,
 	markdown: {
-		remarkPlugins: [remarkMath],
-		rehypePlugins: [[rehypeKatex, { strict: 'ignore' }]],
+		processor: unified({
+			remarkPlugins: [remarkMath],
+			rehypePlugins: [[rehypeKatex, { strict: 'ignore' }]],
+		}),
 		shikiConfig: {
 			theme: 'github-dark',
 		},

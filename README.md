@@ -5,7 +5,7 @@ Astro 기반 개인 블로그 저장소입니다.
 
 ## Tech Stack
 
-- Astro 6
+- Astro 7
 - Markdown / MDX
 - Astro Content Collections
 - `remark-math` + `rehype-katex`
