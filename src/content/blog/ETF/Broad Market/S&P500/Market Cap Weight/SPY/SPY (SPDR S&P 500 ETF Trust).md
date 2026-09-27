@@ -11,6 +11,10 @@ strategy: "Index"
 exposure: "S&P 500"
 leverage: "1x"
 incomeStyle: "Core"
+aum: "$786.95B"
+aumAsOf: '2026-09-17T00:00:00+09:00'
+expenseRatio: '0.0945%'
+expenseRatioAsOf: '2026-09-18T00:00:00+09:00'
 ---
 
 ## 요약
