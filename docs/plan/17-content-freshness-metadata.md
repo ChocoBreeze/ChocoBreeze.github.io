@@ -79,3 +79,5 @@
 
 2026-09-29 후속 구현: MSR 밸류체인 산업 보고서를 2026년 9월 29일까지의 공식 DOE·SEC·기업 자료로 검토하고 updatedDate·verifiedDate·dataAsOf를 기록했다. HAYN과 SPX FLOW의 독립 상장 종료, Flowserve/Aalo의 나트륨 냉각로 협력, Toyo Tanso의 Xe-100 고온가스로 계약을 MSR 직접 노출과 구분했다. Terrestrial Energy의 DOE TETRA 시험로·TEFLA 연료염 파일럿과 Centrus의 X-energy Xe-100용 LEU·HALEU 계약을 반영하고, MSR 상용 매출·상업 운전으로 과대 해석하지 않도록 상태를 정리했다. DOE 임계시험과 Natura FLiBE 운송, Terrestrial 공시 재무·주식 수를 확인했다. 콘텐츠 전용 변경이므로 issuer 리포트 17건 집계는 유지한다.
  검증: npm run check:content 통과(기존 경고 12건, MSR 원고 경고 없음), npm run format:check 및 git diff --check 통과. 콘텐츠 변경이므로 테스트와 빌드는 생략했다.
+
+2026-09-29 후속 구현: MSR 기술 주장 팩트체크 글을 IAEA·ORNL·DOE·기업 1차 자료와 대조해 갱신하고 updatedDate·verifiedDate·dataAsOf를 기록했다. 동결밸브의 실제 운전 이력, 특정 설계의 사용후연료 재활용, 온라인 재처리와 연료 보급의 차이, IMSR 열 공급 목표, 저압과 공사 기간, 토륨 연료주기의 핵확산 저항성 표현을 바로잡았다. Natura MSR-1로 FLiBE가 운송된 사실은 연구로 재료 인도로 기술하고 상업 운전과 구분했다. npm run check:content 통과(기존 경고 12건, MSR 원고 경고 없음), npm run format:check 및 git diff --check 통과. 콘텐츠 변경이므로 테스트와 빌드는 생략했다.

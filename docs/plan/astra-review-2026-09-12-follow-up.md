@@ -327,3 +327,5 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 
 2026-09-29 후속 구현: MSR 밸류체인별 유망 상장기업 보고서를 갱신했다. DOE·SEC·기업 공시에서 Terrestrial Energy의 TETRA/TEFLA 협약 및 재무 상태, Natura MSR-1의 FLiBE 운송, 원자로 임계시험의 범위를 대조했다. Centrus의 2026년 X-energy 연료 농축 계약은 Xe-100 고온가스로용이므로 MSR 매출과 구분했다. HAYN·SPX FLOW·Velan 상장 및 인수 상태, Flowserve/Aalo 나트륨 냉각로 협력, Toyo Tanso/Xe-100 공급 범위를 바로잡았다. updatedDate·verifiedDate·dataAsOf를 2026-09-29로 설정했다.
  npm run check:content 통과(기존 경고 12건, MSR 원고 경고 없음), npm run format:check 및 git diff --check 통과. 콘텐츠 변경이므로 테스트·빌드는 생략했다.
+
+2026-09-29 후속 구현: MSR 기술 주장 팩트체크를 공식 IAEA·ORNL·DOE·기업 자료로 갱신했다. MSR 설계별 연료·냉각 방식과 기술 성숙도를 구분하고, 동결밸브, 폐기물·재처리, 고온 공정열, 저압 설계, 토륨 연료주기에 대한 과장·미검증 주장을 수정했다. Natura MSR-1에 전달된 FLiBE 염은 연구개발 진척으로 기록하고 임계·상업운전과 분리했다. updatedDate·verifiedDate·dataAsOf(2026-09-29)를 설정했다. npm run check:content 통과(기존 경고 12건, MSR 원고 경고 없음), npm run format:check 및 git diff --check 통과. 테스트와 빌드는 콘텐츠 변경이므로 생략했다.
