@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { describe, it } from 'node:test';
@@ -11,6 +11,7 @@ import {
 	isValidEtfMetadataValue,
 	normalizeEtfMetadataValue,
 } from '../../src/data/etfMetadata.mjs';
+import { createContentFixture } from './helpers/content-fixture.mjs';
 
 describe('ETF metadata validation', () => {
 	it('accepts the pilot vocabulary and flexible leverage multiples', () => {
@@ -52,11 +53,12 @@ describe('ETF metadata validation', () => {
 
 describe('new-post ETF metadata validation', () => {
 	it('rejects invalid ETF metadata before writing a file', () => {
+		const fixture = createContentFixture();
 		const relativeFile = `__review-etf-invalid-${process.pid}.md`;
-		const expectedPath = path.join(process.cwd(), 'src', 'content', 'blog', relativeFile);
-		assert.equal(existsSync(expectedPath), false);
+		const expectedPath = path.join(fixture.contentDir, relativeFile);
 
 		try {
+			assert.equal(existsSync(expectedPath), false);
 			const result = spawnSync(
 				process.execPath,
 				[
@@ -72,23 +74,24 @@ describe('new-post ETF metadata validation', () => {
 					'--file',
 					relativeFile,
 				],
-				{ cwd: process.cwd(), encoding: 'utf8' },
+				{ cwd: process.cwd(), env: fixture.env, encoding: 'utf8' },
 			);
 
 			assert.notEqual(result.status, 0);
 			assert.match(result.stderr, /Invalid --strategy value/);
 			assert.equal(existsSync(expectedPath), false);
 		} finally {
-			rmSync(expectedPath, { force: true });
+			fixture.cleanup();
 		}
 	});
 
 	it('requires a snapshot date for volatile ETF metadata', () => {
+		const fixture = createContentFixture();
 		const relativeFile = `__review-etf-volatile-${process.pid}.md`;
-		const expectedPath = path.join(process.cwd(), 'src', 'content', 'blog', relativeFile);
-		assert.equal(existsSync(expectedPath), false);
+		const expectedPath = path.join(fixture.contentDir, relativeFile);
 
 		try {
+			assert.equal(existsSync(expectedPath), false);
 			const result = spawnSync(
 				process.execPath,
 				[
@@ -104,23 +107,24 @@ describe('new-post ETF metadata validation', () => {
 					'--file',
 					relativeFile,
 				],
-				{ cwd: process.cwd(), encoding: 'utf8' },
+				{ cwd: process.cwd(), env: fixture.env, encoding: 'utf8' },
 			);
 
 			assert.notEqual(result.status, 0);
 			assert.match(result.stderr, /requires --data-as-of/);
 			assert.equal(existsSync(expectedPath), false);
 		} finally {
-			rmSync(expectedPath, { force: true });
+			fixture.cleanup();
 		}
 	});
 
 	it('writes volatile ETF metadata with its snapshot date', () => {
+		const fixture = createContentFixture();
 		const relativeFile = `__review-etf-volatile-valid-${process.pid}.md`;
-		const expectedPath = path.join(process.cwd(), 'src', 'content', 'blog', relativeFile);
-		assert.equal(existsSync(expectedPath), false);
+		const expectedPath = path.join(fixture.contentDir, relativeFile);
 
 		try {
+			assert.equal(existsSync(expectedPath), false);
 			const result = spawnSync(
 				process.execPath,
 				[
@@ -138,7 +142,7 @@ describe('new-post ETF metadata validation', () => {
 					'--file',
 					relativeFile,
 				],
-				{ cwd: process.cwd(), encoding: 'utf8' },
+				{ cwd: process.cwd(), env: fixture.env, encoding: 'utf8' },
 			);
 
 			assert.equal(result.status, 0, result.stderr);
@@ -146,25 +150,27 @@ describe('new-post ETF metadata validation', () => {
 			assert.match(content, /^expenseRatio: "0.2%"$/m);
 			assert.match(content, /^dataAsOf: "2026-08-20T00:00:00\+09:00"$/m);
 		} finally {
-			rmSync(expectedPath, { force: true });
+			fixture.cleanup();
 		}
 	});
 });
 
 describe('content check ETF volatile metadata validation', () => {
 	it('rejects changing ETF values without a field-specific or fallback snapshot date', () => {
+		const fixture = createContentFixture();
 		const relativeFile = `__review-etf-content-${process.pid}.md`;
-		const expectedPath = path.join(process.cwd(), 'src', 'content', 'blog', relativeFile);
-		assert.equal(existsSync(expectedPath), false);
-		writeFileSync(
-			expectedPath,
-			`---\ntitle: "ETF content fixture"\npubDate: "2026-08-24T00:00:00+09:00"\ncategories: ["Reports", "ETF"]\nyield: "4%"\n---\n\nContent.\n`,
-			'utf8',
-		);
+		const expectedPath = path.join(fixture.contentDir, relativeFile);
 
 		try {
+			assert.equal(existsSync(expectedPath), false);
+			writeFileSync(
+				expectedPath,
+				`---\ntitle: "ETF content fixture"\npubDate: "2026-08-24T00:00:00+09:00"\ncategories: ["Reports", "ETF"]\nyield: "4%"\n---\n\nContent.\n`,
+				'utf8',
+			);
 			const result = spawnSync(process.execPath, ['scripts/check-content.mjs'], {
 				cwd: process.cwd(),
+				env: fixture.env,
 				encoding: 'utf8',
 			});
 			assert.notEqual(result.status, 0);
@@ -173,7 +179,7 @@ describe('content check ETF volatile metadata validation', () => {
 				/ETF volatile metadata `yield` requires `yieldAsOf` or `dataAsOf`/i,
 			);
 		} finally {
-			rmSync(expectedPath, { force: true });
+			fixture.cleanup();
 		}
 	});
 });

@@ -63,7 +63,9 @@ import {
 } from '../src/data/etfMetadata.mjs';
 
 const ROOT_DIR = process.cwd();
-const CONTENT_DIR = path.join(ROOT_DIR, 'src', 'content', 'blog');
+const CONTENT_DIR = process.env.ASTRA_BLOG_CONTENT_DIR
+	? path.resolve(process.env.ASTRA_BLOG_CONTENT_DIR)
+	: path.join(ROOT_DIR, 'src', 'content', 'blog');
 const PAGES_DIR = path.join(ROOT_DIR, 'src', 'pages');
 const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
 const MARKDOWN_EXTENSIONS = new Set(['.md', '.mdx']);

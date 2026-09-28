@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { describe, it } from 'node:test';
@@ -14,6 +14,7 @@ import {
 	getRelatedWeeklyPosts,
 	getWeeklyCoverage,
 } from '../../src/lib/marketBrief.mjs';
+import { createContentFixture } from './helpers/content-fixture.mjs';
 
 const post = (data) => ({ data });
 
@@ -103,11 +104,12 @@ describe('Market Brief calendar', () => {
 
 describe('new-post Market Brief fields', () => {
 	it('writes explicit type, market date, and weekly coverage', () => {
+		const fixture = createContentFixture();
 		const relativeFile = `__review-market-brief-${process.pid}.md`;
-		const expectedPath = path.join(process.cwd(), 'src', 'content', 'blog', relativeFile);
-		assert.equal(existsSync(expectedPath), false);
+		const expectedPath = path.join(fixture.contentDir, relativeFile);
 
 		try {
+			assert.equal(existsSync(expectedPath), false);
 			const result = spawnSync(
 				process.execPath,
 				[
@@ -125,7 +127,7 @@ describe('new-post Market Brief fields', () => {
 					'--file',
 					relativeFile,
 				],
-				{ cwd: process.cwd(), encoding: 'utf8' },
+				{ cwd: process.cwd(), env: fixture.env, encoding: 'utf8' },
 			);
 
 			assert.equal(result.status, 0, result.stderr);
@@ -135,30 +137,36 @@ describe('new-post Market Brief fields', () => {
 			assert.match(content, /^coverageStart: "2026-08-03T00:00:00\+09:00"$/m);
 			assert.match(content, /^coverageEnd: "2026-08-07T00:00:00\+09:00"$/m);
 		} finally {
-			rmSync(expectedPath, { force: true });
+			fixture.cleanup();
 		}
 	});
 
 	it('rejects incomplete weekly coverage before writing', () => {
+		const fixture = createContentFixture();
 		const relativeFile = `__review-market-brief-invalid-${process.pid}.md`;
-		const expectedPath = path.join(process.cwd(), 'src', 'content', 'blog', relativeFile);
-		const result = spawnSync(
-			process.execPath,
-			[
-				'scripts/new-post.mjs',
-				'--type',
-				'market-weekly',
-				'--date',
-				'2026-08-08',
-				'--coverage-start',
-				'2026-08-07',
-				'--file',
-				relativeFile,
-			],
-			{ cwd: process.cwd(), encoding: 'utf8' },
-		);
+		const expectedPath = path.join(fixture.contentDir, relativeFile);
 
-		assert.notEqual(result.status, 0);
-		assert.equal(existsSync(expectedPath), false);
+		try {
+			const result = spawnSync(
+				process.execPath,
+				[
+					'scripts/new-post.mjs',
+					'--type',
+					'market-weekly',
+					'--date',
+					'2026-08-08',
+					'--coverage-start',
+					'2026-08-07',
+					'--file',
+					relativeFile,
+				],
+				{ cwd: process.cwd(), env: fixture.env, encoding: 'utf8' },
+			);
+
+			assert.notEqual(result.status, 0);
+			assert.equal(existsSync(expectedPath), false);
+		} finally {
+			fixture.cleanup();
+		}
 	});
 });

@@ -1,16 +1,18 @@
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { describe, it } from 'node:test';
+import { createContentFixture } from './helpers/content-fixture.mjs';
 
 describe('new-post ETF fields', () => {
 	it('writes optional stable ETF metadata fields', () => {
+		const fixture = createContentFixture();
 		const relativeFile = `__review-etf-fields-${process.pid}.md`;
-		const expectedPath = path.join(process.cwd(), 'src', 'content', 'blog', relativeFile);
-		assert.equal(existsSync(expectedPath), false);
+		const expectedPath = path.join(fixture.contentDir, relativeFile);
 
 		try {
+			assert.equal(existsSync(expectedPath), false);
 			const result = spawnSync(
 				process.execPath,
 				[
@@ -40,7 +42,7 @@ describe('new-post ETF fields', () => {
 					'--file',
 					relativeFile,
 				],
-				{ cwd: process.cwd(), encoding: 'utf8' },
+				{ cwd: process.cwd(), env: fixture.env, encoding: 'utf8' },
 			);
 
 			assert.equal(result.status, 0, result.stderr);
@@ -54,7 +56,7 @@ describe('new-post ETF fields', () => {
 			assert.match(content, /^leverage: "1x"$/m);
 			assert.match(content, /^incomeStyle: "Core"$/m);
 		} finally {
-			rmSync(expectedPath, { force: true });
+			fixture.cleanup();
 		}
 	});
 });

@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { describe, it } from 'node:test';
 import path from 'node:path';
 
 import { buildSeriesNavigation, getSeriesPosts, sortSeriesPosts } from '../../src/lib/series.mjs';
+import { createContentFixture } from './helpers/content-fixture.mjs';
 
 function post(id, seriesOrder, options = {}) {
 	return {
@@ -92,11 +93,12 @@ describe('buildSeriesNavigation', () => {
 
 describe('new-post series options', () => {
 	it('writes the series fields once when scaffolding a post', () => {
+		const fixture = createContentFixture();
 		const relativeFile = `__review-series-scaffold-${process.pid}.md`;
-		const expectedPath = path.join(process.cwd(), 'src', 'content', 'blog', relativeFile);
-		assert.equal(existsSync(expectedPath), false);
+		const expectedPath = path.join(fixture.contentDir, relativeFile);
 
 		try {
+			assert.equal(existsSync(expectedPath), false);
 			const result = spawnSync(
 				process.execPath,
 				[
@@ -120,7 +122,7 @@ describe('new-post series options', () => {
 					'--file',
 					relativeFile,
 				],
-				{ cwd: process.cwd(), encoding: 'utf8' },
+				{ cwd: process.cwd(), env: fixture.env, encoding: 'utf8' },
 			);
 
 			assert.equal(result.status, 0, result.stderr);
@@ -136,7 +138,7 @@ describe('new-post series options', () => {
 			assert.match(content, /^relatedSlugs: \["related-one", "related-two"\]$/m);
 			assert.match(content, /^prerequisiteSlugs: \["prerequisite-one", "prerequisite-two"\]$/m);
 		} finally {
-			rmSync(expectedPath, { force: true });
+			fixture.cleanup();
 		}
 	});
 });

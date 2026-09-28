@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict';
-import { existsSync, rmSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { describe, it } from 'node:test';
 import path from 'node:path';
 
 import { getFreshnessStatus } from '../../src/lib/contentFreshness.mjs';
+import { createContentFixture } from './helpers/content-fixture.mjs';
 
 describe('getFreshnessStatus', () => {
 	const now = new Date('2026-08-17T00:00:00+09:00');
@@ -40,11 +41,12 @@ describe('getFreshnessStatus', () => {
 
 describe('new-post freshness options', () => {
 	it('rejects data snapshots later than their verification date before writing', () => {
+		const fixture = createContentFixture();
 		const relativeFile = `__review-freshness-order-${process.pid}.md`;
-		const expectedPath = path.join(process.cwd(), 'src', 'content', 'blog', relativeFile);
-		assert.equal(existsSync(expectedPath), false);
+		const expectedPath = path.join(fixture.contentDir, relativeFile);
 
 		try {
+			assert.equal(existsSync(expectedPath), false);
 			const result = spawnSync(
 				process.execPath,
 				[
@@ -60,14 +62,14 @@ describe('new-post freshness options', () => {
 					'--file',
 					relativeFile,
 				],
-				{ cwd: process.cwd(), encoding: 'utf8' },
+				{ cwd: process.cwd(), env: fixture.env, encoding: 'utf8' },
 			);
 
 			assert.notEqual(result.status, 0);
 			assert.match(result.stderr, /data-as-of cannot be later than --verified-date/);
 			assert.equal(existsSync(expectedPath), false);
 		} finally {
-			rmSync(expectedPath, { force: true });
+			fixture.cleanup();
 		}
 	});
 });

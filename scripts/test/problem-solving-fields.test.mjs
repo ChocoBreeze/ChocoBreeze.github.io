@@ -1,16 +1,18 @@
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { describe, it } from 'node:test';
+import { createContentFixture } from './helpers/content-fixture.mjs';
 
 describe('new-post Problem Solving fields', () => {
 	it('writes optional platform and problem number fields', () => {
+		const fixture = createContentFixture();
 		const relativeFile = `__review-problem-solving-fields-${process.pid}.md`;
-		const expectedPath = path.join(process.cwd(), 'src', 'content', 'blog', relativeFile);
-		assert.equal(existsSync(expectedPath), false);
+		const expectedPath = path.join(fixture.contentDir, relativeFile);
 
 		try {
+			assert.equal(existsSync(expectedPath), false);
 			const result = spawnSync(
 				process.execPath,
 				[
@@ -28,7 +30,7 @@ describe('new-post Problem Solving fields', () => {
 					'--file',
 					relativeFile,
 				],
-				{ cwd: process.cwd(), encoding: 'utf8' },
+				{ cwd: process.cwd(), env: fixture.env, encoding: 'utf8' },
 			);
 
 			assert.equal(result.status, 0, result.stderr);
@@ -36,7 +38,7 @@ describe('new-post Problem Solving fields', () => {
 			assert.match(content, /^platform: "LeetCode"$/m);
 			assert.match(content, /^problemNumber: 1234$/m);
 		} finally {
-			rmSync(expectedPath, { force: true });
+			fixture.cleanup();
 		}
 	});
 });
