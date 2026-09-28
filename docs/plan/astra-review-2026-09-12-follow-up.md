@@ -36,7 +36,7 @@
 | 5 | 브라우저 smoke suite·산출물 검사 | 2~4 | Playwright 8개 browser smoke 통과 |
 | 6 | 품질·성능 baseline과 Pagefind 비교 | 3~5, 기존 실험 확인 | JSON 현재·1k·2k 측정 및 핫패스 최적화 완료. Pagefind 전면 교체 보류 |
 | 7 | 카테고리·slug 매핑 통합, fixture 격리 | 첫 milestone 이후 | 후속 작업 |
-| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | MPS·Arm·Venture Global·Lumentum·Centrus·Coherent·ASE·IREN 리포트 8건에 출처·검증일을 추가하고, 공시·시세와 대조해 확인된 재무·밸류에이션 오류를 수정. 나머지는 글별 수동 검증 필요 |
+| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | MPS·Arm·Venture Global·Lumentum·Centrus·Coherent·ASE·IREN·Marvell 리포트 9건에 출처·검증일을 추가하고, 공시·시세와 대조해 확인된 재무·밸류에이션 오류를 수정. 나머지는 글별 수동 검증 필요 |
 | 9 | OG·목록·빌드 최적화 | 측정으로 병목 확인 | 조건부 작업 |
 
 fixture 충돌이 검증이나 벤치마크의 실제 장애가 되면 7번 중 fixture 격리만 앞당긴다.
@@ -307,3 +307,5 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 2026-09-28 후속 구현: ASE Technology 리포트에 updatedDate·verifiedDate(2026-09-28), dataAsOf(2026-09-25)를 추가했다. 2026년 2분기 Form 6-K, 8월 월간 매출, FY2025 연간·상반기 실적과 9월 25일 NYSE 종가를 대조했다. ATM·EMS 실적과 별도 고객 집중 기준, 상반기 영업현금흐름·유형자산 지출, 장비 투자액을 반영하고 미공개 AI 고객별 매출·CoWoS 외주 물량 주장을 제거했다. ADS당 희석 EPS로 간이 TTM EPS $0.847과 P/E 약 52.3배를 계산하고 기간별 환산 차이 및 미감사 수치의 한계를 명시했다. `npm run check:content` 통과(기존 문서 경고 12건, ASE 원고 경고 없음), `git diff --check` 통과. `npm run format:check`는 실행 준비 단계의 도구 오류로 완료하지 못했다. 산술과 공시 기준을 수동 재검토했다. 콘텐츠 변경이므로 테스트와 빌드는 실행하지 않았다.
 
 2026-09-28 후속 구현: IREN 리포트를 FY2026 10-K 및 8월 실적 발표, 7월 신규 AI 계약 발표, 9월 25일 종가 기준으로 갱신하고 updatedDate·verifiedDate(2026-09-28), dataAsOf(2026-09-25)를 기록했다. FY2026 GAAP 매출에서 채굴 매출 비중이 여전히 약 82%임을 분리해 쓰고, 순손실과 비현금 손상차손·조정 EBITDA를 함께 반영했다. 계약 TCV, 계약 ARR, 운영 ARR 및 GAAP 매출을 구분하고 미공개 연구소 계약가를 추정하지 않았다. 선급금에 의존한 영업현금흐름, 제한성 현금, 부채·자본지출 약정, ATM 주식발행과 NVIDIA 조건부 매수권을 위험에 반영했다. 9월 25일 종가·8월 14일 주식 수·6월 말 부채와 자유현금으로 단순 시가총액·EV·EV/Sales를 다시 계산하고 기준일 차이와 비완전희석 한계를 명시했다. `npm run check:content` 통과(기존 문서 경고 12건, IREN 원고 경고 없음), `git diff --check` 통과. `npm run format:check`는 실행 준비 단계 도구 오류로 완료하지 못했다. 테스트와 빌드는 콘텐츠 변경이어서 생략했다.
+
+2026-09-28 후속 구현: Marvell 리포트를 FY2027 2분기 10-Q·실적 발표, FY2026 10-K, 9월 25일 종가 기준으로 갱신하고 updatedDate·verifiedDate(2026-09-28), dataAsOf(2026-09-25)를 기록했다. FY2026 데이터센터 비중과 FY2027 상반기·2분기 성장률, non-GAAP와 GAAP 차이, 인수·상각, 현금흐름·차입금을 반영했다. 비공개 고객 매출은 추정하지 않고 FY2026 상위 10개 고객 집중도와 NVIDIA 우선주 전환, 사후 발행 고객 워런트를 희석 위험으로 구분했다. 9월 25일 종가와 Q3 희석주식 가이던스, FY27 상반기 TTM 매출로 간이 EV/Sales를 계산하고 각 기준일·한계를 명시했다. npm run check:content 통과(기존 문서 경고 12건, MRVL 원고 경고 없음), git diff --check 통과. npm run format:check는 실행 준비 단계의 도구 오류로 완료하지 못했다. 콘텐츠 변경이므로 테스트와 빌드는 생략했다.
