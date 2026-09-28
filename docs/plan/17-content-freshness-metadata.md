@@ -81,3 +81,6 @@
  검증: npm run check:content 통과(기존 경고 12건, MSR 원고 경고 없음), npm run format:check 및 git diff --check 통과. 콘텐츠 변경이므로 테스트와 빌드는 생략했다.
 
 2026-09-29 후속 구현: MSR 기술 주장 팩트체크 글을 IAEA·ORNL·DOE·기업 1차 자료와 대조해 갱신하고 updatedDate·verifiedDate·dataAsOf를 기록했다. 동결밸브의 실제 운전 이력, 특정 설계의 사용후연료 재활용, 온라인 재처리와 연료 보급의 차이, IMSR 열 공급 목표, 저압과 공사 기간, 토륨 연료주기의 핵확산 저항성 표현을 바로잡았다. Natura MSR-1로 FLiBE가 운송된 사실은 연구로 재료 인도로 기술하고 상업 운전과 구분했다. npm run check:content 통과(기존 경고 12건, MSR 원고 경고 없음), npm run format:check 및 git diff --check 통과. 콘텐츠 변경이므로 테스트와 빌드는 생략했다.
+
+
+2026-09-29 후속 구현: MSR 투자 리서치를 2026년 9월 29일 기준으로 전면 재구성하고 updatedDate·verifiedDate·dataAsOf를 기록했다. 상장 직접 개발사 Terrestrial Energy와 민간 MSR 개발사, Centrus·ITT·Flowserve·Toyo Tanso·Acerinox·Velan의 간접 산업 노출을 분리했다. TETRA·TEFLA·RELLIS·Riot 협약, Natura FLiBE 운송, MCRE 일정과 Aalo 나트륨로 임계시험을 각 단계에 맞게 구분했다. Terrestrial의 현금·투자자산·상반기 손실·현금흐름·주식 수 및 Centrus DOE 계약·자금 위험을 10-Q와 대조했다. 주가와 재무 기준일을 맞춘 검증이 없어 밸류에이션 배수는 제시하지 않았다. npm run check:content, npm run format:check, git diff --check를 실행하고 결과를 기록한다. 콘텐츠 변경이므로 테스트·빌드는 생략한다.

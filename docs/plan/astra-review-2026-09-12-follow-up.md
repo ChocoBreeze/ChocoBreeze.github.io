@@ -329,3 +329,6 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
  npm run check:content 통과(기존 경고 12건, MSR 원고 경고 없음), npm run format:check 및 git diff --check 통과. 콘텐츠 변경이므로 테스트·빌드는 생략했다.
 
 2026-09-29 후속 구현: MSR 기술 주장 팩트체크를 공식 IAEA·ORNL·DOE·기업 자료로 갱신했다. MSR 설계별 연료·냉각 방식과 기술 성숙도를 구분하고, 동결밸브, 폐기물·재처리, 고온 공정열, 저압 설계, 토륨 연료주기에 대한 과장·미검증 주장을 수정했다. Natura MSR-1에 전달된 FLiBE 염은 연구개발 진척으로 기록하고 임계·상업운전과 분리했다. updatedDate·verifiedDate·dataAsOf(2026-09-29)를 설정했다. npm run check:content 통과(기존 경고 12건, MSR 원고 경고 없음), npm run format:check 및 git diff --check 통과. 테스트와 빌드는 콘텐츠 변경이므로 생략했다.
+
+
+2026-09-29 후속 구현: MSR 투자 리서치를 최신 SEC·DOE·INL·기업 1차 자료로 갱신했다. 오래된 2024–2027 예정 일정을 제거하고, Terrestrial Energy의 IMSR 직접 노출과 Centrus·산업재 공급사의 간접 노출을 구분했다. DOE TETRA/TEFLA 협약, RELLIS 부지 권리, Riot 비구속 MOU, Natura FLiBE 인도, TerraPower MCRE의 전망 일정을 확정 운전 실적·허가·매출과 혼동하지 않도록 정리했다. Terrestrial·Centrus의 재무와 계약 위험 및 희석 점검 항목을 반영했다. npm run check:content, npm run format:check, git diff --check 결과를 반영한다. 콘텐츠 전용 변경이므로 테스트·빌드는 생략한다.
