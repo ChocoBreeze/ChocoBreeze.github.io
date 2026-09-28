@@ -36,7 +36,7 @@
 | 5 | 브라우저 smoke suite·산출물 검사 | 2~4 | Playwright 8개 browser smoke 통과 |
 | 6 | 품질·성능 baseline과 Pagefind 비교 | 3~5, 기존 실험 확인 | JSON 현재·1k·2k 측정 및 핫패스 최적화 완료. Pagefind 전면 교체 보류 |
 | 7 | 카테고리·slug 매핑 통합, fixture 격리 | 첫 milestone 이후 | 후속 작업 |
-| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | MPS·Arm·Venture Global·Lumentum·Centrus·Coherent·ASE·IREN·Marvell·Credo·Bloom Energy·Rocket Lab·Navitas Semiconductor·POET Technologies·Redwire Corporation·NuScale Power 리포트 16건에 출처·검증일을 추가하고, 공시·시세와 대조해 확인된 재무·밸류에이션 오류를 수정. 나머지는 글별 수동 검증 필요 |
+| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | MPS·Arm·Venture Global·Lumentum·Centrus·Coherent·ASE·IREN·Marvell·Credo·Bloom Energy·Rocket Lab·Navitas Semiconductor·POET Technologies·Redwire Corporation·NuScale Power·Vertiv Holdings 리포트 17건에 출처·검증일을 추가하고, 공시·시세와 대조해 확인된 재무·밸류에이션 오류를 수정. 나머지는 글별 수동 검증 필요 |
 | 9 | OG·목록·빌드 최적화 | 측정으로 병목 확인 | 조건부 작업 |
 
 fixture 충돌이 검증이나 벤치마크의 실제 장애가 되면 7번 중 fixture 격리만 앞당긴다.
@@ -323,3 +323,4 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 2026-09-29 후속 구현: Redwire Corporation 리포트를 2026년 2분기 Form 10-Q·실적 발표, 7월 Stalker 후속 주문, 8월 SpaceMD Starfall 미션, 9월 NITE-STAR IDIQ 선정 발표와 9월 25일 종가 기준으로 갱신하고 updatedDate·verifiedDate(2026-09-29), dataAsOf(2026-09-25)를 기록했다. 상반기 매출 증가가 Edge Autonomy 인수 영향에 크게 의존하고 Space 매출은 보합임을 구분했다. 확정 계약잔고 542.1M·book-to-bill 1.52, 상반기 순손실 117.5M·영업 현금유출 31.6M, 유동성 607.8M, ATM 40.3M 주식 발행·우선주 전환과 약 29.9% 주식 수 증가, 내부통제 중대한 취약점을 반영했다. NITE-STAR 계약 차량의 980M달러 이상 한도를 Redwire 보장 매출과 구분하고, 9월 25일 종가·8월 공시 주식 수·6월 말 현금과 부채·TTM 매출로 단순 시가총액 및 EV/TTM Sales를 다시 계산해 기준일과 제외 항목을 밝혔다. `npm run check:content` 통과(기존 경고 12건, Redwire 원고 경고 없음), `npm run format:check` 및 `git diff --check` 통과. 콘텐츠 변경이므로 테스트와 빌드는 생략했다.
 
 2026-09-29 후속 구현: NuScale Power 리포트에 updatedDate·verifiedDate(2026-09-29), dataAsOf(2026-09-25)를 추가했다. 2026년 2분기 Form 10-Q와 회사 실적발표로 매출·손실·현금흐름·현금 및 투자자산·ATM 발행·주식 수를 확인하고, ENTRA1 PMA의 비대칭 조항, NPM 1기당 3,500만\~5,500만 달러 기여금 범위와 미인식 미래 지급 가능성을 반영했다. TVA 협력은 비구속 단계로 구분했다. Doicești는 조건부 FID로 정정하고, SNN의 7월 15일 업데이트와 9월 공개 정부 점검 보고서의 조건 미이행·20개월 일정 지연·$6.5B 사업비 추정·JV 거버넌스 지적을 추가했다. 정부 보고서 인용 시나리오와 최종 계약을 구분하고 SNN의 이견도 함께 기록했다. 9월 25일 종가와 경제적 지분 수로 시가총액 및 단순 P/S·EV/Sales를 계산하고 기준일 차이·미완전희석·제외 항목을 명시했다. npm run check:content 통과(기존 경고 12건, NuScale 원고 경고 없음), npm run format:check 및 git diff --check 통과. 콘텐츠 변경이므로 테스트와 빌드는 생략했다.
+2026-09-29 후속 구현: Vertiv Holdings 리포트를 2026년 2분기 Form 10-Q·실적발표, FY2025 Form 10-K와 9월 25일 종가로 갱신했다. 보고서의 최신 분기 수치·가이던스·자본구조·운전자본·인수 내역을 업데이트하고, 오래된 2025년 3분기 수주·백로그 수치와 추정 고객 매출을 현행 사실로 제시하지 않도록 수정했다. 7월 공시 주식 수와 6월 말 재무상태로 시가총액·EV/TTM Sales·후행 P/E를 계산하고 시점 차이 및 단순화 범위를 적었다. npm run check:content 통과(기존 경고 12건, Vertiv 경고 없음), npm run format:check 및 git diff --check 통과. 콘텐츠 전용 변경이므로 테스트와 빌드는 생략했다.
