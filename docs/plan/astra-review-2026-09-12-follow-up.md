@@ -36,7 +36,7 @@
 | 5 | 브라우저 smoke suite·산출물 검사 | 2~4 | Playwright 8개 browser smoke 통과 |
 | 6 | 품질·성능 baseline과 Pagefind 비교 | 3~5, 기존 실험 확인 | JSON 현재·1k·2k 측정 및 핫패스 최적화 완료. Pagefind 전면 교체 보류 |
 | 7 | 카테고리·slug 매핑 통합, fixture 격리 | 첫 milestone 이후 | 후속 작업 |
-| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | MPS·Arm·Venture Global·Lumentum 리포트 4건에 출처·검증일을 추가하고, 공시·시세와 대조해 확인된 재무·밸류에이션 오류를 수정. 나머지는 글별 수동 검증 필요 |
+| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | MPS·Arm·Venture Global·Lumentum·Centrus 리포트 5건에 출처·검증일을 추가하고, 공시·시세와 대조해 확인된 재무·밸류에이션 오류를 수정. 나머지는 글별 수동 검증 필요 |
 | 9 | OG·목록·빌드 최적화 | 측정으로 병목 확인 | 조건부 작업 |
 
 fixture 충돌이 검증이나 벤치마크의 실제 장애가 되면 7번 중 fixture 격리만 앞당긴다.
@@ -295,5 +295,9 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 2026-09-28 후속 구현: Venture Global 리포트의 데이터 기준일(2026-03-30)을 유지하면서 2025 Form 10-K, 회사 FY2025 실적 발표, FERC·EIA·IEA·Shell 원자료, 3월 26일 Edison 합의 자료와 과거 시세를 연결했다. 2025 조정 EBITDA를 당시 가이던스(61.8~62.4억달러)가 아니라 실제 63억달러로 바로잡고, 2026 가이던스와 EV·P/E 계산을 다시 산출했다. EV에서 총 차입금·비제한현금 기준을 명시하고, Repsol·Edison·BP 및 남은 고객 중재의 상태를 기준일에 맞춰 구분했다. CP2 확장의 예상 생산(9.7 mtpa)과 피크(11.7 mtpa), CP2 항소 상태를 바로잡았고 출처 없는 peer 시가총액 비교표를 제거했다. updatedDate·verifiedDate를 추가했다.
 
 2026-09-28 후속 구현: Lumentum 리포트의 기준일을 2026-09-25로 갱신하고 FY2026 10-K·Q4 실적발표 및 9월 25일 종가를 연결했다. 제품 매출, 고객 집중, FY2027 Q1 가이던스, OCS 매출·공개된 backlog 시점, CPO/ELS 현황을 업데이트했다. 전환·주식화 뒤 Notes 원금과 순현금, 2026 Notes 잔액, NVIDIA 우선주 전환 가정을 반영해 주식가치·EV/Sales·adjusted P/E를 다시 계산했다. FY2026의 비현금 부채소멸손실과 운전자본 증가를 분리해 설명하고, 이미 지난 촉매와 경영진 질문을 현 시점에 맞게 고쳤다. updatedDate·verifiedDate를 추가했다.
+
+2026-09-28 후속 구현: Centrus Energy 리포트를 2026-09-25 기준으로 갱신하고 FY2026 Q2 10-Q·실적발표, 7월 DOE 계약 공지, X-energy·Radiant·Antares 계약 및 9월 25일 종가를 연결했다. 상반기 매출·순이익·현금흐름과 backlog 조건부 구성, DOE HALEU 운영계약 옵션 종료 및 FY2027 예산 리스크를 반영했다. 공개된 주식 수로 시가총액·단순 EV와 TTM EV/Sales·equity/TTM earnings를 재계산하고, 공시되지 않은 offtake 수량·가격은 채우지 않았다. updatedDate·verifiedDate를 추가했다.
+
+검증: `npm run check:content` 통과(기존 문서 경고 12건, Centrus 원고 경고 없음), `npm run format:check` 통과, `git diff --check` 통과. 독립 검토에서 주식 수·순현금·EV·TTM 배수 계산, backlog 구성, FY2027 제안 예산의 기준 시점에서 구체적 오류를 찾지 못했다. 콘텐츠 변경이므로 테스트와 빌드는 생략했다.
 
 검증: `npm run check:content` 통과(기존 문서 경고 12건, Lumentum 경고 없음), `npm run format:check` 통과, `git diff --check` 통과. 독립 검토에서 주요 산술·주식 수 기준일·우선주 전환 가정의 구체적 오류를 찾지 못했다. 콘텐츠 변경이므로 테스트와 빌드는 생략했다.
