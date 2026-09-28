@@ -36,7 +36,7 @@
 | 5 | 브라우저 smoke suite·산출물 검사 | 2~4 | Playwright 8개 browser smoke 통과 |
 | 6 | 품질·성능 baseline과 Pagefind 비교 | 3~5, 기존 실험 확인 | JSON 현재·1k·2k 측정 및 핫패스 최적화 완료. Pagefind 전면 교체 보류 |
 | 7 | 카테고리·slug 매핑 통합, fixture 격리 | 첫 milestone 이후 | 후속 작업 |
-| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | MPS·Arm·Venture Global·Lumentum·Centrus·Coherent 리포트 6건에 출처·검증일을 추가하고, 공시·시세와 대조해 확인된 재무·밸류에이션 오류를 수정. 나머지는 글별 수동 검증 필요 |
+| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | MPS·Arm·Venture Global·Lumentum·Centrus·Coherent·ASE 리포트 7건에 출처·검증일을 추가하고, 공시·시세와 대조해 확인된 재무·밸류에이션 오류를 수정. 나머지는 글별 수동 검증 필요 |
 | 9 | OG·목록·빌드 최적화 | 측정으로 병목 확인 | 조건부 작업 |
 
 fixture 충돌이 검증이나 벤치마크의 실제 장애가 되면 7번 중 fixture 격리만 앞당긴다.
@@ -303,3 +303,5 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 검증: `npm run check:content` 통과(기존 문서 경고 12건, Lumentum 경고 없음), `npm run format:check` 통과, `git diff --check` 통과. 독립 검토에서 주요 산술·주식 수 기준일·우선주 전환 가정의 구체적 오류를 찾지 못했다. 콘텐츠 변경이므로 테스트와 빌드는 생략했다.
 
 2026-09-28 후속 구현: Coherent 리포트에 updatedDate·verifiedDate(2026-09-28), dataAsOf(2026-09-25)를 추가했다. FY2026 Form 10-K·Q4 실적 발표, 9월 21일 PhotonLink 발표, 8월 17일 SiC 샘플링 발표와 9월 25일 종가를 대조했다. Datacenter & Communications 매출 증가를 AI 데이터센터 단독 매출로 표현하지 않고, FY2025 보고부문 재편 및 비공개 고객 식별 한계를 명시했다. NVIDIA의 구매 약정과 20억 달러 보통주 투자를 구분하고 PhotonLink 예상 매출 램프를 확정 실적과 분리했다. 영업현금흐름에서 유형자산 취득액을 뺀 단순 현금흐름과 기준일 시가총액·EV·배수를 재계산했다. npm run check:content 통과(기존 경고 12건, Coherent 경고 없음), npm run format:check 및 git diff --check 통과. 독립 검토에서 수치·날짜·주요 표현 오류가 발견되지 않았다. 콘텐츠 변경이므로 테스트와 빌드는 실행하지 않았다.
+
+2026-09-28 후속 구현: ASE Technology 리포트에 updatedDate·verifiedDate(2026-09-28), dataAsOf(2026-09-25)를 추가했다. 2026년 2분기 Form 6-K, 8월 월간 매출, FY2025 연간·상반기 실적과 9월 25일 NYSE 종가를 대조했다. ATM·EMS 실적과 별도 고객 집중 기준, 상반기 영업현금흐름·유형자산 지출, 장비 투자액을 반영하고 미공개 AI 고객별 매출·CoWoS 외주 물량 주장을 제거했다. ADS당 희석 EPS로 간이 TTM EPS $0.847과 P/E 약 52.3배를 계산하고 기간별 환산 차이 및 미감사 수치의 한계를 명시했다. `npm run check:content` 통과(기존 문서 경고 12건, ASE 원고 경고 없음), `git diff --check` 통과. `npm run format:check`는 실행 준비 단계의 도구 오류로 완료하지 못했다. 산술과 공시 기준을 수동 재검토했다. 콘텐츠 변경이므로 테스트와 빌드는 실행하지 않았다.
