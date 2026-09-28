@@ -36,7 +36,7 @@
 | 5 | 브라우저 smoke suite·산출물 검사 | 2~4 | Playwright 8개 browser smoke 통과 |
 | 6 | 품질·성능 baseline과 Pagefind 비교 | 3~5, 기존 실험 확인 | JSON 현재·1k·2k 측정 및 핫패스 최적화 완료. Pagefind 전면 교체 보류 |
 | 7 | 카테고리·slug 매핑 통합, fixture 격리 | 첫 milestone 이후 | 후속 작업 |
-| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | MPS·Arm·Venture Global·Lumentum·Centrus·Coherent·ASE·IREN·Marvell·Credo·Bloom Energy·Rocket Lab·Navitas Semiconductor·POET Technologies 리포트 14건에 출처·검증일을 추가하고, 공시·시세와 대조해 확인된 재무·밸류에이션 오류를 수정. 나머지는 글별 수동 검증 필요 |
+| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | MPS·Arm·Venture Global·Lumentum·Centrus·Coherent·ASE·IREN·Marvell·Credo·Bloom Energy·Rocket Lab·Navitas Semiconductor·POET Technologies·Redwire Corporation 리포트 15건에 출처·검증일을 추가하고, 공시·시세와 대조해 확인된 재무·밸류에이션 오류를 수정. 나머지는 글별 수동 검증 필요 |
 | 9 | OG·목록·빌드 최적화 | 측정으로 병목 확인 | 조건부 작업 |
 
 fixture 충돌이 검증이나 벤치마크의 실제 장애가 되면 7번 중 fixture 격리만 앞당긴다.
@@ -319,3 +319,5 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 2026-09-29 후속 구현: Navitas Semiconductor 리포트를 FY2026 2분기 Form 10-Q·실적발표와 9월 SEC 공시 기준으로 갱신하고 updatedDate·verifiedDate(2026-09-29), dataAsOf(2026-09-25)를 기록했다. 고전력 매출 성장과 전체 매출 감소를 분리하고 GAAP·비GAAP 마진, 비현금 earnout 재평가, ATM 조달·주식 희석, 익명 유통사 집중을 반영했다. 미종결 Claros 거래의 대가·등록 주식, Magnachip 지분투자와 Wolfspeed 특허 소송을 갱신했다. 9월 25일 주가·7월 24일 최신 SEC 주식 수·최근 12개월 매출로 단순 P/S 약 87.2배를 계산하고 시점 차이와 미반영 희석을 명시했다. npm run check:content 통과(기존 경고 12건, Navitas 원고 경고 없음), git diff --check 통과. npm run format:check는 helper 초기화 오류로 시작하지 못했다. 콘텐츠 변경이므로 테스트와 빌드는 생략했다.
 
 2026-09-29 후속 구현: POET Technologies 보고서를 2026년 2분기 Form 6-K(IFRS 재무제표·MD&A), 2025년 Form 20-F, 4월 Marvell/Celestial AI 주문 취소 공지, 5월 Lumilens 주문 발표, 9월 CIOE 행사 업데이트와 9월 25일 종가 기준으로 갱신했다. updatedDate·verifiedDate(2026-09-29), dataAsOf(2026-09-25)를 기록했다. 2분기 매출 569,925달러·상반기 매출 1,073,314달러, 상반기 순손실 23,682,146달러·영업 현금유출 21,079,966달러, 현금 및 단기투자 796,341,903달러와 6월 30일 발행주식 173,035,169주를 반영했다. Lumilens 초기 5,000만 달러 구매주문과 5년 누적 5억 달러 이상 가능성을 구분하고 이를 매출로 계상하지 않았다. Celestial AI/Marvell 구매주문 취소, 8월 RSU 부여, 5월 워런트 및 전략 대여 리스크를 반영했다. 9월 25일 종가로 시가총액·단순 EV와 TTM P/S·EV/Sales를 계산하고 시점 차이·미완전희석·제외 부채항목을 밝혔다. `npm run check:content` 통과(기존 경고 12건, POET 원고 경고 없음), `npm run format:check` 및 `git diff --check` 통과. 공시 수치·주문 상태와 밸류에이션 산식을 다시 대조했다. 콘텐츠 변경이므로 테스트와 빌드는 생략했다.
+
+2026-09-29 후속 구현: Redwire Corporation 리포트를 2026년 2분기 Form 10-Q·실적 발표, 7월 Stalker 후속 주문, 8월 SpaceMD Starfall 미션, 9월 NITE-STAR IDIQ 선정 발표와 9월 25일 종가 기준으로 갱신하고 updatedDate·verifiedDate(2026-09-29), dataAsOf(2026-09-25)를 기록했다. 상반기 매출 증가가 Edge Autonomy 인수 영향에 크게 의존하고 Space 매출은 보합임을 구분했다. 확정 계약잔고 542.1M·book-to-bill 1.52, 상반기 순손실 117.5M·영업 현금유출 31.6M, 유동성 607.8M, ATM 40.3M 주식 발행·우선주 전환과 약 29.9% 주식 수 증가, 내부통제 중대한 취약점을 반영했다. NITE-STAR 계약 차량의 980M달러 이상 한도를 Redwire 보장 매출과 구분하고, 9월 25일 종가·8월 공시 주식 수·6월 말 현금과 부채·TTM 매출로 단순 시가총액 및 EV/TTM Sales를 다시 계산해 기준일과 제외 항목을 밝혔다. `npm run check:content` 통과(기존 경고 12건, Redwire 원고 경고 없음), `npm run format:check` 및 `git diff --check` 통과. 콘텐츠 변경이므로 테스트와 빌드는 생략했다.
