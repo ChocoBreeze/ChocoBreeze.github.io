@@ -3,7 +3,7 @@
 - 작성일: 2026-09-27
 - 기준 보고서: [Astra Review — 2026-09-12](../astra-review-2026-09-12.md)
 - 관련 로드맵: [검색 접근성과 인덱스 확장성](21-search-access-and-scaling.md)
-- 상태: 첫 milestone 구현 및 검토 완료. 1k·2k 합성 규모와 p50/p95 반복 성능 시험은 후속 측정으로 남김
+- 상태: 첫 milestone과 503·1k·2k 검색 규모 측정 및 핫패스 최적화 완료. Pagefind 대규모 비교와 브라우저 end-to-end 지연 측정은 후속
 - 목적: 검토 보고서의 지적 사항을 작업 범위·완료 조건·검증 방법으로 구체화한다.
 
 ## 1. 범위와 현재 확인 사항
@@ -16,8 +16,8 @@
 
 - 원본 보고서는 2026-09-12 기준이다. 이후 수정 여부는 현재 코드와 대조해야 한다.
 - `SECURITY.md`에는 2026-07-20 감사 결과인 취약점 8건이 기록되어 있다.
-- 2026-09-27 실행한 `npm audit --json`은 17건을 보고했다: low 1, moderate 7, high 8, critical 1. 이는 취약한 패키지 집계이며 고유 advisory 수와는 다르다.
-- `package.json`은 Astro 6 범위를 사용한다. Pagefind 의존성과 `benchmark:search`, `report:search-size` 명령이 이미 있다.
+- 착수 당시 2026-09-27 실행한 `npm audit --json`은 17건을 보고했다: low 1, moderate 7, high 8, critical 1. 이는 취약한 패키지 집계이며 고유 advisory 수와는 다르다.
+- 착수 당시 `package.json`은 Astro 6 범위를 사용했다. Pagefind 의존성과 `benchmark:search`, `report:search-size` 명령도 이미 있었다.
 - 현재 로드맵에는 21번 비교 벤치마크 완료·Pagefind 교체 보류 및 ETF·Reports의 일부 백필 완료가 기록되어 있다. 해당 작업을 신규 구현으로 반복하지 않는다.
 - 일부 추가 파일 읽기가 실행 환경 오류로 실패했다. 아래 파일별 변경 범위와 미해결 여부는 착수 단계에서 확정한다.
 
@@ -28,13 +28,13 @@
 
 | 순서 | 작업 묶음 | 선행 조건 | 현재 상태 |
 |---|---|---|---|
-| 0 | 현재 구현과 보고서 대조 | 없음 | 미착수 |
-| 1 | 의존성 감사·호환 업데이트·SECURITY 갱신 | 0 | 감사 결과 수집, 분류·수정 미착수 |
-| 2 | 관련 글 문서와 title 계약 수정 | 0 | 미착수 |
-| 3 | 검색 본문 추출 정확성 수정 | 0 | 미착수 |
-| 4 | 검색 함수 분리·정규화·URL 상태 | 3 | 미착수 |
-| 5 | 브라우저 smoke suite·산출물 검사 | 2~4 | 미착수 |
-| 6 | 품질·성능 baseline과 Pagefind 비교 | 3~5, 기존 실험 확인 | 기존 결과 재검토 필요 |
+| 0 | 현재 구현과 보고서 대조 | 없음 | 완료 |
+| 1 | 의존성 감사·호환 업데이트·SECURITY 갱신 | 0 | 업데이트 및 CI gate 적용, 사후 audit 0건. 이전 advisory JSON 미보존 제한을 기록 |
+| 2 | 관련 글 문서와 title 계약 수정 | 0 | title 수정 완료. 관련 글 문서는 현 동작과 일치해 변경 불필요 |
+| 3 | 검색 본문 추출 정확성 수정 | 0 | fixture·IDL 회귀 확인 완료 |
+| 4 | 검색 함수 분리·정규화·URL 상태 | 3 | 구현·회귀 테스트 완료 |
+| 5 | 브라우저 smoke suite·산출물 검사 | 2~4 | Playwright 8개 browser smoke 통과 |
+| 6 | 품질·성능 baseline과 Pagefind 비교 | 3~5, 기존 실험 확인 | JSON 현재·1k·2k 측정 및 핫패스 최적화 완료. Pagefind 전면 교체 보류 |
 | 7 | 카테고리·slug 매핑 통합, fixture 격리 | 첫 milestone 이후 | 후속 작업 |
 | 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | 후속 작업 |
 | 9 | OG·목록·빌드 최적화 | 측정으로 병목 확인 | 조건부 작업 |
@@ -265,18 +265,22 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 - [x] 빠른 검색과 전체 검색이 NFKC 및 대소문자 정규화를 공유한다.
 - [x] 검색어·모드·카테고리 공유 URL, 초기 진입·새로고침·뒤로·앞으로 복원을 구현했다.
 - [x] 브라우저에서 지연 로딩·요청 경쟁·전체/빠른 인덱스 오류 복구·키보드 동작을 확인했다.
-- [ ] 1k·2k 합성 규모, 반복 측정 p50/p95는 측정 필요성은 있으나 이번 실행에서 생략했다. 아래 후속 측정으로 이관한다.
+- [x] 실제 503개, 1k·2k 합성 JSON 크기·gzip 추정·parse·검색 응답 p50/p95를 기록하고 검색 핫패스를 최적화했다. 최종 성능 비교는 30회 표본을 사용했다. 상세 결과는 [검색 확장성 계획](21-search-access-and-scaling.md)에 기록했다.
 - [x] 현재 크기 benchmark로 JSON 유지 및 Pagefind 전면 교체 보류를 기록했다.
 - [x] 독립 검토의 텍스트 추출 회귀, 재시도 UI, 브라우저 커버리지, advisory 추적성 지적을 반영했다.
 
 ### 검증 결과와 남은 항목
 
-- `npm test`: 216 tests passed.
+- `npm test`: 223 tests passed after the search scale benchmark and cache invalidation additions.
 - `npm run check:content`: 통과.
-- `npm run check`: 109 files, 오류·경고·힌트 없음.
+- `npm run check`: 111 files, 오류·경고·힌트 없음.
 - `npm run build`: Astro 7에서 802 pages 생성.
 - `npm run test:e2e`: Chromium 8/8 통과. 직접 카테고리 URL·뒤로/앞으로 이동·전체 및 빠른 검색 재시도·요청 경쟁·Enter activation을 포함한다.
-- `npm audit`: 취약점 0건.
+- `npm audit`: 마지막 성공 결과는 취약점 0건. 이번 후속 작업에서 재실행했을 때 registry audit endpoint 연결 오류로 결과를 가져오지 못했다.
 - `npm run benchmark:search`: 현재 JSON 합계 10,604,428바이트, Pagefind 전체 8,407,258바이트, 초기 전송량 118,350바이트; 초기화 55.5ms, 첫 결과 152.9ms. 이 결과만으로 한국어 검색 품질과 코드 검색 대체 가능성을 판단할 수 없어 Pagefind 전면 전환은 보류.
 
-후속 범위: 1k·2k 합성 콘텐츠 성능(p50/p95), 5k 확장 여부, 전체 페이지 산출물의 draft·slug·title 검사 자동화. 이전 advisory ID와 dependency path는 원본 audit JSON이 없어서 복원하지 않는다.
+후속 범위: 필요 시 5k 규모, 전체 페이지 산출물의 draft·slug·title 검사 자동화. 이전 advisory ID와 dependency path는 원본 audit JSON이 없어서 복원하지 않는다.
+
+검색 규모 후속: 30회 반복 후 2k 한국어 다건 결과의 Node p50/p95는 179.87/190.38ms였다. 브라우저 입력→DOM 렌더 시간·메모리를 측정하고 필요하면 결과 표시량을 조정한다. 5k synthetic은 현재 예상 배포 규모를 크게 넘으므로 필요 시 실행한다. Pagefind 1k·2k 비교는 별도 작업이며 이번 JSON 전용 측정으로 대체하지 않는다.
+
+2026-09-27 후속 구현: `benchmark:search:scale` 명령과 nearest-rank 측정·기록, 결과 정렬 이후의 일치 결과만 스니펫 생성, 검색 항목의 정규화 필드 캐시와 원본 변경 감지를 추가했다. 실제 검색 가중치와 상위 결과는 회귀 테스트로 고정했다. 독립 검토의 slug 충돌 및 배열 캐시 무효화 제안도 반영했다. 크기·Node 검색 성능 변화는 [검색 확장성 계획](21-search-access-and-scaling.md)에서 확인할 수 있다.

@@ -12,6 +12,7 @@
 		"check:content": "node scripts/check-content.mjs",
 		"test:e2e": "playwright test",
 		"benchmark:search": "node scripts/benchmark-search.mjs",
+		"benchmark:search:scale": "node scripts/benchmark-search-scale.mjs",
 		"report:search-size": "node scripts/report-search-size.mjs",
 		"test": "node --test \"scripts/test/*.test.mjs\"",
 		"new:post": "node scripts/new-post.mjs",
