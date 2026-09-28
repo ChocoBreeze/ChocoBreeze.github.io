@@ -1,12 +1,7 @@
-export type BlogCategoryKey =
-	| 'ETF'
-	| 'Economics'
-	| 'Semiconductor'
-	| 'Computer Science'
-	| 'Programming'
-	| 'Problem_Solving'
-	| 'Reports'
-	| 'Market Brief';
+import { BLOG_CATEGORY_KEYS, normalizeBlogCategoryAlias } from './blogTaxonomy.mjs';
+import type { BlogCategoryKey } from './blogTaxonomy.mjs';
+
+export type { BlogCategoryKey } from './blogTaxonomy.mjs';
 
 export type BlogCategoryDefinition = {
 	key: BlogCategoryKey;
@@ -96,6 +91,14 @@ export const COMPUTING_CATEGORY_KEYS: BlogCategoryKey[] = [
 	'Problem_Solving',
 ];
 
+const definedCategoryKeys = new Set(BLOG_CATEGORIES.map(({ key }) => key));
+if (
+	definedCategoryKeys.size !== BLOG_CATEGORY_KEYS.length ||
+	BLOG_CATEGORY_KEYS.some((key) => !definedCategoryKeys.has(key))
+) {
+	throw new Error('BLOG_CATEGORIES must match the shared blog category keys.');
+}
+
 export function normalizeCategory(category: unknown): string | undefined {
 	if (Array.isArray(category)) {
 		return typeof category[0] === 'string' ? normalizeCategory(category[0]) : undefined;
@@ -105,43 +108,7 @@ export function normalizeCategory(category: unknown): string | undefined {
 		return undefined;
 	}
 
-	const normalized = category.trim().toLowerCase();
-	if (normalized === 'reports' || normalized === 'report') {
-		return 'Reports';
-	}
-	if (normalized === 'problem_solving' || normalized === 'problem solving') {
-		return 'Problem_Solving';
-	}
-	if (normalized === 'computer science' || normalized === 'cs') {
-		return 'Computer Science';
-	}
-	if (
-		normalized === 'market brief' ||
-		normalized === 'market_brief' ||
-		normalized === 'us market brief'
-	) {
-		return 'Market Brief';
-	}
-	if (normalized === 'semiconductor') {
-		return 'Semiconductor';
-	}
-	if (normalized === 'programming') {
-		return 'Programming';
-	}
-	if (
-		normalized === 'economics' ||
-		normalized === 'economic' ||
-		normalized === 'economy' ||
-		normalized === 'macro' ||
-		normalized === 'macroeconomics'
-	) {
-		return 'Economics';
-	}
-	if (normalized === 'etf') {
-		return 'ETF';
-	}
-
-	return category;
+	return normalizeBlogCategoryAlias(category) ?? category;
 }
 
 export function getCategoryDefinition(category: unknown) {

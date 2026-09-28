@@ -19,6 +19,14 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import remarkSmartypants from 'remark-smartypants';
 import { VFile } from 'vfile';
+import {
+	BLOG_CATEGORY_ALIASES as SHARED_BLOG_CATEGORY_ALIASES,
+	BLOG_CATEGORY_KEYS,
+	normalizeBlogCategoryAlias,
+} from '../../src/data/blogTaxonomy.mjs';
+import { slugifyPathSegment } from '../../src/lib/pathSlug.mjs';
+
+export { slugifyPathSegment };
 
 export const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
 export const MAX_FUTURE_DAYS = 370;
@@ -30,36 +38,8 @@ export const PUB_DATE_ISO_REGEX =
 	/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/;
 export const FRESHNESS_DATE_FIELDS = ['updatedDate', 'verifiedDate', 'dataAsOf'];
 
-export const KNOWN_CATEGORIES = new Set([
-	'ETF',
-	'Economics',
-	'Semiconductor',
-	'Computer Science',
-	'Programming',
-	'Problem_Solving',
-	'Reports',
-	'Market Brief',
-]);
-
-export const CATEGORY_ALIASES = new Map([
-	['report', 'Reports'],
-	['reports', 'Reports'],
-	['problem solving', 'Problem_Solving'],
-	['problem_solving', 'Problem_Solving'],
-	['computer science', 'Computer Science'],
-	['cs', 'Computer Science'],
-	['market brief', 'Market Brief'],
-	['market_brief', 'Market Brief'],
-	['us market brief', 'Market Brief'],
-	['semiconductor', 'Semiconductor'],
-	['programming', 'Programming'],
-	['economics', 'Economics'],
-	['economic', 'Economics'],
-	['economy', 'Economics'],
-	['macro', 'Economics'],
-	['macroeconomics', 'Economics'],
-	['etf', 'ETF'],
-]);
+export const KNOWN_CATEGORIES = new Set(BLOG_CATEGORY_KEYS);
+export const CATEGORY_ALIASES = new Map(Object.entries(SHARED_BLOG_CATEGORY_ALIASES));
 
 export const MARKDOWN_LINK_REGEX = /!?\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
 export const MARKDOWN_IMAGE_REGEX = /!\[([^\]]*)]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
@@ -316,8 +296,7 @@ export function parseFrontmatterListField(frontmatter, fieldName) {
 }
 
 export function normalizeCategoryValue(category) {
-	const normalized = category.trim().toLowerCase();
-	return CATEGORY_ALIASES.get(normalized) ?? category.trim();
+	return normalizeBlogCategoryAlias(category) ?? category.trim();
 }
 
 export function isKnownCategory(category) {
@@ -372,18 +351,6 @@ export function isDataAsOfAfterVerifiedDate(dataAsOf, verifiedDate) {
 	}
 
 	return dataAsOfTime > verifiedDateTime;
-}
-
-export function slugifyPathSegment(segment) {
-	return segment
-		.trim()
-		.toLowerCase()
-		.replace(/\.[ \t]+/g, '-')
-		.replace(/[()[\]{}]/g, '')
-		.replace(/[&+]/g, '-')
-		.replace(/[^\p{L}\p{N}_-]+/gu, '-')
-		.replace(/-+/g, '-')
-		.replace(/^-|-$/g, '');
 }
 
 // Astro's glob loader uses github-slugger for path-derived content IDs.

@@ -2,6 +2,8 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { isDataAsOfAfterVerifiedDate, isValidCalendarDate } from './lib/content-rules.mjs';
+import { BLOG_CATEGORY_KEYS, getBlogCategoryFolder } from '../src/data/blogTaxonomy.mjs';
+import { slugifyPathSegment } from '../src/lib/pathSlug.mjs';
 import {
 	ETF_VOLATILE_METADATA_DATE_FIELDS,
 	getEtfMetadataValidationMessage,
@@ -11,17 +13,6 @@ import {
 
 const ROOT_DIR = process.cwd();
 const CONTENT_DIR = path.join(ROOT_DIR, 'src', 'content', 'blog');
-
-const CATEGORY_FOLDERS = {
-	ETF: 'ETF',
-	Economics: 'Economics',
-	Semiconductor: 'Semiconductor',
-	'Computer Science': 'Computer Science',
-	Programming: 'Programming',
-	Problem_Solving: 'Problem Solving',
-	Reports: 'Reports',
-	'Market Brief': 'Market Brief',
-};
 
 function printHelp() {
 	console.log(`Usage:
@@ -133,26 +124,8 @@ function getTodayInSeoul() {
 	return formatter.format(new Date());
 }
 
-function slugify(value) {
-	return value
-		.trim()
-		.toLowerCase()
-		.replace(/\.[ \t]+/g, '-')
-		.replace(/[()[\]{}]/g, '')
-		.replace(/[&+]/g, '-')
-		.replace(/[^\p{L}\p{N}_-]+/gu, '-')
-		.replace(/-+/g, '-')
-		.replace(/^-|-$/g, '');
-}
-
 function normalizeCategory(category) {
-	if (CATEGORY_FOLDERS[category]) {
-		return category;
-	}
-
-	const normalized = Object.keys(CATEGORY_FOLDERS).find(
-		(key) => key.toLowerCase() === category.toLowerCase(),
-	);
+	const normalized = BLOG_CATEGORY_KEYS.find((key) => key.toLowerCase() === category.toLowerCase());
 
 	if (!normalized) {
 		throw new Error(`Unknown category: ${category}`);
@@ -463,11 +436,14 @@ function main() {
 			throw new Error(`Invalid freshness dates: --${option} cannot be later than --verified-date.`);
 		}
 	}
-	const slug = args.slug ?? defaults.slug ?? `${slugify(category)}/${slugify(title)}`;
+	const slug =
+		args.slug ?? defaults.slug ?? `${slugifyPathSegment(category)}/${slugifyPathSegment(title)}`;
 	const time = defaults.time ?? '00:00:00';
-	const categoryFolder = CATEGORY_FOLDERS[category];
+	const categoryFolder = getBlogCategoryFolder(category);
 	const relativeFile =
-		args.file ?? defaults.file ?? path.join(categoryFolder, `${date} ${slugify(title)}.md`);
+		args.file ??
+		defaults.file ??
+		path.join(categoryFolder, `${date} ${slugifyPathSegment(title)}.md`);
 	const outputPath = path.join(CONTENT_DIR, relativeFile);
 
 	if (existsSync(outputPath)) {
