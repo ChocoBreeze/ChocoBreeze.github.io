@@ -1,475 +1,132 @@
 ---
-title: 'XAR (SPDR S&P Aerospace & Defense ETF)'
-description: '미국 항공우주 및 방위 기업에 동일가중 방식으로 투자하는 SPDR ETF'
+title: 'XAR (State Street SPDR S&P Aerospace & Defense ETF)'
+description: '미국 항공우주·방위 업종을 수정 동일가중 지수로 추종하는 XAR의 운용 방식, 보유 현황, 성과와 위험을 정리한다.'
 pubDate: '2026-01-31T17:00:00Z'
-categories: "ETF"
-ticker: "XAR"
-issuer: "State Street"
-assetClass: "Equity"
-strategy: "Equal Weight"
-exposure: "Aerospace & Defense"
-leverage: "1x"
-incomeStyle: "None"
-aum: "$5.75B"
-aumAsOf: '2026-09-24T00:00:00+09:00'
+updatedDate: '2026-10-05T00:00:00+09:00'
+verifiedDate: '2026-10-05T00:00:00+09:00'
+dataAsOf: '2026-10-01T00:00:00+09:00'
+aumAsOf: '2026-10-01T00:00:00+09:00'
+expenseRatioAsOf: '2025-10-31T00:00:00+09:00'
+yieldAsOf: '2026-10-01T00:00:00+09:00'
+instrumentType: 'ETF'
+ticker: 'XAR'
+issuer: 'State Street'
+assetClass: 'Equity'
+strategy: 'Equal Weight'
+exposure: 'Aerospace & Defense'
+leverage: '1x'
+incomeStyle: 'None'
+expenseRatio: '0.35%'
+aum: '$5.54B'
+yield: '0.18%'
+categories: 'ETF'
+tags: ['ETF', 'XAR', 'SPDR', 'Aerospace', 'Defense Industry']
 ---
 
-## Executive Summary
+# XAR (State Street SPDR S&P Aerospace & Defense ETF) 분석
 
-SPDR S\&P Aerospace \& Defense ETF (XAR)는 동일가중(equal-weight) 구조의 패시브 지수 추종 ETF로, 2011년 9월 28일 설립 이후 약 14년간 안정적인 방위 산업 노출을 제공해왔습니다. 2026년 1월 현재 XAR은 자산규모 \$4.40B, 35-42개 보유 종목, 0.35% 운용보수(업계 최저)를 유지하고 있습니다.[^1][^2]
+> **분석 기준일: 2026년 10월 5일**
+>
+> 시장·보유 종목과 성과 자료는 공시 날짜가 다르므로 항목별 기준일을 표시했다.
 
-XAR의 가장 차별화된 특징은 <strong>극도의 분산(extreme diversification)</strong>입니다. 상위 10개 종목이 전체 자산의 41.6%에 불과하며, ITA의 75.88%와 비교하면 집중도를 45% 감소시킵니다. 동일가중 구조로 인해 RKLB(5.72%), KTOS(4.45%), AVAV(4.49%) 같은 신흥 소형 방위 기업들이 ITA처럼 무시되지 않고 적절한 비중을 받습니다.[^3][^4][^5]
+## 한 줄 요약
 
-2025년 XAR의 성과는 1년 50.96%, YTD 31.12%로 ITA와 거의 동등하면서도, 0.35% 최저 운용보수로 비용 효율성이 우수합니다. 14년의 설립 이후 누적 수익률은 약 19.99% 연환산으로, ITA의 12.73% 설립 이후와 비교하면 우수합니다. XAR은 <strong>분산과 저비용, 그리고 자동 리밸런싱</strong>을 추구하는 보수적 투자자들에게 최고의 선택지입니다.[^2][^6][^7][^3]
+XAR는 미국 항공우주·방위 업종을 대상으로 하는 S&P Aerospace & Defense Select Industry Index를 추종한다. 지수는 수정 동일가중 방식으로 비중을 정기 조정하므로 시가총액이 큰 소수 기업에만 포트폴리오가 기우는 것을 완화하려는 구조다. 다만 동일한 비중을 계속 유지하거나 산업 집중 위험을 없애는 것은 아니다.[^1][^2]
 
-***
+## 기본 분류
 
-## 펀드의 기본 특성
+| 항목 | 내용 |
+|---|---|
+| 티커 / 거래소 | XAR / NYSE Arca |
+| 운용사 / 공식 명칭 | State Street / State Street SPDR S&P Aerospace & Defense ETF |
+| 설정일 | 2011년 9월 28일 |
+| 자산군 / 방식 | 미국 주식 / 패시브 인덱스 |
+| 추종 지수 | S&P Aerospace & Defense Select Industry Index |
+| 가중 방식 | 수정 동일가중 |
+| 레버리지·인버스·옵션 인컴 전략 | 해당 없음 |
+| 총 연간 운용비용 | 0.35% |
 
-### 펀드 개요 및 추종 지수
+실제 투자 범위는 미국 주식시장 중 GICS 항공우주·방위 하위 산업에 집중된다. 따라서 XAR를 넓은 산업재 시장 전체에 투자하는 ETF로 보기는 어렵다. 이 분류는 상품명만이 아니라 기초 지수의 구성과 보유 자산을 기준으로 했다.[^1][^2]
 
-XAR은 State Street Global Advisors (SSGA)가 운용하는 패시브 지수 추종 ETF로, S\&P Aerospace \& Defense Select Industry Index를 <strong>수정 동일가중(modified equal-weight)</strong> 방식으로 추종합니다.[^1][^8]
+## 지수와 운용 방식
 
-동일가중 전략은 각 보유 종목에 거의 동등한 가중치(약 2.5-3.5%)를 할당하며, 정기적인 리밸런싱을 통해 비중을 유지합니다. 이는 시가총액 가중(ITA, PPA)과 근본적으로 다른 접근방식입니다.[^9][^10]
+기초 지수는 S&P Total Market Index에서 항공우주·방위 하위 산업으로 분류된 미국 기업을 대상으로 하며, 유동성과 시가총액 기준을 적용한다. 지수 제공자인 S&P Dow Jones Indices가 편입 종목과 비중을 정한다. 종목을 고른 뒤 시가총액에 비례해 비중을 주는 대신 수정 동일가중 방식을 사용하며, 분기마다 재구성·재조정하고 분기 말에 추가 재가중을 한다.[^2]
 
-### 규모, 비용 및 거래 특성
+펀드는 지수의 모든 종목을 반드시 그대로 보유하지는 않는다. 운용사는 지수와 비슷한 위험·수익 특성을 갖는 표본을 구성할 수 있다. 정상적인 시장 상황에서 총자산의 최소 80%를 지수 구성 증권에 투자하며, 현금 관리 또는 지수 추종을 위해 지수 외 주식·현금성 자산·선물을 보유할 수 있다. 선물 사용 가능성은 XAR가 레버리지 ETF라는 뜻과는 구분해야 한다.[^2]
 
-| 항목 | 수치 |
-| :-- | :-- |
-| 자산규모 (2026년 1월) | \$4.40B |
-| 자산규모 (2024년 7월) | \$2.2B (2년간 2배 성장) |
-| 보유 종목 수 | 35-42개 |
-| 순 운용보수율 | 0.35% (업계 최저) |
-| 포트폴리오 회전율 | 35% (동일가중 리밸런싱) |
-| 설립일 | 2011-09-28 |
-| 상장소 | NYSE Arca |
-| 평균 일일 거래량 | 162,575주 |
-| 현재 주가 | \$289.49 (2026년 1월) |
-| 52주 범위 | \$137.09-290.25 (112% 범위) |
+## 순자산과 거래 지표
 
-XAR은 과거 2년간 AUM이 \$2.2B에서 \$4.4B로 2배 증가했으며, 이는 동일가중 전략과 저비용에 대한 투자자 관심 증가를 반영합니다.[^6]
+State Street의 2026년 10월 1일 자료는 다음과 같다.[^1]
 
-***
+| 항목 | 값 | 기준일 |
+|---|---:|---|
+| 순자산(AUM) | $5.54B | 2026-10-01 |
+| NAV | $231.75 | 2026-10-01 |
+| 종가 | $231.60 | 2026-10-01 |
+| 호가 중간값 | $231.72 | 2026-10-01 |
+| 프리미엄·디스카운트 | -0.01% | 2026-10-01 |
+| 30일 중간 호가 스프레드 | 0.09% | 2026-10-01 |
+| 당일 거래량 | 48,899주 | 2026-10-01 |
 
-## 포트폴리오 구성: 동일가중 혁신
+공시된 프리미엄·디스카운트는 장 마감 무렵의 매수·매도 호가 중간값과 장중 추정 NAV(INAV)를 비교한 지표다. 종가와 NAV를 단순히 비교한 값과는 계산 기준이 다르다. 당일 거래량은 평균 거래량이 아니며, 실제 호가 차이와 체결 가격은 주문 시점과 시장 상황에 따라 달라진다. 펀드의 보유 종목 수는 2026년 10월 1일 기준 50개였다.[^1]
 
-### 상위 보유 종목: 거의 동등한 가중치
+## 보유 종목과 업종 노출
 
-![alt text](images/image.png)
+State Street가 게시한 2026년 10월 1일 상위 10개 종목 비중의 합계는 30.20%다. 각 종목의 비중은 약 2.90%에서 3.36% 범위였으며, 보유와 비중은 이후 변경될 수 있다.[^1]
 
-XAR's Extreme Diversification: Equal-Weight Advantage vs Cap-Weighted Peers
+| 종목 | 비중 |
+|---|---:|
+| Rocket Lab | 3.36% |
+| Moog Class A | 3.19% |
+| Honeywell Aerospace | 3.05% |
+| Woodward | 2.99% |
+| Howmet Aerospace | 2.95% |
+| HEICO | 2.95% |
+| AeroVironment | 2.94% |
+| Huntington Ingalls Industries | 2.94% |
+| TransDigm Group | 2.93% |
+| Textron | 2.90% |
 
-XAR의 포트폴리오는 극도의 분산을 특징으로 합니다. 상위 15개 종목도 각각 3-6% 범위에만 불과합니다:
+운용사의 2026년 10월 1일 하위 산업 분류에서는 펀드 자산의 100%가 항공우주·방위로 표시됐다. 수정 동일가중은 대형주 비중을 상대적으로 제한하려는 방법이지만, 상위 종목의 합산 비중과 종목별 위험은 계속 확인할 필요가 있다.[^1]
 
+## 비용, 분배와 회전율
 
-| 순위 | 종목명 | 티커 | 가중치 | 특징 |
-| :-- | :-- | :-- | :-- | :-- |
-| 1 | General Electric | GE | 4.12% | 항공우주 부문 (GE Aerospace) |
-| 2 | Boeing Company | BA | 4.31% | 상용/방위 항공기 |
-| 3 | Rocket Lab Corp | RKLB | 5.72% | 저비용 위성 발사체 (신흥) |
-| 4 | AeroVironment Inc | AVAV | 4.49% | 무인항공기 시스템 (신흥) |
-| 5 | Kratos Defense | KTOS | 4.45% | 드론 및 사이버 (신흥) |
-| 6 | Huntington Ingalls | HII | 3.45% | 군함 건설 |
-| 7 | Northrop Grumman | NOC | 3.61% | 우주 및 미사일 방위 |
-| 8 | General Dynamics | GD | 3.53% | 다각화 방위 계약자 |
-| 9 | TransDigm Group | TDG | 3.41% | 항공우주 부품 |
-| 10 | L3Harris Tech | LHX | 3.43% | 통신 및 우주 기술 |
-| 11 | Howmet Aerospace | HWM | 3.37% | 항공우주 재료 |
-| 12 | RTX Corporation | RTX | 3.39% | 통합 방위 계약자 |
-| 13 | Hexcel Corp | HXL | 3.43% | 항공우주 재료 |
-| 14 | Axon Enterprise | AXON | 4.31% | 법집행 기술 |
-| 15 | Boeing (repeat) | - | - | - |
+2025년 10월 31일 요약 투자설명서에는 관리보수 0.35%, 12b-1 수수료 없음, 기타 비용 0.00%, 총 연간 운용비용 0.35%가 기재되어 있다. 중개 수수료와 포트폴리오 거래 비용은 이 비용률에 포함되지 않는다.[^2]
 
-<strong>상위 15개 비중: 약 50-52%</strong>
+분배는 분기별이다. State Street가 2026년 10월 1일 기준으로 공시한 30일 SEC 수익률은 0.20%, 지난 365일 분배금을 NAV로 나눈 펀드 분배 수익률은 0.18%다. 과거 분배를 기반으로 계산한 값이므로 향후 분배를 보장하지 않는다.[^1]
 
-### XAR의 차별화 특징: 3가지 핵심
+State Street의 2026년 6월 30일 종료 회계연도 주주 보고서는 포트폴리오 회전율을 33%로 보고했다. 지수의 분기 재조정과 펀드 자금 흐름 등에 따라 거래가 발생하며, 회전율은 모든 거래 비용을 직접 나타내는 값은 아니다.[^3]
 
-<strong>1. 극도 분산화</strong>
-상위 10개 종목이 41.6%에 불과함. ITA(75.88%) 대비 45% 낮으며, PPA(50.7%)와 비교해도 상당히 분산됨.[^3][^5]
+## 성과
 
-<strong>2. 신흥 소형주 오버웨이트</strong>
-RKLB(5.72%), KTOS(4.45%), AVAV(4.49%)는 시가총액 기준 소형주이나 동일가중으로 인해 의미 있는 비중을 받음. 이들은 저비용 우주발사, 드론 기술, 사이버보안 등 미래 성장 분야에서 활동합니다.[^1][^4]
+State Street가 공개한 최신 월말 성과 자료는 2026년 8월 31일 기준이다. 아래는 분배금 재투자를 가정한 세전 NAV 총수익률과 기초 지수 수익률이다.[^1]
 
-<strong>3. 메가캡 언더웨이트</strong>
+| 기간 | XAR NAV | 기초 지수 |
+|---|---:|---:|
+| 1개월 | -3.11% | -3.09% |
+| 2026년 초 이후 | 6.57% | 6.77% |
+| 1년 | 18.33% | 18.73% |
+| 3년 연환산 | 28.79% | 29.23% |
+| 5년 연환산 | 16.51% | 16.89% |
+| 10년 연환산 | 16.76% | 17.16% |
+| 설정 이후 연환산 | 18.13% | 18.55% |
 
-- GE Aerospace: 4.12% (ITA 21.48% 대비 81% 낮음)
-- RTX: 3.39% (ITA 15.08% 대비 77% 낮음)
-- Boeing: 4.31% (ITA 8.01% 대비 46% 낮음)
+1개월·연초 이후·1년 수익률은 해당 기간 누적 수치이며, 3년 이상 및 설정 이후 수익률은 연환산이다. 펀드 수익률은 보수와 비용을 반영하지만 지수 수익률은 이를 차감하지 않는다. 과거 성과는 미래 결과를 보장하지 않는다.
 
-이는 Boeing의 품질 문제로부터의 보호를 제공합니다.[^7][^11]
+## 유사 상품을 비교할 때
 
-### 산업 분포
+같은 항공우주·방위 산업 ETF라도 지수의 편입 기준, 가중 방식과 재조정 주기, 실제 보유 종목 수, 비용이 다를 수 있다. 서로 비교할 때는 동일한 기준일의 성과와 보유 자료를 사용하고, 수정 동일가중이 시가총액 가중과 어떤 차이를 만드는지 함께 확인해야 한다.
 
-- <strong>항공우주</strong>: 약 60-65%
-- <strong>방위</strong>: 약 30-35%
-- <strong>국토안보/기술</strong>: 약 5-10%
+## 주요 위험
 
-XAR은 거의 100% 미국 기업으로 구성되어 있으며, 이는 ITA와 유사합니다.
-
-***
-
-## 성과 분석 및 역사적 추세
-
-### 최근 성과
-
-![alt text](images/image-1.png)
-
-XAR Comprehensive Performance vs All Defense ETFs: 10-Year Comparison
-
-XAR의 2025년 성과는 우수했으나 신생 고성장 펀드(SHLD, ARKX)에는 미달합니다:
-
-
-| 기간 | XAR | ITA | PPA | ARKX | SHLD |
-| :-- | :-- | :-- | :-- | :-- | :-- |
-| YTD 2025 | 31.12% | 36.76% | 38.18% | 46.07% | 64.64% |
-| 1년 | 50.96% | 48.66% | 30.88% | 75.74% | 74.84% |
-| 3년 연환산 | 28.71% | 33.15% | 23.64% | 33.15% | N/A |
-| 5년 연환산 | 19.9% | 22.58% | 19.38% | N/A | N/A |
-| 10년 연환산 | 15.02% | 15.62% | 15.05% | N/A | N/A |
-| 설립 이후 | 19.99% | 12.73% | 13.50% | 8.19% | 61.97% |
-
-<strong>XAR의 성과 특징</strong>:
-
-1. <strong>중장기 우수성</strong>: 10년 기준 ITA와 거의 동등(15.02% vs 15.62%), 설립 이후 19.99%는 ITA의 12.73%를 상회
-2. <strong>1년 상승세</strong>: 50.96%는 ITA의 48.66%를 근소하게 초과
-3. <strong>최근 하향</strong>: YTD에서 ITA에 미달 (31.12% vs 36.76%)
-4. <strong>신생 펀드 추월</strong>: SHLD(64.64% YTD), ARKX(75.74% 1년)에는 미달
-
-### 누적 수익률 (달러 기준)
-
-- <strong>3년</strong>: \$2,132 (113% 수익)
-- <strong>5년</strong>: \$2,478 (148% 수익)
-- <strong>10년</strong>: \$4,052 (305% 수익)
-- <strong>14년 (설립 이후)</strong>: 약 6-7배 (약 550-600%)
-
-***
-
-## 동일가중 전략의 기계적 이점
-
-### 자동 리밸런싱의 "매도 강세/매수 약세" 규칙
-
-XAR의 동일가중 구조는 자동으로 수익창출 기업을 관리합니다:[^9][^10][^12]
-
-<strong>예시: Rocket Lab 폭등 상황</strong>
-
-- 초기 가중치: 2.94% (동일가중)
-- RKLB 주가 50% 상승 → 가중치 4.41%로 증가
-- 자동 리밸런싱: RKLB 매도 → 다른 종목 매수
-- 효과: 자동으로 "강자에서 약자로" 자금 이동
-
-이는 "매도 강세(buy low)/매수 약세(sell high)"를 기계적으로 실행하며, 이른바 "역발상(contrarian)" 투자를 자동화합니다.[^6][^7]
-
-### 장기 성과 향상
-
-연구에 따르면 동일가중 전략은 특히 다음 환경에서 우수합니다:[^9][^12]
-
-- <strong>경기 강세</strong>: 소형주 아웃퍼폼 (XAR 현재 환경)
-- <strong>버자기 마켓 극복</strong>: 메가캡 거품 시 분산
-- <strong>변동성 감소</strong>: 단일 기업에 대한 의존도 낮음
-
-***
-
-## XAR vs. 경쟁 ETF 상세 비교
-
-![alt text](images/image-2.png)
-
-Complete Aerospace \& Defense ETF Comparison: Five Major Strategies Analyzed
-
-### XAR vs. ITA: 분산 vs. 성과
-
-| 항목 | XAR | ITA | 특징 |
-| :-- | :-- | :-- | :-- |
-| 설립 | 2011 | 2006 | ITA 더 오래됨 |
-| AUM | \$4.4B | \$11.8B | ITA 2.7배 크기 |
-| 운용보수 | 0.35% | 0.38% | XAR 3bp 저렴 (연간 30달러/만달러 절약) |
-| 가중방식 | 동일가중 | 시가총액 | XAR 극도 분산 |
-| 상위 10 비중 | 41.6% | 75.88% | ITA 집중 (45% 높음) |
-| Boeing 비중 | 4.31% | 8.01% | XAR 46% 낮음 (리스크 감소) |
-| 1년 수익 | 50.96% | 48.66% | XAR 5% 우수 |
-| 10년 수익 | 15.02% | 15.62% | ITA 4% 우수 |
-| 배당 | 0.59% | 0.54% | XAR 9% 높음 |
-| 소형주 노출 | 높음 | 낮음 | XAR 신흥 기업 포함 |
-
-<strong>선택 기준</strong>:
-
-- <strong>XAR 추천</strong>: 극도 분산, 저비용, 동일가중 리밸런싱 원할 때
-- <strong>ITA 추천</strong>: 최대 규모, 높은 유동성, 메가캡 안정성 원할 때
-
-
-### XAR vs. PPA: 동일가중 vs. 평형가중
-
-| 항목 | XAR | PPA |
-| :-- | :-- | :-- |
-| 운용보수 | 0.35% | 0.57% |
-| 가중방식 | 동일가중 | 시가총액 |
-| 상위 10 비중 | 41.6% | 50.7% |
-| 1년 수익 | 50.96% | 30.88% |
-| 배당 | 0.59% | 0.85% |
-| 특징 | 신흥 소형주 | 배당 중심 |
-
-### XAR vs. ARKX/SHLD: 패시브 vs. 액티브/신생
-
-| 항목 | XAR | ARKX | SHLD |
-| :-- | :-- | :-- | :-- |
-| 운용방식 | 패시브 | 액티브 | 패시브 |
-| 1년 수익 | 50.96% | 75.74% | 74.84% |
-| 운용보수 | 0.35% | 0.75% | 0.50% |
-| 설립 | 2011 | 2021 | 2023 |
-| 추적 기간 | 14년 | 5년 | 1.3년 |
-| 특징 | 분산 | 우주 기술 | 방위 기술 |
-| 신뢰도 | 높음 | 중간 | 낮음 |
-
-
-***
-
-## 배당금 및 세금 고려사항
-
-### 배당 정책
-
-XAR은 분기별 배당을 지급하며, 배당이 다소 불규칙합니다:
-
-- <strong>배당 수익률</strong>: 0.35-0.59%
-- <strong>연간 배당금</strong>: \$1.41-1.60/주
-- <strong>분기별 배당</strong>: \$0.13-\$0.57 (변동성 큼)
-
-최근 분기별 배당:
-
-- 2025년 9월: \$0.51862
-- 2025년 6월: \$0.13203
-- 2025년 3월: \$0.18969
-- 2024년 12월: \$0.57044
-
-배당 불규칙성은 동일가중 리밸런싱으로 인해 포트폴리오 구성이 매 분기 변한다는 뜻입니다.
-
-### 세금 효율성
-
-XAR은 패시브 ETF이지만 35% 포트폴리오 회전율로 인해 다른 지수 추종 ETF(5-10%)보다 높은 리밸런싱 거래가 발생합니다:[^13]
-
-- <strong>자본이득 분배</strong>: 동일가중 리밸런싱으로 보통 ETF보다 많을 수 있음
-- <strong>배당</strong>: 적격 배당(Qualified Dividends)으로 최대 20% 세율
-
-***
-
-## 2026년 투자 환경 분석
-
-### 강세 드라이버
-
-<strong>1. 동일가중 사이클 호황</strong>
-경기 강세와 소형주 아웃퍼폼 트렌드가 지속되면 동일가중 전략이 시가총액 가중을 이길 가능성이 높습니다.[^6][^5]
-
-<strong>2. 신흥 방위 기업 성장</strong>
-RKLB(저비용 발사), KTOS(드론), AVAV(무인항공기)는 국방 예산 증가로 직접 수혜를 받을 수 있습니다.
-
-<strong>3. Trump 국방 정책</strong>
-\$1.5T 국방 예산으로 대형사뿐만 아니라 하청업체와 신흥 기업도 수혜를 받습니다.
-
-<strong>4. 극도 분산의 매력</strong>
-ITA의 GE Aerospace 21%, RTX 15% 집중도에 대한 반발로 XAR 같은 분산 전략 인기 증가.
-
-### 약세 드라이버
-
-<strong>1. 경기 침체 시나리오</strong>
-소형주는 경기 침체 시 약세를 보임. 이 경우 시가총액 가중(ITA)이 강세.
-
-<strong>2. 금리 인상</strong>
-고성장 소형주는 금리 인상에 민감.
-
-<strong>3. 메가캡 버자기 마켓</strong>
-기술주 강세 지속 시 동일가중이 언더퍼폼.
-
-<strong>4. 리밸런싱 비용</strong>
-35% 회전율은 거래 비용과 세금을 증가시켜 장기 성과를 약간 감소시킬 수 있음.
-
-***
-
-## 투자 분석 및 권고
-
-### 적합한 투자자 프로필
-
-#### XAR 투자에 적합
-
-1. <strong>분산 중시자</strong>
-    - 극도 분산(상위 10개 41.6%)으로 개별 기업 리스크 회피
-    - Boeing 같은 대형사의 문제에 덜 노출되기 원함
-2. <strong>저비용 추구자</strong>
-    - 0.35% 업계 최저 운용보수
-    - 장기 투자 시 높은 비용 절감
-3. <strong>신흥 방위 기업 노출 원함</strong>
-    - RKLB, KTOS, AVAV 같은 신흥 기업에 투자
-    - 고성장 소형주 기회 추구
-4. <strong>자동 리밸런싱 선호자</strong>
-    - 손 놔도 되는 "Set \& Forget" 투자
-    - 기계적 규율 있는 투자 방식 선호
-5. <strong>장기 투자자</strong>
-    - 10년 19.99% 연환산으로 ITA 대비 우수
-    - 동일가중의 장기 아웃퍼폼 기대
-
-#### XAR 투자 회피 투자자
-
-1. <strong>메가캡 선호자</strong>
-    - GE, RTX, Boeing 같은 대형사 집중 노출 원함
-    - ITA 선호
-2. <strong>높은 배당 추구자</strong>
-    - 0.59% 배당으로 부족
-    - PPA(0.85%) 선호
-3. <strong>안정성 극도 추구자</strong>
-    - 소형주 변동성 우려
-    - ITA의 메가캡 안정성 선호
-4. <strong>단기 수익자</strong>
-    - 최근 1-3년 성과는 ITA에 미달
-    - SHLD(64.64%) 또는 ARKX(75.74%) 선호
-
-***
-
-## 최종 평가 및 투자 등급
-
-### 종합 평가
-
-| 평가 항목 | 점수 | 설명 |
-| :-- | :-- | :-- |
-| 성과 | ★★★★☆ | 50.96% 1년, 15.02% 10년 우수 |
-| 분산도 | ★★★★★ | 상위 10개 41.6% - 업계 최고 분산 |
-| 비용 | ★★★★★ | 0.35% 업계 최저 |
-| 유동성 | ★★★★☆ | \$4.4B AUM, 충분한 규모 |
-| 안정성 | ★★★★☆ | 14년 운용 역사, 검증된 전략 |
-| 배당 | ★★★☆☆ | 0.59% 중간, 분기별 불규칙 |
-| 위험 관리 | ★★★★★ | 소형주 노출로 변동성 증가 시 주의 |
-
-<strong>종합 평가: 4.5/5.0 (매우 우수함)</strong>
-
-### 투자 등급
-
-<strong>XAR: 강한 매수 (Strong Buy) - 분산 중심 투자자의 최고 선택</strong>
-
-***
-
-## 포트폴리오 배분 권고
-
-### 배분 규모
-
-- <strong>분산 최우선</strong>: XAR 100% (최적)
-- <strong>성과와 분산 병행</strong>: ITA 70% + XAR 30%
-- <strong>극도 분산</strong>: ITA 40% + XAR 40% + PPA 20%
-- <strong>고성장 추가</strong>: ITA 50% + XAR 30% + ARKX 20% (공격적)
-
-
-### 진입 전략
-
-1. <strong>현재 가격</strong>: \$289.49 (52주 고점 근처)
-2. <strong>조정 대기</strong>: \$250-270 수준에서 진입 고려
-3. <strong>달러 코스트 애버리징</strong>: 3-6개월 진입
-
-### 관리 및 모니터링
-
-1. <strong>분기별 리밸런싱</strong>: 배당 추적 및 비중 재조정
-2. <strong>뉴스 모니터링</strong>: RKLB(우주발사), KTOS(드론), AVAV(무인항공기) 진전
-3. <strong>기금 흐름</strong>: 동일가중 인플로우 추세 지속 여부
-4. <strong>비용 대비 성과</strong>: 0.35% 비용으로 ITA 대비 성과 추적
-
-***
-
-## 결론
-
-XAR은 <strong>동일가중 구조로 극도의 분산을 제공하면서 업계 최저 0.35% 운용보수를 유지하는 이상적인 방위 산업 ETF</strong>입니다. 14년의 검증된 운용 역사, 50.96% 1년 수익률, 19.99% 설립 이후 연환산 수익률은 장기 투자자들에게 신뢰할 수 있는 선택지입니다.[^2][^7][^14]
-
-특히 ITA의 GE Aerospace(21%), RTX(15%), Boeing(8%) 집중도 위험으로부터 벗어나려는 투자자들에게 XAR의 상위 10개 41.6% 분산은 <strong>획기적인 리스크 감소</strong>를 제공합니다. 동일가중 리밸런싱의 자동 "매도 강세/매수 약세" 규율은 수익창출 기업을 기계적으로 관리하며, 이는 감정적 투자 결정의 오류를 방지합니다.[^6][^7][^12]
-
-RKLB(5.72%), KTOS(4.45%), AVAV(4.49%) 같은 신흥 소형 방위 기업에 대한 의미 있는 노출은, 향후 10-20년 방위 산업의 혁신을 주도할 기업들에 투자할 기회를 제공합니다.[^3][^4]
-
-<strong>최종 권고</strong>: 극도의 분산, 저비용, 그리고 자동 리밸런싱을 원하는 투자자는 <strong>XAR 100% 또는 ITA 50% + XAR 50% 조합</strong>을 추천합니다. 현재 \$289  근처의 가격에서는 \$250-270 수준까지의 조정을 대기하거나, 달러 코스트 애버리징으로 점진적 진입을 권고합니다.[^7][^3][^6]
-
-***
+- **산업 집중:** 펀드는 항공우주·방위라는 좁은 업종에 집중한다. 정부 예산·조달 정책이나 업종의 공급망·기술·시장 변화가 전체 성과에 크게 영향을 줄 수 있다.[^2]
+- **시장 변동:** 주식 가격은 기업별 사정과 시장 전반의 금리·경기·유동성 변화에 따라 하락할 수 있다.[^2]
+- **재조정과 추적 차이:** 분기별 지수 변경, 표본 추출, 현금 보유와 거래 비용 때문에 펀드 수익률이 지수와 달라질 수 있다. 재조정 과정에서 펀드가 이익을 실현할 수도 있다.[^2]
+- **파생상품 사용:** 펀드는 지수 추종과 현금 흐름 관리를 위해 선물을 이용할 수 있다. 선물은 기초 자산과의 상관 차이, 유동성 및 손실 확대 위험을 수반한다.[^2]
+- **시장가격과 NAV 차이:** 시장 상황에 따라 ETF가 NAV보다 높은 프리미엄 또는 낮은 디스카운트에 거래될 수 있다.[^2]
 
 ## 참고 자료
 
-Yahoo Finance - ITA, XAR, PPA comparison[^11]
-Mezzi - ITA vs PPA vs XAR comparison[^15]
-AINVEST - XAR, SHLD, PPA, ITA comprehensive comparison[^5]
-Investing.com Korea - XAR ETF quote and performance[^3]
-State Street Global Advisors - XAR official product page[^1]
-Yahoo Finance - XAR fund details[^8]
-StockEvents - XAR dividend information[^16]
-CBonds - XAR holdings and analysis[^4]
-StockAnalysis - XAR comprehensive analysis[^2]
-ETF Database - XAR profile[^17]
-Seeking Alpha - XAR equal-weight strategy analysis[^6]
-TipRanks - XAR dividend history[^18]
-MarketWatch - XAR overview[^13]
-US News - Equal-weight ETFs ranking[^19]
-Investing.com - XAR dividend information[^20]
-Seeking Alpha - XAR balanced approach strategy[^7]
-Vanguard - Index weighting approaches analysis[^9]
-Candriam - Index rebalancing methodology[^10]
-Bajaj AMC - Equal weighted index funds[^21]
-VanEck - Equal-weighted strategies for diversification[^12]
-Oreate AI - ITA vs XAR comparison[^14]
-Morningstar - XAR portfolio analysis[^22]
-ETF Database - ITA vs XAR comparison[^23]
-Chart - Portfolio concentration comparison
-
-Complete Aerospace \& Defense ETF Comparison: Five Major Strategies Analyzed
-<span style="display:none">[^24][^25][^26][^27][^28][^29][^30][^31]</span>
-
-<div align="center">⁂</div>
-
-[^1]: https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-aerospace-defense-etf-xar
-
-[^2]: https://stockanalysis.com/etf/xar/
-
-[^3]: https://kr.investing.com/etfs/spdr-s-p-aerospace---defense
-
-[^4]: https://cbonds.com/etf/2231/
-
-[^5]: https://www.ainvest.com/aime/share/compare-xar-shld-ppa-ita-28d400/
-
-[^6]: https://seekingalpha.com/article/4705273-xar-sticking-with-equal-weight-aerospace-and-defense
-
-[^7]: https://seekingalpha.com/article/4818485-xar-balanced-approach-to-aerospace-and-defense-investing
-
-[^8]: https://finance.yahoo.com/quote/XAR/
-
-[^9]: https://www.fr.vanguard/professionnel/analyses/what-to-consider-when-choosing-between-index-weighting-approaches
-
-[^10]: https://www.candriam.com/siteassets/_assets/02-publications/research-paper/2024/09/index-rebalancing/index_rebalancing_en.pdf
-
-[^11]: https://finance.yahoo.com/news/ita-xar-ppa-defense-etf-060512137.html
-
-[^12]: https://www.vaneck.com/be/en/blog/etf-insights/equal-weighted-strategies-a-diversified-solution-for-concentrated-markets/
-
-[^13]: https://www.marketwatch.com/investing/fund/xar
-
-[^14]: https://www.oreateai.com/blog/ita-vs-xar-navigating-the-landscape-of-defense-etfs/a90fd9cbcaace6fe7513919fbdfb960d
-
-[^15]: https://www.mezzi.com/blog/ita-vs-ppa-vs-xar-defense-aerospace-etf-cyclical-upswings
-
-[^16]: https://stockevents.app/kr/stock/XAR/dividends
-
-[^17]: https://etfdb.com/etf/XAR/
-
-[^18]: https://www.tipranks.com/etf/xar/dividends
-
-[^19]: https://money.usnews.com/investing/articles/top-performing-equal-weight-etfs-to-buy
-
-[^20]: https://www.investing.com/etfs/spdr-s-p-aerospace-defense-dividends
-
-[^21]: https://www.bajajamc.com/knowledge-centre/equal-weighted-index-funds
-
-[^22]: https://www.morningstar.com/etfs/arcx/xar/portfolio
-
-[^23]: https://etfdb.com/tool/etf-comparison/ITA-XAR/
-
-[^24]: QTUM (Defiance Quantum ETF).md
-
-[^25]: SETM (Sprott Critical Materials ETF).md
-
-[^26]: REMX (VanEck Rare Earth, Strategic Metals ETF).md
-
-[^27]: https://invest.deepsearch.com/etf/XAR/
-
-[^28]: https://developer.morningstar.com/content/hidden-from-navigation/MorningstarPortfolioRiskScoreMethodology.pdf
-
-[^29]: https://web.stanford.edu/\~wfsharpe/art/msrar/msrar.htm
-
-[^30]: https://digital.car.chula.ac.th/cgi/viewcontent.cgi?article=8716\&context=chulaetd
-
-[^31]: https://www.mezzi.com/blog/rsp-vs-eqal-equal-weight-sp-500-etf-factor-diversification
+[^1]: [State Street SPDR XAR 공식 상품 페이지](https://www.ssga.com/us/en/institutional/etfs/state-street-spdr-sp-aerospace-defense-etf-xar) — 상품 정보, 가격, 순자산, 보유 종목, 업종 비중, 수익률과 분배 지표.
+[^2]: [미국 SEC 제출 요약 투자설명서 (2025-10-31)](https://www.sec.gov/Archives/edgar/data/1064642/000119312525256780/d26317d497k.htm) — 지수 방법론, 투자 정책, 비용, 회전율 및 위험.
+[^3]: [미국 SEC 연례 주주 보고서 (2026-06-30 종료 회계연도)](https://www.sec.gov/Archives/edgar/data/1064642/000119312526383187/R2.htm) — 2025년 7월부터 2026년 6월까지의 펀드 통계와 회전율.
