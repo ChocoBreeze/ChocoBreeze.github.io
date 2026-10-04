@@ -1,642 +1,110 @@
 ---
 title: 'URNJ (Sprott Junior Uranium Miners ETF)'
-description: '주니어 우라늄 채굴 기업에 집중 투자하는 Sprott의 원전·우라늄 고변동성 ETF 분석'
+description: '소형·중형 우라늄 채굴 관련 기업에 집중하는 지수 ETF의 편입 규칙, 보유 구성, 비용과 위험을 기준일별로 정리한다.'
 pubDate: '2026-06-08T00:00:00+09:00'
-ticker: "URNJ"
-issuer: "Sprott"
-assetClass: "Equity"
-strategy: "Index"
-exposure: "Junior Uranium Miners"
-leverage: "1x"
-incomeStyle: "None"
-categories: "ETF"
-tags: ["ETF", "URNJ", "Sprott", "Uranium", "Junior Miners", "Nuclear Energy"]
+updatedDate: '2026-10-04T00:00:00+09:00'
+verifiedDate: '2026-10-04T00:00:00+09:00'
+dataAsOf: '2026-10-02T00:00:00+09:00'
+expenseRatio: '0.80%'
+expenseRatioAsOf: '2026-04-30T00:00:00+09:00'
+aum: '$312.07M'
+aumAsOf: '2026-10-02T00:00:00+09:00'
+ticker: 'URNJ'
+instrumentType: 'ETF'
+issuer: 'Sprott'
+assetClass: 'Equity'
+strategy: 'Index'
+exposure: 'Junior Uranium Miners'
+leverage: '1x'
+incomeStyle: 'None'
+categories: 'ETF'
+tags: ['ETF', 'URNJ', 'Sprott', 'Uranium', 'Junior Miners', 'Nuclear Energy']
 ---
 
-# URNJ (Sprott Junior Uranium Miners ETF) 종합 투자 분석 보고서
+## 한 줄 요약
 
-## ETF 분류
+Sprott Junior Uranium Miners ETF(URNJ)는 Nasdaq Sprott Junior Uranium Miners Index를 추종한다. 지수는 우라늄 채굴·탐사·개발·생산, 로열티 및 공급 관련 기업을 대상으로 하며, URNM보다 소형·중형 기업에 집중된 구성이 특징이다. 우라늄 가격을 직접 추종하는 상품은 아니며, 개발 단계 기업의 자금 조달·허가·생산 위험과 주식시장 변동을 함께 부담한다.[^1][^2]
+
+## 기본 정보
 
 | 항목 | 내용 |
-|---|---|
-| 최종 폴더 | `ETF/Power Infrastructure/Nuclear and Uranium/URNJ` |
-| 대분류 | 전력 인프라 |
-| 하위 분류 | 원전·우라늄 |
-| 핵심 전략 | 중소형·개발 단계 주니어 우라늄 채굴 기업에 집중 투자 |
-| 운용 방식 | NASDAQ Sprott Junior Uranium Miners Index 추종 패시브 ETF |
-| 레버리지/인버스 | 없음 |
-| 옵션 인컴 여부 | 없음 |
-| 분류 판단 | 주니어 우라늄 채굴사에 집중하지만 원전 연료 공급망과 원자력 전력 인프라 테마의 세부 상품이므로 `Power Infrastructure/Nuclear and Uranium`으로 분류 |
-| 참고 | 대형 원전 유틸리티보다 소형·중형 채굴 개발사 비중이 높아 변동성과 유동성 리스크가 큰 하위 테마 ETF |
+| :-- | :-- |
+| 정식 명칭 | Sprott Junior Uranium Miners ETF |
+| 티커 / 거래소 | URNJ / Nasdaq |
+| 설정일 | 2023년 2월 1일 |
+| 추종 지수 | Nasdaq Sprott Junior Uranium Miners Index (NSURNJ) |
+| 운용 방식 | 지수 복제를 기본으로 하며 필요 시 표본 추출 가능 |
+| 총 연간 운용 비용 | 0.80% |
+| NAV / 시장가격 | \$20.02 / \$20.16 (2026년 10월 2일) |
+| NAV 대비 시장가격 | 0.70% 프리미엄 (2026년 10월 2일) |
+| 순자산 | 312,071,129달러 (2026년 10월 2일) |
+| 보유 종목 수 / 발행 주식 수 | 41개 / 15,590,000주 (2026년 10월 2일) |
+| 30일 중간 호가 스프레드 | 0.35% (2026년 10월 1일 기준) |
 
-***
+Sprott가 제공한 스냅샷 기준일은 항목마다 다르다. 시장가격은 NAV보다 높거나 낮게 거래될 수 있으며, 프리미엄·할인과 호가 스프레드는 이후 달라질 수 있다.[^1]
 
-## 실행 요약
+2026년 4월 30일 요약 투자설명서상 총 연간 운용 비용은 0.80%다. 중개 수수료와 펀드 보유 자산을 사고파는 내부 비용은 별도로 수익률에 영향을 줄 수 있다. 2025 회계연도 포트폴리오 회전율은 38%였다.[^2]
 
-Sprott의 URNJ (Sprott Junior Uranium Miners ETF)는 업계 최초의 순수 주니어 우라늄 채광 ETF로, 단 2년 전인 2023년 2월 설정된 가장 새로운 우라늄 기금입니다. 2026년 1월 기준 순자산 \$437.62M을 관리하며, 2025년 44.76% 수익률을 기록했습니다. 그러나 URA의 67.77%, NLR의 55.9%에 비해 현저히 밑돌고 있습니다. URNJ의 핵심 특징은 54.5% 중형주(Mid-Cap), 45.5% 소형주(Small-Cap) 구성으로 대형주 노출이 전혀 없다는 점입니다. 이는 우라늄 가격 상승시 극대 수익을 목표하지만, 44-58%의 극심한 변동성과 탐사·개발 단계 기업들의 사업화 위험을 동반합니다. 또한 5.61%의 업계 최고 배당수익률을 제공하지만, 0.38-0.44%의 넓은 매수호가-매도호가 스프레드와 미미한 기금 유입(\$10.39M)은 유동성과 수요 측면의 약점을 드러냅니다.[^1][^2][^3]
+## 지수와 편입 규칙
 
-***
+지수는 우라늄 관련 사업이 매출 또는 자산의 상당 부분을 차지하는 기업을 대상으로 한다. 편입 대상 활동에는 우라늄 채굴·탐사·개발·생산, 로열티 취득과 우라늄 공급이 포함된다. 펀드는 일반적인 시장 상황에서 자산의 최소 80%를 지수 증권에 투자하고, 지수를 복제하되 거래가 어렵거나 현실적으로 불리한 경우 표본 추출을 사용할 수 있다.[^2]
 
-## 1. 기금 개요 및 구조
+2026년 요약 투자설명서에 기재된 지수 규칙은 구성 종목을 30\~40개 수준으로 두고, 신규 편입 기업의 시가총액은 30백만 달러 이상 3십억 달러 이하로 제한한다. 기존 구성 종목의 유지 구간은 25백만\~5십억 달러다. 반기별 지수 선정일에는 자유유통 시가총액 기준 상위 4개 기업 각각을 최대 12%, 합산 최대 48%로 두고, 그 밖의 개별 종목은 0.30\~4.75% 범위로 제한한다. 이 규칙은 선정일의 지수 가중치 기준이며 이후 주가 변화에 따라 펀드의 실제 비중은 달라질 수 있다.[^2]
 
-### 1.1 기본 정보 및 혁신성
+SEC에 제출된 2026년 7월 8일 보충서는 2026년 9월 21일부터 지수 리밸런싱을 분기별 3·6·9·12월로 바꾼다고 명시한다. 6월과 12월에는 구성 종목 재구성을 함께 한다. Sprott 상품 페이지에는 반기 리밸런싱 문구가 남아 있지만, 이 글은 이후 효력이 발생한 SEC 보충서의 주기를 기준으로 정리했다.[^3]
 
-URNJ는 2023년 2월 1일 설정된 매우 새로운 기금으로, Sprott Asset Management USA가 운용합니다. 공식적으로 "업계 유일의 주니어 우라늄 채광 순수-플레이 ETF"라고 표기되어 있으며, Morningstar 자연자원 부문 105개 ETF 중에서도 이 유일한 주니어 포커스로 차별화됩니다.[^1][^4]
+## 보유 구성
 
-<strong>기금 규모 및 구조:</strong>
+### 상위 10개 보유 자산
 
-- 순자산(AUM): \$437.62M (설정 이후 지속 성장)[^1]
-- NAV: \$30.69 (2026년 1월 15일)[^1]
-- 시장 가격: \$31.00 (NAV 대비 1.01% 프리미엄)[^1]
-- 보유 종목: 33-34개[^5][^1]
-- 거래소: NASDAQ[^1]
-- 지수: NASDAQ Sprott Junior Uranium Miners™ Index (NSURNJ)[^1]
+| 순위 | 보유 자산 | 비중 (2026년 10월 2일) |
+| :-- | :-- | --: |
+| 1 | NexGen Energy Ltd. | 13.24% |
+| 2 | Paladin Energy Ltd. | 11.73% |
+| 3 | Denison Mines Corp. | 11.72% |
+| 4 | Energy Fuels Inc. | 11.25% |
+| 5 | IsoEnergy Ltd. | 5.05% |
+| 6 | CGN Mining Co. Ltd. | 4.84% |
+| 7 | Boss Energy Ltd. | 4.55% |
+| 8 | Bannerman Energy Ltd. | 4.32% |
+| 9 | Deep Yellow Ltd. | 4.06% |
+| 10 | Ur-Energy Inc. | 4.03% |
 
-<strong>설정 이후 성장</strong>: URNJ는 설정 당시 약 \$2M에서 현재 \$437.62M으로 219배 성장했습니다. 이는 우라늄 산업의 급격한 인기도의 증거입니다.[^6]
+상위 4개 비중의 합계는 47.94%, 상위 10개는 74.79%다. Sprott의 2026년 8월 31일 분류에서는 기업 시가총액 구성이 중형 51.43%, 소형 48.57%였고, 해당 분류 기준의 업종 비중은 우라늄 관련 주식 100%였다. 보유 종목·가중치·분류는 각 기준일 자료이며 변동한다.[^1]
 
-### 1.2 운용 수수료 및 비용
+## 성과
 
-URNJ의 순 운용 수수료는 0.80%입니다. 이는 다음과 같이 비교됩니다:[^1]
+아래는 Sprott가 공개한 2026년 9월 30일 기준 성과다. 1개월·3개월·연초 이후 값은 누적 수익률이고, 1년 이상 기간은 연환산 수익률이다.[^1]
 
-- NLR: 0.56% (가장 저렴)
-- URNM: 0.75%
-- URNJ: 0.80% (중간 수준)
-- URA: 0.69%
+| 기간 | NAV 수익률 | 시장가격 수익률 | 지수 수익률 |
+| :-- | --: | --: | --: |
+| 1개월 | -22.10% | -22.04% | -21.91% |
+| 3개월 | -12.99% | -13.10% | -12.84% |
+| 2026년 연초 이후 | -19.97% | -19.94% | -19.32% |
+| 1년 | -26.30% | -26.13% | -24.90% |
+| 3년 연환산 | -0.70% | -0.36% | 0.41% |
+| 설정 이후 연환산 | 3.86% | 3.86% | 5.06% |
 
-더 중요한 것은 <strong>총 거래 비용(Total Cost of Ownership, TCO)</strong>입니다.[^7]
+설정 이후 값은 2023년 2월 1일부터의 짧은 운용 이력을 반영한다. 과거 수익률만으로 앞으로의 성과나 우라늄 시세 방향을 추정할 수는 없다.[^1][^2]
 
+## 주요 위험과 비용
 
-| ETF | 운용수수료(bp) | 매수호가-매도호가(bp) | 총 비용(bp) |
-| :-- | :-- | :-- | :-- |
-| <strong>URNJ</strong> | 80 | 43.6 | <strong>123.6</strong> |
-| <strong>URA</strong> | 69 | 11 | <strong>80</strong> |
-| <strong>NLR</strong> | 56 | 18 | <strong>74</strong> |
-| 업계 평균 | 49.2 | 30.9 | 80.1 |
+- **개발·탐사 기업 위험:** 광산의 발견·개발이 생산으로 이어지지 않을 수 있다. 허가, 자금 조달, 공사와 운영 지연, 매장량·생산량 추정 및 원가 변화가 기업가치에 큰 영향을 줄 수 있다.[^2]
+- **소형주와 유동성:** 소형·중형 기업은 재무·인력 여력과 사업 다각화가 제한될 수 있고, 거래 유동성이 낮아 시장 변동 시 가격이 크게 움직일 수 있다.[^2]
+- **종목 및 산업 집중:** 지수는 금속·광산업에 집중되며 펀드는 비분산형이다. 상위 4개 종목의 2026년 10월 2일 합산 비중은 47.94%였다. 개별 기업이나 산업의 부진이 펀드 전체에 미치는 영향이 클 수 있다.[^1][^2]
+- **원자재·국가·통화 위험:** 우라늄 가격, 생산국의 정치·규제 환경, 해외 거래소와 환율이 보유 기업의 주가와 달러 기준 NAV에 영향을 줄 수 있다.[^2]
+- **시장가격과 NAV:** 일반 투자자는 Nasdaq의 시장가격으로 매매한다. 시장 스트레스나 기초자산의 낮은 유동성은 NAV 대비 괴리와 매수·매도 호가 차이를 키울 수 있다.[^1][^2]
+- **증권 대여:** 펀드는 증권을 대여할 수 있다. 차입자의 반환 불이행이나 담보 운용 손실은 펀드 가치에 불리하게 작용할 수 있다.[^2]
+- **분배금 변동:** Sprott의 기록상 주당 분배 합계는 2023년 0.95달러, 2024년 0.81달러, 2025년 1.66달러였다. 분배에는 과세상 분류가 적용되며 과거 지급액은 향후 분배를 보장하지 않는다.[^1]
 
-URNJ의 총 거래 비용은 123.6bp로 업계 평균 80.1bp 대비 54% 높습니다. 이는 유동성 차이 때문입니다.[^7]
+## URNM과의 구조 차이
 
-***
+URNM은 광산 기업과 실물 우라늄·로열티 등 관련 노출을 함께 담는 지수를 추종한다. URNJ 지수는 주니어 기업을 대상으로 하는 시가총액 범위와 종목별 상한 규칙을 둔다. 두 상품 모두 우라늄 채굴 관련 주식 위험을 가지지만 지수 구성·가중·보유 종목이 다르며, 우라늄 현물 가격을 직접 추종하지 않는다.[^1][^2]
 
-## 2. 성과 분석
+**분류 근거:** URNJ는 Nasdaq 상장 지수 ETF이며, 주요 노출은 소형·중형 우라늄 채굴 관련 기업이다. 기존 `Power Infrastructure/Nuclear and Uranium` 경로를 유지했다.[^2]
 
-### 2.1 단기 및 중기 성과
+## 출처
 
-URNJ는 설정 후 2년 간의 매우 제한된 성과 기록을 가지고 있습니다.[^1]
-
-![URNJ와 URA NLR S&P 500 성과 비교](images/image.png)
-
-URNJ vs URA, NLR and S\&P 500 Performance (2025)
-
-<strong>성과 하이라이트:</strong>
-
-- <strong>2025 YTD (NAV)</strong>: 44.76%[^1]
-- <strong>1개월</strong>: 4.21%[^1]
-- <strong>3개월</strong>: -7.92% (약세)[^1]
-- <strong>설정 이후(02/2023)</strong>: 13.21% 누적[^1]
-- <strong>2024 연간</strong>: -18.22% (약세)[^8]
-- <strong>2025 연간</strong>: +45.10% (회복)[^8]
-
-<strong>성과 해석</strong>: URNJ는 2024년 우라늄 상승장에서도 -18.22% 낙폭을 기록했습니다. 이는 주니어 채광사들의 기업 가치가 하락했음을 의미합니다. 2025년의 45% 회복은 펀더멘털 개선보다는 기술적 반등으로 보입니다.[^6]
-
-### 2.2 경쟁사 대비 성과 분석
-
-2025년 URNJ는 경쟁사들에 크게 뒤떨어졌습니다.[^2]
-
-<strong>2025 YTD 성과 비교:</strong>
-
-- URA: 67.41% (URNJ 대비 +22.65 포인트 우월)[^1][^2]
-- NLR: 55.9% (URNJ 대비 +11.14 포인트 우월)[^1]
-- URNJ: 44.76%[^1]
-- S\&P 500: 22.3%[^1]
-
-<strong>분석</strong>: 주니어 우라늄 채광사들이 2025년 동안 우라늄 가격 상승과 정책 호재에도 불구하고 대형 채광사들보다 훨씬 약했습니다. 이는 다음을 시사합니다:
-
-1. 주니어 채광사들의 사업화 일정 지연[^6]
-2. 자금 조달 어려움[^6]
-3. 기술적 문제 또는 규제 장애물[^6]
-
-***
-
-## 3. 포트폴리오 구성 및 집중도
-
-### 3.1 상위 10개 종목
-
-![URNJ 상위 10개 보유 종목 구성](images/image-1.png)
-
-URNJ Top 10 Holdings Portfolio Composition
-
-URNJ의 상위 10개 종목이 전체 자산의 83.65%를 차지하는 <strong>매우 높은 집중도</strong>를 보입니다.[^5]
-
-<strong>상위 10개 보유 종목 (2026년 1월 15일):</strong>
-
-
-| 순위 | 종목명 | 티커 | 비중 | 특성 |
-| :-- | :-- | :-- | :-- | :-- |
-| 1 | Uranium Energy Corp | UEC | 17.67% | 미국 기반, 탐사/개발 |
-| 2 | Energy Fuels Inc | UUUU | 12.64% | 미국 기반, 채광 개발 |
-| 3 | Denison Mines Corp | DML | 12.29% | 캐나다 기반, 개발 단계 |
-| 4 | Paladin Energy Ltd | PDN | 10.10% | 호주 기반, 소규모 생산 |
-| 5 | NexGen Energy Ltd | NXE | 9.48% | 캐나다 기반, 개발 단계 |
-| 6 | CGN Mining Co | 1164 | 5.65% | 중국, 홍콩 상장 |
-| 7 | Deep Yellow Ltd | DYL | 4.50% | 호주 기반, 탐사 |
-| 8 | enCore Energy Corp | EU | 4.27% | 캐나다 기반, 개발 |
-| 9 | Uranium Royalty Corp | URC | 3.10% | 캐나다 기반, 로열티 |
-| 10 | IsoEnergy Ltd | ISO | 2.09% | 캐나다 기반, 탐사 |
-
-<strong>집중도 위험:</strong>
-
-- <strong>상위 3개</strong>: UEC + UUUU + DML = 42.60% (극도의 집중)[^5]
-- <strong>상위 5개</strong>: 61.48% (국가별 리스크 상당)[^5]
-
-
-### 3.2 시장 규모 구성
-
-![URNJ 시가총액별 포트폴리오 구성](images/image-2.png)
-
-URNJ Market Cap Composition
-
-URNJ의 가장 눈에 띄는 특징은 <strong>대형주 노출이 전혀 없다</strong>는 것입니다.[^1]
-
-- <strong>대형주 (>\$10B)</strong>: 0% (없음!)[^1]
-- <strong>중형주 (\$2-10B)</strong>: 54.50%[^1]
-- <strong>소형주 (<\$2B)</strong>: 45.50%[^1]
-- <strong>평균 회사 시가총액</strong>: \$2,154.88M[^1]
-
-이는 NLR과 URA가 상당한 대형주 (Cameco 23%)를 포함하는 것과 극명하게 다릅니다. URNJ는 순수 주니어 플레이이며, 이는 극대 수익 잠재력과 극대 위험을 동반합니다.[^3]
-
-### 3.3 지역별 분포
-
-URNJ는 북미 기반 기업에 크게 편중되어 있습니다:
-
-- <strong>캐나다</strong>: 약 35-40% (Denison, NexGen, enCore 등)[^5]
-- <strong>호주</strong>: 약 15-20% (Paladin, Deep Yellow 등)[^5]
-- <strong>미국</strong>: 약 20-25% (UEC, Energy Fuels 등)[^5]
-- <strong>중국</strong>: 5.65% (CGN Mining, 홍콩 거래)[^5]
-
-***
-
-## 4. 배당 및 수익성
-
-### 4.1 업계 최고 배당 수익률
-
-URNJ는 모든 우라늄 ETF 중 <strong>가장 높은 배당수익률</strong>을 제공합니다.[^9][^10]
-
-<strong>배당 이력 및 수익률:</strong>
-
-- <strong>2025년 12월</strong>: \$1.66 배당 (12월 18일 배당락)[^11][^9]
-- <strong>2024년 12월</strong>: \$0.81 배당 (12월 12일)[^10]
-- <strong>2023년 12월</strong>: \$0.95 배당 (12월 14일)[^10]
-
-<strong>현재 배당수익률</strong>: 5.21-5.61%[^9][^10]
-
-<strong>배당 성장률</strong>: 105.08% YoY (2024→2025)[^10]
-
-<strong>비교:</strong>
-
-- URNJ: 5.61%[^9]
-- URNM: 2.23%[^12]
-- NLR: 0.42%[^13]
-- URA: 1.48%[^12]
-
-배당 수익률이 높은 이유는 주니어 채광사들의 탐사 수익이 분배되기 때문이며, 이는 일시적일 수 있습니다.[^14]
-
-### 4.2 수익성 지표
-
-URNJ는 <strong>P/E 비율 데이터 미제공</strong> 상태입니다. 이는 많은 보유 종목이 아직 수익을 내지 못하는 탐사/개발 단계 기업이기 때문입니다.[^6]
-
-***
-
-## 5. 위험 프로필 및 변동성
-
-### 5.1 극심한 변동성
-
-URNJ는 모든 우라늄 ETF 중 가장 높은 변동성을 보입니다.[^7]
-
-<strong>위험 지표:</strong>
-
-- <strong>베타</strong>: 0.65-0.69 - 놀랍게도 낮음 (일관성 부족 시사)[^6]
-- <strong>연율 표준편차</strong>: 44.2-58.1% - 매우 높음[^7]
-- <strong>52주 범위</strong>: \$11.52-\$35.55 (208% 범위!)[^1][^15]
-- <strong>52주 총 수익</strong>: 136.55% (저점에서 현재)[^15]
-- <strong>최대 낙폭</strong>: 11개월 회복 시간 필요[^16]
-- <strong>RSI (현재)</strong>: 67 (약간 과열)[^7]
-
-<strong>변동성의 모순</strong>: 낮은 베타(0.65)에도 극도의 표준편차(58%)를 가지는 것은 URNJ가 시장과 낮은 상관성(독립적 변동)을 가지지만, 자체 변동성은 매우 크다는 의미입니다.[^7]
-
-### 5.2 근래 성과 변동성
-
-- <strong>1개월</strong>: +4.21% (상승)[^1]
-- <strong>3개월</strong>: -7.92% (약세)[^1]
-- <strong>이는 과거 3개월 동안 거의 -8% 낙폭을 보였음</strong>을 의미합니다.[^1]
-
-이러한 3개월 약세는 우라늄 가격이 견조했음에도 주니어 채광사들이 약했음을 시사합니다.[^6]
-
-### 5.3 주요 리스크 요인
-
-1. <strong>극도의 변동성</strong>: 44-58% 변동성은 보수 투자자에게 부적절
-2. <strong>포트폴리오 집중도</strong>: 상위 3개 42.60% (Cameco 23% 수준의 집중도)
-3. <strong>기업화 리스크</strong>: 많은 기업이 탐사/개발 단계로 상용화 미확인
-4. <strong>사업화 지연</strong>: 2024년 -18.22% 손실은 개발 문제 시사
-5. <strong>소형주 유동성</strong>: 개별 지분 기업의 낮은 거래량
-6. <strong>금리 민감성</strong>: 개발 단계 광산은 금리에 매우 민감
-7. <strong>규제 리스크</strong>: 호주, 캐나다 환경 규정 강화 가능성
-8. <strong>제한된 거래 이력</strong>: 단 2년 설정으로 장기 리스크 미증명
-
-***
-
-## 6. 유동성 및 거래 특성
-
-### 6.1 중간 수준의 유동성, 높은 거래 비용
-
-URNJ의 유동성은 대형 우라늄 ETF에 비해 중간 정도입니다.[^2]
-
-<strong>유동성 지표:</strong>
-
-- <strong>평균 일일 거래량</strong>: 350,833-382,000 주[^6][^7]
-- <strong>평균 일일 거래액</strong>: \$12-15 million[^7]
-- <strong>매수호가-매도호가 스프레드</strong>: 0.38-0.44% (URA 0.07% 대비 5-6배 넓음)[^1][^7]
-- <strong>회전율</strong>: 2.8%[^7]
-- <strong>유동성 등급</strong>: B (좋지만 최고는 아님)
-
-<strong>거래 비용 영향</strong>: 0.38-0.44% 스프레드는 \$10,000 투자 시 \$38-44 손실을 의미합니다. URA는 같은 규모에서 \$7 정도입니다.[^7]
-
-### 6.2 펀드 플로우와 투자자 심리
-
-URNJ의 펀드 플로우는 성과 대비 약세를 보입니다:
-
-
-| 지표 | 수치 | 평가 |
-| :-- | :-- | :-- |
-| <strong>1년 수익률</strong> | 44.76% | 강함 |
-| <strong>1년 펀드 유입</strong> | +\$10.39M | 매우 약함 |
-| <strong>NAV 프리미엄</strong> | 1.01% | 약간의 수요 |
-| <strong>vs NLR 유입</strong> | +\$2.24B | URNJ는 1/216 수준 |
-| <strong>vs URA 유입</strong> | +\$2.44B | URNJ는 1/235 수준 |
-
-<strong>분석</strong>: 44.76% 수익에도 불구하고 펀드 유입이 극히 미미합니다. 이는:
-
-1. URNJ의 높은 변동성이 신규 투자자를 저지[^2]
-2. 2024년 -18.22% 손실의 후유증[^8]
-3. 작은 기금 규모의 구조적 한계[^17]
-
-***
-
-## 7. 시장 환경 및 2026년 투자 논거
-
-### 7.1 우라늄 펀더멘털 2026
-
-2026년 우라늄 시장은 공급 부족과 정책 호재로 견조하나, 주니어 채광사들의 이익 창출은 시간이 필요합니다.[^18]
-
-<strong>공급 측면:</strong>
-
-- 현재 생산: 수요의 75% 정도만 충족[^19]
-- 신규 광산 개발: 2-3년 이상 소요[^6]
-- 장기 계약 가격: \$86/lb로 상승[^20]
-
-<strong>주니어 채광사에 미치는 영향:</strong>
-
-- <strong>긍정</strong>: 높은 우라늄 가격이 개발 프로젝트의 경제성 개선[^6][^18]
-- <strong>부정</strong>: 실제 생산까지 2-5년 소요로 단기 수익 어려움[^18][^6]
-
-
-### 7.2 장기 수익 잠재력 vs 단기 고통
-
-주니어 우라늄 채광사들은 장기적으로 매력적이지만 단기 변동성이 매우 높습니다.[^21][^18]
-
-<strong>장기 기대 (5년+):</strong>
-
-- 개발 프로젝트 상용화로 수익성 급증[^21]
-- 생산량 증가에 따른 자산 가치 상승[^21]
-- 우라늄 현물 가격 상승의 극대 수혜[^21]
-
-<strong>단기 위험 (1-2년):</strong>
-
-- 자금 조달 어려움 또는 희석[^21]
-- 개발 지연 또는 기술 문제[^21]
-- 우라늄 가격 조정 시 급락[^18]
-
-***
-
-## 8. 경쟁 환경 심층 비교
-
-### 8.1 URNJ vs URNM (Sprott Uranium Miners ETF)
-
-| 차원 | URNJ | URNM | 판정 |
-| :-- | :-- | :-- | :-- |
-| <strong>타겟 기업 규모</strong> | 주니어 소형주 | 중형주 채광사 | URNM (더 안정) |
-| <strong>회사 단계</strong> | 탐사/개발 | 생산/개발 | URNM |
-| <strong>순자산</strong> | \$437.62M | \$1.83B | URNM (더 큼, 5배) |
-| <strong>배당수익률</strong> | 5.61% | 2.23% | URNJ (더 높음) |
-| <strong>운용수수료</strong> | 0.80% | 0.75% | URNM |
-| <strong>변동성</strong> | 44-58% | 데이터 부족 | URNJ (더 높음 추정) |
-| <strong>2025 성과</strong> | 44.76% | 데이터 부족 | 비교 불가 |
-| <strong>회복 기간</strong> | 5-11개월 | 데이터 부족 | URNJ 더 오래 |
-
-<strong>결론</strong>: URNM은 생산 중인 중형 채광사에 투자하고, URNJ는 순수 개발/탐사 주니어 채광사에 투자합니다.[^21][^18]
-
-### 8.2 URNJ vs URA vs NLR 종합 비교
-
-| 차원 | URNJ | URA | NLR |
-| :-- | :-- | :-- | :-- |
-| <strong>기금 규모</strong> | \$437.62M | \$5.40B | \$4.47B |
-| <strong>AUM 순위</strong> | 3위(작음) | 1위(큼) | 2위 |
-| <strong>포트폴리오</strong> | 주니어 광산사만 | 주니어+대형+신탁 | 균형(유틸+채광+서비스) |
-| <strong>대형주 노출</strong> | 0% | \~23% Cameco | \~6.79% Constellation |
-| <strong>배당</strong> | 5.61% | 1.48% | 0.42% |
-| <strong>2025 성과</strong> | 44.76% | 67.77% | 55.9% |
-| <strong>변동성</strong> | 58% | \~46% | \~37-40% |
-| <strong>운용수수료</strong> | 0.80% | 0.69% | 0.56% |
-| <strong>총거래비용</strong> | 123.6bp | 80.1bp | 74bp |
-
-<strong>선택 가이드:</strong>
-
-- <strong>URNJ 선택</strong>: 극대 성장 추구, 매우 높은 위험 허용도
-- <strong>URA 선택</strong>: 우라늄 가격 직결 수익, 중간 위험
-- <strong>NLR 선택</strong>: 균형잡힌 원자력 산업 노출, 상대적 안정성
-
-***
-
-## 9. 투자 등급 및 권장 사항
-
-### 9.1 투자자 적합성
-
-URNJ는 <strong>매우 적극적인 소수 투자자용</strong> 상품입니다.[^21]
-
-<strong>적합한 투자자:</strong>
-
-- 매우 높은 위험 허용도 (58% 변동성, -20\~-30% 낙폭 수용 가능)[^7]
-- 우라늄 산업 개발 단계에 베팅 가능한 신념[^21]
-- 5년 이상 투자 지평[^21]
-- 포트폴리오 위성 자산 (1-2% 최대, 절대 핵심이 아님)[^21]
-- 공격적 성장 추구, 단기 손실 무시 능력[^21]
-- 거래 경험이 있는 투자자[^21]
-
-<strong>부적합한 투자자:</strong>
-
-- 보수적 성향 (변동성 회피)[^7]
-- 배당 수익 추구 (배당 불안정)[^10]
-- 기술 타이밍 능력 부족[^7]
-- 1-2년 투자 지평[^7]
-- 기업 실사(due diligence) 능력 부족한 투자자[^21]
-
-
-### 9.2 현재(2026년 1월) 투자 시점 평가
-
-<strong>매수 신호:</strong>
-
-- ✅ 우라늈 장기 계약 가격 \$86/lb 고정
-- ✅ AI 데이터센터 기저부하 수요 폭증
-- ✅ 정책 지원 강화 (트럼프, 국제)
-- ✅ 설정 이후 137% 상승 후 기술적 반등
-
-<strong>매도/주의 신호:</strong>
-
-- ⚠️ 3개월 -7.92% 약세 (가격 지체)
-- ⚠️ 2024년 -18.22% 손실 아직 회복 중
-- ⚠️ 극도의 포트폴리오 집중 (상위 3개 42.60%)
-- ⚠️ 높은 거래 비용 (0.38-0.44% 스프레드)
-- ⚠️ 펀드 유입 미미 (-\$128.67M URA 대비)
-- ⚠️ 단 2년 기금으로 장기 검증 부족
-
-
-### 9.3 포지셔닝 전략
-
-URNJ는 <strong>고도로 선택적인 위성 포지션</strong>으로만 고려해야 합니다:
-
-<strong>분할 진입 전략:</strong>
-
-1. <strong>1차 (현재, \$30-31)</strong>: 포트폴리오의 0.5-1% 진입
-2. <strong>2차 (조정시, \$22-25)</strong>: 추가 0.5-1% 진입
-3. <strong>최대 포지션</strong>: 절대 2% 초과 금지
-
-<strong>청산 전략:</strong>
-
-- <strong>이익 실현</strong>: \$40 도달 시 절반 청산, \$45+ 에서 남은 것 청산
-- <strong>손실 한계</strong>: \$18-20 하락 시 손절 고려
-
-***
-
-## 10. 시나리오 분석 및 기대 수익률
-
-### 10.1 1년 시나리오 (2026년 1월 → 2027년 1월)
-
-| 시나리오 | 확률 | 우라늄 가격 | 목표가 | 수익률 |
-| :-- | :-- | :-- | :-- | :-- |
-| <strong>약세</strong> (개발 지연/금리 상승) | 20% | \$65-75/lb | \$18-22 | -40\~-29% |
-| <strong>중도</strong> (현상유지) | 50% | \$80-95/lb | \$28-36 | -7\~+16% |
-| <strong>강세</strong> (개발 진전/공급 부족) | 25% | \$110-130/lb | \$42-55 | +35\~+77% |
-| <strong>극강세</strong> (정책/기술 급진 | 5% | \$150+/lb | \$60+ | +94%+ |
-| <strong>기대값</strong> | - | \~\$96/lb | <strong>\$31-37</strong> | <strong>+2\~+20%</strong> |
-
-### 10.2 리스크-보상 비율
-
-<strong>리스크</strong>: -40% 낙폭 가능 (약세 시나리오)
-<strong>보상</strong>: +35\~+77% 상승 가능 (강세 시나리오)
-<strong>리스크-보상비</strong>: 1:1.7 \~ 1:1.9 (매력적)
-
-그러나 이는 <strong>높은 변동성 대가</strong>입니다.
-
-***
-
-## 11. 결론 및 최종 권장사항
-
-### 11.1 투자 관점 종합 평가
-
-URNJ는 2026년 우라늄 산업의 구조적 호재에도 불구하고, <strong>극도로 선택적인 투자자용 상품</strong>입니다.[^21][^18]
-
-<strong>긍정 요인:</strong>
-
-1. 순수 주니어 우라늄 채광 노출 (유일한 순수-플레이)
-2. 우라늄 가격 상승의 극대 수혜 잠재력
-3. 5.61% 업계 최고 배당 수익률
-4. 장기적 구조적 우라늄 부족
-
-<strong>부정 요인:</strong>
-
-1. 극도의 변동성 (44-58%)
-2. 극도의 포트폴리오 집중 (상위 3개 42.60%)
-3. 높은 거래 비용 (123.6bp 총비용)
-4. 2024년 -18.22% 손실 (개발 문제 시사)
-5. 단 2년 기금 이력 (검증 부족)
-6. 3개월 -7.92% 최근 약세
-
-### 11.2 최종 권장사항
-
-<strong>"극도로 주의하며 소액만"</strong>
-
-<strong>조건부 매수:</strong>
-
-- <strong>매수 여부</strong>: 금지 권고, 기존 보유자만 관찰
-- <strong>만약 매수할 경우</strong>: 포트폴리오의 0.5-1% 이내 (절대 2% 초과 금지)
-- <strong>진입 시점</strong>: 현재(\$31) 또는 조정시 \$22-25
-- <strong>목표가</strong>: 3년 \$45-55, 1년 \$35-40
-- <strong>손실 한계</strong>: \$18-20 하락 시 전량 청산
-- <strong>투자 지평</strong>: 최소 5년 (권장 사항)
-
-<strong>기존 보유자:</strong>
-
-- \$40 도달 시 절반 청산
-- 배당은 재투자하지 말 것 (현금화)
-- 우라늄 가격 하락 시 추가 매수 불가 (기금 규모 약함)
-
-<strong>비추천 투자자:</strong>
-
-- 모든 보수적 투자자
-- 단기 목표 (1-2년) 있는 투자자
-- 변동성 회피하는 투자자
-- 거래 경험 부족 투자자
-
-
-### 11.3 URNJ vs 경쟁사 선택 기준
-
-<strong>URNJ 선택하면 좋은 경우:</strong>
-
-- 주니어 개발 단계 광산사에 베팅
-- 극대 성장 잠재력 추구 (5년+)
-- 높은 배당 선호
-- 위험 회피 불가능
-
-<strong>URNM/URA 선택하면 좋은 경우:</strong>
-
-- 생산 중인 광산사 투자 (URNM)
-- 우라늄 + 신탁 혼합 (URA)
-- 상대적 안정성 필요
-
-<strong>NLR 선택하면 좋은 경우:</strong>
-
-- 균형잡힌 원자력 산업 노출
-- 낮은 변동성 선호
-- 장기 보유 (5년+)
-
-***
-
-<strong>보고서 작성일</strong>: 2026년 1월 17일 (KST)
-<strong>데이터 기준</strong>: 2026년 1월 15-16일
-<strong>출처</strong>: Sprott ETF 공식, NASDAQ, Investing.com, StockAnalysis, TradingView, MarketChameleon, ETF Research Center 등 공식 재무 데이터
-
-***
-
-## 참고 자료 (인용 출처)
-
-VanEck 공식 - NLR ETF 정보[^13]
-StockAnalysis - ETF 비교[^12]
-Mining.com - 2026년 AI 우라늄 수요[^19]
-Crux Investor - 2026년 우라늄 구조적 재설정[^20]
-Sprott 공식 - URNJ 정보 (상세)[^1]
-StockAnalysis - URNJ 개요[^6]
-StockAnalysis - URNJ 보유 현황[^5]
-Sprott API - URNJ 상세[^4]
-Zacks - URNJ 52주 고점[^15]
-Financial Times - URNJ 개요[^17]
-Yahoo Finance - URNJ 연간 성과[^8]
-NASDAQ - URNJ 배당 이력[^9]
-StockAnalysis - URNJ 배당[^10]
-Digrin - URNJ 배당[^14]
-Dividend Diary - URNJ 배당[^22]
-TipRanks - URNJ 배당[^23]
-StockInvest - URNJ 배당[^24]
-Investing.com - URNJ 배당 이력[^11]
-Kiplinger - 3개 우라늄 ETF[^25]
-AlphaCubator - URNJ 최대 낙폭[^16]
-Seeking Alpha - URNJ 투기적 분석[^21]
-TradingView - URNJ 분석[^2]
-Sprott 특별 보고서 - 우라늄 채광사 분석[^18]
-NASDAQ - URNJ 인덱스 방법론[^3]
-ETF Research Center - URNJ 상세[^7]
-<span style="display:none">[^26][^27][^28][^29][^30][^31][^32][^33][^34][^35][^36][^37][^38][^39][^40][^41][^42][^43][^44][^45][^46][^47]</span>
-
-<div align="center">⁂</div>
-
-[^1]: https://sprottetfs.com/urnj-sprott-junior-uranium-miners-etf/
-
-[^2]: https://www.tradingview.com/symbols/NASDAQ-URNJ/analysis/
-
-[^3]: https://indexes.nasdaqomx.com/docs/methodology_NSURNJ.pdf
-
-[^4]: https://api.sprott.com/urnj-sprott-junior-uranium-miners-etf/
-
-[^5]: https://stockanalysis.com/etf/urnj/holdings/
-
-[^6]: https://stockanalysis.com/etf/urnj/
-
-[^7]: https://www.etfrc.com/URNJ
-
-[^8]: https://finance.yahoo.com/quote/URNJ/performance/
-
-[^9]: https://www.nasdaq.com/market-activity/etf/urnj/dividend-history
-
-[^10]: https://stockanalysis.com/etf/urnj/dividend/
-
-[^11]: https://www.investing.com/etfs/urnj-dividends
-
-[^12]: https://stockanalysis.com/etf/compare/ura-vs-urnm-vs-nlr-vs-nukz-vs-tsx:hura/
-
-[^13]: https://www.vaneck.com/us/en/investments/uranium-nuclear-energy-etf-nlr/
-
-[^14]: https://www.digrin.com/stocks/detail/URNJ/
-
-[^15]: https://www.zacks.com/stock/news/2752360/uranium-etf-urnj-hits-new-52-week-high
-
-[^16]: https://www.alphacubator.com/analysis/URNJ
-
-[^17]: https://markets.ft.com/data/etfs/tearsheet/summary?s=URNJ%3ANMQ%3AUSD
-
-[^18]: https://sprott.com/media/ksoj3pxx/sprott-special-report-uranium-miners.pdf
-
-[^19]: https://www.mining.com/ai-boom-set-to-turbocharge-uranium-demand-in-2026/
-
-[^20]: https://www.cruxinvestor.com/posts/ai-driven-demand-growth-supply-constraints-signal-uranium-structural-repricing-in-2026
-
-[^21]: https://seekingalpha.com/article/4847102-urnj-speculative-play-in-uranium-mega-trend
-
-[^22]: https://divvydiary.com/en/sprott-junior-uranium-miners-etf-US85208P8086
-
-[^23]: https://www.tipranks.com/etf/urnj/dividends
-
-[^24]: https://stockinvest.us/dividends/URNJ
-
-[^25]: https://www.kiplinger.com/investing/etfs/603434/3-uranium-etfs-that-pack-a-nuclear-punch
-
-[^26]: QTUM (Defiance Quantum ETF).md
-
-[^27]: SETM (Sprott Critical Materials ETF).md
-
-[^28]: REMX (VanEck Rare Earth, Strategic Metals ETF).md
-
-[^29]: https://kr.investing.com/etfs/urnj
-
-[^30]: https://www.investing.com/etfs/urnj
-
-[^31]: https://www.schwab.wallst.com/schwab/Prospect/research/etfs/schwabETF/index.asp?YYY101_z5K6INmijHlQdLB08YbROOIB6SB3uWUiMff9%2FBeElMtGhPpXlW+z8D1hqj3ypwZ6t2P4nmvkGm3P4ngnh+VTVgjgB4wQPbXZuXyzQsYvl00=\&type=holdings\&symbol=URNJ
-
-[^32]: https://markets.ft.com/data/etfs/tearsheet/performance?s=URNJ%3ANMQ%3AUSD
-
-[^33]: https://www.justetf.com/en/etf-profile.html?isin=IE00075IVKF9
-
-[^34]: https://kr.investing.com/etfs/urnj-holdings
-
-[^35]: https://cbonds.com/etf/18664/
-
-[^36]: https://www.sprottusa.com/etfs-update/urnj-sprott-junior-uranium-miners-etf/
-
-[^37]: https://www.sciencedirect.com/science/article/abs/pii/S0927538X16300427
-
-[^38]: https://assets.publishing.service.gov.uk/media/5a7c88ac40f0b62aff6c257a/12-1051-dr18-pricing-liquidity-in-electronic-markets.pdf
-
-[^39]: https://blog.naver.com/qhqnf1gh/222996188824
-
-[^40]: https://www.nasdaq.com/market-activity/etf/urnj
-
-[^41]: https://seekingalpha.com/symbol/URNJ/dividends/history
-
-[^42]: https://www.morningstar.com/etfs/xnas/urnj/risk
-
-[^43]: https://stockinvest.us/stock/URNJ
-
-[^44]: https://www.marketbeat.com/stocks/NASDAQ/URNJ/
-
-[^45]: https://marketchameleon.com/Overview/URNJ/StockVolatility/
-
-[^46]: https://www.tradingnews.com/news/nlr-etf-at-145-usd-uranium-nuclear-power
-
-[^47]: https://www.nasdaq.com/articles/uranium-etf-urnj-hits-new-52-week-high
+[^1]: [Sprott URNJ 상품 페이지 — 가격·보유 종목·성과·분배 기록](https://sprottetfs.com/urnj-sprott-junior-uranium-miners-etf/)
+[^2]: [SEC 2026년 4월 30일 요약 투자설명서](https://www.sec.gov/Archives/edgar/data/1728683/000182912626004466/sprott_497k.htm)
+[^3]: [SEC 2026년 7월 8일 지수 리밸런싱 보충서](https://www.sec.gov/Archives/edgar/data/1728683/000182912626007378/sprottfundstrust_497.htm)
