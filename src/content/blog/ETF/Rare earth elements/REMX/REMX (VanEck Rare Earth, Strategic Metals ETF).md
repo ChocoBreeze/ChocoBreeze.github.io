@@ -1,265 +1,87 @@
 ---
 title: 'REMX (VanEck Rare Earth, Strategic Metals ETF)'
-description: '희토류와 전략 금속 관련 기업에 투자하는 VanEck ETF'
+description: '희토류와 전략 금속의 생산·정제·재활용 기업을 추종하는 VanEck 주식 ETF'
 pubDate: '2026-01-31T18:00:00Z'
-ticker: "REMX"
-issuer: "VanEck"
-assetClass: "Equity"
-strategy: "Index"
-exposure: "Rare Earth & Strategic Metals"
-leverage: "1x"
-incomeStyle: "None"
-categories: "ETF"
+updatedDate: '2026-10-04T00:00:00+09:00'
+verifiedDate: '2026-10-04T00:00:00+09:00'
+dataAsOf: '2026-10-02T00:00:00+09:00'
+expenseRatioAsOf: '2026-04-30T00:00:00+09:00'
+aumAsOf: '2026-10-02T00:00:00+09:00'
+yieldAsOf: '2026-10-02T00:00:00+09:00'
+ticker: 'REMX'
+issuer: 'VanEck'
+instrumentType: 'ETF'
+assetClass: 'Equity'
+strategy: 'Index'
+exposure: 'Rare Earth & Strategic Metals'
+leverage: '1x'
+incomeStyle: 'None'
+expenseRatio: '0.53%'
+aum: 1820000000
+yield: '2.06%'
+categories: 'ETF'
 ---
 
-### 기본 정보
+## 개요
 
-REMX는 VanEck Associates Corp.가 운용하는 패시브 지수 추종 상장지수펀드(ETF)로, 2010년 10월 27일에 설정되어 약 15.3년간 운용 중입니다. AMEX에 상장되며, MVIS Global Rare Earth/Strategic Metals Index를 추종합니다. 희토류(Rare Earth Elements) 및 전략 금속(리튬, 칼륨, 구리 등)의 채굴, 정제, 재활용 기업에 투자합니다.[^1]
+REMX는 VanEck이 운용하는 미국 상장 주식 ETF로, MVIS Global Rare Earth/Strategic Metals Index의 가격·수익률을 추종하도록 설계됐다. 지수는 희토류와 전략 금속·광물의 생산, 정제, 재활용에 관여하는 기업을 대상으로 한다. 금속 현물이나 선물에 직접 투자하는 상품이 아니라 관련 기업의 주가에 투자한다.[^1][^2]
 
-순자산 규모(AUM)는 약 \$1.39B로 최근 급속도로 증가했습니다. 2025년 초만 해도 \$700-800M 규모였으나, 강한 시장 성과와 자금 유입으로 1년 내 \$803.38M의 순 유입을 기록했습니다. 현재 가격은 \$83.25로, 2021년 초 \$28.50에서 약 192% 상승했습니다.[^2]
+펀드는 2010년 10월 27일 설정됐다. 투자설명서상 통상 총자산의 80% 이상을 지수 구성 증권에 투자하며, 지수 편입 기업은 관련 금속 매출 비중 또는 관련 광물 자원 비중 등 기준을 충족해야 한다. 소형·중형 기업과 해외·신흥시장 발행사가 포함될 수 있고, 상하이·선전-홍콩 Stock Connect를 통한 중국 A주도 편입 가능하다.[^2]
 
-***
+## 기준일별 주요 정보
 
-### 추종 성과 지표
+| 항목 | 내용 |
+| :-- | :-- |
+| 티커·거래소 | REMX · NYSE Arca |
+| 추종 지수 | MVIS Global Rare Earth/Strategic Metals Index |
+| 설정일 | 2010년 10월 27일 |
+| 연간 총운용비용 | 0.53% (2026년 4월 30일 요약 투자설명서) |
+| 순자산 | 약 18억 2,000만 달러 (2026년 10월 2일) |
+| NAV | 63.09달러 (2026년 10월 2일) |
+| 운용사 표시 연초 이후 수익률 | -14.41% (2026년 10월 2일) |
+| 보유 종목 수 | 37개 (2026년 10월 1일) |
+| 30일 SEC 수익률 / 12개월 분배 수익률 | 0.62% / 2.06% (2026년 10월 2일) |
 
-![alt text](images/image.png)
+투자설명서에는 연간 총운용비용 0.53%가 기재되어 있다. 운용사는 취득 펀드 비용, 이자, 거래 비용, 세금 및 특별 비용 등을 제외한 특정 운영 비용이 순자산의 연 0.57%를 넘지 않도록 보전하기로 했으며, 약정은 최소 2027년 5월 1일까지다. 보수 외의 거래 비용은 투자자가 부담할 수 있다.[^2]
 
-REMX ETF 5년 가격 추이 (2021-2026)
+VanEck은 분배 빈도를 연 1회로 표시한다. 2026년 10월 2일의 30일 SEC 수익률과 12개월 분배 수익률은 과거 자료를 바탕으로 한 시점 지표로, 앞으로 지급될 금액이나 수익률을 보장하지 않는다. 분배금은 바뀔 수 있고, 과거 분배 기록에는 연도별 차이가 있다.[^1]
 
-<strong>극도의 우수한 2025년 성과</strong>: REMX는 2025년 YTD 기준 약 95-99%의 극도로 우수한 수익률을 기록했습니다. 이는 모든 글로벌 ETF 중 최고 수준의 성과입니다. 1년 수익률 기준으로도 49.41% (NAV 기준)로 매우 높습니다.[^3]
+## 보유 종목과 지역 구성
 
-<strong>기간별 극단적 성과 변동</strong>:
+VanEck이 공개한 2026년 10월 1일 보유 자료에는 37개 종목이 포함됐다. 상위 10개 종목은 다음과 같으며, 합계는 순자산의 58.84%다.[^1]
 
-- <strong>1개월</strong>: +1.96%
-- <strong>3개월</strong>: +28.33%
-- <strong>6개월</strong>: +61.5%
-- <strong>1년</strong>: +49.41%
-- <strong>3년 연환산</strong>: -12.3% ⚠️ (극도 마이너스)
-- <strong>5년 연환산</strong>: -2.8% ⚠️
-- <strong>설립 이후 15년</strong>: -8.06% ⚠️ (극도 마이너스)
+| 기업 | 비중 |
+| :-- | --: |
+| Sociedad Química y Minera de Chile (SQM) | 8.20% |
+| Albemarle | 8.05% |
+| MP Materials | 6.65% |
+| China Northern Rare Earth Group | 5.96% |
+| Pilbara Minerals | 5.91% |
+| Lynas Rare Earths | 5.69% |
+| Jinduicheng Molybdenum | 4.83% |
+| Xiamen Tungsten | 4.64% |
+| Lianyou Metals | 4.57% |
+| Almonty Industries | 4.34% |
 
-<strong>성과 해석</strong>: REMX는 최근 1년이 매우 우수하지만, 3년 이상의 중장기 관점에서는 마이너스 수익을 기록했습니다. 이는 원자재 가격 사이클의 극단성을 보여줍니다.
+운용사 분류상 2026년 9월 30일 순자산의 99.85%는 소재(Materials) 부문이었고, 현금·기타는 0.15%였다. 같은 날 국가별 비중은 중국 29.27%, 호주 24.65%, 미국 17.71%, 캐나다 8.82%, 칠레 8.13% 순이었다. 이 지역 비중은 상장 거래소가 아니라 발행 기업의 국가 분류를 반영한다.[^1]
 
-***
+## 성과와 변동 요인
 
-### 연도별 극단적 변동성
+VanEck이 표시한 REMX 연초 이후 수익률은 2026년 10월 2일 기준 -14.41%였다. 이 값은 날짜가 붙은 단일 기준 성과이며, 오래된 게시물에 있던 2025년 95~99% 상승 주장이나 임의의 다년 수익률·원인 분석은 현재 운용사 자료와 연결해 검증할 수 없어 이 글에서 제외했다.[^1]
 
-- <strong>2025년</strong>: +95-99% (희토류/리튬 가격 급등)
-- <strong>2024년</strong>: -13.25% (중국 경제 둔화)
-- <strong>2023년</strong>: +5.8% (전기차 수요 회복)
-- <strong>2022년</strong>: -70% 이상 (팬데믹 이후 조정)
-- <strong>2021년</strong>: 긍정적 (AI 붐 시작)
+성과는 관련 기업의 주가, 원자재 가격, 생산 비용과 프로젝트 진척, 환율, 규제 및 국가 간 무역 정책의 영향을 받을 수 있다. 따라서 희토류나 리튬의 현물 가격 움직임과 REMX 성과가 일치한다고 볼 수 없다.[^2]
 
-***
+## 주요 위험과 확인할 점
 
-### 비용 구조
+- **기업·산업 집중:** SEC 투자설명서는 REMX를 비분산 펀드로 분류한다. 지수의 업종 구성을 따라 특정 기업이나 소재 산업에 자산이 집중될 수 있다. 실제로 운용사 자료상 소재 부문 비중은 2026년 9월 30일 99.85%였다.[^1][^2]
+- **중국·해외 시장 위험:** 2026년 9월 30일 기준 중국 발행 기업 비중은 29.27%였다. 수출 통제, 규제, 무역 갈등, 환율, 현지 시장 유동성 및 거래 제한이 기업 가치와 펀드 가격에 영향을 줄 수 있다.[^1][^2]
+- **원자재·개별 기업 위험:** 생산·정제 기업은 원자재 가격 외에도 광물 자원 추정, 프로젝트 개발과 운영 비용, 생산 차질, 환경 규제, 노동 및 자본 조달의 영향을 받는다. 원자재 가격이 오르더라도 기업 주가는 하락할 수 있다.[^2]
+- **주식 가격과 NAV 차이:** REMX 주가는 장중 수급과 해외 기초 주식의 거래 시간 차이 때문에 NAV 및 지수와 다르게 움직일 수 있다. 보수, 거래 비용, 현금 보유도 지수 추종 성과에 차이를 만든다.[^2]
+- **회전율:** 가장 최근 회계연도의 포트폴리오 회전율은 74%였다. 내부 매매 비용과 과세 계좌의 세금에 영향을 줄 수 있으며, 이 비용은 총운용비용에 포함되지 않는다.[^2]
 
-<strong>총 운용보수</strong>: REMX의 운용보수는 0.58%로 합리적입니다. 우주·항공우주 ETF의 0.38-0.75%와 비슷한 수준입니다.[^4]
+## 자료와 기준일
 
-<strong>배당 정책</strong>: REMX는 연 1회 배당을 지급하며, 배당수익률은 1.43-1.53%입니다. 2025년 12월 배당은 \$1.30으로 최근 3년 중 가장 높았습니다. 배당 이력을 보면 2021년에 매우 높았다가 감소했고, 최근 다시 증가하고 있습니다.[^5]
+이 글은 2026년 10월 4일에 검토했다. 순자산·NAV·운용사 표시 연초 이후 수익률·수익률 지표는 2026년 10월 2일, 보유 종목은 10월 1일, 업종·국가 구성은 9월 30일 기준이다. 비용과 투자 전략·위험은 SEC에 제출된 2026년 4월 30일 요약 투자설명서를 사용했다.[^1][^2]
 
-***
-
-### 유동성 평가
-
-<strong>거래량 및 거래대금</strong>: REMX의 일평균 거래대금은 약 \$43.5M로 우주·항공우주 ETF들(ITA \$174.61M, ARKX \$23.31M, UFO \$7.99M)과 비교하면 양호한 수준입니다. 좋은 유동성을 의미합니다.[^6]
-
-<strong>NAV 괴리율</strong>: NAV 할인이 -1.9%로 약간의 할인으로 거래되고 있습니다.
-
-***
-
-### 포트폴리오 구성
-
-![alt text](images/image-1.png)
-
-REMX ETF 상위 보유 종목 및 비중
-
-<strong>상위 보유 종목</strong>: REMX의 포트폴리오는 25-30개 종목으로 구성되어 있습니다. 상위 6개 종목이 약 44%를 차지합니다.[^7]
-
-주요 보유 종목:
-
-1. <strong>MP Materials Corp (10.48%)</strong> - 미국 희토류 채굴·정제 (미국 국방부 지원)
-2. <strong>China Northern Rare Earth (8.73%)</strong> - 중국 희토류 기업
-3. <strong>Albemarle Corporation (7.52%)</strong> - 리튬 및 희토류
-4. <strong>Lynas Rare Earths (6.44%)</strong> - 호주 희토류 기업
-5. <strong>SQM (5.76%)</strong> - 칠레 리튬 광산
-6. <strong>Pilbara Minerals (5.35%)</strong> - 호주 리튬 기업
-
-<strong>국가별 분배</strong>:
-
-![alt text](images/image-2.png)
-
-REMX ETF 국가별 자산 배분
-
-REMX는 글로벌하게 분산되어 있습니다. 중국(32.07%)이 가장 큰 비중을 차지하지만, 호주(20.26%), 미국(18.12%), 캐나다(13.33%)도 상당한 비중을 가집니다. 칠레(5.70%)는 리튬 생산국으로서 중요한 역할을 합니다.[^8]
-
-<strong>지정학적 리스크</strong>: 중국이 32%를 차지하므로, 미-중 갈등이나 중국 규제 변화에 영향을 받을 수 있습니다.
-
-***
-
-### 성과 분석
-
-![alt text](images/image-3.png)
-
-REMX ETF 기간별 수익률
-
-<strong>2025년 극도의 회복의 이유</strong>:
-
-1. <strong>희토류·리튬 가격 급등</strong>: AI 칩, 배터리, 전기자동차 부품 수요 폭증
-2. <strong>지정학적 긴장</strong>: 우크라이나 전쟁, 중동 갈등으로 전략 자원 가치 상승
-3. <strong>미국 국가 안보 전략</strong>: Executive Order 13817에 의한 핵심 광물 공급망 재편
-4. <strong>AI 붐</strong>: AI 데이터센터 건설, 고성능 칩 수요 급증
-5. <strong>전기차 성장</strong>: 글로벌 EV 도입 가속으로 리튬/코발트 수요 증가
-6. <strong>정부 직접 투자</strong>: 미국 정부의 MP Materials, Lynas 등에 대한 직접 투자
-
-<strong>중장기 성과의 약점</strong>: 3년 -12.3%, 5년 -2.8%, 15년 -8.06%는 극도의 사이클성을 보여줍니다. 2022년 팬데믹 이후 조정(-70%), 2023년 회복(+5.8%), 2024년 재조정(-13.25%), 2025년 극도 회복(+95%)의 패턴입니다.
-
-***
-
-### 리스크 요소
-
-<strong>극도의 높은 변동성</strong>: P/E 34.85, 베타 추정 1.3-1.4로 매우 높은 변동성을 가집니다. 52주 범위 \$16.31-\$99.40는 약 509%의 극단적 변동을 의미합니다.[^9]
-
-<strong>원자재 가격 의존성</strong>: 희토류와 리튬 가격의 변동에 거의 전적으로 의존합니다. 글로벌 수요 감소나 공급 증가 시 급락할 수 있습니다.
-
-<strong>지정학적 리스크</strong>: 중국이 32%를 차지하므로, 미-중 갈등, 수출 제한, 채광 규제 등에 극도로 민감합니다.
-
-<strong>경기 사이클 의존성</strong>: 전기자동차, 재생에너지 산업의 경기가 좋을 때만 강세입니다. 2024년 경기 둔화로 -13.25% 손실을 기록했습니다.
-
-<strong>정책 리스크</strong>: 중국의 희토류 수출 제한 정책, 미국의 관세 정책, 환경 규제 등이 가격에 미치는 영향이 큽니다.
-
-***
-
-### 투자 의미와 기회
-
-<strong>글로벌 패권 경쟁의 핵심 자원</strong>:
-
-REMX의 성공은 희토류와 리튬이 미국과 중국의 기술 경쟁의 핵심이 됨을 보여줍니다. AI 칩, 배터리, 풍력 터빈, 전기자동차 모두 희토류와 리튬에 의존합니다.
-
-<strong>국가 차원의 투자</strong>:
-
-미국 정부가 직접 MP Materials와 Lynas Rare Earths에 투자하는 것은 단순한 기업 투자가 아니라 국가 안보 차원의 투자입니다. 이는 장기적인 가격 지지를 의미할 수 있습니다.
-
-<strong>AI와 EV의 이중 수혜</strong>:
-
-AI 데이터센터와 전기자동차가 동시에 성장하면서 희토류 수요가 폭증했습니다. 이 트렌드가 계속되면 REMX의 장기적 수익성이 높을 수 있습니다.
-
-***
-
-### 종합 평가 및 투자 고려사항
-
-<strong>강점</strong>:
-
-- 2025년 극도의 우수한 성과 (+95-99%)
-- 글로벌 패권 경쟁에서 핵심 자원
-- 정부 지원으로 공급망 안정화
-- AI와 EV의 이중 성장 동인
-- 좋은 유동성 (\$43.5M 일거래)
-- 적절한 운용보수 (0.58%)
-- 배당 수익 (1.43%)
-
-<strong>약점</strong>:
-
-- <strong>극도의 장기 변동성</strong>: 3년 -12.3%, 5년 -2.8%, 15년 -8.06%
-- <strong>2025년 성과는 지속 불가능</strong>: 회정 매우 높아서 조정 위험
-- <strong>중국 의존도</strong>: 32% 중국 기업으로 지정학적 리스크
-- <strong>원자재 사이클</strong>: 경기 둔화 시 급락 (2024년 -13.25%)
-- <strong>정책 리스크</strong>: 규제 변화에 극도로 민감
-- <strong>P/E 상승</strong>: 고평가 위험 증대
-
-<strong>투자 적합성</strong>:
-
-<strong>추천 투자자</strong>:
-
-1. <strong>글로벌 패권 경쟁에 베팅하는 투자자</strong>
-2. <strong>AI/EV 성장에 확신하는 투자자</strong>
-3. <strong>희토류·리튬 공급 부족을 믿는 투자자</strong>
-4. <strong>고위험 고수익을 추구하는 투자자</strong>
-5. <strong>3-5년 이상 장기 투자자</strong> (단기 변동성 감수)
-
-<strong>비추천 투자자</strong>:
-
-1. <strong>안정성 중시 투자자</strong> (극도 변동성)
-2. <strong>단기 수익 추구자</strong> (사이클 예측 어려움)
-3. <strong>2025년의 +95% 성과 반복 기대자</strong> (지속 불가능)
-4. <strong>중국 리스크 회피자</strong> (32% 중국 노출)
-
-***
-
-### 최종 결론
-
-<strong>REMX는 글로벌 패권 경쟁과 AI/EV 성장의 이중 수혜를 받는 전략 자원 ETF</strong>입니다. 2025년의 +95-99% 성과는 희토류와 리튬이 21세기 가장 중요한 자원이 되었음을 의미합니다.
-
-그러나 <strong>극도의 장기 변동성</strong>(3년 -12.3%)을 고려할 때, 이는 <strong>고위험 고수익</strong> 자산입니다. 2025년의 극도 우수한 성과는 역사적으로 보면 수정이 필요할 수 있습니다.
-
-<strong>투자 전략</strong>:
-
-- <strong>포지션 크기</strong>: 전체 포트폴리오의 2-5% (고위험 자산)
-- <strong>투자 기간</strong>: 최소 3-5년 (사이클 수용)
-- <strong>진입 전략</strong>: 일시 투자보다 분할 매매 (변동성 대비)
-- <strong>혼합 포트폴리오</strong>: REMX만으로는 위험, 안정 자산과 혼합
-
-<strong>결론</strong>: REMX는 <strong>미래 자원 전쟁에 베팅하는 투자자</strong>에게 매력적이지만, <strong>극도의 변동성을 감수할 수 있는 경험 많은 투자자</strong>에게만 권고됩니다.
-
-***
-
-### 참고 자료
-
-VanEck 공식 사이트 - 기본 정보[^10][^1]
-TradingView - AUM 및 자금 흐름[^11][^2]
-Investing.com - 2025년 성과[^12][^3]
-TradingView - 운용보수[^4][^11]
-VanEck - 배당 이력[^5][^10]
-TradingView - 거래 통계[^6][^11]
-Fintel - 포트폴리오 구성[^13][^7]
-VanEck - 국가별 배분[^8][^10]
-TradingView - P/E 및 리스크[^9][^11]
-<span style="display:none">[^14][^15][^16][^17][^18][^19][^20][^21][^22][^23][^24]</span>
-
-<div align="center">⁂</div>
-
-[^2]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers
-
-[^3]: https://m.invest.zum.com/etf/ROKT/
-
-[^4]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-technical
-
-[^5]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-options
-
-[^6]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-scoreboard
-
-[^7]: https://cbonds.com/etf/2245/
-
-[^8]: https://kr.tradingview.com/symbols/AMEX-ROKT/
-
-[^9]: https://www.samsungfund.com/etf/insight/newsroom/view.do?seqn=70015
-
-[^10]: https://www.vaneck.com/us/en/investments/rare-earth-strategic-metals-etf-remx/
-
-[^11]: https://kr.tradingview.com/symbols/AMEX-REMX/analysis/
-
-[^12]: https://kr.investing.com/etfs/marketv.-rare-earth-strat.-metals
-
-[^13]: https://fintel.io/ko/i/vaneck-vectors-etf-trust-vaneck-vectors-rare-earth-strategic-metals-etf
-
-[^14]: https://kr.investing.com/etfs/marketv.-rare-earth-strat.-metals-holdings
-
-[^15]: https://bbn.kiwoom.com/rfTP686
-
-[^16]: https://heartplay.tistory.com/811
-
-[^17]: https://investment-space.tistory.com/520
-
-[^18]: https://www.vaneck.com/us/en/remx/fact-sheet/
-
-[^19]: https://april.lifewellstory.kr/entry/REMX-ETF-투자-가이드-MP-Materials-50-급등과-희토류-시장-전망-분석
-
-[^20]: https://stockevents.app/kr/stock/REMX
-
-[^21]: https://kr.investing.com/etfs/marketv.-rare-earth-strat.-metals-options
-
-[^22]: https://blog.naver.com/jeunkim/224127353372?fromRss=true\&trackingCode=rss
-
-[^23]: https://brunch.co.kr/@josephlee54/7098
-
-[^24]: https://invest.deepsearch.com/etf/REMX/
+[^1]: [VanEck REMX 상품 페이지 및 보유·성과 자료](https://www.vaneck.com/us/en/investments/rare-earth-strategic-metals-etf-remx/holdings/)
+[^2]: [SEC 2026년 4월 30일 요약 투자설명서](https://www.sec.gov/Archives/edgar/data/1137360/000113736026000500/vaneckrareearthandstrategi.htm)
