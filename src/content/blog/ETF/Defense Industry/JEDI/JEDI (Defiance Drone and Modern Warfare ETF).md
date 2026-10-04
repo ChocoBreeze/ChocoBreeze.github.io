@@ -1,322 +1,137 @@
 ---
 title: 'JEDI (Defiance Drone and Modern Warfare ETF)'
-description: '드론과 현대전 기술 기업에 투자하는 Defiance ETF'
+description: '드론·현대전 기업 지수와 비상장 투자 구간을 함께 운용하는 JEDI의 보유 현황, 비용과 위험을 공식 자료 기준으로 정리한다.'
 pubDate: '2026-01-31T20:00:00Z'
-ticker: "JEDI"
-issuer: "Defiance"
-assetClass: "Equity"
-strategy: "Index"
-exposure: "Drone & Modern Warfare"
-leverage: "1x"
-incomeStyle: "None"
-categories: "ETF"
+updatedDate: '2026-10-05T00:00:00+09:00'
+verifiedDate: '2026-10-05T00:00:00+09:00'
+dataAsOf: '2026-10-05T00:00:00+09:00'
+aumAsOf: '2026-10-02T00:00:00+09:00'
+expenseRatioAsOf: '2026-08-06T00:00:00+09:00'
+yieldAsOf: '2026-09-30T00:00:00+09:00'
+instrumentType: 'ETF'
+ticker: 'JEDI'
+issuer: 'Defiance'
+assetClass: 'Equity'
+strategy: 'Index'
+exposure: 'Drone & Modern Warfare'
+leverage: '1x'
+incomeStyle: 'None'
+expenseRatio: '0.99%'
+aum: '$169.06M'
+yield: '-0.56%'
+categories: 'ETF'
+tags: ['ETF', 'JEDI', 'Defiance', 'Drone', 'Modern Warfare']
 ---
 
-### 기본 정보
+# JEDI (Defiance Drone and Modern Warfare ETF) 분석
 
-JEDI는 Defiance ETFs LLC(Franklin Resources, Inc. 산하)가 운용하는 매우 새로운 패시브 지수 추종 상장지수펀드(ETF)로, 2025년 9월 25일에 설정되어 불과 3.5개월간 운용 중입니다. AMEX에 상장되며, BITA Drone \& Modern Warfare Select Index를 추종합니다. 이 ETF는 드론, AI 기반 국방기술, 우주 방위 등 차세대 군사기술에 특화된 세계 최초의 현대전 기술 전문 ETF입니다.[^1]
+> **분석 기준일: 2026년 10월 5일**
+>
+> 순자산과 거래 지표는 10월 2일, 보유 종목은 10월 5일, 성과는 9월 30일, SEC 수익률은 9월 30일 기준이다. 비용은 2026년 8월 6일경 발효된 투자설명서 보충 내용을 반영한다.
 
-순자산 규모(AUM)는 약 \$28.5M로 극히 작습니다. 다만, 설정 초기 \$18.15M에서 약 57% 증가하여 강한 자금 유입을 보이고 있습니다. 현재 가격은 \$28.37로, 설정 시점 \$21.11에서 약 34.4% 상승했습니다.[^2]
+## 한 줄 요약
 
-***
+JEDI는 BITA Drone & Modern Warfare Select Index를 추종하는 ETF다. 2026년 8월부터 지수 편입 자격은 있으나 비상장인 기업에 투자하는 별도 구간도 허용됐다. 펀드는 이 구간에 순자산의 최대 15%까지 투자할 수 있으며, 실제 10월 5일 보유 목록에는 Shield AI를 보유한 SPV 지분이 순자산의 2.99%로 표시돼 있다.[^1][^2][^4]
 
-### 추종 성과 지표
+## 기본 분류
 
-![alt text](images/image.png)
+| 항목 | 내용 |
+|---|---|
+| 운용사 / 상품명 | Defiance ETFs, LLC / Defiance Drone & Modern Warfare ETF |
+| 티커 / 거래소 | JEDI / NYSE Arca |
+| 설정일 | 2025년 9월 25일 |
+| 자산군 / 방식 | 주식 / 지수 추종 중심 |
+| 추종 지수 | BITA Drone & Modern Warfare Select Index |
+| 레버리지·인버스·옵션 인컴 전략 | 해당 없음 |
 
-JEDI ETF 3개월 가격 추이 (2025년 9월-2026년 1월)
+## 지수와 운용 방식
 
-<strong>설립 이후 성과</strong>: JEDI는 설립 3개월 만에 5.42%의 시장가격 수익률을 기록했습니다. 설정일 기준으로는 약 34.4% 상승으로, 초기 펀드치고 매우 우수한 성과입니다. YouTube 분석에 따르면 출시 2주 만에 약 13% 상승했습니다.[^3][^4]
+지수는 드론과 현대전 관련 사업에서 매출의 50% 이상을 얻는 기업을 대상으로 한다. 편입 분야에는 군용·상업용 드론, 무인 시스템, AI 기반 군사 정보기술, 전자·통신전, 정보·감시·정찰, 우주·방위 기반시설, 군사 사이버보안, 군사 로봇과 eVTOL 등이 포함된다. 2026년 4월 30일자 투자설명서는 편입 심사에 1억 달러 이상의 시가총액과 최소 유동성 기준을 적용한다고 설명한다.[^3]
 
-<strong>기간별 성과</strong>: 1개월 수익률은 -0.12%(시장가격 기준)로 최근 약간의 조정을 보이지만, 전체적인 추세는 강한 상승장입니다. 설정 후 3개월에 5.42% 수익률은 연율 환산하면 약 22% 수익률에 해당합니다.
+BITA는 연 2회 종목을 심사하며 지수는 매년 3월과 9월에 재구성·재조정된다. 2026년 방법론은 종목 비중을 3개월 평균 일일 거래대금을 시가총액으로 나눈 유동성·모멘텀 요인으로 정하고, 한 종목의 비중을 10%로 제한한다. 지수 내 개별 비중이 5%를 넘는 종목들의 합계에도 45% 상한을 둔다. 정기 재조정 사이에도 기준에 부합하는 IPO·사업 전환 기업을 추가하거나 특별 조정할 수 있다.[^3]
 
-<strong>성과 해석</strong>: JEDI의 우수한 초기 성과는 우크라이나 전쟁에서의 드론의 역할 증명, 각국의 국방 AI 투자 확대, 그리고 드론 산업의 민간·상업 부문 확대에 대한 투자자의 높은 기대를 반영합니다.
+펀드는 지수를 복제하는 것을 원칙으로 하되, 비용이나 유동성 등으로 불리한 경우 대표 표본을 사용할 수 있다. 정상적인 상황에서 순자산의 최소 80%를 드론·현대전 기업에 투자한다.[^3][^4]
 
-***
+## 비상장 기업 투자 구간
 
-### 비용 구조
+2026년 8월 6일경 발효된 보충 투자설명서는 비상장 드론·현대전 기업에 대한 보조 투자 목적을 추가했다. 운용사는 이 구간에 순자산의 최대 15%까지 투자할 수 있고, 투자 시점의 실제 배분 규모는 일반적으로 약 5%를 넘지 않을 것으로 예상한다고 밝혔다. 15%는 목표 비중이 아니라 상한이다.[^4]
 
-<strong>총 운용보수</strong>: JEDI의 운용보수는 0.69%입니다. 이는 ITA의 0.38%, ROKT의 0.45%보다 높고, ARKX의 0.75%와 비슷합니다. 초기 펀드로서 규모의 경제를 누리지 못하고 있으며, AUM이 증가하면 보수가 인하될 가능성이 있습니다.[^5]
+펀드는 비상장 기업에 직접 투자하거나 단일 기업의 증권을 보유한 특수목적법인(SPV) 지분을 취득할 수 있다. 10월 5일 보유 목록에는 “Shield AI II-IC LLC” 지분이 2.99%로 기재돼 있다. 운용사 설명에 따르면 펀드가 Shield AI 주식을 직접 보유하는 것은 아니며, 제3자가 후원하는 단일 자산 SPV를 통해 간접 노출을 얻는다.[^1][^2]
 
-<strong>배당 정책</strong>: JEDI는 현재 배당금을 지급하지 않습니다. 월별 분배를 예정하고 있지만, 아직 실행되지 않았습니다. 포트폴이 드론, AI, 우주 등 신흥 기업들로 구성되어 있어 배당보다는 성장에 중점을 두고 있습니다.[^6]
+SPV 투자는 거래소에서 바로 처분하기 어려운 비유동 자산으로 취급된다. 투자설명서는 SPV 접근 수수료가 투자액의 약 5~8%에 이를 수 있고, 이를 반영한 0.30%의 취득 펀드 비용 추정치를 제시한다. 이 비용은 3.7%의 순자산을 SPV에 투자한다고 가정한 일회성 비용 추정치다.[^4]
 
-***
+## 순자산과 거래 지표
 
-### 유동성 평가
+Defiance 상품 페이지의 2026년 10월 2일 기준 자료다.[^1]
 
-<strong>거래량 및 거래대금</strong>: JEDI의 일평균 거래대금은 약 \$1.8M으로 매우 낮습니다. 이는 ITA의 \$174.61M과 비교하면 약 97배 차이납니다. 초기 펀드로서 유동성이 극도로 제한되어 있습니다.[^7]
+| 항목 | 값 |
+|---|---:|
+| 순자산(AUM) | $169.06M |
+| NAV | $25.14 |
+| 종가 | $25.17 |
+| NAV 대비 프리미엄·디스카운트 | 0.12% 프리미엄 |
+| 보유 종목 수 | 48개 |
+| 30일 중간 호가 스프레드 | 0.35% |
+| 상장 거래소 | NYSE |
 
-<strong>호가 스프레드</strong>: 초기 펀드이지만 호가 스프레드는 합리적인 수준을 유지하고 있습니다. 다만, 대량 거래 시 큰 호가 변동이 발생할 수 있습니다.
+ETF 시장가격은 NAV와 다를 수 있다. 특히 해외 주식이나 사모 자산의 평가와 거래소 개장 시간 차이, 기초자산의 유동성이 프리미엄·디스카운트와 체결 여건에 영향을 줄 수 있다.
 
-<strong>NAV 괴리율</strong>: NAV 대비 시장가격 괴리율은 약 0.28% 프리미엄으로 미미합니다. 이는 효율적인 지수 추종을 의미합니다.
+## 보유 종목
 
-<strong>유동성 위험</strong>: JEDI의 유동성은 모든 ETF 중 가장 낮습니다. 이는 투자 자금의 규모에 제약을 두어야 함을 의미합니다.
+Defiance가 2026년 10월 5일 공개한 상위 10개 보유 종목의 합계는 54.76%다. 합계는 각 공시 비중을 더해 계산했다. 사모 투자 구간의 Shield AI SPV는 상위 10개 밖에 있으며 비중은 2.99%다.[^1][^2]
 
-***
+| 종목 | 티커 | 비중 |
+|---|---:|---:|
+| Ondas | ONDS | 9.25% |
+| Redwire | RDW | 8.46% |
+| Unusual Machines | UMAC | 6.58% |
+| Intuitive Machines | LUNR | 6.01% |
+| AST SpaceMobile | ASTS | 4.69% |
+| Rocket Lab | RKLB | 4.34% |
+| Red Cat Holdings | RCAT | 4.27% |
+| Vertical Aerospace | EVTL | 4.12% |
+| BlackSky Technology | BKSY | 3.74% |
+| Planet Labs | PL | 3.30% |
 
-### 포트폴리오 구성
+보유 종목과 비중은 바뀔 수 있다. 상위 10개 비중이 절반을 넘고 비상장 SPV도 포함되므로 상장 기업별 가격 변동과 사모 자산의 평가·처분 조건을 함께 살펴야 한다.
 
-![alt text](images/image-1.png)
+## 비용과 수익률 지표
 
-JEDI ETF 상위 10대 보유 종목 및 비중
+운용보수는 연 0.69%다. 2026년 7월 27일 보충 투자설명서는 SPV 관련 취득 펀드 비용 추정치 0.30%를 더해 총 연간 운용비용을 0.99%로 표시한다. 다만 0.30%는 SPV 투자 시 한 번 발생하는 접근 수수료를 연간 비용표에 반영한 추정치이며, 투자설명서는 이후 연도의 실제 비용이 더 낮을 것으로 예상한다고 설명한다. 중개 수수료와 거래 비용 등은 별도일 수 있다.[^4]
 
-<strong>상위 10대 보유 종목</strong>: JEDI의 포트폴리오는 26-28개 종목으로 구성되며, 상위 10개 종목이 약 68%를 차지합니다. 이는 극도의 집중도를 나타냅니다.[^8]
+Defiance가 2026년 9월 30일 기준으로 공시한 30일 SEC 수익률은 -0.56%다. SEC 수익률은 규정된 산식에 따른 최근 수익률 지표이며, 향후 분배액이나 투자자의 실제 성과를 보장하지 않는다.[^1]
 
-주요 보유 종목:
+## 성과
 
-1. <strong>Palantir Technologies (7.55%)</strong> - AI 데이터 분석 및 국방 IT
-2. <strong>RTX Corporation (7.41%)</strong> - 항공우주 및 방위 통합 기업
-3. <strong>L3Harris Technologies (7.02%)</strong> - 방위 항공우주 기술
-4. <strong>Thales SA (6.82%)</strong> - 유럽 방위 기업
-5. <strong>Leidos Holdings (6.65%)</strong> - 국방 정보기술
+Defiance 상품 페이지의 2026년 9월 30일 기준 성과다. 설정 이후 수치는 누적 기준이다.[^1]
 
-<strong>포트폴리오 특징</strong>: JEDI는 전통적인 대형 방위산업 기업(Lockheed Martin, Northrop Grumman)을 의도적으로 배제하고, 드론, AI, 무인시스템, 우주, 사이버보안 등 차세대 기술에 전문화된 기업들로 구성합니다. 이는 ARKX의 능동형 관리와 유사한 포트폴리오 철학입니다.[^9]
+| 기간 | NAV 기준 | 시장가격 기준 |
+|---|---:|---:|
+| 2026년 연초 이후 | 3.68% | 3.38% |
+| 최근 1개월 | -4.54% | -4.64% |
+| 최근 3개월 | -13.47% | -13.63% |
+| 최근 6개월 | -1.56% | -1.92% |
+| 최근 1년 | -3.47% | -3.99% |
+| 설정 이후 | 1.22% | 1.33% |
 
-<strong>글로벌 구성</strong>: 포트폴리오에 Thales(프랑스), Saab(스웨덴) 등 유럽 기업을 포함하여 글로벌 분산을 시도하고 있습니다.
+과거 성과는 미래 결과를 보장하지 않는다. 단기 성과만으로 투자 결정을 내려서는 안 되며, 시장가격 기준 수익률은 NAV 기준과 다를 수 있다.[^1]
 
-***
+## 주요 위험
 
-### 투자 분야별 구성
+- **집중과 비분산형 구조:** 펀드는 비분산형이며 드론·현대전 및 관련 산업에 집중할 수 있다. 소수 종목이나 특정 산업의 변화가 성과에 크게 반영될 수 있다.[^3][^4]
+- **비상장 SPV의 유동성·평가:** SPV 지분은 거래소에서 쉽게 매도할 수 없고, 처분 시점은 기업공개나 매각 등 유동성 사건에 좌우될 수 있다. 공정가치 산정에 불확실성이 생길 수 있다.[^4]
+- **지수와 성과의 차이:** 사모 투자 구간은 지수에 포함되지 않고 운용사가 선택한다. 이 구간의 가치 변화와 현금 구성 때문에 펀드 성과가 지수와 크게 달라질 수 있다.[^4]
+- **추가 비용과 이해상충:** SPV 접근 수수료가 투자액을 줄이며, 운용사는 사모 투자 기회 배분·SPV 조건 협상·평가 과정의 잠재적 이해상충을 공시한다.[^4]
+- **정부 계약과 기술 변화:** 관련 기업은 국방 예산, 조달·규제 정책, 계약 수주, 경쟁과 빠른 기술 변화의 영향을 받을 수 있다.[^3]
+- **해외 투자와 거래 유동성:** 해외 시장과 통화 변동, 거래소 폐장 시점 차이, 보유 자산의 유동성이 ETF 가격과 거래에 영향을 줄 수 있다.[^3]
 
-![alt text](images/image-2.png)
+## 유사 상품을 비교할 때
 
-JEDI ETF 투자 분야별 자산 배분
+드론·우주·방위 ETF는 투자 대상, 지수의 편입 기준과 가중 방식, 비상장 자산 허용 여부가 서로 다를 수 있다. 비교할 때는 같은 기준일의 보유 종목과 비용을 확인하고, JEDI처럼 지수 추종과 별도 사모 투자 구간을 함께 둔 상품은 두 운용 방식을 구분해 볼 필요가 있다.
 
-JEDI의 포트폴리오는 다음과 같은 현대전 기술 분야로 구성됩니다:[^10]
+## 참고 자료
 
-
-| 분야 | 비중 | 예시 기업 |
-| :-- | :-- | :-- |
-| AI 국방IT | 22% | Palantir, CACI |
-| 군용 드론 | 18% | AeroVironment |
-| 우주방위 | 15% | Rocket Lab, RTX |
-| 무인시스템 | 14% | Kratos |
-| 전자전 | 10% | L3Harris |
-| 사이버보안 | 10% | 관련 기업 |
-| ISR(정보감시) | 8% | 관련 기업 |
-| 군용로봇 | 3% | 관련 기업 |
-
-
-***
-
-### 성과 분석
-
-<strong>초기 성과의 의미</strong>: JEDI의 설정 3.5개월 만의 34.4% 가격 상승은 다음을 의미합니다:
-
-1. 드론 및 현대전 기술에 대한 높은 투자자 수요
-2. 우크라이나 전쟁에서의 드론 활용 증명으로 인한 인식 변화
-3. 미국의 중국과의 기술 경쟁에서 방위 AI 투자 확대
-4. 2025년 방위 예산 증가와의 타이밍
-
-<strong>비교 분석</strong>: ARKX(86% 1년 수익률), ROKT(61% 1년 수익률)과 비교하면 JEDI는 3개월 5.42% (연율 환산 약 22%)로 중간 수준의 초기 성과를 보이고 있습니다.
-
-***
-
-### 리스크 요소
-
-<strong>극도의 규모 및 유동성 부족</strong>: JEDI의 \$28.5M AUM은 폐쇄 기준선에 매우 가깝습니다. 많은 대형 운용사는 \$50M 미만의 펀드를 폐쇄합니다. 2\~3년 내 자금이 \$50M 이상으로 증가하지 않으면 강제 폐쇄될 수 있습니다.[^11]
-
-<strong>극도의 집중도</strong>: 상위 10개 종목이 68%를 차지하여, 이 기업들의 부진이 포트폴리오에 극단적인 영향을 미칩니다. 특히 Palantir나 RTX의 실적 악화는 치명적일 수 있습니다.
-
-<strong>높은 P/E</strong>: P/E 40.48은 매우 높은 배수로, 성장이 충족되지 않을 경우 급격한 조정이 발생할 수 있습니다.[^12]
-
-<strong>높은 변동성</strong>: 52주 범위 \$23.01\~\$28.30은 약 23% 변동을 의미합니다. 초기 펀드로서 시장 변동성에 극도로 민감할 수 있습니다.
-
-<strong>지정학적 위험</strong>: JEDI의 성과는 국방비 증가 추세에 전적으로 의존합니다. 글로벌 평화가 도래하면 성과가 급락할 수 있습니다.
-
-<strong>신생 기업 리스크</strong>: 포트폴리오 기업 중 많은 수가 신흥 기업으로, 기술 개발 실패, 자금 부족, 경영 위험이 높습니다.
-
-***
-
-### 경쟁 ETF와의 비교
-
-![alt text](images/image-3.png)
-
-방산 및 우주 관련 ETF 주요 지표 비교 (JEDI vs ITA vs ARKX vs ROKT)
-
-<strong>JEDI vs ITA (iShares Aerospace \& Defense)</strong>:
-
-- <strong>운용보수</strong>: ITA 0.38% < JEDI 0.69% (ITA 우수)
-- <strong>설립 연도</strong>: ITA 2006년 (검증) vs JEDI 2025년 (신생)
-- <strong>규모</strong>: ITA \$12.96B >> JEDI \$28.5M
-- <strong>수익률</strong>: ITA 1년 48.66% vs JEDI 3개월 5.42%
-- <strong>포트폴리오</strong>: ITA 전통 방산 vs JEDI 차세대 기술
-- <strong>배당</strong>: ITA 0.91% vs JEDI 0%
-
-<strong>JEDI vs ARKX (ARK Space \& Innovation)</strong>:
-
-- <strong>운용보수</strong>: JEDI 0.69% < ARKX 0.75%
-- <strong>운용방식</strong>: JEDI 패시브 vs ARKX 액티브
-- <strong>규모</strong>: ARKX \$513.69M >> JEDI \$28.5M
-- <strong>1년 수익률</strong>: ARKX 86.07% >> JEDI 5.42% (3개월)
-- <strong>설립 연도</strong>: ARKX 2021년 (검증) vs JEDI 2025년 (신생)
-
-<strong>JEDI의 경쟁 우위</strong>:
-
-1. <strong>혁신적 전략</strong>: 전통 방산업 배제, 차세대 기술 중심
-2. <strong>미래 지향적</strong>: 드론·AI·우주 등 미래 전쟁의 핵심 기술
-3. <strong>이중 성장</strong>: 군사 + 상업(드론 택배, 농업 등) 동시 성과
-4. <strong>초기 상승</strong>: 출시 후 34.4% 상승, 강한 투자자 관심
-
-<strong>JEDI의 약점</strong>:
-
-1. <strong>극도의 소규모</strong>: 폐쇄 위험 높음
-2. <strong>극도의 집중도</strong>: 상위 10개 68%
-3. <strong>극도의 유동성 부족</strong>: 일거래 \$1.8M
-4. <strong>높은 운용보수</strong>: 0.69%
-5. <strong>신생 펀드</strong>: 다양한 시장 사이클 미경험
-6. <strong>배당 없음</strong>: 배당 투자자 부적합
-
-***
-
-### 투자 시나리오별 분석
-
-<strong>강세 시나리오 (확률 60%)</strong>:
-
-- 우크라이나 전쟁 장기화, 중동 갈등 확대
-- 미국의 중국 기술 경쟁에서 방위 AI 투자 확대
-- 드론 상업화 시장 폭발적 성장
-- 펀드 AUM 증가로 보수 인하
-- 예상 수익률: 20\~50% (연간)
-- <strong>위험</strong>: 펀드 폐쇄 위험은 낮음
-
-<strong>약세 시나리오 (확률 40%)</strong>:
-
-- 글로벌 평화 도래, 국방비 감소
-- 경제 침체로 방위산업 성장 둔화
-- 주요 기업(Palantir, RTX) 실적 악화
-- AUM 증가 부진으로 펀드 폐쇄 위험 증가
-- 예상 수익률: -20\~10%
-- <strong>위험</strong>: 펀드 폐쇄로 강제 해산 가능성
-
-***
-
-### 종합 평가 및 투자 고려사항
-
-<strong>강점</strong>:
-
-- 혁신적 투자 전략 (차세대 군사기술 전문)
-- 미래 트렌드에 부합 (드론·AI·우주)
-- 초기 우수한 성과 (+34.4%, 3.5개월)
-- 강한 초기 자금 유입 (57% 증가)
-- 이중 성장 동력 (군사 + 상업)
-
-<strong>약점</strong>:
-
-- 극도의 소규모 (\$28.5M)
-- 극도의 저유동성 (\$1.8M 일거래)
-- 극도의 집중도 (상위 10개 68%)
-- 높은 운용보수 (0.69%)
-- <strong>폐쇄 위험 높음</strong> (2\~3년 내 \$50M 미만 유지 시)
-- 신생 펀드 (3.5개월)
-- 배당 없음
-
-<strong>최적 투자자</strong>:
-
-1. <strong>차세대 기술 신봉자</strong>: 드론·AI 혁명이 올 것으로 확신하는 투자자
-2. <strong>고위험 고수익 추구자</strong>: 50% 이상 손실을 감수할 수 있는 투자자
-3. <strong>소규모 자금 투자자</strong>: \$5,000\~\$50,000 정도의 소규모 투자
-4. <strong>장기 투자자</strong>: 폐쇄 위험을 감수할 수 있는 5년 이상 투자자
-5. <strong>벤처 펀드 경험자</strong>: 신생 펀드의 불확실성에 익숙한 투자자
-
-<strong>부적합 투자자</strong>:
-
-1. <strong>대규모 자금 투자자</strong>: 유동성 부족으로 거대 포지션 불가
-2. <strong>배당 투자자</strong>: 배당금 없음
-3. <strong>안정성 추구자</strong>: 높은 변동성과 폐쇄 위험
-4. <strong>단기 수익 추구자</strong>: 매우 불안정한 초기 펀드
-5. <strong>보수적 투자자</strong>: 신생 펀드의 극도의 위험
-
-***
-
-### 최종 결론
-
-JEDI는 <strong>극도의 고위험 고수익 신생 펀드</strong>로, 차세대 군사기술(드론·AI·우주)의 미래 성장에 강한 확신을 가진 투자자만이 투자해야 합니다. 초기 3.5개월 간의 34.4% 상승과 강한 자금 유입은 긍정적 신호이지만, \$28.5M의 극도로 작은 규모는 2\~3년 내 폐쇄 위험을 의미합니다.
-
-<strong>투자 권고사항</strong>:
-
-- <strong>포지션 크기</strong>: 전체 포트폴리오의 1\~5% 이하 (고위험 자산)
-- <strong>투자 기간</strong>: 최소 3\~5년 (폐쇄 위험 회피용)
-- <strong>진입 전략</strong>: 일시 투자보다 분할 매매 (변동성 대비)
-- <strong>모니터링</strong>: 분기별 AUM 추이 감시 (폐쇄 신호 포착)
-- <strong>분산 투자</strong>: ITA, ARKX, UFO와 병행 (단독 투자 위험)
-
-<strong>대안 검토</strong>:
-
-- 유사 전략을 원한다면: <strong>ARKX</strong> (액티브, 검증됨, \$513M AUM)
-- 전통 방산을 원한다면: <strong>ITA</strong> (안정성, 배당, \$12.96B AUM)
-- 우주산업을 원한다면: <strong>ROKT</strong> 또는 <strong>UFO</strong>
-
-JEDI는 <strong>혁신적이지만 극도로 위험한 펀드</strong>입니다. 투자 결정 전에 펀드 폐쇄 위험, 극도의 집중도, 유동성 부족을 충분히 이해해야 합니다.
-
-***
-
-### 참고 자료
-
-Defiance ETFs 공식 사이트 - 기본 정보[^13][^1]
-Morningstar - AUM 정보[^14][^2]
-Defiance ETFs - 성과 데이터[^3][^13]
-YouTube 채널 - 출시 2주 성과 분석[^15][^4]
-TradingView - 운용보수[^16][^5]
-Defiance ETFs - 배당 정책[^6][^13]
-Robinhood - 거래대금 정보[^17][^7]
-Defiance ETFs - 포트폴리오 구성[^8][^13]
-Investing.com - JEDI 포트폴리오 특징[^18][^9]
-SmartToday - 투자 분야 분석[^19][^10]
-YouTube - 펀드 규모 분석[^11][^15]
-Robinhood - P/E 비율[^12][^17]
-<span style="display:none">[^20][^21][^22][^23][^24][^25][^26][^27]</span>
-
-<div align="center">⁂</div>
-
-[^2]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers
-
-[^3]: https://m.invest.zum.com/etf/ROKT/
-
-[^4]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-technical
-
-[^5]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-options
-
-[^6]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-scoreboard
-
-[^7]: https://cbonds.com/etf/2245/
-
-[^8]: https://kr.tradingview.com/symbols/AMEX-ROKT/
-
-[^9]: https://www.samsungfund.com/etf/insight/newsroom/view.do?seqn=70015
-
-[^10]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-news
-
-[^11]: https://www.zacks.com/funds/etf/ROKT/profile
-
-[^12]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-dividends
-
-[^13]: https://www.defianceetfs.com/jedi/
-
-[^14]: https://www.morningstar.com/etfs/arcx/jedi/quote
-
-[^15]: https://www.youtube.com/watch?v=tEhadcl_Ka0
-
-[^16]: https://kr.tradingview.com/symbols/BOATS-JEDI/analysis/
-
-[^17]: https://robinhood.com/us/en/stocks/JEDI/
-
-[^18]: https://kr.investing.com/news/stock-market-news/article-1648044
-
-[^19]: https://www.smarttoday.co.kr/ko-kr/articles/95639
-
-[^20]: https://finance.yahoo.com/quote/JEDI/
-
-[^21]: https://etfdb.com/etf/JEDI/
-
-[^22]: https://www.kraken.com/stocks/jedi
-
-[^23]: https://midasasset.com/wp-content/uploads/2025/06/woldeuEMP_0425.pdf
-
-[^24]: https://www.investing.com/etfs/jedi
-
-[^25]: https://dealsiteplus.co.kr/articles/148322
-
-[^26]: https://money.usnews.com/funds/etfs/technology/defiance-drone-and-modern-warfare-etf/jedi
-
-[^27]: https://contents.premium.naver.com/gam/money/contents/251011003205538hs
+[^1]: [Defiance JEDI 공식 상품 페이지](https://www.defianceetfs.com/jedi/) — 펀드 수치, 성과, 수익률, 투자 목적과 사모 자산 설명.
+[^2]: [Defiance JEDI 공식 전체 보유 목록](https://www.defianceetfs.com/jedi-full-holdings/) — 2026년 10월 5일 상위 보유와 Shield AI II-IC LLC 표시.
+[^3]: [미국 SEC 제출 JEDI 요약 투자설명서 (2026-04-30)](https://www.sec.gov/Archives/edgar/data/1540305/000089418926013999/jedisummary.htm) — 지수 선정·가중 방식, 비용, 투자 및 위험.
+[^4]: [미국 SEC 제출 JEDI 투자설명서 보충서류 (2026-07-27)](https://www.sec.gov/Archives/edgar/data/1540305/000089418926021452/ck0001540305-20260727.htm) — 사모 투자 구간, 예상 취득 펀드 비용과 관련 위험.
