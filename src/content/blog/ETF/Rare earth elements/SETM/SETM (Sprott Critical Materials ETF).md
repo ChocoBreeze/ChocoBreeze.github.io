@@ -1,266 +1,89 @@
 ---
 title: 'SETM (Sprott Critical Materials ETF)'
-description: '에너지 전환 핵심 자재 기업에 투자하는 Sprott ETF'
+description: '우라늄·구리·리튬 등 핵심 자재 관련 기업을 추종하는 Sprott 주식 ETF'
 pubDate: '2026-01-31T19:00:00Z'
-ticker: "SETM"
-issuer: "Sprott"
-assetClass: "Equity"
-strategy: "Index"
-exposure: "Critical Materials"
-leverage: "1x"
-incomeStyle: "None"
-categories: "ETF"
+updatedDate: '2026-10-04T00:00:00+09:00'
+verifiedDate: '2026-10-04T00:00:00+09:00'
+dataAsOf: '2026-10-02T00:00:00+09:00'
+expenseRatioAsOf: '2026-04-30T00:00:00+09:00'
+aumAsOf: '2026-10-02T00:00:00+09:00'
+ticker: 'SETM'
+issuer: 'Sprott'
+instrumentType: 'ETF'
+assetClass: 'Equity'
+strategy: 'Index'
+exposure: 'Critical Materials'
+leverage: '1x'
+incomeStyle: 'None'
+expenseRatio: '0.65%'
+aum: 517245327
+categories: 'ETF'
 ---
 
-### 기본 정보
+## 개요
 
-SETM은 Sprott Funds Trust가 운용하는 패시브 지수 추종 상장지수펀드(ETF)로, 2023년 2월 1일에 설정되어 약 3년간 운용 중입니다. NASDAQ에 상장되며, Nasdaq Sprott Critical Materials™ Index를 추종합니다. 2024년 10월까지는 "Sprott Energy Transition Materials ETF"로 불렸으나, 명칭을 변경했습니다.[^1]
+SETM은 Nasdaq Sprott Critical Materials Index의 수익률을 추종하도록 설계된 미국 상장 주식 ETF다. 운용사는 지수의 편입 기업을 통해 우라늄, 구리, 리튬, 니켈, 코발트, 흑연, 망간, 희토류, 은 등 에너지 전환 관련 원자재 기업에 투자한다. 금속 현물이나 선물 가격을 직접 추종하는 상품은 아니다. 광산·탐사·개발·생산·재활용·정제 기업과 관련 자산·로열티·공급 기업의 주식 가격에 노출된다.[^1]
 
-SETM은 에너지 전환(Energy Transition)에 필수적인 핵심 자재를 채굴, 정제, 재활용하는 기업들에 투자합니다. 이는 리튬, 우라늄, 구리, 희토류, 은, 니켈, 코발트, 그래파이트 등의 광산 기업들입니다.[^2]
+이 펀드는 2023년 2월 1일 설정됐다. 2024년 10월 이전 명칭은 Sprott Energy Transition Materials ETF였다.[^2]
 
-순자산 규모(AUM)는 약 \$302.84M이며, 최근 자금 유입이 활발하여 1년 내 \$93.29M의 순 유입을 기록했습니다. 현재 가격은 \$32.06으로, 2023년 초 설정 시 \$19.27에서 약 66% 상승했습니다.[^3]
+## 기준일별 주요 정보
 
-***
+| 항목 | 내용 |
+| :-- | :-- |
+| 티커·거래소 | SETM · Nasdaq |
+| 추종 지수 | Nasdaq Sprott Critical Materials Index (NSETM) |
+| 설정일 | 2023년 2월 1일 |
+| 총보수 | 연 0.65% |
+| 순자산 | 5억 1,724만 달러 (2026년 10월 2일) |
+| NAV / 시장가격 | 29.21달러 / 29.20달러 (2026년 10월 2일) |
+| NAV 대비 괴리 | -0.03% (2026년 10월 2일) |
+| 보유 종목 수 | 156개 (2026년 10월 2일) |
+| 30일 중앙값 매수·매도 호가 차이 | 0.46% (2026년 10월 1일 기준) |
 
-### 추종 성과 지표
+보수는 2026년 4월 30일 요약 투자설명서의 연간 총운용비용이다. 거래 수수료와 세금 등 투자자의 별도 비용은 포함하지 않는다. 순자산·가격·보유 종목 수는 Sprott가 10월 2일 공개한 펀드 자료를 기준으로 한다.[^1][^2]
 
-![alt text](images/image.png)
+## 투자 방식과 지수
 
-SETM ETF 3년 가격 추이 (2023-2026)
+투자설명서에 따르면 펀드는 통상 총자산의 80% 이상을 추종 지수의 증권에 투자한다. 지수는 핵심 자재 채굴·탐사·개발·생산·재활용·정제·제련 기업, 핵심 자재 관련 자산이 중요한 비중을 차지하는 기업, 로열티 수익 기업 및 관련 자재 공급 기업 등을 대상으로 한다. 지수 선별 기준에는 해당 사업이 기업 매출 또는 자산에서 차지하는 비율이 포함된다. 대상 기업은 미국뿐 아니라 호주, 캐나다, 신흥·프런티어 시장에도 상장될 수 있다.[^2]
 
-<strong>극도의 우수한 2025년 성과</strong>: SETM은 2025년 YTD 기준 약 94.50-99%의 극도로 우수한 수익률을 기록했습니다. 블룸버그 및 다수의 투자 매체는 SETM을 "2025년 최고 수익률 ETF"로 선정했습니다.[^4]
+운용사는 지수 종목과 비중을 따라가는 복제 방식을 기본으로 하되, 전 종목 편입이 어렵거나 비효율적이면 표본 추출 방식을 사용할 수 있다. 따라서 펀드의 실제 보유 종목과 지수 구성 종목 수는 같지 않을 수 있고, 수수료·거래 비용·현금 보유·표본 추출 때문에 지수와 성과 차이가 생길 수 있다.[^2]
 
-<strong>기간별 성과</strong>:
+지수는 2026년 9월 21일부터 매년 3·6·9·12월 분기별로 리밸런싱한다. 6월과 12월 조정은 지수 재구성도 겸한다. 2026년 4월 투자설명서와 Sprott 상품 페이지에는 이전의 반기 일정이 남아 있어, 변경 일정을 공시한 SEC 보충 문서를 기준으로 정리했다.[^2][^3]
 
-- <strong>1개월</strong>: +5.79%
-- <strong>3개월</strong>: +17.23%
-- <strong>YTD (2025)</strong>: +94.50%
-- <strong>1년</strong>: +59.84% (NAV 기준)
-- <strong>3년 평균</strong>: +14.79% (설립 이후, 매우 우수)
-- <strong>설립 이후</strong>: +68.68%
+## 보유 종목과 자재 비중
 
-<strong>성과 해석</strong>: SETM은 REMX와 비슷하게 2025년 극도의 우수한 성과를 기록했습니다. 다만, 1년 수익률(59.84%)은 REMX(49.41%)보다 약간 높으며, 설립 이후 3년 평균(14.79%)은 매우 우수합니다.
+2026년 10월 2일 상위 보유 종목은 Freeport-McMoRan 5.34%, Cameco 4.84%, Lynas Rare Earths 4.43%, Kazatomprom 3.79%, PLS Group 3.74%, Teck Resources 3.56%, Albemarle 3.37%, Hecla Mining 3.34%, Uranium Energy 3.30%, First Majestic Silver 3.24% 순이었다. 보유 비중은 시장가격에 따라 달라질 수 있다.[^1]
 
-***
+Sprott의 자재별 업종 분류는 2026년 8월 31일 기준 구리 28.27%, 우라늄 24.92%, 리튬 17.40%, 은 16.55%, 희토류 9.67%, 니켈 2.29%, 망간 0.44%, 재활용 기업 0.33%, 흑연 0.13%였다. 이는 운용사가 기업을 자재별로 분류한 주식 비중이며, 원자재 현물 보유량이나 10월 2일 현재 비중을 뜻하지 않는다.[^1]
 
-### 비용 구조
+## 과거 총수익률
 
-<strong>총 운용보수</strong>: SETM의 운용보수는 0.65%입니다. 이는 REMX의 0.58%보다 약간 높고, 우주·항공우주 ETF들(0.38-0.75%)과 비슷한 수준입니다.[^5]
+아래 수치는 2026년 9월 30일까지의 총수익률이다. 1개월·3개월·연초 이후 수익률은 비연율 수치이며, 1년·3년·설정 이후 수익률은 연환산 기준이다.[^1]
 
-<strong>배당 정책</strong>: SETM은 배당을 지급합니다. 배당수익률은 1.10%이며, 일반적으로 연 1회 배당이 지급됩니다.[^6]
+| 기간 | SETM NAV | 시장가격 | 추종 지수 |
+| :-- | --: | --: | --: |
+| 1개월 | -14.75% | -15.01% | -14.64% |
+| 3개월 | -5.43% | -5.97% | -5.23% |
+| 2026년 연초 이후 | +2.08% | +1.28% | +2.57% |
+| 1년 | +19.67% | +18.58% | +20.14% |
+| 3년 연환산 | +19.98% | +19.61% | +20.56% |
+| 설정 이후 연환산 | +12.23% | +12.08% | +13.08% |
 
-***
+과거 수익률은 미래 성과를 보장하지 않는다. 월말 성과 기준일과 일일 NAV·시장가격 기준일은 서로 다르므로 수치를 함께 볼 때 날짜를 확인해야 한다.[^1]
 
-### 유동성 평가
+## 주요 위험과 확인할 점
 
-<strong>거래량 및 거래대금</strong>: SETM의 일평균 거래대금은 약 \$2.72M으로 낮지만, REMX(\$43.5M)나 우주 ETF들과 비교하면 충분합니다. 신생 펀드 치고는 양호한 유동성입니다.[^7]
+- **광산·원자재 경기 위험:** 기업 주가는 금속 가격뿐 아니라 매장량 추정, 인허가, 공사·생산 비용, 프로젝트 지연, 환경 규제와 정치적 결정의 영향을 받는다. 금속 가격이 상승해도 개별 기업의 비용이나 운영 문제가 주가를 압박할 수 있다.[^2]
+- **산업 및 기업 집중:** 투자설명서는 SETM을 비분산 펀드로 분류하며, 2025년 말 기준 추종 지수가 금속 채굴 산업에 집중됐다고 공시한다. 여러 자재와 기업을 보유하더라도 광산업 경기의 공통 위험이 사라지는 것은 아니다.[^2]
+- **해외 시장·환율:** 지수에는 미국 외 기업이 포함되며, 통화 변동, 외국 규제, 신흥·프런티어 시장의 유동성 및 정치 위험이 성과에 영향을 줄 수 있다.[^2]
+- **주식 투자 위험:** SETM은 광산·공급 기업의 주식에 투자한다. 따라서 금속 현물 가격과 수익률이 일치하지 않으며, 원자재에 대한 직접 투자와 다른 손익 경로를 가진다.[^2]
+- **거래가격·추적 차이:** ETF 시장가격은 NAV와 달라질 수 있다. 거래 시점의 호가 차이, 펀드 비용과 지수 복제 과정도 실제 수익률에 영향을 준다.[^1][^2]
+- **회전율과 거래 비용:** 2025 회계연도 포트폴리오 회전율은 55%였다. 회전율은 펀드 내부 거래 비용과 과세 계좌의 과세에 영향을 줄 수 있지만, 총보수에 포함되지 않는다.[^2]
 
-<strong>NAV 괴리율</strong>: NAV 프리미엄이 0.68%로 약간의 프리미엄으로 거래되고 있습니다.
+## 자료와 기준일
 
-***
+이 글은 2026년 10월 4일에 검토했다. 일일 펀드 지표와 보유 종목은 Sprott의 2026년 10월 2일 자료, 월말 성과는 2026년 9월 30일 자료, 자재 분류는 2026년 8월 31일 자료를 사용했다. 보수와 투자 전략은 SEC에 제출된 2026년 4월 30일 요약 투자설명서, 리밸런싱 변경은 2026년 7월 8일 SEC 보충 문서를 기준으로 했다.[^1][^2][^3]
 
-### 포트폴리오 구성
-
-![alt text](images/image-1.png)
-
-SETM ETF 상위 10대 보유 종목 및 비중
-
-<strong>상위 보유 종목</strong>: SETM의 포트폴이는 87-127개 종목으로 구성되어 있습니다. 다양한 광산 및 자재 기업들을 포함합니다.[^8]
-
-주요 보유 종목:
-
-1. <strong>MP Materials Corp (10.42%)</strong> - 미국 희토류 채굴
-2. <strong>Albemarle (4.96%)</strong> - 리튬 및 희토류
-3. <strong>Cameco (4.85%)</strong> - 우라늄
-4. <strong>Lynas Rare Earths (4.59%)</strong> - 호주 희토류
-5. <strong>Freeport-McMoRan (4.18%)</strong> - 구리 및 금
-6. <strong>Pilbara Minerals (5.00%)</strong> - 호주 리튬
-
-<strong>자재별 분배</strong>:
-
-![alt text](images/image-2.png)
-
-SETM ETF 핵심 자재별 자산 배분
-
-SETM은 다양한 핵심 자재에 분산된 포트폴리오를 보유합니다. 리튬(27.83%)이 가장 큰 비중을 차지하며, 우라늄(19.56%), 구리(18.98%), 희토류(14.48%), 은(13.23%)이 이어집니다. 이는 전기자동차 배터리(리튬), 핵 에너지(우라늄), 전기 인프라(구리) 등 다양한 에너지 전환 시나리오를 포괄합니다.[^9]
-
-<strong>지역별 분배</strong>:
-
-- 캐나다: 31.61%
-- 호주: 26.00%
-- 미국: 24.51%
-- 신흥 아시아: 11.15%
-- 기타: 6.73%
-
-***
-
-### SETM vs REMX 비교
-
-![alt text](images/image-3.png)
-
-SETM vs REMX 성과 비교 (핵심 자재 ETF 비교)
-
-
-| 지표 | SETM | REMX |
-| :-- | :-- | :-- |
-| <strong>설립 연도</strong> | 2023년 2월 | 2010년 10월 |
-| <strong>운용보수</strong> | 0.65% | 0.58% |
-| <strong>1년 수익률</strong> | 59.84% | 49.41% |
-| <strong>YTD 2025</strong> | 94.50% | 95.0% |
-| <strong>AUM</strong> | \$302.84M | \$1.39B |
-| <strong>배당수익률</strong> | 1.10% | 1.43% |
-| <strong>P/E 배수</strong> | 29.93 | 34.85 |
-| <strong>보유 종목</strong> | 87-127개 | 25-30개 |
-
-<strong>SETM의 장점</strong>:
-
-1. 설립 이후 3년 평균 14.79% (REMX의 장기 마이너스 대비)
-2. 더 다양한 자재 포트폴리오 (리튬+우라늄+구리 등)
-3. 더 많은 보유 종목 (분산도 높음)
-4. 약간 낮은 P/E (29.93 vs 34.85)
-
-<strong>REMX의 장점</strong>:
-
-1. 더 오래된 역사 (검증도)
-2. 더 큰 규모 (AUM \$1.39B)
-3. 약간 더 높은 배당 (1.43% vs 1.10%)
-4. 더 낮은 운용보수 (0.58% vs 0.65%)
-
-***
-
-### 2025년 극도의 성과의 이유
-
-<strong>SETM과 REMX가 모두 2025년 약 95% 수익률을 기록한 이유</strong>:
-
-1. <strong>AI 칩 수요 폭증</strong>: NVIDIA 등 AI 칩 제조사의 수요로 구리 및 희토류 가격 급등
-2. <strong>리튬 가격 급등</strong>: 전기자동차 및 에너지 저장 배터리 수요로 리튬 가격 3배 이상 상승
-3. <strong>우라늄 가격 상승</strong>: 핵 에너지 재평가 및 기후 변화 대응으로 우라늄 가격 급상승
-4. <strong>지정학적 긴장</strong>: 미-중 기술 경쟁으로 전략 자원의 가치 상승
-5. <strong>정부 투자</strong>: 미국 정부의 핵심 광물 공급망 재편 정책
-
-***
-
-### 리스크 요소
-
-<strong>극도의 높은 변동성</strong>: P/E 51.49는 매우 높은 배수이며, 베타 추정 1.3-1.4로 높은 변동성을 가집니다.[^10]
-
-<strong>원자재 가격 의존성</strong>: 리튬, 우라늄, 구리 등의 원자재 가격 변동에 거의 전적으로 의존합니다.
-
-<strong>지정학적 리스크</strong>: 캐나다(31.61%), 호주(26%)에 편중되어 있지만, 신흥 아시아(11.15%)와 미국(24.51%)도 상당합니다.
-
-<strong>경기 사이클</strong>: 경기 둔화 시 에너지 전환 투자가 줄어들 수 있습니다.
-
-<strong>2025년 성과의 지속성</strong>: +94.50%의 성과는 역사적으로 매우 높으며, 2026년 조정이 예상됩니다.
-
-***
-
-### 종합 평가 및 투자 고려사항
-
-<strong>강점</strong>:
-
-- 극도의 우수한 2025년 성과 (+94.50%)
-- 설립 이후 우수한 3년 평균 성과 (+14.79%)
-- 다양한 자재 포트폴리오 (리튬+우라늄+구리)
-- 에너지 전환의 핵심 자산에 노출
-- 정부 지원으로 공급망 안정화
-- 87-127개 종목의 우수한 분산
-- 배당 수익 (1.10%)
-
-<strong>약점</strong>:
-
-- 매우 신생 펀드 (3년, REMX는 15년)
-- 극도의 높은 P/E (51.49)
-- 원자재 사이클에 극도로 의존
-- 2025년 성과는 지속 불가능할 가능성
-- 지정학적 리스크 (캐나다 31.61%)
-
-<strong>투자 적합성</strong>:
-
-<strong>추천</strong>:
-
-- 핵심 자재 성장에 베팅하는 투자자
-- 에너지 전환 전략에 확신하는 투자자
-- 3-5년 이상 장기 투자자
-- 고위험 고수익 추구자
-
-<strong>비추천</strong>:
-
-- 안정성 중시 투자자
-- 단기 수익 추구자
-- 2025년 성과 반복 기대자
-
-***
-
-### 최종 결론
-
-<strong>SETM은 에너지 전환에 필수적인 핵심 자재에 투자하는 우수한 신생 ETF</strong>입니다. 2025년 +94.50% 성과는 리튬, 우라늄, 구리 등이 21세기 에너지 혁명의 중심이 됨을 의미합니다.
-
-REMX와 비교할 때, <strong>SETM은 더 다양한 자재 포트폴리오와 우수한 3년 평균 성과(14.79%)</strong>를 제공합니다. 다만, <strong>신생 펀드이고 극도의 고평가(P/E 51.49)</strong>이므로, 조정 위험을 감수해야 합니다.
-
-<strong>투자 전략</strong>: 포트폴리오의 2-5% 정도의 고위험 자산으로 배치하고, 3-5년 이상의 장기 투자 관점으로 접근하는 것을 권고합니다.
-
-***
-
-### 참고 자료
-
-Sprott 공식 사이트 - 기본 정보[^11][^1]
-Sprott USA - 투자 대상[^12][^2]
-TradingView - AUM 및 자금 흐름[^13][^3]
-Sprott - 2025년 성과[^4][^11]
-TradingView - 운용보수[^5][^13]
-TradingView - 배당 정보[^6][^13]
-TradingView - 거래대금[^7][^13]
-Sprott - 보유 종목 수[^8][^11]
-Sprott - 자재별 비중[^9][^11]
-Yahoo Finance - P/E 비율[^14][^10]
-<span style="display:none">[^15][^16][^17][^18][^19][^20][^21][^22][^23][^24][^25]</span>
-
-<div align="center">⁂</div>
-
-[^2]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers
-
-[^3]: https://m.invest.zum.com/etf/ROKT/
-
-[^4]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-technical
-
-[^5]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-options
-
-[^6]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-scoreboard
-
-[^7]: https://cbonds.com/etf/2245/
-
-[^8]: https://kr.tradingview.com/symbols/AMEX-ROKT/
-
-[^9]: https://www.samsungfund.com/etf/insight/newsroom/view.do?seqn=70015
-
-[^10]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-news
-
-[^11]: https://sprottetfs.com/setm-sprott-critical-materials-etf/
-
-[^12]: https://www.sprottusa.com/etfs-update/setm-sprott-critical-materials-etf/
-
-[^13]: https://kr.tradingview.com/symbols/NASDAQ-SETM/
-
-[^14]: https://finance.yahoo.com/quote/SETM/
-
-[^15]: https://stockscan.io/ko/stocks/SETM/forecast
-
-[^16]: https://kr.investing.com/etfs/setm
-
-[^17]: https://markets.ft.com/data/etfs/tearsheet/summary?s=SETM%3ANMQ%3AUSD
-
-[^18]: https://blog.naver.com/jeunkim/224127353372?fromRss=true\&trackingCode=rss
-
-[^19]: https://sprottetfs.com/critical-materials-landing-page/
-
-[^20]: https://kr.investing.com/etfs/setm-scoreboard
-
-[^21]: https://finance.yahoo.com/quote/SETM/performance/
-
-[^22]: https://stockanalysis.com/etf/setm/holdings/
-
-[^23]: https://kr.investing.com/etfs/setm-historical-data-dividends
-
-[^24]: https://fintel.io/ko/so/us/setm
-
-[^25]: https://invest.deepsearch.com/etf/SETM/
+[^1]: [Sprott Critical Materials ETF 상품 페이지](https://sprottetfs.com/setm-sprott-critical-materials-etf/)
+[^2]: [SEC 2026년 4월 30일 요약 투자설명서](https://www.sec.gov/Archives/edgar/data/1728683/000182912626004462/sprott_497k.htm)
+[^3]: [SEC 2026년 7월 8일 지수 리밸런싱 변경 보충 문서](https://www.sec.gov/Archives/edgar/data/1728683/000182912626007378/sprottfundstrust_497.htm)
