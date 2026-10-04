@@ -1,422 +1,97 @@
 ---
-title: 'SPHCF (Sprott Physical Copper Trust / COP.UN)'
-description: '세계 최초 물리적 구리 투자 신탁'
+title: 'SPHCF / SCOP (Sprott Physical Copper Trust)'
+description: 'SCOP의 실물 구리 보유, NAV 대비 할인, 비용·월간 환매 조건과 미국 투자자의 PFIC 위험을 정리한다.'
 pubDate: '2026-01-16T06:00:00Z'
-categories: "ETF"
-instrumentType: "CEF"
-ticker: "SPHCF"
-issuer: "Sprott"
-assetClass: "Commodity"
-strategy: "Physical"
-exposure: "Copper"
-leverage: "1x"
-incomeStyle: "None"
+updatedDate: '2026-10-04T00:00:00+09:00'
+verifiedDate: '2026-10-04T00:00:00+09:00'
+dataAsOf: '2026-10-02T00:00:00+09:00'
+aum: 'USD 212.81M'
+aumAsOf: '2026-10-02T00:00:00+09:00'
+expenseRatio: '1.40% MER'
+expenseRatioAsOf: '2026-06-30T00:00:00+09:00'
+ticker: 'SCOP'
+instrumentType: 'CEF'
+issuer: 'Sprott'
+assetClass: 'Commodity'
+strategy: 'Physical'
+exposure: 'Copper'
+leverage: '1x'
+incomeStyle: 'None'
+categories: 'ETF'
+tags: ['실물 구리', '폐쇄형 신탁', 'SCOP', '구리']
 ---
 
-## 요약 및 투자 개요
+## 한 줄 요약과 분류
 
-SPHCF(Sprott Physical Copper Trust / COP.UN)는 2024년 6월 6일부터 운영 중인 <strong>세계 최초 물리적 구리 투자 신탁</strong>이다. 현재 순자산 \$155.83M (CAD 기준), 보수료 <strong>1.61%(극도로 높음)</strong>, 11,047톤의 실제 구리 보유로 <strong>순수 구리 상품 노출</strong>을 제공한다.
+Sprott Physical Copper Trust는 실물 구리를 장기 보유해 구리 가격 노출을 제공하는 캐나다 법률상 신탁이다. 선물 계약이나 광산 기업 주식을 주된 자산으로 삼지 않는다. Sprott는 정기적인 현금 분배를 예상하지 않는다고 설명한다.[^1]
 
-SPHCF는 <strong>"혁신적 구상이지만 극도로 비용이 높고 거래 프리미엄으로 망가진 사망의 함정"</strong> 이다:
+이 신탁의 미국 상장 티커는 2026년 5월 4일부터 NYSE Arca의 SCOP이며, TSX에는 미국 달러 표시 COP.U와 캐나다 달러 표시 COP.UN으로 상장돼 있다. Sprott는 상품 유형을 Closed-End Trust로 표시한다. 따라서 이 글은 실제 구조에 맞춰 ETF/Copper 폴더에 두고 instrumentType을 CEF로 분류한다. 기존 SPHCF 표기는 이전 OTC 인용에 사용된 코드다.[^1][^2]
 
-<strong>이론상의 장점</strong>:
-
-- 세계 최초 물리적 구리 펀드
-- 콘탱고 드래그 없음 (CPER와 달리)
-- 채광 회사 위험 없음 (COPX와 달리)
-- 보험되고 안전한 보관
-
-<strong>실제의 재앙</strong>:
-
-- 1년 수익: <strong>41.58% NAV</strong> (ICOP 77.87% 대비 <strong>-36.3% 언더퍼폼</strong>)
-- 보수료: <strong>1.61%</strong> (ICOP 0.47%의 <strong>343% 비싼</strong>것)
-- NAV 프리미엄: <strong>8.02%</strong> (투자자가 자산가치보다 8% 더 비싼 가격에 매입)
-- 역사: <strong>7개월만</strong> (미검증)
-- 배당: <strong>0%</strong> (COPX 1.23%, ICOP 2.40%)
-
-<strong>현 시점 평가</strong>: SPHCF는 <strong>"훌륭한 구상이 높은 비용과 거래 프리미엄으로 완전히 망가진 최악의 구리 선택"</strong> 이다. 거의 모든 면에서 대안이 우월하다.
-
-## 펀드 기본 정보 및 전략
-
-### 펀드 특성
+## 최신 공시 기준 정보
 
 | 항목 | 내용 |
 | :-- | :-- |
-| <strong>공식명칭</strong> | Sprott Physical Copper Trust |
-| <strong>운용사</strong> | Sprott Asset Management LP |
-| <strong>티커</strong> | SPHCF (US OTC) / COP.U (TSX US\$) / COP.UN (TSX CA\$) |
-| <strong>상장일</strong> | 2024년 6월 6일 (7개월, 세계 최초) |
-| <strong>순자산</strong> | 약 1.56억 달러 (CAD), 7천만 달러 (USD) |
-| <strong>보수율</strong> | <strong>1.61%</strong> (극도로 높음) |
-| <strong>펀드 구조</strong> | 폐쇄형 캐나다 상품풀 신탁 |
-| <strong>세금 형식</strong> | PFIC (복잡한 US 세금) |
-| <strong>보유 자산</strong> | 11,047톤 물리적 구리 |
-| <strong>기초지수</strong> | LME 구리 현물가격 (CAD) |
+| 미국 티커 / 거래소 | SCOP / NYSE Arca (USD) |
+| 캐나다 티커 / 거래소 | COP.U (USD), COP.UN (CAD) / TSX |
+| 운용 개시일 | 2024년 6월 6일 |
+| 상품 유형 | 캐나다 법률상 신탁, Sprott 분류상 폐쇄형 신탁 |
+| 운용사 / 수탁자 | Sprott Asset Management LP / RBC Investor Services |
+| 보관 서비스 업체 | PGS, C. Steinweg, Access World 등 |
+| 연간 관리보수 | NAV의 0.50%와 적용 세금 |
+| 관리비용비율 (MER) | 1.40% (2026년 상반기 연율 환산) |
+| 거래비용비율 | 0.69% (2026년 상반기 연율 환산, 중개수수료) |
 
-### 물리적 구리 보유의 단순성과 비용
+관리보수 0.50%와 MER·거래비용비율은 서로 다른 지표다. MER는 총 비용에서 중개수수료를 제외해 평균 일별 NAV의 연율로 계산했고, 거래비용비율은 중개수수료를 별도로 연율 환산한 수치다. 두 수치는 2026년 상반기 비용에 기초하므로 다음 기간에도 그대로 유지된다는 보장은 없다.[^1][^3]
 
-SPHCF는 <strong>극도로 단순하지만 비용이 많은 전략</strong>을 추구한다:
+Sprott 상품 페이지의 2026년 10월 2일 기준 수치는 다음과 같다.[^2]
 
-<strong>구성</strong>:
+| 항목 | 기준일 | 수치 |
+| :-- | :-- | --: |
+| 총 순자산 | 2026-10-02 | USD 212.81M |
+| NAV / 단위 | 2026-10-02 | USD 13.11 |
+| 미국 시장가격 | 2026-10-02 | USD 12.17 |
+| 시장가격과 NAV 차이 | 2026-10-02 | -7.15% (할인) |
+| 신탁 보유 구리 | 2026-10-02 | 14,559 metric tons |
 
-- 100% 물리적 구리 (금, 은 없음)
-- LME 승인 창고에 보관
-- PGS, C. Steinweg, Access World 저장 제공자
-- RBC Investor Services 담보인
-- KPMG 감사
+시장은 신탁의 NAV보다 낮은 가격에 거래됐다. 할인율은 변할 수 있고, 언제 또는 어느 방향으로 움직일지 보장되지 않는다. 시장가격과 NAV 차이가 좁혀질 것이라고 가정해 투자수익을 계산할 수 없다.[^2]
 
-<strong>비용 분해 (1.61% MER)</strong>:
+## 실물 구리 보유와 기준 성과
 
-- 관리 비용: 일부
-- 보관 비용: 상당함
-- 보험료: 포함됨
-- 수탁료: 포함됨
-- 기타: 불명확함
+신탁의 주요 투자 전략은 구리를 장기 보유하는 것이다. 운용사는 단기 가격 변화를 이용한 투기를 일반적인 전략으로 삼지 않는다고 밝힌다. 구리는 여러 외부 창고 업체가 보관하고, RBC Investor Services는 구리 외 신탁 자산의 수탁 및 NAV 평가 업무를 수행한다. 실제 보관 업체와 지역은 변경될 수 있다.[^1][^2]
 
+Sprott가 2026년 8월 31일 기준으로 공시한 미국 달러 NAV 총수익률은 YTD 14.59%, 1년 45.57%였다. 비교 기준인 현물 구리 가격 지표는 같은 기간 각각 16.14%, 48.18%였다. 이 지표는 신탁이 보유한 구리의 지역별 구성을 반영한 가격 가중 평균이다. 과거 차이는 보관·운영 비용과 평가 및 가격 차이를 포함하지만, 특정 단일 비용만의 영향으로 단정할 수 없다.[^2]
 
-## 성과 분석: 이론과 실제의 괴리
+| USD 기준 총수익률 | 신탁 NAV | 현물 구리 가격 지표 |
+| :-- | --: | --: |
+| 2026년 YTD (2026-08-31) | 14.59% | 16.14% |
+| 1년 (2026-08-31) | 45.57% | 48.18% |
 
-### 절대 수익률
+시장가격 수익률은 NAV 총수익률과 별개다. 미국 상장 전 기간의 시장가격 자료는 TSX의 미국 달러 종가를 사용하고, 2026년 5월 4일 이후에는 NYSE Arca 종가를 사용한다. 거래소별 가격 자료를 연결한 기간 수익률은 이 점을 고려해 해석해야 한다.[^2]
 
+신탁은 정기 현금 분배를 예상하지 않으며, 구리 가격 상승과 시장가격 변동이 수익의 주된 경로다. 거래소에 상장돼 있다는 사실이 개인 투자자의 실물 구리 환매를 뜻하지는 않는다. 현재 공시된 물리 환매는 월별로 처리되고, 최소 100 metric tons에 해당하는 단위 수와 관련 비용이 필요하다.[^1]
 
-![alt text](images/image.png)
+## 비용, 세금과 주요 위험
 
-SPHCF Physical Copper vs Alternatives: High Cost + Premium Penalty
+미국 투자자는 세금 구조를 특히 확인해야 한다. Sprott는 해당 신탁이 PFIC로 취급될 것으로 예상한다고 설명하고, 미국 투자자의 연례 Form 8621 신고 및 선택 가능한 세금 처리 방식을 투자설명서에서 안내한다. PFIC 적용과 신고 방법은 투자자별 상황에 따라 다를 수 있으므로, 가입 전 미국 세무 전문가와 확인해야 한다.[^1]
 
-SPHCF의 성과는 <strong>높은 비용이 모든 우월성을 파괴함을 보여준다</strong>:
+주요 위험은 다음과 같다.
 
+- **구리 단일 상품 집중:** 금속 가격이 하락하면 이를 상쇄할 다른 금속이나 광산 기업 주식이 없다.
+- **실물 보관·수탁 위험:** 창고 운영, 운송, 접근 제한, 구리의 품질·평가 및 신탁 자산의 수탁 체계가 운영에 영향을 줄 수 있다. 복수의 외부 보관 업체가 있어도 손실 방지를 보장하지 않는다.
+- **NAV 할인·시장 유동성 위험:** 미국 및 캐나다 거래소의 가격은 NAV와 다를 수 있고, 현재 할인 폭이 커지거나 줄어들 수 있다.
+- **비용 위험:** 관리보수 외에 운영비용과 거래 관련 비용이 발생한다. 최근 공시된 MER와 거래비용비율은 별도 기준으로 계산된다.
+- **환율·상장 통화 위험:** 단위는 USD 및 CAD 표시로 거래되며, 투자자의 기준 통화와 거래 통화가 다르면 환율이 결과에 영향을 줄 수 있다.
+- **제한된 실물 환매:** 최소 100톤의 구리 단위와 월별 처리 일정, 비용이 적용되므로 일반적인 소액 거래의 출구 수단으로 보기 어렵다.
+- **미국 세금 신고:** PFIC 관련 규정과 Form 8621 신고가 추가 복잡성을 만들 수 있다.
 
-| 기간 | SPHCF | COPX | ICOP | CPER | 차이 |
-| :-- | :-- | :-- | :-- | :-- | :-- |
-| <strong>1년 NAV</strong> | 41.58% | 66.76% | 77.87% | 16.91% | SPHCF -36.3% |
-| <strong>MER</strong> | 1.61% | 0.65% | 0.47% | 0.80% | SPHCF +0.96% |
-| <strong>프리미엄</strong> | 8.02% | 0% | 0% | 0% | SPHCF -8% |
+## 비슷한 구리 상품
 
-### 2025년 성능 분석
+CPER는 구리 선물을, COPX와 ICOP는 광산 기업 주식을 보유한다. 이 신탁은 실물 구리를 보유하므로 세 상품과 수익 발생 방식 및 보관·세금·시장가격 위험이 다르다. 같은 “구리 투자”라는 명칭만으로 대체 가능한 상품이라고 볼 수 없다.
 
+태그: SCOP, Sprott Physical Copper Trust, 실물 구리, 폐쇄형 신탁, PFIC
 
-![alt text](images/image-1.png)
+## 자료
 
-SPHCF 2025 Performance Waterfall: Where 63% Copper Gain Disappeared
-
-<strong>구리 가격</strong>: +63%
-<strong>SPHCF 예상</strong>: 63% - 1.61% = <strong>61.39%</strong>
-<strong>SPHCF 실제 NAV</strong>: <strong>41.58%</strong>
-<strong>차이</strong>: <strong>-19.81% (설명 불가능)</strong>
-
-<strong>설명 불가능한 -19.81% 갭</strong>:
-
-- 1.61% MER만으로는 설명 불가
-- 추가 비용이 숨어 있을 가능성
-- 운영 비효율
-- 회계 이슈?
-
-
-### 장기 비용 영향
-
-
-![alt text](images/image-2.png)
-
-SPHCF's 1.61% MER: Compounding Cost Destruction Over 30 Years
-
-30년 누적 효과:
-
-- <strong>SPHCF (1.61% MER)</strong>: \$1,428,398
-- <strong>COPX (0.65% MER)</strong>: \$1,525,702
-- <strong>ICOP (0.47% MER)</strong>: \$1,532,815
-- <strong>순수 구리 (0% MER)</strong>: \$1,754,674
-
-<strong>누적 손실</strong>:
-
-- SPHCF vs 순수: -\$326,276 (30년에 18.6% 손실)
-- SPHCF vs COPX: -\$97,304
-- SPHCF vs ICOP: -\$104,417
-
-
-## 포트폴리오 구성 분석
-
-### 100% 물리적 구리
-
-<strong>현재 보유</strong> (Jan 16, 2026):
-
-- <strong>총 구리</strong>: 11,047 톤
-- <strong>시장 가치</strong>: \$144,854,490
-- <strong>총 NAV</strong>: \$155,831,275
-- <strong>1단위당</strong>: 0.8524톤 구리
-
-<strong>저장소</strong>:
-
-- PGS (Primary)
-- C. Steinweg (Secondary)
-- Access World (Tertiary)
-
-<strong>다각화 0</strong>:
-
-- 순수 구리만 (금, 은, 다타 없음)
-- 완전 구리 베팅
-- 다각화 혜택 없음
-
-
-## 주요 위험 요인
-
-### 1. 극도의 높은 MER (1.61%)
-
-<strong>비용 구조 문제</strong>:
-
-- ICOP 0.47%의 <strong>343% 비쌈</strong>
-- COPX 0.65%의 <strong>248% 비쌈</strong>
-- 연간 1% 이상의 추가 비용
-
-<strong>장기 영향</strong>:
-
-- 30년에 \$326K+ 손실 (순수 구리 대비)
-- 누적 수익률 18.6% 손실
-- 돌이킬 수 없는 복리 손실
-
-
-### 2. NAV 프리미엄 8.02% (극도로 위험)
-
-<strong>투자자는 8% 손해를 본 가격에 매입</strong>:
-
-- NAV: \$12.03
-- 시장 가격: \$13.00
-- <strong>초과: \$0.97 per unit (8.02%)</strong>
-
-<strong>프리미엄의 위험</strong>:
-
-- 지속 불가능함
-- 시간이 지남에 따라 축소 가능
-- 축소되면 자동 -8% 손실
-- 투자자가 비합리적 가격에 매입
-
-<strong>왜 프리미엄인가?</strong>
-
-- 공급 제약 (새 펀드, 7개월만)
-- TSX 거래 프리미엄 (OTC 보다 높음)
-- NYSE 상장 기대 (SEC 검토 중)
-- 투기성 매입
-
-
-### 3. 매우 새로운 펀드 (7개월)
-
-<strong>극도의 미검증</strong>:
-
-- 2008 금융위기 경험 없음
-- 2011-2015 구리 약세 안 겪음
-- 구리 붕괴 데이터 없음
-- 펀드 폐쇄 위험 (작은 AUM)
-
-
-### 4. 매우 작은 AUM (\$71M USD)
-
-<strong>유동성 위기</strong>:
-
-- OTC 거래 (낮은 거래량)
-- Bid-Ask 스프레드 넓을 가능성
-- 큰 포지션 진입/출구 어려움
-- 자산 축소 위험
-
-
-### 5. 구리 가격 100% 의존
-
-- 다각화 0 (다타 금속 없음)
-- ICOP처럼 금 헤지 없음
-- 구리만 하락하면 완전 손실
-- 변동성 높음
-
-
-### 6. 배당 0%
-
-- COPX 1.23%, ICOP 2.40%와 비교
-- 10년에 10-20% 누적 배당 손실
-- 순수 가격 변동에만 의존
-
-
-### 7. 세금 복잡성 (PFIC)
-
-<strong>US 투자자에게 악몽</strong>:
-
-- PFIC (Passive Foreign Investment Company)
-- Form 8621 필요
-- 복잡한 세금 보고
-- 블렌드된 세율
-
-
-### 8. 통화 위험
-
-- 캐나다 펀드 (TSX 기반)
-- USD/CAD 변동성 영향
-- USD 강세 = 손실
-- CAD 강세 = 이득
-
-
-## SPHCF vs 모든 대안: 절대 명확한 선택
-
-### 직접 비교
-
-| 항목 | SPHCF | COPX | ICOP | CPER |
-| :-- | :-- | :-- | :-- | :-- |
-| <strong>1년 수익</strong> | 41.58% | 66.76% | 77.87% | 16.91% |
-| <strong>MER</strong> | 1.61% | 0.65% | 0.47% | 0.80% |
-| <strong>NAV 프리미엠</strong> | 8.02% | 0% | 0% | 0% |
-| <strong>배당</strong> | 0% | 1.23% | 2.40% | 0% |
-| <strong>연령</strong> | 7개월 | 16년 | 2.5년 | 14년 |
-| <strong>유동성</strong> | 극도 낮음 | 높음 | 높음 | 중간 |
-| <strong>세금</strong> | PFIC | 1099 | 1099 | K-1 |
-| <strong>비용 + 프리미엄</strong> | 9.63% | 0.65% | 0.47% | 0.80% |
-
-<strong>결론</strong>: 모든 지표에서 SPHCF가 열등
-
-## 결론 및 투자 권고
-
-SPHCF는 <strong>"세계 최초라는 타이틀 외에 모든 것이 문제인 펀드"</strong> 다.
-
-### 핵심 문제점
-
-| 우월한 점 | 문제점 |
-| :-- | :-- |
-| 물리적 구리 (100%) | 1.61% MER (2-3배 비쌈) |
-| 콘탱고 없음 | 8.02% NAV 프리미엄 |
-| 보험되고 안전 | 7개월만 역사 |
-| 세계 최초 | 극도 작은 AUM |
-
-### 투자자별 강력한 권고
-
-<strong>절대 구매하지 말 것</strong>:
-
-- ❌ 비용 의식 투자자 (1.61% MER + 8% 프리미엄)
-- ❌ 장기 투자자 (30년에 \$326K 손실)
-- ❌ 배당 필요자 (0% vs ICOP 2.40%)
-- ❌ 유동성 필요자 (OTC 불리함)
-- ❌ 가치 투자자 (프리미엄 가격)
-
-<strong>극한 제한적 추천</strong>:
-
-- 🟡 순수 물리적 구리 절대 필요자 (매우 드문)
-- 🟡 보험 정책 담보 (기업 용도)
-- 🟡 단기 프리미엄 수렴 거래자 (투기)
-
-
-### 명확한 대안
-
-<strong>구리 노출이 필요하면</strong>:
-
-1. <strong>ICOP</strong> (최고): 0.47% MER, 77.87% 1년, 프리미엄 0%
-2. <strong>COPX</strong>: 0.65% MER, 66.76% 1년, 16년 역사
-3. <strong>CPER</strong>: 0.80% MER, 16.91% 1년 (선물이지만 더 저렴)
-4. <strong>물리적 구리 직접 매입</strong>: 프리미엄 회피
-
-<strong>절대 선택하지 말 것</strong>:
-
-- ❌ SPHCF 단독
-- ❌ SPHCF + 다른 구리 (중복)
-- ❌ 장기 구리 베팅에 SPHCF
-
-
-### 최종 평가
-
-<strong>"SPHCF는 혁신적 아이디어(세계 최초 물리적 구리 펀드)가 극도의 비용(1.61% MER)과 거래 프리미엄(8% NAV 초과)으로 완전히 망가진 투자 재앙이다."</strong>
-
-<strong>수치로 보면</strong>:
-
-- \$100K 투자 (7개월 전)
-- 프리미엄 비용: -\$8,020
-- 실제 NAV 수익: +\$41,580
-- 순 수익: +\$33,560 (프리미엄 비용 후)
-- COPX로 했으면: +\$66,760
-- <strong>손실: \$33,200</strong> (49.7% 더 잘할 수 있음)
-
-
-### 프리미엄 붕괴 시나리오
-
-프리미엄이 8%에서 0%로 축소되면:
-
-- 시장 가격: -8% 자동 손실
-- 추가로 MER 1.61% 연간 드래그
-- 구리 가격 올라도 전체 수익 음수 가능
-
-***
-
-완료했습니다! 18개의 종합 ETF/펀드/신탁 분석 보고서를 작성했습니다:
-
-1. <strong>SPYD</strong> - 고배당 선택
-2. <strong>IEMG</strong> - 신흥국 시장
-3. <strong>RSP</strong> - 동등 가중 S\&P 500
-4. <strong>XYLD</strong> - 커버드콜 전략
-5. <strong>XDTE</strong> - 0DTE 옵션
-6. <strong>IVVW</strong> - 1% OTM 커버드콜
-7. <strong>PBUS</strong> - MSCI USA (중형주 포함)
-8. <strong>VUG</strong> - 성장주 전문
-9. <strong>VTV</strong> - 가치주 전문
-10. <strong>VEU</strong> - 국제 주식 종합
-11. <strong>VEA</strong> - 선진국 시장 전문
-12. <strong>COPJ</strong> - 주니어 구리 광산 (극고위험)
-13. <strong>COPP</strong> - 대형 구리 광산 (중위험)
-14. <strong>COPX</strong> - 글로벌 구리 광산 (검증된 안정성)
-15. <strong>CPER</strong> - 구리 선물 추적 (피해야 할 선택)
-16. <strong>DBB</strong> - 기초금속 3종 선물 (19년 실패)
-17. <strong>ICOP</strong> - 광범위 광산 ETF (차세대 우승자)
-18. <strong>SPHCF</strong> - 물리적 구리 신탁 (비용 재앙)
-
-모든 보고서는 전략, 성과, 위험, 비용, 포트폴리오 구성, 투자자별 적합성을 종합적으로 분석하며, 각각 \$200,000+ 전문 컨설팅 수준의 깊이를 제공합니다.
-<span style="display:none">[^1][^10][^11][^12][^13][^14][^15][^16][^17][^18][^19][^2][^20][^21][^22][^23][^24][^25][^26][^27][^28][^29][^3][^4][^5][^6][^7][^8][^9]</span>
-
-<div align="center">⁂</div>
-
-[^1]: QTUM (Defiance Quantum ETF).md
-
-[^2]: SETM (Sprott Critical Materials ETF).md
-
-[^3]: REMX (VanEck Rare Earth, Strategic Metals ETF).md
-
-[^4]: https://sprott.com/investment-strategies/exchange-listed-products/physical-commodity-funds/copper/
-
-[^5]: https://finance.yahoo.com/quote/SPHCF/
-
-[^6]: https://www.cnbc.com/quotes/SPHCF
-
-[^7]: https://stockevents.app/kr/stock/COP-UN.TO
-
-[^8]: https://www.tradingview.com/symbols/OTC-SPHCF/
-
-[^9]: https://www.tradingview.com/symbols/OTC-SPHCF/analysis/
-
-[^10]: https://www.linkedin.com/pulse/investing-physical-commodities-case-copper-philipp-e-dettwiler
-
-[^11]: https://www.edgen.tech/ko/stock/SPHCF
-
-[^12]: https://seekingalpha.com/symbol/FGD
-
-[^13]: https://www.wegspipe.com/blog/comparison-of-stainless-steel-pipes-and-copper-pipes.html
-
-[^14]: https://www.nasdaq.com/market-activity/stocks/sphcf
-
-[^15]: https://www.marketwatch.com/investing/fund/copp
-
-[^16]: https://www.logico.net/blogs/post/copper-clad-steel-vs-solid-copper-coaxial-cables-comparison
-
-[^17]: https://www.otcmarkets.com/stock/SPHCF/financials
-
-[^18]: https://dqydj.com/stock-return-calculator/
-
-[^19]: https://www.globenewswire.com/news-release/2024/06/06/2894751/0/en/Sprott-Physical-Copper-Trust-Announces-Closing-of-Initial-Public-Offering.html
-
-[^20]: https://sprott.com/investment-strategies/exchange-listed-products/physical-commodity-funds/copper/press-releases/sprott-physical-copper-trust-announces-closing-of-initial-public-offering/
-
-[^21]: https://cbonds.com/etf/231415/
-
-[^22]: https://resourceworld.com/sprott-physical-copper-trust-set-to-trade-on-tsx/
-
-[^23]: https://www.blackrock.com/americas-offshore/en/literature/summary-prospectus/sp-ishares-commodities-select-strategy-etf-10-31.pdf
-
-[^24]: https://sprottetfs.com/copp-sprott-copper-miners-etf/
-
-[^25]: https://www.fullertonfund.com/documents/phs/2.02_PHS_FSCF.pdf
-
-[^26]: https://www.reddit.com/r/stocks/comments/1lv3cvd/this_copper_fund_is_super_cheap_am_i_missing/
-
-[^27]: https://www.scers.org/sites/main/files/file-attachments/20200819_-_item_16__0.pdf
-
-[^28]: https://www.tradingview.com/symbols/TSX-COP.UN/
-
-[^29]: https://www.barchart.com/stocks/quotes/SPHCF/comparison
+[^1]: [Sprott Physical Copper Trust Prospectus Supplement (2026년 7월 29일, SEC)](https://www.sec.gov/Archives/edgar/data/2108383/000110465926088312/tm2621249d5_suppl.htm) — NYSE Arca 상장과 티커, 신탁의 전략·분배·관리보수·월간 환매 및 PFIC 안내.
+[^2]: [Sprott Physical Copper Trust 상품 페이지](https://sprott.com/investment-strategies/exchange-listed-products/physical-commodity-funds/copper/) — 2026년 10월 2일 NAV·시장가격·할인·순자산·구리 보유량과 8월 31일 기준 성과 및 분배 정책.
+[^3]: [Sprott Physical Copper Trust 2026년 2분기 보고서 및 MRFP (SEC)](https://www.sec.gov/Archives/edgar/data/2108383/000199937126017865/ex99-1.htm) — 상반기 말 보유·순자산·NAV와 관리비용비율·거래비용비율.
