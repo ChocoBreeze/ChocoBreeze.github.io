@@ -1,606 +1,96 @@
 ---
 title: 'FBTC (Fidelity Wise Origin Bitcoin Fund)'
-description: '스팟 비트코인 ETF'
+description: 'Fidelity Wise Origin Bitcoin Fund의 상장 ETP 구조, 현물 비트코인 보유, 비용과 최신 SEC 공시 기준 정보를 정리한다.'
 pubDate: '2026-01-15T09:00:00Z'
-ticker: "FBTC"
-issuer: "Fidelity"
-assetClass: "Commodity"
-strategy: "Physical"
-exposure: "Bitcoin"
-leverage: "1x"
-incomeStyle: "None"
-aum: "$10.2B"
+updatedDate: '2026-10-04T00:00:00+09:00'
+verifiedDate: '2026-10-04T00:00:00+09:00'
+dataAsOf: '2026-06-30T00:00:00+09:00'
 aumAsOf: '2026-06-30T00:00:00+09:00'
-categories: "ETF"
+expenseRatioAsOf: '2026-06-30T00:00:00+09:00'
+ticker: 'FBTC'
+issuer: 'Fidelity'
+instrumentType: 'Other'
+assetClass: 'Commodity'
+strategy: 'Physical'
+exposure: 'Bitcoin'
+leverage: '1x'
+incomeStyle: 'None'
+aum: 10304103000
+expenseRatio: '0.25%'
+categories: 'ETF'
+tags: ['ETF', 'FBTC', 'Fidelity', 'Bitcoin', 'Digital Assets']
 ---
 
-## 핵심 요약 (Executive Summary)
+# FBTC (Fidelity Wise Origin Bitcoin Fund)
 
-<strong>FBTC(Fidelity Wise Origin Bitcoin Fund)</strong> 는 Fidelity Investments가 2024년 1월 출시한 <strong>스팟 비트코인 ETF</strong>로, <strong>\$20-26B AUM과 \~20% 시장점유율</strong>로 IBIT에 이어 <strong>확고한 \#2 위치</strong>를 차지하며, IBIT와 <strong>거의 동일한 성과</strong>(1년 수익률 54.3% vs 54.5%, ±0.2% 차이)와 <strong>동일한 0.25% 운용보수</strong>를 제공합니다. FBTC의 <strong>핵심 차별화 요소는 Fidelity Digital Assets 자체 커스터디</strong>로, 11개 스팟 비트코인 ETF 중 8개(73%)가 사용하는 Coinbase 의존도를 제거하여 <strong>커스터디 집중 위험을 완화</strong>합니다. Fidelity는 <strong>2014년부터 비트코인 연구</strong>와 <strong>70년 이상의 증권 시장 경험</strong>을 바탕으로 NYDFS 인가 신탁회사인 Fidelity Digital Assets를 통해 <strong>100% 콜드 스토리지, 다중 사이트 이중화, 옴니버스 모델</strong>로 기관급 보안을 제공합니다. <strong>2026년 1월 최근 유입</strong>에서 FBTC는 IBIT를 초과하여 <strong>\$351M vs \$126M(2.8배)</strong> 를 기록하며 기관 신뢰를 증명했습니다. 하지만 FBTC의 <strong>주요 약점은 유동성 격차</strong>로, IBIT 대비 <strong>3-4배 낮은 거래량</strong>과 <strong>2배 넓은 매수-매도 스프레드</strong>(0.04% vs 0.02%)가 "악순환"을 만들어 활발한 트레이더를 IBIT로 유도합니다. <strong>명확한 결론</strong>: FBTC는 <strong>Fidelity 계좌 보유자, 매수 후 보유 투자자, 커스터디 다각화 추구자에게 탁월</strong>하며, <strong>IBIT + FBTC 50/50 분할</strong>이 Coinbase와 Fidelity 이중 커스터디로 단일 장애점 위험을 제거하는 <strong>최적 전략</strong>입니다. 활발한 트레이더는 IBIT의 유동성 우위를 선호하지만, 장기 보유자에게 0.02% 스프레드 차이는 \$10K당 \$2로 무의미하며 FBTC는 "IBIT의 Pepsi"—약간 덜 인기지만 동등한 품질과 정당한 선호 이유를 가진 강력한 대안입니다.[^1][^2][^3][^4][^5][^6][^7][^8][^9][^10][^11][^12][^13][^14][^15][^16]
+> **요약:** FBTC는 현물 비트코인을 보유하며 Fidelity Bitcoin Reference Rate의 성과를 비용 차감 후 추종하려는 상장 ETP다. SEC 공시상 Delaware statutory trust이고, 1940년 투자회사법에 따라 등록된 펀드는 아니다. 따라서 사이트 내 발견을 위해 Coin 분류에 두되, ETF 비교용 기기 분류는 Other로 표시한다.
 
-## 펀드 기본 정보
+**확인 기준:** 2026년 10월 4일. 최신 재무 수치는 2026년 6월 30일 분기 말 기준 SEC 10-Q(2026년 8월 6일 제출)에서 확인했다. [1]
 
-### 개요
+## 기본 분류
 
-<strong>FBTC</strong>는 Fidelity Investments가 2024년 출시한 <strong>스팟 비트코인 ETF</strong>입니다:[^1][^17][^18]
+| 항목 | 내용 |
+|---|---|
+| 사이트 내 분류 | ETF/Coin/FBTC |
+| 금융상품 형태 | Delaware statutory trust 형태의 상장 ETP |
+| 추종 대상 | Fidelity Bitcoin Reference Rate |
+| 기초자산 | 현물 비트코인 |
+| 운용 방식 | 패시브 |
+| 파생상품·레버리지 | 투자 목적상 사용하지 않음 |
+| 수익 분배 | 비트코인 자체에서 정기 소득을 만들지 않으므로 배당·이자 수익을 목표로 하지 않음 |
 
-<strong>핵심 특징:</strong>
+SEC 투자설명서는 FBTC를 exchange-traded product라고 부르고, 1940년 투자회사법에 따라 등록된 펀드가 아니라고 명시한다. 이 사이트는 독자가 코인 상품을 찾을 수 있도록 ETF 카테고리에 두지만, ETF만 비교하는 화면과 구분하기 위해 금융상품 유형은 Other로 기록한다. [2]
 
-- <strong>운용사</strong>: Fidelity Investments (70년 이상 증권 시장 경험)
-- <strong>설정일</strong>: 2024년 1월 11일[^18][^19][^1]
-- <strong>상장거래소</strong>: NYSE/CBOE
-- <strong>운용자산(AUM)</strong>: <strong>\$20-26B</strong>[^2][^19][^12][^14][^15][^16]
-- <strong>운용보수</strong>: <strong>0.25%</strong> (처음 6개월 또는 \$1B까지 면제)[^17][^3][^20][^1]
-- <strong>투자 목표</strong>: <strong>비트코인 스팟 가격 추적</strong>[^1][^17]
-- <strong>구조</strong>: Grantor Trust
-- <strong>커스터디</strong>: <strong>Fidelity Digital Assets (자체 커스터디)</strong>[^6][^7][^8][^10][^17][^1]
-- <strong>옵션</strong>: 이용 가능
-- <strong>비트코인 보유량</strong>: \~202,000 BTC[^15]
+## 공시 기준 정보
 
+| 항목 | 내용 |
+|---|---:|
+| 거래 기호 / 거래소 | FBTC / Cboe BZX |
+| 운용사 겸 스폰서 | FD Funds Management LLC (Fidelity 계열사) |
+| 설정 및 거래 시작 | 2024년 1월 11일 |
+| 비트코인 보유량 | 174,383 BTC (2026년 6월 30일) |
+| 비트코인 공정가치 | 10,306,297,000달러 (2026년 6월 30일) |
+| 순자산 | 10,304,103,000달러 (2026년 6월 30일) |
+| 연간 스폰서 보수 | 0.25% |
 
-### 현재 시장 지표 (2026년 1월)
+순자산과 비트코인 공정가치는 SEC 10-Q 재무제표의 천 달러 단위 금액을 달러로 환산한 값이다. 이는 6월 30일 스냅샷이며 현재 순자산을 뜻하지 않는다. [1]
 
-| 지표 | 수치 |
-| :-- | :-- |
-| 현재 가격 | \$78.59-85.12[^21][^22][^19] |
-| <strong>52주 범위</strong> | <strong>\$66.06-\$110.25</strong>[^21][^19] |
-| <strong>범위</strong> | <strong>67%</strong> (고점/저점) |
-| NAV | 일일 계산 (오후 4시 ET)[^17][^23] |
-| 일평균 거래량 | 5.35M 주 (IBIT의 \~27%)[^19][^5][^12] |
-| <strong>시가총액</strong> | <strong>\$18.65-23.19B AUM</strong>[^19][^12] |
-| <strong>시장점유율</strong> | <strong>\~17-22%</strong> (비트코인 ETF)[^2][^16] |
-| 비트코인 보유량 | \~202,000 BTC (IBIT 749,000의 27%)[^15] |
+## 비트코인 가격을 추종하는 방식
 
-## 핵심 차별화: Fidelity 자체 커스터디 모델
+Trust는 비트코인을 직접 보유하고, Fidelity Bitcoin Reference Rate를 통해 미국 달러 기준 비트코인 가격 성과를 추적한다. 해당 기준 가격은 대상 현물시장 가격 자료에 거래량 가중 중앙값 방식을 적용해 산출되며, SEC 투자설명서는 60분 단위 가격 자료를 바탕으로 15초마다 계산된다고 설명한다. 실제 Trust 수익은 보수와 기타 부채의 영향을 받으므로 비트코인 현물 가격과 완전히 같지 않을 수 있다. [1][2]
 
+2026년 6월 30일 분기 보고서에 따르면 Trust는 패시브 운용되며, 투자 목적상 레버리지나 파생상품을 사용하지 않고 자산을 대여하거나 담보로 제공하지 않는다. [1]
 
-![alt text](images/image.png)
+## 최신 SEC 분기 성과
 
-FBTC는 IBIT와 거의 동일한 성과(1년 수익률 54.3% vs 54.5%, ±0.2% 차이)와 동일한 0.25% 운용보수를 제공하지만, AUM \$23B(IBIT \$75B의 31%), 일일 거래량 12M주(IBIT 43.7M의 27%), 매수-매도 스프레드 0.04%(IBIT 0.02%의 2배)로 유동성 격차가 존재합니다. 하지만 FBTC의 핵심 이점은 Fidelity Digital Assets 자체 커스터디로, 8개 ETF(73%)가 사용하는 Coinbase 집중 위험을 제거합니다. 최근 일일 유입에서 FBTC가 IBIT를 초과한 사례(\$351M vs \$126M, 2026년 1월)는 기관 신뢰를 증명합니다. 매수 후 보유 투자자에게는 유동성 격차가 무의미하며, IBIT + FBTC 50/50 분할이 커스터디 다각화를 위한 최적 전략입니다.
+아래는 SEC 10-Q가 공시한 2026년 상반기 수치다. 기간 수익률은 연율화되지 않았다.
 
-위 차트가 보여주듯이, <strong>FBTC는 성과와 수수료에서 IBIT와 동등하지만 유동성에서 격차</strong>가 있으며, <strong>핵심 이점은 자체 커스터디</strong>입니다.[^8][^10][^15]
+| 항목 | 2026년 6월 30일 기준 |
+|---|---:|
+| 기초 NAV | 76.21달러 |
+| 기말 NAV | 51.44달러 |
+| 기말 시장가격 | 51.05달러 |
+| NAV 기준 총수익률 | -32.51% |
+| 시장가격 기준 총수익률 | -33.03% |
 
-### 독립적 커스터디 (Coinbase 아님)[^1][^17][^6][^7][^10][^8]
+시장가격 수익률은 거래소에서의 주당 시장가격 변화를 반영하며 NAV 기준 수익률과 다를 수 있다. 이 기간 성과가 이후 기간을 설명하거나 예측하지는 않는다. [1]
 
-<strong>Fidelity Digital Assets</strong> (2024):[^1]
-> "Fidelity Digital Assets®는 광범위한 운영, 사이버 및 물리적 통제로 자산을 보호하여 Fidelity® Wise Origin® Bitcoin Fund의 비트코인 커스터디를 제공합니다."
+## 비용과 주당 비트코인 수량
 
-<strong>LinkedIn 분석</strong>:[^10]
-> "많은 경쟁사와 달리 FBTC는 NYDFS 인가 신탁회사인 Fidelity Digital Assets (FDAS)를 통해 자체 커스터디(자체 보관이라고도 함)를 사용합니다. 이는 Fidelity 자체(외부 당사자가 아님)가 FBTC를 뒷받침하는 비트코인을 보유하고 보안을 유지함을 의미합니다."
+Trust는 보유 비트코인 기준 연 0.25%의 통합 스폰서 보수를 계약상 지급한다. 보수는 매일 산출해 비트코인으로 적립되고 월 단위로 비트코인 또는 현금으로 지급된다. 정기 운영비용은 통상 스폰서가 부담하지만 세금과 투자설명서가 정한 예외 비용은 달라질 수 있다. 따라서 이 0.25%를 투자자의 모든 거래 비용을 포함하는 수치로 해석하면 안 된다. [1][2]
 
-<strong>OKX 분석</strong>:[^8]
-> "Fidelity Digital Assets는 독립적으로 운영하고 독점 인프라를 활용하여 비트코인 커스터디에 대한 독특한 접근 방식을 취합니다. 이 전략은 기관 고객을 위한 안전하고 신뢰할 수 있는 서비스 제공에 대한 Fidelity의 헌신을 강조합니다. 예를 들어, Fidelity의 FBTC 펀드는 전적으로 사내에서 관리되며, 이는 제3자 솔루션보다 자체 보관을 선호하는 회사의 선호를 반영합니다."
+Trust는 정기 소득을 만들어내지 않는다. 보수와 일부 부채 지급에 비트코인을 사용하므로 주식 한 주가 나타내는 비트코인 수량은 시간이 지나면서 감소한다. 비트코인 가격이 그대로여도 이러한 비용이 주당 기초자산에 반영될 수 있다. [2]
 
-<strong>핵심 이점</strong>: 커스터디 집중 위험 제거
+## 보관 구조와 주요 위험
 
-- <strong>IBIT</strong>: Coinbase 커스터디 (11개 스팟 ETF 중 8개가 Coinbase 사용)
-- <strong>FBTC</strong>: Fidelity Digital Assets (독점)
-- <strong>다각화 이점</strong>: IBIT + FBTC 보유 = 두 커스터디언
+- **보관기관 위험:** Fidelity Digital Assets, N.A.가 기본 비트코인 수탁기관이며 스폰서 계열사다. 2026년 4월 SEC 투자설명서는 BitGo Bank & Trust, N.A.도 추가 수탁기관으로 기재했지만, 해당 문서 작성 시점에는 그 기관으로 비트코인을 옮길 계획이 없다고 밝혔다. [2]
+- **콜드·핫 스토리지:** 같은 투자설명서에 따르면 다수 비트코인은 오프라인 콜드 스토리지에 보관하고 일부는 온라인 핫 스토리지에 둔다. 콜드 스토리지 비율은 공개하지 않는다. 그러므로 보유분 전체가 콜드 스토리지에 있다는 식으로 단정하지 않는다. [2]
+- **보험과 상환 위험:** 비트코인은 FDIC나 SIPC 보호 대상이 아니며, Trust의 비트코인 계정에 대해 제3자 보험이 직접 제공되는 것도 아니라고 투자설명서는 밝힌다. 보관기관의 사고·접근 제한·운영 중단은 손실이나 환매 지연으로 이어질 수 있다. [2]
+- **단일 자산 집중:** Trust의 투자 전략은 비트코인 한 자산에 집중되어 있어 가격 하락을 다른 자산의 수익으로 상쇄하지 않는다. [1]
+- **법률상 보호 차이:** Trust는 1940년 투자회사법 등록 펀드가 아니다. 투자자는 해당 법률에 따라 등록 펀드에 적용되는 규제상 보호를 받지 않는다. [2]
+- **가격 산출 및 시장가격 차이:** 기준가격 산출 자료나 현물시장의 유동성에 문제가 생기면 산출 NAV와 실제 거래가격 사이에 괴리 또는 추종 차이가 커질 수 있다. [2]
 
+## 자료 출처
 
-### Fidelity Digital Assets 보안[^6][^7][^13]
-
-<strong>콜드 스토리지</strong>:[^6][^7]
-
-- 100% 오프라인 콜드 볼트 스토리지
-- 24/7 현장 보안
-- 견고한 룸 구조 (TEMPEST 차폐, RF 차단)
-- 다중 인원 및 다중 조직 접근 제어
-- 동적 권한 구조
-- 다단계 인증
-
-<strong>다중 사이트 스토리지</strong>:[^7]
-> "프라이빗 키는 각각 별도의 직원 팀이 다양한 지리적 위치에서 접근하고 승인해야 합니다. 우리의 다중 사이트 설계는 어떤 사이트가 완전히 사용 불가능해도 완전한 이중화를 허용합니다."
-
-<strong>옴니버스 모델</strong>:[^13]
-
-- 자산을 옴니버스 방식으로 관리
-- 장부 및 기록 수준에서 분리
-- 온체인 프라이버시
-- 최대 유동성 및 보안
-- 향상된 운영 효율성
-
-<strong>Fidelity 옴니버스 모델 이점</strong>:[^13]
-
-1. <strong>키 생성 및 관리</strong>: 유연성, 위험 관리 제어
-2. <strong>유동성</strong>: 고객 간 효율적인 자금 이동
-3. <strong>거래 수수료</strong>: 집계 및 일괄 처리 도구
-4. <strong>프라이버시</strong>: 분리된 주소가 개별 고객과 연결되지 않음
-5. <strong>확장성</strong>: 수천 개의 키 쌍 관리 없이 효율적
-
-### Fidelity 경험[^1]
-
-<strong>기관 배경</strong>:[^1]
-> "Fidelity는 2014년부터 비트코인을 연구하고 블록체인 솔루션을 개발해 왔습니다."
-
-> "70년 이상의 증권 시장 경험을 바탕으로, 우리는 디지털 자산에서 성장하는 시장 존재감을 구축하고 있습니다."
-
-<strong>Fidelity Digital Assets®</strong>:[^7]
-
-- NYDFS 인가 신탁회사[^10]
-- BTC, ETH, LTC, SOL 커스터디 및 거래 제공[^7]
-- 기업급 커스터디 솔루션[^17]
-- 기관급 인프라
-
-
-## 성과 분석: IBIT와 거의 동일
-
-### 공식 성과 비교[^2][^24][^4]
-
-<strong>Crypto Research Report</strong> (2026년 1월):[^2]
-
-
-| 특징 | IBIT | FBTC |
-| :-- | :-- | :-- |
-| AUM | \$55B | \$20B |
-| 운용보수 | 0.12% → 0.25% | 0.25% |
-| <strong>1년 수익률</strong> | <strong>+54.5%</strong> | <strong>+54.3%</strong> |
-| Return-to-Fee | 454.17 | 217.20 |
-| 최대 하락폭 | -28% | 유사 |
-
-<strong>Forbes 분석</strong> (2025년 3월):[^4]
-> "1년 성과 측면에서 FBTC는 137.65% 수익률로 IBIT의 137.32%를 약간 능가했지만, 미래 수익률은 유사할 것으로 예상됩니다."
-
-<strong>핵심 인사이트</strong>: <strong>성과 본질적으로 동일</strong> (±0.2%), 하지만 IBIT가 위험 조정 후 더 나음
-
-<strong>위험 조정 성과</strong>:[^24]
-
-- GBTC 위험 조정 비율: 0.23
-- FBTC 위험 조정 비율: 0.21
-- <strong>IBIT 위험 조정 비율: 0.37 (최고)</strong>
-
-
-### 비트코인 추적[^17][^23]
-
-<strong>Fidelity 공식</strong>:[^17]
-> "펀드는 Fidelity Bitcoin Reference Rate의 성과로 측정되는 비트코인의 성과를 수동적으로 추적합니다. FBTC는 100% 비트코인을 보유합니다."
-
-<strong>지수 방법론</strong>:[^23]
-> "지수는 적격 비트코인 스팟 시장의 비트코인 가격 피드와 15초마다 계산되는 거래량 가중 중앙값 가격('VWMP') 방법론을 사용하여 구성되며, 60분 롤링 증분에 걸친 VWMP 스팟 시장 데이터를 기반으로 합니다."
-
-<strong>NAV 산출</strong>: 매일 오후 4:00 ET[^17][^23]
-
-## 운용보수: IBIT와 동일 (면제 후)
-
-### 수수료 구조[^1][^17][^3][^20]
-
-<strong>공식 Fidelity 성명</strong>:[^17]
-> "Fidelity Investments는 2024년 8월 1일 기준으로 25 베이시스 포인트의 운용보수를 부과하고 있습니다."
-
-<strong>현재 상태</strong>: <strong>0.25%</strong> (IBIT와 동일)[^2][^3][^20][^4]
-
-### 연간 비용 분석[^3]
-
-| 투자 금액 | 연간 수수료 (0.25%) |
-| :-- | :-- |
-| \$1,000 | \$2.50 |
-| \$5,000 | \$12.50 |
-| \$10,000 | \$25.00 |
-| \$50,000 | \$125.00 |
-
-<strong>10년 비용</strong>: 누적 -2.5% (IBIT와 동일)
-
-### Return-to-Fee Ratio[^2]
-
-<strong>FBTC</strong>: 217.20
-<strong>IBIT</strong>: 454.17
-
-<strong>IBIT가 2.1배 우수</strong>—하지만 이는 IBIT의 0.12% 면제 기간 이점을 반영
-
-- IBIT는 처음 6개월 또는 \$5B AUM까지 0.12% (빠르게 달성)
-- FBTC는 처음부터 0.25% (또는 면제가 덜 관대)
-- <strong>앞으로 0.25% 둘 다에서 수렴해야 함</strong>
-
-
-## 유동성 격차: FBTC의 주요 약점
-
-### 거래량 비교[^5][^9][^12][^15]
-
-<strong>QuickNode 분석</strong> (2025):[^15]
-> "두 ETF 모두 동일한 0.25% 운용보수를 부과하지만 IBIT는 다음을 보유합니다:
-> - IBIT는 \~202,000 BTC를 보유한 FBTC보다 \~3.5–3.7배 많은 BTC를 보유,
-> - 3-4배 높은 일일 거래량, 그리고
-> - 더 좁은 매수-매도 스프레드 (0.02% vs FBTC의 0.04%)."
-
-<strong>Seeking Alpha</strong> (2024년 12월):[^5]
-> "FBTC의 주요 단점—거의 모든 비트코인 ETF가 공유하는—은 IBIT에 비해 높은 평균 스프레드입니다. 이것이 매수 후 보유 투자자에게 반드시 거래 중단 요인은 아니지만, 더 자주 거래하거나 더 큰 주문을 빠르게 실행해야 하는 사람들에게는 마찰을 만듭니다."
-
-<strong>C-Charge 분석</strong>:[^12]
-
-
-| 측면 | FBTC | IBIT |
-| :-- | :-- | :-- |
-| AUM | \$16.6-26B | \$48.8-98.5B |
-| 일일 거래량 | 낮음 | 높음 |
-| 매수-매도 스프레드 | 넓음 | <strong>좁음</strong> |
-| 유동성 | 좋음 | <strong>우수</strong> |
-
-### "악순환" 문제[^5]
-
-<strong>Seeking Alpha</strong>:[^5]
-> "IBIT는 '선순환'의 이점을 얻으며, 우수한 유동성이 빈번한 트레이더를 유치하여 스프레드를 향상시킵니다. 반대로 FBTC는 '악순환'을 경험하며 거래 활동이 감소합니다."
-
-<strong>선순환 (IBIT)</strong>:
-
-1. 큰 AUM → 더 많은 유동성
-2. 더 많은 유동성 → 더 좁은 스프레드
-3. 더 좁은 스프레드 → 트레이더 유치
-4. 더 많은 트레이더 → 더 많은 유동성
-5. <strong>피드백 루프가 지배력 강화</strong>
-
-<strong>악순환 (FBTC)</strong>:
-
-1. 작은 AUM → 적은 유동성
-2. 적은 유동성 → 넓은 스프레드
-3. 넓은 스프레드 → 활발한 트레이더 억제
-4. 적은 트레이더 → 더 적은 유동성
-5. <strong>피드백 루프가 격차 확대</strong>
-
-### 실질적 영향[^9][^12][^5]
-
-<strong>매수 후 보유 투자자의 경우</strong>: 최소 영향[^5]
-
-- 0.04% vs 0.02% 스프레드 = \$10K에서 \$2 vs \$4
-- 드문 거래 = 스프레드 비용 무시 가능
-- <strong>FBTC 완벽하게 적합</strong>
-
-<strong>활발한 트레이더의 경우</strong>: 눈에 띄는 영향[^12][^5]
-
-- 2배 넓은 스프레드가 여러 거래에 걸쳐 누적
-- 더 큰 주문은 더 나쁜 실행 가능
-- \$1M+ 주문에서 슬리피지
-- <strong>IBIT 명확히 우수</strong>
-
-<strong>기관의 경우</strong>: 중간 영향[^9][^12]
-
-- IBIT의 \$87.63B AUM vs FBTC의 \$23.19B[^12]
-- IBIT가 \$100M+ 배분에 더 쉬움
-- IBIT에서 가격 영향 낮음
-- <strong>IBIT 선호하지만 FBTC 허용 가능</strong>
-
-
-## 기관 채택: 강력한 최근 모멘텀
-
-### 최근 유입 (2025-2026)[^11][^14]
-
-<strong>AInvest 보고서</strong> (2026년 1월):[^11]
-> "2026년 초 비트코인 ETF 유입 급증—2026년 1월 13일 \$7억 5,370만 정점—은 2025년 말 유출에서 중요한 반전을 나타냅니다. 이 유입은 <strong>Fidelity의 FBTC (\$3억 5,100만)</strong>, Bitwise의 BITB (\$1억 5,900만), BlackRock의 IBIT (\$1억 2,600만)을 포함한 주요 기관 참여자가 주도했습니다."
-
-<strong>Spectrum Search</strong> (2025년 12월):[^14]
-> "유입 돌격을 이끈 것은 <strong>Fidelity의 Wise Origin Bitcoin Fund (FBTC)</strong> 로, 인상적인 <strong>\$3억 9,100만</strong>의 신규 자본을 포획했습니다—그날 총 유입의 가장 큰 몫을 차지합니다. Fidelity의 성과는 약 \$1억 1,100만을 끌어들인 <strong>BlackRock의 iShares Bitcoin Trust (IBIT)</strong> 를 크게 앞질렀습니다."
-
-<strong>핵심 인사이트</strong>: <strong>FBTC가 때때로 유입 주도</strong>
-
-- 2026년 1월 13일: FBTC \$351M vs IBIT \$126M (2.8배)
-- 2025년 12월: FBTC \$391M vs IBIT \$111M (3.5배)
-- <strong>FBTC가 상당한 기관 자본 포획</strong>
-
-
-### 누적 포지션[^16][^11][^14]
-
-<strong>AInvest</strong> (2026년 1월):[^11]
-> "신선한 활동의 물결은 모든 미국 스팟 비트코인 ETF의 총 누적 유입을 <strong>\$570억</strong> 이상으로 밀어 올렸으며, 총 자산은 이제 <strong>\$1,120억</strong>을 초과합니다."
-
-<strong>B2Broker</strong> (2025년 12월):[^16]
-> "2025년 말까지 스팟 비트코인 ETF는 \$1,150억 이상의 결합 자산을 관리했으며, BlackRock의 IBIT (\$750억)와 Fidelity의 FBTC (> \$200억)가 주도했습니다."
-
-<strong>FBTC 시장 포지션</strong>:
-
-- AUM 기준 \#2 스팟 비트코인 ETF
-- \$20-26B AUM (vs IBIT \$75-100B)
-- \~17-22% 시장점유율 (vs IBIT 61-75%)
-- <strong>확고한 \#2, 하지만 먼 2위</strong>
-
-
-## FBTC vs IBIT: 직접 비교
-
-### FBTC가 적합한 경우[^5][^9][^10][^12]
-
-<strong>Seeking Alpha</strong> (2024년 12월):[^5]
-> "IBIT는 동등한 접근 권한을 가진 투자자에게 유동성 우위로 인해 선호되는 선택으로 남아 있습니다. 그러나 FBTC는 Fidelity 계좌로 제한된 사람들에게 주요 단점 없이 경쟁력 있는 노출을 제공하는 견고한 옵션입니다."
-
-<strong>Cortex Alpha</strong>:[^9]
-<strong>FBTC 고려 대상:</strong>
-
-- Fidelity의 직접 커스터디 모델 선호
-- 이미 투자에 Fidelity 사용
-- 장기 매수 후 보유 투자자
-
-<strong>LinkedIn 분석</strong>:[^10]
-> "재무 자문가가 비트코인 ETF로 FBTC를 선택해야 하는 이유:
-> 1. Coinbase 의존 ETF보다 깨끗한 커스터디 모델
-> 2. Fidelity의 70년 이상 증권 시장 경험
-> 3. Fidelity 플랫폼과의 원활한 통합"
-
-### IBIT가 적합한 경우[^12][^5][^9]
-
-<strong>Cortex Alpha</strong>:[^9]
-<strong>IBIT 고려 대상:</strong>
-
-- 더 높은 유동성과 거래량 선호
-- BlackRock의 브랜드와 실적이 매력적
-- 포지션을 자주 출입 거래
-
-<strong>C-Charge</strong>:[^12]
-> "IBIT는 일반적으로 더 큰 관리 자산과 더 활발한 기관 채택 덕분에 더 높은 유동성을 가지고 있습니다. 이 증가된 유동성은 더 좁은 매수-매도 스프레드와 더 낮은 거래 비용으로 이어져 활발한 트레이더와 대형 기관 투자자에게 이익이 됩니다."
-
-### 하이브리드 전략 (최고)[^5][^10]
-
-<strong>권장 접근법</strong>:
-
-1. <strong>IBIT + FBTC 둘 다 보유</strong>
-2. <strong>커스터디 다각화</strong>: Coinbase (IBIT) + Fidelity (FBTC)
-3. <strong>단일 커스터디언 위험 감소</strong>
-4. <strong>배분 최적화</strong>:
-    - IRA: IBIT (더 크고 유동적)
-    - 과세 계좌: FBTC (Fidelity 통합)
-    - 또는 50/50 분할
-
-<strong>LinkedIn</strong>:[^10]
-> "상당한 배분을 관리하는 자문가의 경우 FBTC의 자체 커스터디는 제3자 커스터디언과 함께 존재하는 거래상대방 위험 계층을 제거합니다."
-
-## Designated Investments Agreement (DIA)[^17]
-
-### Fidelity 특정 요구사항[^17]
-
-<strong>DIA란?</strong>:[^17]
-> "Fidelity® Wise Origin® Bitcoin Fund 및 유사한 스팟 비트코인 ETP 상품에 대한 주문을 하려면 투자자가 Fidelity의 Designated Investments Agreement (DIA)를 실행해야 합니다. Fidelity는 특정 복잡하고 위험한 상품에 DIA를 요구합니다."
-
-<strong>계좌 요구사항</strong>:[^17]
-
-- 투자 목표가 "Most Aggressive"여야 함
-- 일회성 계약 실행
-- Fidelity.com 사용자: 거래 세부 정보 입력 후 프롬프트
-- 모바일 앱 사용자: 브라우저로 리디렉션
-
-<strong>비교</strong>:
-
-- IBIT: 특별 계약 없음 (표준 증권)
-- FBTC: DIA 필요 (Fidelity 특정)
-- <strong>FBTC에 약간 더 높은 마찰</strong>
-
-
-## IBIT 대비 장점
-
-### 1. 자체 커스터디 모델[^8][^10]
-
-<strong>Coinbase 집중 위험 제거</strong>:
-
-- 11개 스팟 비트코인 ETF 중 8개가 Coinbase 커스터디 사용
-- Coinbase 실패 = 시장 73%에 시스템 위험
-- <strong>FBTC는 Fidelity Digital Assets 사용 = 독립적</strong>
-
-
-### 2. Fidelity 브랜드 \& 통합[^1][^9][^10]
-
-<strong>70년 이상 증권 경험</strong>:[^1]
-
-- 확립된 브랜드 신뢰
-- 막대한 개인 투자자 기반
-- 원활한 플랫폼 통합
-
-
-### 3. 2014년부터 암호화폐 전문성[^1]
-
-<strong>초기 진입자</strong>:[^1]
-> "Fidelity는 2014년부터 비트코인을 연구하고 블록체인 솔루션을 개발해 왔습니다."
-
-### 4. 강력한 최근 유입[^11][^14]
-
-<strong>때때로 IBIT 능가</strong>:
-
-- 2026년 1월 13일: FBTC \$351M vs IBIT \$126M
-- 2025년 12월: FBTC \$391M vs IBIT \$111M
-- <strong>기관 신뢰 입증</strong>
-
-
-## IBIT 대비 단점
-
-### 1. 낮은 유동성[^5][^9][^12][^15]
-
-<strong>3-4배 낮은 거래량</strong>:
-
-- IBIT: 일평균 43.7M 주
-- FBTC: \~10-15M 주
-- <strong>넓은 매수-매도 스프레드 (0.04% vs 0.02%)</strong>
-
-
-### 2. 작은 AUM[^2][^12][^15]
-
-<strong>\$20-26B vs \$75-100B</strong>:
-
-- IBIT 3.5-3.7배 더 큼
-- 기관 규모 적음
-- <strong>유동성 낮은 "악순환"</strong>
-
-
-### 3. 낮은 Return-to-Fee Ratio[^2]
-
-<strong>217.20 vs 454.17</strong>:
-
-- IBIT 2.1배 우수
-- IBIT 수수료 면제 기간 이점 반영
-- <strong>앞으로 0.25% 둘 다에서 수렴해야</strong>
-
-
-## 사용 사례: FBTC가 빛나는 곳
-
-### ✅ FBTC가 탁월한 경우:
-
-<strong>1. Fidelity 계좌 보유자</strong>:[^5][^9][^10]
-
-- 이미 투자에 Fidelity 사용
-- 원활한 통합
-- 통합 계좌 관리
-- <strong>Fidelity 생태계 내 자연스러운 선택</strong>
-
-<strong>2. 매수 후 보유 투자자</strong>:[^9][^12][^5]
-
-- 넓은 스프레드가 드문 거래에 무의미
-- 0.04% vs 0.02% = \$10K에서 \$2 차이
-- 장기 비트코인 신봉자
-- <strong>FBTC 완벽하게 적합</strong>
-
-<strong>3. 커스터디 다각화</strong>:[^10]
-
-- IBIT와 짝을 이루어 Coinbase 위험 감소
-- Fidelity 자체 커스터디 = 독립적
-- 두 커스터디언 = 더 나은 위험 관리
-- <strong>최적: 50% IBIT + 50% FBTC</strong>
-
-<strong>4. Fidelity 관계가 있는 자문가</strong>:[^10]
-
-- Fidelity 플랫폼의 RIA
-- Fidelity의 고객 계좌
-- 자체 커스터디에 대한 커스터디 선호
-- <strong>FBTC = 최선의 선택</strong>
-
-<strong>5. 다각화를 추구하는 기관 배분자</strong>:[^11][^14]
-
-- 위험을 분산하는 대형 기관
-- Harvard, Abu Dhabi Investment Council
-- 모든 계란을 IBIT/Coinbase 바구니에 넣고 싶지 않음
-- <strong>FBTC = 견고한 \#2 옵션</strong>
-
-
-### ❌ FBTC가 차선책인 경우:
-
-<strong>1. 활발한 트레이더</strong>:[^5][^12]
-
-- 넓은 스프레드 누적 (0.04% vs 0.02%)
-- 주당 여러 거래
-- IBIT의 유동성 우위 명확
-- <strong>대신 IBIT 사용</strong>
-
-<strong>2. 대형 기관 주문</strong> (\$100M+):[^12]
-
-- IBIT의 더 깊은 유동성
-- 가격 영향 적음
-- 더 좁은 실행
-- <strong>IBIT 선호</strong>
-
-
-## 2026년 전망
-
-### 성과 기대
-
-<strong>IBIT ±0.2% 추적</strong>:[^2][^4]
-
-- 둘 다 100% 비트코인 보유
-- 둘 다 0.25% 운용보수
-- 추적 오차 최소
-- <strong>본질적으로 동일한 수익</strong>
-
-
-### AUM 성장 시나리오
-
-<strong>강세 시나리오</strong>: \$35-40B로 성장
-
-- 20-25% 시장점유율 포획
-- 강력한 Fidelity 유통
-- 커스터디 다각화 테마 견인력 확보
-- <strong>확고한 \#2 유지</strong>
-
-<strong>기본 시나리오</strong>: \$25-30B에서 안정
-
-- \~20% 시장점유율 유지
-- 꾸준한 기관 채택
-- IBIT 격차 지속하지만 확대되지 않음
-- <strong>IBIT에 대한 견고한 대안</strong>
-
-
-## 최종 평가: ★★★★½ (4.5/5) - 탁월한 비트코인 ETF, 강력한 IBIT 대안
-
-### 핵심 강점 (강함)
-
-1. <strong>자체 커스터디 모델</strong>: Fidelity Digital Assets, Coinbase 집중 위험 제거[^8][^10]
-2. <strong>Fidelity 브랜드</strong>: 70년 이상, 막대한 개인 기반, 신뢰[^1][^10]
-3. <strong>암호화폐 전문성</strong>: 2014년부터, 전용 인프라[^1]
-4. <strong>경쟁력 있는 수수료</strong>: 0.25%, 업계 최고 수준[^2][^3]
-5. <strong>강력한 유입</strong>: 때때로 일일 유입에서 IBIT 주도[^11][^14]
-6. <strong>확고한 \#2 포지션</strong>: \$20-26B AUM, IBIT에 대한 명확한 대안[^16][^2]
-7. <strong>플랫폼 통합</strong>: Fidelity 사용자에게 원활[^9][^10]
-8. <strong>성과</strong>: IBIT와 거의 동일 (±0.2%)[^4][^2]
-9. <strong>커스터디 다각화</strong>: 위험 의식 투자자를 위한 핵심 이점[^10]
-10. <strong>기관 신뢰</strong>: Harvard, Abu Dhabi IC 배분[^11]
-
-### 약점 (중간)
-
-1. <strong>낮은 유동성</strong>: IBIT보다 3-4배 낮은 거래량[^5][^12][^15]
-2. <strong>넓은 스프레드</strong>: IBIT 0.02%에 비해 0.04%[^15]
-3. <strong>작은 AUM</strong>: IBIT \$75-100B에 비해 \$20-26B[^2][^12][^16]
-4. <strong>"악순환"</strong>: 낮은 유동성 → 넓은 스프레드 → 적은 거래[^5]
-5. <strong>DIA 요구사항</strong>: Fidelity 사용자를 위한 추가 마찰[^17]
-6. \#2 포지션: 네트워크 효과가 \#1 선호 (IBIT)[^15]
-7. <strong>낮은 Return-to-Fee</strong>: IBIT 454.17에 비해 217.20 (수수료 면제 기간으로 인해)[^2]
-
-<strong>FBTC는 탁월한 비트코인 ETF이자 IBIT에 대한 가장 강력한 대안</strong>으로, 거의 동일한 성과(±0.2% 추적 오차), 경쟁력 있는 0.25% 수수료, 그리고 11개 스팟 비트코인 ETF 중 8개에 영향을 미치는 Coinbase 집중 위험을 제거하는 <strong>Fidelity 자체 커스터디</strong>라는 핵심 차별화 요소를 제공합니다. \$20-26B AUM과 \~20% 시장점유율로 FBTC는 때때로 일일 유입에서 IBIT를 주도하는(\$351M vs \$126M, 2026년 1월 13일) 확고한 \#2로, Fidelity의 70년 이상 증권 경험과 10년 이상 암호화폐 전문성에 대한 기관 신뢰를 입증합니다.[^1][^3][^4][^8][^10][^11][^14][^2]
-
-<strong>유동성 격차가 FBTC의 주요 단점</strong>입니다: 3-4배 낮은 거래량과 2배 넓은 매수-매도 스프레드(0.04% vs 0.02%)가 활발한 트레이더를 억제하는 "악순환"을 만듭니다. 하지만 <strong>매수 후 보유 투자자에게 이것은 무의미</strong>합니다—0.02% 스프레드 차이는 \$10K에서 \$2이며 수년간 보유하면 사라집니다. FBTC의 Return-to-Fee Ratio 217.20은 IBIT의 454.17에 뒤처지지만, 이는 IBIT의 수수료 면제 이점을 반영하며; 앞으로 0.25% 둘 다에서 성과가 수렴해야 합니다.[^12][^2][^5][^15]
-
-<strong>FBTC의 킬러 앱은 커스터디 다각화</strong>입니다: FBTC(Fidelity Digital Assets)를 IBIT(Coinbase)와 짝을 이루면 투자자는 두 독립 커스터디언에 노출되어 단일 장애점 위험을 완화합니다. Fidelity 계좌 보유자의 경우 FBTC는 원활한 플랫폼 통합을 제공하고 이미 "Most Aggressive" 목표를 가진 사람들의 DIA 마찰을 피합니다. Fidelity 플랫폼의 재무 자문가는 FBTC를 고객 비트코인 배분의 자연스러운 선택으로 간주합니다.[^9][^10][^17]
-
-<strong>대안과 비교</strong>: FBTC는 GBTC를 압도하고(6배 낮은 수수료, 현대 ETF 구조), 더 작은 ETF에 대한 편안한 \#2 지배력을 유지하며, 약간 낮은 유동성을 받아들이려는 장기 보유자에게 IBIT와 거의 동등함을 제공합니다. <strong>대부분의 투자자를 위한 최적 전략은 50% IBIT + 50% FBTC</strong>—IBIT의 우수한 유동성과 FBTC의 커스터디 다각화를 균형 잡습니다.[^10][^16][^2]
-
-<strong>2026년 전망</strong>: FBTC는 기관이 계속 배분함에 따라 \$25-30B AUM과 \~20% 시장점유율을 유지하며 강력한 \#2로 남을 것입니다(ETF 노출의 57%가 기관). IBIT 대비 유동성 격차는 네트워크 효과로 인해 지속되지만, FBTC의 자체 커스터디 모델과 Fidelity 브랜드는 관련성을 보장합니다. 최근 유입은 FBTC가 특정 날에 주도할 수 있음을 보여주며, "IBIT의 백업"이 아니라 커스터디 의식 배분자를 위한 정당한 첫 번째 선택임을 증명합니다.[^11][^14]
-
-<strong>권장사항</strong>: <strong>Fidelity 사용자, 매수 후 보유 투자자 또는 커스터디 다각화 추구자라면 FBTC 매수</strong>하세요. 활발한 트레이더나 최대 유동성을 우선시하는 사람은 IBIT를 선택하세요. 최적 위험 관리를 위해 <strong>IBIT + FBTC 50/50 보유</strong>로 커스터디언을 다각화하세요. FBTC는 위안상이 아닙니다—IBIT가 동급 최고인 세계에서 \#2가 된 최상급 비트코인 ETF입니다. IBIT가 존재하지 않는 세계에서 FBTC는 논란의 여지가 없는 챔피언이 될 것입니다. <strong>FBTC = "IBIT의 Coke에 대한 Pepsi"</strong>—약간 덜 인기지만 동등한 품질과 정당한 이유로 많은 사람이 선호합니다.
-<span style="display:none">[^25][^26][^27][^28]</span>
-
-<div align="center">⁂</div>
-
-[^1]: https://institutional.fidelity.com/app/item/SCIC_P00000677/fidelity-wise-origin-bitcoin-fund-fbtc.html
-
-[^2]: https://cryptoresearch.report/crypto-research/fidelitys-fbtc-vs-blackrocks-ibit-a-deep-dive-into-bitcoin-etf-performance/
-
-[^3]: https://cryptoresearch.report/crypto-research/understanding-the-fbtc-expense-ratio-a-key-factor-in-your-bitcoin-etf-investment/
-
-[^4]: https://www.forbes.com/sites/investor-hub/article/ibit-vs-fbtc-which-bitcoin-etf-better-buy/
-
-[^5]: https://seekingalpha.com/article/4742598-bitcoin-etfs-showdown-fbtc-trails-ibit-in-liquidity-but-fits-retirement-accounts
-
-[^6]: https://www.fidelity.com/learning-center/trading-investing/crypto/safety-and-security-fidelity-crypto
-
-[^7]: https://www.fidelitydigitalassets.com/trading-custody
-
-[^8]: https://www.okx.com/learn/btc-fidelity-institutional-bitcoin-custody
-
-[^9]: https://etf-alpha.com/bitcoin-etf-ibit-vs-fbtc.html
-
-[^10]: https://www.linkedin.com/pulse/why-financial-advisors-should-choose-fbtc-goto-bitcoin-getter-7gwie
-
-[^11]: https://www.ainvest.com/news/bitcoin-etf-inflows-institutional-entry-signal-critical-buy-point-crypto-markets-2601/
-
-[^12]: https://c-charge.io/fbtc-vs-ibit-which-bitcoin-etf-should-you-buy/
-
-[^13]: https://www.fidelitydigitalassets.com/sites/g/files/djuvja3256/files/acquiadam/1098628.3.0 - FDA The Omnibus Model for Custody V1.pdf
-
-[^14]: https://spectrum-search.com/insights/institutional-capital-reignites-bitcoin-momentum-amid-shifting-macro-and-liquidity-cycles
-
-[^15]: https://blog.quicknode.com/ibit-blackrock-bitcoin-etf-guide-2025/
-
-[^16]: https://b2broker.com/news/institutional-adoption-of-crypto/
-
-[^17]: https://www.fidelity.com/etfs/crypto-funds
-
-[^18]: https://www.perplexity.ai/finance/FBTC/history
-
-[^19]: https://robinhood.com/us/en/stocks/FBTC/
-
-[^20]: https://www.tradingview.com/symbols/CBOE-FBTC/
-
-[^21]: https://kr.investing.com/etfs/fbtc-nyse
-
-[^22]: https://finance.yahoo.com/quote/FBTC/
-
-[^23]: https://stockevents.app/kr/stock/FBTC
-
-[^24]: https://www.coinfeeds.ai/crypto-blog/gbtc-vs-ibit-vs-fbtc-bitcoin-etfs
-
-[^25]: https://www.fidelitydigitalassets.com/research-and-insights/fidelity-investmentsr-launches-spot-bitcoin-exchange-traded-product-fidelityr
-
-[^26]: https://kr.investing.com/etfs/fbtc-nyse-news/913
-
-[^27]: https://powerdrill.ai/blog/institutional-cryptocurrency-adoption
-
-[^28]: https://juanencripto.com/blog/1
+1. [SEC 10-Q, 2026년 6월 30일 기준 분기보고서 (2026-08-06 제출)](https://www.sec.gov/Archives/edgar/data/1852317/000119312526337679/ck0001852317-20260630.htm)
+2. [SEC 투자설명서 424B3 (2026-04-29 제출)](https://www.sec.gov/Archives/edgar/data/1852317/000119312526191289/d76290d424b3.htm)
