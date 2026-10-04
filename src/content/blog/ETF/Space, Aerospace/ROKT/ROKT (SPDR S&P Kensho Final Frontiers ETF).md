@@ -1,339 +1,129 @@
 ---
 title: 'ROKT (SPDR S&P Kensho Final Frontiers ETF)'
-description: '우주 및 심해 탐사 관련 기업에 투자하는 SPDR ETF'
+description: '우주와 심해 탐사 관련 미국 상장 기업에 투자하는 ROKT의 지수 구성, 보유 현황, 비용과 위험을 기준일과 함께 정리한다.'
 pubDate: '2026-01-31T21:00:00Z'
-ticker: "ROKT"
-issuer: "State Street"
-assetClass: "Equity"
-strategy: "Index"
-exposure: "Space & Deep Sea"
-leverage: "1x"
-incomeStyle: "None"
-aum: "$178.48M"
-aumAsOf: '2026-09-24T00:00:00+09:00'
-categories: "ETF"
+updatedDate: '2026-10-05T00:00:00+09:00'
+verifiedDate: '2026-10-05T00:00:00+09:00'
+dataAsOf: '2026-10-01T00:00:00+09:00'
+aumAsOf: '2026-10-01T00:00:00+09:00'
+expenseRatioAsOf: '2025-10-31T00:00:00+09:00'
+yieldAsOf: '2026-10-01T00:00:00+09:00'
+instrumentType: 'ETF'
+ticker: 'ROKT'
+issuer: 'State Street'
+assetClass: 'Equity'
+strategy: 'Index'
+exposure: 'Space & Deep Sea Exploration'
+leverage: '1x'
+incomeStyle: 'None'
+expenseRatio: '0.45%'
+aum: '$174.96M'
+yield: '0.20%'
+categories: 'ETF'
+tags: ['ETF', 'ROKT', 'State Street', 'Space Industry', 'Deep Sea Exploration']
 ---
 
-### 기본 정보
+# ROKT (State Street SPDR S&P Kensho Final Frontiers ETF) 분석
 
-ROKT는 State Street Investment Management에서 운용하는 우주 및 심해 탐사 관련 기업들을 추종하는 지수형 상장지수펀드(ETF)입니다. 2018년 10월 22일 설정되어 약 7년간 운용 중이며, NYSE Arca 거래소에서 거래됩니다. 이 ETF는 S\&P Kensho Final Frontiers Index를 추종하며, S\&P Global의 머신러닝 기반 분석 도구인 Kensho 기술을 활용하여 운용됩니다.[^1][^2]
+> **분석 기준일: 2026년 10월 5일**
 
-순자산 규모(AUM)는 약 \$26.5-31.15M으로 상대적으로 소규모입니다. 현재 가격(2026년 1월 초)은 \$91-94로 설정 이후 약 140% 이상 상승했습니다.[^3]
+## 한 줄 요약
 
-***
+ROKT는 우주 탐사뿐 아니라 심해 탐사 관련 기업도 포함하는 S&P Kensho Final Frontiers Index를 추종하는 미국 주식 ETF다. 따라서 우주 산업에만 투자하는 순수 우주 ETF로 보면 실제 노출과 차이가 생긴다.
 
-### 추종 성과 지표
+## 기본 분류
 
-![alt text](images/image.png)
+| 항목 | 내용 |
+|---|---|
+| 티커 / 거래소 | ROKT / NYSE Arca |
+| 현재 공식 명칭 | State Street® SPDR® S&P Kensho Final Frontiers ETF |
+| 설정일 | 2018년 10월 22일 |
+| 대분류 | 테마형 주식 ETF |
+| 핵심 지수 | S&P Kensho Final Frontiers Index |
+| 옵션·레버리지 | 옵션 전략 없음 / 레버리지·인버스 없음 |
+| 총 운용보수 | 연 0.45% |
 
-ROKT ETF 5년 가격 추이 (2021-2026)
+이 글은 파일이 놓인 `ETF/Space, Aerospace` 경로를 유지한다. 분류는 상품명만이 아니라 지수의 실제 범위와 투자 전략을 기준으로 했다. ROKT 지수는 우주와 심해 탐사를 함께 다루므로, 폴더 이름보다 넓은 주제를 가진다는 점을 함께 참고해야 한다.[^1][^2]
 
-<strong>1년 수익률</strong>: ROKT는 2025년 동안 배당금을 포함하여 61.01%의 강력한 수익률을 기록했습니다. 이는 우주 산업의 성장과 방위 관련 기업들의 실적 개선을 반영합니다. 설립 이후 평균 연수익률은 16.49%로, 장기적으로 시장 평균을 크게 상회하는 성과를 보여줍니다.[^4]
+## 지수와 운용 방식
 
-<strong>NAV 괴리율</strong>: NAV 대비 시장가격 괴리율은 0.1% 프리미엄으로 거의 프리미엄 상태이지만 미미한 수준입니다. 이는 ETF의 가격과 순자산가치 간에 크게 벗어나지 않음을 의미하며, 효율적인 시장 운영을 나타냅니다.[^5]
+S&P Kensho Final Frontiers Index는 전 세계에 본사를 둔 기업 중 미국 거래소에 상장된 주식과 예탁증서를 대상으로 한다. 지수는 S&P Kensho Space Index 구성 종목에 S&P Kensho Drones Index의 심해 탐사 관련 종목을 더한다. 여기서 드론 지수는 항공뿐 아니라 수중·수면의 무인 또는 원격 조종 장비와 공급망 기업도 포함할 수 있다.[^1][^2]
 
-<strong>근본적인 성과 특성</strong>: 6개월 수익률은 34.46%이며, 5년 차트에서 볼 수 있듯이 2021년 초 \$38.50에서 2026년 초 \$94.57로 상승하는 강한 우상향 추이를 보이고 있습니다. 다만, 2023년부터 2024년 초까지의 횡보 구간을 거쳐 2024년 중반 이후 본격적인 상승이 이루어졌습니다.
+지수 제공자는 기업의 공시 자료에서 관련 제품·서비스를 자동으로 검색하고, 지수위원회가 검색 규칙이 적절히 적용됐는지 검토한다. 관련 사업이 회사 전략에서 차지하는 비중에 따라 Core와 Non-Core로 구분하며, 재조정 때 Core 종목에 상대적으로 더 큰 비중을 두고 각 그룹 안에서는 균등 가중을 적용한다. 유동성·분산 조정이 추가될 수 있다. 지수는 매년 6월에 재구성·재조정되고, 12월에는 재조정된다. 12월 조정 때는 이전 재구성 검토 이후 새 적격 공시를 제출한 종목의 계속 편입 여부도 평가한다.[^2]
 
-***
+펀드는 지수 전 종목을 반드시 그대로 보유하는 대신 표본 추출(sampling) 방식으로 비슷한 위험·수익 특성을 가진 포트폴리오를 구성할 수 있다. 정상적인 시장 상황에서는 총자산의 최소 80%를 지수 구성 증권에 투자하며, 현금 관리나 지수 추종을 위해 현금성 자산 또는 선물을 사용할 수도 있다.[^2]
 
-### 비용 구조
+## 규모와 거래 지표
 
-<strong>총 운용보수</strong>: ROKT의 총 운용보수는 0.45%로, 경쟁 ETF와 비교했을 때 매우 경쟁력 있습니다. 같은 우주 테마 ETF인 UFO(Procure Space ETF)의 0.75%, ARKX(ARK Space Exploration \& Innovation ETF)의 0.80%와 비교하면 현저히 낮습니다.[^6]
+State Street 자료의 2026년 10월 1일 스냅샷은 다음과 같다.[^1]
 
-<strong>배당 관련 비용</strong>: 배당수익률은 0.51-0.55%이며, 분기별로 배당이 지급됩니다. 2025년의 배당 이력을 보면 9월에 \$0.15136, 6월에 \$0.0738, 3월에 \$0.07732, 12월에 \$0.13741로 분기별로 변동성 있게 지급됩니다.[^7]
+| 항목 | 기준일 값 |
+|---|---:|
+| 순자산(AUM) | $174.96M |
+| NAV | $104.77 |
+| 종가 | $104.87 |
+| 프리미엄·디스카운트 (4pm 호가 중간값과 INAV 비교) | +0.01% |
+| 30일 중간 호가 스프레드 | 0.21% |
+| 당일 거래량 | 253주 |
+| 보유 종목 수 | 37 |
 
-<strong>포트폴리오 회전율</strong>: 약 22%의 회전율은 패시브 지수 추종 전략을 고려할 때 중간 수준의 거래 활동을 나타냅니다. 이는 지수 리밸런싱 및 포트폴리오 구성 변화에 따른 거래를 의미합니다.
+공시된 +0.01%는 16시 호가 중간값과 장중 추정 NAV(INAV)를 비교한 수치이며, 종가 \$104.87과 NAV \$104.77의 단순 비교값과는 기준이 다르다. 거래량 253주는 해당 거래일의 수치이지 평균 거래량이 아니다. 거래 조건은 시간대와 시장 상황에 따라 달라지며, 공시된 30일 중간 스프레드도 개별 주문의 체결 가격을 보장하지 않는다. 시장 가격은 NAV보다 높거나 낮게 형성될 수 있다.
 
-***
+## 보유 종목과 산업 노출
 
-### 유동성 평가
+2026년 10월 1일 기준 상위 10개 종목과 비중은 다음과 같다. 이 10개 종목의 비중 합계는 36.70%다.[^1]
 
-<strong>일평균 거래량 및 거래대금</strong>: ROKT의 일평균 거래량은 약 4,000-4,100주로, 평균 거래량 대비 상당히 낮습니다. 24시간 거래대금은 약 \$348,000으로, 이는 매우 소규모 거래량을 시사합니다.[^8]
+| 종목 | 비중 |
+|---|---:|
+| Forum Energy Technologies | 4.52% |
+| Oceaneering International | 3.93% |
+| Ducommun | 3.89% |
+| Iridium Communications | 3.65% |
+| RTX | 3.63% |
+| Moog Class A | 3.56% |
+| Teledyne Technologies | 3.54% |
+| Lockheed Martin | 3.36% |
+| HEICO | 3.32% |
+| Hexcel | 3.30% |
 
-<strong>호가 스프레드 및 유동성 추이</strong>: 정상적인 시장 조건에서 호가 스프레드는 합리적 수준이지만, 낮은 거래량으로 인해 대량 거래 시 호가 변동 위험이 있을 수 있습니다. 유동성은 역사적으로 안정적이지 않으며, 시장 변동성이 클 때 특히 제한될 수 있습니다.
+운용사 분류 기준의 하위 산업 비중은 항공우주·방위 53.79%, 연구·컨설팅 서비스 10.90%, 석유·가스 장비·서비스 10.87%, 산업 기계·부품 5.49%였다. 이 수치는 2026년 10월 1일 기준이며 이후 변할 수 있다. 이름에서 연상되는 우주 기업 외에도 방산, 해양 장비, 산업재 기업의 비중이 상당하다는 점이 포트폴리오의 특징이다.[^1]
 
-<strong>유동성 위험 평가</strong>: 소규모 ETF로서 유동성이 제한적이므로, 투자자는 대량 매매 또는 시장 변동성이 높은 시기에 호가 변동의 위험을 감수해야 합니다.
+## 비용과 분배
 
-***
+총 연간 운용비용은 0.45%다. 2025년 10월 31일 요약 투자설명서에는 관리보수 0.45%, 12b-1 판매·서비스 수수료 없음, 기타 비용 0.00%로 기재되어 있다. 중개 수수료 등 투자자가 별도로 부담할 수 있는 비용과 펀드의 증권 거래 비용은 이 비율에 포함되지 않는다.[^2]
 
-### 포트폴리오 구성
+운용사의 2026년 10월 1일 기준 30일 SEC 수익률은 0.19%, 최근 365일 분배금을 NAV로 나눈 분배 수익률은 0.20%다. 이 수치는 과거 또는 최근 기간을 바탕으로 한 값이며 향후 분배를 약속하지 않는다. 분배 빈도는 분기별이다.[^1]
 
-![alt text](images/image-1.png)
+같은 투자설명서가 보고한 직전 회계연도 포트폴리오 회전율은 21%다. 회전율은 매매 비용이나 과세 영향을 모두 나타내는 숫자는 아니다.[^2]
 
-ROKT ETF 상위 10대 보유 종목 및 비중
+## 성과
 
-<strong>상위 10대 보유 종목</strong>: ROKT의 포트폴리오는 34개 종목으로 구성되어 있으며, 상위 10개 종목이 약 45.62%를 차지합니다. Planet Labs PBC(7.87%)와 Rocket Lab Corporation(7.03%)이 상위 2개 종목이며, 이들은 위성 및 발사체 기술에 집중합니다.[^9]
+State Street가 공개한 최신 월말 성과 기준일은 2026년 8월 31일이다. 아래는 세전 NAV 총수익률과 지수 수익률이며, 분배금 재투자를 가정한다.[^1]
 
-상위 10개 종목:
+| 기간 | ROKT NAV | 지수 |
+|---|---:|---:|
+| 1개월 | -0.20% | -0.16% |
+| 2026년 초 이후 | +29.63% | +29.98% |
+| 1년 | +54.24% | +54.92% |
+| 3년 연환산 | +38.27% | +38.93% |
+| 5년 연환산 | +22.48% | +23.03% |
+| 설정 이후 연환산 | +18.81% | +19.33% |
 
-1. Planet Labs PBC - 7.87%
-2. Rocket Lab Corp - 7.03%
-3. Viasat Inc - 5.92%
-4. Northrop Grumman - 3.85%
-5. L3Harris Technologies - 3.66%
-6. Moog Inc - 3.52%
-7. RTX Corporation - 3.50%
-8. Teledyne Technologies - 3.48%
-9. Hexcel Corporation - 3.43%
-10. Oceaneering International - 3.36%
+3년 이상 및 설정 이후 수치는 연환산 값이다. 과거 성과는 미래 수익을 보장하지 않으며, 지수 수익률은 펀드 보수와 비용을 차감하지 않는다. ROKT의 실제 수익은 비용, 거래, 현금 보유와 표본 추출 때문에 지수와 다를 수 있다.
 
-<strong>섹터별 분배</strong>:
+## 분류 이유와 유의할 점
 
-![alt text](images/image-2.png)
+ROKT는 특정 테마 지수를 추종하는 패시브 ETF이므로 이 사이트의 `Space, Aerospace` 테마 폴더에 둔다. 다만 지수의 범위에는 심해 탐사와 수중 장비 관련 기업도 있고, 최신 산업 분류에서는 항공우주·방위 비중이 절반을 넘는다. 우주 기업에만 집중하는 상품과는 투자 대상이 다르다.[^1][^2]
 
-ROKT ETF 섹터별 자산 배분
+주요 위험은 다음과 같다.
 
-ROKT의 포트폴리오는 산업재 중심입니다. 산업재(Industrials)가 66.9%로 대다수를 차지하며, 항공우주 및 방위산업, 전자기계, 운송 관련 기업들이 포함됩니다. 정보기술(Technology) 비중은 19.9%로, 반도체 및 통신 기술 기업들이 포함됩니다. 에너지 부문은 5.7%, 통신서비스는 2.0%입니다.[^10]
+- **산업 집중:** 항공우주·방위 관련 실적은 정부 예산, 조달 및 규제에 영향을 받을 수 있다. 특정 산업의 악재가 펀드에 크게 반영될 수 있다.
+- **테마·기업 위험:** 탐사 및 관련 기술 사업의 전망과 개별 기업의 실적이 기대에 미치지 못할 수 있다. 일부 중소형 기업은 가격 변동이나 거래 유동성이 더 클 수 있다.
+- **해외 증권 위험:** 지수는 미국 상장 증권을 대상으로 하지만 발행 기업은 여러 국가에 소재할 수 있다. 예탁증서와 해외 기업에는 환율·정치·규제·시장 구조 위험이 따른다.
+- **추적 차이:** 표본 추출, 현금 흐름, 비용, 지수 재조정 과정으로 펀드 수익률이 지수와 달라질 수 있다.
+- **시장 가격 위험:** ETF 주가는 NAV보다 높은 프리미엄 또는 낮은 디스카운트에 거래될 수 있고, 스프레드는 시장 상황에 따라 넓어질 수 있다.
 
-<strong>국가별/지역별 분산</strong>: 97.65%가 미국 기업이며, 2.32%가 중동 지역(Elbit Systems Ltd와 같은 이스라엘 방위 기업) 기업입니다. 따라서 ROKT는 기본적으로 미국 중심의 포트폴리오입니다.
+## 참고 자료
 
-<strong>리밸런싱 주기</strong>: S\&P Kensho Final Frontiers Index는 일반적으로 분기별 또는 정기적으로 리밸런싱되며, 머신러닝 기반의 선택 메커니즘을 통해 구성 종목이 결정됩니다.
-
-***
-
-### 성과 분석
-
-| 기간 | 수익률 |
-| :-- | :-- |
-| 1개월 | +3.07% |
-| 6개월 | +34.46% |
-| 1년 | +61.01% |
-| 설립 이후 평균 연수익률 | 16.49% |
-
-<strong>기간별 수익률 분석</strong>: ROKT는 단기(1개월: 3.07%)부터 장기(1년: 61.01%)까지 모든 기간에서 긍정적인 수익률을 기록했습니다. 특히 2024년 중반 이후 가속화된 상승으로 인해 1년 수익률이 61%에 달했습니다.[^11]
-
-<strong>벤치마크 대비 성과</strong>: ROKT는 S\&P Kensho Final Frontiers Index를 거의 정확히 추종하고 있으며, NAV 대비 프리미엄이 0.1%로 미미하여 인덱스 추종이 효과적임을 보여줍니다.
-
-<strong>리스크 조정 성과 지표</strong>:
-
-- <strong>샤프 지수</strong>: 구체적인 수치는 제공되지 않았으나, 높은 변동성을 감안할 때 중간 수준으로 추정됩니다.
-- <strong>변동성(표준편차)</strong>: 약 26% 수준으로 시장 평균보다 높습니다.
-- <strong>최대 낙폭(Maximum Drawdown)</strong>: 2020년 3월 코로나19 충격 시 약 43.2% 낙폭을 기록했습니다.
-
-***
-
-### 배당 정보
-
-<strong>배당 수익률 및 이력</strong>: ROKT의 배당수익률은 0.55%이며, 분기별로 배당을 지급합니다. 2025년 배당 이력은 다음과 같습니다.[^12]
-
-
-| 배당권리일 | 배당금 | 지급일 |
-| :-- | :-- | :-- |
-| 2025년 9월 22일 | \$0.15136 | 2025년 9월 24일 |
-| 2025년 6월 23일 | \$0.0738 | 2025년 6월 25일 |
-| 2025년 3월 24일 | \$0.07732 | 2025년 3월 26일 |
-| 2024년 12월 23일 | \$0.13741 | 2024년 12월 26일 |
-
-<strong>배당 지급 주기 및 안정성</strong>: 분기별 지급은 일정하지만, 배당금 규모가 분기별로 상당히 변동합니다. 3월과 9월(약 \$0.07-0.15)이 6월(약 \$0.07)보다 높은 경향이 있습니다. 총 배당금(TTM)은 \$0.44로, 배당 지급 비율(Payout Ratio)은 15.11%입니다.[^13]
-
-***
-
-### 리스크 요소
-
-<strong>베타 계수</strong>: ROKT의 베타는 1.09로, 전체 시장 대비 약 9% 더 변동성이 높습니다. 이는 신흥 우주 산업 특성상 예상되는 수준입니다.[^14]
-
-<strong>다른 자산군과의 상관계수</strong>: 구체적인 상관계수는 제공되지 않았으나, 방위산업 및 항공우주 산업의 특성상 경기 사이클 및 정부 지출에 민감합니다.
-
-<strong>섹터 집중도 리스크</strong>: 산업재가 66.9%를 차지하고 있으며, 상위 10개 종목이 약 45%를 차지합니다. 이는 특정 섹터 및 개별 종목의 위험에 노출되어 있음을 의미합니다.
-
-<strong>유동성 리스크</strong>: 일평균 거래량이 4,000주 수준으로 매우 낮고 AUM이 \$31M에 불과합니다. 대규모 투자 또는 펀드 폐쇄 시 유동성 위험이 발생할 수 있습니다.
-
-<strong>산업 리스크</strong>: 우주 산업은 신흥 산업으로, 기술 개발, 규제 변화, 정부 정책 변화에 크게 영향을 받습니다. 또한, 개별 기업들의 경영 리스크도 상대적으로 높습니다.
-
-<strong>가격 변동성</strong>: 52주 범위가 \$45.26 \~ \$94+로 매우 넓으며, 이는 높은 변동성을 시사합니다. 2024년 초에는 \$60 수준에서 현재 \$94로 상승하여 약 57% 상승했습니다.
-
-***
-
-### 경쟁 ETF와의 비교
-
-![alt text](images/image-3.png)
-
-우주 관련 ETF 주요 지표 비교 (ROKT vs UFO vs ARKX)
-
-ROKT는 우주 테마 투자를 제공하는 세 가지 주요 ETF 중 하나입니다.
-
-<strong>ROKT vs UFO (Procure Space ETF)</strong>:
-
-- ROKT의 운용보수(0.45%)는 UFO(0.75%)보다 훨씬 낮습니다.
-- 1년 수익률: UFO 79.1% > ROKT 61.01% (단기 성과는 UFO가 우수)
-- 2년 수익률: ROKT 29.5% > UFO 11.93% (중기 성과는 ROKT가 우수)
-- UFO는 소규모 우주 전문 기업 중심, ROKT는 전통 항공방산과 우주 기업의 균형[^15]
-
-<strong>ROKT vs ARKX (ARK Space Exploration \& Innovation ETF)</strong>:
-
-- ARKX의 철학은 "우주 기술이 세상을 바꾼다"로, 광범위한 산업을 포함합니다 (반도체, 자동화, 드론 등)
-- ROKT는 우주 및 심해 탐사에 직접적으로 관련된 기업에 초점을 맞춥니다
-- ARKX 운용보수: 0.80%, YTD 성과: 36.68%
-- 투자 철학: ARKX는 추상적, UFO는 우주 산업, ROKT는 경계선 명확[^16]
-
-<strong>ROKT의 경쟁 우위</strong>:
-
-1. 가장 낮은 운용보수 (0.45%)
-2. 중장기 성과 우수 (2년 기준)
-3. 명확한 투자 테마 (우주+심해 탐사)
-4. 머신러닝 기반 종목 선택 (S\&P Kensho)
-
-***
-
-### 종합 평가 및 투자 고려사항
-
-<strong>강점</strong>:
-
-- 업계 최저 수준의 운용보수(0.45%)
-- 강력한 중장기 성과(연 16.49% 평균 수익률)
-- 균형잡힌 포트폴리오(전통 방산 + 우주 스타트업)
-- 명확한 투자 테마 및 운용 철학(S\&P Kensho AI 기반)
-- 우수한 지수 추종성(NAV 괴리율 0.1%)
-
-<strong>약점</strong>:
-
-- 매우 소규모 AUM (\$26-31M) - 펀드 폐쇄 위험 가능성
-- 낮은 유동성 (일평균 거래량 4,000주)
-- 높은 변동성 (베타 1.09, 표준편차 약 26%)
-- 신흥 산업 특성상 높은 기업 수준의 위험
-- 집중도 리스크 (상위 10개 종목 45%)
-
-<strong>투자 적합성</strong>:
-ROKT는 우주 산업의 장기적 성장에 베팅하면서도 개별 주식 선택의 위험을 피하고자 하는 투자자에게 적합합니다. 특히 다음의 투자자에게 추천됩니다:
-
-1. <strong>우주 산업 신봉자</strong>: 우주 산업의 장기적 성장 잠재력에 강한 확신이 있는 투자자
-2. <strong>비용 의식적 투자자</strong>: 낮은 운용보수를 중시하는 투자자
-3. <strong>중장기 투자자</strong>: 3년 이상의 긴 투자 기간을 고려하는 투자자 (단기 변동성이 크므로)
-4. <strong>신흥 산업 투자자</strong>: 신흥 산업의 높은 리스크를 수용할 수 있는 투자자
-
-<strong>부적합성</strong>:
-
-1. 단기 트레이딩 목표를 가진 투자자
-2. 저변동성 포트폴리오를 추구하는 투자자
-3. 높은 유동성을 필요로 하는 대규모 자금 투자자
-4. 신흥 산업의 높은 위험을 수용할 수 없는 보수적 투자자
-
-<strong>결론</strong>: ROKT는 우주 및 심해 탐사 산업에 대한 합리적이고 저비용의 노출 수단입니다. 명확한 투자 테마, 균형잡힌 포트폴리오, 강력한 중장기 성과는 매력적입니다. 그러나 소규모 규모, 낮은 유동성, 높은 변동성은 투자 시 신중한 검토가 필요합니다. 투자 결정 전에 개인의 재정 목표, 투자 기간, 위험 수용 능력을 신중하게 평가해야 합니다.
-
-***
-
-### 참고 자료
-
-Investing.com, TradingView[^1][^2][^8]
-TradingView - ROKT ETF 기본 정보[^2][^8]
-TradingView - AUM 정보[^3][^8]
-StockAnalysis - 1년 수익률 데이터[^4][^17]
-TradingView - NAV 괴리율[^5][^8]
-Zacks - 운용보수[^6][^11]
-StockAnalysis - 배당 이력[^7][^17]
-TradingView - 거래량 정보[^8]
-Schwab - 포트폴리오 홀딩[^9][^18]
-Financial Times - 섹터 분배[^10][^19]
-StockAnalysis - 성과 데이터[^11][^17]
-StockAnalysis - 배당 데이터[^12][^17]
-Zacks - 배당 정보[^13][^11]
-StockAnalysis - 베타 계수[^14][^17]
-네이버 블로그 - ETF 비교 분석[^15][^20]
-나스닥 투자 블로그 - 우주 ETF 철학 비교[^16][^21]
-<span style="display:none">[^22][^23][^24][^25][^26][^27][^28][^29][^30][^31][^32][^33][^34][^35][^36][^37][^38][^39][^40][^41][^42][^43][^44][^45][^46][^47][^48][^49][^50][^51][^52][^53][^54][^55]</span>
-
-<div align="center">⁂</div>
-
-[^2]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers
-
-[^3]: https://m.invest.zum.com/etf/ROKT/
-
-[^4]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-technical
-
-[^5]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-options
-
-[^6]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-scoreboard
-
-[^7]: https://cbonds.com/etf/2245/
-
-[^8]: https://kr.tradingview.com/symbols/AMEX-ROKT/
-
-[^9]: https://www.samsungfund.com/etf/insight/newsroom/view.do?seqn=70015
-
-[^10]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-news
-
-[^11]: https://www.zacks.com/funds/etf/ROKT/profile
-
-[^12]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-dividends
-
-[^13]: https://blog.naver.com/jemmacho/223675913774
-
-[^14]: https://kr.investing.com/etfs/spdr-kensho-final-frontiers-user-rankings
-
-[^16]: https://invest.deepsearch.com/etf/ROKT/documents/
-
-[^17]: https://stockanalysis.com/etf/rokt/
-
-[^18]: https://www.schwab.wallst.com/schwab/Prospect/research/etfs/schwabETF/index.asp?type=holdings\&symbol=ROKT
-
-[^19]: https://markets.ft.com/data/etfs/tearsheet/summary?s=ROKT%3APCQ%3AUSD
-
-[^20]: https://blog.naver.com/jjangtg1/222297012963
-
-[^21]: https://contents.premium.naver.com/usa/nasdaq/contents/260105195701633lm
-
-[^23]: https://sunnyonul.tistory.com/entry/2026년-SpaceX스페이스X-기업공개IPO-우주-산업-역사상-가장-거대한-금융-이벤트
-
-[^24]: https://stock.pstatic.net/stock-research/invest/1/20240605_invest_396635000.pdf
-
-[^25]: https://file.mk.co.kr/imss/write/20190916112142__00.pdf
-
-[^26]: https://file.mk.co.kr/imss/write/20190117135147__00.pdf
-
-[^27]: https://rdata.kbsec.com/pdf_data/20230329212603470K.pdf
-
-[^28]: https://v.daum.net/v/20260108162141181
-
-[^29]: https://www.g-enews.com/article/Global-Biz/2026/01/202601080949115716533107c202_1
-
-[^30]: https://www.joongang.co.kr/article/25395799
-
-[^31]: https://news.kbs.co.kr/news/view.do?ncd=8453290
-
-[^32]: https://news.nate.com/view/20260108n02778
-
-[^33]: https://www.munhwa.com/article/11559519
-
-[^34]: https://www.edaily.co.kr/News/Read?newsId=02046726645315752\&mediaCodeNo=257
-
-[^35]: https://tarantas.news/ko/posts/id8512-junggo-podeu-f-150-haibeurideu-gyeolham-gyeonggo-2022-2023nyeon-juyi-consumer-reports-gweongo
-
-[^36]: https://en.wikipedia.org/wiki/Backslash
-
-[^37]: https://en.wikipedia.org/wiki/R_(programming_language)
-
-[^38]: https://blog.naver.com/owls3753/223013146906
-
-[^39]: https://t.me/s/HanaResearch?before=14241
-
-[^40]: https://namu.wiki/w/State Street Technology Select Sector SPDR ETF?uuid=3f0319b3-e4b2-4532-a808-c73c0900dba2
-
-[^41]: https://bbn.kiwoom.com/bbs/jsp/upload/newres/CorpAnal/202105/1620105912714.pdf
-
-[^42]: https://stockscan.io/ko/stocks/ROKT
-
-[^43]: https://invest.deepsearch.com/etf/ROKT/
-
-[^44]: https://invest.kiwoom.com/inv/resource/202306/UploadFile_20230602145332000604.pdf
-
-[^45]: https://portfolioslab.com/tools/stock-comparison/ARKX/UFO
-
-[^46]: https://www.reddit.com/r/SpaceInvestorsDaily/comments/1iwghvp/ufo_etf_vs_rokt_etf_key_differences_investment/
-
-[^47]: https://www.investing.com/etfs/spdr-kensho-final-frontiers
-
-[^48]: https://www.etfcentral.com/compare-etfs/ARKX-vs-ROKT
-
-[^49]: https://finance.yahoo.com/quote/ROKT/
-
-[^50]: https://www.ratestbed.kr:7443/portal/pblntf/viewAcnutDetail.do;jsessionid=CFA3F1981318CF09A873902A5CD68486?acnutSn=3337\&invtTyCd=01\&odrSn=22\&hbrdAssetsAt=00\&menuNo=200226\&searchAt=Y\&basicDate=\&paramDt=
-
-[^51]: https://ratestbed.kr:7443/portal/pblntf/viewAcnutDetail.do;jsessionid=03BB3AF87F84B37A24872D070BEB706A?acnutSn=8701\&invtTyCd=01\&odrSn=28\&hbrdAssetsAt=00\&menuNo=200226\&searchAt=Y\&basicDate=\&paramDt=
-
-[^52]: https://robinhood.com/stocks/ROKT
-
-[^53]: https://www.ratestbed.kr:7443/portal/pblntf/viewAcnutDetail.do;jsessionid=C8EF4B27FF2BC2F83DE90DC525733274?acnutSn=6351\&invtTyCd=01\&odrSn=26\&hbrdAssetsAt=00\&menuNo=200226\&searchAt=Y\&basicDate=\&paramDt=
-
-[^54]: https://www.spglobal.com/spdji/en/indices/equity/sp-kensho-final-frontiers-index/
-
-[^55]: https://ratestbed.kr:7443/portal/cmm/fms/FileDown.do?atchFileId=FILE_000000000009782\&fileSn=1
+[^1]: [State Street SPDR ROKT 공식 상품 페이지](https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-kensho-final-frontiers-etf-rokt) — 상품 정보, 운용 규모, 시장 가격, 수익률, 보유 종목과 하위 산업 비중.
+[^2]: [미국 SEC 제출 요약 투자설명서 (2025-10-31)](https://www.sec.gov/Archives/edgar/data/1064642/000119312525256796/d66624d497k.htm) — 비용, 회전율, 지수 방법론, 운용 방식과 위험.
