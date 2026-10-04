@@ -335,3 +335,5 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 
 
 2026-10-04 후속 구현: 카테고리별 RSS와 검색 JSON이 중복 보유하던 key→slug 표를 제거하고, 공통 taxonomy 모듈에서 canonical category key를 기준으로 기존 endpoint slug를 계산하도록 통합했다. 화면 카테고리 경로는 변경하지 않았다. 회귀 테스트에서 8개 기존 slug, slug 고유성, 비정규 category 입력을 확인했다. 저장소의 콘텐츠 및 Git hook 테스트 픽스처는 이미 OS 임시 디렉터리를 사용해 격리되는 것을 확인해 추가 수정하지 않았다. npm test 통과(226개), npm run check 통과(114개 Astro 파일, 오류·경고·힌트 0), npm run build 통과(808페이지 생성; 8개 RSS·검색 endpoint와 /cs 페이지 확인), npm run format:check 및 git diff --check 통과.
+
+2026-10-04 후속 구현: HBF 투자 리서치를 OCP HBF High-Level Base Die Specification v0.7.0, Sandisk 2026 Investor Day 자료와 SK hynix 9월 AI Infra Summit 자료에 맞춰 갱신했다. 사양 초안 공개, 첫 메모리 다이 tape-out, 2027년 첫 추론 제품 샘플 목표를 구분하고, 구조 모형 전시를 동작 제품 시연이나 고객 PoC로 해석하지 않도록 했다. 지난 2026년 일정은 현재 진행 현황으로 바꾸고, 공급사 목표·사양과 독립 실측 결과를 구분했다. PCIe 기반 Kioxia 모듈은 OCP HBF 사양 제품과 별도 대안으로 설명했다. `npm run check:content` 통과(HBF 문서 경고 없음, 전체 기존 경고 12건), `npm run format:check`, `git diff --check` 통과. 콘텐츠 전용 변경이므로 테스트와 빌드는 생략했다.
