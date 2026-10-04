@@ -1,7 +1,10 @@
 ---
 title: 'TSIC (Truth Social American Icons ETF)'
-description: '넷플릭스·월마트·코스트코 등 미국 대표 소비자 브랜드 기업에 투자하는 "Made in America" 테마 ETF'
+description: '미국 소비자 생활과 관련된 기업을 선별하는 Truth Social™ – Yorkville American Icons Index 추종 ETF'
 pubDate: '2026-07-20T09:00:00+09:00'
+updatedDate: '2026-10-04T00:00:00+09:00'
+verifiedDate: '2026-10-04T00:00:00+09:00'
+dataAsOf: '2026-09-30T00:00:00+09:00'
 ticker: "TSIC"
 issuer: "Yorkville America"
 assetClass: "Equity"
@@ -12,122 +15,94 @@ incomeStyle: "None"
 categories: "ETF"
 ---
 
-## 분류 근거
+## 한 줄 요약
 
-TSIC는 편입 기준상 특정 산업 하나가 아니라 "미국을 대표하는 소비자 브랜드"를 폭넓게 묶지만, 실제 섹터 배분을 보면 Consumer Defensive(49.9%)와 Consumer Cyclical(32.9%)이 합쳐 82.8%를 차지하는 사실상 소비자 섹터 중심 포트폴리오다. 대표지수(S&P500/Nasdaq-100)를 그대로 추종하지도 않고 레버리지·인컴 전략도 아니므로, GICS 섹터 노출 기준에 따라 `Sector/Consumer` 폴더를 새로 만들어 분류했다.
+TSIC는 미국에 설립·본사를 두고 미국 매출 기준을 충족하는 소비자 관련 기업 가운데 지수 규칙으로 선별한 종목에 투자한다. 펀드의 정식 추종 지수명은 **Truth Social™ – Yorkville American Icons Index**다. “Made in America”라는 홍보 표현만으로 미국 내 생산 기업에 한정된다고 해석하면 안 된다.[^1][^2]
 
-## 기본 정보
-
-**TSIC(Truth Social American Icons ETF)**는 2025년 12월 30일 NYSE Arca에 상장된 신규 지수추종형 ETF다. Trump Media & Technology Group의 Truth.Fi 핀테크 브랜드 산하에서 발행되었으며, Yorkville America Equities가 투자자문사 역할을 한다.[^1][^2]
+## 기본 분류
 
 | 항목 | 내용 |
 | :-- | :-- |
-| **티커** | TSIC |
-| **기초지수** | MarketVector American Icons Index |
-| **상장거래소** | NYSE Arca |
-| **상장일** | 2025년 12월 30일 |
-| **투자자문사** | Yorkville America Equities, LLC |
-| **부자문사** | Tuttle Capital Management, LLC |
-| **총 보수** | 0.65% |
+| **티커 / 상품명** | TSIC / Truth Social American Icons ETF |
+| **상장 시장** | 미국, NYSE Arca |
+| **설정일** | 2025년 12월 30일 |
+| **자산군 / 운용 방식** | 미국 주식 / 지수 추종 |
+| **기초지수** | Truth Social™ – Yorkville American Icons Index |
+| **투자자문사 / 부자문사** | Yorkville America Equities, LLC / Tuttle Capital Management, LLC |
+| **총 연간 운용보수** | 0.65% |
+| **보유 종목 수** | 54개 (2026년 9월 29일 기준) |
 
-## 추종 지수 및 투자전략
+## 추종 지수와 편입 규칙
 
-TSIC는 **MarketVector American Icons Index**를 추종하는 패시브형 ETF다. 기초지수는 미국 경제와 라이프스타일을 대표하는 주요 미국 상장 기업들을 추종하도록 설계되었다.[^1]
+MarketVector의 2026년 2월 지수 가이드에 따르면 지수는 미국에 설립되고 본사를 둔 기업 중 미국 매출이 신규 편입 종목은 33% 이상, 기존 구성 종목은 25% 이상인 기업을 대상으로 한다. 미국 거래소 상장 보통주가 대상이며, ADR과 유한책임조합(LP)은 제외한다. 항공, 의류, 외식, 음료, 방송, 가정용품, 식료품점, 소매 등 지정된 소비자 관련 사업 분류도 충족해야 한다.[^2]
 
-**편입 기준:**
+지수는 1792 Exchange가 제공하는 심사 데이터를 사용하며, 가이드에 명시된 특정 기준에 위배되는 기업은 지수에 포함하지 않는다고 설명한다. 따라서 이 지수는 소비재 기업 전체를 중립적으로 대표하는 지수라기보다 사업 분야·미국 관련성·별도 심사 기준을 결합한 규칙 기반 전략이다.[^2]
 
-- 미국 상장 기업으로 제한
-- 최소 33% 이상의 수익/자산이 미국에서 발생(기존 편입 기업은 25%)
-- **투자 분야**: 소비자 중심, 대표적 미국 브랜드를 가진 기업
-- **전략적 초점**: "Made in America", "Iconic American Brands"
+자료 간 편입 요건 표현에는 차이가 있다. 2025년 12월 SEC 요약 투자설명서는 신규 편입 종목의 미국 관련 기준을 “매출 또는 자산”으로 설명하지만, 현재 확인 가능한 2026년 2월 지수 가이드는 “미국 매출” 기준을 제시한다. 구체적인 편입 규칙을 확인할 때는 최신 지수 가이드와 펀드 공시를 함께 보는 편이 좋다.[^2][^3]
 
-TSSD(방위)나 TSNF(혁신)과 달리 특정 산업이 아닌 미국을 대표하는 소비자 중심 기업들에 투자하며, 미국의 소비 산업이라는 구조적 강점에 베팅하는 전략이다.
+## 왜 `Sector/Consumer`로 분류했나
 
-## 포트폴리오 구성
+이 상품은 레버리지·인버스, 채권, 원자재, 옵션 인컴, 광범위한 대표지수 추종 상품이 아니다. 지수 편입 업종과 설명이 소비자 생활 관련 사업에 집중되므로 저장소 기준에 따라 `Sector/Consumer`에 둔다. 지수의 TRBC 사업 분류는 GICS 섹터와 동일하지 않으며, 발행사 자료에서 확인되지 않은 과거 GICS 섹터 비중은 여기서 재사용하지 않는다.[^2]
 
-**상위 10대 보유 종목 (2026년 1월 기준)**
+## 보유 종목
 
-| 순위 | 종목명 | 섹터 | 비중(%) |
-| :-- | :-- | :-- | :-- |
-| 1 | Netflix Inc | Communication Services | 7.93 |
-| 2 | The Home Depot Inc | Consumer Cyclical | 7.78 |
-| 3 | Walmart Inc | Consumer Defensive | 6.88 |
-| 4 | Costco Wholesale Corp | Consumer Defensive | 6.37 |
-| 5 | PepsiCo Inc | Consumer Defensive | 5.54 |
-| 6 | McDonald's Corp | Consumer Cyclical | 5.21 |
-| 7 | Uber Technologies Inc | Technology | 4.73 |
-| 8 | Procter & Gamble Co | Consumer Defensive | 4.48 |
-| 9 | Lowe's Companies Inc | Consumer Cyclical | 4.45 |
-| 10 | Altria Group Inc | Consumer Defensive | 4.28 |
+발행사 페이지에 공개된 상위 10개 종목은 2026년 9월 30일 기준이다. 아래 합계 56.77%는 표의 비중을 더한 값이며, 보유 종목과 비중은 바뀔 수 있다.[^1]
 
-**상위 10 종목 누적비중: 57.5%**[^4]
+| 순위 | 종목 | 티커 | 비중 |
+| :-- | :-- | :-- | --: |
+| 1 | Costco Wholesale | COST | 7.50% |
+| 2 | Coca-Cola | KO | 7.19% |
+| 3 | Home Depot | HD | 7.15% |
+| 4 | Netflix | NFLX | 6.39% |
+| 5 | Walmart | WMT | 5.66% |
+| 6 | PepsiCo | PEP | 5.22% |
+| 7 | Procter & Gamble | PG | 4.77% |
+| 8 | Uber Technologies | UBER | 4.64% |
+| 9 | Altria Group | MO | 4.50% |
+| 10 | McDonald's | MCD | 3.75% |
+| **합계** |  |  | **56.77%** |
 
-**섹터 배분:**
+상위 10개 종목이 전체 자산의 절반 이상을 차지한다. 보유 종목 수가 54개라는 사실만으로 분산도가 높다고 단정하기보다 각 종목 비중과 업종 구성을 함께 살펴야 한다.[^1]
 
-| 섹터 | 비중(%) |
-| :-- | :-- |
-| Consumer Defensive | 49.90 |
-| Consumer Cyclical | 32.90 |
-| Communication Services | 9.71 |
-| Technology | 4.86 |
-| Other | 2.63 |
+## 성과와 규모
 
-소비자 산업이 **82.8%**를 차지하며, TSIC는 본질적으로 소비자 섹터 중심의 포트폴리오다.[^6] Netflix(스트리밍), Home Depot·Lowe's(주택 개선), Walmart·Costco(소매), McDonald's·PepsiCo(식음료), P&G(소비재) 등 일상 생활과 밀접한 기업들이 중심이다.
+발행사 성과표의 2026년 9월 29일 기준 수익률은 다음과 같다. 설정 후 1년이 지나지 않아 1년·5년 수익률은 아직 제공되지 않는다. 아래 값은 해당 기준일의 NAV 및 시장가격 기준이며 이후 값과 달라질 수 있다.[^1]
 
-## 성과 및 비용
+| 기간 | NAV 수익률 | 시장가격 수익률 |
+| :-- | --: | --: |
+| 2026년 연초 이후 | -3.04% | -1.33% |
+| 설정 이후 (2025-12-30~2026-09-29) | -3.73% | -1.96% |
 
-| 기간 | 수익률 |
-| :-- | :-- |
-| YTD | 1.18% |
-| 1년 | 20.11% |
-| 5년 | 62.82% |
+발행사 페이지는 2026년 9월 29일 순자산을 약 166만 달러, 발행 주식 수를 7만 주, 30일 중앙값 매수·매도 호가 차이를 0.16%로 표시했다. 이 수치는 거래 규모와 체결 비용을 점검할 때 참고할 수 있지만, 특정 시점의 값이므로 매매 시점의 실제 호가와 거래량도 확인해야 한다.[^1]
 
-신규 상품(2025년 12월 30일 상장)이라 1년 이상 수익률의 신뢰성은 낮다. TSSD(방위) YTD 6.00%, TSNF(혁신) YTD 1.19%와 비교하면 TSIC는 상대적으로 낮은 편인데, 소비자 산업의 경기 민감성과 최근 금리 환경의 영향으로 풀이된다.
+## 비용과 주요 위험
 
-총보수율은 **0.65%**로 다른 Truth Social ETF와 동일하며, 표준 지수추종 ETF(0.03~0.10%)보다 높다. 신규 상품이라 거래량과 유동성이 아직 형성되는 초기 단계다.
+- **운용보수와 거래 비용**: 총 연간 운용보수는 0.65%다. SEC 요약 투자설명서는 중개 수수료와 기타 거래 관련 비용이 이 비율에 포함되지 않는다고 밝힌다. 매수·매도 호가 차이도 별도로 고려해야 한다.[^1][^3]
+- **집중도 및 비분산 분류**: 펀드는 법률상 비분산 펀드로 분류된다. 상위 10개 비중이 56.77%여서 일부 대형 편입 종목의 가격 변동이 전체 성과에 크게 영향을 줄 수 있다.[^1]
+- **소비자 업종 위험**: 지수는 소매, 자동차, 식음료, 의류, 가정용품 등 일부 산업군에 상당한 비중을 둘 수 있다. 특정 업종이나 산업군에 집중되면 광범위한 시장에 분산된 펀드보다 해당 산업의 악재에 더 민감할 수 있다고 투자설명서는 설명한다.[^1]
+- **신생 펀드 및 자문사 위험**: 펀드는 운용 이력이 짧고 순자산 규모가 작다. 발행사 위험 공시는 자문사가 최근 설립되었으며 ETF 자문 이력이 제한적이라고 설명한다. 낮은 규모는 자금 유출입, 거래 유동성, 상품 지속성 검토와 함께 살펴볼 요소다.[^1]
+- **지수 선별 기준**: 1792 Exchange 데이터를 활용하는 심사 규칙이 편입 유니버스를 제한한다. 투자자는 해당 지수의 심사 기준이 자신의 투자 목적과 맞는지 확인할 필요가 있다.[^2]
 
-## 리스크 요인
+## 다른 상품과 비교할 때
 
-**구조적 리스크**
+TSIC는 미국 소비자 관련 기업이라는 점에서는 소비재 섹터 ETF와 비교할 수 있지만, 편입 기준에 미국 매출·본사·사업 분류·1792 Exchange 심사가 포함된다. 따라서 비교 대상의 종목 구성과 산업 정의가 같다고 가정하지 말아야 한다. 광범위한 시장 ETF와 비교할 때도 동일 기간 수익률만 놓고 판단하기보다 보유 종목, 집중도, 지수 규칙, 운용보수와 거래 유동성을 함께 비교한다.
 
-1. **비분산 펀드 리스크**: 상위 10개 종목이 57.5%를 차지한다.[^4]
-2. **섹터 집중도 리스크**: 소비자 산업(82.8%)에 집중되어 소비 산업 악화에 취약하다. Consumer Cyclical(32.9%)은 특히 경기 침체에 민감하다.[^6]
-3. **경기순환 리스크**: 소매·소비재 기업들은 경기 사이클에 민감해, 경기 침체 시 급격한 이익 감소가 나타날 수 있다.[^1]
+## 살펴볼 항목
 
-**운영 리스크**
-
-4. **신규 자문사 리스크**: Yorkville America Equities는 ETF 운영 경험이 제한적이다.[^1]
-
-**시장 및 정책 리스크**
-
-5. **금리 리스크**: 금리 인상 환경에서 소비 산업이 부진할 수 있다.[^1]
-6. **소비 심리 악화 리스크**: 인플레이션, 실업률, 소비자 신뢰도 하락에 취약하다.[^1]
-7. **소매 산업 구조 변화 리스크**: 이커머스 확대로 전통 소매(Home Depot, Lowe's)의 경쟁이 심화되고 있다.
-
-**정치·평판 리스크**
-
-8. **정치적 연관성**: Trump Media와의 연관성으로 투자자 감정이 변동할 수 있다.
-
-## 비슷한 ETF
-
-TSIC는 구조적으로 S&P 500 중 소비자 섹터 중심 포트폴리오와 유사하지만, "Made in America" 테마와 대형주 집중이라는 점에서 차이가 있다. 비용(0.65%)은 SPY/IVV(0.03~0.08%)보다 훨씬 높고, 상위 10개 비중(57.5%)도 S&P 500보다 크다.
-
-## 주의할 점
-
-- **관찰 기간**: 신규 펀드 특성상 최소 3~6개월의 운영 기간을 지켜본다.
-- **비중 제한**: 신규 펀드 리스크를 고려해 포트폴리오의 3~5% 이내로 제한한다.
-- **경기 사이클 모니터링**: 소비자 산업의 경기 민감성을 지속적으로 확인한다.
-- **분산 보완**: 상위 10개 비중이 57.5%로 높으므로 다른 섹터 ETF와 균형을 맞춘다.
+- 상위 편입 종목과 산업 비중이 바뀌었는지 확인한다.
+- 지수 가이드와 펀드 공시의 편입 기준이 일치하는지 확인한다.
+- 짧은 설정 이후 성과는 다른 펀드와 같은 기간·같은 기준(NAV 또는 시장가격)으로 비교한다.
+- 거래 전에는 최신 순자산, 거래량, 호가 차이를 확인한다.
+- 0.65% 운용보수와 비분산 분류가 투자 목적에 맞는지 검토한다.
 
 ## 태그
 
-Sector, Consumer, Made in America, Thematic ETF
+Sector, Consumer, American Brands, Thematic ETF
 
 ---
 
 **출처**
 
-[^1]: [Truth Social Funds 공식 웹사이트](https://www.truthsocialfunds.com/etfs/tsic)
-[^2]: [Yahoo Finance](https://finance.yahoo.com/quote/TSIC/)
-[^4]: [Morningstar](https://www.morningstar.com/etfs/arcx/tsic/quote)
-[^6]: [Seeking Alpha](https://seekingalpha.com/symbol/TSIC/holdings)
+[^1]: [Truth Social American Icons ETF 공식 상품 페이지](https://www.truthsocialfunds.com/etfs/tsic)
+[^2]: [MarketVector, Truth Social™ – Yorkville American Icons Index Guide (v1.02, 2026년 2월)](https://www.marketvector.com/rulebooks/download/TSIC_Index_Guide.pdf)
+[^3]: [SEC, Truth Social American Icons ETF Summary Prospectus (2025년 12월 23일)](https://www.sec.gov/Archives/edgar/data/1040674/000110465925124734/tm2525602d14_497k.htm)
