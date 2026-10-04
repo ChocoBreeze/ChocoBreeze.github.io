@@ -1,7 +1,10 @@
 ---
 title: 'XSD (State Street SPDR S&P Semiconductor ETF)'
-description: 'S&P Semiconductor Select Industry Index를 등가중 방식으로 추종하는 State Street의 반도체 ETF 분석'
+description: 'S&P Semiconductor Select Industry Index를 수정 등가중 방식으로 추종하는 미국 반도체 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
+updatedDate: '2026-10-04T00:00:00+09:00'
+verifiedDate: '2026-10-04T00:00:00+09:00'
+dataAsOf: '2026-10-01T00:00:00+09:00'
 ticker: "XSD"
 issuer: "State Street"
 assetClass: "Equity"
@@ -9,144 +12,66 @@ strategy: "Equal Weight"
 exposure: "Semiconductor"
 leverage: "1x"
 incomeStyle: "None"
-aum: "$3.03B"
-aumAsOf: '2026-09-21T00:00:00+09:00'
+aum: "$3.17B"
+aumAsOf: '2026-10-01T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "XSD", "State Street", "SPDR", "Semiconductor", "Equal Weight"]
 ---
 
-# State Street SPDR S&P Semiconductor ETF (XSD): 종합 분석 보고서
+## 한 줄 요약
 
-## ETF 분류
+XSD는 미국 상장 반도체 기업에 투자하는 패시브 ETF다. 시가총액 비중이 큰 기업이 지수를 지배하지 않도록 수정 등가중 방식으로 구성해, 대형주와 중소형주를 함께 보유한다. 반도체 장비 기업 전체에 투자하는 상품은 아니다.[^1][^2]
+
+## 기본 분류
 
 | 항목 | 내용 |
-|---|---|
-| 최종 폴더 | `ETF/Semiconductor/XSD` |
-| 대분류 | 섹터 ETF |
-| 하위 분류 | 반도체 |
-| 핵심 전략 | S&P Semiconductor Select Industry Index를 등가중 방식으로 추종해 반도체 기업에 분산 투자 |
-| 운용 방식 | 지수 추종형 패시브 ETF |
-| 레버리지/인버스 | 없음 |
-| 옵션 인컴 여부 | 없음 |
-| 분류 판단 | 레버리지, 인버스, 옵션 인컴 구조가 없고 반도체 산업 노출이 핵심이므로 `Semiconductor`로 분류 |
-| 참고 | 등가중 구조 때문에 `Style Factor` 성격도 일부 있지만, 투자 대상 산업이 명확한 반도체 섹터 ETF이므로 섹터 분류를 우선 적용 |
+| :-- | :-- |
+| **티커 / 상품명** | XSD / State Street SPDR S&P Semiconductor ETF |
+| **상장 시장** | 미국, NYSE Arca |
+| **설정일 / 상장일** | 2006년 1월 31일 / 2006년 2월 6일 |
+| **자산군 / 운용 방식** | 미국 주식 / 지수 추종 |
+| **기초지수** | S&P Semiconductor Select Industry Index |
+| **가중 방식** | 수정 등가중 (Modified Equal Weight) |
+| **총 연간 보수** | 0.35% |
+| **보유 종목 수** | 48개 (2026년 10월 1일 기준) |
+| **순자산** | 약 31.74억 달러 (2026년 10월 1일 기준) |
 
-***
+## 지수 구성 방식
 
-### 개요: 등가중 전략의 독특함
+기초지수는 S&P Total Market Index에서 GICS 기준 **Semiconductors 하위 산업**으로 분류된 종목을 뽑는다. 지수 제공자는 유동성과 시가총액 기준을 적용하고, 분기별 재조정 때 종목을 대체로 비슷한 비중으로 맞춘 뒤 지수 거래 가능 규모를 고려해 비중을 조정한다. 그래서 단순한 시가총액 가중 지수와 달리 소수 초대형주의 비중이 낮아지는 경향이 있다.[^1][^2][^3]
 
-State Street SPDR S\&P Semiconductor ETF (XSD)는 2006년 1월 31일에 출시되어 <strong>S\&P 반도체 지수의 등가중(equal-weighted) 구조를 추종하는 유일한 대형 반도체 ETF</strong>입니다. 현재 \$1.57-1.79B의 자산과 40-42개 종목을 보유하고 있습니다.[^1][^2][^3]
+“등가중”은 모든 종목 비중이 항상 똑같다는 뜻은 아니다. 지수는 수정 등가중 방식이며, 실제 펀드 보유 비중도 리밸런싱과 시장 가격 변동에 따라 달라진다. State Street는 분기별 분배를 표시하지만, 분배금과 수익률은 고정되어 있지 않다.[^1]
 
-<strong>핵심 차별화</strong>: XSD는 NVIDIA가 19%인 SMH나 7.5%인 SOXX와 달리, <strong>NVIDIA가 단 3.2%의 가중치</strong>를 가집니다. 대신 소형/중형 반도체 기업들에 더 균등한 노출을 제공합니다.[^4][^5]
+## 포트폴리오와 규모
 
-### 구조적 약점: 반도체 장비 제조사 결여
+State Street가 공개한 2026년 10월 1일 자료에서 펀드는 48개 종목, 순자산 약 31억 7,400만 달러, 총 연간 보수 0.35%로 표시되어 있다. 같은 날 상위 보유 종목에는 MaxLinear, Credo Technology, Rambus, Astera Labs, AMD 등이 포함됐다. 보유 종목과 비중은 수시로 바뀐다.[^1]
 
-XSD의 가장 심각한 결함은 <strong>ASML(극자외선 리소그래피), Lam Research(에칭 장비), Applied Materials(반도체 제조 장비) 같은 반도체 장비 제조사를 완전히 제외</strong>한다는 점입니다:[^5]
+이 비중 방식은 NVIDIA 같은 초대형주의 영향력을 시가총액 가중 반도체 ETF보다 낮추고, 지수 내 다른 종목의 성과가 펀드에 미치는 상대적 영향을 높일 수 있다. 반대로 대형 승자가 급등하는 시기에는 그 종목의 비중이 더 큰 상품과 성과가 달라질 수 있다. 이는 구조 차이에 따른 가능성이지, 특정 기간의 성과 우열을 보장하지 않는다.[^1][^3]
 
-<strong>이들 기업의 2025년 성과</strong>:
+## 반도체 장비 기업에 투자하나?
 
-- ASML: +51% 수익률
-- Lam Research: +96% 수익률
-- Applied Materials: +83% 수익률
-- 세 사 합산: \~\$30-40B 시가총액[^5]
+기초지수가 추적하는 범위는 GICS의 **Semiconductors 하위 산업**이다. 그러므로 반도체 제조 장비를 포함해 산업 가치사슬 전반을 대표하는 지수로 보면 안 된다. ASML, Lam Research, Applied Materials 같은 장비 기업은 반도체 제조사와 사업 영역이 다르므로, 이들이 XSD의 필수 구성 종목이라고 볼 수 없다.[^2]
 
-<strong>의미</strong>: XSD는 반도체 가치사슬의 <strong>높은 성장 부분을 전략적으로 제외</strong>하고 있습니다.[^5]
+이를 지수의 결함이라고 단정하기보다 투자 범위의 차이로 이해하는 편이 정확하다. 장비·소재 기업까지 포함하려는 투자자는 각 ETF의 지수 정의와 실제 보유 종목을 따로 확인해야 한다. 예를 들어 VanEck SMH는 반도체 생산 및 장비 관련 기업을 추적하는 MVIS U.S. Listed Semiconductor 25 Index를 따르고, iShares SOXX는 NYSE Semiconductor Index를 기준으로 한다. 이름이 모두 반도체 ETF라고 해서 편입 유니버스와 종목 비중이 같은 것은 아니다.[^4][^5]
 
-### 성과 비교: SMH가 명백한 승자
+## 주요 위험과 점검 항목
 
-| 기간 | XSD | SMH | 격차 |
-| :-- | :-- | :-- | :-- |
-| <strong>10년 연환산</strong> | +22.1% | +30.3% | SMH 8.2포인트 우위 |
-| <strong>5년 연환산</strong> | +13.5% | +33.5% | SMH 20포인트 우위 |
-| <strong>3년 연환산</strong> | +24.4% | +46.8% | SMH 22.4포인트 우위 |
+- **산업 집중**: XSD는 GICS 반도체 하위 산업에 집중한다. 반도체 업황, 재고 조정, 고객 설비투자, 기술 전환 등에 따라 변동성이 커질 수 있다.[^1][^2]
+- **수정 등가중의 성격**: 대형주 쏠림을 낮출 수 있지만, 상대적으로 규모가 작은 편입 종목의 가격 변동과 유동성이 성과에 더 크게 반영될 수 있다. 등가중 방식 자체가 위험을 낮추거나 초과수익을 보장하지 않는다.[^1][^3]
+- **지수 범위**: 반도체 장비를 포함한 전체 공급망 노출을 원하는 경우에는 지수의 GICS 분류와 실제 보유 종목을 확인한다.[^2]
+- **비용과 거래 조건**: 총 연간 보수 0.35% 외에 매매 수수료와 호가 차이가 발생할 수 있다. 거래 전에 최신 순자산, 거래량, 호가 차이를 확인한다.[^1]
+- **성과 비교**: 과거 수익률 비교는 같은 기준일, 같은 기간, NAV 또는 시장가격 중 동일한 기준을 사용한다. 서로 다른 지수와 가중 방식을 따르는 ETF의 결과를 한 기간의 우열만으로 일반화하지 않는다.[^1][^4][^5]
 
-<strong>결론</strong>: SMH가 XSD를 <strong>일관되게</strong> 20-30% 이상 상회합니다.[^5]
+## 태그
 
-### 왜 XSD가 광범위하게 채택되지 않는가?
+Semiconductor, U.S. ETF, Modified Equal Weight, SPDR
 
-<strong>1년 순 펀드 흐름</strong>: -\$191.81M (순유출)[^6]
+---
 
-이는 투자자들이 XSD의 "더 안전한" 등가중 구조에도 불구하고, <strong>성과 열악함 때문에 탈출하고 있음</strong>을 의미합니다.[^6]
+**출처**
 
-### XSD의 정당한 사용 사례
-
-XSD가 의미 있는 유일한 상황:
-
-1. <strong>극도로 NVIDIA 회피</strong>: NVIDIA가 과대평가되었다 확신하는 투자자
-2. <strong>소형/중형 반도체 발굴</strong>: 미래 승자를 찾는 연구 지향 투자자
-3. <strong>극대 다양성</strong>: 40개 종목으로 최대한 분산
-
-### 최종 평가: 추천하지 않음
-
-<strong>XSD는 대부분의 투자자에게 추천되지 않습니다.</strong> 이유:[^5]
-
-1. <strong>성과 열악</strong>: SMH 대비 10-20% 연환산 언더퍼포먼스[^5]
-2. <strong>전략적 오류</strong>: 반도체 장비 제조사 완전 제외[^5]
-3. <strong>투자자 탈출</strong>: -\$191M 1년 순유출은 시장의 판결[^6]
-4. <strong>복잡성 미보상</strong>: 등가중 리밸런싱의 기계적 드래그
-
-<strong>더 나은 대안</strong>:
-
-- <strong>성장 추구</strong>: SMH (+30% 연환산)[^5]
-- <strong>균형 추구</strong>: SOXX (+28% 연환산)[^5]
-- <strong>비용 우선</strong>: SOXQ (0.19% ER)[^7]
-
-<strong>결론</strong>: XSD는 성공한 ETF가 아니라 <strong>전술적 반대 베팅용 도구</strong>일 뿐입니다.
-
-***
-
-[^1]: https://finance.yahoo.com/quote/XSD/
-
-[^2]: https://markets.ft.com/data/equities/tearsheet/summary?s=4114926
-
-[^3]: https://stockanalysis.com/etf/xsd/
-
-[^4]: https://www.nasdaq.com/articles/3-semiconductor-stock-etfs-and-which-one-right-your-portfolio
-
-[^5]: https://finance.yahoo.com/news/smh-vs-xsd-semiconductor-etf-025325977.html
-
-[^6]: https://www.tradingview.com/symbols/AMEX-XSD/
-
-[^7]: https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-semiconductor-etf-xsd
-
-[^11]: https://kr.investing.com/etfs/spdr-s-p-semiconductor
-
-[^12]: https://www.marketwatch.com/investing/fund/xsd
-
-[^13]: https://www.mexc.com/news/101496
-
-[^14]: https://etfdb.com/etf/XSD/
-
-[^15]: https://www.nasdaq.com/articles/should-you-invest-state-street-spdr-sp-semiconductor-etf-xsd
-
-[^16]: https://www.perplexity.ai/finance/XSD/history
-
-[^17]: https://www.barchart.com/etfs-funds/quotes/XSD/constituents
-
-[^18]: https://www.ssga.com/library-content/products/factsheets/etfs/us/factsheet-us-en-xsd.pdf
-
-[^19]: https://fintel.io/ko/s/us/xsd
-
-[^20]: https://www.morningstar.com/etfs/xmex/xsd/portfolio
-
-[^21]: https://stockanalysis.com/etf/xsd/dividend/
-
-[^22]: https://seekingalpha.com/symbol/XSD/dividends/scorecard
-
-[^23]: https://ng.investing.com/etfs/spdr-s-p-semiconductor-dividends
-
-[^24]: https://stockinvest.us/dividends/XSD
-
-[^25]: https://www.marketlog.com/symbol/xsd-arcx/dividends
-
-[^26]: https://www.etfrc.com/XSD
-
-[^27]: https://www.trackinsight.com/en/compare-etfs/SMH,SOXX,XSD
-
-[^28]: https://www.dividendchannel.com/symbol/xsd/
-
-[^29]: https://www.trackinsight.com/en/etf-news/comprehensive-guide-investing-semiconductor-etfs
-
-[^30]: https://money.usnews.com/investing/articles/best-semiconductor-etfs-to-buy
-
-[^31]: https://nz.finance.yahoo.com/quote/XSD/history/
+[^1]: [State Street SPDR S&P Semiconductor ETF 공식 페이지](https://www.ssga.com/us/en/intermediary/etfs/state-street-spdr-sp-semiconductor-etf-xsd)
+[^2]: [S&P Dow Jones Indices, S&P Semiconductor Select Industry Index](https://www.spglobal.com/spdji/en/indices/equity/sp-semiconductors-select-industry-index/)
+[^3]: [S&P Dow Jones Indices, S&P Select Industry Indices Methodology](https://www.spglobal.com/spdji/en/documents/methodologies/methodology-sp-select-industry-indices.pdf)
+[^4]: [VanEck Semiconductor ETF (SMH) 공식 페이지](https://www.vaneck.com/us/en/investments/semiconductor-etf-smh/)
+[^5]: [iShares Semiconductor ETF (SOXX) 공식 페이지](https://www.ishares.com/us/products/239705/ishares-phlx-semiconductor-etf?fundSearch=true&qt=SOXX)
