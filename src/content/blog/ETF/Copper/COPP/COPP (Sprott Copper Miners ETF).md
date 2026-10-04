@@ -1,425 +1,106 @@
 ---
 title: 'COPP (Sprott Copper Miners ETF)'
-description: '글로벌 대형 및 중형 구리 광산 회사 전문 ETF'
+description: 'COPP의 구리 광산 기업·실물 구리 신탁 노출, 최신 보유 현황, 비용과 주요 위험을 기준일별로 정리한다.'
 pubDate: '2026-01-16T01:00:00Z'
-ticker: "COPP"
-issuer: "Sprott"
-assetClass: "Equity"
-strategy: "Index"
-exposure: "Copper Miners"
-leverage: "1x"
-incomeStyle: "None"
-categories: "ETF"
+updatedDate: '2026-10-04T00:00:00+09:00'
+verifiedDate: '2026-10-04T00:00:00+09:00'
+dataAsOf: '2026-10-02T00:00:00+09:00'
+expenseRatio: '0.66%'
+expenseRatioAsOf: '2026-04-30T00:00:00+09:00'
+aum: 'USD 284.29M'
+aumAsOf: '2026-10-02T00:00:00+09:00'
+ticker: 'COPP'
+instrumentType: 'ETF'
+issuer: 'Sprott'
+assetClass: 'Equity'
+strategy: 'Index'
+exposure: 'Copper Miners and Physical Copper'
+leverage: '1x'
+incomeStyle: 'None'
+categories: 'ETF'
+tags: ['구리', '광산기업', '실물 구리', '주식형 ETF']
 ---
 
-## 요약 및 투자 개요
+## 한 줄 요약과 분류
 
-COPP(Sprott Copper Miners ETF)는 2024년 3월 5일부터 운영 중인 <strong>글로벌 대형 및 중형 구리 광산 회사 전문 ETF</strong>다. 현재 순자산 \$165.47M, 보수료 0.65%, 62개 종목 보유로 <strong>COPJ(주니어)와 COPX(기존) 사이의 "황금 중간"</strong> 을 제공한다.
+Sprott Copper Miners ETF(COPP)는 구리 채굴·탐사·개발 기업 주식과 실물 구리 투자 신탁을 함께 편입하는 Nasdaq Sprott Copper Miners Index를 추종하는 미국 상장 ETF다. COPP가 구리 광석이나 선물을 직접 보유하는 구조는 아니며, 실물 구리 노출은 Sprott Physical Copper Trust의 증권을 통해 간접적으로 얻는다.[^1][^2]
 
-COPP는 <strong>"구리 수요 슈퍼사이클의 중간 선택지이자 가장 균형 잡힌 구리 노출"</strong> 이다:
+주요 투자 대상이 구리 관련 주식과 구리 신탁이므로 `ETF/Copper`에 분류한다. 분류는 ETF 이름만이 아니라 실제 보유 자산과 추종 지수의 전략을 기준으로 했다. COPP는 구리 가격의 일일 수익률을 일정 배수로 추종하는 레버리지 상품이 아니다.
 
-<strong>우수한 성과</strong>:
-
-- 1년 수익: <strong>72.19%</strong> (SPY 18.48% 대비 +53.7% 우월)
-- COPJ보다 보수적: 137.4% vs 72.19% = -65.2% 아래
-- 변동성 낮음: 23% vs COPJ 34.8%
-- 배당 수익: 2.13% (COPJ의 허위 10.13% vs 실제 배당)
-
-<strong>독특한 특징</strong>:
-
-- <strong>유일한 물리적 구리 노출</strong>: 4.66% 스프롯 구리 신탁 보유
-- <strong>대형주 70% 비중</strong>: COPJ 0% vs 안정성 우수
-- <strong>생산 광산 58%</strong>: 탐광 회사가 아닌 현금 창출 광산
-- <strong>프리포트 25% 비중</strong>: 세계 최대 전용 구리 생산사
-
-<strong>현 시점 평가</strong>: COPP는 <strong>"극도의 위험(COPJ) 또는 완전 보수(SPY) 사이에서 균형을 원하는 투자자를 위한 선택"</strong> 이다. 2024년 신설되어 COPJ, COPX 사이의 "로디록스" 옵션이다.
-
-## 펀드 기본 정보 및 전략
-
-### 펀드 특성
+## 기본 정보와 기준일별 수치
 
 | 항목 | 내용 |
 | :-- | :-- |
-| <strong>공식명칭</strong> | Sprott Copper Miners ETF |
-| <strong>운용사</strong> | Sprott Asset Management |
-| <strong>티커</strong> | COPP |
-| <strong>상장일</strong> | 2024년 3월 5일 (거의 신설) |
-| <strong>순자산(AUM)</strong> | 약 1억 6,547만 달러 (적당함) |
-| <strong>보수율</strong> | 0.65% (COPX와 동일) |
-| <strong>기초지수</strong> | Nasdaq Sprott Copper Miners™ Index (NSCOPP™) |
-| <strong>분배 주기</strong> | 연 1회 (12월) |
-| <strong>보유 종목 수</strong> | 62개 |
-| <strong>펀드 구조</strong> | 지수 추종 (반연간 재조정) |
+| 티커 / 거래소 | COPP / Nasdaq |
+| 운용사 | Sprott Asset Management USA, Inc. |
+| 설정일 | 2024년 3월 5일 |
+| 추종 지수 | Nasdaq Sprott Copper Miners Index (NSCOPP) |
+| 운용 방식 | 패시브 지수 추종 |
+| 운용보수 | 0.65% |
+| 총 연간 운용 비용 | 0.66% (취득 펀드 비용 0.01% 포함) |
 
-### 글로벌 대형 구리 광산 회사 노출
+가격·순자산·보유 종목 수는 2026년 10월 2일 기준이며, 30일 중앙 호가 스프레드는 10월 1일 기준이다. 성과는 2026년 9월 30일, 포트폴리오 구성 특성은 8월 31일 기준이다. 수치별 기준일과 분류 기준이 서로 다르다.[^1][^2]
 
-COPP는 <strong>매우 선별적인 전략</strong>을 추구한다:
+| 항목 | 기준일 | 수치 |
+| :-- | :-- | --: |
+| 순자산 | 2026-10-02 | USD 284.29M |
+| NAV | 2026-10-02 | USD 42.56 |
+| 시장가격 | 2026-10-02 | USD 42.59 |
+| NAV 대비 시장가격 괴리 | 2026-10-02 | +0.07% |
+| 보유 종목 수 | 2026-10-02 | 79 |
+| 30일 중앙 호가 스프레드 | 2026-10-01 | 0.33% |
+| NAV 기준 연초 이후 총수익률 | 2026-09-30 | 20.48% |
+| 시장가격 기준 연초 이후 총수익률 | 2026-09-30 | 19.85% |
+| 지수 연초 이후 총수익률 | 2026-09-30 | 21.46% |
 
-<strong>포괄성</strong>:
+연초 이후 수익률은 기준일까지의 과거 성과이며 이후 결과를 보장하지 않는다. 1년 미만 성과는 연율화되지 않았다.[^1]
 
-- 100% 구리 관련 기업 (94.52%) + 물리적 구리 (4.66%)
-- 다른 금속 노출 없음
+## 지수 전략과 비중 조정
 
-<strong>시장 구성</strong>:
+투자설명서에 따르면 지수는 두 종류의 증권을 포함한다. 첫째는 매출 및/또는 자산의 50% 이상을 구리 채굴·탐사·개발·생산에서 얻는 기업이다. 둘째는 자산의 50% 이상을 실물 구리에 투자하는 공개 거래 폐쇄형 신탁이다. COPP는 통상 총자산의 80% 이상을 지수 증권에, 또한 총자산의 80% 이상을 구리 광산 기업에 투자하는 정책을 둔다.[^2]
 
-- <strong>대형주</strong> (70%): Freeport-McMoRan, Antofagasta, Teck, Newmont
-- <strong>중형주</strong> (18%): First Quantum, Lundin, Capstone
-- <strong>소형주</strong> (8%): 개발/탐광 회사
-- <strong>물리적 구리</strong> (4.66%): Sprott Physical Copper Trust
+기업 증권은 유동주식 시가총액을 기준으로 가중한다. 신규 편입 기업은 유동주식 시가총액 5,000만 달러 이상이어야 하고, 기존 구성 종목은 3,000만 달러 이상을 유지해야 한다. 최근 3개월 평균 일일 거래대금은 신규 편입 시 5만 달러, 기존 구성 유지 시 3만 달러 이상이어야 한다. Nasdaq 방법론은 Sprott가 후원하는 실물 구리 신탁을 이 나머지 증권 자격 기준에서 예외로 둔다. 반기 지수 선정일에 적용하는 비중 제한은 최대 기업 24%, 두 번째와 세 번째 기업 각각 10%, 그 외 5%를 넘는 기업들의 합계 25%다. 이들 외 개별 기업은 4.75%를 넘지 않게 하며, 실물 구리 비중은 지수에서 4.75%로 설정한다. 따라서 지수는 완전한 동일 비중 방식이 아니고, 상위 광산 기업의 주가 변동이 결과에 큰 영향을 줄 수 있다.[^2]
 
-<strong>사업 단계</strong>:
+구성 종목을 다시 선정하는 재구성과 비중을 조정하는 리밸런싱의 일정은 다르다. SEC의 2026년 7월 8일 보충 공시에 따라 9월 21일부터 비중은 3·6·9·12월에 분기별로 조정하고, 6월과 12월 조정 때 구성 종목을 재구성한다.[^3][^4]
 
-- <strong>생산 (58%)</strong>: 실제 광산 운영 중 = 즉시 현금 창출
-- <strong>개발 (22%)</strong>: 타당성 조사 = 2-5년 내 생산 예정
-- <strong>탐광 (15%)</strong>: 자원 추정 = 5-15년 미지수
+SEC 투자설명서(2026년 4월 30일)는 지수 구성 종목이 일반적으로 30~50개라고 설명한다. Sprott 상품 페이지는 2026년 10월 2일 COPP의 보유 종목을 79개로 공시했다. 두 값은 기준일과 지표가 다르며, 인용한 문서는 수치 차이의 원인을 설명하지 않는다. 따라서 79개를 지수 구성 종목 수로 해석하지 않는다.[^1][^2]
 
+## 보유 현황과 구리 신탁 노출
 
-## 포트폴리오 구성 분석
+상위 보유 종목과 비중은 2026년 10월 2일 기준이다. 상위 한 기업의 비중이 큰 편이며, 지수의 정기 비중 제한은 선정 시점의 기준이므로 이후 시장가격 변동에 따라 펀드 비중은 달라질 수 있다.[^1][^2]
 
-### 균형 잡힌 시가총액 구조
+| 종목 | 비중 |
+| :-- | --: |
+| Freeport-McMoRan | 24.11% |
+| Teck Resources | 10.63% |
+| Antofagasta | 8.23% |
+| Hudbay Minerals | 5.24% |
+| Sprott Physical Copper Trust | 5.16% |
 
+Sprott가 분류한 2026년 8월 31일 포트폴리오 구성은 구리 관련 주식 94.61%, 실물 구리 4.55%, 기타 0.84%였다. 이 분류 시점의 실물 구리 항목은 Sprott Physical Copper Trust에 초점을 둔 보유분이다. 10월 2일 보유 목록의 신탁 지분율과 날짜 및 분류 지표가 다르므로 직접 같은 값으로 비교하지 않는다. 같은 8월 31일 기준 Sprott의 시가총액 분류는 대형 74.84%, 중형 13.26%, 소형 7.36%, 미분류 4.55%였다.[^1]
 
-![alt text](images/image.png)
+## 비용과 주요 위험
 
-COPP Composition: Large-Cap Producers with Physical Copper Mix
+SEC 투자설명서의 연간 총 운용 비용은 0.66%다. 여기에는 운용보수 0.65%와 취득 펀드 비용 0.01%가 포함된다. Sprott 상품 페이지는 순 총비용률을 0.65%로 표시하고 별도 비용표에는 총 연간 운용 비용 0.66%를 기재한다. 중개 수수료 등 펀드의 매매 비용과 개인 투자자의 거래 비용은 여기에 포함되지 않는다. 2025 회계연도 포트폴리오 회전율은 29%였다.[^1][^2]
 
-COPP의 가장 주목할 특징은 <strong>COPJ와 달리 대형주 70%</strong> 로 매우 안정적이다:
+주요 위험은 다음과 같다.
 
+- **광산 기업과 구리 가격 위험:** 구리 가격 외에도 생산량, 운영비, 광산 가동, 개발 일정과 자금 조달이 기업 주가에 영향을 준다. ETF 수익률을 구리 현물 가격의 일정 배수로 볼 수 없다.
+- **기업 집중 위험:** Freeport-McMoRan 한 종목이 2026년 10월 2일 펀드의 24.11%였다. 큰 종목의 기업·광산별 사건이 펀드에 크게 반영될 수 있다.
+- **실물 구리 신탁 위험:** 구리 가격 노출은 신탁 증권을 통해 간접적으로 생긴다. 따라서 신탁의 구조와 비용, 시장가격 변동도 결과에 영향을 줄 수 있다.
+- **해외 시장 위험:** 지수에는 캐나다·미국·호주·칠레 등 여러 국가의 기업과 신흥·프런티어 시장 발행사가 포함될 수 있어 규제·정치·환경·환율 변화에 노출된다.
+- **비분산 및 추적 위험:** 투자설명서는 펀드를 비분산형으로 분류하며, 지수 외 증권에도 자산의 일부를 투자할 수 있다고 밝힌다. 펀드와 지수의 수익률은 비용과 보유·거래 방식에 따라 달라질 수 있다.
+- **시장 거래 위험:** 시장가격과 NAV가 달라질 수 있고, 매수·매도 호가 차이와 보유 종목의 유동성이 실제 거래 결과에 영향을 준다.
 
-| 시가총액 | COPP | COPJ | COPX | 의미 |
-| :-- | :-- | :-- | :-- | :-- |
-| <strong>대형 (>\$10B)</strong> | 69.96% | 0% | 70% | 안정성 |
-| <strong>중형 (\$2-10B)</strong> | 17.84% | 17.88% | 25% | 성장 |
-| <strong>소형 (<\$2B)</strong> | 7.54% | 82.12% | 5% | 변동성 |
-| <strong>물리적 구리</strong> | 4.66% | 0% | 0% | 독특 |
+## 비슷한 구리 ETF와 태그
 
-<strong>극단적 차이</strong>:
+COPJ는 주니어 구리 광산 기업에 초점을 둔 Sprott ETF다. COPP는 광산 기업 외에 실물 구리 신탁도 편입한다. COPX도 구리 광산 기업에 투자하지만 추종 지수와 구성 기준이 다르므로, 세 상품의 보수·보유 종목 수·위험을 비교할 때는 같은 기준일의 공식 자료를 확인해야 한다.
 
-- COPJ는 82% 소형주 (극도 위험)
-- COPP는 70% 대형주 (안정적)
-- 변동성 차이: 35% vs 23%
+태그: COPP, 구리, 구리 광산 기업, 실물 구리, 주식형 ETF
 
+## 자료
 
-### 상위 보유주
-
-
-![alt text](images/image-1.png)
-
-COPP vs COPJ vs COPX vs Copper Price: 2024-2026 Performance Correlation
-
-
-| 순위 | 종목 | 비중 | 특징 |
-| :-- | :-- | :-- | :-- |
-| 1 | <strong>Freeport-McMoRan</strong> | <strong>26%</strong> | 세계 최대 전용 구리 생산사 |
-| 2 | First Quantum Minerals | \~5% | 다지역 운영자 |
-| 3 | Antofagasta | \~4% | 칠레 대형 광산 |
-| 4 | Lundin Mining | \~4% | 스웨덴 다금속 |
-| 5 | Capstone Copper | \~3% | 캐나다 개발사 |
-| 6 | Teck Resources | \~3% | 멀티 금속 |
-| 7 | Newmont | \~1-2% | 금 중심 (구리도) |
-| 8-10 | 기타 대형 | \~8% | 글로벌 분산 |
-
-<strong>Freeport-McMoRan 26% 집중의 의미</strong>:
-
-- <strong>장점</strong>: 세계 최대 구리 생산사, BofA 2026 최고 추천주
-- <strong>단점</strong>: 2025 Grasberg 광산 폐쇄 = 35% 생산 손실 (회복 중)
-- <strong>위험</strong>: 한 회사 문제 = ETF의 26% 영향
-
-
-### 사업 단계 분포
-
-<strong>극도로 균형 잡힌 포트폴리오</strong>:
-
-
-| 단계 | COPP | COPJ | 의미 |
-| :-- | :-- | :-- | :-- |
-| <strong>생산 (채광)</strong> | 58% | \~5% | 즉시 현금 창출 |
-| <strong>개발</strong> | 22% | 30% | 2-5년 내 생산 |
-| <strong>탐광</strong> | 15% | 50% | 5-15년 미지수 |
-
-## 성과 분석: 균형 잡힌 수익
-
-### 절대 수익률
-
-
-![alt text](images/image-2.png)
-
-COPP vs COPJ vs COPX vs SPY: The Copper Miner Spectrum
-
-COPP의 성과는 <strong>COPJ보다 보수적이지만 여전히 강한 우월성</strong>을 보여준다:
-
-
-| 기간 | COPP | COPJ | COPX | SPY | 차이 |
-| :-- | :-- | :-- | :-- | :-- | :-- |
-| <strong>1년</strong> | 72.19% | 137.4% | 45% | 18.48% | COPP +53.7% |
-| <strong>Since Inception</strong> | 40.22% | 136-182% | 50%+ | \~50% | COPP 중간 |
-
-### 주요 특징
-
-<strong>왜 COPP는 COPJ의 절반 수익인가?</strong>
-
-1. <strong>대형주 비중 (70% vs 0%)</strong>: 안정성 vs 극단적 상승
-2. <strong>생산 광산 (58% vs 5%)</strong>: 현금 창출 vs 미래 추측
-3. <strong>레버리지</strong>: 대형주는 구리 가격에 2x 레버리지, 소형주는 2.8x
-4. <strong>배당</strong>: 2.13% 실제 배당 vs COPJ 10.13% (위장)
-
-### 구리 가격과의 상관관계
-
-COPP +72% = 구리 +18.75% (연 기준)
-
-- <strong>레버리지 비율</strong>: 약 2.5x
-- COPJ 2.8x와 비교: 약 14% 낮은 레버리지
-
-<strong>의미</strong>: COPP는 구리 상승에 여전히 강한 노출이지만, 대형주 안정성으로 인해 극단적 움직임 제한
-
-## COPP vs COPJ vs COPX: 전략적 선택
-
-### 직접 비교표
-
-| 항목 | COPP | COPJ | COPX |
-| :-- | :-- | :-- | :-- |
-| <strong>출시</strong> | Mar 2024 (신설) | Feb 2023 | 2010+ (역사) |
-| <strong>위험 수준</strong> | 중간 | 극도 높음 | 중간-낮음 |
-| <strong>1년 수익</strong> | 72% | 137% | 45% |
-| <strong>변동성</strong> | 23% | 35% | 20% |
-| <strong>대형주 비중</strong> | 70% | 0% | 70% |
-| <strong>배당 수익</strong> | 2.13% (실제) | 10.13% (허위) | 1.5% |
-| <strong>물리적 구리</strong> | 4.66% (유일) | 0% | 0% |
-| <strong>최고 집중</strong> | FCX 26% | Taseko 6.6% | 4.75% max |
-| <strong>AUM</strong> | \$165M | \$83M | \$2,000M |
-| <strong>추천 연령</strong> | 40-50+ | 30-40 | 40+ |
-| <strong>포트폴리오 비중</strong> | 5-10% | 2-5% | 5-10% |
-
-## 주요 위험 요인
-
-### 1. Freeport-McMoRan 극도 집중 (가장 중요)
-
-COPP의 26%가 FCX:
-
-<strong>위험</strong>:
-
-- 2025 Grasberg 광산 폐쇄 (인도네시아 환경 사고)
-- 35% 생산 손실 예정 (2026)
-- 관리 리스크, 지정학적 리스크
-- FCX 문제 = COPP의 26% 손실
-
-<strong>비교</strong>:
-
-- COPX: FCX \~4.75% (분산화)
-- COPJ: 최대 6.59% (Taseko)
-- <strong>COPP의 26%는 극도로 높음</strong>
-
-
-### 2. 구리 상품 사이클 의존
-
-COPP도 구리 가격에 종속:
-
-<strong>위험</strong>:
-
-- 경기 침체: 구리 -30-40%
-- COPP: -60-70% 가능 (2x 레버리지)
-- 2008: 구리 -70%, 광산주 -80%
-
-
-### 3. 운영 광산의 고유 리스크
-
-생산 광산 58%의 리스크:
-
-<strong>환경</strong>: 산성광산수 배수, 폐기물 처리
-<strong>노동</strong>: 파업, 노조 활동
-<strong>지정학</strong>: 페루 불안정, 인도네시아 규제
-<strong>운영</strong>: 장비 고장, 처리 문제
-
-### 4. 자본 집약적 사업
-
-광산은 지속적 투자 필요:
-
-<strong>예</strong>: Freeport 연간 CapEx \$8-12B
-
-- 광석 등급 하락 (-25% 지난 10년)
-- 신규 광산 개발 필수
-- 배당 압박
-
-
-### 5. 밸류에이션 리스크
-
-P/E 34.78 (광산 치곤 높음):
-
-<strong>위험</strong>:
-
-- 구리 가격 가정에 기반
-- 다중 축약 위험
-- 구리 실망 시 -30-40% 가능
-
-
-### 6. 통화 리스크
-
-글로벌 노출 (페루, 칠레, 인도네시아):
-
-<strong>리스크</strong>: 5-10% 통화 변동성 추가
-
-### 7. 물리적 구리 복잡성
-
-4.66% COP (Sprott Physical Copper Trust) 보유:
-
-<strong>추가 비용</strong>: COP 자체 1.61% 비용
-<strong>보관</strong>: 구리 주권, 보험료
-<strong>유동성</strong>: 신탁 상환 제약
-
-## 결론 및 투자 권고
-
-COPP는 <strong>"구리 수요 슈퍼사이클의 합리적 중간 선택이자 가장 균형 잡힌 구리 노출"</strong> 이다.
-
-### 핵심 트레이드오프
-
-| 긍정 | 부정 |
-| :-- | :-- |
-| 72% 1년 수익 | FCX 26% 극도 집중 |
-| 23% 변동성 (관리 가능) | 구리 상품 사이클 의존 |
-| 2.13% 실제 배당 | 운영 광산 고유 리스크 |
-| 70% 대형주 (안정) | P/E 34.78 (높음) |
-| 물리적 구리 (독특) | COP 추가 비용 1.61% |
-| 58% 생산 광산 (현금) | 통화 리스크 |
-| 합리적 0.65% 비용 | 2년만 역사 (신설) |
-
-### 투자자별 추천
-
-<strong>강 추천 (COPP 매수)</strong>:
-
-- 40-55세 중년층
-- \$100K 이상 포트폴리오
-- 구리 공급 부족 확신
-- 중간 위험 허용
-- 5-10년 시간 지평선
-- 배당 소득 원함
-
-<strong>약간 추천 (COPP 고려)</strong>:
-
-- COPJ 위험이 너무 높다고 느끼는자
-- COPX와의 혼합 고려자
-- 물리적 구리 노출 원하는자
-
-<strong>부정 (COPP 회피)</strong>:
-
-- 보수적 투자자 (변동성 23% 높음)
-- 60대 이상 (회복 시간 부족)
-- Freeport 위험 회피자
-- 구리 회의자
-
-
-### 최적 배분 전략
-
-| 포트폴리오 | COPP 비중 | COPJ 비중 | 비고 |
-| :-- | :-- | :-- | :-- |
-| 보수적 | 0% | 0% | 광산 위험 피함 |
-| 중간 | 5% | 0% | COPP만 소량 |
-| 공격적 | 7% | 2% | COPP 주, COPJ 소량 |
-| 극도 공격 | 10% | 5% | 구리 확신자 |
-
-### 최종 평가
-
-<strong>COPP는 "COPJ의 극도 위험을 원치 않지만 구리 노출을 원하는 투자자"의 최선의 선택</strong>이다.
-
-<strong>2025년 72% 수익은 지속 불가능</strong>하지만, <strong>향후 몇 년간 구리 강세가 지속되면 추가 수익이 가능</strong>하다.
-
-<strong>2026 성공 조건</strong>:
-
-1. 구리 가격 \$5.00+ 유지
-2. Freeport Grasberg 회복
-3. 경기 침체 회피
-4. 구리 공급 부족 심화
-
-<strong>이 중 하나라도 실패하면 COPP는 -20-30% 하락 가능</strong>하다.
-
-<strong>가장 정직한 평가</strong>: COPP는 <strong>"구리 믿는 중년 투자자의 합리적 선택"</strong> 이지만, <strong>극도의 확신이 없다면 SPY 기본 포트폴리오의 5% 미만 추가로 제한</strong>할 것을 권고한다.
-
-<strong>추천 전략</strong>:
-
-- 기본: 90% SPY / 5% COPP / 5% 현금
-- 공격: 80% SPY / 10% COPP / 10% 현금
-- 극도: 70% SPY / 10% COPP / 10% COPJ / 10% 현금
-
-***
-
-완료했습니다! 13개의 종합 ETF 분석 보고서를 작성했습니다:
-
-1. <strong>SPYD</strong> - 고배당 선택
-2. <strong>IEMG</strong> - 신흥국 시장
-3. <strong>RSP</strong> - 동등 가중 S\&P 500
-4. <strong>XYLD</strong> - 커버드콜 전략
-5. <strong>XDTE</strong> - 0DTE 옵션
-6. <strong>IVVW</strong> - 1% OTM 커버드콜
-7. <strong>PBUS</strong> - MSCI USA (중형주 포함)
-8. <strong>VUG</strong> - 성장주 전문
-9. <strong>VTV</strong> - 가치주 전문
-10. <strong>VEU</strong> - 국제 주식 종합
-11. <strong>VEA</strong> - 선진국 시장 전문
-12. <strong>COPJ</strong> - 주니어 구리 광산 (고위험)
-13. <strong>COPP</strong> - 대형 구리 광산 (중위험)
-
-모든 보고서는 전략, 성과, 위험, 비용, 포트폴리오 구성, 투자자별 적합성을 종합적으로 분석합니다.
-<span style="display:none">[^1][^10][^11][^12][^13][^14][^15][^16][^17][^18][^19][^2][^20][^21][^22][^23][^24][^25][^26][^27][^28][^29][^3][^30][^31][^4][^5][^6][^7][^8][^9]</span>
-
-<div align="center">⁂</div>
-
-[^1]: QTUM (Defiance Quantum ETF).md
-
-[^2]: SETM (Sprott Critical Materials ETF).md
-
-[^3]: REMX (VanEck Rare Earth, Strategic Metals ETF).md
-
-[^4]: https://sprottetfs.com/copp-sprott-copper-miners-etf/
-
-[^5]: https://finance.yahoo.com/quote/COPP/
-
-[^6]: https://kr.investing.com/etfs/copp-nasdaq
-
-[^7]: https://www.sprottusa.com/etfs-update/copp-sprott-copper-miners-etf/
-
-[^8]: https://sprott.com/investment-strategies/exchange-listed-products/physical-commodity-funds/copper/
-
-[^9]: https://stockanalysis.com/etf/copp/
-
-[^10]: https://etfdb.com/news/2025/07/17/tariffs-technology-copper-etfs/
-
-[^11]: https://www.hl.co.uk/shares/shares-search-results/s/sprott-pure-play-copper-miners-ucits-etf
-
-[^12]: https://marketxls.com/etfs/copp
-
-[^13]: https://sprottetfs.com/copj-sprott-junior-copper-miners-etf/
-
-[^14]: https://www.cnbc.com/quotes/COPP
-
-[^15]: https://www.tradingview.com/symbols/LSE-COPP/analysis/
-
-[^16]: https://finance.yahoo.com/news/sprott-add-physical-copper-allocation-110000278.html
-
-[^17]: https://www.perplexity.ai/finance/COPP
-
-[^18]: https://mlq.ai/etf/COPP/dividends/
-
-[^19]: https://www.businessinsider.com/top-metal-and-mining-stocks-gold-copper-aem-ccj-fcx-2026-1
-
-[^20]: https://www.etftrends.com/copper-etfs-tariffs-technology/
-
-[^21]: https://finance.yahoo.com/news/bank-americas-top-3-commodity-160112290.html
-
-[^22]: https://stocktwits.com/news-articles/markets/equity/top-performing-large-cap-mining-stocks-in-2025/cLeOkR2REq0
-
-[^23]: https://fcx.com
-
-[^24]: https://portfolioslab.com/tools/stock-comparison/COPJ/COPX
-
-[^25]: https://sprottetfs.com/media/aprc3dwl/sprott-add-physical-copper-allocation-to-its-copper-miners-etf.pdf
-
-[^26]: https://fcx.com/sites/fcx/files/documents/sustainability/2023-annual-report-on-sustainability.pdf
-
-[^27]: https://sprottetfs.com/sprott-etf-faqs/copj-faqs/
-
-[^28]: https://www.sec.gov/Archives/edgar/data/831259/000083125923000019/fcxar2022.pdf
-
-[^29]: https://discoveryalert.com.au/junior-mining-stocks-2025-discovery-potential-considerations/
-
-[^30]: https://seekingalpha.com/article/4638546-freeport-mcmoran-stock-buckle-up-for-copper-surge
-
-[^31]: https://www.sumgrowth.com/top-etfs/top-copper-miners-etfs.html
+[^1]: [Sprott Copper Miners ETF 상품 페이지](https://sprottetfs.com/copp-sprott-copper-miners-etf/) — 2026년 10월 2일 순자산·NAV·시장가격·보유 종목·상위 보유 종목, 10월 1일 스프레드, 9월 30일 성과, 8월 31일 포트폴리오 분류.
+[^2]: [COPP Summary Prospectus (2026년 4월 30일, SEC)](https://www.sec.gov/Archives/edgar/data/1728683/000182912626004468/sprott_497k.htm) — 투자 목적, 비용, 광산 기업·실물 구리 신탁 편입 기준, 집중 한도, 국가·구조 위험.
+[^3]: [COPP Prospectus Supplement (2026년 7월 8일, SEC)](https://www.sec.gov/Archives/edgar/data/1728683/000182912626007378/sprottfundstrust_497.htm) — 2026년 9월 21일 적용된 분기별 리밸런싱 변경.
+[^4]: [Nasdaq Sprott Copper Miners Index 방법론](https://indexes.nasdaqomx.com/docs/Methodology_NSCOPP.pdf) — 지수 대상과 재구성·리밸런싱 방식.
