@@ -1,182 +1,89 @@
 ---
 title: 'USD (ProShares Ultra Semiconductors)'
-description: '반도체 지수의 일일 수익률 2배를 목표로 하는 ProShares의 반도체 레버리지 ETF 분석'
+description: 'Dow Jones U.S. Semiconductors Index의 하루 성과 2배를 목표로 하는 ProShares USD의 운용 방식, 비용과 복리 위험을 정리한다.'
 pubDate: '2026-06-07T00:00:00+09:00'
-ticker: "USD"
-issuer: "ProShares"
-assetClass: "Equity"
-strategy: "Leveraged"
-exposure: "Semiconductor"
-leverage: "2x"
-incomeStyle: "None"
-categories: "ETF"
-tags: ["ETF", "USD", "ProShares", "Semiconductor", "Leveraged", "2X"]
+updatedDate: '2026-10-05T00:00:00+09:00'
+verifiedDate: '2026-10-05T00:00:00+09:00'
+dataAsOf: '2026-10-01T00:00:00+09:00'
+expenseRatioAsOf: '2026-10-01T00:00:00+09:00'
+ticker: 'USD'
+issuer: 'ProShares'
+assetClass: 'Equity'
+strategy: 'Leveraged'
+exposure: 'Dow Jones U.S. Semiconductors Index'
+leverage: '2x'
+incomeStyle: 'None'
+expenseRatio: '0.95% gross / 0.95% net'
+categories: 'ETF'
+tags: ['ETF', 'USD', 'ProShares', 'Semiconductor', 'Leveraged']
 ---
 
-# ProShares Ultra Semiconductors (USD): 종합 분석 보고서
+# USD (ProShares Ultra Semiconductors) 분석
 
-## ETF 분류
+> **분석 기준일: 2026년 10월 5일**
+>
+> USD는 Dow Jones U.S. Semiconductors Index의 하루 성과 2배를 수수료와 비용 차감 전에 추구하는 ProShares 레버리지 ETF다. 일일 목표를 매일 다시 설정하므로 하루보다 긴 기간의 수익률은 지수 누적 성과의 2배와 달라질 수 있다. 지수가 하락하면 손실도 확대된다.
+
+## 분류와 기본 정보
 
 | 항목 | 내용 |
 |---|---|
-| 최종 폴더 | `ETF/Leveraged Inverse/Semiconductor/USD` |
-| 대분류 | 레버리지·인버스 |
-| 하위 분류 | 반도체 레버리지 |
-| 핵심 전략 | 반도체 지수의 일일 수익률을 2배로 추종하는 단기·중기 전술 목적 ETF |
-| 운용 방식 | 파생상품을 활용하는 지수 기반 레버리지 ETF |
-| 레버리지/인버스 | 일일 +2배 레버리지 |
-| 옵션 인컴 여부 | 없음 |
-| 분류 판단 | 반도체 산업 노출이 있지만 일일 +2배 레버리지 구조가 핵심이므로 ETF 분류 우선순위에 따라 `레버리지·인버스`로 분류 |
+| 사이트 분류 경로 | ETF/Leveraged Inverse/Semiconductor/USD |
+| 상품명 | ProShares Ultra Semiconductors |
+| 티커 / 거래소 | USD / NYSE Arca |
+| 운용사 | ProShare Advisors LLC (ProShares 브랜드) |
+| 기초 지수 | Dow Jones U.S. Semiconductors Index (DJUSSC) |
+| 일일 목표 | 지수 하루 성과의 +200%, 비용 차감 전 |
+| 설정일 | 2007년 1월 30일 |
+| 순자산가치 / 시장가격 | 97.82달러 / 97.76달러 (2026년 10월 1일) |
+| YTD / 1년 NAV 수익률 | +61.56% / +101.99% (2026년 8월 31일 기준) |
+| 총보수율 / 순보수율 | ProShares 상품 페이지 표시 0.95% / 0.95% |
 
-***
+가격은 2026년 10월 1일, 성과는 상품 페이지에 게시된 2026년 8월 31일 월말 기준이다. 서로 다른 기준일의 값이며 과거 성과가 미래 결과를 보장하지 않는다. [ProShares USD 상품 페이지](https://www.proshares.com/our-etfs/leveraged-and-inverse/usd)
 
-### 개요: 2배 레버리지의 최적 선택
+## 기초 지수와 운용 방식
 
-ProShares Ultra Semiconductors (USD)는 2007년 1월 30일에 출시되어 <strong>일일 반도체 지수 수익률의 2배를 추구하는 레버리지 ETF</strong>입니다. 현재 \$57.48 NAV와 \$1.69B AUM을 보유하고 있으며, <strong>SOXL의 3배 레버리지보다 훨씬 우수한 장기 성과를 기록</strong>했습니다.[^1][^2][^3]
+Dow Jones U.S. Semiconductors Index는 반도체와 관련 장비 산업에 속한 미국 기업을 대상으로 한다. 지수는 미국 기업을 시가총액에 따라 선정하고 가중한다. 지수 구성과 비중은 매년 9월 재평가되며, 3월·6월·12월에도 비중 조정이 이루어진다. 지수는 S&P Dow Jones Indices가 관리한다.
 
-### 핵심 성과: 2X가 3X를 압도
+ProShares는 통상 총자산의 최소 80%에 대해 지수 구성 종목 또는 경제적 특성이 유사한 금융상품으로 레버리지 노출을 얻는다. 스왑 등 파생상품과 보통주를 활용하며, 매일 포트폴리오를 조정해 일일 2배 노출을 맞추려 한다. 실제 보유 종목이 지수를 그대로 복제한다고 볼 수 없다. [SEC 요약 투자설명서](https://www.sec.gov/Archives/edgar/data/1174610/000117461026000996/f46049d1.htm)
 
-![USD와 SOXL 레버리지 반도체 ETF 성과 비교](images/image.png)
+## 일일 2배와 복리 효과
 
-USD (2X Leverage) vs SOXL (3X Leverage): Why Lower Leverage Beats Higher Leverage
+아래 예시는 비용·거래 차이를 제외하고 USD가 지수의 매일 수익률에 정확히 2배로 움직인다고 가정한다.
 
-<strong>USD vs SOXL 비교</strong>:
+| 구간 | 지수 가상 값 | USD 가상 값 (시작 100) |
+|---|---:|---:|
+| 시작 | 100 | 100 |
+| 첫째 날: 지수 -10% | 90 | 80 |
+| 둘째 날: 지수 +11.11% | 100 | 97.78 |
+| 누적 변화 | 0% | -2.22% |
 
-- <strong>1년</strong>: USD +62.02% vs SOXL -63.74% = 125.76포인트 격차[^2]
-- <strong>3년 연환산</strong>: USD +133.77% vs SOXL -76.27% = 210.04포인트 격차[^2]
-- <strong>5년 연환산</strong>: USD +52.27% vs SOXL -73.18% = 125.45포인트 격차[^2]
+지수가 이틀 뒤 원래 수준으로 돌아와도 매일의 2배 수익률을 연결한 USD에는 손실이 남을 수 있다. 반대로 지수가 한 방향으로 크게 움직이고 변동성이 낮은 구간에는 장기 성과가 일일 목표를 단순히 누적한 값보다 높을 수도 있다. 수익 경로, 변동성, 보유 기간, 비용과 추종 결과가 함께 영향을 준다.
 
-이는 <strong>수학적 불가피성</strong>입니다: <strong>2배 레버리지는 3배 레버리지보다 변동성 감쇠가 현저히 낮습니다</strong>.[^3][^2]
+지수가 하루 중 어느 시점에 50%에 가까운 손실을 내면 투자 원금 전부를 잃을 수 있다고 투자설명서는 경고한다. 이는 매일 재설정되는 2배 레버리지에서 발생하는 극단적 위험이다. [SEC 요약 투자설명서](https://www.sec.gov/Archives/edgar/data/1174610/000117461026000996/f46049d1.htm)
 
-### 왜 2X가 3X를 능가하는가?
+## 비용과 분배
 
-변동성 감쇠의 수학:
+| 비용 항목 | 공시 내용 |
+|---|---|
+| SEC 비용표 | 2026년 9월 28일 투자설명서의 총 연간 운용비용 0.94%: 운용보수 0.75%, 기타 비용 0.17%, 과거 감면액 환수(recoupment) 0.02% |
+| ProShares 상품 페이지 | 총보수율과 순보수율 각각 0.95%로 표시 |
+| 비용 한도 약정 | SEC 투자설명서에 따르면 감면 전 총 연간 운용비용이 평균 일일 순자산의 0.95%를 넘으면 수수료를 면제하거나 초과 비용을 보전한다. 이 약정은 2027년 9월 30일까지이며, 과거 감면액은 일정 조건에서 5년 내 환수될 수 있음 |
+| 거래·금융 비용 | 증권·파생상품 거래 및 금융 비용은 비용표와 예시 금액에 포함되지 않음 |
 
-<strong>3X 예시</strong> (SOXL):
+2026년 9월 SEC 비용표의 합계와 ProShares 상품 페이지의 비율은 각각 0.94%와 0.95%로 표시되어 있어 이 글에서 출처별 수치를 분리해 적었다. SEC는 최근 회계연도 회전율을 평균 포트폴리오 가치의 104%로 공시했으며, 현금성 자산과 파생상품 거래를 제외한 값이므로 이를 포함하면 더 높아질 수 있다고 설명한다. USD는 분배금을 지급하지만 지급 주기와 금액은 바뀔 수 있으며, 분배 수익이 고정된 것은 아니다. [SEC 요약 투자설명서](https://www.sec.gov/Archives/edgar/data/1174610/000117461026000996/f46049d1.htm) · [ProShares USD 상품 페이지](https://www.proshares.com/our-etfs/leveraged-and-inverse/usd)
 
-- 1일차: 지수 +5% → SOXL +15%
-- 2일차: 지수 -4.5% → SOXL -13.5%
-- 3일차: 지수 +4.5% → SOXL +13.5%
-- <strong>결과</strong>: 지수 +5.05%, SOXL 심각한 손실
+## 주요 위험
 
-<strong>2X 예시</strong> (USD):
+- **레버리지와 전액 손실 가능성:** 지수의 하루 하락이 확대된다. 극단적인 하루 하락에서는 전액 손실이 가능하다.
+- **복리 경로 위험:** 하루보다 긴 수익률은 지수 누적 수익률의 2배가 아니다. 횡보하거나 상승한 지수에서도 USD가 손실을 낼 수 있다.
+- **반도체 업종 집중:** 지수는 반도체 및 관련 장비 산업에 집중되어 업종 경기, 기술 변화, 경쟁과 공급망 변동의 영향을 받는다.
+- **파생상품·상대방 위험:** 스왑의 가격, 유동성, 금융 비용과 상대방 신용이 목표 추종에 영향을 줄 수 있다.
+- **일일 리밸런싱과 장중 편차:** 장중 매수 성과는 NAV 기준 일일 목표와 다를 수 있다. 종가 무렵 지수 변동이 크면 목표 노출을 맞추기 어려울 수 있다.
+- **시장가격과 NAV 차이:** 거래소 가격은 NAV보다 높거나 낮게 형성될 수 있고, 거래량과 유동성이 낮아지면 그 차이가 커질 수 있다.
+- **거래 회전율:** 파생상품 거래를 제외한 회전율도 높으며 실제 거래 비용은 비용표에 모두 나타나지 않는다.
 
-- 1일차: 지수 +5% → USD +10%
-- 2일차: 지수 -4.5% → USD -9%
-- 3일차: 지수 +4.5% → USD +9%
-- <strong>결과</strong>: 지수 +5.05%, USD 여전히 수익[^2][^3]
+## 자료 출처
 
-
-### 비용 분석: 높지만 정당화됨
-
-USD의 0.95% 비용은 높지만:[^1]
-
-- 1년 +62% 수익률은 비용을 크게 초과
-- SMH의 0.35%와 비교해도 성과로 보상
-
-
-### 리스크 프로필: 높지만 관리 가능
-
-| 지표 | USD | 평가 |
-| :-- | :-- | :-- |
-| <strong>베타</strong> | \~3.0 | 시장의 3배 변동성[^4] |
-| <strong>표준편차</strong> | 62.5% | 극도로 높음[^5] |
-| <strong>최대 낙폭</strong> | -88.6% | 심각한 하방 위험[^5] |
-| <strong>Sharpe 비율</strong> | 0.69 | 낮음[^5] |
-
-### 최적 보유 기간: 2-6개월
-
-![USD 보유 기간별 반도체 ETF 포지셔닝](images/image-1.png)
-
-Semiconductor ETF Positioning by Holding Period: USD's Optimal Window (2-6 Months)
-
-USD는 다음 기간에 최적입니다:
-
-<strong>완벽한 사용</strong>: 2-6개월 강세 반도체 전망 + 정확한 진입/출장
-<strong>선호 가능</strong>: 1개월-1년 중기 거래
-<strong>비추천</strong>: 1일 (레버리지 감쇠 심함)
-<strong>강하게 비추천</strong>: 5년+ (unleveraged가 우월)
-
-### 투자 권장안
-
-<strong>USD 매수 시나리오</strong>:
-
-- 반도체 강세 확신 + 2-6개월 타이밍 계획
-- 60% 변동성 수용 가능
-- 명확한 손익분기점 (예: SOXX \$320 하락 시 손절)
-
-<strong>USD 회피 이유</strong>:
-
-- 장기 투자 목표 (SOXX/SMH 선택)
-- 일일 거래 (옵션이 더 나음)
-- 보수적 포트폴리오
-
-
-### 최종 평가
-
-USD는 <strong>"중도의 길"</strong>입니다 — SOXL의 극도 위험 회피와 SMH의 보수성 사이. 2배 레버리지는 학문적으로 증명된 최적 장기 레버리지이며, USD의 19년 역사가 이를 입증합니다.[^2]
-
-<strong>결론</strong>: 중기(2-6개월) 반도체 강세 베팅에 USD는 우수한 선택입니다. 그러나 장기 투자자는 여전히 unleveraged SOXX/SMH/SOXQ를 선택해야 합니다.
-<div align="center">⁂</div>
-
-[^1]: https://www.proshares.com/our-etfs/leveraged-and-inverse/usd
-
-[^2]: https://www.reddit.com/r/LETFs/comments/19c4qfn/semiconductors_2x_usd_outperforms_3x_soxl_in_long/
-
-[^3]: https://www.ainvest.com/news/leveraged-etfs-volatile-semiconductor-markets-soxl-fails-long-term-test-2509/
-
-[^4]: https://markets.ft.com/data/etfs/tearsheet/summary?s=USD%3APCQ%3AUSD
-
-[^5]: https://www.composer.trade/etf/USD
-
-[^8]: REMX (VanEck Rare Earth, Strategic Metals ETF).md
-
-[^9]: https://finance.yahoo.com/quote/USD/
-
-[^10]: https://kr.investing.com/etfs/proshares-ultra-semiconductors
-
-[^11]: https://seekingalpha.com/symbol/USD
-
-[^12]: https://markets.ft.com/data/etfs/tearsheet/summary?s=TSMG%3ANMQ%3AUSD
-
-[^13]: https://www.tradingkey.com/learn/intermediate/etf/etf-cost-fee-system-breakdown-tradingkey
-
-[^14]: https://global.morningstar.com/en-ca/investments/etfs/0P00007VR3/quote
-
-[^15]: https://www.reddit.com/r/ETFs/comments/1ha2w9t/why_wouldnt_i_buy_this_leverage_etf_if_i_know_ill/
-
-[^16]: https://kr.investing.com/etfs/proshares-ultra-semiconductors-holdings
-
-[^17]: https://www.kraken.com/stocks/usd
-
-[^18]: https://leverageshares.com/us/insights/leveraged-etf-fees-explained-what-you-need-to-know/
-
-[^19]: https://www.marketwatch.com/investing/fund/usd
-
-[^20]: https://www.morningstar.com/etfs/arcx/usd/quote
-
-[^21]: https://stockanalysis.com/etf/usd/dividend/
-
-[^22]: https://www.spglobal.com/spdji/en/indices/dividends-factors/dow-jones-us-dividend-100-index/
-
-[^23]: https://divvydiary.com/en/calendar/2025-march
-
-[^24]: https://fred.stlouisfed.org/tags/series?t=dividends
-
-[^25]: https://www.troweprice.com/personal-investing/resources/planning/tax/dividend-distributions/mutual-funds/2025-year-end-distributions.html
-
-[^26]: https://www.icmarkets.com/blog/thursday-15th-january-2026-technical-outlook-and-review/
-
-[^27]: https://investor.qualcomm.com/stock-info/dividend-split-history/default.aspx
-
-[^28]: https://www.orbex.com/blog/en/2026/01/intraday-analysis-08-01-2026
-
-[^29]: https://lngir.cheniere.com/stock-data/dividends
-
-[^30]: https://www.reddit.com/r/LETFs/comments/1lrwhs4/soxl_vs_usd/
-
-[^31]: https://www.economies.com/forex/usd-jpy-analysis/the-usdjpy-is-showing-mixed-signs-analysis-16-01-2026-124138
-
-[^32]: https://am.jpmorgan.com/content/dam/jpm-am-aem/emea/regional/en/supplemental/notice-to-shareholders/etfs-dividend-distribution-schedule-2025.pdf
-
-[^33]: https://www.reddit.com/r/LETFs/comments/1j2lddy/soxl_leverage_decay_over_the_past_year/
+1. [ProShares USD 상품 페이지](https://www.proshares.com/our-etfs/leveraged-and-inverse/usd) — 2026년 10월 1일 NAV·시장가격과 ProShares 표시 비용률, 2026년 8월 31일 월말 성과, 지수 개요.
+2. [SEC ProShares Ultra Semiconductors 요약 투자설명서 (2026년 9월 28일)](https://www.sec.gov/Archives/edgar/data/1174610/000117461026000996/f46049d1.htm) — 일일 2배 목표, 비용표와 감면 약정, 지수·운용 방식·회전율·위험 공시.
