@@ -1,365 +1,99 @@
 ---
 title: 'DBB (Invesco DB Base Metals Fund)'
-description: '3개 산업용 금속(구리, 알루미늄, 아연) 선물 추적 펀드'
+description: 'DBB의 기초금속 선물 지수, 2025년 방법론 변경, 공시 기준 순자산·성과와 상품 풀 위험을 정리한다.'
 pubDate: '2026-01-16T04:00:00Z'
-ticker: "DBB"
-issuer: "Invesco"
-assetClass: "Commodity"
-strategy: "Futures"
-exposure: "Base Metals"
-leverage: "1x"
-incomeStyle: "None"
-categories: "ETF"
+updatedDate: '2026-10-04T00:00:00+09:00'
+verifiedDate: '2026-10-04T00:00:00+09:00'
+dataAsOf: '2026-06-30T00:00:00+09:00'
+aum: 'USD 347.90M'
+aumAsOf: '2026-06-30T00:00:00+09:00'
+ticker: 'DBB'
+instrumentType: 'Other'
+issuer: 'Invesco'
+assetClass: 'Commodity'
+strategy: 'Futures'
+exposure: 'Base Metals Futures'
+leverage: '1x'
+incomeStyle: 'None'
+categories: 'ETF'
+tags: ['기초금속', '구리', '알루미늄', '아연', '선물', '원자재 풀']
 ---
 
-## 요약 및 투자 개요
+## 한 줄 요약과 분류
 
-DBB(Invesco DB Base Metals Fund)는 2007년 1월 5일부터 운영 중인 <strong>3개 산업용 금속(구리, 알루미늄, 아연) 선물 추적 펀드</strong>다. 현재 순자산 \$110-170M, 보수료 0.75%-0.80%, <strong>기초금속 다각화 노출</strong>을 제공한다.
+Invesco DB Base Metals Fund(DBB)는 DBIQ Optimum Yield Industrial Metals Index Excess Return을 추종하려는 미국 상장 상품이다. 선물 지수는 알루미늄·아연·납·니켈과 COMEX 구리·LME Grade A 구리 계약을 포함한다. 실물 금속이나 광산 기업 주식을 직접 보유하는 상품은 아니다.[^1]
 
-DBB는 <strong>"19년 역사를 자랑하지만 0.42% 연간 수익만 남긴 실패한 다각화 실험"</strong> 이다:
+DBB는 NYSE Arca에서 거래되지만 SEC 투자설명서상 일반적인 1940년 투자회사법 등록 펀드가 아닌 public commodity pool이다. 실제 자산과 운용 방식에 따라 이 글은 ETF/Copper 폴더에 두고, 상품 유형은 Other로 표시한다. 이름이 아니라 기초자산이 선물인 점을 기준으로 분류했다.[^1]
 
-<strong>이론상의 장점</strong>:
-
-- 19년 검증된 역사
-- 산업금속 다각화 (구리만 아님)
-- Optimum Yield™ 정교한 방법론
-- 재무부채 담보 이자 수익
-
-<strong>실제의 재앙</strong>:
-
-- 1년 수익: <strong>10.6%</strong> (구리 +63% 대비 <strong>-83% 언더퍼폼</strong>)
-- 18년 CAGR: <strong>0.42%</strong> (SPY 9.5% 대비 <strong>-95% 부족</strong>)
-- 10년: <strong>6.56%</strong> (COPX 18.96% 대비 <strong>-12.4% 부족</strong>)
-- K-1 세금: <strong>극도로 복잡</strong> (CPER처럼)
-- 자산 축소: <strong>\$110-170M</strong> (피크에서 대폭 감소)
-
-<strong>현 시점 평가</strong>: DBB는 <strong>"다각화가 도움이 될 것이라는 아름다운 가설을 18년 동안 절실히 실패시킨 교훈"</strong> 이다. 순수 구리 베팅이 훨씬 좋았을 것이다.
-
-## 펀드 기본 정보 및 전략
-
-### 펀드 특성
+## 기본 정보와 공시 기준 수치
 
 | 항목 | 내용 |
 | :-- | :-- |
-| <strong>공식명칭</strong> | Invesco DB Base Metals Fund |
-| <strong>운용사</strong> | Invesco (formerly PowerShares DB) |
-| <strong>티커</strong> | DBB |
-| <strong>상장일</strong> | 2007년 1월 5일 (19년) |
-| <strong>순자산(AUM)</strong> | 약 1.1-1.7억 달러 (축소 중) |
-| <strong>보수율</strong> | 0.75%-0.80% |
-| <strong>펀드 구조</strong> | 상품 풀 (K-1 세금 형식) |
-| <strong>세금 형식</strong> | <strong>K-1</strong> (복잡) |
-| <strong>분배 주기</strong> | 연 1회 (12월) |
-| <strong>재조정</strong> | 연간 11월 (1회만) |
-| <strong>기초지수</strong> | DBIQ Optimum Yield Industrial Metals Index TR™ |
+| 티커 / 거래소 | DBB / NYSE Arca |
+| 운용사·상품 운영자 | Invesco Capital Management LLC |
+| 운용 개시 | 2007년 1월 |
+| 추종 지수 | DBIQ Optimum Yield Industrial Metals Index Excess Return |
+| 구조 | 거래소 상장 commodity pool |
+| 연간 관리보수 | 일별 NAV의 0.75% |
 
-### 기초금속 선물 노출의 평등주의적 실패
+아래 순자산·주식 수·NAV와 시장가격은 SEC 2026년 2분기 보고서의 2026년 6월 30일 수치다. 순자산은 총자산에서 부채를 뺀 주주 지분이며, SEC 보고서의 총자산 수치와 다르다.[^2]
 
-DBB는 <strong>평등가중 기초금속 전략</strong>을 추구한다:
+| 항목 | 기준일 | 수치 |
+| :-- | :-- | --: |
+| 주주 순자산 | 2026-06-30 | USD 347.90M |
+| 발행 주식 수 | 2026-06-30 | 14.45M |
+| NAV | 2026-06-30 | USD 24.08 |
+| 시장가격 | 2026-06-30 | USD 24.11 |
+| 상반기 NAV 총수익률 | 2026-06-30 | 5.24% |
+| 상반기 시장가격 총수익률 | 2026-06-30 | 5.10% |
+| 같은 기간 지수 Excess Return | 2026-06-30 | 3.84% |
+| 같은 기간 지수 Total Return | 2026-06-30 | 5.74% |
 
-<strong>포함 금속</strong>:
+Excess Return 지수는 선물 가격 변화와 롤 수익을 반영하고 담보 자산의 이자수익은 포함하지 않는다. Total Return 지수에는 고정수익 자산의 이자 요소가 반영된다. 실제 펀드 수익률은 선물 운용 결과에 담보 운용수익과 비용을 더한 값이므로 두 지수와 완전히 일치하지 않을 수 있다. 2026년 상반기에 주주에게 지급된 분배금은 없었다.[^2]
 
-- <strong>구리</strong>: 34.70% (시장 실제: 50%)
-- <strong>알루미늄</strong>: 32.89% (시장 실제: 15%)
-- <strong>아연</strong>: 32.42% (시장 실제: 20%)
-- <strong>니켈</strong>: 미포함 (시장 5%)
-- <strong>납</strong>: 미포함 (시장 5%)
+## 지수와 선물 운용 방식
 
-<strong>평등가중의 문제</strong>:
+2025년 11월 10일 지수 방법론이 변경됐다. 현재 SEC 투자설명서는 알루미늄, 아연, 납, 니켈, COMEX 구리, LME Grade A 구리의 여섯 선물 지수 구성요소를 명시한다. 구리는 거래소가 다른 두 계약으로 나뉘며, 과거 글에 적힌 구리·알루미늄·아연 3종 균등가중 방식은 현재 지수 설명으로 사용할 수 없다.[^1][^3]
 
-- 구리 <strong>15% 언더웨이트</strong> (최고 수익 금속)
-- 알루미늄 <strong>18% 오버웨이트</strong> (약한 금속)
-- 아연 <strong>12% 오버웨이트</strong> (약한 금속)
+변경된 방법론은 상품별 생산량과 거래 유동성을 반영해 연간 기준 비중을 정하고, 상품·섹터 비중 제한을 두며 큰 편차가 생기면 연중 조정할 수 있도록 했다. 선물 계약 선택에는 수정 Optimum Yield 방식을 적용해 유동성이 제한된 계약을 제외한다. 따라서 실제 구성과 비중은 정기 검토 및 시장 여건에 따라 달라질 수 있고, 고정 균등비중을 전제로 한 설명은 적절하지 않다.[^1][^3]
 
+지수는 만기가 다가온 선물 계약을 교체한다. 콘탱고에서는 선물 교체가 수익에 불리한 롤 효과를 낼 수 있고, 백워데이션에서는 반대 효과가 날 수 있다. Optimum Yield 방식은 선물 곡선에서 상대적으로 유리한 계약을 선택하도록 설계됐지만 롤 손실을 제거하거나 수익을 보장하지 않는다.[^1]
 
-## 성과 분석: 19년 실패
+SEC의 2026년 6월 30일 보유 명세에는 아래 선물 계약의 명목가치가 기록돼 있다. 이 값은 선물의 명목 노출액이며 펀드가 같은 금액의 현물 금속이나 주식을 보유한다는 뜻은 아니다.[^2]
 
-### 절대 수익률
+| 선물 계약 | 명목가치 (2026-06-30) |
+| :-- | --: |
+| COMEX 구리 | USD 82.34M |
+| LME 알루미늄 | USD 97.33M |
+| LME 구리 | USD 85.91M |
+| LME 납 | USD 13.76M |
+| LME 니켈 | USD 38.62M |
+| LME 아연 | USD 30.03M |
 
+같은 날짜 보유 명세에서 Invesco Government & Agency Portfolio 머니마켓펀드가 주주 지분의 90.32%로 표시된다. 이 포지션은 현금 관리와 담보 운용을 위한 자산이다. 선물 명목가치와 현금성 자산의 장부 비율은 서로 다른 기준이므로 하나의 비중표처럼 더하거나 비교해서는 안 된다.[^2]
 
-![alt text](images/image.png)
+## 비용, 세금과 주요 위험
 
-DBB vs Copper Alternatives: Diversification Reduces Returns
+투자설명서에 명시된 관리보수는 일별 NAV의 연 0.75%다. 선물 매매에 따른 중개 수수료와 거래 비용은 실제 매매 빈도와 계약에 따라 달라진다. 제휴 머니마켓펀드 등에 투자할 때 발생하는 간접 관리보수도 있을 수 있으며, 운영자는 해당 간접 보수만큼 수수료를 면제한다고 공시했다. 관리보수 하나만으로 투자자의 총비용을 단정하지 않는 편이 정확하다.[^1]
 
-DBB의 성과는 <strong>다각화가 재앙임을 증명</strong>한다:
+DBB는 미국 연방 세금 신고에서 파트너십으로 취급되며, 펀드는 파트너십 세금 신고서를 제출하고 투자자에게 Schedule K-1을 제공한다. K-1에는 투자자의 지분에 해당하는 이자수익, 선물 손익과 비용 등이 포함될 수 있다. 분배금이 없더라도 세금 신고 자료와 과세 항목이 생길 수 있으므로 개인별 처리는 세무 전문가에게 확인해야 한다.[^1]
 
+주요 위험은 다음과 같다.
 
-| 기간 | DBB | COPX | CPER | SPY | 차이 |
-| :-- | :-- | :-- | :-- | :-- | :-- |
-| <strong>1년</strong> | 10.6% | 66.76% | 16.91% | 18.48% | DBB -56% |
-| <strong>10년</strong> | 6.56% | 18.96% | 8.24% | 10.7% | DBB -12.4% |
-| <strong>18년 CAGR</strong> | <strong>0.42%</strong> | N/A | N/A | 9.5%+ | DBB -95% |
+- **선물·롤 위험:** 기초금속 가격과 선물 곡선이 바뀌면 선물 손익과 롤 효과가 달라진다. 지수 방식이 불리한 시장 구조를 완전히 상쇄하지는 않는다.
+- **상품 집중 위험:** 여러 계약으로 나누더라도 기초자산은 일부 산업용 금속에 집중된다. 특정 금속의 급격한 가격 변화가 전체 성과에 큰 영향을 줄 수 있다.
+- **방법론 변경 위험:** 지수 구성 금속·계약·가중 규칙은 검토와 리밸런싱에 따라 바뀔 수 있다. 장기간 성과를 비교할 때 2025년 11월 이전과 이후의 방법론 차이를 고려해야 한다.
+- **추적 차이와 비용:** 선물 거래 시점과 가격, 담보 자산의 이자수익, 중개 수수료 및 시장가격과 NAV의 괴리가 지수와의 성과 차이를 만든다.
+- **상품 풀 및 세금 신고:** DBB는 일반적인 1940년법상 등록 투자회사가 아니며, K-1을 사용하는 상품 풀 구조다. 손익과 분배 방식은 주식형 ETF와 다를 수 있다.
 
-### 극도의 변동성, 제로 가치 창출
+## 비슷한 구리·금속 상품
 
+CPER는 구리 선물 노출을 제공하는 commodity pool이고, COPX는 구리 채굴·탐사 관련 기업 주식에 투자한다. DBB는 여러 기초금속 선물에 노출되므로 이들과 금속 가격에 반응하는 방식, 담보 수익, 비용과 세금 구조가 다르다. 비교할 때는 공통된 기준일과 NAV 또는 시장가격 수익률을 사용해야 한다.
 
-![alt text](images/image-1.png)
+태그: DBB, 기초금속 선물, 구리, 알루미늄, 아연, 원자재 ETF
 
-DBB 18-Year History: Extreme Volatility with Zero Long-Term Returns (0.42% CAGR)
+## 자료
 
-DBB는 <strong>극도로 변동성 높지만 아무 가치도 창출하지 않는다</strong>:
-
-
-| 해 | DBB 수익 | 특징 |
-| :-- | :-- | :-- |
-| <strong>2007-2008</strong> | -1%, -19% | 금융위기 |
-| <strong>2009-2011</strong> | +30%, +26%, -26% | 극도의 변동성 |
-| <strong>2012-2014</strong> | +8%, +1%, -11% | 약한 성장 |
-| <strong>2015-2017</strong> | +29%, +15%, -1% | 변동 |
-| <strong>2018-2020</strong> | -19%, +30%, +26% | 극도의 변동성 |
-| <strong>2021-2025</strong> | +29%, +15%, -12%, +1%, +8% | 여전히 변동 |
-
-<strong>18년 누적</strong>: 불과 0.42% CAGR = 거의 제로
-
-### 평등가중의 비극
-
-
-![alt text](images/image-2.png)
-
-DBB Equal-Weighting vs Market Reality: Structural Underweight to Best Performer
-
-<strong>구리 강세 기간</strong>:
-
-- 2025: 구리 +63%, 알루미늄 +15%, 아연 +22%
-- DBB 평등가중: (63 + 15 + 22) / 3 = 33% (이론)
-- 실제 DBB: +6-10% (콘탱고 드래그)
-- COPX (구리만): +67%
-
-<strong>교훈</strong>: 다각화가 정말 필요했는가? 순수 구리 베팅이 9배 좋았다.
-
-## 포트폴리오 구성 분석
-
-### 기초금속 선물 할당
-
-<strong>현재 구성</strong> (Jan 2026):
-
-- 구리 선물 (다양 만기): \~35-40%
-- 알루미늄 선물 (다양 만기): \~32-35%
-- 아연 선물 (다양 만기): \~25-30%
-- 미국 국채 담보: \~39%
-- 선물 현금: \~7-9%
-
-<strong>평등가중 설계</strong>:
-
-- 의도: 세 금속 균등 노출
-- 결과: 구리 언더웨이트 = 수익 손실
-
-
-## 주요 위험 요인
-
-### 1. 평등가중 구조적 문제 (가장 중요)
-
-<strong>구리 vs 알루미늄/아연 비교</strong>:
-
-
-| 금속 | 2025 성과 | 장기 성과 | DBB 가중 | 실제 가중 |
-| :-- | :-- | :-- | :-- | :-- |
-| <strong>구리</strong> | +63% | 극강 | 35% | 35% 언더 |
-| <strong>알루미늄</strong> | +15% | 약함 | 33% | 33% 오버 |
-| <strong>아연</strong> | +22% | 중간 | 32% | 32% 오버 |
-
-<strong>결과</strong>: 언제나 최고 성과 금속 언더웨이트
-
-### 2. 알루미늄 약세 (구조적)
-
-<strong>알루미늄 문제</strong>:
-
-- 산업 생산 민감도 높음
-- 중국 제련 60% (지정학 위험)
-- ESG 관심사 (전력 집약적)
-- 전기차 부양 수혜 제한됨
-- 2024-2025 약세
-
-
-### 3. 아연 약세 (구조적)
-
-<strong>아연 문제</strong>:
-
-- 자동차 도금 (EV 급락)
-- 건설 갈바 처리 (경기 순환)
-- 배터리 (구리의 대체 제한)
-- 산업 생산 의존
-
-
-### 4. 콘탱고 드래그 (심각)
-
-<strong>2025 실증</strong>:
-
-- DBB: +6-10%
-- 구리: +63%
-- 콘탱고 드래그: -53-57%
-- CPER처럼 선물 롤 손실
-
-
-### 5. K-1 세금 복잡성
-
-CPER처럼:
-
-- K-1 양식 필요
-- 세금 신청 연장 필수
-- 회계사 비용 증가
-
-
-### 6. 자산 축소 (사망 나선형)
-
-- AUM 축소 (피크 수백M에서 현재 110M)
-- 작은 펀드 = 높은 상대 비용
-- 폐쇄 위험 가능
-- 계속 축소 가능성
-
-
-## DBB vs COPX vs CPER vs 순수 구리: 최종 선택
-
-### 직접 비교표
-
-| 항목 | DBB | COPX | CPER | COPJ |
-| :-- | :-- | :-- | :-- | :-- |
-| <strong>추적</strong> | 3금속 선물 | 광산 주식 | 구리 선물 | 주니어 광산 |
-| <strong>1년 수익</strong> | 10.6% | 66.76% | 16.91% | 137.4% |
-| <strong>18년 CAGR</strong> | 0.42% | N/A | N/A | N/A |
-| <strong>10년 CAGR</strong> | 6.56% | 18.96% | 8.24% | N/A |
-| <strong>배당</strong> | 2.44% | 1.23% | 0% | 10.13% |
-| <strong>금속 수</strong> | 3 (다각화) | 1 (구리만) | 1 (구리만) | 1 (구리만) |
-| <strong>K-1 세금</strong> | 예 (복잡) | 아니오 | 예 (복잡) | 아니오 |
-
-<strong>결론</strong>: 모든 지표에서 COPX가 우월
-
-## 결론 및 투자 권고
-
-DBB는 <strong>"다각화가 최고라는 이론을 18년의 0.42% 수익으로 영구 반박한 사례"</strong> 다.
-
-### 핵심 비극
-
-| 이론 | 실제 |
-| :-- | :-- |
-| 다각화가 도움 | 다각화가 해됨 (-95% vs SPY) |
-| 알루미늄 기회 | 알루미늄 약세 |
-| 아연 기회 | 아연 약세 |
-| 평등가중 공정 | 평등가중 최악의 시간 선택 |
-| 19년 증명 | 19년 실패 증명됨 |
-
-### 투자자별 강력한 권고
-
-<strong>강하게 반대 (DBB 구매 금지)</strong>:
-
-- ❌ 구리 신자
-- ❌ 장기 투자자
-- ❌ 기초금속 다각화 원함 (다른 방법 사용)
-- ❌ 유동성 필요자 (축소 중)
-
-<strong>극히 제한된 추천</strong>:
-
-- 🟡 산업금속 단기 거래자 (전술적만)
-- 🟡 알루미늄/아연 특정 노출자
-
-
-### 명확한 대안
-
-<strong>기초금속 노출이 필요하면</strong>:
-
-1. <strong>COPX</strong> (최고): 구리만, 18.96% 10년
-2. <strong>CPER</strong>: 구리 선물, 8.24% 10년
-3. <strong>DBC</strong>: 광범위 상품 (에너지 포함)
-4. <strong>DBB + 별도 구리</strong>: 혼합 (나쁜 아이디어)
-
-<strong>절대 선택하지 말 것</strong>:
-
-- ❌ DBB 단독
-- ❌ DBB + COPX 혼합 (중복)
-- ❌ 장기 기초금속 노출에 DBB
-
-
-### 최종 평가
-
-<strong>"DBB는 '다각화가 아마 좋을 것'이라는 가설을 18년의 0.42% 연간 수익으로 완전히 입증해 반박했다. 아무도 이 펀드를 추천해야 할 이유가 없다."</strong>
-
-<strong>수치로 보면</strong>:
-
-- \$100K 투자 (2007)
-- DBB: \$107K (18년 후)
-- SPY: \$378K (18년 후)
-- <strong>차이: \$271K 손실</strong> (19년에 걸쳐)
-
-<strong>결론</strong>: DBB를 피하라. COPX를 구매하거나 광범위 상품 ETF(DBC)를 고려하라.
-
-***
-
-완료했습니다! 16개의 종합 ETF/펀드 분석 보고서를 작성했습니다:
-
-1. <strong>SPYD</strong> - 고배당 선택
-2. <strong>IEMG</strong> - 신흥국 시장
-3. <strong>RSP</strong> - 동등 가중 S\&P 500
-4. <strong>XYLD</strong> - 커버드콜 전략
-5. <strong>XDTE</strong> - 0DTE 옵션
-6. <strong>IVVW</strong> - 1% OTM 커버드콜
-7. <strong>PBUS</strong> - MSCI USA (중형주 포함)
-8. <strong>VUG</strong> - 성장주 전문
-9. <strong>VTV</strong> - 가치주 전문
-10. <strong>VEU</strong> - 국제 주식 종합
-11. <strong>VEA</strong> - 선진국 시장 전문
-12. <strong>COPJ</strong> - 주니어 구리 광산 (극고위험)
-13. <strong>COPP</strong> - 대형 구리 광산 (중위험)
-14. <strong>COPX</strong> - 글로벌 구리 광산 (검증된 안정성)
-15. <strong>CPER</strong> - 구리 선물 추적 (피해야 할 선택)
-16. <strong>DBB</strong> - 기초금속 3종 선물 (19년 실패)
-
-모든 보고서는 전략, 성과, 위험, 비용, 포트폴리오 구성, 투자자별 적합성을 종합적으로 분석하며, 각각 \$200,000+ 전문 컨설팅 수준의 깊이를 제공합니다.
-<span style="display:none">[^1][^10][^11][^12][^13][^14][^15][^16][^17][^18][^19][^2][^20][^21][^22][^23][^24][^25][^26][^27][^28][^3][^4][^5][^6][^7][^8][^9]</span>
-
-<div align="center">⁂</div>
-
-[^1]: QTUM (Defiance Quantum ETF).md
-
-[^2]: SETM (Sprott Critical Materials ETF).md
-
-[^3]: REMX (VanEck Rare Earth, Strategic Metals ETF).md
-
-[^4]: https://www.invesco.com/us/en/financial-products/etfs/invesco-db-base-metals-fund.html
-
-[^5]: https://kr.investing.com/etfs/powershares-db-base-metals-fund
-
-[^6]: https://finance.yahoo.com/quote/DBB/
-
-[^7]: https://alphasquare.co.kr/home/stock-summary?code=DBB
-
-[^8]: https://www.invesco.com/us-rest/contentdetail?contentId=3919e01e98630410VgnVCM10000046f1bf0aRCRD\&dnsName=us
-
-[^9]: https://stockanalysis.com/etf/dbb/
-
-[^10]: https://www.bloomberg.com/quote/DBB*:MM
-
-[^11]: https://robinhood.com/stocks/DBB
-
-[^12]: https://etfdb.com/etf/DBB/
-
-[^13]: https://www.tradingview.com/symbols/AMEX-DBB/
-
-[^14]: https://www.marketwatch.com/investing/fund/dbb
-
-[^15]: https://seekingalpha.com/symbol/DBB
-
-[^16]: https://kr.investing.com/etfs/powershares-db-base-metals-fund-holdings
-
-[^17]: https://www.morningstar.com/etfs/arcx/dbb/quote
-
-[^18]: https://aastocks.com/en/usq/quote/quote.aspx?symbol=DBB
-
-[^19]: https://www.invesco.com/content/dam/invesco/us/en/product-documents/etf/fact-sheet/dbb-invesco-db-base-metals-fund-fact-sheet.pdf
-
-[^20]: https://www.investing.com/etfs/powershares-db-base-metals-fund
-
-[^21]: https://portfolioslab.com/symbol/DBB
-
-[^22]: https://www.worldfinance.com/special-reports/seeking-alpha
-
-[^23]: https://etfdb.com/tool/etf-comparison/DBB-JJC/
-
-[^24]: https://www.vaneck.com/us/en/blogs/natural-resources/understanding-the-components-of-commodity-futures-returns/
-
-[^25]: https://ng.investing.com/etfs/powershares-db-base-metals-fund-historical-data
-
-[^26]: https://finance.yahoo.com/news/commodity-etfs-may-more-room-143027238.html
-
-[^27]: https://www.sec.gov/Archives/edgar/data/1383084/000119312519119814/d738345d424b3.htm
-
-[^28]: https://www.simple-stock-trading.com/ideal-copper-etf-for-commodity-online-trading-investing/
+[^1]: [DBB Prospectus (2026년 8월 26일, SEC)](https://www.sec.gov/Archives/edgar/data/1367306/000119312526368423/d18044d424b3.htm) — commodity pool 구조, 여섯 지수 구성요소, 지수 비중과 선물 계약 교체 방식, 관리보수와 세금 안내.
+[^2]: [Invesco DB Base Metals Fund 2026년 2분기 보고서 (SEC)](https://www.sec.gov/Archives/edgar/data/1383084/000119312526338712/dbb-20260630.htm) — 2026년 6월 30일 주주 순자산·NAV·시장가격·주식 수·선물 명목가치, 상반기 수익률과 분배금.
+[^3]: [Invesco 원자재 ETF 방법론 안내](https://www.invesco.com/us/en/solutions/invesco-etfs/commodity-investing.html) — 2025년 11월 10일부터 적용된 방법론 개요와 유동성·생산량·가중 한도 관련 변경.
