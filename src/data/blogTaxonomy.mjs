@@ -42,3 +42,18 @@ export function getBlogCategoryFolder(category) {
 
 	return category.replaceAll('_', ' ');
 }
+
+// Feed and category-search endpoints share a stable slug derived from the canonical key.
+// This is separate from BLOG_CATEGORIES.href, which may use a shorter page route such as /cs.
+export function slugifyBlogCategoryKey(category) {
+	if (!BLOG_CATEGORY_KEYS.includes(category)) {
+		return undefined;
+	}
+
+	return category.toLowerCase().replace(/[\s_]+/g, '-');
+}
+
+const blogCategorySlugs = BLOG_CATEGORY_KEYS.map(slugifyBlogCategoryKey);
+if (new Set(blogCategorySlugs).size !== BLOG_CATEGORY_KEYS.length) {
+	throw new Error('BLOG_CATEGORY_KEYS must produce unique feed and search slugs.');
+}

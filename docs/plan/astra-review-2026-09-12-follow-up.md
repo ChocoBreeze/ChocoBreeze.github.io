@@ -35,7 +35,7 @@
 | 4 | 검색 함수 분리·정규화·URL 상태 | 3 | 구현·회귀 테스트 완료 |
 | 5 | 브라우저 smoke suite·산출물 검사 | 2~4 | Playwright 8개 browser smoke 통과 |
 | 6 | 품질·성능 baseline과 Pagefind 비교 | 3~5, 기존 실험 확인 | JSON 현재·1k·2k 측정 및 핫패스 최적화 완료. Pagefind 전면 교체 보류 |
-| 7 | 카테고리·slug 매핑 통합, fixture 격리 | 첫 milestone 이후 | 후속 작업 |
+| 7 | 카테고리·slug 매핑 통합, fixture 격리 | 첫 milestone 이후 | RSS·검색 slug를 canonical key에서 파생하고 slug 충돌 불변조건을 추가해 통합 완료. 콘텐츠·Git hook 테스트 픽스처는 이미 OS 임시 디렉터리에 격리돼 있어 추가 변경 불필요 |
 | 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | MPS·Arm·Venture Global·Lumentum·Centrus·Coherent·ASE·IREN·Marvell·Credo·Bloom Energy·Rocket Lab·Navitas Semiconductor·POET Technologies·Redwire Corporation·NuScale Power·Vertiv Holdings 리포트 17건에 출처·검증일을 추가하고, 공시·시세와 대조해 확인된 재무·밸류에이션 오류를 수정. 나머지는 글별 수동 검증 필요 |
 | 9 | OG·목록·빌드 최적화 | 측정으로 병목 확인 | 조건부 작업 |
 
@@ -332,3 +332,6 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 
 
 2026-09-29 후속 구현: MSR 투자 리서치를 최신 SEC·DOE·INL·기업 1차 자료로 갱신했다. 오래된 2024–2027 예정 일정을 제거하고, Terrestrial Energy의 IMSR 직접 노출과 Centrus·산업재 공급사의 간접 노출을 구분했다. DOE TETRA/TEFLA 협약, RELLIS 부지 권리, Riot 비구속 MOU, Natura FLiBE 인도, TerraPower MCRE의 전망 일정을 확정 운전 실적·허가·매출과 혼동하지 않도록 정리했다. Terrestrial·Centrus의 재무와 계약 위험 및 희석 점검 항목을 반영했다. npm run check:content, npm run format:check, git diff --check 결과를 반영한다. 콘텐츠 전용 변경이므로 테스트·빌드는 생략한다.
+
+
+2026-10-04 후속 구현: 카테고리별 RSS와 검색 JSON이 중복 보유하던 key→slug 표를 제거하고, 공통 taxonomy 모듈에서 canonical category key를 기준으로 기존 endpoint slug를 계산하도록 통합했다. 화면 카테고리 경로는 변경하지 않았다. 회귀 테스트에서 8개 기존 slug, slug 고유성, 비정규 category 입력을 확인했다. 저장소의 콘텐츠 및 Git hook 테스트 픽스처는 이미 OS 임시 디렉터리를 사용해 격리되는 것을 확인해 추가 수정하지 않았다. npm test 통과(226개), npm run check 통과(114개 Astro 파일, 오류·경고·힌트 0), npm run build 통과(808페이지 생성; 8개 RSS·검색 endpoint와 /cs 페이지 확인), npm run format:check 및 git diff --check 통과.

@@ -1,17 +1,7 @@
 import { BLOG_CATEGORIES, normalizeCategory } from '../data/blogCategories';
+import { slugifyBlogCategoryKey } from '../data/blogTaxonomy.mjs';
 
 export const MAX_FEED_ITEMS = 50;
-
-const CATEGORY_FEED_SLUGS = {
-	ETF: 'etf',
-	Economics: 'economics',
-	Semiconductor: 'semiconductor',
-	'Computer Science': 'computer-science',
-	Programming: 'programming',
-	Problem_Solving: 'problem-solving',
-	Reports: 'reports',
-	'Market Brief': 'market-brief',
-};
 
 export function getPostDate(post) {
 	return post.data.pubDate || post.data.date || new Date(0);
@@ -53,12 +43,12 @@ export function getFeedItems(posts, maxItems = MAX_FEED_ITEMS) {
 
 export function getCategoryFeedPath(category) {
 	const normalized = normalizeCategory(category);
-	const slug = normalized ? CATEGORY_FEED_SLUGS[normalized] : undefined;
+	const slug = normalized ? slugifyBlogCategoryKey(normalized) : undefined;
 	return slug ? `/rss/${slug}.xml` : undefined;
 }
 
 export function getCategoryByFeedSlug(slug) {
-	return BLOG_CATEGORIES.find(({ key }) => CATEGORY_FEED_SLUGS[key] === slug);
+	return BLOG_CATEGORIES.find(({ key }) => slugifyBlogCategoryKey(key) === slug);
 }
 
 export function postMatchesCategory(post, category) {

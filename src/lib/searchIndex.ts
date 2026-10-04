@@ -1,21 +1,11 @@
 import { render, type CollectionEntry } from 'astro:content';
 import { normalizeCategory, type BlogCategoryKey } from '../data/blogCategories';
+import { slugifyBlogCategoryKey } from '../data/blogTaxonomy.mjs';
 import { stripMarkdown } from './searchMarkdown.mjs';
 import { getSearchTextSegment } from './searchText.mjs';
 
 const EXCERPT_LENGTH = 480;
 const SEARCH_TEXT_LENGTH = 5000;
-
-const SEARCH_CATEGORY_SLUGS: Record<BlogCategoryKey, string> = {
-	ETF: 'etf',
-	Economics: 'economics',
-	Semiconductor: 'semiconductor',
-	'Computer Science': 'computer-science',
-	Programming: 'programming',
-	Problem_Solving: 'problem-solving',
-	Reports: 'reports',
-	'Market Brief': 'market-brief',
-};
 
 type BlogPost = CollectionEntry<'blog'>;
 
@@ -36,7 +26,7 @@ function getSearchText(content: string) {
 }
 
 export function getSearchCategorySlug(category: BlogCategoryKey) {
-	return SEARCH_CATEGORY_SLUGS[category];
+	return slugifyBlogCategoryKey(category)!;
 }
 
 export function postMatchesSearchCategory(post: BlogPost, category: BlogCategoryKey) {

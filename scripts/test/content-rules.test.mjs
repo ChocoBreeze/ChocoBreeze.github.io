@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
+import { BLOG_CATEGORY_KEYS, slugifyBlogCategoryKey } from '../../src/data/blogTaxonomy.mjs';
 
 import {
 	countMathDelimiters,
@@ -122,6 +123,36 @@ describe('normalizeCategoryValue / isKnownCategory', () => {
 	it('recognizes known categories through aliases', () => {
 		assert.equal(isKnownCategory('cs'), true);
 		assert.equal(isKnownCategory('Market Brief'), true);
+	});
+});
+
+describe('slugifyBlogCategoryKey', () => {
+	it('preserves the existing RSS and search slugs for every category key', () => {
+		const categories = [
+			['ETF', 'etf'],
+			['Economics', 'economics'],
+			['Semiconductor', 'semiconductor'],
+			['Computer Science', 'computer-science'],
+			['Programming', 'programming'],
+			['Problem_Solving', 'problem-solving'],
+			['Reports', 'reports'],
+			['Market Brief', 'market-brief'],
+		];
+
+		for (const [key, slug] of categories) {
+			assert.equal(slugifyBlogCategoryKey(key), slug);
+		}
+	});
+
+	it('produces unique feed and search slugs for the canonical keys', () => {
+		const slugs = BLOG_CATEGORY_KEYS.map(slugifyBlogCategoryKey);
+		assert.equal(new Set(slugs).size, BLOG_CATEGORY_KEYS.length);
+	});
+
+	it('rejects values that are not canonical category keys', () => {
+		assert.equal(slugifyBlogCategoryKey('cs'), undefined);
+		assert.equal(slugifyBlogCategoryKey('unknown'), undefined);
+		assert.equal(slugifyBlogCategoryKey(undefined), undefined);
 	});
 });
 
