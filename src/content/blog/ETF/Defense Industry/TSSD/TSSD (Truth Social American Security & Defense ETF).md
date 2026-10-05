@@ -1,129 +1,125 @@
 ---
 title: 'TSSD (Truth Social American Security & Defense ETF)'
-description: '미국 국방·항공우주·사이버보안 기업에 투자하는 Truth.Fi 계열 지수추종 ETF'
+description: '미국 국방·보안 지수에 투자하는 TSSD의 편입 기준, 보유 종목, 비용과 위험을 공식 자료 기준으로 정리한다.'
 pubDate: '2026-07-20T09:00:00+09:00'
-ticker: "TSSD"
-issuer: "Yorkville America"
-assetClass: "Equity"
-strategy: "Index"
-exposure: "American Security & Defense"
-leverage: "1x"
-incomeStyle: "None"
-categories: "ETF"
+updatedDate: '2026-10-05T00:00:00+09:00'
+verifiedDate: '2026-10-05T00:00:00+09:00'
+dataAsOf: '2026-10-05T00:00:00+09:00'
+aumAsOf: '2026-10-02T00:00:00+09:00'
+expenseRatioAsOf: '2026-10-02T00:00:00+09:00'
+instrumentType: 'ETF'
+ticker: 'TSSD'
+issuer: 'Yorkville America'
+assetClass: 'Equity'
+strategy: 'Index'
+exposure: 'American Security & Defense'
+leverage: '1x'
+incomeStyle: 'None'
+expenseRatio: '0.65%'
+aum: '$7.00M'
+categories: 'ETF'
+tags: ['ETF', 'TSSD', 'Yorkville America', 'Aerospace & Defense', 'Cybersecurity']
 ---
 
-## 분류 근거
+# TSSD (Truth Social American Security & Defense ETF) 분석
 
-TSSD는 이름에 "Truth Social"이 붙어 있지만, 실제 편입 기준(국방·보안 관련 수익 비중 50% 이상, 항공우주·방위·사이버보안·무인기 등)이 명확히 방위 산업을 대상으로 한다. 레버리지·인버스 구조가 아니고 옵션 인컴 전략도 쓰지 않으므로, ITA/XAR/PPA/SHLD/JEDI와 같은 `Defense Industry` 폴더로 분류했다.
+> **분석 기준일: 2026년 10월 5일**
+>
+> 순자산·가격·스프레드·비용은 10월 2일, 보유 종목은 10월 5일 기준이다. 성과 기준일은 가장 최근 공개된 10월 2일이다.
 
-## 기본 정보
+## 한 줄 요약
 
-**TSSD(Truth Social American Security & Defense ETF)**는 2025년 12월 30일 뉴욕증권거래소(NYSE)에 상장된 신규 지수추종형 ETF다. Trump Media & Technology Group의 Truth.Fi 핀테크 브랜드 산하에서 발행되었으며, Yorkville America Equities가 스폰서 겸 투자자문사 역할을 한다.[^1][^2]
+TSSD는 미국 상장 국방·보안 기업 지수인 Truth Social – Yorkville American Security & Defense Index를 추종한다. 지수는 국방·보안 관련 매출 기준뿐 아니라 별도의 기업 활동 심사도 적용한다. 2026년 10월 2일 기준 순자산은 약 700만 달러이며, 상위 10개 보유 종목 비중은 56.94%다.[^1][^2]
+
+## 기본 분류
 
 | 항목 | 내용 |
-| :-- | :-- |
-| **티커** | TSSD |
-| **기초지수** | MarketVector American Security & Defense Index |
-| **상장거래소** | NYSE |
-| **상장일** | 2025년 12월 30일 |
-| **투자자문사** | Yorkville America Equities, LLC |
-| **부자문사** | Tuttle Capital Management, LLC |
-| **총 보수** | 0.65% |
-| **배포사** | PINE Distributors LLC |
+|---|---|
+| 상품명 / 티커 | Truth Social American Security & Defense ETF / TSSD |
+| 자문사 | Yorkville America Equities, LLC |
+| 부자문사 | Tuttle Capital Management, LLC |
+| 법적 투자신탁 | Yorkville America Investment Trust |
+| 거래소 | NYSE Arca |
+| 설정일 | 2025년 12월 30일 |
+| 자산군 / 방식 | 주식 / 지수 추종 |
+| 추종 지수 | Truth Social – Yorkville American Security & Defense Index |
+| 레버리지·인버스·옵션 인컴 전략 | 해당 없음 |
+| 총 연간 운용비용 | 0.65% |
 
-## 추종 지수 및 투자전략
+투자신탁의 법적 명칭은 2026년 5월 26일 Truth Social Funds에서 Yorkville America Investment Trust로 변경됐다. 펀드 상품명과 추종 지수명은 별도로 유지된다.[^3]
 
-TSSD는 MarketVector American Security & Defense Index를 추종하는 패시브형 ETF다. 기초지수는 미국 국방·보안 산업에 종사하는 기업들로 구성되며, 편입 기준은 다음과 같다.[^2]
+## 지수 편입과 운용 방식
 
-**편입 기준:**
+지수는 미국 상장 기업 중 미국 국방·보안 산업에 서비스를 제공하는 회사를 대상으로 한다. 신규 편입 기업은 매출의 최소 50%를 국방·보안 관련 활동에서 얻어야 하며, 기존 편입 기업의 기준은 25%다. 신규 편입에는 미국 법인 설립과 미국 본사 요건도 있고, 미국 매출 또는 관련 자산 비중은 최소 25%다. 기존 종목의 해당 기준은 20%다.[^2]
 
-- 국방·보안 관련 수익 비중 50% 이상(기존 편입 종목은 25% 이상)
-- 미국 수익/자산 비중 25% 이상(기존 편입 종목은 20% 이상)
-- 적격 활동: 항공우주·방위, 통신시스템, 사이버보안, 무인기, 보안지능소프트웨어, 훈련·시뮬레이션, 디지털포렌식 등
+적격 사업에는 항공우주·방위, 통신 시스템, 사이버보안, 무인기, 보안 정보 소프트웨어, 훈련·시뮬레이션, 디지털 포렌식 등이 포함된다. 펀드는 지수 성과를 추종하기 위해 지수 구성 종목을 대체로 같은 비중으로 보유하는 전면 복제 방식을 사용한다.[^2]
 
-이렇게 좁은 편입 기준 때문에 TSSD는 **비분산 펀드(Non-diversified)**로 분류된다. 상위 10개 보유종목이 포트폴리오의 57.8%를 차지해 개별 종목 변동성에 상당한 영향을 받을 수 있다.[^2][^5]
+지수는 유동주식 조정 시가총액 가중 방식을 쓰며 종목별 비중 상한을 둔다. 단일 종목의 최대 비중은 8%다. 세 번째로 큰 종목에는 7%, 네 번째에는 6.5%, 다섯 번째에는 6%, 여섯 번째에는 5.5%, 일곱 번째에는 5%, 나머지 종목에는 4.5% 상한을 적용한다. 적격 매출이 50% 미만인 기업들의 합산 비중도 20% 이내로 제한한다. 지수는 6월과 12월에 재구성하며 3월과 9월에는 발행주식 수와 유동주식 비율을 갱신한다.[^2]
 
-## 포트폴리오 구성
+## 추가 기업 활동 심사
 
-**상위 10대 보유 종목 (2026년 1월 기준)**
+지수 방법론에는 1792 Exchange가 제공하는 6개 기업 활동 지표도 포함된다. 공개된 지표는 DEI 인사 할당제, Human Rights Campaign 기업평등지수 참여, 낙태 관련 여행·숙박 복리후생, 비사업 목적 단체 후원, 특정 이념·지역 등을 이유로 한 거래 중단이나 보이콧, 트랜스젠더 관련 의료 복리후생이다. 지수는 이 여섯 항목 중 다섯 항목에서 제외 사유가 확인된 기업을 배제한다. 특정 항목의 자료가 없으면 그 항목은 제외 사유가 없는 것으로 처리한다고 투자설명서는 설명한다.[^2]
 
-| 순위 | 종목명 | 섹터 | 비중(%) |
-| :-- | :-- | :-- | :-- |
-| 1 | RTX Corp (Raytheon Technologies) | Industrials | 8.31 |
-| 2 | Palantir Technologies Inc (PLTR) | Technology | 7.13 |
-| 3 | Palo Alto Networks Inc (PANW) | Technology | 6.39 |
-| 4 | Lockheed Martin Corp (LMT) | Industrials | 6.25 |
-| 5 | CrowdStrike Holdings Inc (CRWD) | Technology | 5.58 |
-| 6 | General Dynamics Corp (GD) | Industrials | 5.47 |
-| 7 | Northrop Grumman Corp (NOC) | Industrials | 5.30 |
-| 8 | L3Harris Technologies Inc (LHX) | Industrials | 4.79 |
-| 9 | Axon Enterprise Inc (AXON) | Industrials | 4.43 |
-| 10 | (10위 종목, 출처에 비중 미기재) | - | - |
+따라서 TSSD는 방위·보안 매출과 재무 기준만으로 구성되는 지수 상품이 아니다. 위 기업 활동 심사 기준과 정보의 수집·분류 방식도 지수 구성에 영향을 줄 수 있다.
 
-**상위 10 종목 누적비중: 57.8%**[^5] (1~9위 합산은 약 53.7%이며, 10위 종목의 정확한 비중은 출처에 공개되어 있지 않다)
+## 순자산과 거래 지표
 
-포트폴리오는 전형적인 방위·항공우주 기업(RTX, LMT, GD, NOC, LHX)과 보안·사이버보안 기술기업(PLTR, PANW, CRWD, AXON)의 혼합으로 구성된다. 지수 정의와는 부합하지만, 높은 집중도는 섹터 리스크를 키운다.
+운용사 상품 페이지의 2026년 10월 2일 기준 자료다.[^1]
 
-## 성과 및 비용
+| 항목 | 값 |
+|---|---:|
+| 순자산(AUM) | $6.995M |
+| NAV | $30.41 |
+| 시장가격 | $30.42 |
+| 발행 주식 수 | 230,000주 |
+| 보유 종목 수 | 64개 |
+| 30일 중간 매수·매도 호가 스프레드 | 0.10% |
+| 총 연간 운용비용 | 0.65% |
 
-| 기간 | 수익률 |
-| :-- | :-- |
-| YTD (2026년 1월 기준) | 6.00% |
-| 1년 이상 | 데이터 불가 (신규 상품) |
+AUM과 거래 지표는 특정 날짜의 스냅샷이다. 중간 호가 스프레드는 과거 30일의 대표 지표이며, 개별 주문의 체결 비용을 보장하지 않는다. ETF 시장가격도 NAV와 달라질 수 있다.
 
-상장 후 약 10일간의 제한된 거래 기간에 6%의 수익률을 기록했지만, 통상적 성과 평가에는 최소 1년 이상의 운영 기간이 필요한 매우 단기 데이터다.[^6] 최근 거래가격은 \$26.13(2026년 1월 8일)이었다.[^7]
+## 보유 종목
 
-총보수율은 **0.65%**로 방위·항공우주 섹터 ETF 중 중간 수준이다. 신규 펀드로서 거래량이 제한적일 경우 호가 스프레드가 평균치보다 클 가능성이 있고, 거래량·유동성 데이터 자체가 아직 충분히 쌓이지 않은 상태다.
+운용사가 공개한 2026년 10월 5일 상위 10개 종목의 비중 합계는 56.94%다. 합계는 각 종목의 공시 비중을 더해 계산했다.[^1]
 
-## 리스크 요인
+| 종목 | 티커 | 비중 |
+|---|---:|---:|
+| Palo Alto Networks | PANW | 9.96% |
+| CrowdStrike | CRWD | 9.41% |
+| RTX | RTX | 6.32% |
+| Fortinet | FTNT | 6.22% |
+| Cloudflare | NET | 6.21% |
+| Lockheed Martin | LMT | 5.01% |
+| General Dynamics | GD | 4.20% |
+| Northrop Grumman | NOC | 3.46% |
+| Axon Enterprise | AXON | 3.10% |
+| L3Harris Technologies | LHX | 3.05% |
 
-**구조적 리스크**
+사이버보안 기업과 전통 방위 기업이 함께 포함돼 있다. 보유 종목 및 비중은 변동할 수 있고, 상위 종목 집중은 해당 기업 주가가 펀드 성과에 미치는 영향을 키울 수 있다.
 
-1. **비분산 펀드 리스크**: Investment Company Act of 1940에 따라 비분산 펀드로 분류되며, 상위 10개 종목이 57.8%를 차지한다.[^2][^5]
-2. **섹터 집중도 리스크**: 방위·항공우주·사이버보안 섹터에 집중되어, 관련 정책 변화나 기술 혁신에 취약하다.[^2]
-3. **산업 집중도 리스크**: 항공우주·방위 산업의 경기순환 위험과 정부 계약 의존성이 높다.[^2]
+## 비용과 성과
 
-**운영 리스크**
+요약 투자설명서는 관리보수 및 총 연간 운용비용을 0.65%로 공시한다. 중개 수수료와 펀드의 거래 비용 등은 운용비용률에 포함되지 않을 수 있다.[^2]
 
-4. **신규 자문사 리스크**: Yorkville America Equities는 최근 설립된 회사로 ETF 운영 경험이 제한적이다. 운영 인프라·규제 대응 역량·인적 자원 모두 검증되지 않았다.[^2]
+운용사의 2026년 10월 2일 성과표에는 연초 이후 NAV 기준 23.70%, 시장가격 기준 23.52%가 표시돼 있다. 설정 이후 수익률은 두 기준 모두 21.79%다. 펀드는 설정 후 1년이 지나지 않아 1년 성과는 아직 표시되지 않는다. 1년 미만 기간의 수익률은 연환산되지 않는다.[^1]
 
-**사이버보안 기업 관련 리스크**
+과거 수익률은 미래 성과를 보장하지 않는다. 운용사도 단기 성과만으로 투자 결정을 내리지 말 것을 안내한다.[^1]
 
-5. **평판 리스크**: 지수 내 보안 소프트웨어·감시 기업들은 데이터 프라이버시나 시민 자유 논란에 직면할 수 있고, 이는 규제 조치나 정부 계약 손실로 이어질 수 있다.[^2]
+## 주요 위험
 
-**거래·유동성 리스크**
+- **종목 및 산업 집중:** 펀드는 비분산형으로 분류된다. 방위·보안 산업과 상위 보유 종목의 성과가 펀드에 큰 영향을 줄 수 있다.[^2]
+- **지수 심사 기준:** 방위·보안 매출 요건 외에 1792 Exchange의 기업 활동 지표도 종목 선정에 반영된다. 해당 지표와 공개 자료의 해석은 구성 종목을 바꿀 수 있다.[^2]
+- **정부 예산과 계약:** 방위 기업의 매출은 정부 조달과 계약에 영향을 받으며 예산, 정책, 계약 지연·취소가 실적에 영향을 줄 수 있다.[^2]
+- **작은 순자산과 거래:** 10월 2일 기준 AUM은 약 700만 달러다. 실제 거래에서는 호가 스프레드와 주문 규모, 기초자산 유동성을 함께 살펴야 한다.[^1]
+- **신규 펀드 이력:** 설정일이 2025년 12월이므로 장기 시장 국면을 거친 실적 이력이 없다.[^1]
+- **시장가격과 NAV 차이:** 수급, 시장 변동 및 기초자산 거래 시간 차이로 ETF 시장가격이 NAV와 달라질 수 있다.[^2]
 
-6. **유동성 리스크**: 신규 펀드로서 거래량이 적을 경우 대규모 거래 시 NAV 대비 괴리율이 커질 수 있다.[^2]
-7. **현금 상환 리스크**: 현금 상환 시 자산 매각으로 자본이득이 실현되어 높은 배당금 지급으로 이어질 수 있다.[^2]
+## 유사 상품을 비교할 때
 
-**정치적·평판 리스크**
+다른 방위·항공우주 ETF와 비교할 때는 이름뿐 아니라 지수의 매출 기준, 기업 활동 심사, 종목 가중 상한, 재구성 주기와 비용을 확인할 필요가 있다. TSSD의 보유 현황과 성과를 비교할 때는 각 자료의 기준일도 맞춰야 한다.
 
-8. **정치적 연관성**: Trump Media & Technology Group과의 연관성은 투자자 감정의 변동성을 야기할 수 있다.[^1]
+## 참고 자료
 
-## 비슷한 ETF
-
-Truth Social Funds는 2025년 12월 30일 동시에 5개 ETF를 출시했다. TSSD는 이 중 가장 높은 초기 성과(YTD 6.00%)를 보였지만, 매우 단기 데이터라는 점에 유의해야 한다.
-
-기존 방위 섹터 ETF 중에서는 ITA(iShares U.S. Aerospace & Defense ETF), XAR(SPDR S&P Aerospace & Defense ETF), PPA(Invesco Aerospace & Defense ETF), SHLD(Global X Defense Tech ETF)가 유사 대안이다. 이들은 운용 이력이 길고 유동성이 높다는 점에서 TSSD와 대비된다.
-
-## 주의할 점
-
-- **소규모 지분 투자**: 신규 펀드의 유동성 부족을 고려해 초기 투자는 포트폴리오의 작은 비중(3~5%)으로 제한하는 편이 안전하다.
-- **충분한 관찰 기간**: 최소 3~6개월의 운영 기간을 거친 뒤 추적 오차, 거래량, NAV 괴리율을 확인하고 추가 투자를 검토한다.
-- **정치적 변동성 인식**: Trump Media와의 연관성으로 인한 정치적 이벤트 영향을 모니터링해야 한다.
-- **분산 보완**: 비분산 구조이므로 다른 섹터 ETF와 혼합 투자를 권장한다.
-- **대체 상품 비교**: 운용 이력이 길고 유동성이 높은 ITA, XAR 등과 비교 검토를 권장한다.
-
-## 태그
-
-Defense Industry, Aerospace, Cybersecurity, Thematic ETF, Non-diversified
-
----
-
-**출처**
-
-[^1]: [Truth Social Funds 관련 기사 (네이버, 2026.01.06)](https://contents.premium.naver.com/usa/nasdaq/contents/260107141026691to)
-[^2]: [Truth Social Funds 공식 웹사이트](https://www.truthsocialfunds.com/etfs/tssd)
-[^5]: [Morningstar](https://www.morningstar.com/etfs/arcx/tssd/quote)
-[^6]: [Yahoo Finance 성과 데이터](https://finance.yahoo.com/quote/TSSD/performance/)
-[^7]: [Perplexity AI Finance](https://www.perplexity.ai/finance/TSSD)
+[^1]: [Truth Social American Security & Defense ETF 공식 상품 페이지](https://www.truthsocialfunds.com/etfs/tssd) — 가격, 순자산, 비용, 보유 종목과 성과.
+[^2]: [미국 SEC 제출 TSSD 요약 투자설명서 (2025-12-23)](https://www.sec.gov/Archives/edgar/data/1040674/000110465925124731/tm2525602d10_497k.htm) — 지수 편입·가중 방식, 기업 활동 심사, 비용과 주요 위험.
+[^3]: [미국 SEC 제출 투자신탁 명칭 변경 보충서류 (2026-05-21)](https://www.sec.gov/Archives/edgar/data/1040674/000110465926065067/tm2615251d1_497.htm) — 2026년 5월 26일 Yorkville America Investment Trust로 법적 명칭 변경.
