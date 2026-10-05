@@ -116,7 +116,7 @@ When adding or editing posts, avoid changes that would silently break these rout
 ## Related Posts Notes
 
 - Individual post previous/next links and `같이 읽기 좋은 글` cards are implemented in `src/pages/blog/[...slug].astro`.
-- The current logic is category-and-order based, not tag similarity or content similarity based.
+- Previous/next links follow same-category order. Related cards prioritize the same series, explicit `relatedSlugs`, tag/topic overlap (tags count twice), then nearby posts in the same category. This is metadata-based, not text or embedding similarity.
 - See `docs/blog-routing-and-related-posts.md` before changing this behavior.
 
 ## Commands

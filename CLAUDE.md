@@ -105,4 +105,4 @@ Push to `main` triggers GitHub Actions (`deploy.yml`) which builds with `npm run
 - `docs/market-brief-prompts.md` — current Daily/Weekly Market Brief prompt rules (also driven by the `/market-daily` and `/market-weekly` slash commands in `.claude/commands/`).
 - `docs/etf/etf-content-guide.md` and `docs/etf/미국상장_ETF_분류_기준_Codex용_v2.md` — ETF post placement and U.S.-listed ETF classification rules.
 - `docs/image-management.md` — post-local `images/` folders for single-post images; `public/images/` for shared assets.
-- `docs/blog-routing-and-related-posts.md` — read before changing prev/next or related-posts logic in `src/pages/blog/[...slug].astro` (category-and-order based, not similarity based).
+- `docs/blog-routing-and-related-posts.md` — read before changing prev/next or related-posts logic in `src/pages/blog/[...slug].astro` (previous/next follows same-category order; related cards prioritize series, explicit `relatedSlugs`, tag/topic overlap, then same-category neighbors; metadata-based, not text/embedding similarity).
