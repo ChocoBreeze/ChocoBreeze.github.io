@@ -5,6 +5,8 @@ pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'
 verifiedDate: '2026-10-06T00:00:00+09:00'
 dataAsOf: '2026-06-30T00:00:00+09:00'
+aum: '$489.84B'
+aumAsOf: '2026-08-31T00:00:00+09:00'
 categories: "ETF"
 tags: ["ETF", "QQQ", "Invesco", "Nasdaq-100", "Growth"]
 ticker: "QQQ"
@@ -62,6 +64,8 @@ QQQ 주주는 2025년 12월 19일 UIT(Unit Investment Trust)에서 개방형 운
 
 ## 최신 SEC 보유 자료
 
+Invesco의 2026년 8월 월간 리뷰는 월말 AUM을 $489.84B로 보고한다. 아래 보유 내역은 2026년 6월 30일 SEC 분기 자료이므로 AUM과 보유 표의 기준일은 서로 다르다.[^6]
+
 SEC에 제출된 2026년 6월 30일 분기 투자내역표에서 개별 주식 포지션의 시장가치가 큰 상위 10개는 다음과 같다. 금액은 해당 날짜의 보고서 값이며, 두 종류의 Alphabet 주식은 별도 포지션으로 표시했다. 펀드 보유는 이후 지수 조정과 시장가격에 따라 바뀔 수 있다.[^5]
 
 | 순위 | 티커 | 종목 | 2026-06-30 시장가치 |
@@ -96,3 +100,4 @@ QQQ는 Nasdaq-100 노출을 제공하는 상품 구조를 설명하기 위한 �
 [^3]: [Nasdaq-100 방법론 변경 보충서, 2026년 5월 1일 적용 (SEC)](https://www.sec.gov/Archives/edgar/data/1067839/000110465926052973/tm2612890d3_497k.htm)
 [^4]: [QQQ 주주의 펀드 현대화 승인 발표 (Invesco)](https://www.invesco.com/us-rest/contentdetail?contentId=13a2a8ea-b6e1-490e-a15b-1103475d503c&dnsName=us&title=invesco-qqq-shareholders-vote-to-approve-modernization)
 [^5]: [Invesco QQQ Trust, Series 1 2026년 6월 30일 분기 포트폴리오 내역 (SEC)](https://www.sec.gov/Archives/edgar/data/1067839/000106783926000030/edgar.htm)
+[^6]: [Invesco QQQ 월간 리뷰 (2026년 8월 말 AUM)](https://www.invesco.com/qqq-etf/en/etf-insights/qqq-monthly-review.html)
