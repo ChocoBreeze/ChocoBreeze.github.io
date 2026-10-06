@@ -1,131 +1,63 @@
 ---
 title: 'TSES (Truth Social American Energy Security ETF)'
-description: '전통 석유가스와 원자력을 함께 편입하는 미국 에너지 안보 테마 ETF'
+description: '전력·원자력·석유·가스 등 미국 에너지 안보 관련 기업 지수를 추종하는 ETF'
 pubDate: '2026-07-20T09:00:00+09:00'
-ticker: "TSES"
-issuer: "Yorkville America"
-assetClass: "Equity"
-strategy: "Index"
-exposure: "Energy Security"
-leverage: "1x"
-incomeStyle: "None"
-categories: "ETF"
+updatedDate: '2026-10-06T00:00:00+09:00'
+verifiedDate: '2026-10-06T00:00:00+09:00'
+dataAsOf: '2026-10-05T00:00:00+09:00'
+aum: '$7.489M'
+aumAsOf: '2026-10-05T00:00:00+09:00'
+expenseRatio: '0.65%'
+expenseRatioAsOf: '2025-12-23T00:00:00+09:00'
+ticker: 'TSES'
+issuer: 'Yorkville America'
+assetClass: 'Equity'
+strategy: 'Index'
+exposure: 'Energy Security'
+leverage: '1x'
+incomeStyle: 'None'
+categories: 'ETF'
 ---
 
-## 분류 근거
+# TSES — Truth Social American Energy Security ETF
 
-TSES는 레버리지·인버스 구조가 아니고 옵션 인컴 전략도 쓰지 않는 순수 에너지 섹터 ETF다. 다만 편입 대상이 전통 석유가스(정유·탐사·파이프라인)뿐 아니라 전기 유틸리티와 원자력 발전까지 아우르는 넓은 에너지 안보 테마라서, 기존 `Sector/Energy/Oil Gas`(석유가스로 한정된 FTXN)보다 넓은 범위를 반영해 `Sector/Energy/Energy Security`라는 하위 폴더를 새로 만들어 분류했다.
+## 상품 개요
 
-## 기본 정보
+TSES는 Truth Social™ – Yorkville American Energy Security Index를 추종하는 패시브 ETF다. 지수와 펀드는 미국 상장 에너지 관련 기업을 대상으로 하며, 전력 생산·송배전, 원자력, 석유·가스 생산과 운송 등 여러 사업을 포함한다. 전통 에너지 기업만 담거나 청정에너지 기업만 선별하는 펀드로 설명할 수 없다.
 
-**TSES(Truth Social American Energy Security ETF)**는 2025년 12월 30일 NYSE Arca에 상장된 신규 지수추종형 ETF다. Trump Media & Technology Group의 Truth.Fi 핀테크 브랜드 산하에서 발행되었으며, Yorkville America Equities가 투자자문사 역할을 한다.[^1]
+## 기준 정보
 
-| 항목 | 내용 |
-| :-- | :-- |
-| **티커** | TSES |
-| **기초지수** | MarketVector American Energy Security Index |
-| **상장거래소** | NYSE Arca |
-| **상장일** | 2025년 12월 30일 |
-| **투자자문사** | Yorkville America Equities, LLC |
-| **부자문사** | Tuttle Capital Management, LLC |
-| **총 보수** | 0.65% |
-| **최근 거래가** | \$25.22 (2026년 1월 6일) |
+| 항목 | 확인 내용 |
+|---|---|
+| 상장 거래소 / 설정일 | NYSE Arca / 2025년 12월 30일 |
+| 추종 지수 | Truth Social™ – Yorkville American Energy Security Index |
+| 운용 방식 | 지수 완전 복제 목표, 패시브 |
+| 총보수 | 0.65% |
+| 순자산 | 748만 9,115달러 (2026년 10월 5일) |
+| 보유 종목 수 | 72개 (2026년 10월 5일) |
+| NAV / 시장가격 | 31.20달러 / 31.21달러 (2026년 10월 5일) |
+| 30일 중간 매수·매도 스프레드 | 0.13% (2026년 10월 5일) |
 
-## 추종 지수 및 투자전략
+운용사는 Yorkville America Equities이며 Tuttle Capital Management가 부자문사다. SEC 투자설명서는 정상적인 시장 상황에서 순자산과 투자 목적 차입금의 최소 80%를 지수 구성 종목에 투자하고, 지수를 수정 유통주식수 조정 시가총액 방식으로 복제한다고 설명한다. 다만 거래 여건이나 기업행사에 따라 표본 추출·대체 종목을 사용할 수 있어 지수와 펀드 수익률이 일치한다고 보장되지는 않는다.
 
-TSES는 **MarketVector American Energy Security Index**를 추종하는 패시브형 ETF다. 기초지수는 미국 에너지 안보에 핵심적 역할을 하는 미국 상장 기업들로 구성된다.[^1][^3]
+## 지수 범위와 포트폴리오
 
-**편입 기준:**
+SEC 투자설명서가 설명하는 지수 후보에는 전기 유틸리티, 독립 발전 사업자, 석유·가스 통합 기업, 탐사·생산·정제·운송·서비스 업체가 포함된다. 원자력 기술과 연료, 우라늄 채굴, 배터리·에너지 저장, 전력망·송배전 설비와 관련된 기업도 매출 기준으로 편입될 수 있다. 초기 편입 기업은 적격 활동에서 매출의 50% 이상을 얻어야 하고, 기존 구성 기업은 25% 기준이 적용될 수 있다. 지수는 발행사별 비중 상한을 두어 개별 기업 쏠림을 제한한다.
 
-- 미국 상장 기업에 한정
-- 다음 산업에 속하거나 매출의 최소 50%(기존 편입 기업은 25%) 이상이 해당 분야에서 발생:
-  - 전기 유틸리티
-  - 통합 석유가스
-  - 독립 발전 사업자(IPP)
-  - 천연가스 파이프라인 운송
-  - 액화천연가스(LNG) 운송 및 저장
-  - **핵 에너지 유틸리티**
-  - 석유 정제
-  - 석유가스 탐사 및 생산
-  - 석유관련 서비스 및 장비
+SEC에 제출된 2026년 6월 30일 보유 명세에서는 전력 생산·송배전 관련 기업이 순자산의 34.1%, 정유·석유 제품이 13.9%, 석유·가스 추출이 13.7%, 천연가스 배급이 6.4%였다. 이는 6월 말 스냅샷이며, 운용사의 10월 5일 페이지는 펀드가 현재 72개 종목을 보유한다고 표시한다. 두 날짜의 구성을 혼합해 현재 비중으로 읽으면 안 된다.
 
-TSES의 특징은 **핵 에너지를 명시적으로 포함**한다는 점이다. ESG 펀드와 대조적으로, 전통 에너지와 핵 에너지 부흥을 함께 반영하는 구성이다.
+## 주요 위험
 
-## 포트폴리오 구성
+- **에너지 가격과 경기 순환:** 석유·가스 기업의 수익과 주가는 원자재 가격, 공급·수요, 탐사 비용, 정책과 지정학적 사건에 민감하다.
+- **원자력·전력 기술 위험:** 원전 사고·안전 규제·사업 지연과 전력 수요 및 금리 변화가 관련 기업에 영향을 줄 수 있다.
+- **업종 집중:** 여러 에너지 하위 산업을 담더라도 일반 시장 ETF보다 에너지 기업과 정책 변화에 민감하다. 투자설명서는 펀드를 비분산 펀드로 분류한다.
+- **규모·거래 비용:** 10월 5일 순자산은 약 749만 달러였고 같은 날 30일 중간 스프레드는 0.13%였다. 주문 규모와 시장 상황에 따라 체결 가격이 NAV와 달라질 수 있다.
+- **지수 추종 오차:** 운용 보수, 현금, 리밸런싱 및 시장 유동성으로 펀드 수익률이 지수와 다를 수 있다.
 
-**상위 보유 종목 (2026년 1월 기준)**
+TSES는 에너지 안보 테마의 지수 노출을 제공하지만, 하락장에서 방어하거나 원금을 보장하는 상품은 아니다. 과거의 에너지 정책이나 특정 기술 전망이 향후 펀드 성과를 결정하지 않는다.
 
-| 순위 | 종목명 | 산업군 | 비중(%) | 특징 |
-| :-- | :-- | :-- | :-- | :-- |
-| 1 | Chevron Corp | 석유가스 | 8.54 | 국제 석유회사 |
-| 2 | Exxon Mobil Corp | 석유가스 | 8.29 | 국제 석유회사 |
-| 3 | Eaton Corp PLC | 산업재 | 5.26 | 에너지 효율 기술 |
-| 4 | ConocoPhillips | 석유가스 | 5.17 | 독립 석유가스 회사 |
-| 5 | Southern Co | 유틸리티 | 3.58 | 전기 유틸리티 |
-| 6 | Duke Energy Corp | 유틸리티 | 3.54 | 전기 유틸리티 |
-| 7 | Constellation Energy Corp | 유틸리티 | 3.45 | 핵 발전 중심 |
-| 8 | NextEra Energy Inc | 유틸리티 | 3.45 | 핵 + 재생에너지 |
-| 9 | GE Vernova Inc | 산업재 | 3.18 | 소형모듈원자로(SMR) 기술 |
-| 10 | (10위 종목, 출처에 비중 미기재) | - | - | - |
+## 출처
 
-**상위 10 종목 누적비중: 47.5%**[^4] (1~9위 합산은 약 44.5%이며, 10위 종목의 정확한 비중은 출처에 공개되어 있지 않다)
-
-포트폴리오는 석유가스(Chevron, Exxon Mobil, ConocoPhillips, 약 22.0%), 전기 유틸리티(Southern, Duke, Constellation, NextEra, 약 13.9%), 그리고 혁신 에너지(Constellation의 핵 발전, GE Vernova의 SMR 기술)로 구성된다. **전통 석유가스와 혁신 핵 에너지를 균형 있게 포함**하는 것이 TSES의 특징이다.
-
-## 성과 및 비용
-
-| 기간 | TSES | TSSD (방위) | TSNF (혁신) | TSIC (대표기업) |
-| :-- | :-- | :-- | :-- | :-- |
-| YTD | -0.43% | +6.00% | +1.19% | +1.18% |
-| 1개월 | -1.66% | - | - | - |
-| 52주 범위 | \$24.94~\$26.11 | - | - | - |
-
-TSES는 5개 Truth Social ETF 중 유일하게 음수 수익률을 기록했다. 에너지 섹터의 계절적 약세, 유가 하락으로 인한 Chevron·Exxon 등의 이익 압박, 유틸리티의 금리 민감성, 신규 펀드의 초기 거래 비용 등이 요인으로 분석된다.
-
-총보수율은 **0.65%**로 다른 Truth Social ETF와 동일하며, 표준 지수추종 에너지 ETF(Vanguard VDE 0.08% 등)의 6~10배 수준이다. 신규 펀드(상장 약 10일)로 거래량·유동성이 형성되는 초기 단계다.
-
-## 리스크 요인
-
-**구조적 리스크**
-
-1. **비분산 펀드**: 상위 10개가 47.5%를 차지하며, 상위 3개 석유가스(Chevron, Exxon, ConocoPhillips)가 22%를 차지한다.[^4]
-2. **유가 변동성 리스크**: Chevron과 Exxon의 이익이 유가에 민감하게 반응한다. 저유가에서는 이익 악화·배당 삭감, 고유가에서는 환경규제·소비 위축 우려가 있다.[^1]
-
-**정책 및 규제 리스크**
-
-3. **에너지 정책 불확실성**: 정부 성향에 따라 에너지 정책이 급변할 위험이 있으며, 탄소세·환경소송·규제 강화 가능성이 있다.[^1]
-4. **환경 규제 리스크**: ESG 운동, 환경소송, 탈탄소 압력으로 석유회사의 투자 제약과 배당 감축 위험이 있다.[^1]
-5. **금리 리스크**: 유틸리티·인프라 기업은 금리 인상 시 주가 하락 압력을, 금리 인하 시 기회를 얻는다.[^1]
-
-**기술 및 시장 리스크**
-
-6. **재생에너지 경쟁**: 태양광·풍력의 비용 감소로 전통 에너지의 경쟁력이 약화될 수 있다.[^1]
-7. **핵 에너지 기술 리스크**: GE Vernova의 SMR 상용화가 지연될 가능성이 있다.
-
-**운영 리스크**
-
-8. **신규 자문사 리스크**: Yorkville America Equities는 ETF 운영 경험이 제한적이다.[^1]
-
-## 비슷한 ETF
-
-전통 에너지 섹터 ETF로는 `Sector/Energy/Oil Gas` 폴더의 FTXN(First Trust Nasdaq Oil & Gas ETF), 그리고 XLE, Vanguard VDE(보수 0.08%) 등이 있다. 이들은 원자력을 포함하지 않는다는 점에서 TSES와 차별화된다.
-
-## 주의할 점
-
-- **에너지 사이클 고려**: 유가 저점을 노린 진입 시점 선택이 중요하다.
-- **관찰 기간**: 최소 6개월 운영 기간을 거친 뒤 투자를 결정하는 것이 안전하다.
-- **비중 제한**: 포트폴리오의 3~5% 이내로 제한적으로 투자한다.
-- **ESG 불일치 인식**: 석유가스 노출이 상당해 ESG·탈탄소 지향 투자자와는 맞지 않는다.
-- **비용 비교**: 0.65% 보수는 Vanguard VDE(0.08%) 등 저비용 대안 대비 6~10배 높다.
-
-## 태그
-
-Sector, Energy, Nuclear Energy, Oil Gas, Thematic ETF
-
----
-
-**출처**
-
-[^1]: [Truth Social Funds 공식 웹사이트](https://www.truthsocialfunds.com/etfs/tses)
-[^3]: [Zacks.com](https://www.zacks.com/funds/etf/TSES/profile)
-[^4]: [Morningstar](https://www.morningstar.com/etfs/arcx/tses/quote)
+- [Truth Social Funds TSES 상품 정보](https://www.truthsocialfunds.com/etfs/tses)
+- [SEC TSES 2026년 6월 30일 보유 명세](https://www.sec.gov/Archives/edgar/data/1040674/000119312526373647/tsamericanenergysecurityetf.htm)
+- [SEC Truth Social ETF 투자설명서](https://www.sec.gov/Archives/edgar/data/1040674/000110465925124143/tm2525602d3_485bpos.htm)

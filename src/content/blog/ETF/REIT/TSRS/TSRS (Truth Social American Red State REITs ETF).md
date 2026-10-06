@@ -1,152 +1,64 @@
 ---
 title: 'TSRS (Truth Social American Red State REITs ETF)'
-description: '공화당 우세주(Red State) 매출 비중이 높은 REIT에 투자하는 Truth.Fi 계열 ETF'
+description: '공화당 대선 후보가 최근 세 번 중 두 번 이긴 주의 부동산에 경제적으로 연결된 REIT 지수를 추종하는 ETF'
 pubDate: '2026-07-20T09:00:00+09:00'
-ticker: "TSRS"
-issuer: "Yorkville America"
-assetClass: "REIT"
-strategy: "Index"
-exposure: "REITs"
-leverage: "1x"
-incomeStyle: "None"
-categories: "ETF"
+updatedDate: '2026-10-06T00:00:00+09:00'
+verifiedDate: '2026-10-06T00:00:00+09:00'
+dataAsOf: '2026-10-02T00:00:00+09:00'
+aum: '$2.462M'
+aumAsOf: '2026-10-02T00:00:00+09:00'
+expenseRatio: '0.65%'
+expenseRatioAsOf: '2025-12-23T00:00:00+09:00'
+ticker: 'TSRS'
+issuer: 'Yorkville America'
+assetClass: 'REIT'
+strategy: 'Index'
+exposure: 'REITs'
+leverage: '1x'
+incomeStyle: 'None'
+categories: 'ETF'
 ---
 
-## 분류 근거
+# TSRS — Truth Social American Red State REITs ETF
 
-TSRS는 "Red State"라는 정치적 필터를 앞세우지만, 실제 편입 대상은 소매·카지노·의료·주거용 REIT다. 자산군 기준(REIT)이 대표지수·섹터·테마 라벨보다 우선한다는 분류 원칙에 따라, 새로 만든 최상위 `REIT` 폴더로 분류했다.
+## 상품 개요
 
-## 기본 정보
+TSRS는 MarketVector™ – iREIT® Red State REITs Index를 추종하는 패시브 ETF다. 미국 부동산투자신탁(REIT) 중 일정 비중 이상의 매출·순영업이익·부동산이 공화당 대선 후보가 최근 세 번의 대선 중 두 번 이긴 주에 연결된 기업을 지수에 편입한다. ‘Red State’는 펀드가 부동산을 직접 소유하는 주를 뜻하는 것이 아니라, 지수의 매출·자산 기준을 설명하는 분류다.
 
-**TSRS(Truth Social American Red State REITs ETF)**는 2025년 12월 30일 NYSE Arca에 상장된 신규 지수추종형 ETF다. Trump Media & Technology Group의 Truth.Fi 핀테크 브랜드 산하에서 발행되었으며, Yorkville America Equities가 투자자문사 역할을 한다.[^1]
+## 기준 정보
 
-| 항목 | 내용 |
-| :-- | :-- |
-| **티커** | TSRS |
-| **기초지수** | MarketVector-iREIT Red State REITs Index |
-| **상장거래소** | NYSE Arca |
-| **상장일** | 2025년 12월 30일 |
-| **투자자문사** | Yorkville America Equities, LLC |
-| **부자문사** | Tuttle Capital Management, LLC |
-| **지수관리사** | MarketVector Indexes & iREIT |
-| **총 보수** | 0.65% |
-| **NAV** | \$25.10 (2026년 1월 2일) |
-| **최근 거래가** | \$25.15 (2026년 1월 7일) |
-| **순자산규모** | 약 \$250만 (초기 단계) |
+| 항목 | 확인 내용 |
+|---|---|
+| 상장 거래소 / 설정일 | NYSE Arca / 2025년 12월 30일 |
+| 추종 지수 | MarketVector™ – iREIT® Red State REITs Index |
+| 운용 방식 | 지수 완전 복제 목표, 패시브 |
+| 총보수 | 0.65% |
+| 순자산 | 246만 2,198달러 (2026년 10월 2일) |
+| 보유 종목 수 | 27개 (2026년 10월 2일) |
+| NAV / 시장가격 | 24.62달러 / 24.61달러 (2026년 10월 2일) |
+| 30일 중간 매수·매도 스프레드 | 0.16% (2026년 10월 2일) |
 
-## 추종 지수 및 투자전략
+SEC 투자설명서는 정상적인 시장 상황에서 순자산과 투자 목적 차입금의 최소 80%를 지수 구성 종목에 투자한다고 설명한다. Yorkville America Equities가 투자자문사, Tuttle Capital Management가 부자문사다. 지수를 복제하더라도 거래 여건, 보수, 현금 및 기업행사에 따라 펀드 성과와 지수 성과에는 차이가 생길 수 있다.
 
-TSRS는 **MarketVector-iREIT Red State REITs Index**를 추종하는 패시브형 ETF다. 기초지수는 공화당이 최근 3번의 대선 중 최소 2번 승리한 주(Red State)에서 주요 매출을 올리는 REIT를 추종한다.[^1]
+## Red State 지수의 편입 규칙
 
-**편입 기준:**
+2026년 2월판 MarketVector 지수 가이드에 따르면, 지수는 미국 상장 REIT를 대상으로 하며 모기지 REIT와 목재 REIT는 제외한다. 신규 편입 후보는 매출, 순영업이익 또는 보유 부동산의 최소 65%가 적격 주에 연결되어야 한다. 기존 구성 종목에는 50% 기준이 적용된다. 적격 주는 최근 세 번의 미국 대통령 선거 중 두 번 공화당 후보가 승리한 주이며, 주별 매출 자료에는 iREIT 제공 정보가 사용된다.
 
-- 초기 편입: 매출의 최소 50% 이상이 공화당 우세주에서 발생하는 REIT
-- 기존 편입: 매출 또는 순영업이익의 50% 이상, 또는 자산의 50% 이상이 공화당 우세주에 위치
-- 구성 종목 수: 27개 REIT
+이 지수는 REIT 업종 조건 외에도 1792 Exchange에서 제공하는 기업 스크리닝 기준을 적용한다. 따라서 편입은 주의 정치 성향만으로 결정되지 않으며, 지수 규칙에 따른 업종·지역·기업 적격성 검토 결과다.
 
-Truth Social ETF 제품군 중 정치적 이념이 가장 명시적으로 드러난 상품으로, "Red State" 기준이 편입 조건에 직접 반영된다.
+SEC의 2026년 6월 30일 보유 명세에서 순자산의 99.3%는 REIT, 0.1%는 단기 현금성 예치금이었고 당시 순자산은 275만 160달러, 보유 수는 27개였다. 운용사의 10월 2일 순자산 수치와 차이가 나는 것은 서로 다른 기준일의 자료이기 때문이다.
 
-## 포트폴리오 구성
+## 주요 위험
 
-**상위 10대 보유 종목 (2026년 1월 기준)**
+- **부동산·금리 위험:** 부동산 가치, 임대료, 공실, 세금·운영비와 자금 조달 금리 변화가 REIT의 수익과 주가에 영향을 줄 수 있다.
+- **지역 필터 위험:** 주별 매출·부동산 비중 조건으로 투자 유니버스가 좁아져, 미국 REIT 전체와 다른 업종·지역 구성을 보일 수 있다.
+- **비분산 및 시장 위험:** SEC 투자설명서는 Truth Social ETF들을 비분산 펀드로 분류한다. 소수 기업의 가격 변동이 펀드에 큰 영향을 줄 수 있다.
+- **소규모·거래 유동성:** 10월 2일 순자산은 약 246만 달러였다. 시장 상황에 따라 거래량이 줄고 NAV 대비 할인·프리미엄이나 스프레드가 확대될 수 있다.
+- **비용과 추적 차이:** 총보수 0.65%에 더해 거래비용이 생길 수 있으며, 펀드가 지수 성과를 정확히 재현한다고 보장되지는 않는다.
 
-| 순위 | 종목명 | 티커 | 비중(%) | 자산유형 |
-| :-- | :-- | :-- | :-- | :-- |
-| 1 | VICI Properties Inc | VICI | 8.00 | 카지노/엔터테인먼트 |
-| 2 | Broadstone Net Lease Inc | BNL | 7.83 | 온/오프라인 소매 |
-| 3 | NNN REIT Inc | NNN | 7.81 | 편의점 소매 |
-| 4 | Realty Income Corp | O | 6.71 | 월배당 종합 소매 |
-| 5 | Four Corners Property Trust Inc | FCPT | 6.19 | 편의점/약국 |
-| 6 | NETSTREIT Corp | NTST | 5.19 | 소매점 |
-| 7 | Lamar Advertising Co | LAMR | 4.91 | 옥외광고 |
-| 8 | Kite Realty Group Trust | KRG | 4.45 | 커뮤니티 쇼핑센터 |
-| 9 | National Health Investors Inc | NHI | 4.39 | 의료/요양 시설 |
-| 10 | Mid-America Apartment Communities | MAA | 4.13 | 아파트 |
+## 출처
 
-**상위 10 종목 누적비중: 59.6%**[^2][^5]
-
-소매·편의점 기반(NNN, FCPT, NTST, Realty Income, BNL 등 45% 이상), 특수 용도(VICI의 카지노, LAMR의 옥외광고, NHI의 의료시설 등 20%+), 주거(MAA 4%+)로 구성된 전형적인 미국 부동산 REIT 포트폴리오다.
-
-## "Red State" 기준의 실효성 문제
-
-TSRS가 안고 있는 가장 큰 이슈는 **"Red State" 기준이 실제로 큰 차별점을 만들지 못할 가능성**이다.[^3]
-
-예를 들어 최대 보유 종목인 VICI(8.00%)는 카지노·엔터테인먼트 부동산 93개 자산을 운영하는데, 이 중에는 Las Vegas Strip의 카지노 54개(Caesars Palace, MGM Grand 등)와 Bowlero·Topgolf 등의 엔터테인먼트 자산 39개가 포함된다. Nevada는 2024년 대선에서 Trump가 승리했지만 역사적으로 민주당 강세 지역인 경합주이며, VICI의 93개 자산이 모두 "Red State"에 위치하지도 않는다. "Red State" 정의가 실제 포트폴리오 구성에 얼마나 실질적인 영향을 미치는지는 불분명하다.[^3]
-
-## 비용 비교
-
-TSRS의 보수는 **0.65%**로 일반 REIT ETF 대비 매우 높다.[^3]
-
-| ETF | 투자대상 | 보수 | 연간 비용(1만 달러 투자) | 10년 누적 비용 |
-| :-- | :-- | :-- | :-- | :-- |
-| **TSRS** | Red State REIT | 0.65% | \$65 | 6.5% |
-| Schwab REIT | 미국 REIT | 0.07% | \$7 | 0.7% |
-| Vanguard VNQ | 미국 REIT | 0.12% | \$12 | 1.2% |
-
-Schwab REIT 대비 약 9배, 10년 운영 기준으로는 6.5% vs 0.7%의 비용 차이가 발생한다.[^3]
-
-## 성과
-
-신규 상품(상장 약 10일)으로 성과 평가가 어렵다.[^6]
-
-| ETF | YTD 수익률 |
-| :-- | :-- |
-| TSSD (방위) | +6.00% |
-| TSNF (혁신) | +1.19% |
-| TSIC (대표기업) | +1.18% |
-| TSES (에너지) | -0.43% |
-| **TSRS (REIT)** | **약 +0.36%** |
-
-Truth Social ETF 5종 중 성과가 가장 미미하다.
-
-## 금리 민감성
-
-REIT는 구조적으로 금리에 민감하다. 포트폴리오에 담긴 Broadstone Net Lease는 2025년 3분기 이자비용 증가로 순이익이 26.3% 감소했는데, 이는 REIT 섹터 전반이 금리 인상 국면에서 겪는 수익성 악화를 보여주는 사례다.[^7] 반대로 금리 인하 국면에서는 REIT에 우호적인 환경이 조성될 수 있다.
-
-## 리스크 요인
-
-**구조적 리스크**
-
-1. **비분산 펀드**: 상위 10개가 59.6%를 차지해 집중도가 높다.[^2][^5]
-2. **REIT 섹터 집중도**: 부동산 섹터에 100% 집중되어 있다.[^1]
-3. **소매 부동산 위험**: 온라인 쇼핑 확대로 소매 공실 증가 추세에 노출된다.[^1]
-
-**정책 및 규제 리스크**
-
-4. **"Red State" 기준 불명확성**: 정의의 실효성이 낮아 실제 차별성이 부족할 수 있다.[^3]
-5. **금리 리스크**: REIT는 금리에 극도로 민감해, 금리 인상 시 주가 하락·배당 삭감 위험이 있다.[^1]
-
-**운영 리스크**
-
-6. **신규 자문사**: Yorkville America Equities는 ETF 운영 경험이 부족하다.[^1]
-7. **낮은 초기 순자산**: 약 \$250만 수준으로 유동성 부족 위험이 있다.[^5]
-
-**비용 리스크**
-
-8. **과도한 보수**: 0.65% 보수는 일반 REIT ETF의 5~9배로 장기 투자 시 수익을 잠식한다.[^3]
-
-## 비슷한 ETF
-
-Schwab U.S. REIT ETF(보수 0.07%), Vanguard VNQ(보수 0.12%)는 REIT 100개 이상을 보유하는 일반 REIT ETF로, TSRS와 상당 부분 겹치는 종목(VICI, Realty Income, NNN 등)을 훨씬 낮은 비용으로 보유할 수 있다.
-
-## 주의할 점
-
-- **비용 대비 차별성**: "Red State" 필터가 실제 포트폴리오 구성을 크게 바꾸지 못할 수 있는 반면, 보수는 일반 REIT ETF의 5~9배다.
-- **대안 우선 검토**: 일반 REIT 노출이 목적이라면 Schwab REIT, Vanguard VNQ 등 저비용 대안을 먼저 검토한다.
-- **정치적 신념과 투자 목적 분리**: 정치적 신념을 반영하려는 목적이라면 비용 부담을 감수할 가치가 있는지 스스로 따져봐야 한다.
-- **신규 펀드 리스크**: 낮은 순자산과 짧은 운용 이력으로 유동성이 낮다.
-
-## 태그
-
-REIT, Real Estate, Thematic ETF, Retail REIT
-
----
-
-**출처**
-
-[^1]: [Truth Social Funds 공식 웹사이트](https://www.truthsocialfunds.com/etfs/tsrs)
-[^2]: [Market Chameleon](https://marketchameleon.com/Overview/TSRS/ETFProfile/)
-[^3]: [Yahoo Finance – Trump's Truth Social ETFs 비평](https://finance.yahoo.com/news/red-flags-red-states-patriotic-193920906.html)
-[^5]: [Morningstar](https://www.morningstar.com/etfs/arcx/tsrs/quote)
-[^6]: [Perplexity AI Finance](https://www.perplexity.ai/finance/TSRS)
-[^7]: [Broadstone Net Lease 2025 Q3 실적 보고](https://broadstone.com/wp-content/uploads/2025/10/BNL-2025.09.30-EX-99.1_vF.pdf)
+- [Truth Social Funds TSRS 상품 정보](https://www.truthsocialfunds.com/etfs/tsrs)
+- [MarketVector Red State REITs 지수 가이드](https://www.marketvector.com/rulebooks/download/IRED_Index_Guide.pdf)
+- [SEC TSRS 2026년 6월 30일 보유 명세](https://www.sec.gov/Archives/edgar/data/1040674/000119312526373648/tsamericanredstatereitsetf.htm)
+- [SEC Truth Social ETF 투자설명서](https://www.sec.gov/Archives/edgar/data/1040674/000110465925124143/tm2525602d3_485bpos.htm)

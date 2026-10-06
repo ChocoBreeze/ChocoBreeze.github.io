@@ -1,139 +1,61 @@
 ---
 title: 'TSNF (Truth Social American Next Frontiers ETF)'
-description: 'AI·우주·반도체·바이오·원자력·암호화폐 등 신흥 기술 전반에 분산 투자하는 Truth.Fi 계열 혁신 테마 ETF'
+description: '차세대 산업 기업으로 구성된 미국 혁신 테마 지수를 추종하는 Truth Social ETF'
 pubDate: '2026-07-20T09:00:00+09:00'
-ticker: "TSNF"
-issuer: "Yorkville America"
-assetClass: "Equity"
-strategy: "Index"
-exposure: "Next Frontiers"
-leverage: "1x"
-incomeStyle: "None"
-categories: "ETF"
+updatedDate: '2026-10-06T00:00:00+09:00'
+verifiedDate: '2026-10-06T00:00:00+09:00'
+dataAsOf: '2026-10-02T00:00:00+09:00'
+aum: '$8.560M'
+aumAsOf: '2026-10-02T00:00:00+09:00'
+expenseRatio: '0.65%'
+expenseRatioAsOf: '2025-12-23T00:00:00+09:00'
+ticker: 'TSNF'
+issuer: 'Yorkville America'
+assetClass: 'Equity'
+strategy: 'Index'
+exposure: 'Next Frontiers'
+leverage: '1x'
+incomeStyle: 'None'
+categories: 'ETF'
 ---
 
-## 분류 근거
+# TSNF — Truth Social American Next Frontiers ETF
 
-TSNF는 특정 산업 하나가 아니라 AI, 로봇공학, 반도체, 생명과학, 원자력, 암호화폐/블록체인 등 여러 신흥 기술 분야에 분산 투자한다. 단일 섹터로 좁혀 분류하기 어려운 광범위한 혁신 테마라는 점에서, 성격이 비슷한 기존 폴더인 `Disruptive Innovation`(GraniteShares DRUP 등)으로 분류했다.
+## 상품 개요
 
-## 기본 정보
+TSNF는 Truth Social™ – Yorkville American Next Frontiers Index의 성과를 추종하는 패시브 ETF다. 이 지수는 차세대 산업과 혁신 분야의 미국 상장 기업을 대상으로 한다. AI·로봇, 반도체, 우주·항공, 원자력, 생명과학, 디지털 자산 관련 기업 등 여러 산업에 걸치지만, 전통적인 대형 기술주 지수와 같은 구성을 목표로 하지는 않는다.
 
-**TSNF(Truth Social American Next Frontiers ETF)**는 2025년 12월 30일 NYSE Arca에 상장된 신규 지수추종형 ETF다. Trump Media & Technology Group의 Truth.Fi 핀테크 브랜드 산하에서 발행되었으며, Yorkville America Equities가 투자자문사 역할을 한다.[^1][^2]
+## 기준 정보
 
-| 항목 | 내용 |
-| :-- | :-- |
-| **티커** | TSNF |
-| **기초지수** | MarketVector American Next Frontiers Index |
-| **상장거래소** | NYSE Arca |
-| **상장일** | 2025년 12월 30일 |
-| **투자자문사** | Yorkville America Equities, LLC |
-| **부자문사** | Tuttle Capital Management, LLC |
-| **총 보수** | 0.65% |
-| **최근 거래가** | \$27.14 (2026년 1월 8일) |
+| 항목 | 확인 내용 |
+|---|---|
+| 상장 거래소 / 설정일 | NYSE Arca / 2025년 12월 30일 |
+| 추종 지수 | Truth Social™ – Yorkville American Next Frontiers Index |
+| 운용 방식 | 지수 완전 복제 목표, 패시브 |
+| 총보수 | 0.65% |
+| 순자산 | 855만 9,869달러 (2026년 10월 2일) |
+| 보유 종목 수 | 149개 (2026년 10월 2일) |
+| NAV / 시장가격 | 31.70달러 / 31.69달러 (2026년 10월 2일) |
+| 30일 중간 매수·매도 스프레드 | 0.16% (2026년 10월 2일) |
 
-## 추종 지수 및 투자전략
+SEC 투자설명서는 정상적인 시장 상황에서 순자산과 투자 목적 차입금의 최소 80%를 지수 구성 종목에 투자하며, 수정 유통주식수 조정 시가총액 가중과 발행사별 상한을 사용한다고 설명한다. 일반적으로 지수 전체를 복제하지만 거래 여건이나 기업행사에 따라 표본 추출·임시 대체를 할 수 있다. 따라서 시장가격·NAV·지수 수익률은 보수와 거래 비용을 포함해 서로 달라질 수 있다.
 
-TSNF는 **MarketVector American Next Frontiers Index**를 추종하는 패시브형 ETF다. 기초지수는 미국의 기술·산업 혁신 최전선에 있는 기업들을 대상으로 설계되었다.[^2]
+## 편입 분야와 보유 구성
 
-**편입 기준 및 투자 분야:**
+지수는 차세대 산업 여러 분야에 걸친 미국 상장 기업을 대상으로 한다. SEC의 2026년 6월 30일 보유 명세에는 항공우주·통신·소프트웨어·컴퓨팅 인프라·디지털 자산 관련 사업과 부동산투자신탁 등이 나타난다. 당시 보유 자산의 97.4%는 보통주, 2.3%는 REIT, 0.3%는 단기 현금성 예치금이었다. 이 분류는 6월 말 명세이며, 상품 페이지가 표시하는 10월 2일 보유 종목 수는 149개다.
 
-- 미국 상장 기업으로 제한
-- 매출의 최소 50% 이상(기존 편입 기업은 25%)이 신흥 경제 분야에서 발생
-- **포함 산업군**: 인공지능, 로봇공학, 반도체, 생명과학, 핵에너지, 암호화폐/블록체인, 머신러닝, 디지털 자산 등
+디지털 자산 관련 기업이 포함될 수 있지만, 이 상품은 비트코인이나 다른 코인을 직접 보유하는 암호화폐 ETF가 아니다. 편입 회사의 주식에 투자하는 주식형 펀드다. SEC 공시에는 암호화폐 거래소, 채굴·데이터센터, 우주·통신, 반도체 기업 등이 사례로 등장하며 실제 포트폴리오는 지수 변경과 주가에 따라 변한다.
 
-TSSD(방위)와 달리 미래 기술 트렌드 전반에 초점을 맞춘 포괄적인 편입 기준을 쓴다.
+## 주요 위험
 
-## 포트폴리오 구성
+- **테마·기업 위험:** 혁신 산업의 초기 또는 중소형 기업은 사업모델, 수익성, 기술 상용화와 자금 조달 불확실성이 클 수 있다.
+- **디지털 자산 연계 위험:** 암호화폐 가격과 규제, 거래 플랫폼의 운영·보안 문제는 관련 기업 주가에 영향을 줄 수 있다.
+- **모델·데이터 위험:** SEC 투자설명서는 운용사가 기계학습·AI와 정량 기법을 사용해 종목 비중과 추세를 분석하며, 입력 데이터 오류·누락·지연이 판단을 악화시킬 수 있다고 밝힌다.
+- **신생 펀드와 유동성:** 운용 이력이 짧고 순자산이 1천만 달러 미만이다. 거래량이 충분하지 않거나 기초 종목 유동성이 나빠지면 시장가격과 NAV의 차이 및 스프레드가 커질 수 있다.
+- **비분산 및 추적 위험:** 투자설명서는 펀드를 비분산 펀드로 분류한다. 보수, 거래비용, 현금과 리밸런싱 때문에 지수 성과를 그대로 재현하지 못할 수 있다.
 
-**상위 10대 보유 종목 (2026년 1월 기준)**
+## 출처
 
-| 순위 | 종목명 | 산업 | 비중(%) |
-| :-- | :-- | :-- | :-- |
-| 1 | U.S. Bank Money Market Deposit Account | 유동자산 | 1.62 |
-| 2 | Planet Labs PBC Class A | 산업/우주기술 | 1.23 |
-| 3 | Intuitive Machines Inc | 산업/우주기술 | 1.15 |
-| 4 | Marvell Technology Inc | 기술/반도체 | 1.07 |
-| 5 | KLA Corp | 기술/반도체장비 | 1.03 |
-| 6 | Rocket Lab Corp | 산업/우주기술 | 1.01 |
-| 7 | Figure Technology Solutions Inc | 금융서비스/AI | 0.99 |
-| 8 | Hut 8 Corp | 금융서비스/암호화폐 | 0.93 |
-| 9 | Northrop Grumman Corp | 산업/방위 | 0.93 |
-| 10 | AeroVironment Inc | 산업/무인기 | 0.91 |
-
-**상위 10 종목 누적비중: 10.2%**[^5]
-
-포트폴리오는 우주기술(Planet Labs, Intuitive Machines, Rocket Lab), 반도체(Marvell, KLA), AI/금융(Figure), 암호화폐(Hut 8) 등 다양한 신흥 기술 분야에 분산되어 있다. TSSD와 달리 상위 10개 종목 비중이 10% 이하로 매우 낮아, 훨씬 넓게 분산된 포트폴리오 특성을 보인다.
-
-## 성과 및 비용
-
-| 기간 | 수익률 |
-| :-- | :-- |
-| YTD (연초 이후) | 1.19% |
-| 1년 | 20.13% |
-| 5년 | 62.84% |
-
-신규 상품(2025년 12월 30일 상장)이라 1년 이상 수익률의 신뢰성은 낮다. TSSD가 YTD 6.00%를 기록한 것과 비교하면 TSNF는 1.19%로 상대적으로 저조한데, 방위 섹터가 지정학적 긴장의 수혜를 받은 반면 기술 혁신 섹터는 AI 거품론과 기술주 조정의 영향을 받은 것으로 추정된다.
-
-총보수율은 **0.65%**로 다른 Truth Social ETF와 동일하다. 일평균 거래량은 약 143,278주(거래대금 약 \$3.8백만, 2026년 1월 기준)로 신규 펀드 특성상 유동성이 낮은 편이다.[^4]
-
-## 포트폴리오의 전략적 특징
-
-**섹터 분산:**
-
-- **우주기술**: Planet Labs, Intuitive Machines, Rocket Lab (우주 상업화)
-- **반도체/기술**: Marvell, KLA (AI 칩 생산)
-- **AI/금융**: Figure Technology (생성형 AI)
-- **암호화폐**: Hut 8 (블록체인)
-- **방위/산업**: Northrop Grumman, AeroVironment (기술 겹침)
-
-## 리스크 요인
-
-**구조적 리스크**
-
-1. **기술 집중도 리스크**: AI, 반도체, 우주기술 등 신흥 기술에 집중되어 있다.[^2]
-2. **높은 변동성**: 성장 초기 단계 기업들로 구성되어 변동성이 높다.[^2]
-
-**운영 리스크**
-
-3. **신규 자문사 리스크**: Yorkville America Equities는 ETF 운영 경험이 제한적이며, 극단적 시장 상황에서의 대응 역량이 검증되지 않았다.[^2]
-
-**기술 관련 리스크**
-
-4. **로봇공학/AI 기업 리스크**: 빠른 기술 변화와 강한 경쟁, 제품 구식화 위험이 있다.[^2]
-5. **반도체 기업 리스크**: 산업 사이클과 과잉 경쟁, 설비 투자 실패 위험이 있다.[^2]
-6. **우주기술 리스크**: 상업화 불확실성과 높은 실패율, 기술 검증 부재 위험이 있다.[^2]
-7. **생명과학 기업 리스크**: AI 신약 개발의 임상시험 실패율이 높다.[^2]
-8. **암호화폐 관련 리스크**: 극도의 변동성과 규제 불확실성이 있다.[^2]
-
-**시장·거래 리스크**
-
-9. **유동성 리스크**: 신규 펀드로 거래량이 부족하다.[^2]
-10. **지정학적 리스크**: 우주 기술 관련 미국 규제 변화 가능성이 있다.
-
-**정치·평판 리스크**
-
-11. **정치적 연관성**: Trump Media와의 연관으로 인한 투자자 감정 변동 가능성이 있다.
-
-## 비슷한 ETF
-
-같은 Truth Social ETF 제품군인 TSSD(방위)와는 정반대의 분산 특성(상위 10개 비중 10.2% vs 57.8%)을 보인다. 기존 혁신 테마 ETF로는 `Disruptive Innovation` 폴더의 DRUP(GraniteShares Nasdaq Select Disruptors ETF)이 있으며, 보다 전통적인 기술주 ETF로는 QQQ, XLK 등이 대체 비교 대상이 될 수 있다.
-
-## 주의할 점
-
-- **초기 관찰 기간**: 최소 3~6개월의 운영 기간을 거친 뒤 추적 오차, 거래량, NAV 괴리율을 평가한다.
-- **소규모 진입**: 신규 펀드의 유동성 부족을 고려해 포트폴리오의 3~5%로 제한한다.
-- **분할 매수**: 시장 변동성을 고려해 여러 회차에 나누어 매수한다.
-- **혼합 투자**: TSSD 등 다른 섹터 ETF와 혼합해 포트폴리오 균형을 유지한다.
-
-## 태그
-
-Disruptive Innovation, AI, Semiconductor, Space, Thematic ETF
-
----
-
-**출처**
-
-[^1]: [Yahoo Finance](https://finance.yahoo.com/quote/TSNF/)
-[^2]: [Truth Social Funds 공식 웹사이트](https://www.truthsocialfunds.com/etfs/tsnf)
-[^4]: [AlphaSquare](https://alphasquare.co.kr/home/stock-summary?code=TSNF)
-[^5]: [Morningstar](https://www.morningstar.com/etfs/arcx/tsnf/quote)
+- [Truth Social Funds TSNF 상품 정보](https://www.truthsocialfunds.com/etfs/tsnf)
+- [SEC TSNF 2026년 6월 30일 보유 명세](https://www.sec.gov/Archives/edgar/data/1040674/000119312526373644/tsamericannextfrontiersetf.htm)
+- [SEC Truth Social ETF 투자설명서](https://www.sec.gov/Archives/edgar/data/1040674/000110465925124143/tm2525602d3_485bpos.htm)
