@@ -36,7 +36,7 @@
 | 5 | 브라우저 smoke suite·산출물 검사 | 2~4 | Playwright 8개 browser smoke 통과 |
 | 6 | 품질·성능 baseline과 Pagefind 비교 | 3~5, 기존 실험 확인 | JSON 현재·1k·2k 측정 및 핫패스 최적화 완료. Pagefind 전면 교체 보류 |
 | 7 | 카테고리·slug 매핑 통합, fixture 격리 | 첫 milestone 이후 | RSS·검색 slug를 canonical key에서 파생하고 slug 충돌 불변조건을 추가해 통합 완료. 콘텐츠·Git hook 테스트 픽스처는 이미 OS 임시 디렉터리에 격리돼 있어 추가 변경 불필요 |
-| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | ETF 29건은 완료. Reports는 17건 중 12건(12월 보고서 8편, 1월 후공정·OSAT·검사·본딩 4편)을 2026-10-06 기준으로 출처·설명·검증일을 갱신했고 GTC 2026 보고서 5건 남음 |
+| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | **완료.** ETF 후보 29건과 Reports 17건 모두 원자료 대조, 기준일·검증일 및 출처 링크 반영 완료 |
 | 9 | OG·목록·빌드 최적화 | 측정으로 병목 확인 | 조건부 작업 |
 
 fixture 충돌이 검증이나 벤치마크의 실제 장애가 되면 7번 중 fixture 격리만 앞당긴다.
@@ -538,3 +538,5 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 2026-10-06 후속 구현: Reports 2025년 12월 2일자 뉴로모픽 반도체·실리콘 포토닉스·저전력 메모리·저전력 AI 칩·WBG 반도체 5편을 재검토했다. 오래되거나 근거·측정 조건이 불명확한 시장 전망, 성능 비교, 종목 추천을 제거하고 기술 범위·적용 조건·비교 체크리스트를 공식 자료와 벤치마크 문서에 맞춰 다시 썼다. 각 글에 updatedDate·verifiedDate와 원자료 링크를 추가했다. 남은 Reports는 12건이다. `npm run check:content` 통과(저장소의 기존 경고 7건, 이번 5개 글의 경고 없음), `npm run format:check`, `git diff --check` 통과. 콘텐츠 전용 변경이므로 Astro 검사·빌드와 테스트는 생략한다.
 2026-10-06 후속 구현: 반도체용 CNT·반도체 유리기판·미국 통화지표 3편을 갱신했다. CNT 연구실 소자 결과를 양산 준비와 구분하고, 유리 코어 기판의 공개된 개발 단계와 공정 검증 과제를 정리했다. 미국 통화지표는 연준 2026-09-22 H.6 발표의 2026년 8월 계절조정 M1 $19.9911T·M2 $23.3428T를 반영하고, 2026년 7월 적용된 IRA·Keogh 차감 산식 개정과 2020년 M1 정의 변경을 설명했다. 3편 모두 updatedDate·verifiedDate 및 원자료 링크를 반영했다. `npm run check:content` 통과(저장소 기존 경고 7건, 해당 3편 경고 없음), `npm run format:check`, `git diff --check` 통과. 콘텐츠 전용 변경이므로 Astro 검사·빌드와 테스트는 생략한다.
 2026-10-06 후속 구현: 1월자 반도체 후공정 병목·OSAT와 파운드리 전략·AI/HBM 검사·HBM 본딩 보고서 4편을 기술 공급자 자료와 대조해 재작성했다. 후공정의 상시 병목 단정, OSAT·파운드리의 근거 없는 마진·협상력 비교, HBM 테스트 부하 증가 배수·장비사 독점 주장, 특정 세대 이후 하이브리드 본딩 전환 단정 및 추정 수율·시장 전망을 제거했다. 각 글에 공정 역할, 공개된 기술 범위, 실제 병목·양산 검증 기준과 updatedDate·verifiedDate를 반영했다. `npm run check:content` 통과(저장소 기존 경고 7건, 이번 4개 글 경고 없음), `npm run format:check`, `git diff --check` 통과. 콘텐츠 전용 변경이므로 Astro 검사·빌드와 테스트는 생략한다.
+
+2026-10-07 후속 구현: 남은 GTC 2026 보고서 5편(산업 전략, 투자 관점, Vera Rubin, Kyber·광학 네트워크, AI 팩토리·Physical AI)을 NVIDIA 공식 발표·기술 블로그와 OCI MSA 자료에 맞춰 재작성했다. updatedDate·verifiedDate를 2026-10-07로 맞추고, Rubin 성능 주장을 회사 자체 비교로 한정했으며 구성 칩의 생산 상태와 통합 시스템 출하 계획을 분리했다. 확인되지 않은 1조 달러 전망, Kyber NVL1152·확정 일정, 근거가 약한 세부 로드맵과 고객 성과 단정을 제거했다. Spectrum-X Ethernet Photonics의 생산 발표와 OCI MSA의 개방 규격 작업을 서로 다른 scale-out·scale-up 항목으로 설명하고, 참조 설계·파트너십과 시설 완공·양산·매출도 구분했다. Astra Review 8번의 ETF 29건·Reports 17건 백필을 완료로 갱신했다. 검증: npm run check:content 통과(대상 글 경고 없음, 저장소 기존 경고 7건), npm run format:check 통과, git diff --check 통과. 콘텐츠 전용 변경이므로 테스트와 Astro 빌드는 생략했다.
