@@ -36,7 +36,7 @@
 | 5 | 브라우저 smoke suite·산출물 검사 | 2~4 | Playwright 8개 browser smoke 통과 |
 | 6 | 품질·성능 baseline과 Pagefind 비교 | 3~5, 기존 실험 확인 | JSON 현재·1k·2k 측정 및 핫패스 최적화 완료. Pagefind 전면 교체 보류 |
 | 7 | 카테고리·slug 매핑 통합, fixture 격리 | 첫 milestone 이후 | RSS·검색 slug를 canonical key에서 파생하고 slug 충돌 불변조건을 추가해 통합 완료. 콘텐츠·Git hook 테스트 픽스처는 이미 OS 임시 디렉터리에 격리돼 있어 추가 변경 불필요 |
-| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | **완료.** ETF 후보 29건과 Reports 17건 모두 원자료 대조, 기준일·검증일 및 출처 링크 반영 완료 |
+| 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | **완료.** ETF 폴더의 ticker 보유 상품 글 127편에 기준일·검증일·출처 URL이 있고, Reports 글 44편에 updatedDate·verifiedDate·출처 URL이 있다. 전수 감사에서 발견한 ROBT와 Feynman의 빠진 최신성·근거를 각각 First Trust·SEC, NVIDIA 공식 자료로 보완했다. 범위 제외 8편과 단일 기준일이 없는 다중 출처 보고서의 처리 원칙은 아래 감사 기록에 남겼다. |
 | 9 | OG·목록·빌드 최적화 | 측정으로 병목 확인 | **측정 후 보류.** 2026-10-07 warm-cache 빌드 903페이지·47.86초, OG 506장·28,353,591B, 최대 목록 `/etf/` 270개 카드·277,774B. 브라우저 지연과 실제 압축 전송은 미측정이며 현재 산출물만으로 코드 변경 근거는 부족하다. |
 
 fixture 충돌이 검증이나 벤치마크의 실제 장애가 되면 7번 중 fixture 격리만 앞당긴다.
@@ -218,7 +218,7 @@ Node·CI 변경은 호환성 때문에 필요한 경우에만 포함한다.
 |---|---|
 | [x] 카테고리·slug 매핑 통합 | 검사·검색·RSS의 중복 매핑을 조사하고 공통화하되 기존 URL 유지 |
 | [x] 테스트 fixture 격리 | 임시 콘텐츠 루트를 주입할 수 있게 바꾸고 실제 게시물 폴더 사용 제거 |
-| ETF·Reports 메타데이터 | 기존 완료 범위를 제외하고 검증 가능한 글부터 출처·기준일·검증일 백필 |
+| [x] ETF·Reports 메타데이터 | 후보 글의 출처·기준일·검증일 백필 및 저장소 전체 인벤토리 감사 |
 | OG·목록·빌드 최적화 | 측정으로 확인된 병목에만 적용하고 변경 전후 비용 비교 |
 
 ETF 작업 시 [ETF 콘텐츠 가이드](../etf/etf-content-guide.md)를 따른다.
@@ -544,3 +544,9 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 2026-10-07 후속 사실 확인: NVIDIA의 2027 회계연도 2분기 10-Q(2026-08-27)는 Vera Rubin 생산 출하가 회계연도 3분기에 시작됐다고 기록한다. 7월 21일 NVIDIA 블로그의 파트너 NVL72 현황과 함께 산업·투자·플랫폼 보고서의 출하 상태를 갱신했다. 일본 Noetra AI 팩토리 보고는 2026-07-16 발표를 근거로 140MW 구축 계획으로 기록하고, 완공·가동 상태와 구분했다. `npm run check:content` 통과(대상 글 경고 없음, 저장소 기존 경고 7건), `npm run format:check` 통과, `git diff --check` 통과.
 
 2026-10-07 조건부 항목 9 측정: warm-cache 로컬 `npm run build` 결과는 903 HTML 페이지, Astro 빌드 43.35초·전체 프로세스 47.86초였다. OG PNG 506개는 28,353,591B(평균 56,035B)이며, 목록 HTML은 `/etf/` 카드 270개·277,774B, `/problem-solving/` 166개·116,023B, `/semiconductor/` 142개·75,615B, `/programming/` 118개·78,814B, `/reports/` 90개·66,674B였다. 이 정적 크기와 빌드 시간만으로 최적화 필요성을 입증하지 못해 코드는 변경하지 않았다. 브라우저 입력→DOM 지연과 실제 CDN 압축 전송은 미측정이라 사용자 성능 지표 또는 CI 회귀가 확인되면 다시 측정한다.
+
+2026-10-07 Astra Review 8번 전수 감사 및 보완: ETF 폴더 135개 Markdown 중 ticker 메타데이터가 있는 상품 글은 127개이며, 전부 `verifiedDate`·`dataAsOf`가 있고 직접 출처 URL을 포함한다. 자동 대조에서 ROBT만 본문 출처 URL이 없고 데이터가 2026-04-15 기준에 머문 것을 찾아 First Trust의 2026-10-05 상품 현황·보유 종목 페이지와 2026-02-02 SEC 요약 투자설명서에 맞춰 다시 작성했다. AUM·보수·SEC 수익률에 각각 별도 기준일을 연결하고, 비교 메타데이터도 추가했다. ETF 폴더의 나머지 8개 Markdown은 범위에서 제외했다: 투자 교육 글 4편은 개별 상품 스냅샷이 아니고, BLCN은 청산 기록 글이며, KODEX·TIGER 두 글은 미국 상장 ETF가 아닌 국내 상장 상품 카탈로그이고, README는 게시 글이 아니다. KODEX·TIGER 글의 기존 기준일은 역사적 스냅샷으로 유지했다.
+
+Reports 폴더 45개 Markdown 중 실제 보고 글 44편은 모두 `updatedDate`·`verifiedDate`와 본문 출처 URL을 갖췄다. 이전 후보 감사에서 빠진 Feynman·실리콘 포토닉스 글은 NVIDIA GTC 2026 공식 키노트 보도·세션과 NVIDIA 2026-05-31 생산 발표, 2026-08-27 Form 10-Q를 확인해 갱신했다. 발표에서 확인되지 않는 A16 공정, 특정 HBM 세대, NVL1152·204.8 Tb/s, 2028년 양산·성능 전망 등은 제거하고, Feynman 로드맵과 Vera Rubin용 scale-out 제품의 생산 상태를 분리했다. 다중 시점의 기술 보고서는 사실별 기준일을 본문에 남기고 단일 `dataAsOf`를 억지로 넣지 않았다. Reports README는 범위에서 제외했다.
+
+검증: 변경 글에 출처·기준일·검증일 경고가 없고 `npm run check:content` 통과(저장소 기존 경고 7건), `npm run format:check` 통과, `git diff --check` 통과. 콘텐츠 변경이므로 테스트와 Astro 빌드는 생략했다.
