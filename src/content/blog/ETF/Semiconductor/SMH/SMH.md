@@ -1,381 +1,72 @@
 ---
 title: 'SMH (VanEck Semiconductor ETF)'
-description: 'MVIS US Listed Semiconductor 25 Index를 추종해 미국 상장 대형 반도체 기업에 시가총액 가중으로 투자하는 VanEck ETF'
+description: 'MVIS US Listed Semiconductor 25 Index를 추종하는 대형 반도체 및 장비 기업 중심의 VanEck ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
-ticker: "SMH"
-issuer: "VanEck"
-assetClass: "Equity"
-strategy: "Index"
-exposure: "Semiconductor"
-leverage: "1x"
-incomeStyle: "None"
-categories: "ETF"
-tags: ["ETF", "SMH", "VanEck", "Semiconductor", "NVIDIA", "Theme ETF"]
+updatedDate: '2026-10-06T00:00:00+09:00'
+verifiedDate: '2026-10-06T00:00:00+09:00'
+dataAsOf: '2026-10-05T00:00:00+09:00'
+aum: '$77.51B'
+aumAsOf: '2026-10-05T00:00:00+09:00'
+expenseRatio: '0.35%'
+expenseRatioAsOf: '2026-10-05T00:00:00+09:00'
+yield: '0.14% (30-day SEC yield)'
+yieldAsOf: '2026-10-05T00:00:00+09:00'
+ticker: 'SMH'
+issuer: 'VanEck'
+assetClass: 'Equity'
+strategy: 'Index'
+exposure: 'Semiconductor'
+leverage: '1x'
+incomeStyle: 'None'
+categories: 'ETF'
+tags: ['ETF', 'SMH', 'VanEck', 'Semiconductor', 'NVIDIA']
 ---
 
-# VanEck Semiconductor ETF (SMH): 종합 분석 보고서
+# SMH — VanEck Semiconductor ETF
 
-## ETF 분류
+## 상품 개요
 
-| 항목 | 내용 |
+SMH는 VanEck Semiconductor ETF로, 미국 거래소에 상장된 반도체 기업과 장비 기업으로 구성된 MVIS US Listed Semiconductor 25 Index의 수익률을 추종하도록 설계된 패시브 ETF다. 지수는 반도체 매출 기준과 시가총액·거래량 기준을 적용해 종목을 선정한다. SEC 투자설명서는 펀드가 통상 총자산의 최소 80%를 지수 편입 증권에 투자한다고 설명한다.
+
+## 기준 정보
+
+| 항목 | 확인 내용 |
 |---|---|
-| 최종 폴더 | `ETF/Semiconductor/SMH` |
-| 대분류 | 테마 |
-| 하위 분류 | 반도체 |
-| 핵심 전략 | MVIS US Listed Semiconductor 25 Index를 추종해 미국 상장 대형 반도체 기업에 시가총액 가중 방식으로 투자 |
-| 운용 방식 | 패시브 반도체 테마 ETF |
-| 레버리지/인버스 | 없음 |
-| 옵션 인컴 여부 | 없음 |
-| 분류 판단 | 일반 기술 섹터 ETF가 아니라 반도체 산업에 특화된 노출이 핵심이므로 기존 반도체 테마 폴더인 `ETF/Semiconductor`로 분류 |
+| 상장 거래소 / 설정일 | Nasdaq / 2011년 12월 20일 |
+| 추종 지수 | MVIS US Listed Semiconductor 25 Index |
+| 총보수 | 0.35% |
+| 순자산 | 77.51B 달러 (2026년 10월 5일) |
+| NAV | 634.04 달러 (2026년 10월 5일) |
+| YTD 수익률 | 76.07% (2026년 10월 5일, 발행사 상품 페이지 표기) |
+| 30일 SEC 수익률 | 0.14% (2026년 10월 5일) |
+| 분배 빈도 / 12개월 분배 수익률 | 연 1회 / 0.17% (2026년 10월 5일) |
 
-***
+30일 SEC 수익률은 최근 30일의 순투자소득을 반영하는 표준화 지표이고, 12개월 분배 수익률은 과거 실제 분배를 기준으로 계산한다. 두 값은 서로 다른 지표이며 미래 분배를 보장하지 않는다.
 
-### 개요 및 펀드 특성
+## 보유와 집중도
 
-VanEck Semiconductor ETF (SMH)는 2011년 12월 20일에 출시되어 현재 가장 큰 순수 반도체 섹터 ETF로 자리잡은 펀드입니다. 현재 \$43.46B의 자산을 보유하고 있으며, MVIS US Listed Semiconductor 25 Index를 추종하여 미국 상장 25개의 최대 규모 반도체 회사들에 시가총액 가중방식으로 투자합니다.[^1][^2]
+VanEck의 일일 보유 자료는 2026년 10월 5일 기준 26개 항목을 표시했다. 상위 주식 비중은 NVIDIA 19.44%, TSMC 9.44%, AMD 5.52%, Broadcom 5.15%, Applied Materials 4.72%였다. 같은 페이지에서 현금 및 기타 항목도 별도 표시한다. 따라서 편입 회사 수와 전체 표시 항목 수를 동일하게 해석하지 않도록 주의해야 한다.
 
-<strong>핵심 특징</strong>: SMH는 "let winners run" 철학으로 유명합니다. 이는 시가총액 가중방식의 결과로, 성과가 좋은 회사(NVIDIA, ASML, Broadcom)들의 가중치가 자동으로 증가한다는 의미입니다. 이 접근법은 최근 10년간 탁월한 수익률(30.31% 연환산)을 생성했지만, 동시에 극도의 집중도와 변동성을 야기합니다.[^3][^4]
+이 펀드는 미국 상장 기업에 한정된 국내 노출이 아니다. 2026년 9월 30일 자료표의 국가 비중에는 미국 78.78%, 대만 9.24%, 네덜란드 5.48%, 한국 4.40%가 포함됐다. 미국 거래소 상장 해외 기업과 글로벌 공급망에 따른 국가·환율·지정학 위험도 고려할 필요가 있다.
 
-### 포트폴리오 구성 및 농축도 분석
+## 성과 비교 기준
 
-![SMH 포트폴리오 집중도와 NVIDIA 비중](images/image.png)
+2026년 9월 30일 기준 자료표에서 SMH의 NAV 수익률은 YTD 68.93%, 1년 86.89%였다. 같은 기간 MVIS 지수 수익률은 각각 69.19%, 87.30%였다. 지수 수익률에는 펀드 보수와 거래 비용이 반영되지 않으며, 설정 이후 1년을 넘는 수익률도 향후 결과를 보장하지 않는다.
 
-SMH Portfolio Concentration: Mega-Cap Dominance with NVIDIA Leading at 19.17%
+## 주요 위험
 
-SMH의 포트폴리오는 <strong>강한 농축도 구조</strong>를 특징으로 합니다. 상위 10개 종목이 전체 자산의 73.36%를 차지하며, NVIDIA 단독으로 19.17%입니다. 이는 제2위 종목(TSMC 10.45%)의 거의 2배입니다.[^5]
+- **산업 집중과 경기 순환:** 반도체 수요·재고·가격·설비투자 변화가 여러 보유 기업에 동시에 영향을 줄 수 있다.
+- **대형 종목 집중:** 지수는 시가총액과 거래량을 고려하고, 상위 기업의 비중이 높아 개별 대형주 가격 변화가 펀드에 크게 반영될 수 있다.
+- **해외 발행사와 공급망:** 해외 기업, 환율, 무역 규제와 지정학적 변화가 미국 상장 주식에도 영향을 줄 수 있다.
+- **비분산 펀드 및 추적 차이:** SEC 공시는 SMH를 비분산 펀드로 분류한다. 보수, 거래 비용, 재조정과 현금 흐름으로 펀드 수익률은 지수와 달라질 수 있다.
+- **시장가격과 NAV:** ETF 주식은 NAV보다 높거나 낮은 가격으로 거래될 수 있고, 시장 스트레스 때 스프레드가 넓어질 수 있다.
 
-<strong>상위 10개 포지션</strong>:
+SMH는 팹리스 설계 기업뿐 아니라 반도체 제조와 장비 기업도 포함할 수 있는 폭넓은 업종 지수에 투자한다. 설계 기업 중심 지수를 추종하는 SMHX와 구성이 다르다.
 
-1. NVIDIA (NVDA): 19.17% - GPU/AI 칩 설계 지배자
-2. TSMC (TSM): 10.45% - 선진 반도체 제조 리더
-3. Broadcom (AVGO): 7.68% - 통신 칩 및 인프라
-4. Micron Technology (MU): 5.47% - 메모리 칩 제조
-5. ASML (ASML): 5.43% - 반도체 생산 장비 리더
-6. Lam Research (LRCX): 5.37% - 반도체 제조 장비
-7. Intel (INTC): 5.17% - CPU/반도체 제조
-8. KLA (KLAC): 5.01% - 반도체 검사 장비
-9. AMD (AMD): 4.86% - CPU/GPU 칩 설계
-10. Applied Materials (AMAT): 4.75% - 반도체 제조 장비
+## 공식 자료
 
-<strong>NVIDIA의 지배성</strong>: NVIDIA이 19.17%라는 가중치는 매우 높으며, NVIDIA의 주가 움직임이 SMH 전체의 약 19%를 직접적으로 결정한다는 의미입니다. 2024-2025년 NVIDIA의 강력한 성과(AI 칩 주도)는 SMH의 우수한 수익률의 주 원동력이었습니다.[^5]
+- [VanEck SMH 상품·시장 데이터](https://www.vaneck.com/us/en/investments/semiconductor-etf-smh/)
+- [VanEck 2026년 9월 30일 자료표](https://www.vaneck.com/us/en/investments/semiconductor-etf-smh-fact-sheet.pdf)
+- [SEC 2026년 2월 1일 요약 투자설명서](https://www.sec.gov/Archives/edgar/data/1137360/000113736026000117/vanecksemiconductoretfsmh4.htm)
 
-<strong>지역 다양성</strong>: 포트폴리오는 미국 중심(80.31%)이지만, 대만(10.47%), 네덜란드(6.43%)에 대한 노출도 있습니다. 이는 글로벌 반도체 가치사슬에 대한 균형잡힌 노출을 제공하면서도, 지정학적 위험을 일부 증가시킵니다(대만의 지정학적 긴장).[^2]
-
-### 성과 분석: 극단적인 사이클성
-
-![SMH 연간 성과와 위험 프로필](images/image-1.png)
-
-SMH Historical Performance \& Risk Profile: Cyclical Returns in Semiconductor Sector (2018-2026)
-
-SMH의 성과는 <strong>반도체 산업의 극도로 사이클적인 특성</strong>을 명확히 반영합니다. 최근 8년간의 연간 수익률을 보면:
-
-
-| 연도 | 수익률 | 맥락 |
-| :-- | :-- | :-- |
-| 2023 | +73.38% | AI 칩 수요 폭발, NVIDIA 급등[^6] |
-| 2022 | -33.53% | 금리 인상, 경제 둔화, 재고 정리[^6] |
-| 2021 | +42.13% | 팬데믹 회복, 클라우드 투자[^6] |
-| 2020 | +55.53% | COVID 데이터센터 수요[^6] |
-| 2019 | +64.45% | 5G 사이클 초기[^6] |
-| 2018 | -9.05% | 무역 전쟁, 마진 압박[^6] |
-
-이 패턴은 다음을 시사합니다:
-
-1. <strong>높은 순환성</strong>: 3-5년의 상승 사이클 다음 1-2년의 조정
-2. <strong>극단적 진폭</strong>: +73% 이득에서 -33% 손실로의 급격한 전환
-3. <strong>이익 주기 민감성</strong>: 마이크로칩 산업은 초기 과잉 투자 → 공급 과잉 → 정상화의 사이클을 따름
-
-<strong>최근 12개월 성과 (\$107B 기여)</strong>: 2025년 +49.17%의 강력한 수익률은 AI 데이터센터 투자의 지속, NVIDIA의 H100/H200 GPU 수요 강세, 그리고 TSMC의 첨단 칩 생산 능력에 대한 신뢰를 반영합니다.[^6][^4]
-
-<strong>다중 기간 수익률</strong>:
-
-- 1개월: +9.25%
-- 3개월: +22.68%
-- 1년: +39.97%
-- 3년 연환산: +46.83%
-- 5년 연환산: \~33.5%
-- 10년 연환산: 30.31%
-- 설립 이후 (2011): \~3,000%+ 누적[^6]
-
-이러한 수익률은 장기 투자자들에게 매력적이지만, 높은 변동성(33.28% 표준편차, 1.58 베타)을 수반합니다.[^7][^4]
-
-### 위험 특성: 높은 변동성과 집중도
-
-| 위험 메트릭 | SMH | S\&P 500 | 평가 |
-| :-- | :-- | :-- | :-- |
-| <strong>베타 (Beta)</strong> | 1.58 | 1.00 | 58% 더 변동성 높음[^7] |
-| <strong>표준편차</strong> | 33.28% | \~15-18% | 거의 2배 변동성[^7] |
-| <strong>최대 낙폭 (최근)</strong> | -32.65% | 일반적으로 -20% 이하 | 상당한 하방 위험[^7] |
-| <strong>52주 범위</strong> | \$170-396 | 상대적으로 좁음 | 극도의 가격 범위[^8] |
-| <strong>P/E 비율</strong> | 42.75 | \~20-25 | 프리미엄 밸류에이션[^7] |
-| <strong>52주 낙폭</strong> | -32.65% | 훨씬 낮음 | 2025년 초 반도체 조정 반영[^7] |
-
-베타 1.58은 S\&P 500이 10% 하락할 때 SMH는 약 15.8% 하락할 것으로 예상함을 의미합니다. 2022년의 -33.53% 손실과 최근 최대 낙폭 -32.65%는 이를 입증합니다.[^6][^7]
-
-<strong>역사적 최악</strong>: 2008-2009 금융위기 시기 SMH는 -99.41%의 극도 손실을 입었으며, 회복에 3-4년이 걸렸습니다. 이는 반도체 섹터의 높은 사이클성을 강조합니다.[^6]
-
-### 비용 구조 및 유동성
-
-SMH의 0.35% 순 비용은 경쟁력 있습니다:[^2]
-
-- SOXX (iShares): 0.34% (1 basis point 저렴)[^9]
-- SOXQ (Invesco): 0.19% (절반 비용)[^10]
-- XSD (SPDR): 0.35% (동일)[^10]
-
-\$10,000 투자 기준 연간 \$35의 수수료는 장기적으로 무시할 수 없지만, 비용 자체보다 <strong>선택한 전략의 유효성</strong>이 더 중요합니다.[^10]
-
-<strong>유동성은 우수합니다</strong>: 일일 평균 거래량 6.47M-9.97M주, \$43.46B 자산 규모로 인해 비드-애스크 스프레드는 매우 협소하며, 기관 투자자들의 대규모 거래가 가능합니다.[^8][^11]
-
-### 배당 정책: 제한적 수익
-
-| 메트릭 | SMH | 평가 |
-| :-- | :-- | :-- |
-| <strong>배당 수익률</strong> | 0.28-0.31% | 매우 낮음 (S\&P 500: 1.5-2%) |
-| <strong>연간 배당</strong> | \$1.10 | 단일 연말 지급 |
-| <strong>배당 성장 (1Y)</strong> | +3.12% | 느린 성장[^12] |
-| <strong>3년 성장</strong> | +14.07% | 적당한 장기 성장[^13] |
-| <strong>지급 비율</strong> | 12.89% | 보수적 (배당금 재투자 여지)[^12] |
-
-배당 수익률 0.28%는 <strong>SMH가 순수 성장 지향적 도구</strong>임을 명확히 합니다. 반도체 기업들은 이익을 R\&D와 설비 투자에 재투자하는 경향이 있기 때문에 배당은 제한적입니다. 이는 배당 소득이 필요한 보수적 투자자들에게 부적절합니다.[^12][^13]
-
-연간 배당 \$1.10은 분기별 또는 월별 지급이 아니라 <strong>연말에 한 번에 지급</strong>되므로, 정기적 현금 흐름을 원하는 투자자들에게도 비효율적입니다.[^12]
-
-### 펀드 자금 흐름 및 투자자 수용
-
-매우 긍정적인 신호가 있습니다. SMH는 <strong>1년간 +\$661M에서 +\$5.22B</strong>의 순 자금 유입을 기록했습니다. 이는 다음을 의미합니다:[^11][^4]
-
-1. <strong>강한 투자자 수요</strong>: 2025년 +49.17% 수익률에도 불구하고, 또는 그 때문에 새로운 자본이 지속적으로 유입
-2. <strong>기관 채택 증가</strong>: AUM이 \$43.46B로 성장하며, 포트폴리오 배분 결정에 SMH를 포함하는 기관들 증가
-3. <strong>주식 공급 증가</strong>: 10월 98.6M주에서 11월 103.3M주로 급증, 새로운 주식 발행으로 기관 자금 수용[^4]
-
-이는 시장이 반도체/AI 섹터의 장기 전망에 높은 신뢰를 가지고 있음을 시사합니다.[^4]
-
-### 경쟁 비교 및 차별화
-
-![SMH와 주요 반도체 ETF 경쟁 구도](images/image-2.png)
-
-Semiconductor ETF Competitive Landscape: SMH vs. SOXX vs. XSD vs. SOXQ
-
-SMH는 반도체 ETF 생태계에서 <strong>"대형주 수혜자" 위치</strong>를 점하고 있습니다. 경쟁 펀드들과의 비교:[^14]
-
-<strong>SOXX (iShares Semiconductor ETF)</strong>
-
-- AUM: \$18.22B (SMH의 42%)
-- 비용: 0.34% (1bp 저렴)
-- 강점: 분산도 더 높음, 보다 균형잡힌 노출
-- 약점: 1년 수익률 +16%로 SMH 대비 훨씬 약함[^9]
-- <strong>선택 기준</strong>: 더 보수적이면서 다양한 노출 원할 때
-
-<strong>XSD (SPDR S\&P Semiconductor ETF)</strong>
-
-- AUM: \$1.67B (가장 작음)
-- 전략: 등가중 (equal-weight) - 각 종목에 동일 가중치
-- 강점: 소형주 노출, 대형주 시가총액 왜곡 회피
-- 약점: AUM 작음, 거래량 가능성 제한
-- <strong>선택 기준</strong>: 소형주 발굴 후 성장 추구할 때[^10]
-
-<strong>SOXQ (Invesco PHLX Semiconductor ETF)</strong>
-
-- 비용: 0.19% (가장 저렴)
-- 강점: \$19의 수수료 vs SMH \$35 (연 \$10K 기준)
-- 약점: AUM과 인지도 낮음
-- <strong>선택 기준</strong>: 비용 최소화가 최우선일 때[^10]
-
-<strong>SMH의 경쟁 우위</strong>:
-
-1. <strong>규모</strong>: \$43.46B AUM으로 모든 경쟁사를 능가, 최고의 유동성 제공
-2. <strong>성과</strong>: 최근 1년 +39.97% vs SOXX +16%, 10년 30.31% 연환산으로 혁신적
-3. <strong>유명성</strong>: 가장 광범위하게 추종되는 반도체 ETF, 기관 채택률 최고
-
-<strong>SMH의 약점</strong>:
-
-1. <strong>집중도</strong>: 상위 10개 73.36% vs SOXX의 낮은 농축도
-2. <strong>밸류에이션</strong>: P/E 42.75는 성장 기대를 완전히 반영, 실망 시 하락 위험
-3. <strong>사이클 위험</strong>: 역사적 -99% 낙폭 경험, 향후 조정 가능성[^6]
-
-### 기술 신호 및 2026 전망
-
-현재(2026년 1월) SMH의 기술 상황은 <strong>복합 신호</strong>를 보이고 있습니다:[^15]
-
-<strong>강세 신호</strong>:
-
-- 모멘텀 지표가 2025년 12월 29일 0 라인 위로 상향 돌파
-- 2025년 12월 19일 50일 이동평균 상향 돌파 (상승 추세 전환 신호)
-- 3일 연속 상승 후 계속 상승 확률 79% (역사적 348사례 기반)
-
-<strong>약세/경고 신호</strong>:
-
-- RSI가 오버바우트 존(70 이상) 진입 → 가격 조정 가능성
-- 스토캐스틱 오실레이터 14일 동안 오버바우트 유지 → 반대 신호 강화
-- 2026년 1월 6일 볼린저 밴드 상단선 이탈 → 중앙값으로의 회귀 가능
-- 근처 저항선 (\$289.28)에서 가격 압박 가능
-
-<strong>가격 목표 및 전망</strong>:
-
-- AI 모델 기반 3개월 목표: +37.27% 상승 (현재 기준)
-- 기술 목표 가격: \$460.01 (+15% from \$400)[^16]
-- 90% 확률로 3개월 내 \$394-\$411 범위[^17]
-- P/E 42.75는 시장이 강한 수익 성장을 이미 가격화했음을 의미[^7]
-
-<strong>투자자 해석</strong>: SMH는 단기적으로 오버바우트이지만, 기본적인 AI 및 반도체 수요 모멘텀이 강해 조정 후 재상승 가능성이 높습니다.[^15]
-
-### 투자 적합성 및 포트폴리오 위치
-
-<strong>SMH가 적합한 투자자</strong>:
-
-1. <strong>장기 성장 투자자</strong>: 10년+ 투자 기간으로 사이클 완주 가능
-2. <strong>기술/AI 신봉자</strong>: AI 칩 혁명의 수혜자로 확신하는 자
-3. <strong>공격적 배분</strong>: 포트폴리오의 20-50%를 기술 섹터에 배분할 역량
-4. <strong>높은 변동성 수용</strong>: -30% 조정을 참을 수 있는 심리적 준비
-
-<strong>SMH가 부적절한 투자자</strong>:
-
-1. <strong>보수적 투자자</strong>: 0.28% 배당과 극도의 변동성은 심리적 부담
-2. <strong>단기 거래자</strong>: 사이클 타이밍 어려움, 2025년 초처럼 급락 위험
-3. <strong>기존 기술 가중 포트폴리오</strong>: 이미 NVDA/MSFT 등에 노출된 경우 중복
-4. <strong>정년 임박 투자자</strong>: -32% 낙폭 충격 회복 불가능
-
-<strong>권장 포트폴리오 할당</strong>:
-
-- <strong>공격적 포트폴리오</strong> (20대-40대, 10년+ 기간): 15-30% 할당
-- <strong>중간 포트폴리오</strong> (40대-55세): 5-15% 할당
-- <strong>보수적 포트폴리오</strong> (55세+): 0-5% (또는 제외)
-
-
-### 산업 기본요소 평가
-
-SMH의 강한 기본요소는 다음을 포함합니다:[^4]
-
-<strong>강점</strong>:
-
-1. <strong>AI 인프라 수요</strong>: NVIDIA GPU의 압도적 우위, TSM의 첨단 공정 능력
-2. <strong>데이터센터 투자 지속</strong>: 클라우드 거대 기업들(MSFT, Google, Meta)의 AI 인프라 투자 가속
-3. <strong>자동화 추세</strong>: 자율주행, 로봇, 산업 4.0으로 칩 수요 지속적 증가
-4. <strong>미국 CHIPS Act</strong>: 국내 반도체 제조 투자 촉진, 공급망 리스크 완화
-5. <strong>기술 노드 수렴 성숙화</strong>: 극단적 미세공정에서 안정적 중기 노드 이동, 마진 개선 가능
-
-<strong>약점/위험</strong>:
-
-1. <strong>높은 밸류에이션</strong>: P/E 42.75는 매우 높은 성장 기대를 이미 가격화
-2. <strong>사이클 정상화 위험</strong>: 현재의 AI 칩 공급 부족이 과잉 공급으로 전환 가능
-3. <strong>지정학적 긴장</strong>: U.S.-China 반도체 전쟁, TSMC 지정학적 위험
-4. <strong>경쟁 심화</strong>: Intel의 회복, AMD의 선전, 신규 플레이어(Mobileye, Cerebras) 등장
-5. <strong>이익 마진 압박</strong>: 고비용 R\&D 및 설비 투자로 인한 마진 감소 가능
-
-### 최종 평가 및 권장안
-
-SMH는 <strong>기술 섹터의 정점에 자리한 고성장, 고위험 도구</strong>입니다. 다음과 같은 특징을 종합하면:
-
-<strong>강점</strong>:
-
-- 30.31% 10년 연환산 수익률 = 탁월한 장기 성과
-- \$43.46B AUM으로 최고 유동성 및 접근성
-- 전략적 핵심 포지션 (NVIDIA 19%, TSMC 10%)으로 AI 수혜 최대화
-- +49.17% 2025년, +39.97% 1년 수익률로 최근 강세
-
-<strong>약점</strong>:
-
-- P/E 42.75는 성장이 완전히 가격화됨을 의미
-- -32.65% 최대 낙폭으로 심각한 조정 위험
-- 73.36% 농축도로 소수 기업(특히 NVIDIA)에 의존
-- 0.28% 배당으로 성장 중심 도구, 수익 투자자 부적절
-
-<strong>결론</strong>: 향후 3-5년간 AI 칩 수요 지속이 확실하다면, SMH는 탁월한 장기 성장 수단입니다. 그러나 <strong>현재 밸류에이션 수준에서 신규 진입은 신중</strong>이어야 하며, 기존 보유자는 이익 실현 고려, 신규 투자자는 다음 조정까지 대기를 고려해볼 가치가 있습니다.
-
-<strong>최종 권장</strong>:
-
-- <strong>매수</strong>: 이미 반도체 호황을 놓친 투자자, 10년+ 장기 투자자, 공격적 포트폴리오
-- <strong>보유</strong>: 기존 보유자, 이익 실현 20-30% 검토
-- <strong>대기</strong>: 높은 밸류에이션 회피 투자자, P/E 35 이하 조정 기다리는 자
-- <strong>회피</strong>: 보수적 투자자, 배당 필요 투자자, 사이클 타이밍 불가능 자
-<span style="display:none">[^18][^19][^20][^21][^22][^23][^24][^25][^26][^27][^28][^29][^30][^31][^32][^33][^34][^35][^36][^37][^38][^39][^40][^41][^42][^43][^44]</span>
-
-<div align="center">⁂</div>
-
-[^1]: https://www.marketwatch.com/investing/fund/smh
-
-[^2]: https://www.vaneck.com/offshore/en/investments/semiconductor-etf-smh/
-
-[^3]: https://247wallst.com/investing/2026/01/11/etfs-that-can-beat-the-sp-500-in-2026/
-
-[^4]: https://www.ainvest.com/news/long-term-compounding-power-semiconductor-etfs-vaneck-semiconductor-etf-smh-stands-high-conviction-growth-vehicle-2025-2512/
-
-[^5]: https://stockanalysis.com/etf/smh/holdings/
-
-[^6]: https://totalrealreturns.com/n/SMH
-
-[^7]: https://rockflow.ai/stocks/smh/
-
-[^8]: https://robinhood.com/stocks/SMH
-
-[^9]: https://www.bankrate.com/investing/best-semiconductor-etfs/
-
-[^10]: https://wtop.com/news/2025/11/7-best-semiconductor-etfs-to-buy-in-2025-8/
-
-[^11]: https://www.tradingview.com/symbols/NASDAQ-SMH/analysis/
-
-[^12]: https://stockanalysis.com/etf/smh/dividend/
-
-[^13]: https://www.digrin.com/stocks/detail/SMH/
-
-[^14]: https://www.mezzi.com/blog/smh-vs-soxx-vs-xsd-semiconductor-etf-balanced-exposure
-
-[^15]: https://tickeron.com/ticker/SMH/forecasts-predictions/
-
-[^16]: https://tradestie.com/stocks/SMH/price-prediction/
-
-[^17]: https://stockinvest.us/stock/SMH
-
-[^18]: QTUM (Defiance Quantum ETF).md
-
-[^19]: SETM (Sprott Critical Materials ETF).md
-
-[^20]: REMX (VanEck Rare Earth, Strategic Metals ETF).md
-
-[^21]: https://www.vaneck.com/offshore/en/investments/semiconductor-etf/
-
-[^22]: https://finance.yahoo.com/quote/SMH/
-
-[^23]: https://kr.investing.com/etfs/holdrs-merrill-lynch-semiconductor
-
-[^24]: https://www.vaneck.com/us/en/investments/semiconductor-etf-smh/performance/
-
-[^25]: https://markets.ft.com/data/etfs/tearsheet/holdings?s=SMH%3ALSE%3AUSD
-
-[^26]: https://www.barrons.com/market-data/funds/smh
-
-[^27]: https://www.poems.com.sg/etf-screener/NASDAQ-SMH/
-
-[^28]: https://www.schwab.wallst.com/schwab/Prospect/research/etfs/reports/reportRetrieve.asp?reportType=etfrc\&symbol=SMH
-
-[^29]: https://global.morningstar.com/en-ca/investments/etfs/0P0000U0D2/quote
-
-[^30]: https://www.investing.com/etfs/holdrs-merrill-lynch-semiconductor-holdings
-
-[^31]: https://www.dividendmax.com/united-states/nasdaq/investment-trusts/vaneck-vectors-semiconductor-etf/dividends
-
-[^32]: https://marketchameleon.com/Overview/SMH/Dividends/
-
-[^33]: https://www.slickcharts.com/symbol/SMH/dividend
-
-[^34]: https://www.zacks.com/stock/news/2811622/should-you-invest-in-the-vaneck-semiconductor-etf-smh
-
-[^35]: https://aiolux.com/insights/rolling-beta?period=6m\&scroll=result\&symbol=SMH
-
-[^36]: https://www.investing.com/etfs/holdrs-merrill-lynch-semiconductor-dividends
-
-[^37]: https://money.usnews.com/investing/articles/best-semiconductor-etfs-to-buy
-
-[^38]: https://global.morningstar.com/en-ca/investments/etfs/0P0000U0D2/risk
-
-[^39]: https://seekingalpha.com/symbol/SMH/dividends/scorecard
-
-[^40]: https://etfdb.com/etfs/industry/semiconductors/
-
-[^41]: https://www.zacks.com/stock/news/2756094/the-zacks-analyst-blog-highlights-xsd-psi-smh-ftxl-soxq-and-soxx
-
-[^42]: https://www.moomoo.com/au/learn/detail-best-semiconductor-etf-118049-250992005
-
-[^43]: https://seekingalpha.com/article/4827700-soxx-why-i-prefer-this-etf-over-smh-and-xsd
-
-[^44]: https://etfdb.com/etf/SMH/
+검증일은 2026년 10월 6일이다. 순자산·NAV·YTD·수익률은 각 표에 표시한 기준일을 따르며, 이 글은 상품 공시를 정리하고 매수·매도 권유를 제공하지 않는다.
