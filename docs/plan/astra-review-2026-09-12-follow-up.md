@@ -37,7 +37,7 @@
 | 6 | 품질·성능 baseline과 Pagefind 비교 | 3~5, 기존 실험 확인 | JSON 현재·1k·2k 측정 및 핫패스 최적화 완료. Pagefind 전면 교체 보류 |
 | 7 | 카테고리·slug 매핑 통합, fixture 격리 | 첫 milestone 이후 | RSS·검색 slug를 canonical key에서 파생하고 slug 충돌 불변조건을 추가해 통합 완료. 콘텐츠·Git hook 테스트 픽스처는 이미 OS 임시 디렉터리에 격리돼 있어 추가 변경 불필요 |
 | 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | **완료.** ETF 후보 29건과 Reports 17건 모두 원자료 대조, 기준일·검증일 및 출처 링크 반영 완료 |
-| 9 | OG·목록·빌드 최적화 | 측정으로 병목 확인 | 조건부 작업 |
+| 9 | OG·목록·빌드 최적화 | 측정으로 병목 확인 | **측정 후 보류.** 2026-10-07 warm-cache 빌드 903페이지·47.86초, OG 506장·28,353,591B, 최대 목록 `/etf/` 270개 카드·277,774B. 브라우저 지연과 실제 압축 전송은 미측정이며 현재 산출물만으로 코드 변경 근거는 부족하다. |
 
 fixture 충돌이 검증이나 벤치마크의 실제 장애가 되면 7번 중 fixture 격리만 앞당긴다.
 
@@ -540,3 +540,7 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 2026-10-06 후속 구현: 1월자 반도체 후공정 병목·OSAT와 파운드리 전략·AI/HBM 검사·HBM 본딩 보고서 4편을 기술 공급자 자료와 대조해 재작성했다. 후공정의 상시 병목 단정, OSAT·파운드리의 근거 없는 마진·협상력 비교, HBM 테스트 부하 증가 배수·장비사 독점 주장, 특정 세대 이후 하이브리드 본딩 전환 단정 및 추정 수율·시장 전망을 제거했다. 각 글에 공정 역할, 공개된 기술 범위, 실제 병목·양산 검증 기준과 updatedDate·verifiedDate를 반영했다. `npm run check:content` 통과(저장소 기존 경고 7건, 이번 4개 글 경고 없음), `npm run format:check`, `git diff --check` 통과. 콘텐츠 전용 변경이므로 Astro 검사·빌드와 테스트는 생략한다.
 
 2026-10-07 후속 구현: 남은 GTC 2026 보고서 5편(산업 전략, 투자 관점, Vera Rubin, Kyber·광학 네트워크, AI 팩토리·Physical AI)을 NVIDIA 공식 발표·기술 블로그와 OCI MSA 자료에 맞춰 재작성했다. updatedDate·verifiedDate를 2026-10-07로 맞추고, Rubin 성능 주장을 회사 자체 비교로 한정했으며 구성 칩의 생산 상태와 통합 시스템 출하 계획을 분리했다. 확인되지 않은 1조 달러 전망, Kyber NVL1152·확정 일정, 근거가 약한 세부 로드맵과 고객 성과 단정을 제거했다. Spectrum-X Ethernet Photonics의 생산 발표와 OCI MSA의 개방 규격 작업을 서로 다른 scale-out·scale-up 항목으로 설명하고, 참조 설계·파트너십과 시설 완공·양산·매출도 구분했다. Astra Review 8번의 ETF 29건·Reports 17건 백필을 완료로 갱신했다. 검증: npm run check:content 통과(대상 글 경고 없음, 저장소 기존 경고 7건), npm run format:check 통과, git diff --check 통과. 콘텐츠 전용 변경이므로 테스트와 Astro 빌드는 생략했다.
+
+2026-10-07 후속 사실 확인: NVIDIA의 2027 회계연도 2분기 10-Q(2026-08-27)는 Vera Rubin 생산 출하가 회계연도 3분기에 시작됐다고 기록한다. 7월 21일 NVIDIA 블로그의 파트너 NVL72 현황과 함께 산업·투자·플랫폼 보고서의 출하 상태를 갱신했다. 일본 Noetra AI 팩토리 보고는 2026-07-16 발표를 근거로 140MW 구축 계획으로 기록하고, 완공·가동 상태와 구분했다. `npm run check:content` 통과(대상 글 경고 없음, 저장소 기존 경고 7건), `npm run format:check` 통과, `git diff --check` 통과.
+
+2026-10-07 조건부 항목 9 측정: warm-cache 로컬 `npm run build` 결과는 903 HTML 페이지, Astro 빌드 43.35초·전체 프로세스 47.86초였다. OG PNG 506개는 28,353,591B(평균 56,035B)이며, 목록 HTML은 `/etf/` 카드 270개·277,774B, `/problem-solving/` 166개·116,023B, `/semiconductor/` 142개·75,615B, `/programming/` 118개·78,814B, `/reports/` 90개·66,674B였다. 이 정적 크기와 빌드 시간만으로 최적화 필요성을 입증하지 못해 코드는 변경하지 않았다. 브라우저 입력→DOM 지연과 실제 CDN 압축 전송은 미측정이라 사용자 성능 지표 또는 CI 회귀가 확인되면 다시 측정한다.
