@@ -14,6 +14,8 @@
 		"test:e2e": "playwright test",
 		"benchmark:search": "node scripts/benchmark-search.mjs",
 		"benchmark:search:scale": "node scripts/benchmark-search-scale.mjs",
+		"benchmark:search:pagefind-scale": "node scripts/benchmark-pagefind-scale.mjs",
+		"benchmark:search:browser": "node scripts/benchmark-search-browser.mjs",
 		"report:search-size": "node scripts/report-search-size.mjs",
 		"test": "node --test \"scripts/test/*.test.mjs\"",
 		"new:post": "node scripts/new-post.mjs",
