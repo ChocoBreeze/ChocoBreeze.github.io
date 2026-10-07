@@ -22,6 +22,7 @@ import {
 	countMathDelimiters,
 	findAllMatches,
 	getComparableLinkTarget,
+	getBlogPostRoutePath as getPostRoutePath,
 	getLineNumber,
 	getPrimaryCategory,
 	getLinkFragment,
@@ -42,7 +43,6 @@ import {
 	parseFrontmatterListValue,
 	isAstroPublicPagePath,
 	shouldCheckInternalLink,
-	slugifyAstroPathSegment,
 	stripCodeBlocks,
 	stripInlineCode,
 	stripYamlComment,
@@ -128,31 +128,6 @@ function addIssue(collection, severity, filePath, line, message) {
 	});
 }
 
-function getPostRoutePath(filePath, content) {
-	const frontmatterMatch = content.match(FRONTMATTER_REGEX);
-	const fields = frontmatterMatch ? parseFrontmatterFields(frontmatterMatch[1]) : new Map();
-	const slugField = fields.get('slug');
-
-	if (slugField) {
-		const slug = stripQuotes(stripYamlComment(slugField.rawValue));
-		if (slug) {
-			return normalizeRoutePath(`/blog/${slug}`);
-		}
-	}
-
-	const relativePath = path.relative(CONTENT_DIR, filePath);
-	const parsedPath = path.parse(relativePath);
-	const relativeWithoutExtension = path.join(parsedPath.dir, parsedPath.name);
-	const slugPath = relativeWithoutExtension
-		.split(path.sep)
-		.filter(Boolean)
-		.map(slugifyAstroPathSegment)
-		.join('/')
-		.replace(/\/index$/, '');
-
-	return normalizeRoutePath(`/blog/${slugPath}`);
-}
-
 function getPostReferenceKeys(filePath, content) {
 	const keys = [];
 	const frontmatterMatch = content.match(FRONTMATTER_REGEX);
@@ -164,7 +139,7 @@ function getPostReferenceKeys(filePath, content) {
 
 	const relativePath = path.relative(CONTENT_DIR, filePath).replace(/\\/g, '/');
 	keys.push(relativePath);
-	keys.push(getPostRoutePath(filePath, content));
+	keys.push(getPostRoutePath(filePath, content, CONTENT_DIR));
 	return keys.map(normalizePostReference).filter(Boolean);
 }
 
@@ -188,7 +163,7 @@ function buildPostRouteIndex(files, includeDrafts = true) {
 		if (frontmatterMatch && !shouldIndexPostRoute(frontmatterMatch[1], includeDrafts)) {
 			continue;
 		}
-		const routePath = getPostRoutePath(filePath, content);
+		const routePath = getPostRoutePath(filePath, content, CONTENT_DIR);
 		const entries = routes.get(routePath) ?? [];
 		entries.push(filePath);
 		routes.set(routePath, entries);
@@ -216,7 +191,7 @@ function buildPostMetadata(filePath, content) {
 		return undefined;
 	}
 
-	const routePath = getPostRoutePath(filePath, content);
+	const routePath = getPostRoutePath(filePath, content, CONTENT_DIR);
 	return {
 		// The glob loader exposes the generated slug as post.id. Keep this in
 		// sync so relatedSlugs and series exclusions resolve like Astro does.

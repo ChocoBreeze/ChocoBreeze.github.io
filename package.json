@@ -10,6 +10,7 @@
 		"build": "astro build",
 		"check": "astro check",
 		"check:content": "node scripts/check-content.mjs",
+		"check:build-artifacts": "node scripts/check-build-artifacts.mjs",
 		"test:e2e": "playwright test",
 		"benchmark:search": "node scripts/benchmark-search.mjs",
 		"benchmark:search:scale": "node scripts/benchmark-search-scale.mjs",

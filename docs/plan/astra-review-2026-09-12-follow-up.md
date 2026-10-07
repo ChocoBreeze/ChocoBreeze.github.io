@@ -33,7 +33,7 @@
 | 2 | 관련 글 문서와 title 계약 수정 | 0 | title과 AGENTS/CLAUDE의 관련 글 안내를 실제 규칙에 맞춰 수정 완료. 상세 동작 문서는 현재 구현과 일치해 변경 불필요 |
 | 3 | 검색 본문 추출 정확성 수정 | 0 | fixture·IDL 회귀 확인 완료 |
 | 4 | 검색 함수 분리·정규화·URL 상태 | 3 | 구현·회귀 테스트 완료 |
-| 5 | 브라우저 smoke suite·산출물 검사 | 2~4 | Playwright 8개 browser smoke 통과 |
+| 5 | 브라우저 smoke suite·산출물 검사 | 2~4 | **완료.** Playwright 8/8과 빌드 산출물 검사 6개 fixture 통과. 실제 산출물 506개 게시 글·902 HTML·7,934개 글 링크 확인. draft 경로·검색·피드 누출 및 title 중복 검사 명령을 GitHub Actions 빌드에 연결했다. |
 | 6 | 품질·성능 baseline과 Pagefind 비교 | 3~5, 기존 실험 확인 | JSON 현재·1k·2k 측정 및 핫패스 최적화 완료. Pagefind 전면 교체 보류 |
 | 7 | 카테고리·slug 매핑 통합, fixture 격리 | 첫 milestone 이후 | RSS·검색 slug를 canonical key에서 파생하고 slug 충돌 불변조건을 추가해 통합 완료. 콘텐츠·Git hook 테스트 픽스처는 이미 OS 임시 디렉터리에 격리돼 있어 추가 변경 불필요 |
 | 8 | ETF·Reports 메타데이터 백필 | 기존 완료 범위 확인 | **완료.** ETF 폴더의 ticker 보유 상품 글 127편에 기준일·검증일·출처 URL이 있고, Reports 글 44편에 updatedDate·verifiedDate·출처 URL이 있다. 전수 감사에서 발견한 ROBT와 Feynman의 빠진 최신성·근거를 각각 First Trust·SEC, NVIDIA 공식 자료로 보완했다. 범위 제외 8편과 단일 기준일이 없는 다중 출처 보고서의 처리 원칙은 아래 감사 기록에 남겼다. |
@@ -279,7 +279,7 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 - `npm audit`: 마지막 성공 결과는 취약점 0건. 이번 후속 작업에서 재실행했을 때 registry audit endpoint 연결 오류로 결과를 가져오지 못했다.
 - `npm run benchmark:search`: 현재 JSON 합계 10,604,428바이트, Pagefind 전체 8,407,258바이트, 초기 전송량 118,350바이트; 초기화 55.5ms, 첫 결과 152.9ms. 이 결과만으로 한국어 검색 품질과 코드 검색 대체 가능성을 판단할 수 없어 Pagefind 전면 전환은 보류.
 
-후속 범위: 필요 시 5k 규모, 전체 페이지 산출물의 draft·slug·title 검사 자동화. 이전 advisory ID와 dependency path는 원본 audit JSON이 없어서 복원하지 않는다.
+후속 범위: 검색 데이터가 현재 2k 규모를 넘을 필요가 생기면 5k synthetic 성능 비교를 수행한다. 전체 페이지 산출물의 draft·slug·title 검사는 2026-10-07에 자동화했다. 이전 advisory ID와 dependency path는 원본 audit JSON이 없어서 복원하지 않는다.
 
 검색 규모 후속: 30회 반복 후 2k 한국어 다건 결과의 Node p50/p95는 179.87/190.38ms였다. 브라우저 입력→DOM 렌더 시간·메모리를 측정하고 필요하면 결과 표시량을 조정한다. 5k synthetic은 현재 예상 배포 규모를 크게 넘으므로 필요 시 실행한다. Pagefind 1k·2k 비교는 별도 작업이며 이번 JSON 전용 측정으로 대체하지 않는다.
 
@@ -550,3 +550,5 @@ OG 규모 최적화는 [기존 보류 계획](11-og-image-scaling.md)과 연결�
 Reports 폴더 45개 Markdown 중 실제 보고 글 44편은 모두 `updatedDate`·`verifiedDate`와 본문 출처 URL을 갖췄다. 이전 후보 감사에서 빠진 Feynman·실리콘 포토닉스 글은 NVIDIA GTC 2026 공식 키노트 보도·세션과 NVIDIA 2026-05-31 생산 발표, 2026-08-27 Form 10-Q를 확인해 갱신했다. 발표에서 확인되지 않는 A16 공정, 특정 HBM 세대, NVL1152·204.8 Tb/s, 2028년 양산·성능 전망 등은 제거하고, Feynman 로드맵과 Vera Rubin용 scale-out 제품의 생산 상태를 분리했다. 다중 시점의 기술 보고서는 사실별 기준일을 본문에 남기고 단일 `dataAsOf`를 억지로 넣지 않았다. Reports README는 범위에서 제외했다.
 
 검증: 변경 글에 출처·기준일·검증일 경고가 없고 `npm run check:content` 통과(저장소 기존 경고 7건), `npm run format:check` 통과, `git diff --check` 통과. 콘텐츠 변경이므로 테스트와 Astro 빌드는 생략했다.
+
+2026-10-07 Astra Review 5번 완료: `scripts/check-build-artifacts.mjs`와 fixture 테스트를 추가해 게시 글 경로가 모두 생성됐는지, draft 경로와 검색·RSS·HTML 링크에 draft가 노출되지 않는지, HTML 내부 `/blog/` 링크가 유효한지, 페이지별 `<title>`이 하나이며 사이트명 suffix가 중복되지 않는지 검사한다. 전체 검색 인덱스도 발행 글마다 정확히 한 항목인지 확인한다. 공통 게시 경로 계산을 콘텐츠 검사기와 공유하고, `npm run check:build-artifacts`를 빌드 직후 GitHub Actions에서 실행하도록 연결했다. 저장소에는 현재 `draft: true` 글이 없어 실제 산출물의 draft 건수는 0이며, draft 페이지·검색·RSS 유출은 합성 fixture에서 검증했다. 실제 산출물에서 506개 게시 글, HTML 902개, 글 링크 7,934개를 확인했다. 검증: `npm test` 231/231, `npm run check:content` 통과(기존 경고 7건), `npm run check` 116 files·오류/경고/힌트 0, `npm run build` 902 pages, `npm run check:build-artifacts` 통과, `npm run test:e2e` 8/8, `npm run format:check` 통과, `git diff --check` 통과.

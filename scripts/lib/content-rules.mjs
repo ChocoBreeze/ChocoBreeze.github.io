@@ -358,6 +358,31 @@ export function slugifyAstroPathSegment(segment) {
 	return githubSlug(segment);
 }
 
+export function getBlogPostRoutePath(filePath, content, contentDir) {
+	const frontmatterMatch = content.match(FRONTMATTER_REGEX);
+	const fields = frontmatterMatch ? parseFrontmatterFields(frontmatterMatch[1]) : new Map();
+	const slugField = fields.get('slug');
+
+	if (slugField) {
+		const slug = stripQuotes(stripYamlComment(slugField.rawValue));
+		if (slug) {
+			return normalizeRoutePath(`/blog/${slug}`);
+		}
+	}
+
+	const relativePath = path.relative(contentDir, filePath);
+	const parsedPath = path.parse(relativePath);
+	const relativeWithoutExtension = path.join(parsedPath.dir, parsedPath.name);
+	const slugPath = relativeWithoutExtension
+		.split(path.sep)
+		.filter(Boolean)
+		.map(slugifyAstroPathSegment)
+		.join('/')
+		.replace(/\/index$/, '');
+
+	return normalizeRoutePath(`/blog/${slugPath}`);
+}
+
 export function getComparableLinkTarget(href) {
 	try {
 		return decodeURIComponent(href.split(/[?#]/, 1)[0]);

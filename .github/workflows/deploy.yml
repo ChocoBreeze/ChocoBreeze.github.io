@@ -47,6 +47,9 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Check generated build artifacts
+        run: npm run check:build-artifacts
+
       - name: Install Chromium for browser tests
         run: npx playwright install --with-deps chromium
 

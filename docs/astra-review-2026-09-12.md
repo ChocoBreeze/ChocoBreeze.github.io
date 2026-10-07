@@ -344,7 +344,7 @@ bytes로 확인됐다. 크기 보고 도구는 존재하지만 임계값 초과�
 | 2 | AGENTS/CLAUDE 관련 글 설명과 title 계약 수정 | 문서와 실제 추천 규칙 일치, 배포 title 중복 없음 | **완료.** title 계약과 `AGENTS.md`·`CLAUDE.md`의 관련 글 안내를 현재 시리즈·수동 링크·태그/토픽·카테고리 fallback 규칙에 맞췄다. |
 | 3 | 검색 본문 추출 수정 및 fixture | 수평선 사이 본문 보존, 코드·표·이미지 처리 의도대로 동작 | **완료.** 구분선·표·코드·이미지·HTML fixture와 실제 IDL 검색 회귀를 확인했다. |
 | 4 | 전체 검색 순수 함수 분리·정규화 통일·URL 상태 | 정답 질의와 공유/복귀 상태 회귀 통과 | **완료.** 검색 함수·공통 NFKC 정규화와 query/mode/category URL 복원 회귀를 구현했다. |
-| 5 | 최소 브라우저 smoke suite·산출물 검사 | 키보드·지연 로딩·오류·요청 순서·draft 노출 검증 | **부분 완료.** Chromium smoke 8/8 통과. draft·slug·title 생성 산출물 검사를 자동화하는 후속 작업은 남아 있다. |
+| 5 | 최소 브라우저 smoke suite·산출물 검사 | 키보드·지연 로딩·오류·요청 순서·draft 노출 검증 | **완료.** Chromium smoke 8/8과 빌드 산출물 검사 6개 fixture가 통과했다. 새 검사는 발행 글 506개의 페이지·검색 인덱스 포함, draft 경로·검색·피드 노출, 내부 글 링크, `<title>` 요소 수와 사이트명 suffix 중복을 확인한다. 실제 빌드에서 HTML 902개와 글 링크 7,934개가 통과했고 현재 저장소에는 draft 글이 없다. 빌드 후 검사 명령을 GitHub Actions에 추가했다. |
 | 6 | baseline과 JSON/Pagefind 비교 | 품질 회귀 없이 전송량·입력 지연 개선이 확인될 때 채택 | **완료(결정까지).** 현재 JSON과 1k/2k JSON 비용, 현재 corpus Pagefind 비교를 기록하고 전면 교체를 보류했다. Pagefind 1k/2k 합성 비교와 브라우저 입력→DOM·메모리 계측은 미실시다. |
 | 7 | 카테고리/slug 매핑 통합, 테스트 fixture 격리 | 새 분류 추가 시 검사/검색/RSS가 함께 일치 | **완료.** 공통 taxonomy/slug 로직을 연결했고 fixture는 OS 임시 디렉터리로 격리했다. |
 | 8 | ETF·Reports의 기준일/검증일/비교 메타데이터 백필 | 출처 기반 필드 추가, 비교 가능 범위와 미입력 상태 명확 | **완료.** 후보 작업 후 전수 인벤토리 감사에서 ETF 폴더의 ticker 보유 상품 글 127편 모두 `verifiedDate`, `dataAsOf`, 출처 URL을 확인했다. ROBT는 2026-10-07에 First Trust·SEC 자료로 낡은 스냅샷과 출처 없는 분석을 교체했다. Reports 글 44편은 모두 `updatedDate`, `verifiedDate`, 출처 URL이 있고, Feynman 보고서는 NVIDIA 공식 자료에 맞춰 2026-10-07 갱신했다. 단일 기준일이 없는 다중 출처 기술 보고서에는 임의의 `dataAsOf`를 만들지 않고 사실별 날짜를 표시한다. 나머지 8개 ETF Markdown 파일의 범위 제외 사유는 후속 계획에 기록했다. `npm run check:content` 통과(기존 경고 7건, 수정 글 경고 없음). |
