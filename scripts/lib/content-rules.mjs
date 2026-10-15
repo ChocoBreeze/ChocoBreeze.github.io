@@ -834,3 +834,161 @@ export function countMathDelimiters(line) {
 		tilde: (sanitizedLine.match(UNESCAPED_TILDE_REGEX) ?? []).length,
 	};
 }
+
+// --- Asset reference collection (plan 25) ---------------------------------
+//
+// `checkImages`/`checkInternalLinks` verify that a referenced asset exists.
+// These helpers answer the opposite question — which asset files are never
+// referenced by any post — so unused files do not accumulate in the repo and
+// in `dist/`.
+
+export const HTML_IMAGE_SRC_REGEX = /<img\b[^>]*?\bsrc\s*=\s*["']([^"']+)["']/gi;
+export const FRONTMATTER_ASSET_FIELDS = ['heroImage', 'image'];
+export const ASSET_EXTENSIONS = new Set([
+	'.png',
+	'.jpg',
+	'.jpeg',
+	'.gif',
+	'.svg',
+	'.webp',
+	'.avif',
+	'.bmp',
+	'.ico',
+]);
+
+export function isAssetPath(value) {
+	return ASSET_EXTENSIONS.has(path.extname(String(value ?? '')).toLowerCase());
+}
+
+function toPosixPath(value) {
+	return String(value ?? '').replace(/\\/g, '/');
+}
+
+// Normalizes one reference to a repo-relative POSIX path, or undefined when the
+// reference does not point at a local file (external URL, data URI, anchor).
+export function resolveAssetReference(href, { postDir, publicDir, rootDir }) {
+	const raw = String(href ?? '').trim();
+	if (!raw || isExternalOrAnchorLink(raw) || raw.startsWith('data:')) {
+		return undefined;
+	}
+
+	const target = getComparableLinkTarget(raw);
+	if (!target) {
+		return undefined;
+	}
+
+	const absolutePath = target.startsWith('/')
+		? path.join(publicDir, target)
+		: path.resolve(postDir, target);
+
+	return toPosixPath(path.relative(rootDir, absolutePath));
+}
+
+// Collects every local asset a single post refers to: Markdown images, Markdown
+// links that point at an image file, HTML `<img src>`, and the frontmatter image
+// fields.
+export function collectAssetReferences(content, { postPath, publicDir, rootDir }) {
+	const postDir = path.dirname(postPath);
+	const references = new Set();
+	const addReference = (href) => {
+		const resolved = resolveAssetReference(href, { postDir, publicDir, rootDir });
+		if (resolved) {
+			references.add(resolved);
+		}
+	};
+
+	const contentWithoutCode = stripInlineCode(stripCodeBlocks(content));
+
+	for (const match of findAllMatches(contentWithoutCode, MARKDOWN_LINK_REGEX)) {
+		const href = match[1];
+		if (isMarkdownImageLink(match[0]) || isAssetPath(getComparableLinkTarget(href))) {
+			addReference(href);
+		}
+	}
+
+	for (const match of findAllMatches(contentWithoutCode, HTML_IMAGE_SRC_REGEX)) {
+		addReference(match[1]);
+	}
+
+	const frontmatterMatch = content.match(FRONTMATTER_REGEX);
+	if (frontmatterMatch) {
+		const fields = parseFrontmatterFields(frontmatterMatch[1]);
+		for (const field of FRONTMATTER_ASSET_FIELDS) {
+			const rawValue = fields.get(field)?.rawValue ?? '';
+			const value = stripQuotes(stripYamlComment(rawValue).trim());
+			if (value && value !== 'null') {
+				addReference(value);
+			}
+		}
+	}
+
+	return references;
+}
+
+// `assets` and `references` are repo-relative POSIX paths. Allowlist entries may
+// be an exact path or a `dir/` prefix for an intentionally retained folder.
+export function findUnusedAssets({ assets = [], references = [], allowlist = [] } = {}) {
+	const referenced = new Set([...references].map(toPosixPath));
+	const allowedPaths = new Set();
+	const allowedPrefixes = [];
+	for (const entry of allowlist) {
+		const normalized = toPosixPath(entry).trim();
+		if (!normalized) {
+			continue;
+		}
+
+		if (normalized.endsWith('/')) {
+			allowedPrefixes.push(normalized);
+		} else {
+			allowedPaths.add(normalized);
+		}
+	}
+
+	const isAllowed = (assetPath) =>
+		allowedPaths.has(assetPath) || allowedPrefixes.some((prefix) => assetPath.startsWith(prefix));
+
+	return [...new Set(assets.map(toPosixPath))]
+		.filter((assetPath) => !referenced.has(assetPath) && !isAllowed(assetPath))
+		.sort();
+}
+
+export function formatByteSize(bytes) {
+	const value = Number(bytes);
+	if (!Number.isFinite(value) || value <= 0) {
+		return '0 B';
+	}
+
+	if (value < 1024) {
+		return `${value} B`;
+	}
+
+	const units = ['KiB', 'MiB', 'GiB'];
+	let scaled = value / 1024;
+	let unitIndex = 0;
+	while (scaled >= 1024 && unitIndex < units.length - 1) {
+		scaled /= 1024;
+		unitIndex += 1;
+	}
+
+	return `${scaled.toFixed(1)} ${units[unitIndex]}`;
+}
+
+// Site code (pages, components, styles) can also reference `public/` assets, so
+// those references must be collected too — otherwise an asset used only by a
+// page would be reported as unused.
+export const SITE_ASSET_REFERENCE_REGEX = /\/images\/[^"')\s\][]+/g;
+
+export function collectSiteAssetReferences(content, { publicDir, rootDir }) {
+	const references = new Set();
+
+	for (const match of String(content ?? '').matchAll(SITE_ASSET_REFERENCE_REGEX)) {
+		const target = getComparableLinkTarget(match[0]);
+		if (!isAssetPath(target)) {
+			continue;
+		}
+
+		references.add(toPosixPath(path.relative(rootDir, path.join(publicDir, target))));
+	}
+
+	return references;
+}

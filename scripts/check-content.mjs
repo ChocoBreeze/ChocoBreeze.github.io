@@ -5,6 +5,7 @@ import { parseFrontmatter } from '@astrojs/markdown-remark';
 
 import {
 	ABSOLUTE_PATH_PATTERNS,
+	ASSET_EXTENSIONS,
 	FINANCE_CATEGORIES_FOR_DELIMITER_CHECK,
 	FRESHNESS_DATE_FIELDS,
 	FRONTMATTER_REGEX,
@@ -19,8 +20,12 @@ import {
 	SECRET_PATTERNS,
 	UNSAFE_SLUG_REGEX,
 	WARNING_PATTERNS,
+	collectAssetReferences,
+	collectSiteAssetReferences,
 	countMathDelimiters,
 	findAllMatches,
+	findUnusedAssets,
+	formatByteSize,
 	getComparableLinkTarget,
 	getBlogPostRoutePath as getPostRoutePath,
 	getLineNumber,
@@ -957,6 +962,243 @@ function checkDuplicatePostRoutes(postRoutes, issues) {
 	}
 }
 
+// --- Unused asset detection (plan 25) ------------------------------------
+
+const ASSET_DIRECTORY_NAME = 'images';
+const UNUSED_ASSET_ALLOWLIST_PATH = path.join(
+	ROOT_DIR,
+	'scripts',
+	'lib',
+	'unused-asset-allowlist.json',
+);
+
+function walkAssetFiles(directory) {
+	const results = [];
+	if (!existsSync(directory)) {
+		return results;
+	}
+
+	for (const entry of readdirSync(directory, { withFileTypes: true })) {
+		const fullPath = path.join(directory, entry.name);
+
+		if (entry.isDirectory()) {
+			results.push(...walkAssetFiles(fullPath));
+			continue;
+		}
+
+		if (ASSET_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+			results.push(fullPath);
+		}
+	}
+
+	return results;
+}
+
+// Post-local asset folders live next to the post (`<post folder>/images/`).
+function collectPostLocalAssetDirectories(directory) {
+	const results = [];
+
+	for (const entry of readdirSync(directory, { withFileTypes: true })) {
+		if (!entry.isDirectory()) {
+			continue;
+		}
+
+		const fullPath = path.join(directory, entry.name);
+		if (entry.name === ASSET_DIRECTORY_NAME) {
+			results.push(fullPath);
+			continue;
+		}
+
+		results.push(...collectPostLocalAssetDirectories(fullPath));
+	}
+
+	return results;
+}
+
+function readUnusedAssetAllowlist() {
+	if (!existsSync(UNUSED_ASSET_ALLOWLIST_PATH)) {
+		return [];
+	}
+
+	try {
+		const parsed = JSON.parse(readFileSync(UNUSED_ASSET_ALLOWLIST_PATH, 'utf8'));
+		return Array.isArray(parsed?.retain) ? parsed.retain : [];
+	} catch (error) {
+		console.warn(`WARN  Could not read the unused-asset allowlist: ${error.message}`);
+		return [];
+	}
+}
+
+function toRepoRelativePosixPath(absolutePath) {
+	return path.relative(ROOT_DIR, absolutePath).replace(/\\/g, '/');
+}
+
+// Maps an unused asset back to the posts that could own it, so the pre-commit
+// hook can report only the assets next to the posts being committed.
+function getAssetOwnerKeys(assetPath, markdownFilesByDirectory) {
+	const assetDirectory = path.dirname(assetPath);
+	if (path.basename(assetDirectory) !== ASSET_DIRECTORY_NAME) {
+		return [];
+	}
+
+	const postDirectory = path.dirname(assetDirectory);
+	return (markdownFilesByDirectory.get(postDirectory) ?? []).map(toRepoRelativePosixPath);
+}
+
+const SITE_SOURCE_EXTENSIONS = new Set([
+	'.astro',
+	'.ts',
+	'.tsx',
+	'.mts',
+	'.mjs',
+	'.js',
+	'.jsx',
+	'.css',
+	'.json',
+	'.md',
+	'.mdx',
+]);
+
+function walkSiteSourceFiles(directory) {
+	const results = [];
+	if (!existsSync(directory)) {
+		return results;
+	}
+
+	for (const entry of readdirSync(directory, { withFileTypes: true })) {
+		const fullPath = path.join(directory, entry.name);
+
+		if (entry.isDirectory()) {
+			if (fullPath === CONTENT_DIR) {
+				continue;
+			}
+
+			results.push(...walkSiteSourceFiles(fullPath));
+			continue;
+		}
+
+		if (SITE_SOURCE_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+			results.push(fullPath);
+		}
+	}
+
+	return results;
+}
+
+function collectSiteReferences() {
+	const references = new Set();
+	const sourceFiles = [
+		...walkSiteSourceFiles(path.join(ROOT_DIR, 'src')),
+		...walkSiteSourceFiles(path.join(ROOT_DIR, 'templates')),
+	];
+
+	for (const filePath of sourceFiles) {
+		for (const reference of collectSiteAssetReferences(readFileSync(filePath, 'utf8'), {
+			publicDir: PUBLIC_DIR,
+			rootDir: ROOT_DIR,
+		})) {
+			references.add(reference);
+		}
+	}
+
+	return references;
+}
+
+function checkUnusedAssets(markdownFiles, assetReferences) {
+	const markdownFilesByDirectory = new Map();
+	for (const filePath of markdownFiles) {
+		const directory = path.dirname(filePath);
+		const existing = markdownFilesByDirectory.get(directory);
+		if (existing) {
+			existing.push(filePath);
+		} else {
+			markdownFilesByDirectory.set(directory, [filePath]);
+		}
+	}
+
+	const assetFiles = [
+		...collectPostLocalAssetDirectories(CONTENT_DIR).flatMap((directory) =>
+			walkAssetFiles(directory),
+		),
+		...walkAssetFiles(path.join(PUBLIC_DIR, ASSET_DIRECTORY_NAME)),
+	];
+
+	const unused = findUnusedAssets({
+		assets: assetFiles.map(toRepoRelativePosixPath),
+		references: [...assetReferences, ...collectSiteReferences()],
+		allowlist: readUnusedAssetAllowlist(),
+	});
+
+	let totalBytes = 0;
+	const entries = unused.map((assetPath) => {
+		const absolutePath = path.join(ROOT_DIR, assetPath);
+		const bytes = existsSync(absolutePath) ? statSync(absolutePath).size : 0;
+		totalBytes += bytes;
+		return {
+			assetPath,
+			bytes,
+			ownerKeys: getAssetOwnerKeys(absolutePath, markdownFilesByDirectory),
+		};
+	});
+
+	return { entries, totalBytes, assetCount: assetFiles.length };
+}
+
+function hasCliFlag(name) {
+	return process.argv.includes(`--${name}`);
+}
+
+function reportUnusedAssets(unusedAssets, stagedFileSet) {
+	const { entries, totalBytes, assetCount } = unusedAssets;
+	if (entries.length === 0) {
+		return;
+	}
+
+	const listAll = hasCliFlag('report-unused-assets');
+	const prune = hasCliFlag('prune-unused-assets');
+
+	if (prune) {
+		// Deletion candidates only. Removing files stays a deliberate, separate
+		// commit so an unreferenced original is never silently discarded.
+		for (const entry of entries) {
+			console.log(entry.assetPath);
+		}
+
+		// stdout stays a clean path list so it can be piped; the summary goes to
+		// stderr.
+		console.warn(
+			`${entries.length} of ${assetCount} asset file(s), ${formatByteSize(totalBytes)}, are unreferenced.`,
+		);
+		return;
+	}
+
+	if (stagedFileSet) {
+		const staged = entries.filter((entry) =>
+			entry.ownerKeys.some((ownerKey) => stagedFileSet.has(ownerKey)),
+		);
+		for (const entry of staged) {
+			console.warn(
+				`WARN  ${entry.assetPath} is not referenced by any post (${formatByteSize(entry.bytes)}).`,
+			);
+		}
+
+		return;
+	}
+
+	if (listAll) {
+		for (const entry of entries) {
+			console.warn(
+				`WARN  ${entry.assetPath} is not referenced by any post (${formatByteSize(entry.bytes)}).`,
+			);
+		}
+	}
+
+	console.log(
+		`UNUSED ASSETS ${entries.length} of ${assetCount} file(s), ${formatByteSize(totalBytes)} unreferenced.` +
+			(listAll ? '' : ' Run with --report-unused-assets for the list.'),
+	);
+}
+
 function getStagedFileSet() {
 	const listArg = process.argv.find((arg) => arg.startsWith('--staged-file-list='));
 	if (!listArg) {
@@ -993,8 +1235,18 @@ async function main() {
 
 	checkDuplicatePostRoutes(postRoutes, issues);
 
+	const assetReferences = new Set();
+
 	for (const filePath of files) {
 		const content = readFileSync(filePath, 'utf8');
+		for (const reference of collectAssetReferences(content, {
+			postPath: filePath,
+			publicDir: PUBLIC_DIR,
+			rootDir: ROOT_DIR,
+		})) {
+			assetReferences.add(reference);
+		}
+
 		checkFrontmatter(filePath, content, issues, warnings, titleIndex, postReferences);
 		checkMarkdownSyntax(filePath, content, warnings);
 		if (FINANCE_CATEGORIES_FOR_DELIMITER_CHECK.has(getPrimaryCategory(content))) {
@@ -1037,6 +1289,8 @@ async function main() {
 	const reportedWarnings = stagedFileSet
 		? warnings.filter((warning) => stagedFileSet.has(warning.filePath.replace(/\\/g, '/')))
 		: warnings;
+
+	reportUnusedAssets(checkUnusedAssets(files, assetReferences), stagedFileSet);
 
 	if (issues.length === 0 && reportedWarnings.length === 0) {
 		console.log(`Content quality check passed for ${files.length} files.`);

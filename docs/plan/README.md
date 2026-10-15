@@ -26,7 +26,7 @@
 | 22 | [구조화 데이터와 링크 검증 강화](22-seo-and-link-validation.md) | 완료 | P2 | 16, 17 일부 | 중 |
 | 23 | [조건부 플랫폼 개선](23-conditional-platform-improvements.md) | 조건부 보류 | 조건부 | 기능별 상이 | 선택 |
 | 24 | [공개 글 통계 페이지](24-blog-stats.md) | 완료 | P3 | 없음 | 중 |
-| 25 | [미사용 콘텐츠 자산 검사](25-unused-content-assets.md) | 미착수 | P0 | 없음 | 소~중 |
+| 25 | [미사용 콘텐츠 자산 검사](25-unused-content-assets.md) | 완료(삭제 작업 제외) | P0 | 없음 | 소~중 |
 | 26 | [slug와 URL 안정성](26-slug-and-url-stability.md) | 미착수 | P0 | 없음 | 중 |
 | 27 | [시리즈 허브](27-series-hub.md) | 미착수 | P1 | 26 권장 | 중 |
 | 28 | [검색 본문 커버리지와 결과 렌더링](28-search-coverage-and-result-rendering.md) | 미착수 | P1 | 21 측정값 | 중~대 |

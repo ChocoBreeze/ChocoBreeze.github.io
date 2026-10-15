@@ -33,12 +33,13 @@
 
 ## 구현 단계
 
-1. [미착수] 글 1건에서 참조하는 자산 경로를 수집하는 순수 함수를 추가합니다. 상대 경로, `/images/...` 절대 경로, HTML `<img>`, frontmatter 이미지 필드, 쿼리·프래그먼트가 붙은 경로를 모두 정규화합니다.
-2. [미착수] 자산 디렉터리를 순회해 미참조 목록과 합계 용량을 계산합니다.
-3. [미착수] 전체 실행에서는 경고로 요약하고, `--staged-file-list` 모드에서는 스테이지된 글과 관련된 항목만 출력해 기존 훅 소음 정책을 유지합니다.
-4. [미착수] `--report-unused-assets`로 전체 목록을, `--prune-unused-assets`로 삭제 후보를 출력합니다. 삭제는 기본 동작이 아닙니다.
-5. [미착수] 의도적으로 보관하는 원본은 allowlist 파일로 예외 처리합니다.
-6. [미착수] 확인된 미참조 자산을 카테고리 단위로 나눠 삭제 커밋을 진행합니다.
+1. [완료] `collectAssetReferences()`로 글 1건의 자산 참조를 수집합니다. 상대 경로, `/images/...` 절대 경로, 이미지 파일을 가리키는 Markdown 링크, HTML `<img src>`, frontmatter `heroImage`/`image`를 처리하고 쿼리·프래그먼트·퍼센트 인코딩을 정규화합니다. 코드 블록과 인라인 코드 안의 참조는 제외합니다.
+   페이지·컴포넌트·스타일이 참조하는 `public/images` 자산도 `collectSiteAssetReferences()`로 함께 수집합니다. 이 단계를 빼면 페이지에서만 쓰는 자산이 미참조로 잘못 분류됩니다.
+2. [완료] `src/content/blog/**/images/`와 `public/images/`를 순회해 미참조 목록과 합계 용량을 계산합니다(`findUnusedAssets()`, `formatByteSize()`).
+3. [완료] 전체 실행에서는 `UNUSED ASSETS <n> of <total> file(s), <size> unreferenced` 한 줄로 요약합니다. 기존 경고 집계에 322건을 더하지 않으므로 경고 수 기준선이 유지됩니다. `--staged-file-list` 모드에서는 스테이지된 글과 같은 폴더의 자산만 경고로 출력합니다.
+4. [완료] `--report-unused-assets`는 전체 목록을, `--prune-unused-assets`는 경로만 stdout으로 출력합니다(요약은 stderr로 보내 파이프 사용이 가능합니다). 삭제는 기본 동작이 아니며 스크립트는 파일을 지우지 않습니다.
+5. [완료] `scripts/lib/unused-asset-allowlist.json`의 `retain` 목록으로 예외 처리합니다. `/`로 끝나는 항목은 폴더 전체를 보관합니다.
+6. [미착수] 확인된 미참조 자산을 카테고리 단위로 나눠 삭제 커밋을 진행합니다. 2026-10-16 측정 기준 322개(65.1MiB)가 후보이며, 삭제는 되돌리기 어려우므로 사람이 목록을 확인한 뒤에만 진행합니다.
 
 ## 테스트 설계
 
@@ -54,6 +55,14 @@
 - `npm run check:content`
 - `npm run build` 및 `npm run check:build-artifacts`(삭제 커밋 이후 산출물 확인)
 - `npm run format:check`
+
+### 2026-10-16 구현 결과
+
+- `npm test` 249개 통과(자산 참조·미참조 판정·용량 포맷 단위 테스트 18개 추가)
+- `npm run check:content` 통과, 경고 7건으로 기존과 동일
+- 자산 384개 중 322개(65.1MiB)가 미참조로 집계됨. 내역: `src/content/blog/**/images/`와 `public/images/`
+- `npm run format:check` 통과
+- 삭제 작업(6단계)은 진행하지 않았습니다.
 
 ## 범위 제외
 

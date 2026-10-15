@@ -1,0 +1,4 @@
+{
+	"comment": "Assets intentionally kept even though no post references them. `npm run check:content` skips these when reporting unused assets. An entry ending with `/` keeps a whole folder; any other entry is an exact repo-relative path.",
+	"retain": []
+}

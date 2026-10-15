@@ -1,9 +1,14 @@
 import assert from 'node:assert/strict';
+import path from 'node:path';
 import { describe, it } from 'node:test';
 import { BLOG_CATEGORY_KEYS, slugifyBlogCategoryKey } from '../../src/data/blogTaxonomy.mjs';
 
 import {
+	collectAssetReferences,
+	collectSiteAssetReferences,
 	countMathDelimiters,
+	findUnusedAssets,
+	formatByteSize,
 	getPrimaryCategory,
 	getLinkFragment,
 	getMarkdownHeadingIds,
@@ -572,5 +577,165 @@ describe('getPrimaryCategory', () => {
 
 	it('returns undefined when categories are absent', () => {
 		assert.equal(getPrimaryCategory('---\ntitle: X\n---\nbody'), undefined);
+	});
+});
+
+const ROOT_DIR = path.join(path.sep, 'repo');
+const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
+const POST_PATH = path.join(ROOT_DIR, 'src', 'content', 'blog', 'ETF', 'AAA', 'AAA.md');
+
+function collectPostAssets(content) {
+	return [
+		...collectAssetReferences(content, {
+			postPath: POST_PATH,
+			publicDir: PUBLIC_DIR,
+			rootDir: ROOT_DIR,
+		}),
+	].sort();
+}
+
+describe('collectAssetReferences', () => {
+	it('collects Markdown images, HTML images, image links, and frontmatter fields', () => {
+		const content = [
+			'---',
+			'title: AAA',
+			'heroImage: /images/shared/hero.png',
+			'---',
+			'',
+			'![alt](images/one.png)',
+			'',
+			'<img src="./images/two.png" alt="two" />',
+			'',
+			'[download](images/three.png)',
+			'',
+		].join('\n');
+
+		assert.deepEqual(collectPostAssets(content), [
+			'public/images/shared/hero.png',
+			'src/content/blog/ETF/AAA/images/one.png',
+			'src/content/blog/ETF/AAA/images/three.png',
+			'src/content/blog/ETF/AAA/images/two.png',
+		]);
+	});
+
+	it('ignores external URLs, data URIs, anchors, and non-asset links', () => {
+		const content = [
+			'![remote](https://example.com/a.png)',
+			'![inline](data:image/png;base64,AAAA)',
+			'[anchor](#section)',
+			'[post](/blog/other-post/)',
+		].join('\n');
+
+		assert.deepEqual(collectPostAssets(content), []);
+	});
+
+	it('ignores references inside code blocks and inline code', () => {
+		const content = [
+			'```md',
+			'![x](images/fenced.png)',
+			'```',
+			'',
+			'`![y](images/inline.png)`',
+		].join('\n');
+
+		assert.deepEqual(collectPostAssets(content), []);
+	});
+
+	it('normalizes query strings, fragments, and percent-encoded spaces', () => {
+		const content =
+			'![a](images/one.png?v=2) ![b](images/two.png#fig) ![c](images/with%20space.png)';
+
+		assert.deepEqual(collectPostAssets(content), [
+			'src/content/blog/ETF/AAA/images/one.png',
+			'src/content/blog/ETF/AAA/images/two.png',
+			'src/content/blog/ETF/AAA/images/with space.png',
+		]);
+	});
+
+	it('ignores an explicitly null frontmatter image field', () => {
+		const content = ['---', 'title: AAA', 'heroImage: null', 'image:', '---', ''].join('\n');
+
+		assert.deepEqual(collectPostAssets(content), []);
+	});
+});
+
+describe('collectSiteAssetReferences', () => {
+	it('collects public image paths referenced from site source files', () => {
+		const content = [
+			'const hero = "/images/site/banner.png";',
+			'background: url(/images/site/bg.svg);',
+		].join('\n');
+
+		assert.deepEqual(
+			[...collectSiteAssetReferences(content, { publicDir: PUBLIC_DIR, rootDir: ROOT_DIR })].sort(),
+			['public/images/site/banner.png', 'public/images/site/bg.svg'],
+		);
+	});
+
+	it('ignores non-asset paths that start with the images prefix', () => {
+		const content = 'href="/images/index.html"';
+
+		assert.deepEqual(
+			[...collectSiteAssetReferences(content, { publicDir: PUBLIC_DIR, rootDir: ROOT_DIR })],
+			[],
+		);
+	});
+});
+
+describe('findUnusedAssets', () => {
+	const assets = [
+		'public/images/used.png',
+		'public/images/unused.png',
+		'src/content/blog/ETF/AAA/images/used.png',
+		'src/content/blog/ETF/AAA/images/unused.png',
+	];
+
+	it('reports only assets that no reference points at', () => {
+		assert.deepEqual(
+			findUnusedAssets({
+				assets,
+				references: ['public/images/used.png', 'src/content/blog/ETF/AAA/images/used.png'],
+			}),
+			['public/images/unused.png', 'src/content/blog/ETF/AAA/images/unused.png'],
+		);
+	});
+
+	it('treats a reference written with backslashes as the same asset', () => {
+		assert.deepEqual(
+			findUnusedAssets({
+				assets: ['src/content/blog/ETF/AAA/images/used.png'],
+				references: ['src\\content\\blog\\ETF\\AAA\\images\\used.png'],
+			}),
+			[],
+		);
+	});
+
+	it('honors exact and directory-prefix allowlist entries', () => {
+		assert.deepEqual(
+			findUnusedAssets({
+				assets,
+				references: [],
+				allowlist: ['public/images/', 'src/content/blog/ETF/AAA/images/unused.png'],
+			}),
+			['src/content/blog/ETF/AAA/images/used.png'],
+		);
+	});
+
+	it('returns an empty list when there are no assets', () => {
+		assert.deepEqual(findUnusedAssets(), []);
+	});
+});
+
+describe('formatByteSize', () => {
+	it('formats bytes, kibibytes, and mebibytes', () => {
+		assert.equal(formatByteSize(0), '0 B');
+		assert.equal(formatByteSize(512), '512 B');
+		assert.equal(formatByteSize(2048), '2.0 KiB');
+		assert.equal(formatByteSize(64073318), '61.1 MiB');
+	});
+
+	it('treats invalid input as zero', () => {
+		assert.equal(formatByteSize(undefined), '0 B');
+		assert.equal(formatByteSize(-5), '0 B');
 	});
 });
