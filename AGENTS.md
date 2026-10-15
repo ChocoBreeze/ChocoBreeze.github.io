@@ -6,7 +6,7 @@ This repository is an Astro-based personal blog. The root `README.md` documents 
 
 ## Stack
 
-- Astro 6
+- Astro 7
 - Content collections via `src/content.config.ts`
 - Markdown-first content in `src/content/blog`
 - GitHub Pages deployment via `.github/workflows/deploy.yml`
@@ -128,6 +128,8 @@ Run from repository root:
 - `npm run check:content`
 - `npm run check`
 - `npm run build`
+- `npm run check:build-artifacts` (after a build)
+- `npm run test:e2e` (after a build)
 - `npm run preview`
 - `npm run format:check`
 
@@ -167,10 +169,13 @@ Use this checklist before committing non-trivial changes.
 GitHub Pages deployment currently uses:
 
 - `actions/setup-node@v4` with `node-version-file: .nvmrc`
-- `npm ci`, `npm test`, `npm run check:content`, `npm run check`, and `npm run build`
+- `npm ci`, `npm audit --audit-level=high`, `npm test`, `npm run check:content`, `npm run check`, and `npm run build`
+- `npm run check:build-artifacts`, then Chromium install and `npm run test:e2e`, then `npm run report:search-size`
 - `actions/upload-pages-artifact@v3` and `actions/deploy-pages@v4`
 
-`.nvmrc` is the deployment version source; keep it on Node `22.12.0+` for Astro 6 compatibility and keep `package.json`'s `engines` constraint aligned.
+`.github/workflows/ci.yml` runs the same checks on pull requests, minus `check:build-artifacts` and `report:search-size`.
+
+`.nvmrc` is the deployment version source; keep it on Node `22.12.0+` for Astro 7 compatibility and keep `package.json`'s `engines` constraint aligned.
 
 ## Recommended Workflow
 

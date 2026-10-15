@@ -10,11 +10,25 @@ npm run build         # Production build (output: ./dist)
 npm run preview       # Preview the built site locally
 npm run check         # TypeScript/Astro type-check
 npm run check:content # Validate all blog post frontmatter and content quality
-npm test              # Run content-rule unit tests
+npm test              # Run the Node unit tests in scripts/test/
+npm run test:e2e      # Playwright browser smoke tests (e2e/), needs a build first
 npm run new:post      # Scaffold a new blog post (see below)
 npm run format        # Format supported files with Prettier
 npm run format:check  # Check Prettier formatting
 ```
+
+Build/search diagnostics, run by the deploy workflow or on demand:
+
+```bash
+npm run check:build-artifacts     # Assert the generated ./dist contains the expected artifacts
+npm run report:search-size        # Report emitted search index sizes
+npm run benchmark:search          # Compare the JSON search index against Pagefind
+npm run benchmark:search:scale    # Scale benchmark for the JSON index
+npm run benchmark:search:pagefind-scale  # Scale benchmark for Pagefind
+npm run benchmark:search:browser  # Browser-side search benchmark
+```
+
+Pagefind is a devDependency used only by those benchmarks; the production search still ships the JSON indexes below.
 
 ### Scaffolding new posts
 
@@ -31,7 +45,7 @@ Omitting `--date` defaults to today in Asia/Seoul time. Omitting `--slug` auto-g
 
 ## Architecture
 
-This is an **Astro 6** static site (GitHub Pages) with MDX support, remark-math/rehype-katex for LaTeX, and no UI framework.
+This is an **Astro 7** static site (GitHub Pages) with MDX support, remark-math/rehype-katex for LaTeX, and no UI framework.
 
 ### Content model
 
@@ -40,6 +54,8 @@ All blog content lives in `src/content/blog/`, organized into category subfolder
 Required frontmatter fields: `title`, and either `pubDate` (full ISO 8601 with timezone: `"2026-06-29T00:00:00+09:00"`) or legacy `date`.
 
 Optional but important fields: `categories`, `slug`, `description`, `tags`, `difficulty`, `topics`, `pinned`, `order`, `draft`.
+
+The schema also carries series fields (`series`, `seriesSlug`, `seriesOrder`), manual link fields (`relatedSlugs`, `prerequisiteSlugs`), problem-solving fields (`platform`, `problemNumber`), freshness dates (`updatedDate`, `verifiedDate`, `dataAsOf`), Market Brief fields (`briefType`, `marketDate`, `coverageStart`, `coverageEnd`), and validated ETF metadata (`instrumentType`, `ticker`, `issuer`, `assetClass`, `strategy`, `exposure`, `leverage`, `incomeStyle`, plus `expenseRatio`/`aum`/`yield` with their `*AsOf` dates). `src/content.config.ts` is the source of truth for the full list, and `npm run new:post --help` lists the matching flags.
 
 Legacy Jekyll fields (`date`, `image`) are still accepted by the schema, but new posts should use `pubDate` and `heroImage`.
 
@@ -65,6 +81,7 @@ A post's URL is `/blog/<slug>` where `<slug>` is the frontmatter `slug` field if
 ### Search & RSS
 
 - `src/pages/search.json.ts` and `src/pages/search/[category].json.ts` emit JSON search indexes (built via `src/lib/searchIndex.ts`).
+- `src/pages/search/quick.json.ts` emits the smaller index that `src/components/GlobalSearchPalette.astro` fetches on demand (`src/lib/quickSearch.mjs`).
 - `src/pages/code-search.json.ts` emits a code-only search index (`src/lib/codeSearchIndex.ts`).
 - RSS feeds: `/rss.xml` (all posts) and `/rss/<category>.xml` per category, implemented in `src/lib/rss.js`.
 
@@ -82,7 +99,7 @@ Posts without their own `heroImage`/`image` get an auto-generated OG card at `/o
 - No absolute local paths or secret patterns in content
 - Missing image alt text, unbalanced bold markers
 
-CI runs unit tests and this check on every pull request (`npm test` → `check:content` → `astro check` → `build`), and the deploy workflow reruns the same sequence before publishing. The user-wide Git `pre-commit` dispatcher invokes this repository's `scripts/hooks/pre-commit` when it exists, so a commit with a broken post will fail — fix the reported errors rather than bypassing the hook. The global `commit-msg` hook validates AI provenance but does not generate metadata. This repository does not configure `core.hooksPath` or a `prepare` npm script.
+`ci.yml` runs on every pull request: `npm ci` → `npm audit --audit-level=high` → `npm test` → `check:content` → `astro check` → `build` → `test:e2e` (Chromium). `deploy.yml` reruns that sequence and adds `check:build-artifacts` after the build and `report:search-size` after the browser tests before publishing. The user-wide Git `pre-commit` dispatcher invokes this repository's `scripts/hooks/pre-commit` when it exists, so a commit with a broken post will fail — fix the reported errors rather than bypassing the hook. The global `commit-msg` hook validates AI provenance but does not generate metadata. This repository does not configure `core.hooksPath` or a `prepare` npm script.
 
 ### Git commits and AI provenance
 
@@ -97,7 +114,7 @@ CI runs unit tests and this check on every pull request (`npm test` → `check:c
 
 ### Deployment
 
-Push to `main` triggers GitHub Actions (`deploy.yml`) which builds with `npm run build` and deploys `./dist` to GitHub Pages. The Node version is single-sourced in `.nvmrc` (both workflows read it via `node-version-file`); bump that one file to upgrade, keeping it on Node 22.12+ for Astro 6 compatibility.
+Push to `main` triggers GitHub Actions (`deploy.yml`) which builds with `npm run build` and deploys `./dist` to GitHub Pages. The Node version is single-sourced in `.nvmrc` (both workflows read it via `node-version-file`); bump that one file to upgrade, keeping it on Node 22.12+ for Astro 7 compatibility (`package.json`'s `engines` field must stay aligned).
 
 ## Operational guides
 
@@ -105,4 +122,7 @@ Push to `main` triggers GitHub Actions (`deploy.yml`) which builds with `npm run
 - `docs/market-brief-prompts.md` — current Daily/Weekly Market Brief prompt rules (also driven by the `/market-daily` and `/market-weekly` slash commands in `.claude/commands/`).
 - `docs/etf/etf-content-guide.md` and `docs/etf/미국상장_ETF_분류_기준_Codex용_v2.md` — ETF post placement and U.S.-listed ETF classification rules.
 - `docs/image-management.md` — post-local `images/` folders for single-post images; `public/images/` for shared assets.
+- `.claude/commands/leetcode.md` — the `/leetcode` slash command that turns a LeetCode problem plus solutions into a Problem_Solving post.
+- `docs/publishing-checklist.md` — pre-publish checklist and `new:post` usage for a new or edited post.
+- `docs/plan/README.md` — improvement-plan roadmap and current status; `docs/plan/COMPLETED.md` records finished plans.
 - `docs/blog-routing-and-related-posts.md` — read before changing prev/next or related-posts logic in `src/pages/blog/[...slug].astro` (previous/next follows same-category order; related cards prioritize series, explicit `relatedSlugs`, tag/topic overlap, then same-category neighbors; metadata-based, not text/embedding similarity).
