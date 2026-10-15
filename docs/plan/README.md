@@ -28,7 +28,7 @@
 | 24 | [공개 글 통계 페이지](24-blog-stats.md) | 완료 | P3 | 없음 | 중 |
 | 25 | [미사용 콘텐츠 자산 검사](25-unused-content-assets.md) | 완료(삭제 작업 제외) | P0 | 없음 | 소~중 |
 | 26 | [slug와 URL 안정성](26-slug-and-url-stability.md) | 부분 완료(비ASCII 92편 잔여) | P0 | 없음 | 중 |
-| 27 | [시리즈 허브](27-series-hub.md) | 미착수 | P1 | 26 권장 | 중 |
+| 27 | [시리즈 허브](27-series-hub.md) | 완료(메타데이터 백필 제외) | P1 | 26 권장 | 중 |
 | 28 | [검색 본문 커버리지와 결과 렌더링](28-search-coverage-and-result-rendering.md) | 미착수 | P1 | 21 측정값 | 중~대 |
 | 29 | [frontmatter 완성도와 태그 정규화](29-frontmatter-completeness-and-tags.md) | 미착수 | P2 | 26 권장 | 중 |
 | 30 | [폰트·KaTeX 셀프 호스팅](30-self-hosted-fonts-and-katex.md) | 미착수 | P2 | 23 착수 조건 | 중 |

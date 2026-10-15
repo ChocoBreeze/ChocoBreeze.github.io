@@ -39,12 +39,12 @@
 
 ## 구현 단계
 
-1. [미착수] 발행 글에서 시리즈 목록을 집계하는 순수 함수와 단위 테스트를 추가합니다.
-2. [미착수] `/series/` 인덱스를 추가하고 기존 카테고리 목록 레이아웃을 재사용합니다.
-3. [미착수] `/series/<seriesSlug>/` 상세를 추가합니다.
-4. [미착수] 글 상세의 시리즈 진행 표시를 보강합니다.
-5. [미착수] `git-commands` 전용 페이지를 자동 생성 페이지로 대체하고, 기존 경로는 26번 계획의 리다이렉트 방식으로 유지합니다.
-6. [미착수] 후속 작업으로 ETF·Market Brief·Problem Solving의 연작 글에 `seriesSlug`를 부여할 대상을 선정합니다. 메타데이터 백필은 UI 구현과 별도 커밋으로 분리합니다.
+1. [완료] `buildSeriesList()`·`findSeries()`를 추가했습니다. 시리즈별 글 목록(읽는 순서), 글 수, 첫·마지막 발행일, 카테고리를 모아 최신 글 순으로 정렬합니다.
+2. [완료] `/series/` 인덱스를 추가했습니다. `BlogListLayout`은 `activeCategory`가 필수라 시리즈에 맞지 않으므로, 같은 성격의 `/tags/` 페이지 구조를 따랐습니다.
+3. [완료] `/series/<seriesSlug>/` 상세를 추가했습니다. 번호가 붙은 읽는 순서 목록으로 제목·설명·발행일을 보여줍니다.
+4. [완료] 글 상세의 시리즈 이름이 `/series/<seriesSlug>/`로 연결됩니다. `N/M편` 진행 표시와 이전·다음 편 이동은 이미 있었으므로 그대로 두고 허브로 가는 경로만 더했습니다.
+5. [완료, 방침 변경] 대체하지 않았습니다. `src/pages/programming/git-commands.astro`는 단순 목록이 아니라 15개 주제 구간으로 직접 큐레이션한 색인이어서, 자동 생성 목록으로 바꾸면 기능이 줄어듭니다. 기존 URL을 유지하고 시리즈 상세에서 `명령어별 색인 보기`로 연결했습니다. 리다이렉트는 필요하지 않습니다.
+6. [미착수] ETF·Market Brief·Problem Solving의 연작 글에 `seriesSlug`를 부여할 대상 선정은 글 묶는 기준을 사람이 정해야 하므로 남겨 둡니다. 현재 시리즈는 `git-commands` 1개(26편)뿐이고, 허브는 시리즈가 늘어나면 자동으로 반영합니다.
 
 ## 테스트 설계
 
@@ -60,6 +60,15 @@
 - `npm run check`
 - `npm run build`
 - `npm run format:check`
+
+### 2026-10-16 구현 결과
+
+- `npm test` 283개 통과(시리즈 집계 테스트 7개 추가)
+- `npm run check` 0 errors
+- `npm run build` 성공, 생성 페이지 902개에서 904개로 증가(`/series/`, `/series/git-commands/`)
+- `npm run check:build-artifacts` 통과(HTML 960개, 링크 7,960개)
+- `npm run test:e2e` 8개 통과, `npm run format:check` 통과
+- 확인 예: `/blog/git-add-command-guide/`의 시리즈 표시가 `Git 명령어`(→ `/series/git-commands/`)와 `6/26편`으로 렌더링됩니다.
 
 ## 범위 제외
 
