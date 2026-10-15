@@ -1,5 +1,6 @@
 ---
 title: 'ETF 시리즈를 시작하며'
+slug: etf/basics
 description: 'ETF에 대한 기초 지식을 정리한 시리즈 가이드입니다.'
 pubDate: '2026-01-05T13:00:00Z'
 pinned: true

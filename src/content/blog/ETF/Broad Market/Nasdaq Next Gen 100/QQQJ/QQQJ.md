@@ -1,5 +1,6 @@
 ---
 title: 'QQQJ (Invesco NASDAQ Next Gen 100 ETF)'
+slug: etf/broad-market/nasdaq-next-gen-100/qqqj
 description: 'Nasdaq-100 바깥의 비금융 기업을 추종하는 Invesco의 Nasdaq Next Gen 100 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

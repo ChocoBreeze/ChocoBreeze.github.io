@@ -1,5 +1,6 @@
 ---
 title: '왕초보 반도체 뽀개기'
+slug: semiconductor
 description: '반도체를 하나도 모르는 나를 위한 기본 상식 공부'
 pubDate: '2026-01-01T13:00:00Z'
 pinned: true

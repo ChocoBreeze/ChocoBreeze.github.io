@@ -1,5 +1,6 @@
 ---
 title: 'SEMI (iShares MSCI Global Semiconductors UCITS ETF)'
+slug: etf/semiconductor/semi
 description: 'ESG 선별 글로벌 반도체 지수를 추종하는 아일랜드 설정 iShares UCITS ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'

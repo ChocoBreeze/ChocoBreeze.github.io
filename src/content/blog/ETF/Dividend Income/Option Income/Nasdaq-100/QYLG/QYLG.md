@@ -1,5 +1,6 @@
 ---
 title: 'QYLG (Global X Nasdaq 100 Covered Call & Growth ETF)'
+slug: etf/dividend-income/option-income/nasdaq-100/qylg
 description: 'Nasdaq-100 주식 포트폴리오의 약 절반에 콜옵션을 매도하는 Global X의 월 분배 옵션 인컴 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

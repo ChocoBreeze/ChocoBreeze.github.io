@@ -1,5 +1,6 @@
 ---
 title: 'URNM (Sprott Uranium Miners ETF)'
+slug: etf/power-infrastructure/nuclear-and-uranium/urnm
 description: '우라늄 채굴 기업과 실물 우라늄 노출 자산을 포함하는 지수 ETF의 구성·비용·성과·위험을 기준일별로 정리한다.'
 pubDate: '2026-06-08T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

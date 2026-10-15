@@ -1,5 +1,6 @@
 ---
 title: 'QBUF (Innovator Nasdaq-100 10 Buffer ETF — Quarterly)'
+slug: etf/defined-outcome/buffer/qbuf
 description: 'QQQ를 참조하는 분기형 정의된 결과 ETF. 분기 시작 캡과 버퍼의 의미, 기간 중 매매 및 FLEX 옵션 위험을 공식 자료로 정리한다.'
 pubDate: '2026-06-06T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

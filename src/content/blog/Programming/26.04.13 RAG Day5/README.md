@@ -1,5 +1,6 @@
 ---
 title: "RAG Week5 기본 RAG 파이프라인"
+slug: programming/260413-rag-day5
 description: "검색된 문서 청크를 근거로 LLM 답변을 생성하는 기본 RAG 흐름 구현"
 pubDate: "2026-04-13T00:00:00+09:00"
 categories: "Programming"

@@ -1,5 +1,6 @@
 ---
 title: "PowerShell 개인 명령어 설정 가이드"
+slug: programming/260525-powershell-profile-guide
 description: "PowerShell profile을 이용해 프로젝트 이동과 개발 편의 명령어를 설정하는 방법"
 pubDate: "2026-05-25T18:50:00+09:00"
 categories: "Programming"

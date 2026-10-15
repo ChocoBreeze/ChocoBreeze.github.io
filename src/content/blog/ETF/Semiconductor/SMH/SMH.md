@@ -1,5 +1,6 @@
 ---
 title: 'SMH (VanEck Semiconductor ETF)'
+slug: etf/semiconductor/smh
 description: 'MVIS US Listed Semiconductor 25 Index를 추종하는 대형 반도체 및 장비 기업 중심의 VanEck ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'

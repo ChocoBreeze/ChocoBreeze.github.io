@@ -1,5 +1,6 @@
 ---
 title: 'SHOC (Strive U.S. Semiconductor ETF)'
+slug: etf/semiconductor/shoc
 description: 'Bloomberg 미국 상장 반도체 지수를 추종하며 Strive의 주주 관여 정책을 적용하는 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'

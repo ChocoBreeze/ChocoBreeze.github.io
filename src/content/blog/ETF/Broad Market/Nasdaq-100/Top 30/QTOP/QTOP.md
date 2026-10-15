@@ -1,5 +1,6 @@
 ---
 title: 'QTOP (iShares Nasdaq Top 30 Stocks ETF)'
+slug: etf/broad-market/nasdaq-100/top-30/qtop
 description: 'Nasdaq-100 상위 30개 기업 지수를 대표 표본 방식으로 추종하는 iShares ETF의 구성, 기준일별 자료와 집중 위험을 정리한다.'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

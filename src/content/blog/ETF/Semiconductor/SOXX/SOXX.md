@@ -1,5 +1,6 @@
 ---
 title: 'SOXX (iShares Semiconductor ETF)'
+slug: etf/semiconductor/soxx
 description: 'NYSE Semiconductor Index를 추종해 반도체 기업과 장비에 분산 투자하는 iShares ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'

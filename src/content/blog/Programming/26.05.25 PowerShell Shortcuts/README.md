@@ -1,5 +1,6 @@
 ---
 title: "PowerShell 단축키 한 장 정리"
+slug: programming/260525-powershell-shortcuts
 description: "PowerShell을 더 빠르게 쓰기 위한 주요 단축키와 터미널 사용 팁"
 pubDate: "2026-05-25T19:20:00+09:00"
 categories: "Programming"

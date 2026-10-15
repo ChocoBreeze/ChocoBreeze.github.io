@@ -1,5 +1,6 @@
 ---
 title: 'QQMG (Invesco ESG NASDAQ 100 ETF)'
+slug: etf/broad-market/nasdaq-100/esg/qqmg
 description: 'Nasdaq-100 편입 종목에 사업 활동·논란·ESG 리스크 기준을 적용하는 Invesco ETF. 지수 방식과 비용, 보유·성과 자료를 기준일별로 정리한다.'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'

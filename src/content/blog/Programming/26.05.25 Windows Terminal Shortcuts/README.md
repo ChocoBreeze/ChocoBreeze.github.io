@@ -1,5 +1,6 @@
 ---
 title: "Windows Terminal 단축키 한 장 정리"
+slug: programming/260525-windows-terminal-shortcuts
 description: "Windows Terminal을 더 빠르게 쓰기 위한 주요 단축키와 사용 팁"
 pubDate: "2026-05-25T19:10:00+09:00"
 categories: "Programming"

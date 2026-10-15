@@ -1,5 +1,6 @@
 ---
 title: 'TQQQ (ProShares UltraPro QQQ)'
+slug: etf/leveraged-inverse/nasdaq-100/tqqq
 description: 'Nasdaq-100 지수의 일일 수익률 3배를 추구하는 ProShares 레버리지 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

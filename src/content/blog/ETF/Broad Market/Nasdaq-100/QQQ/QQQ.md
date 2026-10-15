@@ -1,5 +1,6 @@
 ---
 title: 'QQQ (Invesco QQQ Trust, Series 1)'
+slug: etf/broad-market/nasdaq-100/qqq
 description: 'Nasdaq-100 지수의 대형 비금융 기업에 투자하는 Invesco의 주식 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'

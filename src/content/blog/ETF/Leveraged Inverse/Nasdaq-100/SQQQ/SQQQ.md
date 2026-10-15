@@ -1,5 +1,6 @@
 ---
 title: 'SQQQ (ProShares UltraPro Short QQQ)'
+slug: etf/leveraged-inverse/nasdaq-100/sqqq
 description: 'Nasdaq-100의 하루 수익률 -3배를 추구하는 ProShares 인버스 ETF의 운용 구조와 보유 기간 위험을 정리한다.'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

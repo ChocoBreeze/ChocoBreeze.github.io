@@ -1,5 +1,6 @@
 ---
 title: 'QCLN (First Trust NASDAQ Clean Edge Green Energy Index Fund)'
+slug: etf/clean-energy/qcln
 description: 'Nasdaq Clean Edge Green Energy Index를 추종하는 청정에너지 테마 ETF'
 pubDate: '2026-06-06T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

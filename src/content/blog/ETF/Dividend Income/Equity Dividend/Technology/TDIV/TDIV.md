@@ -1,5 +1,6 @@
 ---
 title: 'TDIV (First Trust NASDAQ Technology Dividend Index Fund)'
+slug: etf/dividend-income/equity-dividend/technology/tdiv
 description: '배당 조건을 충족한 기술·통신 기업 지수를 추종하는 First Trust ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'

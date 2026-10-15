@@ -1,5 +1,6 @@
 ---
 title: 'Problem Solving 가이드'
+slug: problem-solving
 description: '알고리즘 및 다양한 기술적 문제 해결 기록의 전체 목록입니다.'
 pubDate: '2026-01-01T00:00:00Z'
 pinned: true

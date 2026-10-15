@@ -1,5 +1,6 @@
 ---
 title: 'SMHX (VanEck Fabless Semiconductor ETF)'
+slug: etf/semiconductor/fabless/smhx
 description: 'MarketVector US Listed Fabless Semiconductor Index를 추종하는 팹리스 설계 기업 중심의 VanEck ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'

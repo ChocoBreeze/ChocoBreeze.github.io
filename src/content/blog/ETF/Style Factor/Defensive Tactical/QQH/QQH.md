@@ -1,5 +1,6 @@
 ---
 title: 'QQH (HCM Defender 100 Index ETF)'
+slug: etf/style-factor/defensive-tactical/qqh
 description: 'HCM BuyLine 신호에 따라 기술주와 현금성 자산 비중을 조절하는 QQH의 지수 규칙, 최신 보유 종목, 비용과 위험을 공식 자료 기준으로 정리한다.'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-05T00:00:00+09:00'

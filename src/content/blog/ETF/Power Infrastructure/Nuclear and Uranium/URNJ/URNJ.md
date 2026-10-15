@@ -1,5 +1,6 @@
 ---
 title: 'URNJ (Sprott Junior Uranium Miners ETF)'
+slug: etf/power-infrastructure/nuclear-and-uranium/urnj
 description: '소형·중형 우라늄 채굴 관련 기업에 집중하는 지수 ETF의 편입 규칙, 보유 구성, 비용과 위험을 기준일별로 정리한다.'
 pubDate: '2026-06-08T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

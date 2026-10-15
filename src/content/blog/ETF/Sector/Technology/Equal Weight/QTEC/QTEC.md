@@ -1,5 +1,6 @@
 ---
 title: 'QTEC (First Trust NASDAQ-100-Technology Sector Index Fund)'
+slug: etf/sector/technology/equal-weight/qtec
 description: 'Nasdaq-100 중 ICB 기술 업종으로 분류된 기업에 동일가중으로 투자하는 First Trust ETF. 지수 구성, 최신 보유 현황, 비용과 성과를 기준일과 함께 정리한다.'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-05T00:00:00+09:00'

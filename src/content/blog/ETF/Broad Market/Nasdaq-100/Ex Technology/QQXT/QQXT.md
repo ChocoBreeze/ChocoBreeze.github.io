@@ -1,5 +1,6 @@
 ---
 title: 'QQXT (First Trust NASDAQ-100 Ex-Technology Sector Index Fund)'
+slug: etf/broad-market/nasdaq-100/ex-technology/qqxt
 description: 'Nasdaq-100 중 ICB 기술 업종으로 분류되지 않은 종목을 동일가중으로 담는 First Trust ETF. 지수 방식과 기준일별 보유·비용·성과를 공식 자료로 정리한다.'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'

@@ -1,5 +1,6 @@
 ---
 title: 'PSQ (ProShares Short QQQ)'
+slug: etf/leveraged-inverse/nasdaq-100/psq
 description: 'Nasdaq-100의 일일 -1배 수익률을 추구하는 ProShares 인버스 ETF의 운용 구조와 경로 의존 위험을 정리한다.'
 pubDate: '2026-06-06T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

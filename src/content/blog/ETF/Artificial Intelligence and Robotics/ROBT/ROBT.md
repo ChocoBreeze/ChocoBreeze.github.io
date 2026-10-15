@@ -1,5 +1,6 @@
 ---
 title: 'ROBT (First Trust Nasdaq Artificial Intelligence and Robotics ETF)'
+slug: etf/artificial-intelligence-and-robotics/robt
 description: 'Nasdaq CTA AI·로보틱스 지수를 추종하는 ROBT의 운용 구조, 기준일별 자료와 위험을 정리합니다.'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-07T00:00:00+09:00'

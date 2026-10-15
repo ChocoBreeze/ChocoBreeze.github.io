@@ -1,5 +1,6 @@
 ---
 title: 'QXQ (SGI Enhanced Nasdaq-100 ETF)'
+slug: etf/dividend-income/option-income/nasdaq-100/qxq
 description: 'Nasdaq-100 선물·옵션 노출에 초단기 옵션 매도 전략을 더해 자본 성장과 현재 소득을 추구하는 SGI 액티브 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

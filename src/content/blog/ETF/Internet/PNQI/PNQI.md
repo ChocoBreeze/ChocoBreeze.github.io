@@ -1,5 +1,6 @@
 ---
 title: 'PNQI (Invesco Nasdaq Internet ETF)'
+slug: etf/internet/pnqi
 description: 'Nasdaq CTA Internet Index를 추종하는 Invesco의 미국 상장 인터넷 기업 ETF'
 pubDate: '2026-06-06T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'

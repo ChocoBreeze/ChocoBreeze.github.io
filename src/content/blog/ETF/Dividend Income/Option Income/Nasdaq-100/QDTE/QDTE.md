@@ -1,5 +1,6 @@
 ---
 title: 'QDTE (Roundhill Nasdaq-100 0DTE Covered Call Strategy ETF)'
+slug: etf/dividend-income/option-income/nasdaq-100/qdte
 description: 'Nasdaq-100 노출과 매일 만기되는 콜옵션 매도로 주간 인컴을 추구하는 Roundhill 액티브 ETF'
 pubDate: '2026-06-06T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

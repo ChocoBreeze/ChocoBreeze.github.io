@@ -1,5 +1,6 @@
 ---
 title: "RAG Week3 문서 청킹"
+slug: programming/260408-rag-day3
 description: "다루기 좋은 작은 조각으로 나누기"
 pubDate: "2026-04-08T00:00:00+09:00"
 categories: "Programming"

@@ -1,5 +1,6 @@
 ---
 title: 'SOXQ (Invesco PHLX Semiconductor ETF)'
+slug: etf/semiconductor/soxq
 description: 'PHLX Semiconductor Sector Index를 추종하는 Invesco의 미국 상장 반도체 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'

@@ -1,5 +1,6 @@
 ---
 title: 'PSI (Invesco Semiconductors ETF)'
+slug: etf/semiconductor/psi
 description: 'Dynamic Semiconductor Intellidex Index를 추종하는 미국 반도체 주식 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'

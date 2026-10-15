@@ -1,5 +1,6 @@
 ---
 title: 'SEMY (GraniteShares YieldBOOST Semiconductor ETF)'
+slug: etf/dividend-income/option-income/leveraged-semiconductor/semy
 description: '3배 레버리지 반도체 ETF를 참조하는 풋옵션으로 주간 분배를 추구하는 액티브 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-06T00:00:00+09:00'

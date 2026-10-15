@@ -1,5 +1,6 @@
 ---
 title: 'QQQI (NEOS Nasdaq-100 High Income ETF)'
+slug: etf/dividend-income/option-income/nasdaq-100/qqqi
 description: 'Nasdaq-100 주식과 NDX 지수 콜옵션 매도를 결합해 월별 인컴과 주식 상승 잠재력을 추구하는 NEOS 액티브 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

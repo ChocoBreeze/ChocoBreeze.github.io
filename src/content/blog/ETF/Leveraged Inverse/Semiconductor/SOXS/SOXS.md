@@ -1,5 +1,6 @@
 ---
 title: 'SOXS (Direxion Daily Semiconductor Bear 3X ETF)'
+slug: etf/leveraged-inverse/semiconductor/soxs
 description: 'NYSE Semiconductor Index의 하루 성과 -3배를 목표로 하는 Direxion SOXS의 운용 방식, 비용과 복리 위험을 정리한다.'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-05T00:00:00+09:00'

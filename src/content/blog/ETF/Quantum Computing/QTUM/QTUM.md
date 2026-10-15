@@ -1,5 +1,6 @@
 ---
 title: 'QTUM (Defiance Quantum ETF)'
+slug: etf/quantum-computing/qtum
 description: '양자컴퓨팅과 머신러닝 기업에 투자하는 QTUM의 지수 편입 기준, 최신 보유 종목, 비용과 위험을 공식 자료 기준으로 정리한다.'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-05T00:00:00+09:00'

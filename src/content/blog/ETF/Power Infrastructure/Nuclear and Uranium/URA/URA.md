@@ -1,5 +1,6 @@
 ---
 title: 'URA (Global X Uranium ETF)'
+slug: etf/power-infrastructure/nuclear-and-uranium/ura
 description: '우라늄 채굴·탐사부터 원전 부품·기술 기업까지 편입하는 지수 ETF의 구조와 기준일별 보유·성과·위험을 정리한다.'
 pubDate: '2026-06-08T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'

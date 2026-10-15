@@ -1,5 +1,6 @@
 ---
 title: 'XSD (State Street SPDR S&P Semiconductor ETF)'
+slug: etf/semiconductor/xsd
 description: 'S&P Semiconductor Select Industry Index를 수정 등가중 방식으로 추종하는 미국 반도체 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
 updatedDate: '2026-10-04T00:00:00+09:00'
