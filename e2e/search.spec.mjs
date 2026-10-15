@@ -142,3 +142,39 @@ test('recovers from a quick-index failure when retried', async ({ page }) => {
 	await expect(dialog.getByRole('status')).toContainText('두 글자 이상 입력하면 검색합니다');
 	await expect.poll(() => requests).toBe(2);
 });
+
+test('renders results one page at a time and keeps the total count', async ({ page }) => {
+	await page.goto('/search/?q=ETF');
+
+	const results = page.locator('#results-list > li');
+	const resultsCount = page.locator('#results-count');
+	const showMore = page.locator('#results-more');
+
+	// The index is fetched lazily, so wait for the first rendered result.
+	await expect(results.first()).toBeVisible();
+	await expect(resultsCount).toContainText('개의 결과');
+
+	const countText = (await resultsCount.textContent()) ?? '';
+	const totalMatch = countText.match(/(\d+)/);
+	const total = Number(totalMatch?.[1] ?? '0');
+	expect(total).toBeGreaterThan(20);
+
+	// Only the first page is in the DOM, while the count reports every match.
+	await expect(results).toHaveCount(20);
+	await expect(showMore).toBeVisible();
+	await expect(showMore).toContainText(`${total - 20}`);
+
+	await showMore.click();
+	await expect(results).toHaveCount(40);
+	await expect(resultsCount).toHaveText(countText);
+});
+
+test('hides the show-more button once every result is rendered', async ({ page }) => {
+	await page.goto('/search/?q=IDL%EC%9D%B4%EB%9E%80');
+
+	const results = page.locator('#results-list > li');
+	await expect(results.first()).toBeVisible();
+	const renderedCount = await results.count();
+	expect(renderedCount).toBeLessThanOrEqual(20);
+	await expect(page.locator('#results-more')).toBeHidden();
+});

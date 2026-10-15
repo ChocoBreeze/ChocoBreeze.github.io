@@ -142,6 +142,31 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 				font-size: 0.9rem;
 				color: var(--muted-text);
 			}
+			#results-more {
+				display: block;
+				/* `display` would otherwise override the `hidden` attribute. */
+				width: 100%;
+				margin: 1rem 0 0;
+				padding: 0.8rem 1rem;
+				border: 1px solid var(--border-color);
+				border-radius: 999px;
+				background: var(--card-bg);
+				color: inherit;
+				font: inherit;
+				font-weight: 700;
+				cursor: pointer;
+			}
+
+			#results-more[hidden] {
+				display: none;
+			}
+
+			#results-more:hover,
+			#results-more:focus-visible {
+				border-color: var(--accent);
+				color: var(--accent);
+			}
+
 			#results-count.error {
 				color: #c2410c;
 			}
@@ -202,6 +227,7 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 			<div id="results-count" role="status" aria-live="polite"></div>
 			<button type="button" id="search-retry" hidden>다시 시도</button>
 			<ul id="results-list"></ul>
+			<button type="button" id="results-more" hidden></button>
 		</main>
 		<Footer />
 
@@ -245,6 +271,7 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 			const searchCategory = document.getElementById('search-category') as HTMLSelectElement | null;
 			const resultsList = document.getElementById('results-list');
 			const resultsCount = document.getElementById('results-count');
+			const resultsMore = document.getElementById('results-more');
 			const searchRetry = document.getElementById('search-retry') as HTMLButtonElement | null;
 			const searchCacheVersion =
 				document.querySelector<HTMLElement>('[data-search-cache-version]')?.dataset
@@ -429,6 +456,9 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 
 				if (normalizeSearchAccessQuery(value).length < 2) {
 					resultsList.replaceChildren();
+					renderedResults = [];
+					renderedCount = 0;
+					updateResultsMoreButton();
 					resultsCount.classList.remove('error');
 					resultsCount.textContent = '두 글자 이상 입력하면 검색합니다.';
 					if (searchRetry) searchRetry.hidden = true;
@@ -437,6 +467,10 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 
 				displayResults(searchIndexedItems(searchIndex, value));
 			}
+
+			resultsMore?.addEventListener('click', () => {
+				renderNextResultPage();
+			});
 
 			function getPostHref(slug: string) {
 				const normalizedSlug = slug
@@ -448,13 +482,26 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 				return `/blog/${normalizedSlug}/`;
 			}
 
-			function displayResults(results: SearchResult[]) {
-				if (!resultsList || !resultsCount) return;
+			// A broad query can match hundreds of posts. Rendering them all builds
+			// thousands of DOM nodes for results nobody scrolls to, so render a page
+			// at a time and let the reader ask for more.
+			const RESULT_PAGE_SIZE = 20;
+			let renderedResults: SearchResult[] = [];
+			let renderedCount = 0;
 
-				resultsCount.classList.remove('error');
-				resultsCount.textContent = `${results.length}개의 결과를 찾았습니다.`;
-				if (searchRetry) searchRetry.hidden = true;
-				const resultItems = results.map(({ item, snippet }) => {
+			function updateResultsMoreButton() {
+				if (!resultsMore) return;
+
+				const remaining = renderedResults.length - renderedCount;
+				resultsMore.hidden = remaining <= 0;
+				if (remaining > 0) {
+					const nextCount = Math.min(remaining, RESULT_PAGE_SIZE);
+					resultsMore.textContent = `결과 ${nextCount}개 더 보기 (남은 결과 ${remaining}개)`;
+				}
+			}
+
+			function buildResultItems(results: SearchResult[]) {
+				return results.map(({ item, snippet }) => {
 					const listItem = document.createElement('li');
 					listItem.className = 'result-item';
 
@@ -488,8 +535,31 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 
 					return listItem;
 				});
+			}
 
-				resultsList.replaceChildren(...resultItems);
+			function renderNextResultPage() {
+				if (!resultsList) return;
+
+				const nextResults = renderedResults.slice(
+					renderedCount,
+					renderedCount + RESULT_PAGE_SIZE,
+				);
+				resultsList.append(...buildResultItems(nextResults));
+				renderedCount += nextResults.length;
+				updateResultsMoreButton();
+			}
+
+			function displayResults(results: SearchResult[]) {
+				if (!resultsList || !resultsCount) return;
+
+				resultsCount.classList.remove('error');
+				resultsCount.textContent = `${results.length}개의 결과를 찾았습니다.`;
+				if (searchRetry) searchRetry.hidden = true;
+
+				renderedResults = results;
+				renderedCount = 0;
+				resultsList.replaceChildren();
+				renderNextResultPage();
 			}
 
 			function appendHighlightedText(parent: HTMLElement, text: string, query: string) {
