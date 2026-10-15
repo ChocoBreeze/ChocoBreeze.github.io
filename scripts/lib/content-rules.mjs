@@ -992,3 +992,55 @@ export function collectSiteAssetReferences(content, { publicDir, rootDir }) {
 
 	return references;
 }
+
+// --- Derived route quality (plan 26) -------------------------------------
+//
+// A post without an explicit `slug` takes its URL from the file path, which
+// produces fragile URLs: a duplicated last segment when the folder and the file
+// share a name, percent-encoded non-ASCII segments, and a meaningless `readme`
+// segment. These are reported so new posts stop adding them.
+
+export const ROUTE_ASCII_SEGMENT_REGEX = /^[\x21-\x7e]+$/;
+export const MEANINGLESS_ROUTE_SEGMENTS = new Set(['readme', 'index']);
+
+export function getRouteSegments(routePath) {
+	return String(routePath ?? '')
+		.replace(/^\/blog\//, '')
+		.split('/')
+		.filter(Boolean);
+}
+
+// Returns one entry per problem found in a path-derived route. An explicit
+// frontmatter `slug` is the fix for every one of them.
+export function getDerivedRouteIssues(routePath) {
+	const segments = getRouteSegments(routePath);
+	const issues = [];
+
+	const duplicateSegment = segments.find(
+		(segment, index) => index > 0 && segment === segments[index - 1],
+	);
+	if (duplicateSegment) {
+		issues.push({
+			code: 'duplicate-segment',
+			message: `Derived route repeats the "${duplicateSegment}" segment: ${routePath}. Set an explicit slug.`,
+		});
+	}
+
+	const nonAsciiSegment = segments.find((segment) => !ROUTE_ASCII_SEGMENT_REGEX.test(segment));
+	if (nonAsciiSegment) {
+		issues.push({
+			code: 'non-ascii-segment',
+			message: `Derived route has a non-ASCII segment ("${nonAsciiSegment}") that URL-encodes in links: ${routePath}. Set an explicit slug.`,
+		});
+	}
+
+	const lastSegment = segments.at(-1);
+	if (lastSegment && MEANINGLESS_ROUTE_SEGMENTS.has(lastSegment)) {
+		issues.push({
+			code: 'meaningless-segment',
+			message: `Derived route ends with the filename segment "${lastSegment}": ${routePath}. Set an explicit slug.`,
+		});
+	}
+
+	return issues;
+}

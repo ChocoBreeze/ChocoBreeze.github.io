@@ -9,6 +9,8 @@ import {
 	countMathDelimiters,
 	findUnusedAssets,
 	formatByteSize,
+	getDerivedRouteIssues,
+	getRouteSegments,
 	getPrimaryCategory,
 	getLinkFragment,
 	getMarkdownHeadingIds,
@@ -737,5 +739,58 @@ describe('formatByteSize', () => {
 	it('treats invalid input as zero', () => {
 		assert.equal(formatByteSize(undefined), '0 B');
 		assert.equal(formatByteSize(-5), '0 B');
+	});
+});
+
+describe('getRouteSegments', () => {
+	it('drops the blog prefix and empty segments', () => {
+		assert.deepEqual(getRouteSegments('/blog/etf/basics/one/'), ['etf', 'basics', 'one']);
+	});
+
+	it('handles an empty value', () => {
+		assert.deepEqual(getRouteSegments(undefined), []);
+	});
+});
+
+describe('getDerivedRouteIssues', () => {
+	function codesFor(routePath) {
+		return getDerivedRouteIssues(routePath).map((issue) => issue.code);
+	}
+
+	it('reports a repeated last segment', () => {
+		assert.deepEqual(codesFor('/blog/etf/broad-market/nasdaq-next-gen-100/qqqj/qqqj'), [
+			'duplicate-segment',
+		]);
+	});
+
+	it('reports a non-ASCII segment', () => {
+		assert.deepEqual(codesFor('/blog/reports/26년-2월/삼성전자-리포트'), ['non-ascii-segment']);
+	});
+
+	it('reports a filename-only last segment', () => {
+		assert.deepEqual(codesFor('/blog/programming/rag-day1/readme'), ['meaningless-segment']);
+		assert.deepEqual(codesFor('/blog/programming/rag-day1/index'), ['meaningless-segment']);
+	});
+
+	it('reports every problem a route has', () => {
+		assert.deepEqual(codesFor('/blog/보고서/보고서/readme'), [
+			'duplicate-segment',
+			'non-ascii-segment',
+			'meaningless-segment',
+		]);
+	});
+
+	it('accepts a clean ASCII route', () => {
+		assert.deepEqual(codesFor('/blog/programming/powershell-profile-guide'), []);
+	});
+
+	it('does not treat non-adjacent repeats as duplicates', () => {
+		assert.deepEqual(codesFor('/blog/etf/gold/etf-basics'), []);
+	});
+
+	it('includes the route in every message', () => {
+		for (const issue of getDerivedRouteIssues('/blog/etf/qqqj/qqqj')) {
+			assert.ok(issue.message.includes('/blog/etf/qqqj/qqqj'));
+		}
 	});
 });

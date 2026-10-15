@@ -26,6 +26,7 @@ import {
 	findAllMatches,
 	findUnusedAssets,
 	formatByteSize,
+	getDerivedRouteIssues,
 	getComparableLinkTarget,
 	getBlogPostRoutePath as getPostRoutePath,
 	getLineNumber,
@@ -124,12 +125,13 @@ function walkPageFiles(directory) {
 	return results;
 }
 
-function addIssue(collection, severity, filePath, line, message) {
+function addIssue(collection, severity, filePath, line, message, group) {
 	collection.push({
 		severity,
 		filePath: path.relative(ROOT_DIR, filePath),
 		line,
 		message,
+		group,
 	});
 }
 
@@ -562,6 +564,25 @@ function checkSlug(filePath, content, frontmatterMatch, fields, warnings) {
 	);
 }
 
+const DERIVED_ROUTE_WARNING_GROUP = 'derived-route';
+
+// A post without an explicit `slug` inherits its URL from the file path, so
+// renaming or moving the file silently changes the public URL. Report the path
+// shapes that produce fragile URLs.
+function checkDerivedRoute(filePath, content, frontmatterMatch, fields, warnings) {
+	const field = fields.get('slug');
+	if (field && stripQuotes(stripYamlComment(field.rawValue)).trim()) {
+		return;
+	}
+
+	const routePath = getPostRoutePath(filePath, content, CONTENT_DIR);
+	const line = frontmatterMatch ? getLineNumber(content, frontmatterMatch.index ?? 0) : 1;
+
+	for (const issue of getDerivedRouteIssues(routePath)) {
+		addIssue(warnings, 'warning', filePath, line, issue.message, DERIVED_ROUTE_WARNING_GROUP);
+	}
+}
+
 function checkEtfMetadata(filePath, content, frontmatterMatch, fields, issues) {
 	const categories = parseFrontmatterListField(frontmatterMatch[1], 'categories');
 	if (!categories.some((category) => normalizeCategoryValue(category) === 'ETF')) {
@@ -686,6 +707,7 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex, postR
 		warnings,
 	);
 	checkSlug(filePath, content, frontmatterMatch, fields, warnings);
+	checkDerivedRoute(filePath, content, frontmatterMatch, fields, warnings);
 	checkEtfMetadata(filePath, content, frontmatterMatch, fields, issues);
 	checkCategories(filePath, content, frontmatterMatch, fields, warnings);
 	checkRelatedSlugs(filePath, content, frontmatterMatch, fields, issues, postReferences);
@@ -1286,11 +1308,27 @@ async function main() {
 	// noisier and lower-stakes, so when a staged-file list is provided (from the
 	// pre-commit hook) only surface warnings for files actually being committed —
 	// otherwise every commit re-prints warnings for the entire legacy corpus.
-	const reportedWarnings = stagedFileSet
+	const stagedWarnings = stagedFileSet
 		? warnings.filter((warning) => stagedFileSet.has(warning.filePath.replace(/\\/g, '/')))
 		: warnings;
 
+	// The derived-route backlog is a known legacy set (plan 26). Printing every
+	// entry on each full run would bury the actionable warnings, so collapse it
+	// into one line unless the list was explicitly requested. The pre-commit
+	// hook still shows the entries for the posts being committed.
+	const collapseDerivedRoutes = !stagedFileSet && !hasCliFlag('report-derived-routes');
+	const reportedWarnings = collapseDerivedRoutes
+		? stagedWarnings.filter((warning) => warning.group !== DERIVED_ROUTE_WARNING_GROUP)
+		: stagedWarnings;
+	const collapsedDerivedRouteCount = stagedWarnings.length - reportedWarnings.length;
+
 	reportUnusedAssets(checkUnusedAssets(files, assetReferences), stagedFileSet);
+
+	if (collapsedDerivedRouteCount > 0) {
+		console.log(
+			`DERIVED ROUTES ${collapsedDerivedRouteCount} warning(s) for posts without an explicit slug. Run with --report-derived-routes for the list.`,
+		);
+	}
 
 	if (issues.length === 0 && reportedWarnings.length === 0) {
 		console.log(`Content quality check passed for ${files.length} files.`);
