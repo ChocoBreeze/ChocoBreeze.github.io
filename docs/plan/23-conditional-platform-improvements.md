@@ -37,6 +37,8 @@
 
 ## 폰트·KaTeX 셀프 호스팅
 
+2026-10-16에 [30번 계획](30-self-hosted-fonts-and-katex.md)으로 승격했습니다. 착수 조건은 그 문서에서 관리합니다.
+
 ### 현재 사실
 
 - 사이트는 Google Fonts의 Inter·Noto Sans KR과 jsDelivr의 KaTeX CSS를 사용합니다.
@@ -49,6 +51,8 @@
 - KaTeX CSS와 연관 폰트 자산을 함께 관리할 수 있어야 합니다.
 
 ## 접근성·성능 자동 검사
+
+2026-10-16에 [32번 계획](32-size-budget-and-accessibility-smoke.md)으로 승격했습니다.
 
 - UI 변경이 누적된 뒤 핵심 경로의 Lighthouse 또는 axe 기준선을 정합니다.
 - 점수 자체보다 키보드 접근, 명도 대비, JS·CSS·검색 인덱스 크기 예산을 관리합니다.

@@ -139,6 +139,10 @@ Chromium을 구동합니다. 브라우저 입력→DOM과 JS heap은 2026-10-07�
 - production 빌드에서 인덱스 크기 기록
 - `npm run check`, `npm run build`, `npm run format:check`
 
+## 후속 계획
+
+본문 검색 커버리지(5,000자 상한)와 결과 렌더링 비용은 [28번 계획](28-search-coverage-and-result-rendering.md)에서 다룹니다. Pagefind 교체 보류 결정은 그대로 유지합니다.
+
 ## 완료 판단
 
 - 검색 엔진 교체 자체를 완료 조건으로 삼지 않습니다.
