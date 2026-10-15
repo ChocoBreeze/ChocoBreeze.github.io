@@ -28,6 +28,7 @@ type SeriesNavigation = {
 	name: string;
 	current: number;
 	total: number;
+	href?: string;
 	previous?: SeriesNavigationItem;
 	next?: SeriesNavigationItem;
 };
@@ -366,6 +367,19 @@ const structuredDataJson = structuredData ? serializeJsonLd(structuredData) : un
 				font-size: 0.78rem;
 				font-weight: 700;
 			}
+			.series-navigation-name {
+				color: var(--text-color);
+				font-weight: 700;
+				text-decoration: underline;
+				text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+				text-underline-offset: 0.2em;
+			}
+
+			.series-navigation-name:hover,
+			.series-navigation-name:focus-visible {
+				color: var(--accent);
+			}
+
 			.series-navigation-heading strong {
 				color: var(--heading-color);
 			}
@@ -926,7 +940,13 @@ const structuredDataJson = structuredData ? serializeJsonLd(structuredData) : un
 								<nav class="series-navigation" aria-label={`${seriesNavigation.name} 시리즈 탐색`}>
 									<div class="series-navigation-heading">
 										<span class="series-navigation-label">시리즈</span>
-										<strong>{seriesNavigation.name}</strong>
+										{seriesNavigation.href ? (
+											<a class="series-navigation-name" href={seriesNavigation.href}>
+												{seriesNavigation.name}
+											</a>
+										) : (
+											<strong>{seriesNavigation.name}</strong>
+										)}
 										<span class="series-navigation-progress">
 											{seriesNavigation.current}/{seriesNavigation.total}편
 										</span>

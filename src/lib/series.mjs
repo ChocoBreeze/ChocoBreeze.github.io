@@ -64,3 +64,77 @@ export function buildSeriesNavigation(posts, currentPost) {
 		next: toItem(seriesPosts[currentIndex + 1]),
 	};
 }
+
+// --- Series listing (plan 27) --------------------------------------------
+
+function getSeriesDisplayName(posts, seriesSlug) {
+	// `series` is the display name and `seriesSlug` the identifier. If entries
+	// disagree, the first non-empty name in series order wins so the hub shows a
+	// stable label instead of whichever post happened to sort first by date.
+	for (const post of posts) {
+		const name = post?.data?.series;
+		if (typeof name === 'string' && name.trim()) {
+			return name.trim();
+		}
+	}
+
+	return seriesSlug;
+}
+
+function getPostCategories(post) {
+	const categories = post?.data?.categories;
+	if (Array.isArray(categories)) {
+		return categories.filter((category) => typeof category === 'string');
+	}
+
+	return typeof categories === 'string' ? [categories] : [];
+}
+
+/**
+ * Groups published posts by `seriesSlug`.
+ *
+ * Returns one entry per series, each with its posts in reading order, sorted so
+ * the most recently updated series comes first.
+ */
+export function buildSeriesList(posts = []) {
+	const groups = new Map();
+
+	for (const post of posts) {
+		const seriesSlug = post?.data?.seriesSlug;
+		if (!seriesSlug || post?.data?.draft) {
+			continue;
+		}
+
+		const existing = groups.get(seriesSlug);
+		if (existing) {
+			existing.push(post);
+		} else {
+			groups.set(seriesSlug, [post]);
+		}
+	}
+
+	return [...groups.entries()]
+		.map(([seriesSlug, seriesPosts]) => {
+			const ordered = sortSeriesPosts(seriesPosts);
+			const dates = ordered.map((post) => getPostDate(post)).filter((value) => value > 0);
+
+			return {
+				slug: seriesSlug,
+				name: getSeriesDisplayName(ordered, seriesSlug),
+				posts: ordered,
+				count: ordered.length,
+				firstDate: dates.length > 0 ? new Date(Math.min(...dates)) : undefined,
+				latestDate: dates.length > 0 ? new Date(Math.max(...dates)) : undefined,
+				categories: [...new Set(ordered.flatMap((post) => getPostCategories(post)))],
+			};
+		})
+		.sort((a, b) => {
+			const latestA = a.latestDate?.valueOf() ?? 0;
+			const latestB = b.latestDate?.valueOf() ?? 0;
+			return latestB - latestA || a.name.localeCompare(b.name);
+		});
+}
+
+export function findSeries(posts = [], seriesSlug) {
+	return buildSeriesList(posts).find((series) => series.slug === seriesSlug);
+}

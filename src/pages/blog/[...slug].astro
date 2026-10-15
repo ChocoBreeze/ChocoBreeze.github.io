@@ -90,6 +90,8 @@ const seriesNavigation = rawSeriesNavigation
 						href: `/blog/${rawSeriesNavigation.next.slug}/`,
 					}
 				: undefined,
+			// Lets the post link back to the series hub (plan 27).
+			href: post.data.seriesSlug ? `/series/${post.data.seriesSlug}/` : undefined,
 		}
 	: undefined;
 

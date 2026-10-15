@@ -1,0 +1,151 @@
+---
+import { getPublishedPosts } from '../../lib/posts';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+import { getCategoryDefinition } from '../../data/blogCategories';
+import { buildSeriesList } from '../../lib/series.mjs';
+
+const seriesList = buildSeriesList(await getPublishedPosts());
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`Series | ${SITE_TITLE}`}
+			description="여러 편으로 이어지는 글을 시리즈별로 모아 읽는 순서대로 안내합니다."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="taxonomy-page">
+			<section class="taxonomy-hero">
+				<p class="eyebrow">Browse</p>
+				<h1>Series</h1>
+				<p>여러 편으로 이어지는 글을 순서대로 읽을 수 있도록 모았습니다.</p>
+			</section>
+			{
+				seriesList.length === 0 ? (
+					<p class="empty">아직 시리즈로 묶인 글이 없습니다.</p>
+				) : (
+					<ul class="series-list">
+						{seriesList.map((series) => (
+							<li>
+								<a href={`/series/${series.slug}/`}>
+									<div class="series-head">
+										<h2>{series.name}</h2>
+										<small>{series.count}편</small>
+									</div>
+									<p class="series-meta">
+										{series.categories
+											.map((category) => getCategoryDefinition(category)?.label ?? category)
+											.join(' · ')}
+										{series.latestDate && (
+											<>
+												{series.categories.length > 0 ? ' · ' : ''}
+												최근 글 <FormattedDate date={series.latestDate} />
+											</>
+										)}
+									</p>
+									<p class="series-first">첫 글: {series.posts[0].data.title}</p>
+								</a>
+							</li>
+						))}
+					</ul>
+				)
+			}
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.taxonomy-page {
+		width: min(100%, 1080px);
+		margin: 0 auto;
+		padding: 3rem 1rem 4rem;
+	}
+	.taxonomy-hero {
+		margin-bottom: 2rem;
+		padding: 2rem;
+		border: 1px solid var(--border-color);
+		border-radius: 28px;
+		background: color-mix(in srgb, var(--card-bg) 86%, transparent);
+	}
+	.eyebrow {
+		margin: 0 0 0.5rem;
+		color: var(--accent);
+		font-size: 0.8rem;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+	.taxonomy-hero h1 {
+		margin: 0 0 0.5rem;
+	}
+	.taxonomy-hero p:last-child {
+		margin: 0;
+		color: var(--muted-text);
+	}
+	.series-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.series-list a {
+		display: block;
+		height: 100%;
+		padding: 1.2rem;
+		border: 1px solid var(--border-color);
+		border-radius: 22px;
+		background: var(--card-bg);
+		color: inherit;
+		text-decoration: none;
+	}
+	.series-list a:hover,
+	.series-list a:focus-visible {
+		border-color: var(--accent);
+	}
+	.series-head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.6rem;
+	}
+	.series-head h2 {
+		margin: 0;
+		font-size: 1.15rem;
+	}
+	.series-head small {
+		flex-shrink: 0;
+		padding: 0.2rem 0.55rem;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--accent) 14%, transparent);
+		color: var(--accent);
+		font-weight: 800;
+	}
+	.series-meta {
+		margin: 0.6rem 0 0;
+		color: var(--muted-text);
+		font-size: 0.88rem;
+	}
+	.series-first {
+		margin: 0.35rem 0 0;
+		font-size: 0.9rem;
+	}
+	.empty {
+		color: var(--muted-text);
+	}
+
+	@media (max-width: 520px) {
+		.taxonomy-hero {
+			padding: 1.4rem;
+		}
+	}
+</style>

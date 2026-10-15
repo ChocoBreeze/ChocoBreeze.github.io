@@ -1,0 +1,202 @@
+---
+import { getPublishedPosts } from '../../lib/posts';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+import { getCategoryDefinition } from '../../data/blogCategories';
+import { buildSeriesList } from '../../lib/series.mjs';
+
+// Some series also have a hand-curated index page that groups the posts by
+// topic rather than reading order. Those pages stay where they are; the series
+// page links to them.
+const SERIES_GUIDES: Record<string, { href: string; label: string }> = {
+	'git-commands': { href: '/programming/git-commands/', label: '명령어별 색인 보기' },
+};
+
+export async function getStaticPaths() {
+	const seriesList = buildSeriesList(await getPublishedPosts());
+
+	return seriesList.map((series) => ({
+		params: { series: series.slug },
+		props: { series },
+	}));
+}
+
+const { series } = Astro.props;
+const guide = SERIES_GUIDES[series.slug];
+const categoryLabels = series.categories.map(
+	(category) => getCategoryDefinition(category)?.label ?? category,
+);
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead
+			title={`${series.name} | ${SITE_TITLE}`}
+			description={`${series.name} 시리즈의 글 ${series.count}편을 읽는 순서대로 모았습니다.`}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="series-page">
+			<section class="series-hero">
+				<a href="/series/" class="back-link">← 모든 시리즈</a>
+				<p class="eyebrow">Series</p>
+				<h1>{series.name}</h1>
+				<p>
+					{series.count}편
+					{categoryLabels.length > 0 && <> · {categoryLabels.join(' · ')}</>}
+					{
+						series.firstDate && series.latestDate && (
+							<>
+								{' · '}
+								<FormattedDate date={series.firstDate} /> ~{' '}
+								<FormattedDate date={series.latestDate} />
+							</>
+						)
+					}
+				</p>
+				{
+					guide && (
+						<a href={guide.href} class="guide-link">
+							{guide.label}
+						</a>
+					)
+				}
+			</section>
+			<ol class="series-posts">
+				{
+					series.posts.map((post, index) => (
+						<li>
+							<a href={`/blog/${post.data.slug || post.id}/`}>
+								<span class="series-number" aria-hidden="true">
+									{index + 1}
+								</span>
+								<span class="series-body">
+									<span class="series-title">{post.data.title}</span>
+									{post.data.description && (
+										<span class="series-description">{post.data.description}</span>
+									)}
+									{(post.data.pubDate || post.data.date) && (
+										<span class="series-date">
+											<FormattedDate date={post.data.pubDate || post.data.date} />
+										</span>
+									)}
+								</span>
+							</a>
+						</li>
+					))
+				}
+			</ol>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.series-page {
+		width: min(100%, 1080px);
+		margin: 0 auto;
+		padding: 3rem 1rem 4rem;
+	}
+	.series-hero {
+		margin-bottom: 2rem;
+		padding: 2rem;
+		border: 1px solid var(--border-color);
+		border-radius: 28px;
+		background: color-mix(in srgb, var(--card-bg) 86%, transparent);
+	}
+	.back-link {
+		display: inline-flex;
+		margin-bottom: 1rem;
+		color: var(--muted-text);
+		text-decoration: none;
+	}
+	.back-link:hover {
+		color: var(--accent);
+	}
+	.eyebrow {
+		margin: 0 0 0.5rem;
+		color: var(--accent);
+		font-size: 0.8rem;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+	.series-hero h1 {
+		margin: 0 0 0.5rem;
+	}
+	.series-hero p {
+		margin: 0;
+		color: var(--muted-text);
+	}
+	.guide-link {
+		display: inline-flex;
+		margin-top: 1rem;
+		padding: 0.6rem 0.9rem;
+		border-radius: 999px;
+		background: var(--accent);
+		color: white;
+		font-weight: 800;
+		text-decoration: none;
+	}
+	.series-posts {
+		display: grid;
+		gap: 0.7rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		counter-reset: none;
+	}
+	.series-posts a {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.9rem;
+		padding: 1rem 1.1rem;
+		border: 1px solid var(--border-color);
+		border-radius: 18px;
+		background: var(--card-bg);
+		color: inherit;
+		text-decoration: none;
+	}
+	.series-posts a:hover,
+	.series-posts a:focus-visible {
+		border-color: var(--accent);
+	}
+	.series-number {
+		flex-shrink: 0;
+		min-width: 2rem;
+		padding: 0.15rem 0;
+		color: var(--accent);
+		font-weight: 800;
+		font-variant-numeric: tabular-nums;
+		text-align: center;
+	}
+	.series-body {
+		display: grid;
+		gap: 0.25rem;
+	}
+	.series-title {
+		font-weight: 700;
+	}
+	.series-description {
+		color: var(--muted-text);
+		font-size: 0.9rem;
+	}
+	.series-date {
+		color: var(--muted-text);
+		font-size: 0.82rem;
+	}
+
+	@media (max-width: 520px) {
+		.series-hero {
+			padding: 1.4rem;
+		}
+		.series-posts a {
+			padding: 0.9rem;
+		}
+	}
+</style>

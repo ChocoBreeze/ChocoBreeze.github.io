@@ -4,7 +4,13 @@ import { spawnSync } from 'node:child_process';
 import { describe, it } from 'node:test';
 import path from 'node:path';
 
-import { buildSeriesNavigation, getSeriesPosts, sortSeriesPosts } from '../../src/lib/series.mjs';
+import {
+	buildSeriesList,
+	buildSeriesNavigation,
+	findSeries,
+	getSeriesPosts,
+	sortSeriesPosts,
+} from '../../src/lib/series.mjs';
 import { createContentFixture } from './helpers/content-fixture.mjs';
 
 function post(id, seriesOrder, options = {}) {
@@ -140,5 +146,100 @@ describe('new-post series options', () => {
 		} finally {
 			fixture.cleanup();
 		}
+	});
+});
+
+describe('buildSeriesList', () => {
+	it('groups posts by series slug and keeps reading order', () => {
+		const list = buildSeriesList([
+			post('second', 2),
+			post('first', 1),
+			post('other', 1, { series: 'ETF 기초', seriesSlug: 'etf-basics' }),
+		]);
+
+		assert.deepEqual(
+			list.map((series) => series.slug),
+			['etf-basics', 'git-commands'],
+		);
+		const gitSeries = list.find((series) => series.slug === 'git-commands');
+		assert.deepEqual(
+			gitSeries.posts.map((entry) => entry.id),
+			['first', 'second'],
+		);
+		assert.equal(gitSeries.count, 2);
+		assert.equal(gitSeries.name, 'Git 명령어');
+	});
+
+	it('sorts series by their most recent post', () => {
+		const list = buildSeriesList([
+			post('old', 1, { pubDate: '2026-01-01T00:00:00+09:00' }),
+			post('new', 1, {
+				series: 'ETF 기초',
+				seriesSlug: 'etf-basics',
+				pubDate: '2026-05-01T00:00:00+09:00',
+			}),
+		]);
+
+		assert.deepEqual(
+			list.map((series) => series.slug),
+			['etf-basics', 'git-commands'],
+		);
+	});
+
+	it('excludes drafts and posts with no series slug', () => {
+		const list = buildSeriesList([
+			post('live', 1),
+			post('draft', 2, { draft: true }),
+			{ id: 'loose', data: { title: 'Loose', pubDate: new Date('2026-01-01') } },
+		]);
+
+		assert.equal(list.length, 1);
+		assert.deepEqual(
+			list[0].posts.map((entry) => entry.id),
+			['live'],
+		);
+	});
+
+	it('falls back to the slug when no post carries a display name', () => {
+		const list = buildSeriesList([
+			{
+				id: 'only',
+				data: {
+					title: 'Only',
+					seriesSlug: 'git-commands',
+					seriesOrder: 1,
+					pubDate: new Date('2026-01-01T00:00:00+09:00'),
+				},
+			},
+		]);
+
+		assert.equal(list[0].name, 'git-commands');
+	});
+
+	it('collects the first and last publication dates and the categories', () => {
+		const list = buildSeriesList([
+			post('first', 1, { pubDate: '2026-01-01T00:00:00+09:00' }),
+			post('second', 2, {
+				pubDate: '2026-03-01T00:00:00+09:00',
+				categories: ['Computer Science'],
+			}),
+		]);
+
+		assert.equal(list[0].firstDate.toISOString().slice(0, 10), '2025-12-31');
+		assert.equal(list[0].latestDate.toISOString().slice(0, 10), '2026-02-28');
+		assert.deepEqual(list[0].categories, ['Programming', 'Computer Science']);
+	});
+
+	it('returns an empty list for no posts', () => {
+		assert.deepEqual(buildSeriesList(), []);
+	});
+});
+
+describe('findSeries', () => {
+	it('finds a series by slug and returns undefined otherwise', () => {
+		const posts = [post('first', 1)];
+
+		assert.equal(findSeries(posts, 'git-commands').count, 1);
+		assert.equal(findSeries(posts, 'missing'), undefined);
 	});
 });
