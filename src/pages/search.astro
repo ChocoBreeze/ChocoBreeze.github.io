@@ -540,10 +540,7 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 			function renderNextResultPage() {
 				if (!resultsList) return;
 
-				const nextResults = renderedResults.slice(
-					renderedCount,
-					renderedCount + RESULT_PAGE_SIZE,
-				);
+				const nextResults = renderedResults.slice(renderedCount, renderedCount + RESULT_PAGE_SIZE);
 				resultsList.append(...buildResultItems(nextResults));
 				renderedCount += nextResults.length;
 				updateResultsMoreButton();
