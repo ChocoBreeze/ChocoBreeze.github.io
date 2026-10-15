@@ -64,12 +64,25 @@ function createFixture() {
 	};
 }
 
-function check(fixture) {
+function check(fixture, redirects = []) {
 	return checkBuildArtifacts({
 		contentDir: fixture.contentDir,
 		distDir: fixture.distDir,
 		siteTitle: 'ChocoBreeze',
+		redirects,
 	});
+}
+
+// Mirrors the page Astro generates for a configured redirect in a static build.
+function redirectPage(to) {
+	return [
+		'<!doctype html>',
+		`<title>Redirecting to: ${to}</title>`,
+		`<meta http-equiv="refresh" content="0;url=${to}">`,
+		'<meta name="robots" content="noindex">',
+		`<link rel="canonical" href="https://chocobreeze.github.io${to}">`,
+		`<body><a href="${to}">Redirecting</a></body>`,
+	].join('');
 }
 
 describe('checkBuildArtifacts', () => {
@@ -163,5 +176,81 @@ describe('checkBuildArtifacts', () => {
 		assert.ok(
 			result.issues.some((issue) => issue.includes('missing or duplicated site-name suffix')),
 		);
+	});
+});
+
+describe('checkBuildArtifacts redirects', () => {
+	const redirect = {
+		from: '/blog/archive/derived/derived/',
+		to: '/blog/archive/derived/',
+		since: '2026-10-16',
+		reason: 'test',
+	};
+
+	it('accepts a generated redirect page without applying the site-title rule', (t) => {
+		const fixture = createFixture();
+		t.after(fixture.cleanup);
+		writeFile(
+			fixture.distDir,
+			'blog/archive/derived/derived/index.html',
+			redirectPage(redirect.to),
+		);
+
+		const result = check(fixture, [redirect]);
+
+		assert.deepEqual(result.issues, []);
+	});
+
+	it('reports a redirect whose page was not generated', (t) => {
+		const fixture = createFixture();
+		t.after(fixture.cleanup);
+
+		const result = check(fixture, [redirect]);
+
+		assert.ok(result.issues.some((issue) => issue.includes('Redirect source is missing')));
+	});
+
+	it('reports a redirect page that points somewhere else', (t) => {
+		const fixture = createFixture();
+		t.after(fixture.cleanup);
+		writeFile(
+			fixture.distDir,
+			'blog/archive/derived/derived/index.html',
+			redirectPage('/blog/live-post/'),
+		);
+
+		const result = check(fixture, [redirect]);
+
+		assert.ok(result.issues.some((issue) => issue.includes('does not point at')));
+	});
+
+	it('reports a redirect page missing robots noindex or a canonical link', (t) => {
+		const fixture = createFixture();
+		t.after(fixture.cleanup);
+		writeFile(
+			fixture.distDir,
+			'blog/archive/derived/derived/index.html',
+			'<!doctype html><title>Redirecting to: /blog/archive/derived/</title><meta http-equiv="refresh" content="0;url=/blog/archive/derived/">',
+		);
+
+		const result = check(fixture, [redirect]);
+
+		assert.ok(result.issues.some((issue) => issue.includes('missing robots noindex')));
+		assert.ok(result.issues.some((issue) => issue.includes('missing a canonical link')));
+	});
+
+	it('reports a redirect whose target page does not exist', (t) => {
+		const fixture = createFixture();
+		t.after(fixture.cleanup);
+		const missingTarget = { ...redirect, to: '/blog/gone/' };
+		writeFile(
+			fixture.distDir,
+			'blog/archive/derived/derived/index.html',
+			redirectPage(missingTarget.to),
+		);
+
+		const result = check(fixture, [missingTarget]);
+
+		assert.ok(result.issues.some((issue) => issue.includes('Redirect target is missing')));
 	});
 });

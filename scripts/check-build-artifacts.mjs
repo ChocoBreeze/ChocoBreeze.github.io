@@ -8,6 +8,11 @@ import {
 	isDraftFrontmatter,
 	normalizeRoutePath,
 } from './lib/content-rules.mjs';
+import {
+	POST_REDIRECTS,
+	findRedirectProblems,
+	normalizeRedirectPath,
+} from '../src/data/postRedirects.mjs';
 
 const ROOT_DIR = process.cwd();
 const DEFAULT_CONTENT_DIR = process.env.ASTRA_BLOG_CONTENT_DIR
@@ -140,6 +145,7 @@ export function checkBuildArtifacts({
 	distDir = DEFAULT_DIST_DIR,
 	siteTitle = getSiteTitle(ROOT_DIR),
 	siteUrl = getSiteUrl(ROOT_DIR),
+	redirects = POST_REDIRECTS,
 } = {}) {
 	if (!existsSync(contentDir) || !statSync(contentDir).isDirectory()) {
 		throw new Error(`Content directory not found: ${contentDir}`);
@@ -174,6 +180,37 @@ export function checkBuildArtifacts({
 		}
 	}
 
+	issues.push(...findRedirectProblems(redirects));
+
+	const redirectOutputPaths = new Set();
+	for (const redirect of redirects) {
+		const from = normalizeRedirectPath(redirect.from);
+		const to = normalizeRedirectPath(redirect.to);
+		const outputPath = path.join(distDir, from.replace(/^\//, ''), 'index.html');
+		redirectOutputPaths.add(path.relative(distDir, outputPath).split(path.sep).join('/'));
+
+		if (!existsSync(outputPath)) {
+			issues.push(`Redirect source is missing from the build: ${from}`);
+			continue;
+		}
+
+		const redirectContent = readFileSync(outputPath, 'utf8');
+		if (!redirectContent.includes(`url=${to}`)) {
+			issues.push(`Redirect page does not point at ${to}: ${from}`);
+		}
+		if (!/<meta\s+name="robots"\s+content="noindex"/i.test(redirectContent)) {
+			issues.push(`Redirect page is missing robots noindex: ${from}`);
+		}
+		if (!/<link\s+rel="canonical"/i.test(redirectContent)) {
+			issues.push(`Redirect page is missing a canonical link: ${from}`);
+		}
+
+		const targetPath = path.join(distDir, to.replace(/^\//, ''), 'index.html');
+		if (!existsSync(targetPath)) {
+			issues.push(`Redirect target is missing from the build: ${to} (from ${from})`);
+		}
+	}
+
 	const htmlFiles = walkFiles(
 		distDir,
 		(filePath) => path.extname(filePath).toLowerCase() === '.html',
@@ -183,6 +220,12 @@ export function checkBuildArtifacts({
 		const content = readFileSync(filePath, 'utf8');
 		const titleMatches = [...content.matchAll(/<title\b[^>]*>([\s\S]*?)<\/title\s*>/gi)];
 		const relativePath = path.relative(distDir, filePath).split(path.sep).join('/');
+		if (redirectOutputPaths.has(relativePath)) {
+			// Astro generates redirect pages with a "Redirecting to: ..." title and
+			// no site chrome. They are verified above instead.
+			continue;
+		}
+
 		if (titleMatches.length !== 1) {
 			issues.push(`Expected exactly one <title> in ${relativePath}; found ${titleMatches.length}`);
 		}
