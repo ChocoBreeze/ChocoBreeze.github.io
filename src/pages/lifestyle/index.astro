@@ -1,0 +1,21 @@
+---
+import { getPublishedPosts } from '../../lib/posts';
+import { BLOG_CATEGORIES, normalizeCategory } from '../../data/blogCategories';
+import { sortPostsByDateDesc } from '../../lib/taxonomy';
+import BlogListLayout from '../../layouts/BlogListLayout.astro';
+
+const category = BLOG_CATEGORIES.find(({ key }) => key === 'Lifestyle')!;
+const posts = sortPostsByDateDesc(
+	(await getPublishedPosts()).filter(
+		(post) => normalizeCategory(post.data.categories) === category.key,
+	),
+);
+---
+
+<BlogListLayout
+	title={category.title}
+	description={category.description}
+	activeCategory={category.key}
+	posts={posts}
+	filters={{ year: true, tag: true }}
+/>

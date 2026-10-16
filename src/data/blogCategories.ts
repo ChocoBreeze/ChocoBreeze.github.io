@@ -77,6 +77,14 @@ export const BLOG_CATEGORIES: BlogCategoryDefinition[] = [
 		description: '전일과 전주의 미국 주식 시장 흐름을 짧고 선명하게 정리합니다.',
 		sortOrder: 'desc',
 	},
+	{
+		key: 'Lifestyle',
+		label: '일상·지식',
+		href: '/lifestyle',
+		title: '일상에서 발견한 지식',
+		description: '커피와 음식 등 일상에서 생긴 궁금증을 살펴봅니다.',
+		sortOrder: 'desc',
+	},
 ];
 
 export const FINANCE_CATEGORY_KEYS: BlogCategoryKey[] = [
