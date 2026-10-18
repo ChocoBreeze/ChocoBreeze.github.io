@@ -1044,3 +1044,45 @@ export function getDerivedRouteIssues(routePath) {
 
 	return issues;
 }
+
+// --- Frontmatter completeness and tag hygiene (plan 29) -------------------
+
+// Tags that differ only by case, spacing, hyphens, underscores or dots are the
+// same tag to a reader but separate groups on the tag pages. The 2026-10-18
+// corpus had no such pair; this keeps it that way.
+export function foldTagForComparison(tag) {
+	return String(tag ?? '')
+		.normalize('NFKC')
+		.toLowerCase()
+		.replace(/[\s_.-]+/g, '');
+}
+
+/**
+ * Groups tags that fold to the same comparison key but are written differently.
+ *
+ * @param {string[]} tags
+ * @returns {string[][]} one entry per colliding group, with the variants sorted
+ */
+export function findTagVariantCollisions(tags = []) {
+	const groups = new Map();
+
+	for (const tag of tags) {
+		const value = String(tag ?? '').trim();
+		if (!value) {
+			continue;
+		}
+
+		const key = foldTagForComparison(value);
+		if (!key) {
+			continue;
+		}
+
+		const group = groups.get(key) ?? new Set();
+		group.add(value);
+		groups.set(key, group);
+	}
+
+	return [...groups.values()]
+		.filter((group) => group.size > 1)
+		.map((group) => [...group].sort((a, b) => a.localeCompare(b)));
+}

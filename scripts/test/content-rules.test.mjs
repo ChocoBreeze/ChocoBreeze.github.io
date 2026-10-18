@@ -7,7 +7,9 @@ import {
 	collectAssetReferences,
 	collectSiteAssetReferences,
 	countMathDelimiters,
+	findTagVariantCollisions,
 	findUnusedAssets,
+	foldTagForComparison,
 	formatByteSize,
 	getDerivedRouteIssues,
 	getRouteSegments,
@@ -792,5 +794,54 @@ describe('getDerivedRouteIssues', () => {
 		for (const issue of getDerivedRouteIssues('/blog/etf/qqqj/qqqj')) {
 			assert.ok(issue.message.includes('/blog/etf/qqqj/qqqj'));
 		}
+	});
+});
+
+describe('foldTagForComparison', () => {
+	it('ignores case, spacing, hyphens, underscores, and dots', () => {
+		const folded = ['Option Income', 'option-income', 'OPTION_INCOME', 'option.income'].map(
+			foldTagForComparison,
+		);
+
+		assert.equal(new Set(folded).size, 1);
+	});
+
+	it('keeps different tags apart', () => {
+		assert.notEqual(foldTagForComparison('ETF'), foldTagForComparison('ETN'));
+	});
+
+	it('handles an empty value', () => {
+		assert.equal(foldTagForComparison(undefined), '');
+	});
+});
+
+describe('findTagVariantCollisions', () => {
+	it('groups tags that differ only in spelling', () => {
+		assert.deepEqual(findTagVariantCollisions(['Version Control', 'version-control', 'Git']), [
+			['Version Control', 'version-control'],
+		]);
+	});
+
+	it('returns nothing when every tag is distinct', () => {
+		assert.deepEqual(findTagVariantCollisions(['ETF', 'Git', 'CLI', '구리']), []);
+	});
+
+	it('treats the same spelling used twice as one tag', () => {
+		assert.deepEqual(findTagVariantCollisions(['ETF', 'ETF']), []);
+	});
+
+	it('ignores empty entries', () => {
+		assert.deepEqual(findTagVariantCollisions(['', '   ', undefined, 'ETF']), []);
+	});
+
+	it('reports several colliding groups', () => {
+		const groups = findTagVariantCollisions([
+			'Developer Tools',
+			'developer tools',
+			'Nasdaq-100',
+			'nasdaq 100',
+		]);
+
+		assert.equal(groups.length, 2);
 	});
 });

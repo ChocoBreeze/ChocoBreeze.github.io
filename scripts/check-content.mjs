@@ -24,6 +24,7 @@ import {
 	collectSiteAssetReferences,
 	countMathDelimiters,
 	findAllMatches,
+	findTagVariantCollisions,
 	findUnusedAssets,
 	formatByteSize,
 	getDerivedRouteIssues,
@@ -565,6 +566,7 @@ function checkSlug(filePath, content, frontmatterMatch, fields, warnings) {
 }
 
 const DERIVED_ROUTE_WARNING_GROUP = 'derived-route';
+const MISSING_DESCRIPTION_WARNING_GROUP = 'missing-description';
 
 // A post without an explicit `slug` inherits its URL from the file path, so
 // renaming or moving the file silently changes the public URL. Report the path
@@ -581,6 +583,63 @@ function checkDerivedRoute(filePath, content, frontmatterMatch, fields, warnings
 	for (const issue of getDerivedRouteIssues(routePath)) {
 		addIssue(warnings, 'warning', filePath, line, issue.message, DERIVED_ROUTE_WARNING_GROUP);
 	}
+}
+
+// `description` has a schema default of '', so an empty one passes validation
+// while leaving the meta description, the Open Graph description, the post card
+// summary, and the search result blank at once.
+// Collects every tag with the files that use it, so variants can be compared
+// across the whole corpus rather than within one post.
+function collectTagUsage(filePath, content, tagUsage) {
+	const frontmatterMatch = content.match(FRONTMATTER_REGEX);
+	if (!frontmatterMatch) {
+		return;
+	}
+
+	for (const tag of parseFrontmatterListField(frontmatterMatch[1], 'tags')) {
+		const value = String(tag ?? '').trim();
+		if (!value) {
+			continue;
+		}
+
+		const files = tagUsage.get(value) ?? [];
+		files.push({ filePath, line: getLineNumber(content, frontmatterMatch.index ?? 0) });
+		tagUsage.set(value, files);
+	}
+}
+
+function checkTagVariants(tagUsage, warnings) {
+	for (const variants of findTagVariantCollisions([...tagUsage.keys()])) {
+		const label = variants.map((variant) => `"${variant}"`).join(', ');
+		for (const variant of variants) {
+			for (const usage of tagUsage.get(variant) ?? []) {
+				addIssue(
+					warnings,
+					'warning',
+					usage.filePath,
+					usage.line,
+					`Tag "${variant}" collides with another spelling of the same tag (${label}). Pick one spelling so the tag pages do not split.`,
+				);
+			}
+		}
+	}
+}
+
+function checkMissingDescription(filePath, content, frontmatterMatch, fields, warnings) {
+	const field = fields.get('description');
+	const value = field ? stripQuotes(stripYamlComment(field.rawValue)).trim() : '';
+	if (value) {
+		return;
+	}
+
+	addIssue(
+		warnings,
+		'warning',
+		filePath,
+		getLineNumber(content, frontmatterMatch.index + (field?.index ?? 0)),
+		'Post has no description. It is used by the meta description, the social card, the post card, and search results.',
+		MISSING_DESCRIPTION_WARNING_GROUP,
+	);
 }
 
 function checkEtfMetadata(filePath, content, frontmatterMatch, fields, issues) {
@@ -706,6 +765,7 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex, postR
 		MAX_DESCRIPTION_LENGTH,
 		warnings,
 	);
+	checkMissingDescription(filePath, content, frontmatterMatch, fields, warnings);
 	checkSlug(filePath, content, frontmatterMatch, fields, warnings);
 	checkDerivedRoute(filePath, content, frontmatterMatch, fields, warnings);
 	checkEtfMetadata(filePath, content, frontmatterMatch, fields, issues);
@@ -1258,9 +1318,11 @@ async function main() {
 	checkDuplicatePostRoutes(postRoutes, issues);
 
 	const assetReferences = new Set();
+	const tagUsage = new Map();
 
 	for (const filePath of files) {
 		const content = readFileSync(filePath, 'utf8');
+		collectTagUsage(filePath, content, tagUsage);
 		for (const reference of collectAssetReferences(content, {
 			postPath: filePath,
 			publicDir: PUBLIC_DIR,
@@ -1287,6 +1349,8 @@ async function main() {
 			staticPageIndex,
 		);
 	}
+
+	checkTagVariants(tagUsage, warnings);
 
 	for (const [title, entries] of titleIndex) {
 		if (entries.length < 2) {
@@ -1316,18 +1380,37 @@ async function main() {
 	// entry on each full run would bury the actionable warnings, so collapse it
 	// into one line unless the list was explicitly requested. The pre-commit
 	// hook still shows the entries for the posts being committed.
-	const collapseDerivedRoutes = !stagedFileSet && !hasCliFlag('report-derived-routes');
-	const reportedWarnings = collapseDerivedRoutes
-		? stagedWarnings.filter((warning) => warning.group !== DERIVED_ROUTE_WARNING_GROUP)
-		: stagedWarnings;
-	const collapsedDerivedRouteCount = stagedWarnings.length - reportedWarnings.length;
+	const collapsedGroups = [];
+	if (!stagedFileSet && !hasCliFlag('report-derived-routes')) {
+		collapsedGroups.push({
+			group: DERIVED_ROUTE_WARNING_GROUP,
+			label: 'DERIVED ROUTES',
+			hint: 'for posts without an explicit slug. Run with --report-derived-routes for the list.',
+		});
+	}
+	if (!stagedFileSet && !hasCliFlag('report-missing-descriptions')) {
+		collapsedGroups.push({
+			group: MISSING_DESCRIPTION_WARNING_GROUP,
+			label: 'MISSING DESCRIPTIONS',
+			hint: 'for posts with an empty description. Run with --report-missing-descriptions for the list.',
+		});
+	}
+
+	const collapsedGroupNames = new Set(collapsedGroups.map((entry) => entry.group));
+	const reportedWarnings = stagedWarnings.filter(
+		(warning) => !collapsedGroupNames.has(warning.group),
+	);
+	const collapsedSummaries = collapsedGroups
+		.map((entry) => ({
+			...entry,
+			count: stagedWarnings.filter((warning) => warning.group === entry.group).length,
+		}))
+		.filter((entry) => entry.count > 0);
 
 	reportUnusedAssets(checkUnusedAssets(files, assetReferences), stagedFileSet);
 
-	if (collapsedDerivedRouteCount > 0) {
-		console.log(
-			`DERIVED ROUTES ${collapsedDerivedRouteCount} warning(s) for posts without an explicit slug. Run with --report-derived-routes for the list.`,
-		);
+	for (const summary of collapsedSummaries) {
+		console.log(`${summary.label} ${summary.count} warning(s) ${summary.hint}`);
 	}
 
 	if (issues.length === 0 && reportedWarnings.length === 0) {

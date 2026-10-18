@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import { countCoOccurringTags } from './relatedTags.mjs';
 import { getPostDate, toList } from './rss';
 
 type BlogPost = CollectionEntry<'blog'>;
@@ -75,4 +76,18 @@ export function getArchiveGroups(posts: BlogPost[]) {
 			};
 		})
 		.sort((a, b) => b.key.localeCompare(a.key));
+}
+
+/**
+ * Tags that appear alongside `tag` on the same posts, most shared posts first.
+ *
+ * The counting and ordering live in `relatedTags.mjs` so they can be unit
+ * tested; this wrapper adds the route slugs.
+ */
+export function getRelatedTags(posts: BlogPost[], tag: string, limit = 8) {
+	const postTagLists = posts.map((post) => getPostTags(post).map((value) => value.trim()));
+
+	return countCoOccurringTags(postTagLists, tag, limit)
+		.map((entry) => ({ ...entry, slug: slugifyTaxonomyValue(entry.tag) }))
+		.filter((entry) => entry.slug.length > 0);
 }
