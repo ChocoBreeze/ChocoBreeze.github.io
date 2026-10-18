@@ -6,7 +6,9 @@ import { describe, it } from 'node:test';
 import {
 	checkBuildArtifacts,
 	findExternalAssetReferencesInHtml,
+	measureBuildGroups,
 } from '../check-build-artifacts.mjs';
+import { checkBuildBudgets } from '../lib/build-budgets.mjs';
 
 function writeFile(root, relativePath, content) {
 	const filePath = path.join(root, relativePath);
@@ -296,5 +298,89 @@ describe('findExternalAssetReferencesInHtml', () => {
 
 		assert.equal(findExternalAssetReferencesInHtml(html, 'page.html', ['example.com']).length, 1);
 		assert.deepEqual(findExternalAssetReferencesInHtml(html, 'page.html', []), []);
+	});
+});
+
+describe('checkBuildBudgets', () => {
+	const budgets = [
+		{ key: 'bundle', label: 'bundled assets', total: 1000, measured: 800 },
+		{ key: 'og', label: 'OG cards', perPost: 100, measured: 900 },
+	];
+
+	it('accepts a build inside every budget', () => {
+		const issues = checkBuildBudgets(
+			[
+				{ key: 'bundle', bytes: 900, fileCount: 2 },
+				{ key: 'og', bytes: 900, fileCount: 9 },
+			],
+			10,
+			budgets,
+		);
+
+		assert.deepEqual(issues, []);
+	});
+
+	it('reports a total budget that is exceeded', () => {
+		const issues = checkBuildBudgets([{ key: 'bundle', bytes: 1200, fileCount: 2 }], 10, [
+			budgets[0],
+		]);
+
+		assert.equal(issues.length, 1);
+		assert.ok(issues[0].includes('bundle'));
+		assert.ok(issues[0].includes('too much'));
+	});
+
+	it('scales a per-post budget with the post count', () => {
+		const measurement = [{ key: 'og', bytes: 1500, fileCount: 15 }];
+
+		assert.deepEqual(checkBuildBudgets(measurement, 20, [budgets[1]]), []);
+		assert.equal(checkBuildBudgets(measurement, 10, [budgets[1]]).length, 1);
+	});
+
+	it('reports a budgeted group that is missing from the build', () => {
+		const issues = checkBuildBudgets([], 10, [budgets[0]]);
+
+		assert.equal(issues.length, 1);
+		assert.ok(issues[0].includes('missing from the build'));
+	});
+
+	it('reports a budget that defines no limit', () => {
+		const issues = checkBuildBudgets([{ key: 'x', bytes: 1, fileCount: 1 }], 10, [
+			{ key: 'x', label: 'x', measured: 1 },
+		]);
+
+		assert.equal(issues.length, 1);
+		assert.ok(issues[0].includes('neither a total nor a per-post limit'));
+	});
+
+	it('treats a zero post count as one post', () => {
+		assert.deepEqual(
+			checkBuildBudgets([{ key: 'og', bytes: 100, fileCount: 1 }], 0, [budgets[1]]),
+			[],
+		);
+	});
+});
+
+describe('measureBuildGroups', () => {
+	it('measures a directory group and a single-file group', (t) => {
+		const fixture = createFixture();
+		t.after(fixture.cleanup);
+
+		const measurements = measureBuildGroups(fixture.distDir, [
+			{ key: 'blog', label: 'post pages', total: 1, measured: 1 },
+			{ key: 'search.json', label: 'search index', total: 1, measured: 1 },
+			{ key: 'missing-group', label: 'absent', total: 1, measured: 1 },
+		]);
+
+		const blog = measurements.find((entry) => entry.key === 'blog');
+		const search = measurements.find((entry) => entry.key === 'search.json');
+		const missing = measurements.find((entry) => entry.key === 'missing-group');
+
+		assert.ok(blog.fileCount >= 2);
+		assert.ok(blog.bytes > 0);
+		assert.equal(search.fileCount, 1);
+		assert.ok(search.bytes > 0);
+		assert.equal(missing.missing, true);
+		assert.equal(missing.bytes, 0);
 	});
 });

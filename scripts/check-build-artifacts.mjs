@@ -13,6 +13,7 @@ import {
 	findRedirectProblems,
 	normalizeRedirectPath,
 } from '../src/data/postRedirects.mjs';
+import { BUILD_BUDGETS, checkBuildBudgets, formatBudgetBytes } from './lib/build-budgets.mjs';
 
 const ROOT_DIR = process.cwd();
 const DEFAULT_CONTENT_DIR = process.env.ASTRA_BLOG_CONTENT_DIR
@@ -187,12 +188,35 @@ function findExternalAssetReferences(distDir, htmlFiles) {
 	return issues;
 }
 
+// Measures each budgeted group in the build output. A group is a top-level
+// entry of `dist`: either a directory or a single file.
+export function measureBuildGroups(distDir, budgets = BUILD_BUDGETS) {
+	return budgets.map((budget) => {
+		const target = path.join(distDir, budget.key);
+		if (!existsSync(target)) {
+			return { key: budget.key, bytes: 0, fileCount: 0, missing: true };
+		}
+
+		if (statSync(target).isFile()) {
+			return { key: budget.key, bytes: statSync(target).size, fileCount: 1 };
+		}
+
+		const files = walkFiles(target);
+		return {
+			key: budget.key,
+			bytes: files.reduce((sum, filePath) => sum + statSync(filePath).size, 0),
+			fileCount: files.length,
+		};
+	});
+}
+
 export function checkBuildArtifacts({
 	contentDir = DEFAULT_CONTENT_DIR,
 	distDir = DEFAULT_DIST_DIR,
 	siteTitle = getSiteTitle(ROOT_DIR),
 	siteUrl = getSiteUrl(ROOT_DIR),
 	redirects = POST_REDIRECTS,
+	budgets = BUILD_BUDGETS,
 } = {}) {
 	if (!existsSync(contentDir) || !statSync(contentDir).isDirectory()) {
 		throw new Error(`Content directory not found: ${contentDir}`);
@@ -264,6 +288,9 @@ export function checkBuildArtifacts({
 	);
 
 	issues.push(...findExternalAssetReferences(distDir, htmlFiles));
+	issues.push(
+		...checkBuildBudgets(measureBuildGroups(distDir, budgets), publishedPosts.length, budgets),
+	);
 
 	const artifactLinks = [];
 	for (const filePath of htmlFiles) {
@@ -356,8 +383,32 @@ export function checkBuildArtifacts({
 	};
 }
 
+// Prints what each budgeted group currently weighs. Useful before raising a
+// budget, and as the record of why a budget has the value it has.
+function reportBudgets(postCount) {
+	const measurements = measureBuildGroups(DEFAULT_DIST_DIR);
+	console.log(`Build size by budgeted group (${postCount} published posts):`);
+	for (const budget of BUILD_BUDGETS) {
+		const measurement = measurements.find((entry) => entry.key === budget.key);
+		const bytes = measurement?.bytes ?? 0;
+		const limit =
+			typeof budget.perPost === 'number'
+				? budget.perPost * Math.max(postCount, 1)
+				: (budget.total ?? 0);
+		const used = limit > 0 ? Math.round((bytes / limit) * 100) : 0;
+		console.log(
+			`  ${budget.key.padEnd(18)} ${formatBudgetBytes(bytes).padStart(28)}  of ${formatBudgetBytes(
+				limit,
+			)}  (${used}%)`,
+		);
+	}
+}
+
 function run() {
 	const result = checkBuildArtifacts();
+	if (process.argv.includes('--report-budgets')) {
+		reportBudgets(result.publishedPostCount);
+	}
 	if (result.issues.length) {
 		console.error(`Build artifact check failed with ${result.issues.length} issue(s):`);
 		for (const issue of result.issues) console.error(`- ${issue}`);
