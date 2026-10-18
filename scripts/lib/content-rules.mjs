@@ -1086,3 +1086,16 @@ export function findTagVariantCollisions(tags = []) {
 		.filter((group) => group.size > 1)
 		.map((group) => [...group].sort((a, b) => a.localeCompare(b)));
 }
+
+// --- Image weight (plan 31) ----------------------------------------------
+
+// Markdown images referenced with a relative path go through Astro's image
+// pipeline, which re-encodes and resizes them, so the source file mostly costs
+// repository size. An absolute `/images/...` file is served as-is, so its size
+// is what every reader downloads. One megabyte is well past either need.
+export const MAX_IMAGE_BYTES = 1024 * 1024;
+
+export function isOversizedImage(bytes, limit = MAX_IMAGE_BYTES) {
+	const value = Number(bytes);
+	return Number.isFinite(value) && value > limit;
+}

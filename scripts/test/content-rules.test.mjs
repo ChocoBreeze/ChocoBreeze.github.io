@@ -7,10 +7,12 @@ import {
 	collectAssetReferences,
 	collectSiteAssetReferences,
 	countMathDelimiters,
+	MAX_IMAGE_BYTES,
 	findTagVariantCollisions,
 	findUnusedAssets,
 	foldTagForComparison,
 	formatByteSize,
+	isOversizedImage,
 	getDerivedRouteIssues,
 	getRouteSegments,
 	getPrimaryCategory,
@@ -843,5 +845,28 @@ describe('findTagVariantCollisions', () => {
 		]);
 
 		assert.equal(groups.length, 2);
+	});
+});
+
+describe('isOversizedImage', () => {
+	it('flags a file over the budget', () => {
+		assert.equal(isOversizedImage(MAX_IMAGE_BYTES + 1), true);
+		assert.equal(isOversizedImage(2 * 1024 * 1024), true);
+	});
+
+	it('accepts a file at or under the budget', () => {
+		assert.equal(isOversizedImage(MAX_IMAGE_BYTES), false);
+		assert.equal(isOversizedImage(1024), false);
+		assert.equal(isOversizedImage(0), false);
+	});
+
+	it('honors a custom limit', () => {
+		assert.equal(isOversizedImage(2048, 1024), true);
+		assert.equal(isOversizedImage(512, 1024), false);
+	});
+
+	it('treats a non-numeric size as not oversized', () => {
+		assert.equal(isOversizedImage(undefined), false);
+		assert.equal(isOversizedImage(Number.NaN), false);
 	});
 });

@@ -24,9 +24,11 @@ import {
 	collectSiteAssetReferences,
 	countMathDelimiters,
 	findAllMatches,
+	MAX_IMAGE_BYTES,
 	findTagVariantCollisions,
 	findUnusedAssets,
 	formatByteSize,
+	isOversizedImage,
 	getDerivedRouteIssues,
 	getComparableLinkTarget,
 	getBlogPostRoutePath as getPostRoutePath,
@@ -1223,7 +1225,15 @@ function checkUnusedAssets(markdownFiles, assetReferences) {
 		};
 	});
 
-	return { entries, totalBytes, assetCount: assetFiles.length };
+	const oversized = assetFiles
+		.map((absolutePath) => ({
+			assetPath: toRepoRelativePosixPath(absolutePath),
+			bytes: statSync(absolutePath).size,
+		}))
+		.filter((entry) => isOversizedImage(entry.bytes))
+		.sort((a, b) => b.bytes - a.bytes);
+
+	return { entries, totalBytes, assetCount: assetFiles.length, oversized };
 }
 
 function hasCliFlag(name) {
@@ -1278,6 +1288,41 @@ function reportUnusedAssets(unusedAssets, stagedFileSet) {
 	console.log(
 		`UNUSED ASSETS ${entries.length} of ${assetCount} file(s), ${formatByteSize(totalBytes)} unreferenced.` +
 			(listAll ? '' : ' Run with --report-unused-assets for the list.'),
+	);
+}
+
+function reportOversizedImages(unusedAssets, stagedFileSet) {
+	const oversized = unusedAssets.oversized ?? [];
+	if (oversized.length === 0) {
+		return;
+	}
+
+	// The pre-commit hook only reports the files being committed.
+	const reported = stagedFileSet
+		? oversized.filter((entry) => stagedFileSet.has(entry.assetPath))
+		: oversized;
+
+	if (stagedFileSet) {
+		for (const entry of reported) {
+			console.warn(
+				`WARN  ${entry.assetPath} is ${formatByteSize(entry.bytes)}, over the ${formatByteSize(MAX_IMAGE_BYTES)} image budget. Resize or re-encode it before committing.`,
+			);
+		}
+
+		return;
+	}
+
+	if (hasCliFlag('report-oversized-images')) {
+		for (const entry of oversized) {
+			console.warn(`WARN  ${entry.assetPath} is ${formatByteSize(entry.bytes)}.`);
+		}
+	}
+
+	console.log(
+		`OVERSIZED IMAGES ${oversized.length} file(s) over ${formatByteSize(MAX_IMAGE_BYTES)}.` +
+			(hasCliFlag('report-oversized-images')
+				? ''
+				: ' Run with --report-oversized-images for the list.'),
 	);
 }
 
@@ -1407,7 +1452,9 @@ async function main() {
 		}))
 		.filter((entry) => entry.count > 0);
 
-	reportUnusedAssets(checkUnusedAssets(files, assetReferences), stagedFileSet);
+	const unusedAssets = checkUnusedAssets(files, assetReferences);
+	reportUnusedAssets(unusedAssets, stagedFileSet);
+	reportOversizedImages(unusedAssets, stagedFileSet);
 
 	for (const summary of collapsedSummaries) {
 		console.log(`${summary.label} ${summary.count} warning(s) ${summary.hint}`);
