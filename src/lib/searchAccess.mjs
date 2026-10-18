@@ -11,6 +11,18 @@ export function findSearchMatchRange(value, query) {
 	const normalizedQuery = normalizeSearchAccessQuery(query);
 	if (!normalizedQuery) return undefined;
 
+	// Fast path: when normalization does not change the length, normalized
+	// offsets are source offsets, so the per-character range table below can be
+	// skipped. Building that table for a full post body was the dominant cost of
+	// highlighting results once bodies were indexed in full (plan 28).
+	// Normalized without trimming: trimming would shift every offset.
+	const wholeNormalizedSource = source.normalize('NFKC').toLowerCase();
+	if (wholeNormalizedSource.length === source.length) {
+		const fastIndex = wholeNormalizedSource.indexOf(normalizedQuery);
+		if (fastIndex === -1) return undefined;
+		return { start: fastIndex, end: fastIndex + normalizedQuery.length };
+	}
+
 	let normalizedSource = '';
 	const sourceRanges = [];
 	let sourceOffset = 0;

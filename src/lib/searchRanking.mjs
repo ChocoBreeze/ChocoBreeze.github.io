@@ -1,4 +1,5 @@
 import { findSearchMatchRange, normalizeSearchAccessQuery } from './searchAccess.mjs';
+import { findAnchorForOffset } from './searchSections.mjs';
 import { getSearchTextCandidates } from './searchText.mjs';
 
 const preparedItemCache = new WeakMap();
@@ -103,6 +104,42 @@ export function getMatchSnippet(item, query) {
 	}
 
 	return item.d || item.e || '';
+}
+
+/**
+ * Returns the heading anchor of the section a body match falls in, so a result
+ * can link into the post instead of its top (plan 28).
+ *
+ * The offset is measured in the same body text the index stores section offsets
+ * against. The excerpt boundary trims whitespace, so an offset can be off by a
+ * character or two — immaterial next to section length, but it means an anchor
+ * is never claimed for a match outside the body.
+ *
+ * Locating a match inside a full body is costly, so callers resolve anchors only
+ * for the results they actually render, never for the whole result set.
+ */
+export function getMatchAnchor(item, query) {
+	const anchors = item?.v;
+	if (!Array.isArray(anchors) || anchors.length === 0) {
+		return undefined;
+	}
+
+	const normalizedQuery = normalizeSearchAccessQuery(query);
+	if (!normalizedQuery) {
+		return undefined;
+	}
+
+	// The prepared body text is already normalized and cached, so this is a plain
+	// indexOf. Normalization can shift an offset by a character or two, which is
+	// immaterial against section lengths.
+	for (const candidate of prepareSearchItem(item).bodyCandidates) {
+		const offset = candidate.indexOf(normalizedQuery);
+		if (offset >= 0) {
+			return findAnchorForOffset(anchors, offset);
+		}
+	}
+
+	return undefined;
 }
 
 export function searchIndexedItems(items, value, { limit = Number.POSITIVE_INFINITY } = {}) {

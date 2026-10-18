@@ -4,7 +4,7 @@ test('restores a shared full-search query after reload', async ({ page }) => {
 	await page.goto('/search/?q=IDL%EC%9D%B4%EB%9E%80');
 
 	const searchInput = page.getByRole('textbox', { name: '게시글 검색' });
-	const idlResult = page.locator('#results-list a[href="/blog/cs/what-is-idl/"]');
+	const idlResult = page.locator('#results-list a[href^="/blog/cs/what-is-idl/"]');
 	await expect(searchInput).toHaveValue('IDL이란');
 	await expect(idlResult).toBeVisible();
 
@@ -57,7 +57,7 @@ test('recovers from a full-search index failure when retried', async ({ page }) 
 	await page.goto('/search/?q=IDL%EC%9D%B4%EB%9E%80');
 	await expect(page.getByRole('status')).toContainText('불러오지 못했습니다');
 	await page.getByRole('button', { name: '다시 시도' }).click();
-	await expect(page.locator('#results-list a[href="/blog/cs/what-is-idl/"]')).toBeVisible();
+	await expect(page.locator('#results-list a[href^="/blog/cs/what-is-idl/"]')).toBeVisible();
 	await expect.poll(() => requests).toBe(2);
 });
 
@@ -77,10 +77,10 @@ test('keeps the latest category when an earlier index request finishes last', as
 	await page
 		.getByRole('combobox', { name: '검색 카테고리' })
 		.selectOption('/search/programming.json');
-	await expect(page.locator('#results-list a[href="/blog/cs/what-is-idl/"]')).toHaveCount(0);
+	await expect(page.locator('#results-list a[href^="/blog/cs/what-is-idl/"]')).toHaveCount(0);
 	releaseFirstRequest();
 	await firstRequestFinished;
-	await expect(page.locator('#results-list a[href="/blog/cs/what-is-idl/"]')).toHaveCount(0);
+	await expect(page.locator('#results-list a[href^="/blog/cs/what-is-idl/"]')).toHaveCount(0);
 	await expect(page).toHaveURL(/category=%2Fsearch%2Fprogramming.json/);
 	await expect(page.getByRole('combobox', { name: '검색 카테고리' })).toHaveValue(
 		'/search/programming.json',
@@ -177,4 +177,21 @@ test('hides the show-more button once every result is rendered', async ({ page }
 	const renderedCount = await results.count();
 	expect(renderedCount).toBeLessThanOrEqual(20);
 	await expect(page.locator('#results-more')).toBeHidden();
+});
+
+test('links a body match to the heading section that matched', async ({ page }) => {
+	await page.goto('/search/?q=%EB%B8%8C%EB%9E%9C%EC%B9%98%20%EC%82%AD%EC%A0%9C');
+
+	const firstResult = page.locator('#results-list > li a').first();
+	await expect(firstResult).toBeVisible();
+
+	const href = await firstResult.getAttribute('href');
+	expect(href).toContain('/blog/');
+	expect(href).toContain('#');
+
+	// The anchor must exist on the post the result points at.
+	await firstResult.click();
+	const fragment = decodeURIComponent(new URL(page.url()).hash.slice(1));
+	expect(fragment.length).toBeGreaterThan(0);
+	await expect(page.locator(`[id="${fragment}"]`)).toBeAttached();
 });

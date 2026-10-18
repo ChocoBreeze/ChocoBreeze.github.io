@@ -1,16 +1,14 @@
 import { render, type CollectionEntry } from 'astro:content';
 import { normalizeCategory, type BlogCategoryKey } from '../data/blogCategories';
 import { slugifyBlogCategoryKey } from '../data/blogTaxonomy.mjs';
-import { stripMarkdown } from './searchMarkdown.mjs';
+import { buildSearchSections } from './searchSections.mjs';
 import { getSearchTextSegment } from './searchText.mjs';
 
 const EXCERPT_LENGTH = 480;
-const SEARCH_TEXT_LENGTH = 5000;
 
 type BlogPost = CollectionEntry<'blog'>;
 
-function getExcerpt(content: string) {
-	const plainText = stripMarkdown(content);
+function getExcerpt(plainText: string) {
 	if (plainText.length <= EXCERPT_LENGTH) {
 		return plainText;
 	}
@@ -18,10 +16,12 @@ function getExcerpt(content: string) {
 	return `${plainText.slice(0, EXCERPT_LENGTH).trim()}...`;
 }
 
-function getSearchText(content: string) {
-	return getSearchTextSegment(stripMarkdown(content), {
+// The body is indexed in full. It used to stop at 5,000 characters, which left
+// the rest of every long post unsearchable (plan 28).
+function getSearchText(plainText: string) {
+	return getSearchTextSegment(plainText, {
 		excerptLength: EXCERPT_LENGTH,
-		maxLength: SEARCH_TEXT_LENGTH,
+		maxLength: plainText.length,
 	});
 }
 
@@ -40,6 +40,10 @@ export async function createSearchIndex(posts: BlogPost[]) {
 		posts.map(async (post) => {
 			const { headings } = await render(post);
 			const body = (post as { body?: string }).body ?? '';
+			const { text, anchors } = buildSearchSections(
+				body,
+				headings.map((heading) => heading.slug),
+			);
 
 			return {
 				t: post.data.title,
@@ -47,8 +51,11 @@ export async function createSearchIndex(posts: BlogPost[]) {
 				c: post.data.categories,
 				g: post.data.tags ?? [],
 				h: headings.map((heading) => heading.text),
-				e: getExcerpt(body),
-				x: getSearchText(body),
+				e: getExcerpt(text),
+				x: getSearchText(text),
+				// Heading offsets inside `e + x`, so a result can link to the section
+				// that matched instead of the top of the post.
+				v: anchors,
 				s: post.data.slug || post.id,
 			};
 		}),

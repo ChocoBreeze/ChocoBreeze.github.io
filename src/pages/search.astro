@@ -239,7 +239,11 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 				normalizeSearchAccessQuery,
 				shouldLoadSearchIndex,
 			} from '../lib/searchAccess.mjs';
-			import { getCategoryLabel, searchIndexedItems } from '../lib/searchRanking.mjs';
+			import {
+				getCategoryLabel,
+				getMatchAnchor,
+				searchIndexedItems,
+			} from '../lib/searchRanking.mjs';
 			import { readSearchState, serializeSearchState } from '../lib/searchState.mjs';
 
 			type SearchItem = {
@@ -250,6 +254,7 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 				h?: string[];
 				e?: string;
 				x?: string;
+				v?: [number, string][];
 				s: string;
 				f?: string;
 				k?: 'markdown-code' | 'source-file';
@@ -472,14 +477,17 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 				renderNextResultPage();
 			});
 
-			function getPostHref(slug: string) {
+			function getPostHref(slug: string, anchor?: string) {
 				const normalizedSlug = slug
 					.split('/')
 					.filter(Boolean)
 					.map((segment) => encodeURIComponent(segment))
 					.join('/');
 
-				return `/blog/${normalizedSlug}/`;
+				// A body match links to the heading it sits under, so a long post opens
+				// at the matching section (plan 28).
+				const fragment = anchor ? `#${encodeURIComponent(anchor)}` : '';
+				return `/blog/${normalizedSlug}/${fragment}`;
 			}
 
 			// A broad query can match hundreds of posts. Rendering them all builds
@@ -501,12 +509,15 @@ const searchCacheVersion = import.meta.env.PUBLIC_BUILD_ID || 'dev';
 			}
 
 			function buildResultItems(results: SearchResult[]) {
+				const query = searchInput?.value ?? '';
+
 				return results.map(({ item, snippet }) => {
 					const listItem = document.createElement('li');
 					listItem.className = 'result-item';
 
 					const link = document.createElement('a');
-					link.href = getPostHref(item.s);
+					// Anchors are resolved here, for the rendered page of results only.
+					link.href = getPostHref(item.s, item.k ? undefined : getMatchAnchor(item, query));
 
 					const category = document.createElement('span');
 					category.className = 'result-category';
