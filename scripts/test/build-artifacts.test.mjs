@@ -3,7 +3,10 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
-import { checkBuildArtifacts } from '../check-build-artifacts.mjs';
+import {
+	checkBuildArtifacts,
+	findExternalAssetReferencesInHtml,
+} from '../check-build-artifacts.mjs';
 
 function writeFile(root, relativePath, content) {
 	const filePath = path.join(root, relativePath);
@@ -252,5 +255,46 @@ describe('checkBuildArtifacts redirects', () => {
 		const result = check(fixture, [missingTarget]);
 
 		assert.ok(result.issues.some((issue) => issue.includes('Redirect target is missing')));
+	});
+});
+
+describe('findExternalAssetReferencesInHtml', () => {
+	it('reports a stylesheet loaded from a blocked host', () => {
+		const html = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter">';
+
+		const issues = findExternalAssetReferencesInHtml(html, 'index.html');
+
+		assert.equal(issues.length, 1);
+		assert.ok(issues[0].includes('fonts.googleapis.com'));
+		assert.ok(issues[0].includes('index.html'));
+	});
+
+	it('reports a script loaded from a CDN', () => {
+		const html = '<script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>';
+
+		assert.equal(findExternalAssetReferencesInHtml(html, 'page.html').length, 1);
+	});
+
+	it('accepts same-origin assets', () => {
+		const html = [
+			'<link rel="stylesheet" href="/katex/katex.min.css">',
+			'<script src="/_astro/app.js"></script>',
+			'<link rel="canonical" href="https://chocobreeze.github.io/blog/post/">',
+		].join('');
+
+		assert.deepEqual(findExternalAssetReferencesInHtml(html, 'page.html'), []);
+	});
+
+	it('ignores an external link that is not an asset tag', () => {
+		const html = '<a href="https://fonts.googleapis.com/specimen/Inter">Inter</a>';
+
+		assert.deepEqual(findExternalAssetReferencesInHtml(html, 'page.html'), []);
+	});
+
+	it('honors a custom host list', () => {
+		const html = '<link rel="stylesheet" href="https://example.com/a.css">';
+
+		assert.equal(findExternalAssetReferencesInHtml(html, 'page.html', ['example.com']).length, 1);
+		assert.deepEqual(findExternalAssetReferencesInHtml(html, 'page.html', []), []);
 	});
 });

@@ -140,6 +140,53 @@ function getSearchRecords(value) {
 	return [];
 }
 
+// The site serves its own fonts and stylesheets (plan 30). A stylesheet, font
+// or script pulled from a third-party host is render-blocking, sends the
+// visitor's IP to that host, and breaks when the host does, so reintroducing
+// one should fail the build rather than be noticed later.
+export const BLOCKED_ASSET_HOSTS = [
+	'fonts.googleapis.com',
+	'fonts.gstatic.com',
+	'cdn.jsdelivr.net',
+	'unpkg.com',
+	'cdnjs.cloudflare.com',
+];
+
+export function findExternalAssetReferencesInHtml(content, label, hosts = BLOCKED_ASSET_HOSTS) {
+	const issues = [];
+
+	for (const match of content.matchAll(/<(?:link|script)\b[^>]*>/gi)) {
+		const tag = match[0];
+		const urlMatch = tag.match(/\s(?:href|src)\s*=\s*["']([^"']+)["']/i);
+		if (!urlMatch) {
+			continue;
+		}
+
+		const host = hosts.find((blockedHost) => urlMatch[1].includes(blockedHost));
+		if (host) {
+			issues.push(`External asset reference to ${host} in ${label}: ${urlMatch[1]}`);
+		}
+	}
+
+	return issues;
+}
+
+function findExternalAssetReferences(distDir, htmlFiles) {
+	const issues = [];
+
+	for (const filePath of htmlFiles) {
+		const relativePath = path.relative(distDir, filePath).split(path.sep).join('/');
+		const found = findExternalAssetReferencesInHtml(readFileSync(filePath, 'utf8'), relativePath);
+		// One page is enough to show the problem; every page shares a head.
+		if (found.length > 0) {
+			issues.push(...found);
+			break;
+		}
+	}
+
+	return issues;
+}
+
 export function checkBuildArtifacts({
 	contentDir = DEFAULT_CONTENT_DIR,
 	distDir = DEFAULT_DIST_DIR,
@@ -215,6 +262,9 @@ export function checkBuildArtifacts({
 		distDir,
 		(filePath) => path.extname(filePath).toLowerCase() === '.html',
 	);
+
+	issues.push(...findExternalAssetReferences(distDir, htmlFiles));
+
 	const artifactLinks = [];
 	for (const filePath of htmlFiles) {
 		const content = readFileSync(filePath, 'utf8');

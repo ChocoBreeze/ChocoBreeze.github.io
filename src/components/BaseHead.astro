@@ -68,23 +68,13 @@ const imageURL = getImageURL(image);
 }
 <meta name="generator" content={Astro.generator} />
 
-<!-- Fonts: Inter + Noto Sans KR -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-	href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap"
-	rel="stylesheet"
-/>
+<!-- Fonts: system stack only, declared in src/styles/global.css (plan 30) -->
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
-<!-- KaTeX CSS -->
-<link
-	rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
-	crossorigin="anonymous"
-/>
+<!-- KaTeX CSS: vendored from the installed katex by scripts/vendor-katex.mjs -->
+<link rel="stylesheet" href="/katex/katex.min.css" />
 
 <!-- Primary Meta Tags -->
 <title>{pageTitle}</title>
