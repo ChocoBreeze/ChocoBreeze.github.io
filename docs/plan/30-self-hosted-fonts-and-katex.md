@@ -20,17 +20,40 @@
 
 23번 계획이 요구한 조건을 이 문서에서 충족시킨 뒤 구현에 들어갑니다.
 
-- [미착수] 실제 네트워크 워터폴과 렌더 블로킹 시간 측정
-- [미착수] 사용할 글꼴 굵기와 한글 서브셋 범위 결정
-- [미착수] 라이선스 확인 및 `OFL`·고지 파일 동봉 방식 결정
-- [미착수] KaTeX CSS와 연관 글꼴 자산의 버전 관리 방법 결정
+- [완료] 2026-10-18 측정. 글 페이지 1회 로드(콜드 캐시) 기준 서드파티 요청 16건 482,648 B. `fonts.googleapis.com` CSS 1건(압축 전 193,752 B, 실제 전송 46,854 B, 렌더 블로킹), `fonts.gstatic.com` 폰트 14건 271,848 B(Noto Sans KR 13건 223,592 B, Inter 1건 48,256 B), `cdn.jsdelivr.net` KaTeX CSS 1건 23,196 B.
+- [완료, 방침 변경] 웹폰트를 자체 호스팅하는 대신 제거했습니다. 근거는 아래 `글꼴 결정`에 적었습니다.
+- [완료] 웹폰트를 싣지 않으므로 글꼴 라이선스 동봉은 필요 없습니다. KaTeX는 `public/katex/LICENSE`로 함께 둡니다.
+- [완료] `scripts/vendor-katex.mjs`가 설치된 `katex`에서 CSS와 woff2를 복사하고 CSS 첫 줄에 버전을 적습니다. `scripts/test/vendored-katex.test.mjs`가 설치 버전과 벤더링된 버전이 어긋나면 실패합니다.
 
 ## 범위
 
-- 본문·제목 글꼴의 자체 호스팅과 `font-display` 정책
+- 본문 글꼴의 외부 의존 제거
 - KaTeX CSS 및 글꼴 자산의 자체 호스팅
 - `preconnect`·`preload` 정리
 - 본문 글꼴 자체를 다른 서체로 교체하는 디자인 변경은 포함하지 않음
+
+## 글꼴 결정
+
+측정 뒤 선택지는 셋이었습니다.
+
+| | 외부 도메인 | 콜드 방문 전송 | 저장소 | 글꼴 모양 |
+| --- | ---: | ---: | ---: | --- |
+| A. 현재 유지 | 2곳 | 272 KB | +0 | 모든 OS 동일 |
+| B. 전체 자체 호스팅 | 0곳 | 약 272 KB | +4.0 MB(woff2 131개) | 모든 OS 동일 |
+| C. 웹폰트 제거 | 0곳 | 0 KB | +0 | OS마다 다름 |
+
+B는 Noto Sans KR이 한글을 124개 서브셋으로 나눠 제공해 저장소에 4.0 MB를 영구히 싣게 되고, 그 대가로 얻는 것은 "외부 장애 시에도 같은 글꼴" 정도였습니다. 한글 폴백(Apple SD Gothic Neo, Malgun Gothic, Noto Sans CJK KR)은 모두 OS 기본 글꼴이라 품질 차이가 작아 **C를 선택**했습니다.
+
+영문 폴백을 `Arial`로 두면 인상이 크게 바뀌므로 시스템 UI 글꼴을 앞에 둡니다.
+
+```css
+font-family:
+  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR',
+  'Helvetica Neue', Arial, sans-serif;
+```
+
+받아들인 비용: OS마다 글자 폭이 달라 줄바꿈 위치가 미세하게 달라집니다.
 
 ## 변경 후보
 
@@ -42,12 +65,12 @@
 
 ## 구현 단계
 
-1. [미착수] 현재 워터폴을 측정하고 외부 요청 수·전송량·첫 렌더 시점을 기록합니다.
-2. [미착수] 필요한 굵기와 한글 서브셋을 확정하고 라이선스·고지 파일을 포함해 `public/fonts/`에 추가합니다.
-3. [미착수] `@font-face`로 전환하고 Google Fonts 링크와 `preconnect`를 제거합니다.
-4. [미착수] KaTeX CSS와 글꼴을 자체 호스팅으로 전환하고, 수식이 있는 글에서 렌더 결과를 비교합니다.
-5. [미착수] 외부 참조 잔존 검사를 `check:build-artifacts`에 추가합니다.
-6. [미착수] 전후 수치를 이 문서에 기록합니다.
+1. [완료] 위 착수 조건에 기록했습니다.
+2. [해당 없음] 웹폰트를 제거해 `public/fonts/`에 추가한 자산이 없습니다.
+3. [완료] Google Fonts 링크와 `preconnect` 2개를 `BaseHead.astro`에서 제거하고, `global.css`의 본문 글꼴 스택을 시스템 글꼴로 바꿨습니다.
+4. [완료] `/katex/katex.min.css`와 woff2 20개를 자체 호스팅합니다. 수식이 있는 글에서 `KaTeX_Main-Regular.woff2`·`KaTeX_Math-Italic.woff2`가 같은 오리진에서 로드되고 수식이 정상 렌더링되는 것을 확인했습니다.
+5. [완료] `findExternalAssetReferencesInHtml()`이 빌드 산출물의 `<link>`·`<script>`에서 알려진 CDN 호스트 참조를 찾으면 실패합니다.
+6. [완료] 아래에 기록했습니다.
 
 ## 테스트 설계
 
@@ -63,6 +86,21 @@
 - `npm run test:e2e`
 - `npm run format:check`
 - 브라우저에서 글 상세·검색·카테고리 페이지 수동 확인
+
+### 2026-10-18 구현 결과
+
+| 항목 | 이전 | 이후 |
+| --- | ---: | ---: |
+| 서드파티 요청(글 페이지) | 16건 | **0건** |
+| 서드파티 전송량 | 482,648 B | **0 B** |
+| 외부 도메인 | 3곳 | 0곳 |
+| 저장소 증가 | — | +328 KB(KaTeX) |
+| KaTeX CSS 버전 | 0.16.9(CDN) | 0.16.47(설치 버전과 일치) |
+
+- 본문 글꼴은 웹폰트를 전혀 받지 않습니다. 브라우저에서 `document.fonts`에 로드된 웹폰트가 없고, 수식이 있는 글에서만 KaTeX 글꼴 2개가 같은 오리진에서 로드됩니다.
+- `npm test` 327개 통과(KaTeX 벤더링 7개, 외부 참조 검사 5개 추가), `npm run check` 0 errors
+- `npm run build` 성공, `npm run check:build-artifacts` 통과, `npm run test:e2e` 11개 통과, `npm run format:check` 통과
+- 남은 후속: `public/fonts/`의 Atkinson 글꼴 2개는 어떤 CSS에서도 참조하지 않습니다. 25번 계획의 미사용 자산 검사는 현재 이미지 확장자만 보므로 잡히지 않습니다. 정리 여부는 별도로 판단합니다.
 
 ## 범위 제외
 
