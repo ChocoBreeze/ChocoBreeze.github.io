@@ -20,6 +20,31 @@ Use this guide when adding or reorganizing images.
 - Add meaningful alt text to every Markdown image.
 - Avoid absolute local paths, `file://` URLs, temporary upload links, and private CDN links.
 
+## Image Size
+
+`npm run check:content` warns about any image over 1 MiB (`MAX_IMAGE_BYTES` in
+`scripts/lib/content-rules.mjs`), and the pre-commit hook warns about the oversized images in the
+commit itself. `node scripts/check-content.mjs --report-oversized-images` lists them.
+
+`npm run optimize:images` re-encodes the files that are over the limit, in place:
+
+- A PNG is quantised to a 256-colour palette. Exported infographics and screenshots are usually
+  stored almost uncompressed, so this typically removes two thirds of the file while keeping text
+  crisp.
+- A JPEG photo is resized to at most 1600 pixels wide and re-encoded with mozjpeg. Files under
+  `public/images/` are served byte-for-byte, so their pixel dimensions matter as much as their
+  weight; 1600 covers the 1020-pixel post hero and the 1200-pixel Open Graph card on a
+  high-density display.
+
+A file is only rewritten when the new encoding saves at least 15% and still measures as visually
+identical (PSNR of at least 38 dB against the original). Anything else is reported and left alone,
+so running the script twice changes nothing. Pass `--dry-run` to see what it would do, or specific
+paths to limit it to those files. Rules and thresholds live in `scripts/lib/image-optimizer.mjs`.
+
+Astro re-encodes post-local Markdown images for delivery, so for those the source size is a
+repository-weight question rather than a reader-transfer one. A raw HTML `<img>` is not processed,
+and neither is anything under `public/`.
+
 ## Unused Assets
 
 `npm run check:content` reports how many asset files under `src/content/blog/**/images/` and
@@ -42,5 +67,5 @@ away.
 
 - Run `npm run check:content` after adding or editing post images.
 - Run `npm run build` when changing image references used by pages, layouts, or shared assets.
-- Confirm large images are reasonably compressed before committing.
+- Run `npm run optimize:images` when `check:content` reports an oversized image.
 - Check the unused-asset count in the `check:content` output before committing new images.
