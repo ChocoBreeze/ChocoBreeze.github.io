@@ -170,10 +170,10 @@ GitHub Pages deployment currently uses:
 
 - `actions/setup-node@v4` with `node-version-file: .nvmrc`
 - `npm ci`, `npm audit --audit-level=high`, `npm test`, `npm run check:content`, `npm run check`, and `npm run build`
-- `npm run check:build-artifacts`, then Chromium install and `npm run test:e2e`, then `npm run report:search-size`
+- `npm run check:build-artifacts -- --report-budgets`, then Chromium install and `npm run test:e2e`, then `npm run report:search-size`
 - `actions/upload-pages-artifact@v3` and `actions/deploy-pages@v4`
 
-`.github/workflows/ci.yml` runs the same checks on pull requests, minus `check:build-artifacts` and `report:search-size`.
+`.github/workflows/ci.yml` runs the same checks on pull requests, minus `report:search-size`.
 
 `.nvmrc` is the deployment version source; keep it on Node `22.12.0+` for Astro 7 compatibility and keep `package.json`'s `engines` constraint aligned.
 

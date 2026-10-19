@@ -42,6 +42,7 @@ coarse 정보만 확인되면 가장 구체적인 coarse 값을, 확인할 수 �
 - `npm run test:e2e`: Playwright 브라우저 스모크 테스트(빌드 선행 필요)
 - `npm run check:build-artifacts`: 빌드 산출물(`dist/`) 점검
 - `npm run report:search-size`: 검색 인덱스 크기 리포트
+- `npm run optimize:images`: 1 MiB를 넘는 원본 이미지 재인코딩(`--dry-run`으로 미리보기)
 - `npm run benchmark:search`, `npm run benchmark:search:scale`, `npm run benchmark:search:pagefind-scale`, `npm run benchmark:search:browser`: 검색 성능 벤치마크
 - `npm run new:post`: 새 블로그 포스트 스캐폴드 생성
 - `npm run format`: Prettier 적용
@@ -138,10 +139,10 @@ GitHub Pages 배포는 `.github/workflows/deploy.yml`에서 관리합니다.
 - `main` push 또는 수동 실행 시 배포
 - `.nvmrc`를 읽는 `actions/setup-node@v4`
 - `npm ci` 후 의존성 감사(`npm audit --audit-level=high`), 단위 테스트, 콘텐츠 검사, Astro 타입 검사, 프로덕션 빌드 실행
-- 빌드 후 `npm run check:build-artifacts`, Chromium 설치 후 `npm run test:e2e`, 이어서 `npm run report:search-size` 실행
+- 빌드 후 `npm run check:build-artifacts -- --report-budgets`, Chromium 설치 후 `npm run test:e2e`, 이어서 `npm run report:search-size` 실행
 - `actions/upload-pages-artifact@v3`와 `actions/deploy-pages@v4`로 `dist/` 배포
 
-PR에서는 `.github/workflows/ci.yml`이 같은 검증 절차를 실행합니다. 단, `check:build-artifacts`와 `report:search-size`는 배포 워크플로에서만 실행합니다. Node 버전을 변경할 때는 `.nvmrc`와 `package.json`의 `engines` 조건을 함께 확인하세요.
+PR에서는 `.github/workflows/ci.yml`이 같은 검증 절차를 실행합니다. 단, `report:search-size`는 배포 워크플로에서만 실행합니다. Node 버전을 변경할 때는 `.nvmrc`와 `package.json`의 `engines` 조건을 함께 확인하세요.
 
 ## Verification
 
