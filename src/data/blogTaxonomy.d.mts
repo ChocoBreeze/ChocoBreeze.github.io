@@ -7,6 +7,7 @@ export const BLOG_CATEGORY_KEYS: readonly [
 	'Problem_Solving',
 	'Reports',
 	'Market Brief',
+	'Lifestyle',
 ];
 
 export type BlogCategoryKey = (typeof BLOG_CATEGORY_KEYS)[number];

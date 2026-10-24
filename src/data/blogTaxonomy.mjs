@@ -8,6 +8,7 @@ export const BLOG_CATEGORY_KEYS = Object.freeze([
 	'Problem_Solving',
 	'Reports',
 	'Market Brief',
+	'Lifestyle',
 ]);
 
 export const BLOG_CATEGORY_ALIASES = Object.freeze({
