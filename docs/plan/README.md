@@ -36,7 +36,7 @@
 | 31 | [이미지 파이프라인](31-image-pipeline.md) | 완료(과대 이미지 교체 제외) | P2 | 25 | 중~대 |
 | 32 | [크기 예산과 접근성 스모크](32-size-budget-and-accessibility-smoke.md) | 완료 | P3 | 28, 31 일부 | 중 |
 | 33 | [기준일 경과 리포트](33-stale-data-report.md) | 완료 | P1 | 17, 19 | 소 |
-| 34 | [Market Brief 티커 자동 링크](34-market-brief-ticker-links.md) | 계획 | P2 | 19 | 중 |
+| 34 | [Market Brief 티커 자동 링크](34-market-brief-ticker-links.md) | 완료(라이트·다크 수동 확인 남음) | P2 | 19 | 중 |
 
 ## 현재 남은 작업
 

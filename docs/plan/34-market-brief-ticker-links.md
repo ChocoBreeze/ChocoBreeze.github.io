@@ -47,7 +47,7 @@ Market Brief 본문에 나오는 ETF 티커를 같은 블로그의 ETF 글로 �
 - 글 URL은 `check:content`가 쓰는 `scripts/lib/content-rules.mjs`의 `getBlogPostRoutePath()`를 재사용해 실제 라우트와 어긋나지 않게 합니다.
 - frontmatter 파싱도 같은 파일의 `parseFrontmatterFields()`를 재사용합니다. 새 의존성은 추가하지 않습니다.
 - `astro.config.mjs`가 `scripts/lib/`를 불러오는 구조가 어색하면, 필요한 함수를 `src/lib/`로 옮기고 `content-rules.mjs`가 다시 내보내게 합니다(`slugifyPathSegment`와 같은 방식).
-- 적용 대상 판별은 vfile 경로가 `src/content/blog/Market Brief/` 아래인지로 합니다.
+- 적용 대상 판별은 vfile 경로가 `src/content/blog/Market Brief/` 아래인지로 합니다. (구현에서는 frontmatter 카테고리로 변경, 아래 구현 단계 참고)
 
 ## 변경 후보
 
@@ -58,10 +58,15 @@ Market Brief 본문에 나오는 ETF 티커를 같은 블로그의 ETF 글로 �
 
 ## 구현 단계
 
-1. 매핑 함수를 만들고 127개 티커가 실제 글 라우트와 일치하는지 테스트합니다.
-2. 연결 규칙을 구현하고 노드 종류별 테스트를 작성합니다.
-3. `astro.config.mjs`에 등록하고 빌드 후 Market Brief 몇 편의 HTML을 확인합니다.
-4. 제외 목록을 실제 본문 대조로 확정합니다.
+1. [완료] `src/lib/remarkTickerLinks.mjs`의 `buildTickerRouteMap()`이 티커 127개 중 제외 2개를 뺀 125개를 `/blog/<slug>/`로 매핑합니다. 두 글이 같은 티커를 가지면 어느 쪽에도 연결하지 않습니다. URL 계산을 실제 라우트와 맞추려고 `getBlogPostRoutePath()`와 frontmatter 함수들을 `src/lib/postRoute.mjs`로 옮겼고, `scripts/lib/content-rules.mjs`는 이를 다시 내보냅니다.
+2. [완료] 연결 규칙과 노드 종류별 테스트(`scripts/test/remark-ticker-links.test.mjs`, 7개)를 작성했습니다. 실제 Markdown 프로세서로 렌더링해 확인합니다. 테스트 중 `QQQ_X`처럼 밑줄이 붙은 경우에도 연결되는 문제를 발견해 경계 조건에 `_`를 추가했습니다.
+3. [완료] `astro.config.mjs`에 등록했습니다. 2026-10-27 빌드에서 Market Brief 112편 중 81편에 링크 348개가 생겼고, 한 글에서 같은 티커가 두 번 연결된 경우는 없습니다. `check:build-artifacts`의 내부 링크 검사(8,674개)를 통과했습니다.
+4. [완료] 제외 목록은 `USD`(달러)와 `PPA`입니다. PPA는 Market Brief 본문 6회 중 4회가 전력구매계약("원전 PPA")이었습니다. `GRID`, `UFO`, `ITA` 등 나머지 19종은 모두 ETF를 가리켜 제외하지 않았습니다. `BAR`, `RING`은 현재 본문에 등장하지 않습니다.
+
+### 계획과 달라진 점
+
+- 적용 대상은 vfile 경로가 아니라 frontmatter의 첫 번째 카테고리로 판별합니다. 글 페이지·`report:stale`과 같은 규칙이고, 폴더 이름과 카테고리 키가 다를 수 있기 때문입니다.
+- 초안 처리는 `astro:config:setup` 훅의 `command`로 정합니다. Astro가 config 로드 시점에 dev와 build를 구분해 주지 않기 때문입니다. dev 서버에서 매핑은 처음 렌더링할 때 한 번 만들어지므로, ETF 글의 `ticker`를 바꾼 뒤에는 dev 서버를 다시 시작해야 반영됩니다.
 
 ## 테스트 설계
 
