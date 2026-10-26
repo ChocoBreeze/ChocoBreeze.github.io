@@ -11,7 +11,6 @@ import {
 	rehypeHeadingIds,
 } from '@astrojs/markdown-remark';
 import { createProcessor, nodeTypes } from '@mdx-js/mdx';
-import { slug as githubSlug } from 'github-slugger';
 import { fromHtml } from 'hast-util-from-html';
 import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
@@ -25,10 +24,33 @@ import {
 	normalizeBlogCategoryAlias,
 } from '../../src/data/blogTaxonomy.mjs';
 import { slugifyPathSegment } from '../../src/lib/pathSlug.mjs';
+import {
+	FRONTMATTER_REGEX,
+	parseFrontmatterFields,
+	isDraftFrontmatter,
+	stripQuotes,
+	stripYamlComment,
+	slugifyAstroPathSegment,
+	getBlogPostRoutePath,
+	getComparableLinkTarget,
+	normalizeRoutePath,
+} from '../../src/lib/postRoute.mjs';
 
-export { slugifyPathSegment };
+// Frontmatter and route rules live in src/lib/postRoute.mjs so astro.config.mjs
+// can use them without loading this module's Markdown dependencies.
+export {
+	slugifyPathSegment,
+	FRONTMATTER_REGEX,
+	parseFrontmatterFields,
+	isDraftFrontmatter,
+	stripQuotes,
+	stripYamlComment,
+	slugifyAstroPathSegment,
+	getBlogPostRoutePath,
+	getComparableLinkTarget,
+	normalizeRoutePath,
+};
 
-export const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
 export const MAX_FUTURE_DAYS = 370;
 export const MAX_PAST_YEARS = 10;
 export const MAX_TITLE_LENGTH = 100;
@@ -131,32 +153,8 @@ export function findAllMatches(content, pattern) {
 	return Array.from(content.matchAll(regex));
 }
 
-export function parseFrontmatterFields(frontmatter) {
-	const fields = new Map();
-
-	for (const match of frontmatter.matchAll(/^([A-Za-z][A-Za-z0-9_-]*):[ \t]*(.*)$/gm)) {
-		fields.set(match[1], {
-			rawValue: match[2].trim(),
-			index: match.index ?? 0,
-		});
-	}
-
-	return fields;
-}
-
-export function isDraftFrontmatter(frontmatter) {
-	const draftField = parseFrontmatterFields(frontmatter).get('draft');
-	return draftField
-		? stripQuotes(stripYamlComment(draftField.rawValue)).trim().toLowerCase() === 'true'
-		: false;
-}
-
 export function shouldIndexPostRoute(frontmatter, includeDrafts = true) {
 	return includeDrafts || !isDraftFrontmatter(frontmatter);
-}
-
-export function stripQuotes(value) {
-	return value.replace(/^['"]|['"]$/g, '');
 }
 
 export function parseFrontmatterListValue(rawValue) {
@@ -174,30 +172,6 @@ export function parseFrontmatterListValue(rawValue) {
 	}
 
 	return [stripQuotes(value).trim()].filter(Boolean);
-}
-
-export function stripYamlComment(value) {
-	let quote = '';
-
-	for (let index = 0; index < value.length; index += 1) {
-		const character = value[index];
-		if (quote) {
-			if (character === quote && value[index - 1] !== '\\') {
-				quote = '';
-			}
-			continue;
-		}
-
-		if (character === '"' || character === "'") {
-			quote = character;
-			continue;
-		}
-		if (character === '#' && (index === 0 || /\s/.test(value[index - 1]))) {
-			return value.slice(0, index).trim();
-		}
-	}
-
-	return value.trim();
 }
 
 function updateFlowSequenceState(value, state) {
@@ -351,52 +325,6 @@ export function isDataAsOfAfterVerifiedDate(dataAsOf, verifiedDate) {
 	}
 
 	return dataAsOfTime > verifiedDateTime;
-}
-
-// Astro's glob loader uses github-slugger for path-derived content IDs.
-export function slugifyAstroPathSegment(segment) {
-	return githubSlug(segment);
-}
-
-export function getBlogPostRoutePath(filePath, content, contentDir) {
-	const frontmatterMatch = content.match(FRONTMATTER_REGEX);
-	const fields = frontmatterMatch ? parseFrontmatterFields(frontmatterMatch[1]) : new Map();
-	const slugField = fields.get('slug');
-
-	if (slugField) {
-		const slug = stripQuotes(stripYamlComment(slugField.rawValue));
-		if (slug) {
-			return normalizeRoutePath(`/blog/${slug}`);
-		}
-	}
-
-	const relativePath = path.relative(contentDir, filePath);
-	const parsedPath = path.parse(relativePath);
-	const relativeWithoutExtension = path.join(parsedPath.dir, parsedPath.name);
-	const slugPath = relativeWithoutExtension
-		.split(path.sep)
-		.filter(Boolean)
-		.map(slugifyAstroPathSegment)
-		.join('/')
-		.replace(/\/index$/, '');
-
-	return normalizeRoutePath(`/blog/${slugPath}`);
-}
-
-export function getComparableLinkTarget(href) {
-	try {
-		return decodeURIComponent(href.split(/[?#]/, 1)[0]);
-	} catch {
-		return href.split(/[?#]/, 1)[0];
-	}
-}
-
-export function normalizeRoutePath(routePath) {
-	const withoutHashOrQuery = getComparableLinkTarget(routePath);
-	const withLeadingSlash = withoutHashOrQuery.startsWith('/')
-		? withoutHashOrQuery
-		: `/${withoutHashOrQuery}`;
-	return withLeadingSlash.replace(/\/+$/g, '') || '/';
 }
 
 export function hasTrailingSlash(routePath) {
