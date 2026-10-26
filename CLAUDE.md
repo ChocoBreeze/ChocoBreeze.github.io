@@ -22,6 +22,7 @@ Build/search diagnostics, run by the deploy workflow or on demand:
 ```bash
 npm run check:build-artifacts     # Assert the generated ./dist contains the expected artifacts
 npm run report:search-size        # Report emitted search index sizes
+npm run report:stale              # List ETF/Reports posts with aged freshness dates (--days, --now, --json)
 npm run optimize:images           # Re-encode source images over the 1 MiB budget
 npm run benchmark:search          # Compare the JSON search index against Pagefind
 npm run benchmark:search:scale    # Scale benchmark for the JSON index

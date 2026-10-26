@@ -17,6 +17,7 @@
 		"benchmark:search:pagefind-scale": "node scripts/benchmark-pagefind-scale.mjs",
 		"benchmark:search:browser": "node scripts/benchmark-search-browser.mjs",
 		"report:search-size": "node scripts/report-search-size.mjs",
+		"report:stale": "node scripts/report-stale-data.mjs",
 		"optimize:images": "node scripts/optimize-images.mjs",
 		"test": "node --test \"scripts/test/*.test.mjs\"",
 		"new:post": "node scripts/new-post.mjs",

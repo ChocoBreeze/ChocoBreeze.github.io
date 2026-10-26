@@ -66,10 +66,10 @@
 
 ## 구현 단계
 
-1. 필드별 한도와 `collectStaleFields(frontmatter, now)` 함수를 추가하고 테스트합니다.
-2. 리포트 스크립트가 ETF·Reports 글을 읽어 묶음별로 출력합니다.
-3. `--days`, `--now`, `--json` 옵션을 추가합니다.
-4. 출력 결과를 위 측정표와 대조해 수치가 맞는지 확인합니다.
+1. [완료] `contentFreshness.mjs`에 `FIELD_MAX_AGE_DAYS`와 `collectStaleFields(fields, now, maxAgeOverride)`를 추가했습니다. 기준일 한도는 기존 `FRESHNESS_MAX_AGE_DAYS`를 그대로 씁니다. 입력은 frontmatter 원문이 아니라 파싱된 필드 값이라 순수 함수로 테스트합니다.
+2. [완료] `scripts/report-stale-data.mjs`가 첫 번째 카테고리 기준(글 페이지와 같은 규칙)으로 ETF·Reports 글을 골라 묶음별로 출력합니다.
+3. [완료] `--days`, `--now`, `--json` 옵션을 추가했습니다. 잘못된 옵션만 종료 코드 1입니다.
+4. [완료] 2026-10-27 실행 결과(`--now 2026-10-26T00:00:00+09:00`)가 측정표와 일치합니다. 대상 180편, 기준일 365일 초과 0편, AUM 90일 초과 15편, 분배율 90일 초과 3편, 보수율 365일 초과 2편, 기준일 없음 5편입니다.
 
 ## 테스트 설계
 
