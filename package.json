@@ -31,6 +31,7 @@
 		"@astrojs/sitemap": "^3.7.2",
 		"astro": "^7.3.5",
 		"rehype-katex": "^7.0.1",
+		"remark-cjk-friendly": "2.3.2",
 		"remark-math": "^6.0.0",
 		"sharp": "^0.35.5",
 		"zod": "^4.4.3"

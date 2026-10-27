@@ -6,6 +6,7 @@ import { describe, it } from 'node:test';
 import {
 	checkBuildArtifacts,
 	findExternalAssetReferencesInHtml,
+	findLiteralBoldMarkersInHtml,
 	measureBuildGroups,
 } from '../check-build-artifacts.mjs';
 import { checkBuildBudgets } from '../lib/build-budgets.mjs';
@@ -298,6 +299,40 @@ describe('findExternalAssetReferencesInHtml', () => {
 
 		assert.equal(findExternalAssetReferencesInHtml(html, 'page.html', ['example.com']).length, 1);
 		assert.deepEqual(findExternalAssetReferencesInHtml(html, 'page.html', []), []);
+	});
+});
+
+describe('findLiteralBoldMarkersInHtml', () => {
+	const page = (body) => `<html><body><nav>**menu**</nav><article>${body}</article></body></html>`;
+
+	it('reports bold markers left as literal text before a Korean particle', () => {
+		const html = page('<p>지수는 **-0.9%**였고 핵심은 **&quot;AI 수요&quot;**입니다.</p>');
+
+		const issues = findLiteralBoldMarkersInHtml(html, 'blog/post/index.html');
+
+		assert.equal(issues.length, 1);
+		assert.ok(issues[0].includes('blog/post/index.html'));
+		assert.ok(issues[0].includes('2 found'));
+	});
+
+	it('reports bold markers wrapped around inline code', () => {
+		const html = page('<p>바로 **<code>git worktree</code>**다.</p>');
+
+		assert.equal(findLiteralBoldMarkersInHtml(html, 'page.html').length, 1);
+	});
+
+	it('accepts rendered bold and asterisks inside code, math and outside the article', () => {
+		const html = page(
+			[
+				'<p><strong>-0.9%</strong>였습니다.</p>',
+				'<pre><code>x = a ** b ** c</code></pre>',
+				'<p><code>**kwargs</code>와 <code>**args**</code></p>',
+				'<span class="katex"><math><annotation encoding="application/x-tex">a**b**</annotation></math></span>',
+				'<p>2 ** 3 = 8</p>',
+			].join(''),
+		);
+
+		assert.deepEqual(findLiteralBoldMarkersInHtml(html, 'page.html'), []);
 	});
 });
 
