@@ -43,6 +43,7 @@ coarse 정보만 확인되면 가장 구체적인 coarse 값을, 확인할 수 �
 - `npm run check:build-artifacts`: 빌드 산출물(`dist/`) 점검
 - `npm run report:search-size`: 검색 인덱스 크기 리포트
 - `npm run report:stale`: 기준일이 한도를 넘긴 ETF·Reports 글 목록(`--days`, `--now`, `--json`)
+- `npm run report:links`: 글 본문의 외부 링크에 실제 요청을 보내 끊김·이동·확인 필요 목록 출력(`--category`, `--json`). 수동 전용이며 수 분이 걸립니다
 - `npm run optimize:images`: 1 MiB를 넘는 원본 이미지 재인코딩(`--dry-run`으로 미리보기)
 - `npm run benchmark:search`, `npm run benchmark:search:scale`, `npm run benchmark:search:pagefind-scale`, `npm run benchmark:search:browser`: 검색 성능 벤치마크
 - `npm run new:post`: 새 블로그 포스트 스캐폴드 생성
