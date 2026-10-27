@@ -642,3 +642,92 @@ nav a {
 		transition-duration: 0.01ms !important;
 	}
 }
+
+/*
+ * Print (plan 35): keep the title, metadata, freshness notice and body.
+ * Layout rules use !important because the post layout is Astro scoped CSS,
+ * which outranks these selectors. The theme switches to light on
+ * `beforeprint` (BaseHead.astro), so colors here assume the light tokens.
+ */
+@page {
+	margin: 15mm;
+}
+
+@media print {
+	header,
+	footer,
+	.skip-link,
+	.reading-progress,
+	.blog-sidebar,
+	.toc,
+	.mobile-toc,
+	.post-actions,
+	.series-navigation,
+	.learning-path,
+	.related-posts,
+	.post-navigation,
+	#back-to-top,
+	.image-lightbox,
+	.code-copy-button,
+	dialog {
+		display: none !important;
+	}
+
+	/* The beforeprint theme switch must not be captured mid-transition. */
+	*,
+	*::before,
+	*::after {
+		transition: none !important;
+		animation: none !important;
+	}
+
+	body {
+		background: #fff !important;
+		font-size: 11pt;
+	}
+
+	main {
+		max-width: none !important;
+		padding: 0 !important;
+	}
+
+	.blog-post-shell {
+		display: block !important;
+		width: auto !important;
+		margin: 0 !important;
+	}
+
+	.prose {
+		padding: 0 !important;
+	}
+
+	.post-body a[href^='http']::after {
+		content: ' <' attr(href) '>';
+		font-size: 0.8em;
+		color: var(--muted-text);
+		word-break: break-all;
+	}
+
+	pre {
+		print-color-adjust: exact;
+		-webkit-print-color-adjust: exact;
+		white-space: pre-wrap !important;
+		overflow: visible !important;
+		word-break: break-word;
+	}
+
+	pre,
+	table,
+	img,
+	figure,
+	blockquote {
+		break-inside: avoid;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		break-after: avoid;
+	}
+}

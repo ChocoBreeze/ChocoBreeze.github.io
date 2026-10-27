@@ -130,4 +130,21 @@ const imageURL = getImageURL(image);
 	}
 
 	window.localStorage.setItem('theme', theme);
+
+	// Print on white regardless of the screen theme: browsers drop backgrounds
+	// when printing, so dark-theme text would come out light on white paper.
+	// The saved preference is left alone and restored after printing.
+	let themeBeforePrint;
+	window.addEventListener('beforeprint', () => {
+		themeBeforePrint = document.documentElement.getAttribute('data-theme');
+		document.documentElement.classList.remove('dark');
+		document.documentElement.setAttribute('data-theme', 'light');
+	});
+	window.addEventListener('afterprint', () => {
+		if (themeBeforePrint === 'dark') {
+			document.documentElement.classList.add('dark');
+			document.documentElement.setAttribute('data-theme', 'dark');
+		}
+		themeBeforePrint = undefined;
+	});
 </script>
