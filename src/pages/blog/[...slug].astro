@@ -18,7 +18,9 @@ export async function getStaticPaths() {
 type BlogCategory = CollectionEntry<'blog'>['data']['categories'];
 
 const post = Astro.props;
-const { Content, headings } = await render(post);
+const { Content, headings, remarkPluginFrontmatter } = await render(post);
+// Readable TOC labels for headings that contain math (src/lib/rehypeHeadingMath.mjs).
+const tocLabels = remarkPluginFrontmatter.tocLabels as Record<string, string> | undefined;
 const postBody = (post as CollectionEntry<'blog'> & { body?: string }).body ?? '';
 const getSlug = (p: CollectionEntry<'blog'>) => p.data.slug || p.id;
 const pagefindCategories = getPagefindCategoryValues(post.data.categories, normalizeCategory);
@@ -104,6 +106,7 @@ const ogImage = `/og/${post.data.slug || post.id}.png`;
 	{...post.data}
 	body={postBody}
 	headings={headings}
+	tocLabels={tocLabels}
 	ogImage={ogImage}
 	seriesNavigation={seriesNavigation}
 	learningPath={learningPath}
