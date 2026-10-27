@@ -669,6 +669,7 @@ nav a {
 	#back-to-top,
 	.image-lightbox,
 	.code-copy-button,
+	.resume-reading,
 	dialog {
 		display: none !important;
 	}
