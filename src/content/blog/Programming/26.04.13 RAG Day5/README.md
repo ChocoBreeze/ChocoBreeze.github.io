@@ -1270,10 +1270,10 @@ DB 경로: .\investment_db
 <strong>답변:</strong> `$47,437 million`
 
 이 답변은 <strong>정확합니다.</strong>
-문서 본문에 “All told, we recorded operating earnings of $47.4 billion in 2024”라고 서술되어 있고, 바로 아래 표에는 `Operating earnings $47,437` million으로 제시되어 있습니다. 즉:
+문서 본문에 “All told, we recorded operating earnings of \$47.4 billion in 2024”라고 서술되어 있고, 바로 아래 표에는 `Operating earnings $47,437` million으로 제시되어 있습니다. 즉:
 
-* 문장형 표현: 약 <strong>$47.4 billion</strong>
-* 표 기준 표현: <strong>$47,437 million</strong>
+* 문장형 표현: 약 <strong>\$47.4 billion</strong>
+* 표 기준 표현: <strong>\$47,437 million</strong>
 
 둘은 같은 의미예요. 검색 결과가 p.4\~5로 나온 것도 아주 적절합니다. 
 
@@ -1510,7 +1510,7 @@ GEICO의 실적 개선은 Todd Combs가 5년 동안 GEICO를 주요하게 재편
 <strong>답변:</strong> 제공된 자료에서 찾을 수 없습니다.
 
 이건 <strong>아쉽지만 오답</strong>입니다.
-문서에 분명히 나와 있습니다. 버크셔는 2024년에 IRS에 총 <strong>$26.8 billion</strong>을 납부했다고 적고 있습니다. 문장도 매우 직접적입니다. “Berkshire last year made four payments to the IRS that totaled $26.8 billion.”이라고 되어 있어요. 
+문서에 분명히 나와 있습니다. 버크셔는 2024년에 IRS에 총 <strong>\$26.8 billion</strong>을 납부했다고 적고 있습니다. 문장도 매우 직접적입니다. “Berkshire last year made four payments to the IRS that totaled \$26.8 billion.”이라고 되어 있어요. 
 
 <h3> 왜 이런 일이 생겼을까요? </h3>
 
@@ -1526,7 +1526,7 @@ GEICO의 실적 개선은 Todd Combs가 5년 동안 GEICO를 주요하게 재편
 
 <h3> 정답 </h3>
 
-* <strong>$26.8 billion</strong> 
+* <strong>\$26.8 billion</strong> 
 
 <h2> 4. 버크셔는 왜 현금보다 equities를 선호한다고 말하나요? </h2>
 
@@ -1554,10 +1554,10 @@ GEICO의 실적 개선은 Todd Combs가 5년 동안 GEICO를 주요하게 재편
 
 <h2> 5. 보험 float는 얼마에서 얼마로 증가했나요? </h2>
 
-<strong>답변:</strong> $46 billion에서 $171 billion
+<strong>답변:</strong> \$46 billion에서 \$171 billion
 
 이건 <strong>정확합니다.</strong>
-문서에 “our float has grown from $46 billion to $171 billion”이라고 명시되어 있습니다. 검색 결과가 p.10, p.10, p.9로 나온 것도 자연스럽습니다. 
+문서에 “our float has grown from \$46 billion to \$171 billion”이라고 명시되어 있습니다. 검색 결과가 p.10, p.10, p.9로 나온 것도 자연스럽습니다. 
 
 <h3> 평가 </h3>
 

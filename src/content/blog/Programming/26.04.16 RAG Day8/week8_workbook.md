@@ -95,7 +95,7 @@ python investment_kb.py add --file ..\Week3\sample_investment_note.txt --categor
 
 라고 확인하면 됩니다.
 
-<h2> 2. `list`로 다시 확인 </h2>
+<h2> 2. <code>list</code>로 다시 확인 </h2>
 
 그다음 바로 이 명령어를 실행해보세요.
 
@@ -422,7 +422,7 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 이렇게 하면 `WebBaseLoader`를 import하기 전에 `USER_AGENT`가 먼저 설정됩니다.
 
-<h2> `.env`에도 추가하면 좋습니다 </h2>
+<h2> <code>.env</code>에도 추가하면 좋습니다 </h2>
 
 `.env` 파일에는 이렇게 넣어두면 됩니다.
 
