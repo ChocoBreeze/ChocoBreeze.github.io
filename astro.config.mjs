@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import remarkCjkFriendly from 'remark-cjk-friendly';
 
 import { getRedirectSourcePaths, toAstroRedirects } from './src/data/postRedirects.mjs';
 
@@ -26,7 +27,9 @@ export default defineConfig({
 	compressHTML: true,
 	markdown: {
 		processor: unified({
-			remarkPlugins: [remarkMath],
+			// Lets `**bold**` close before Korean particles, e.g. `**"인용"**입니다` or `**-0.9%**였습니다`,
+			// which plain CommonMark flanking rules leave as literal asterisks.
+			remarkPlugins: [remarkCjkFriendly, remarkMath],
 			rehypePlugins: [[rehypeKatex, { strict: 'ignore' }]],
 		}),
 		shikiConfig: {
