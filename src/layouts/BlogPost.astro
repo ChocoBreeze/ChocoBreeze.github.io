@@ -58,6 +58,7 @@ type Props = Pick<
 	headings?: MarkdownHeading[];
 	tocLabels?: Record<string, string>;
 	ogImage?: string;
+	historyUrl?: string;
 	seriesNavigation?: SeriesNavigation;
 	learningPath?: LearningPathItem[];
 	nextLearningPath?: LearningPathItem[];
@@ -79,6 +80,7 @@ const {
 	headings,
 	tocLabels,
 	ogImage,
+	historyUrl,
 	seriesNavigation,
 	learningPath,
 	nextLearningPath,
@@ -907,6 +909,16 @@ const structuredDataJson = structuredData ? serializeJsonLd(structuredData) : un
 										>
 											{citationText}
 										</span>
+										{historyUrl && (
+											<a
+												class="post-action post-action-link"
+												href={historyUrl}
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												수정 이력
+											</a>
+										)}
 										<a
 											class="post-action post-action-link"
 											href={feedbackUrl}

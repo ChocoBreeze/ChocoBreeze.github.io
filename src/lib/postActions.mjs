@@ -1,4 +1,24 @@
-const ISSUE_URL = 'https://github.com/ChocoBreeze/ChocoBreeze.github.io/issues/new';
+const REPOSITORY_URL = 'https://github.com/ChocoBreeze/ChocoBreeze.github.io';
+const ISSUE_URL = `${REPOSITORY_URL}/issues/new`;
+const HISTORY_BRANCH = 'main';
+
+/**
+ * GitHub commit history for one source file. `filePath` is the content entry's
+ * repository-relative path; each segment is encoded because post file names
+ * carry spaces, `&`, `#` and Hangul. GitHub does not follow renames here.
+ */
+export function buildHistoryUrl(filePath) {
+	if (!filePath) return undefined;
+
+	const encodedPath = String(filePath)
+		.replaceAll('\\', '/')
+		.split('/')
+		.filter((segment) => segment && segment !== '.')
+		.map(encodeURIComponent)
+		.join('/');
+
+	return `${REPOSITORY_URL}/commits/${HISTORY_BRANCH}/${encodedPath}`;
+}
 
 export function buildFeedbackIssueUrl(title, pageUrl) {
 	const params = new URLSearchParams({

@@ -5,6 +5,7 @@ import {
 	buildCitationText,
 	buildFeedbackIssueUrl,
 	buildHeadingUrl,
+	buildHistoryUrl,
 } from '../../src/lib/postActions.mjs';
 
 describe('buildCitationText', () => {
@@ -45,6 +46,41 @@ describe('buildFeedbackIssueUrl', () => {
 			issueUrl.searchParams.get('body'),
 			'Page URL: https://chocobreeze.github.io/blog/qqq/\n\nFeedback: ',
 		);
+	});
+});
+
+describe('buildHistoryUrl', () => {
+	const COMMITS = 'https://github.com/ChocoBreeze/ChocoBreeze.github.io/commits/main/';
+
+	it('encodes spaces, ampersands and parentheses in each path segment', () => {
+		assert.equal(
+			buildHistoryUrl(
+				'src/content/blog/ETF/Defense Industry/ITA/ITA (iShares U.S. Aerospace & Defense ETF).md',
+			),
+			`${COMMITS}src/content/blog/ETF/Defense%20Industry/ITA/ITA%20(iShares%20U.S.%20Aerospace%20%26%20Defense%20ETF).md`,
+		);
+	});
+
+	it('encodes Hangul and hash marks so the path survives as one URL path', () => {
+		const url = new URL(buildHistoryUrl('src/content/blog/Reports/25년 12월/C# 정리.md'));
+
+		assert.equal(url.hash, '');
+		assert.equal(
+			decodeURIComponent(url.pathname),
+			'/ChocoBreeze/ChocoBreeze.github.io/commits/main/src/content/blog/Reports/25년 12월/C# 정리.md',
+		);
+	});
+
+	it('normalizes Windows separators and a leading ./', () => {
+		assert.equal(
+			buildHistoryUrl('.\\src\\content\\blog\\Programming\\git-add.md'),
+			`${COMMITS}src/content/blog/Programming/git-add.md`,
+		);
+	});
+
+	it('returns undefined without a file path', () => {
+		assert.equal(buildHistoryUrl(undefined), undefined);
+		assert.equal(buildHistoryUrl(''), undefined);
 	});
 });
 
