@@ -188,6 +188,27 @@ function findExternalAssetReferences(distDir, htmlFiles) {
 	return issues;
 }
 
+// Korean text routinely puts a particle straight after a closing `**`
+// (`**"인용"**입니다`, `**-0.9%**였습니다`), which plain CommonMark leaves as
+// literal asterisks. remark-cjk-friendly fixes that in astro.config.mjs; this
+// catches a regression (plugin dropped or changed) on the rendered pages.
+// Code, scripts and math are blanked first since `**` is legitimate there.
+export function findLiteralBoldMarkersInHtml(content, label) {
+	const article = content.match(/<article\b[\s\S]*<\/article>/i)?.[0] ?? '';
+	const text = decodeHtmlEntities(
+		article
+			.replace(/<(pre|code|script|style|annotation)\b[\s\S]*?<\/\1>/gi, 'CODE')
+			.replace(/<[^>]*>/g, ''),
+	);
+	const matches = [...text.matchAll(/\*\*(?=\S)[^\n]*?\S\*\*/g)];
+	if (matches.length === 0) {
+		return [];
+	}
+
+	const excerpt = matches[0][0].length > 80 ? `${matches[0][0].slice(0, 77)}...` : matches[0][0];
+	return [`Literal ** bold markers in ${label} (${matches.length} found), e.g. ${excerpt}`];
+}
+
 // Measures each budgeted group in the build output. A group is a top-level
 // entry of `dist`: either a directory or a single file.
 export function measureBuildGroups(distDir, budgets = BUILD_BUDGETS) {
@@ -316,6 +337,9 @@ export function checkBuildArtifacts({
 					`Page title has a missing or duplicated site-name suffix in ${relativePath}: ${title}`,
 				);
 			}
+		}
+		if (relativePath.startsWith('blog/')) {
+			issues.push(...findLiteralBoldMarkersInHtml(content, relativePath));
 		}
 		artifactLinks.push(...collectHtmlBlogLinks(content, relativePath, siteUrl));
 	}

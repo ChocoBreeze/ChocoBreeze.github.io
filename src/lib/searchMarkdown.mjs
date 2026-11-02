@@ -1,8 +1,10 @@
+// Inline code is unwrapped in the same pass that drops Markdown backslash
+// escapes (`\$`, `\_`, `\*`), so a backslash inside inline code is kept.
 export function stripMarkdown(content) {
 	return String(content ?? '')
 		.replace(/```[\s\S]*?```/g, ' ')
 		.replace(/~~~[\s\S]*?~~~/g, ' ')
-		.replace(/`([^`]+)`/g, '$1')
+		.replace(/`([^`]+)`|\\([!-/:-@[-`{-~])/g, (_match, code, escaped) => code ?? escaped)
 		.replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
 		.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
 		.replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, ' ')

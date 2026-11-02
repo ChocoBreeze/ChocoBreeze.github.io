@@ -46,7 +46,7 @@
 3. [완료, 방침 변경] 정규화 맵은 만들지 않았습니다. 2단계 측정에서 변형이 0건이었으므로 지금 만들면 항목이 비어 있는 맵이 됩니다. 대신 `findTagVariantCollisions()`로 변형이 새로 생기면 경고하는 검사를 넣어 현재 상태를 유지합니다.
 4. [해당 없음] 정규화 맵을 만들지 않았으므로 태그 경로가 변하지 않고 리다이렉트도 필요하지 않습니다.
 5. [완료] 태그 상세에 `함께 쓰인 태그` 섹션을 추가했습니다. 같은 글에 함께 달린 태그를 공통 글 수 순으로 최대 8개 보여주며, 계산은 `src/lib/relatedTags.mjs`의 `countCoOccurringTags()`에 있습니다.
-6. [미착수] `description` 82편 백필은 글마다 사람이 문장을 써야 하므로 남겨 둡니다. 대상 목록은 `node scripts/check-content.mjs --report-missing-descriptions`로 확인합니다.
+6. [완료] 2026-10-20: `description` 82편을 백필했습니다. 결과는 아래에 기록했습니다.
 
 ## 테스트 설계
 
@@ -78,3 +78,17 @@
 - 자동 생성 `description`
 - 태그 의미 병합과 대량 재분류
 - 태그 기반 추천(관련 글 로직은 16번 계획 범위)
+
+### 2026-10-20 description 백필 결과
+
+| 항목 | 이전 | 이후 |
+| --- | ---: | ---: |
+| `description`이 빈 글 | 82편 | **0편** |
+| 사이트 기본 문구로 폴백하던 글 | 82편 | **0편** |
+| `platform`을 지정한 Problem Solving 글 | 0편 | **82편** |
+| `problemNumber`를 지정한 Problem Solving 글 | 0편 | **82편** |
+
+- 82편은 전부 Problem Solving(LeetCode) 한 카테고리였습니다. `description`이 비면 `BaseHead`가 `SITE_DESCRIPTION`으로 폴백하므로, 506편 중 82편이 `이유를 고민하고 성장을 기록하는 정영훈의 블로그입니다.`라는 동일한 메타 설명을 내보내고 있었습니다. 검색 결과 카드와 검색 인덱스의 스니펫도 비어 있었습니다.
+- 문장은 각 글의 본문에서 근거를 얻어 작성했습니다. 글마다 구조가 달라(`## Approach N: ...` 76편, `## 풀이 N: ...` 6편) 헤딩에 적힌 풀이 이름을 뽑아 난이도·토픽과 함께 요약했습니다. 기억에 의존해 문제 설명을 지어내지 않았습니다.
+- 같은 범위에서 `platform`과 `problemNumber`도 채웠습니다. 두 필드는 스키마에 있고 `/problem-solving`의 플랫폼·문제 번호 필터를 구동하지만, 지정한 글이 하나도 없어 `BlogListLayout`의 `filterPlatforms.length > 0` 조건에 걸려 두 필터가 렌더링되지 않고 있었습니다. 문제 번호는 제목이 아니라 파일명에서 뽑았습니다. 한 글의 제목에 전날 글의 번호가 남아 있었기 때문입니다(`3264. 2182. Construct String With Repeat Limit` → `2182. ...`로 수정).
+- 검증: `npm test`, `npm run check:content`(경고 기준선 7건 유지, `MISSING DESCRIPTIONS` 줄 사라짐), `npm run check` 0 errors, `npm run build`, `npm run check:build-artifacts -- --report-budgets`, `npm run test:e2e`, `npm run format:check`

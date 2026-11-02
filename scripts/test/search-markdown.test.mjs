@@ -32,6 +32,13 @@ describe('stripMarkdown', () => {
 		);
 	});
 
+	it('drops Markdown backslash escapes outside inline code', () => {
+		assert.equal(
+			stripMarkdown('약 \\$8B, 문자 \\_ 와 2\\*k, 경로 `C:\\_tmp`'),
+			'약 $8B, 문자 _ 와 2*k, 경로 C:\\_tmp',
+		);
+	});
+
 	it('preserves punctuation that belongs to technical tokens', () => {
 		assert.equal(
 			stripMarkdown('`Problem_Solving` `foo_bar` `A|B` `~/.config`'),
