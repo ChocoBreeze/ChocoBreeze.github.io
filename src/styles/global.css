@@ -51,6 +51,8 @@
 
 	/* === Functional variables (used by components) === */
 	--accent: var(--nv-primary);
+	/* Accent for text: #76b900 is only 2.4:1 on white, so light mode darkens it. */
+	--accent-text: #4a7500;
 	--bg-color: var(--nv-canvas);
 	--text-color: var(--nv-body);
 	--heading-color: var(--nv-ink);
@@ -73,6 +75,7 @@
 	--table-head-bg: #2a2a2a;
 	--table-row-alt-bg: rgba(118, 185, 0, 0.06);
 	--accent: var(--nv-primary);
+	--accent-text: var(--nv-primary);
 }
 
 body {
@@ -139,10 +142,10 @@ b {
 	font-weight: 700;
 }
 a {
-	color: var(--accent);
+	color: var(--accent-text);
 }
 a:hover {
-	color: var(--accent);
+	color: var(--accent-text);
 }
 a:focus-visible,
 button:focus-visible,
@@ -276,7 +279,7 @@ code {
 	background-color: var(--nv-surface-soft);
 	border-radius: var(--nv-radius-sm);
 	font-size: 0.9em;
-	color: var(--accent);
+	color: var(--accent-text);
 }
 [data-theme='dark'] code {
 	background-color: #2a2a2a;
@@ -431,7 +434,7 @@ nav a {
 	font-weight: 700;
 	letter-spacing: 0;
 	text-transform: uppercase;
-	color: var(--accent);
+	color: var(--accent-text);
 }
 .blog-post-grid {
 	list-style: none;
