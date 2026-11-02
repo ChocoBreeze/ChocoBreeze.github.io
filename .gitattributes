@@ -1,3 +1,7 @@
+# Keep LF in every checkout: Prettier expects it, and core.autocrlf would
+# otherwise turn working copies into CRLF on Windows.
+* text=auto eol=lf
+
 # Shell hooks must stay LF so /bin/sh does not choke on CRLF line endings
 scripts/hooks/* text eol=lf
 scripts/test/fixtures/global-hooks/* text eol=lf
