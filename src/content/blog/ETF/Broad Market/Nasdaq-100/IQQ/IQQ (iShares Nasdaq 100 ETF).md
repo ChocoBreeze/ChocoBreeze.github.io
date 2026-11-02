@@ -48,7 +48,7 @@ Nasdaq-100은 Nasdaq에 상장된 비금융 기업 가운데 시가총액 규모
 
 IQQ는 지수 구성 종목 전부를 항상 그대로 보유하는 완전 복제 방식이 아니라 대표 표본을 활용한다. 따라서 현금, 선물 등 지수 구성 종목 이외의 자산이 포함될 수 있고, 펀드 수익률은 비용과 거래 시점 등의 영향으로 지수 수익률과 달라질 수 있다.
 
-- [Nasdaq-100 지수 방법론 (2026년 5월 1일 시행)](https://indexes.nasdaqomx.com/docs/Methodology_NDX_Effective_May_1_2026.pdf)
+- [Nasdaq-100 지수 방법론 (2026년 5월 1일 시행)](https://indexes.nasdaqomx.com/docs/Methodology_NDX.pdf)
 - [Nasdaq의 방법론 변경 설명](https://www.nasdaq.com/newsroom/nasdaq100-index-methodology-update-why-now)
 - [IQQ 요약 투자설명서 (SEC, 2026년 7월 8일)](https://www.sec.gov/Archives/edgar/data/1100663/000119312526298368/d165381d497k.htm)
 
@@ -120,6 +120,6 @@ ETF의 시장가격은 장중 수급에 따라 NAV와 차이가 날 수 있다. 
 - [iShares 상품 정보·성과·수익률](https://www.ishares.com/us/products/351653/ishares-nasdaq-100-etf?linkId=100000431709948)
 - [iShares 최신 보유 내역 CSV](https://www.ishares.com/us/products/351653/ishares-nasdaq-100-etf/latest-holdings.csv)
 - [SEC 요약 투자설명서](https://www.sec.gov/Archives/edgar/data/1100663/000119312526298368/d165381d497k.htm)
-- [Nasdaq-100 지수 방법론](https://indexes.nasdaqomx.com/docs/Methodology_NDX_Effective_May_1_2026.pdf)
+- [Nasdaq-100 지수 방법론](https://indexes.nasdaqomx.com/docs/Methodology_NDX.pdf)
 
 > 이 글은 상품 구조와 공개 자료를 정리한 정보 제공 문서이며 투자 권유가 아니다. 수치의 기준일은 각 표와 설명에 표시했으며, 투자 판단 전 최신 운용사 공시를 확인해야 한다.

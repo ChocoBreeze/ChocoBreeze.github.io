@@ -84,6 +84,16 @@
 - 확인 필요 962개의 대부분은 자동 요청 차단입니다: 403 489개, 401 436개. 도메인 상위는 reuters.com 340, sec.gov 231, leetcode.com 86, apnews.com 51, wsj.com 38입니다.
 - 끊긴 링크 수정은 콘텐츠 작업이라 이 계획에 포함하지 않았습니다.
 
+### 2026-11-02 링크 수정
+
+같은 문서의 새 주소를 확인한 경우만 교체했습니다. 비슷한 다른 기사로 바꾸면 인용 근거가 달라지기 때문입니다.
+
+- 끊김 11개 중 6개 수정: LangChain Cookbook(삭제 직전 커밋으로 고정), NSLVR·NDX 방법론 PDF, Strive SHOC(끝의 `/` 제거), Hitachi Energy 블로그, Globe and Mail 기사(같은 글의 Finviz 게재본)
+- 이동 8개 중 4개 수정: Economic Times, LangChain 문서 3개
+- 끊김 미해결 5개: LangChain OpenSearch(Python·JavaScript 문서 모두 없음), AOL(`260328 Weekly`), Sahm Capital(`260411 Weekly`), mindground(`260505 Daily`), Solactive(`SGDJ`). Internet Archive 조회는 429로 제한되어 확인하지 못했습니다.
+- 이동 유지 4개: NVIDIA·CNN은 원 주소가 정상 경로입니다. FactSet은 최신 보고서로 바뀌는 주소라 당시 수치를 확인할 수 없고, FMS PDF는 행사 소개 페이지로 넘어가 원문을 찾을 수 없습니다.
+- `SGDJ` 글의 "2026년 2월 1일" 시행일은 Solactive 공지 검색 결과(2026년 1월 2일)와 달랐습니다. 원 공지 주소의 `02-01-2026`도 Solactive의 일/월/연 표기입니다. 원문은 읽지 못했지만 두 근거가 일치해 글을 2026년 1월 2일로 고쳤습니다.
+
 ## 테스트 설계
 
 - 추출: 코드 블록·인라인 코드·frontmatter 안의 주소 제외, 문장부호로 끝나는 맨 주소 정리, 줄 번호

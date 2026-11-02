@@ -1825,7 +1825,7 @@ BM25 검색 결과
 ## 추천 자료
 - [Hybrid Search BM25 + Vector — Redis](https://redis.io/blog/full-text-search-for-rag-the-precision-layer/)
 - [Superlinked Hybrid Search & Reranking](https://superlinked.com/vectorhub/articles/optimizing-rag-with-hybrid-search-reranking)
-- [LangChain EnsembleRetriever 문서](https://python.langchain.com/docs/how_to/ensemble_retriever/)
+- [LangChain EnsembleRetriever 문서](https://reference.langchain.com/python/langchain-classic/retrievers/ensemble/EnsembleRetriever)
 
 ## 완료 기준
 - [x] `python hybrid_search_experiment.py` 실행 후 검색 방식별 결과를 비교했다

@@ -1772,8 +1772,8 @@ memory = ConversationBufferMemory(...)
 </details> <br/>
 
 ## 추천 자료
-- [LangChain 공식 RAG 튜토리얼](https://python.langchain.com/docs/tutorials/rag/)
-- [LangChain Cookbook](https://github.com/langchain-ai/langchain/tree/master/cookbook)
+- [LangChain 공식 RAG 튜토리얼](https://docs.langchain.com/oss/python/langchain/rag)
+- [LangChain Cookbook (2025년 10월 저장소에서 삭제되기 전 버전)](https://github.com/langchain-ai/langchain/tree/a869f84c621534b55a63feb22e9d966ab0e5c4f3/cookbook)
 - [Building Efficient RAG with LangChain & LlamaIndex](https://www.youtube.com/watch?v=D7YwcDJ75lQ)
 
 ## 완료 기준

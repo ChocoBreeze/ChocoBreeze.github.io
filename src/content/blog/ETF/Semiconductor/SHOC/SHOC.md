@@ -56,7 +56,7 @@ SHOC는 2024년 3월 21일 추종 지수를 Solactive United States Semiconducto
 
 ## 공식 자료
 
-- [Strive SHOC 상품·시장 데이터 페이지](https://strivefunds.com/shoc/)
+- [Strive SHOC 상품·시장 데이터 페이지](https://strivefunds.com/shoc)
 - [Strive 2026년 2분기 자료표](https://strivefunds.com/documents/FG/strive_funds/fund_docs/638140_SHOC_2Q26_Fact_Sheet.pdf)
 - [SEC 2025년 10월 31일 요약 투자설명서](https://www.sec.gov/Archives/edgar/data/1592900/000159290025003641/striveussemiconductoretf.htm)
 

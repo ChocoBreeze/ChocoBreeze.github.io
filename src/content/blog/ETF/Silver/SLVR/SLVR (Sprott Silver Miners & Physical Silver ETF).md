@@ -97,4 +97,4 @@ NSLVR 지수는 2024년 8월 5일에 시작했다. 지수 출시 이전 기간�
 [^2]: [SEC 2026년 4월 30일 요약 투자설명서](https://www.sec.gov/Archives/edgar/data/1728683/000182912626004470/sprott_497k.htm)
 [^3]: [SEC 2026년 7월 8일 지수 리밸런싱 보충서](https://www.sec.gov/Archives/edgar/data/1728683/000182912626007378/sprottfundstrust_497.htm)
 [^4]: [Nasdaq Sprott Silver Miners Index 개요](https://indexes.nasdaq.com/Index/Overview/NSLVR)
-[^5]: [Nasdaq Sprott Silver Miners Index 방법론](https://indexes.nasdaq.com/docs/NSLVR%20Methodology.pdf)
+[^5]: [Nasdaq Sprott Silver Miners Index 방법론](https://indexes.nasdaq.com/docs/Methodology_NSLVR.pdf)

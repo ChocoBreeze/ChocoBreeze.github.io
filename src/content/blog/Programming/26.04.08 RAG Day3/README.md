@@ -1289,7 +1289,7 @@ enrich_metadata(chunks_small, args.category)
 </details> <br/>
 
 ## 추천 자료
-- [LangChain Text Splitters 공식 문서](https://python.langchain.com/docs/how_to/#text-splitters)
+- [LangChain Text Splitters 공식 문서](https://docs.langchain.com/oss/python/integrations/splitters)
 - [NVIDIA 청킹 전략 벤치마크](https://developer.nvidia.com/blog/finding-the-best-chunking-strategy-for-accurate-ai-responses/)
 - [Weaviate 청킹 전략 가이드](https://weaviate.io/blog/chunking-strategies-for-rag)
 
