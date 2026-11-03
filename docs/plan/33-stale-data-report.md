@@ -85,3 +85,12 @@
 - `npm run report:stale`의 개수 요약이 측정표와 일치하는지 확인
 - `npm run check`
 - `npm run format:check`
+
+### 2026-11-02 재확인 시험 결과
+
+가장 오래된 AUM 4건(QQQS, QQMG, IBBQ, ONEQ)을 2026년 8월 31일 기준 NPORT-P 값으로 갱신했습니다. 나머지 대상은 아직 갱신하지 않았습니다.
+
+- 집계 사이트는 같은 시기 값이 서로 크게 달라(IBBQ $67M~$95M) 근거로 쓰지 않습니다.
+- 등록 투자회사 ETF는 SEC 공시로 확인합니다. `data.sec.gov/submissions/CIK<10자리>.json`에서 제출 목록을 찾고, EDGAR 전문 검색으로 펀드의 제출 건을 찾은 뒤, `primary_doc.xml`의 `seriesName`, `repPdDate`, `netAssets`를 읽습니다.
+- `repPdDate`가 기준일입니다. `repPdEnd`는 회계연도 말일 수 있습니다(ONEQ는 2026-11-30).
+- 분기 공시는 기준일 약 60일 뒤에 공개되므로, 최신 공시를 반영해도 다음 공시 전에 90일 한도를 넘는 기간이 생깁니다.

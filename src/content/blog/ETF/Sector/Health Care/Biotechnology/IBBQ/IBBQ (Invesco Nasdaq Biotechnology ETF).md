@@ -2,11 +2,11 @@
 title: 'IBBQ (Invesco Nasdaq Biotechnology ETF)'
 description: 'Nasdaq Biotechnology Index를 추종하는 Invesco의 바이오테크·제약 섹터 ETF'
 pubDate: '2026-05-25T00:00:00+09:00'
-updatedDate: '2026-10-06T00:00:00+09:00'
+updatedDate: '2026-11-02T00:00:00+09:00'
 verifiedDate: '2026-10-06T00:00:00+09:00'
 dataAsOf: '2026-06-30T00:00:00+09:00'
-aum: '$67.37M'
-aumAsOf: '2026-05-31T00:00:00+09:00'
+aum: '$96.39M'
+aumAsOf: '2026-08-31T00:00:00+09:00'
 expenseRatio: '0.19%'
 expenseRatioAsOf: '2026-06-30T00:00:00+09:00'
 ticker: "IBBQ"
@@ -21,7 +21,7 @@ categories: "ETF"
 
 ## 요약
 
-> **검증일**: 2026년 10월 6일 | **운용사**: Invesco Capital Management LLC | **자료 기준일**: 성과·보유 2026년 6월 30일, 순자산 2026년 5월 31일
+> **검증일**: 2026년 10월 6일 | **운용사**: Invesco Capital Management LLC | **자료 기준일**: 성과·보유 2026년 6월 30일, 순자산 2026년 8월 31일
 
 IBBQ는 Nasdaq Biotechnology Index를 추종하는 비레버리지 ETF다. 지수는 Nasdaq 시장에 상장된 바이오테크놀로지 및 제약 기업을 대상으로 한다. 아래 수치는 공시 자료의 기준일이 서로 다르므로 각 기준일을 함께 표시했다.
 
@@ -46,7 +46,7 @@ IBBQ는 Nasdaq Biotechnology Index를 추종하는 비레버리지 ETF다. 지�
 | 설정일 | 2021년 6월 11일 | Invesco 자료 |
 | 추종 지수 | Nasdaq Biotechnology Index (XNBI) | 2026-06-30 |
 | 총 보유 종목 | 252개 | 2026-06-30 |
-| 순자산 | 약 $67.37M | 2026-05-31 |
+| 순자산 | 약 $96.39M | 2026-08-31 |
 | 총보수 | 0.19% | 2026-06-30 자료 |
 | 30일 SEC 수익률 | 0.34% | 2026-06-30 |
 
@@ -96,5 +96,5 @@ Invesco의 2026년 6월 30일 자료표에 공개된 상위 보유 종목은 다
 ## 공식 자료
 
 - [Invesco 2026년 2분기 자료표](https://www.invesco.com/us-rest/contentdetail?contentId=7ba082d7-8e95-4116-a375-35a7c73ba2a6&dnsName=us)
-- [SEC 2026년 5월 31일 분기 포트폴리오 공시](https://www.sec.gov/Archives/edgar/data/1378872/000137887226001381/edgar.htm)
+- [SEC 2026년 8월 31일 포트폴리오 공시(NPORT-P)](https://www.sec.gov/Archives/edgar/data/1378872/000137887226001843/primary_doc.xml)
 - [SEC 2026년 6월 10일 요약 투자설명서 제출 정보](https://www.sec.gov/Archives/edgar/data/1378872/000119312526265057/0001193125-26-265057-index.htm)

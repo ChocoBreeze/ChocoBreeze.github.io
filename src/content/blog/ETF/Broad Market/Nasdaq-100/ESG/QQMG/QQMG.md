@@ -3,11 +3,11 @@ title: 'QQMG (Invesco ESG NASDAQ 100 ETF)'
 slug: etf/broad-market/nasdaq-100/esg/qqmg
 description: 'Nasdaq-100 편입 종목에 사업 활동·논란·ESG 리스크 기준을 적용하는 Invesco ETF. 지수 방식과 비용, 보유·성과 자료를 기준일별로 정리한다.'
 pubDate: '2026-06-07T00:00:00+09:00'
-updatedDate: '2026-10-06T00:00:00+09:00'
+updatedDate: '2026-11-02T00:00:00+09:00'
 verifiedDate: '2026-10-06T00:00:00+09:00'
 dataAsOf: '2026-06-30T00:00:00+09:00'
 expenseRatioAsOf: '2026-06-30T00:00:00+09:00'
-aumAsOf: '2026-05-31T00:00:00+09:00'
+aumAsOf: '2026-08-31T00:00:00+09:00'
 yieldAsOf: '2026-06-30T00:00:00+09:00'
 instrumentType: 'ETF'
 ticker: 'QQMG'
@@ -18,7 +18,7 @@ exposure: 'Nasdaq-100 ESG'
 leverage: '1x'
 incomeStyle: 'Core'
 expenseRatio: '0.20%'
-aum: '$212.00M'
+aum: '$199.96M'
 yield: '0.36% (30-day SEC)'
 categories: 'ETF'
 tags: ['ETF', 'QQMG', 'Invesco', 'Nasdaq-100', 'ESG']
@@ -73,7 +73,7 @@ Nasdaq 방법론에 따르면 Sustainalytics가 제공하는 정보에 기반해
 
 같은 날짜의 업종 비중은 Technology 71.28%, Consumer Discretionary 16.35%, Telecommunications 4.01%, Health Care 3.29%, Consumer Staples 1.67%, Basic Materials 1.61%, Industrials 1.58%, Utilities 0.21%였다. Invesco 분류상 기술 업종 편중이 크며, ETF 이름의 ESG 필터가 섹터 분산을 뜻하지는 않는다.
 
-펀드 순자산은 SEC에 제출된 2026년 5월 31일 포트폴리오 보고서에서 $212.0 million으로 확인된다. 이 순자산 기준일은 위 보유 종목·업종 자료의 기준일과 다르다.
+펀드 순자산은 SEC에 제출된 2026년 8월 31일 포트폴리오 보고서(NPORT-P)에서 $199.96 million으로 확인된다. 이 순자산 기준일은 위 보유 종목·업종 자료의 기준일과 다르다.
 
 ## 비용, 수익률과 성과
 
@@ -109,5 +109,5 @@ Invesco 자료의 총수익률은 2026년 6월 30일 종료 기준이며, 1년 �
 - [Invesco 2026년 2분기 자료표 및 성과·보유 데이터](https://www.invesco.com/us-rest/contentdetail?contentId=e6ea2220-e3b4-4e15-bbbd-81d42d51565d)
 - [SEC 2025년 12월 19일 요약 투자설명서](https://www.sec.gov/Archives/edgar/data/1378872/000119312525325630/d54028d497k.htm)
 - [SEC 2026년 4월 30일 투자설명서 보충서류](https://www.sec.gov/Archives/edgar/data/1378872/000110465926052927/tm2612890d10_497.htm)
-- [SEC 2026년 5월 31일 포트폴리오 공시](https://www.sec.gov/Archives/edgar/data/1378872/000137887226001400/edgar.htm)
+- [SEC 2026년 8월 31일 포트폴리오 공시(NPORT-P)](https://www.sec.gov/Archives/edgar/data/1378872/000137887226001870/primary_doc.xml)
 - [Nasdaq Nasdaq-100 ESG Index 방법론](https://indexes.nasdaqomx.com/docs/methodology_NDXESG.pdf)

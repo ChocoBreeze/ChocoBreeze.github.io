@@ -2,7 +2,7 @@
 title: 'ONEQ (Fidelity Nasdaq Composite Index ETF)'
 description: 'Nasdaq Composite Index의 가격·수익률을 추종하는 Fidelity의 미국 주식 인덱스 ETF'
 pubDate: '2026-03-27T00:00:00+09:00'
-updatedDate: '2026-10-04T00:00:00+09:00'
+updatedDate: '2026-11-02T00:00:00+09:00'
 verifiedDate: '2026-10-04T00:00:00+09:00'
 dataAsOf: '2026-08-31T00:00:00+09:00'
 ticker: 'ONEQ'
@@ -15,8 +15,8 @@ leverage: '1x'
 incomeStyle: 'Core'
 expenseRatio: '0.21%'
 expenseRatioAsOf: '2026-01-29T00:00:00+09:00'
-aum: 10922502914
-aumAsOf: '2026-05-31T00:00:00+09:00'
+aum: 10751847903
+aumAsOf: '2026-08-31T00:00:00+09:00'
 categories: 'ETF'
 ---
 
@@ -35,7 +35,7 @@ ONEQ는 Nasdaq Composite Index의 가격 및 수익률을 비용 차감 전 기�
 | 전략 | 패시브 인덱스, 통계적 샘플링 |
 | 레버리지·인버스 | 해당 없음 |
 | 연간 운용 비용률 | 0.21% (2026년 1월 29일 투자설명서) |
-| 순자산 | 약 109억 2,250만 달러 (2026년 5월 31일) |
+| 순자산 | 약 107억 5,185만 달러 (2026년 8월 31일) |
 
 ONEQ는 실제 노출이 Nasdaq Composite 지수에 집중된 비레버리지 주식 인덱스 ETF이므로 Broad Market/Nasdaq Composite로 분류했다. 상품명에 ‘Nasdaq’이 들어간다는 이유만으로 분류한 것이 아니다.[^1][^2]
 
@@ -49,7 +49,7 @@ Fidelity는 시가총액, 산업 비중, 배당수익률, 밸류에이션 및 �
 
 | 지표 | 수치 | 기준일 |
 | :-- | --: | :-- |
-| 펀드 순자산 | 약 109억 2,250만 달러 | 2026년 5월 31일 |
+| 펀드 순자산 | 약 107억 5,185만 달러[^5] | 2026년 8월 31일 |
 | 실제 보유 종목 수 | 1,025개 | 2026년 5월 31일 |
 | 정보기술 비중 | 54.0% | 2026년 5월 31일 |
 | 커뮤니케이션 서비스 비중 | 14.8% | 2026년 5월 31일 |
@@ -83,3 +83,4 @@ Fidelity가 공개한 ETF 바스켓에는 2026년 8월 31일 기준 1,037개 항
 [^2]: [Fidelity ONEQ 반기 주주보고서, 2026년 5월 31일 기준 (SEC)](https://www.sec.gov/Archives/edgar/data/205323/000020532326000022/filing12376.htm)
 [^3]: [Fidelity ONEQ 바스켓 보유 현황, 2026년 8월 31일 기준](https://research2.fidelity.com/fidelity/screeners/etf/etfholdings.asp?sortBy=Weighting&sortDir=asc&symbol=ONEQ&view=Holdings)
 [^4]: [Fidelity ONEQ 투자설명서, 2026년 1월 29일 (SEC)](https://www.sec.gov/Archives/edgar/data/205323/000020532326000014/filing10683.htm)
+[^5]: [Fidelity ONEQ 포트폴리오 공시(NPORT-P), 2026년 8월 31일 기준 (SEC)](https://www.sec.gov/Archives/edgar/data/205323/000003540226006808/primary_doc.xml)

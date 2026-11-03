@@ -3,10 +3,10 @@ title: 'QQQS (Invesco NASDAQ Future Gen 200 ETF)'
 description: 'Nasdaq 상장 중소형주 가운데 특허 포트폴리오를 기준으로 선별한 혁신 기업에 투자하는 인덱스 ETF'
 slug: 'etf/broad-market/nasdaq-future-gen-200/qqqs/qqqs'
 pubDate: '2026-06-07T00:00:00+09:00'
-updatedDate: '2026-10-04T00:00:00+09:00'
+updatedDate: '2026-11-02T00:00:00+09:00'
 verifiedDate: '2026-10-04T00:00:00+09:00'
 dataAsOf: '2026-06-30T00:00:00+09:00'
-aumAsOf: '2026-05-31T00:00:00+09:00'
+aumAsOf: '2026-08-31T00:00:00+09:00'
 expenseRatioAsOf: '2026-06-30T00:00:00+09:00'
 ticker: 'QQQS'
 issuer: 'Invesco'
@@ -16,7 +16,7 @@ strategy: 'Index'
 exposure: 'Disruptive Innovation'
 leverage: '1x'
 incomeStyle: 'None'
-aum: 18905194
+aum: 22517960
 expenseRatio: '0.20%'
 categories: 'ETF'
 tags: ['ETF', 'QQQS', 'Invesco', 'Nasdaq', 'Innovation']
@@ -26,7 +26,7 @@ tags: ['ETF', 'QQQS', 'Invesco', 'Nasdaq', 'Innovation']
 
 > **요약:** QQQS는 Nasdaq Composite에서 Nasdaq-100과 Nasdaq Next Generation 100을 제외한 종목군 중 특허 포트폴리오 가치가 시가총액 대비 높다고 평가된 기업을 담는 패시브 ETF다. 특허 기반 선별 전략이 핵심이므로 이 글에서는 Broad Market이 아닌 Disruptive Innovation 테마로 분류한다.
 
-**확인 기준:** 2026년 10월 4일. 수치의 기준일은 항목별로 표시했다. 확인 가능한 최신 Invesco 분기 팩트시트는 2026년 6월 30일 기준이며, 순자산은 SEC 2026년 5월 31일 포트폴리오 공시 기준이다.
+**확인 기준:** 2026년 10월 4일. 수치의 기준일은 항목별로 표시했다. 확인 가능한 최신 Invesco 분기 팩트시트는 2026년 6월 30일 기준이며, 순자산은 2026년 11월 2일에 다시 확인한 SEC 2026년 8월 31일 포트폴리오 공시(NPORT-P) 기준이다.
 
 ## 기본 분류
 
@@ -51,7 +51,7 @@ Nasdaq 이름이나 상장 종목 유니버스만으로 대표지수 ETF로 분�
 | 티커 / 거래소 | QQQS / Nasdaq |
 | 설정일 | 2022년 10월 13일 |
 | 보유 종목 수 | 201개 (2026년 6월 30일) |
-| 순자산 | 18,905,194달러 (2026년 5월 31일) |
+| 순자산 | 22,517,960달러 (2026년 8월 31일) |
 | 총 연간 운용 비용 | 0.20% (2026년 6월 30일 자료) |
 
 순자산과 종목 수는 서로 다른 공시 기준일의 값이다. 순자산은 SEC 포트폴리오 명세서의 순자산 항목이며, 거래일별 현재 AUM을 뜻하지 않는다. 운용 비용 0.20%에는 투자자의 증권사 수수료 등이 포함되지 않는다. [1][2][4]
@@ -95,5 +95,5 @@ Invesco의 2026년 6월 30일 섹터 배분에서 헬스케어가 57.34%, 기술
 1. [Invesco QQQS 팩트시트, Q2 2026 (2026-06-30 기준)](https://www.invesco.com/us-rest/contentdetail?contentId=0467c30b-aa9d-4449-81c9-14c422e2ae97&dnsName=us)
 2. [SEC 요약 투자설명서, 2025-12-19](https://www.sec.gov/Archives/edgar/data/1378872/000119312525325646/d54028d497k.htm)
 3. [SEC 투자설명서 보충 공시: diversified 분류 변경, 2025-10-14](https://www.sec.gov/Archives/edgar/data/1378872/000110465925099269/tm2528207d1_497.htm)
-4. [SEC 포트폴리오 명세서, 2026-05-31 기준](https://www.sec.gov/Archives/edgar/data/1378872/000137887226001400/edgar.htm)
+4. [SEC 포트폴리오 공시(NPORT-P), 2026-08-31 기준](https://www.sec.gov/Archives/edgar/data/1378872/000137887226001862/primary_doc.xml)
 5. [Invesco QQQ Innovation Suite](https://www.invesco.com/us/en/solutions/innovation-suite.html)
