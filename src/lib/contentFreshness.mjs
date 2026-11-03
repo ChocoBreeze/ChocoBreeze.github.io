@@ -5,11 +5,12 @@ export const FRESHNESS_MAX_AGE_DAYS = Object.freeze({
 	Reports: 365,
 });
 
-// Fast-moving values age out sooner than the post-level reference date. Used
+// Fast-moving values age out sooner than the post-level reference date. 150 days
+// is a quarter plus the 60 days before a quarterly SEC filing appears. Used
 // only by `npm run report:stale`; the on-page notice keeps the category limit.
 export const FIELD_MAX_AGE_DAYS = Object.freeze({
-	aumAsOf: 90,
-	yieldAsOf: 90,
+	aumAsOf: 150,
+	yieldAsOf: 150,
 	expenseRatioAsOf: 365,
 });
 

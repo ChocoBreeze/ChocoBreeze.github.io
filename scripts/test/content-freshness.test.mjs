@@ -43,19 +43,19 @@ describe('collectStaleFields', () => {
 	const now = new Date('2026-10-26T00:00:00+09:00');
 	const fieldsOf = (stale) => stale.map(({ field }) => field);
 
-	it('flags an AUM date only after more than 90 days', () => {
+	it('flags an AUM date only after more than 150 days', () => {
 		const atLimit = collectStaleFields(
-			{ category: 'ETF', verifiedDate: '2026-10-01', aumAsOf: '2026-07-28T00:00:00+09:00' },
+			{ category: 'ETF', verifiedDate: '2026-10-01', aumAsOf: '2026-05-29T00:00:00+09:00' },
 			now,
 		);
 		const pastLimit = collectStaleFields(
-			{ category: 'ETF', verifiedDate: '2026-10-01', aumAsOf: '2026-07-27T00:00:00+09:00' },
+			{ category: 'ETF', verifiedDate: '2026-10-01', aumAsOf: '2026-05-28T00:00:00+09:00' },
 			now,
 		);
 
 		assert.deepEqual(fieldsOf(atLimit.stale), []);
 		assert.deepEqual(pastLimit.stale, [
-			{ field: 'aumAsOf', date: '2026-07-27T00:00:00+09:00', ageDays: 91, maxAgeDays: 90 },
+			{ field: 'aumAsOf', date: '2026-05-28T00:00:00+09:00', ageDays: 151, maxAgeDays: 150 },
 		]);
 	});
 
@@ -131,7 +131,7 @@ describe('report:stale script', () => {
 					'categories: ETF',
 					"ticker: 'OLD'",
 					"verifiedDate: '2026-10-01T00:00:00+09:00'",
-					"aumAsOf: '2026-05-31T00:00:00+09:00' # quarterly",
+					"aumAsOf: '2026-05-01T00:00:00+09:00' # quarterly",
 				].join('\n'),
 			);
 			writePost(fixture.contentDir, 'Reports/no-date.md', 'title: No date\ncategories: [Reports]');
@@ -153,7 +153,7 @@ describe('report:stale script', () => {
 			assert.equal(report.checkedPosts, 2);
 			assert.deepEqual(
 				report.groups.aumAsOf.map(({ file, ticker, ageDays }) => ({ file, ticker, ageDays })),
-				[{ file: 'ETF/old-aum.md', ticker: 'OLD', ageDays: 148 }],
+				[{ file: 'ETF/old-aum.md', ticker: 'OLD', ageDays: 178 }],
 			);
 			assert.deepEqual(report.groups.reference, []);
 			assert.deepEqual(
@@ -163,8 +163,8 @@ describe('report:stale script', () => {
 
 			const text = runReport(fixture.env, ['--now', '2026-10-26T00:00:00+09:00']);
 			assert.equal(text.status, 0, text.stderr);
-			assert.match(text.stdout, /AUM 기준일\(aumAsOf\): 90일 초과 1편/);
-			assert.match(text.stdout, /148일 {2}2026-05-31 {2}OLD {2}ETF\/old-aum\.md/);
+			assert.match(text.stdout, /AUM 기준일\(aumAsOf\): 150일 초과 1편/);
+			assert.match(text.stdout, /178일 {2}2026-05-01 {2}OLD {2}ETF\/old-aum\.md/);
 		} finally {
 			fixture.cleanup();
 		}
