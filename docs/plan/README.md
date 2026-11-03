@@ -27,7 +27,7 @@
 | 22 | [구조화 데이터와 링크 검증 강화](22-seo-and-link-validation.md) | 완료 | P2 | 16, 17 일부 | 중 |
 | 23 | [조건부 플랫폼 개선](23-conditional-platform-improvements.md) | 조건부 보류 | 조건부 | 기능별 상이 | 선택 |
 | 24 | [공개 글 통계 페이지](24-blog-stats.md) | 완료 | P3 | 없음 | 중 |
-| 25 | [미사용 콘텐츠 자산 검사](25-unused-content-assets.md) | 완료(삭제 작업 제외) | P0 | 없음 | 소~중 |
+| 25 | [미사용 콘텐츠 자산 검사](25-unused-content-assets.md) | 완료 | P0 | 없음 | 소~중 |
 | 26 | [slug와 URL 안정성](26-slug-and-url-stability.md) | 부분 완료(비ASCII 92편 잔여) | P0 | 없음 | 중 |
 | 27 | [시리즈 허브](27-series-hub.md) | 완료(메타데이터 백필 제외) | P1 | 26 권장 | 중 |
 | 28 | [검색 본문 커버리지와 결과 렌더링](28-search-coverage-and-result-rendering.md) | 완료 | P1 | 21 측정값 | 중~대 |
@@ -50,7 +50,6 @@
 - 21번: 동일 질의·범위·전송량 기준으로 Pagefind 전면 교체 여부 재검토(현재는 기존 검색 유지)
 - 23번: 방문 통계, Mermaid, 뉴스레터의 착수 조건 검토(자산 셀프 호스팅은 30번으로 승격, 접근성·성능 자동 검사는 32번으로 승격)
 - 25~32번: 전부 착수해 26번을 제외하고 완료했습니다. 31번은 2026-10-19에 과대 이미지 16개를 재인코딩해, 29번은 2026-10-20에 `description` 82편을 백필해 마무리했습니다. 남은 항목은 사람이 판단할 콘텐츠 작업입니다.
-  - 25번: 미참조 자산 322개(65.1MiB) 삭제 여부
   - 26번: 비ASCII slug 92편의 영문 slug 명명 방침
   - 27번: ETF·Market Brief·Problem Solving 연작에 `seriesSlug` 부여 대상 선정
 

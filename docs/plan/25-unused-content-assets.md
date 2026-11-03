@@ -39,7 +39,7 @@
 3. [완료] 전체 실행에서는 `UNUSED ASSETS <n> of <total> file(s), <size> unreferenced` 한 줄로 요약합니다. 기존 경고 집계에 322건을 더하지 않으므로 경고 수 기준선이 유지됩니다. `--staged-file-list` 모드에서는 스테이지된 글과 같은 폴더의 자산만 경고로 출력합니다.
 4. [완료] `--report-unused-assets`는 전체 목록을, `--prune-unused-assets`는 경로만 stdout으로 출력합니다(요약은 stderr로 보내 파이프 사용이 가능합니다). 삭제는 기본 동작이 아니며 스크립트는 파일을 지우지 않습니다.
 5. [완료] `scripts/lib/unused-asset-allowlist.json`의 `retain` 목록으로 예외 처리합니다. `/`로 끝나는 항목은 폴더 전체를 보관합니다.
-6. [미착수] 확인된 미참조 자산을 카테고리 단위로 나눠 삭제 커밋을 진행합니다. 2026-10-16 측정 기준 322개(65.1MiB)가 후보이며, 삭제는 되돌리기 어려우므로 사람이 목록을 확인한 뒤에만 진행합니다.
+6. [완료] 2026-11-04에 미참조 자산 322개(65.1MiB)를 묶음별로 삭제했습니다. `public/images/Okeydokey` 31개, ETF 글 이미지 289개, Reports HVDC 이미지 2개입니다. 파일은 Git 이력에 남습니다.
 
 ## 테스트 설계
 
@@ -62,7 +62,14 @@
 - `npm run check:content` 통과, 경고 7건으로 기존과 동일
 - 자산 384개 중 322개(65.1MiB)가 미참조로 집계됨. 내역: `src/content/blog/**/images/`와 `public/images/`
 - `npm run format:check` 통과
-- 삭제 작업(6단계)은 진행하지 않았습니다.
+- 삭제 작업(6단계)은 이때 진행하지 않았습니다.
+
+### 2026-11-04 삭제 결과
+
+- 삭제 후 미참조 자산은 0개이고, `dist/images`는 1.63 MiB입니다. 빌드에 복사되던 것은 `public/`의 Okeydokey 약 4 MiB입니다.
+- ETF 이미지는 289개를 전부 열어 보지 않았습니다. 표본에는 지난 수치의 차트와 시점을 타지 않는 설명 도표(SOXS 레버리지 감쇠)가 모두 있었습니다. 다시 쓰려면 `d41348a`의 부모 커밋에서 되살립니다.
+- Okeydokey를 언급하던 `2018-03-02-style-guide.markdown`도 삭제했습니다. 콘텐츠 컬렉션은 `.md`와 `.mdx`만 읽으므로 공개된 적이 없어 리디렉션은 두지 않았습니다.
+- `npm test`, `npm run check`, `npm run build`, `check:build-artifacts`, Playwright 34개가 통과했습니다.
 
 ## 범위 제외
 
