@@ -2,11 +2,11 @@
 title: 'XAR (State Street SPDR S&P Aerospace & Defense ETF)'
 description: '미국 항공우주·방위 업종을 수정 동일가중 지수로 추종하는 XAR의 운용 방식, 보유 현황, 성과와 위험을 정리한다.'
 pubDate: '2026-01-31T17:00:00Z'
-updatedDate: '2026-10-05T00:00:00+09:00'
-verifiedDate: '2026-10-05T00:00:00+09:00'
+updatedDate: '2026-11-03T00:00:00+09:00'
+verifiedDate: '2026-11-03T00:00:00+09:00'
 dataAsOf: '2026-10-01T00:00:00+09:00'
 aumAsOf: '2026-10-01T00:00:00+09:00'
-expenseRatioAsOf: '2025-10-31T00:00:00+09:00'
+expenseRatioAsOf: '2026-10-30T00:00:00+09:00'
 yieldAsOf: '2026-10-01T00:00:00+09:00'
 instrumentType: 'ETF'
 ticker: 'XAR'
@@ -25,7 +25,7 @@ tags: ['ETF', 'XAR', 'SPDR', 'Aerospace', 'Defense Industry']
 
 # XAR (State Street SPDR S&P Aerospace & Defense ETF) 분석
 
-> **분석 기준일: 2026년 10월 5일**
+> **분석 기준일: 2026년 10월 5일** (비용과 회전율은 2026년 11월 3일 재확인)
 >
 > 시장·보유 종목과 성과 자료는 공시 날짜가 다르므로 항목별 기준일을 표시했다.
 
@@ -91,7 +91,7 @@ State Street가 게시한 2026년 10월 1일 상위 10개 종목 비중의 합�
 
 ## 비용, 분배와 회전율
 
-2025년 10월 31일 요약 투자설명서에는 관리보수 0.35%, 12b-1 수수료 없음, 기타 비용 0.00%, 총 연간 운용비용 0.35%가 기재되어 있다. 중개 수수료와 포트폴리오 거래 비용은 이 비용률에 포함되지 않는다.[^2]
+2026년 10월 30일 요약 투자설명서에는 관리보수 0.35%, 12b-1 수수료 없음, 기타 비용 0.00%, 총 연간 운용비용 0.35%가 기재되어 있다. 중개 수수료와 포트폴리오 거래 비용은 이 비용률에 포함되지 않는다.[^4]
 
 분배는 분기별이다. State Street가 2026년 10월 1일 기준으로 공시한 30일 SEC 수익률은 0.20%, 지난 365일 분배금을 NAV로 나눈 펀드 분배 수익률은 0.18%다. 과거 분배를 기반으로 계산한 값이므로 향후 분배를 보장하지 않는다.[^1]
 
@@ -130,3 +130,4 @@ State Street가 공개한 최신 월말 성과 자료는 2026년 8월 31일 기�
 [^1]: [State Street SPDR XAR 공식 상품 페이지](https://www.ssga.com/us/en/institutional/etfs/state-street-spdr-sp-aerospace-defense-etf-xar) — 상품 정보, 가격, 순자산, 보유 종목, 업종 비중, 수익률과 분배 지표.
 [^2]: [미국 SEC 제출 요약 투자설명서 (2025-10-31)](https://www.sec.gov/Archives/edgar/data/1064642/000119312525256780/d26317d497k.htm) — 지수 방법론, 투자 정책, 비용, 회전율 및 위험.
 [^3]: [미국 SEC 연례 주주 보고서 (2026-06-30 종료 회계연도)](https://www.sec.gov/Archives/edgar/data/1064642/000119312526383187/R2.htm) — 2025년 7월부터 2026년 6월까지의 펀드 통계와 회전율.
+[^4]: [미국 SEC 제출 요약 투자설명서 (2026-10-30)](https://www.sec.gov/Archives/edgar/data/1064642/000119312526438488/d151488d497k.htm) — 비용과 회전율.

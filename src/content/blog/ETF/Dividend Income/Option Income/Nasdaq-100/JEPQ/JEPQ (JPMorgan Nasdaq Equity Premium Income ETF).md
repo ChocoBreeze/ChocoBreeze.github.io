@@ -2,10 +2,10 @@
 title: 'JEPQ (JPMorgan Nasdaq Equity Premium Income ETF)'
 description: 'Nasdaq-100 주식 포트폴리오와 ELN 기반 콜옵션 전략을 결합해 월별 인컴을 추구하는 액티브 ETF'
 pubDate: '2026-01-31T00:00:00+09:00'
-updatedDate: '2026-10-04T00:00:00+09:00'
-verifiedDate: '2026-10-04T00:00:00+09:00'
+updatedDate: '2026-11-03T00:00:00+09:00'
+verifiedDate: '2026-11-03T00:00:00+09:00'
 dataAsOf: '2026-06-30T00:00:00+09:00'
-expenseRatioAsOf: '2025-11-01T00:00:00+09:00'
+expenseRatioAsOf: '2026-11-01T00:00:00+09:00'
 expenseRatio: '0.35%'
 ticker: 'JEPQ'
 issuer: 'JPMorgan'
@@ -52,7 +52,7 @@ JEPQ는 펀더멘털 분석과 자체 데이터 분석을 활용해 미국 대�
 
 ## 비용
 
-2025년 11월 1일자 투자설명서에 기재된 연간 운용보수 및 총 운영비용은 0.35%입니다. 중개 수수료와 포트폴리오 거래 비용은 총 운영비용에 포함되지 않으며 투자자의 실제 거래 결과에 영향을 줄 수 있습니다.[^1]
+2026년 11월 1일자 요약 투자설명서에 기재된 연간 운용보수 및 총 운영비용은 0.35%입니다. 중개 수수료와 포트폴리오 거래 비용은 총 운영비용에 포함되지 않으며 투자자의 실제 거래 결과에 영향을 줄 수 있습니다.[^4]
 
 ## 공시 성과
 
@@ -66,8 +66,9 @@ JEPQ는 펀더멘털 분석과 자체 데이터 분석을 활용해 미국 대�
 
 ## 자료와 기준일
 
-비용 및 전략 설명은 2025년 11월 1일자 투자설명서, 12개월 성과는 2026년 6월 30일 종료 주주 보고서, 세부 옵션 운용 설명은 2026년 3월 31일 운용사 자료를 기준으로 정리했습니다.
+비용은 2026년 11월 1일자 요약 투자설명서, 전략 설명은 2025년 11월 1일자 투자설명서, 12개월 성과는 2026년 6월 30일 종료 주주 보고서, 세부 옵션 운용 설명은 2026년 3월 31일 운용사 자료를 기준으로 정리했습니다.
 
+- [JPMorgan Nasdaq Equity Premium Income ETF 요약 투자설명서 (2026-11-01, SEC)](https://www.sec.gov/Archives/edgar/data/1485894/000119312526425897/d351504d497k.htm)[^4]
 - [JPMorgan Nasdaq Equity Premium Income ETF 투자설명서 (2025-11-01, SEC)](https://www.sec.gov/Archives/edgar/data/1485894/000119312525246367/d870279d485bpos.htm)[^1]
 - [JPMorgan ETF 연간 주주 보고서 (2026-06-30, SEC)](https://www.sec.gov/Archives/edgar/data/1485894/000119312526385040/d153689dncsr.htm)[^3]
 - [JPMorgan Nasdaq Equity Premium Income ETF Fund Story (2026-03-31, 운용사)](https://am.jpmorgan.com/content/dam/jpm-am-aem/americas/us/en/literature/fund-story/STO-JEPQ.pdf)[^2]
@@ -75,3 +76,4 @@ JEPQ는 펀더멘털 분석과 자체 데이터 분석을 활용해 미국 대�
 [^1]: https://www.sec.gov/Archives/edgar/data/1485894/000119312525246367/d870279d485bpos.htm
 [^2]: https://am.jpmorgan.com/content/dam/jpm-am-aem/americas/us/en/literature/fund-story/STO-JEPQ.pdf
 [^3]: https://www.sec.gov/Archives/edgar/data/1485894/000119312526385040/d153689dncsr.htm
+[^4]: https://www.sec.gov/Archives/edgar/data/1485894/000119312526425897/d351504d497k.htm

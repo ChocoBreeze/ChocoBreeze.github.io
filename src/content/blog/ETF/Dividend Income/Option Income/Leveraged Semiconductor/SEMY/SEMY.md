@@ -3,13 +3,13 @@ title: 'SEMY (GraniteShares YieldBOOST Semiconductor ETF)'
 slug: etf/dividend-income/option-income/leveraged-semiconductor/semy
 description: '3배 레버리지 반도체 ETF를 참조하는 풋옵션으로 주간 분배를 추구하는 액티브 ETF'
 pubDate: '2026-06-07T00:00:00+09:00'
-updatedDate: '2026-10-06T00:00:00+09:00'
-verifiedDate: '2026-10-06T00:00:00+09:00'
+updatedDate: '2026-11-03T00:00:00+09:00'
+verifiedDate: '2026-11-03T00:00:00+09:00'
 dataAsOf: '2026-06-30T00:00:00+09:00'
 aum: '$94.27M'
 aumAsOf: '2026-06-30T00:00:00+09:00'
-expenseRatio: '1.15%'
-expenseRatioAsOf: '2025-10-24T00:00:00+09:00'
+expenseRatio: '1.14%'
+expenseRatioAsOf: '2026-10-28T00:00:00+09:00'
 ticker: 'SEMY'
 issuer: 'GraniteShares'
 assetClass: 'Equity'
@@ -39,9 +39,10 @@ SEMY는 주간 분배를 보장하는 상품이 아니라, 옵션 전략에서 �
 | 분배 주기 | 주간 분배를 목표로 함; 금액과 지급은 보장되지 않음 |
 | 순자산 | $94.27M (2026년 6월 30일 SEC 주주 보고서) |
 | 보유 포지션 | 5개 (2026년 6월 30일 SEC 주주 보고서) |
-| 비용 한도 | 순 연간 운영비용 1.15%; 2026년 12월 31일까지 적용 예정 |
+| 운영비용 | 총 1.16%, 면제 후 순 1.14% (2026년 10월 28일 요약 투자설명서) |
+| 비용 한도 | 1.15%; 2027년 12월 31일까지 적용 예정 |
 
-1.15% 한도는 일반 운영비용에 대한 약정이며 옵션·스왑 등 파생상품 관련 비용, 중개 수수료, 이자와 일부 기타 비용은 제외된다. 2026년 6월 30일 종료 12개월 SEC 주주 보고서는 실제 비용 비율을 1.11%로 표시했다. 두 값은 기준과 산식이 다르다.
+1.15% 한도는 운용사의 계약상 약정이며 이자, 세금, 중개 수수료, 공매도 관련 비용, 자본화되는 지출, 비경상 비용과 12b-1 지급액은 제외된다. 2026년 6월 30일 종료 12개월 SEC 주주 보고서는 실제 비용 비율을 1.11%로 표시했다. 두 값은 기준과 산식이 다르다.
 
 ## 공시된 성과와 포트폴리오
 
@@ -60,6 +61,7 @@ SEC 주주 보고서는 2025년 11월 설정 이후 2026년 6월 30일까지 NAV
 ## 공식 자료
 
 - [GraniteShares SEMY 상품 페이지](https://graniteshares.com/etfs/semy/)
+- [SEC 2026년 10월 28일 요약 투자설명서](https://www.sec.gov/Archives/edgar/data/1689873/000149315226048939/form497k.htm)
 - [GraniteShares 2025년 10월 투자설명서](https://graniteshares.com/media/afrp3omb/graniteshares-etf-trust-semy-summary-prospectus.pdf)
 - [SEC 2026년 6월 30일 연차 주주 보고서](https://www.sec.gov/Archives/edgar/data/1689873/000149315226041612/formn-csr.htm)
 

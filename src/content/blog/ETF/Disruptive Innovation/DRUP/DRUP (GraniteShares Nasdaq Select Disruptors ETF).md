@@ -2,13 +2,13 @@
 title: 'DRUP (GraniteShares Nasdaq Select Disruptors ETF)'
 description: 'Nasdaq US Large Cap Select Disruptors Index를 추종하는 미국 대형주 테마 ETF'
 pubDate: '2026-05-25T00:00:00+09:00'
-updatedDate: '2026-10-06T00:00:00+09:00'
-verifiedDate: '2026-10-06T00:00:00+09:00'
+updatedDate: '2026-11-03T00:00:00+09:00'
+verifiedDate: '2026-11-03T00:00:00+09:00'
 dataAsOf: '2026-06-30T00:00:00+09:00'
 aum: '$46.56M'
 aumAsOf: '2026-06-30T00:00:00+09:00'
 expenseRatio: '0.60%'
-expenseRatioAsOf: '2025-10-24T00:00:00+09:00'
+expenseRatioAsOf: '2026-10-28T00:00:00+09:00'
 ticker: "DRUP"
 issuer: "GraniteShares"
 assetClass: "Equity"
@@ -21,7 +21,7 @@ categories: "ETF"
 
 ## 요약
 
-> **검증일**: 2026년 10월 6일 | **운용사**: GraniteShares Advisors LLC | **자료 기준일**: 2026년 6월 30일
+> **검증일**: 비용 2026년 11월 3일, 그 외 2026년 10월 6일 | **운용사**: GraniteShares Advisors LLC | **자료 기준일**: 2026년 6월 30일
 
 DRUP는 Nasdaq US Large Cap Select Disruptors Index를 추종하는 비레버리지 미국 주식 ETF다. 지수는 Nasdaq US 500 Large Cap Index의 종목 중 자체 다요인 기준으로 높은 disruption score를 받은 50개 종목을 선정한다.
 
@@ -47,7 +47,7 @@ DRUP는 Nasdaq US Large Cap Select Disruptors Index를 추종하는 비레버리
 | 추종 지수 | Nasdaq US Large Cap Select Disruptors Index | 2026-06-30 |
 | 순자산 | $46.56M | 2026-06-30 |
 | 보유 종목 | 50개 | 2026-06-30 |
-| 총보수 | 0.60% | 2025-10-24 투자설명서 |
+| 총보수 | 0.60% | 2026-10-28 투자설명서 |
 | 회계연도 포트폴리오 회전율 | 47% | 2026-06-30 종료 회계연도 |
 
 ## 지수와 운용 방식
@@ -80,4 +80,5 @@ GraniteShares 연차보고서가 제시한 2026년 6월 30일 기준 연환산 �
 ## 공식 자료
 
 - [GraniteShares 2026년 6월 30일 연차 주주 보고서 (SEC)](https://www.sec.gov/Archives/edgar/data/1689873/000149315226041612/formn-csr.htm)
+- [GraniteShares 2026년 10월 28일 요약 투자설명서 (SEC)](https://www.sec.gov/Archives/edgar/data/1689873/000149315226048883/form497k.htm)
 - [GraniteShares 2025년 10월 24일 요약 투자설명서 (SEC)](https://www.sec.gov/Archives/edgar/data/1689873/000149315225019489/form497k.htm)
