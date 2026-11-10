@@ -702,7 +702,7 @@ LangChain 문서도 MMR를 설명하면서 **먼저 더 많은 후보를 가져�
 
 - [ZeusDB integrations - Docs by LangChain](https://docs.langchain.com/oss/python/integrations/providers/zeusdb)
 - [Vector store integrations - Docs by LangChain](https://docs.langchain.com/oss/python/integrations/vectorstores)
-- [OpenSearch integration - Docs by LangChain](https://docs.langchain.com/oss/python/integrations/vectorstores/opensearch)
+- [Amazon OpenSearch - Vector store integrations, Docs by LangChain](https://docs.langchain.com/oss/python/integrations/vectorstores#amazon-opensearch)
 - [MemoryVectorStore integration - Docs by LangChain](https://docs.langchain.com/oss/javascript/integrations/vectorstores/memory)
 - [Docugami integration - Docs by LangChain](https://docs.langchain.com/oss/python/integrations/document_loaders/docugami)
 
