@@ -40,7 +40,7 @@
 | 35 | [인쇄용 스타일](35-print-styles.md) | 완료 | P3 | 없음 | 소 |
 | 36 | [글별 수정 이력 링크](36-post-history-link.md) | 완료 | P3 | 없음 | 소 |
 | 37 | [이어 읽기 위치 기억](37-resume-reading.md) | 완료 | P3 | 없음 | 소~중 |
-| 38 | [외부 링크 생존 리포트](38-external-link-report.md) | 완료(끊긴 링크 5개 미해결) | P3 | 22 | 중 |
+| 38 | [외부 링크 생존 리포트](38-external-link-report.md) | 완료 | P3 | 22 | 중 |
 | 39 | [라이트 모드 강조 글자 대비](39-accent-text-contrast.md) | 완료 | P2 | 34 | 소~중 |
 
 ## 현재 남은 작업
