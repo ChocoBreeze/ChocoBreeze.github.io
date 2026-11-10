@@ -348,6 +348,30 @@ export const POST_REDIRECTS = [
 		since: '2026-10-16',
 		reason: 'slug backfill: dropped the readme filename segment',
 	},
+	{
+		from: '/blog/etf/basics/1-왜-etf에-투자해야-하는가/',
+		to: '/blog/etf/basics/1-why-invest-in-etfs/',
+		since: '2026-11-10',
+		reason: 'slug backfill: replaced the non-ASCII path with an English slug',
+	},
+	{
+		from: '/blog/etf/basics/2-etf란-무엇인가/',
+		to: '/blog/etf/basics/2-what-is-an-etf/',
+		since: '2026-11-10',
+		reason: 'slug backfill: replaced the non-ASCII path with an English slug',
+	},
+	{
+		from: '/blog/etf/basics/3-etf의-종류/',
+		to: '/blog/etf/basics/3-types-of-etfs/',
+		since: '2026-11-10',
+		reason: 'slug backfill: replaced the non-ASCII path with an English slug',
+	},
+	{
+		from: '/blog/etf/basics/4-etf를-읽는-방법/',
+		to: '/blog/etf/basics/4-how-to-read-an-etf/',
+		since: '2026-11-10',
+		reason: 'slug backfill: replaced the non-ASCII path with an English slug',
+	},
 ];
 
 export function normalizeRedirectPath(value) {
