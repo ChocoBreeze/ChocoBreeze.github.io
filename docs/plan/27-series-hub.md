@@ -44,7 +44,7 @@
 3. [완료] `/series/<seriesSlug>/` 상세를 추가했습니다. 번호가 붙은 읽는 순서 목록으로 제목·설명·발행일을 보여줍니다.
 4. [완료] 글 상세의 시리즈 이름이 `/series/<seriesSlug>/`로 연결됩니다. `N/M편` 진행 표시와 이전·다음 편 이동은 이미 있었으므로 그대로 두고 허브로 가는 경로만 더했습니다.
 5. [완료, 방침 변경] 대체하지 않았습니다. `src/pages/programming/git-commands.astro`는 단순 목록이 아니라 15개 주제 구간으로 직접 큐레이션한 색인이어서, 자동 생성 목록으로 바꾸면 기능이 줄어듭니다. 기존 URL을 유지하고 시리즈 상세에서 `명령어별 색인 보기`로 연결했습니다. 리다이렉트는 필요하지 않습니다.
-6. [미착수] ETF·Market Brief·Problem Solving의 연작 글에 `seriesSlug`를 부여할 대상 선정은 글 묶는 기준을 사람이 정해야 하므로 남겨 둡니다. 현재 시리즈는 `git-commands` 1개(26편)뿐이고, 허브는 시리즈가 늘어나면 자동으로 반영합니다.
+6. [완료] 2026-11-11에 Programming 연작 3개(24편)에 시리즈 메타데이터를 부여했습니다. `rag-study`(RAG Week1~9, 11편), `async-await-internals`(5편), `git-internals`(8편)입니다. ETF 기초 4편, 반도체 용어 70편, GTC 2026 리포트 6편은 후보였으나 이번에는 제외했습니다. Market Brief는 캘린더가, Problem Solving은 개별 문제 풀이라 시리즈 대상이 아닙니다.
 
 ## 테스트 설계
 
@@ -69,6 +69,12 @@
 - `npm run check:build-artifacts` 통과(HTML 960개, 링크 7,960개)
 - `npm run test:e2e` 8개 통과, `npm run format:check` 통과
 - 확인 예: `/blog/git-add-command-guide/`의 시리즈 표시가 `Git 명령어`(→ `/series/git-commands/`)와 `6/26편`으로 렌더링됩니다.
+
+### 2026-11-11 시리즈 백필 결과
+
+- 순서는 발행일 순이고, 같은 날 두 편인 RAG Week6은 본 강의(`README.md`)를 비교 글보다 앞에 두었습니다.
+- `/series/`에 시리즈 4개가 표시되고, 예로 `/blog/programming/260414-rag-day6/`은 `7/11편`, `/blog/git-internals-blob-object/`는 `3/8편`으로 렌더링됩니다.
+- `npm run build`(971페이지)와 `check:build-artifacts`가 통과했습니다.
 
 ## 범위 제외
 
