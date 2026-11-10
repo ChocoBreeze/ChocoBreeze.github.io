@@ -101,6 +101,7 @@ Posts without their own `heroImage`/`image` get an auto-generated OG card at `/o
 - No duplicate post routes or duplicate titles
 - No absolute local paths or secret patterns in content
 - Missing image alt text, unbalanced bold markers
+- Posts without `slug` whose file path yields a fragile URL (non-ASCII segment, repeated last segment, `readme`/`index` segment) — an error, not a warning
 - Unreferenced and oversized (over 1 MiB) image assets, reported as warnings; `npm run optimize:images` re-encodes the oversized ones
 
 `ci.yml` runs on every pull request: `npm ci` → `npm audit --audit-level=high` → `npm test` → `check:content` → `astro check` → `build` → `check:build-artifacts -- --report-budgets` → `test:e2e` (Chromium). `deploy.yml` reruns that sequence and adds `report:search-size` after the browser tests before publishing. The user-wide Git `pre-commit` dispatcher invokes this repository's `scripts/hooks/pre-commit` when it exists, so a commit with a broken post will fail — fix the reported errors rather than bypassing the hook. The global `commit-msg` hook validates AI provenance but does not generate metadata. This repository does not configure `core.hooksPath` or a `prepare` npm script.

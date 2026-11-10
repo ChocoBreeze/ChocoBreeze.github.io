@@ -41,7 +41,7 @@ Supported frontmatter is defined in `src/content.config.ts`.
 Common fields:
 
 - `title`: required
-- `slug`: optional, but recommended when the filename contains spaces, Korean text, or special characters
+- `slug`: optional, but required in practice when the file path contains Korean text, repeats the folder name, or ends in `README`/`index`; `check:content` fails those posts without one
 - `description`: optional
 - `pubDate`: preferred publish date field; use full ISO 8601 with timezone, such as `2026-01-16T00:00:00+09:00`
 - `updatedDate`: optional

@@ -8,7 +8,7 @@ Use this checklist before publishing a new or edited post.
 - Pick a category that exists in `src/data/blogCategories.ts`.
 - Use `templates/post.md` for new posts.
 - For a generated post skeleton, use `npm run new:post`.
-- Prefer a stable `slug` when the filename contains spaces, Korean text, or special characters.
+- Set a stable `slug` when the filename contains spaces, Korean text, or special characters. `check:content` fails a post without `slug` whose file path yields a non-ASCII segment, a repeated last segment, or a `readme`/`index` segment.
 
 ## Post Generation
 

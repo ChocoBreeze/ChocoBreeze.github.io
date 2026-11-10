@@ -567,13 +567,13 @@ function checkSlug(filePath, content, frontmatterMatch, fields, warnings) {
 	);
 }
 
-const DERIVED_ROUTE_WARNING_GROUP = 'derived-route';
 const MISSING_DESCRIPTION_WARNING_GROUP = 'missing-description';
 
 // A post without an explicit `slug` inherits its URL from the file path, so
-// renaming or moving the file silently changes the public URL. Report the path
-// shapes that produce fragile URLs.
-function checkDerivedRoute(filePath, content, frontmatterMatch, fields, warnings) {
+// renaming or moving the file silently changes the public URL. The path shapes
+// that produce fragile URLs are errors: plan 26 backfilled every existing case,
+// so a new one can only come from a post committed without a slug.
+function checkDerivedRoute(filePath, content, frontmatterMatch, fields, issues) {
 	const field = fields.get('slug');
 	if (field && stripQuotes(stripYamlComment(field.rawValue)).trim()) {
 		return;
@@ -583,7 +583,7 @@ function checkDerivedRoute(filePath, content, frontmatterMatch, fields, warnings
 	const line = frontmatterMatch ? getLineNumber(content, frontmatterMatch.index ?? 0) : 1;
 
 	for (const issue of getDerivedRouteIssues(routePath)) {
-		addIssue(warnings, 'warning', filePath, line, issue.message, DERIVED_ROUTE_WARNING_GROUP);
+		addIssue(issues, 'error', filePath, line, issue.message);
 	}
 }
 
@@ -769,7 +769,7 @@ function checkFrontmatter(filePath, content, issues, warnings, titleIndex, postR
 	);
 	checkMissingDescription(filePath, content, frontmatterMatch, fields, warnings);
 	checkSlug(filePath, content, frontmatterMatch, fields, warnings);
-	checkDerivedRoute(filePath, content, frontmatterMatch, fields, warnings);
+	checkDerivedRoute(filePath, content, frontmatterMatch, fields, issues);
 	checkEtfMetadata(filePath, content, frontmatterMatch, fields, issues);
 	checkCategories(filePath, content, frontmatterMatch, fields, warnings);
 	checkRelatedSlugs(filePath, content, frontmatterMatch, fields, issues, postReferences);
@@ -1421,18 +1421,10 @@ async function main() {
 		? warnings.filter((warning) => stagedFileSet.has(warning.filePath.replace(/\\/g, '/')))
 		: warnings;
 
-	// The derived-route backlog is a known legacy set (plan 26). Printing every
-	// entry on each full run would bury the actionable warnings, so collapse it
-	// into one line unless the list was explicitly requested. The pre-commit
-	// hook still shows the entries for the posts being committed.
+	// Collapse a noisy legacy warning group into one line unless its list was
+	// explicitly requested. The pre-commit hook still shows the entries for the
+	// posts being committed.
 	const collapsedGroups = [];
-	if (!stagedFileSet && !hasCliFlag('report-derived-routes')) {
-		collapsedGroups.push({
-			group: DERIVED_ROUTE_WARNING_GROUP,
-			label: 'DERIVED ROUTES',
-			hint: 'for posts without an explicit slug. Run with --report-derived-routes for the list.',
-		});
-	}
 	if (!stagedFileSet && !hasCliFlag('report-missing-descriptions')) {
 		collapsedGroups.push({
 			group: MISSING_DESCRIPTION_WARNING_GROUP,
