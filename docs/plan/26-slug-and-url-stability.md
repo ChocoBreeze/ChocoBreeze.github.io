@@ -47,9 +47,9 @@ GitHub Pages 정적 배포는 301 응답을 구성할 수 없으므로, 이전 �
 1. [완료] `getDerivedRouteIssues()`가 중복 세그먼트, 비ASCII 세그먼트, `readme`/`index` 파일명 세그먼트를 경고로 분류합니다. Astro의 슬러그화가 대문자를 이미 소문자로 바꾸므로 대문자 검사는 넣지 않았습니다. 전체 실행에서는 `DERIVED ROUTES <n> warning(s)` 한 줄로 묶고 `--report-derived-routes`로 전체 목록을 봅니다. pre-commit 훅은 커밋 대상 글의 항목만 출력합니다.
 2. [완료] `src/data/postRedirects.mjs`가 매핑 단일 출처이고, `astro.config.mjs`의 `redirects`와 사이트맵 `filter`가 이 값을 함께 사용합니다. 전용 라우트를 만들지 않고 Astro의 정적 리다이렉트를 사용합니다. 빈 매핑 상태에서 빌드가 정상인지 먼저 확인했습니다.
 3. [완료] 중복 세그먼트 41편과 `readme` 세그먼트 15편, 합계 56편에 `slug`를 백필하고 이전 경로 56개를 매핑에 추가했습니다. 백필 전에 56개 경로를 가리키는 내부 링크가 없음을 확인했습니다(0건).
-4. [미착수] 남은 대상은 비ASCII 세그먼트 92편입니다. 한글 slug는 현재도 동작하므로 기계적 변환 대상이 아니고, 영문 slug 명명은 글마다 사람이 정해야 합니다. 명명 방침을 정한 뒤 카테고리 단위로 나눠 백필합니다.
+4. [완료] 2026-11-10에 비ASCII 세그먼트 92편(ETF 4, Reports 34, Semiconductor 54)에 영문 `slug`를 백필하고 이전 경로 92개를 매핑에 추가했습니다. 명명 규칙과 전체 목록은 [26-slug-proposal.md](26-slug-proposal.md)에 있습니다.
 5. [완료] `check:build-artifacts`가 매핑별로 리다이렉트 페이지 생성, 대상 경로 일치, `robots noindex`, canonical, 대상 페이지 존재를 검사하고, 자체 매핑의 자기참조·중복 출발·연쇄도 검사합니다. Astro가 리다이렉트 페이지에 `Redirecting to: ...` 제목을 쓰므로 사이트 제목 규칙에서는 제외합니다.
-6. [미착수] 4단계가 끝난 뒤 판단합니다. 현재는 경고 92건이 남아 있어 승격하면 빌드가 막힙니다.
+6. [미착수] 4단계 완료로 경로 파생 경고가 0건이 되어 오류로 승격할 수 있습니다. 승격하면 새 글이 `slug` 없이 한글 파일명만으로 커밋될 때 막히므로, `new:post`를 쓰지 않고 글을 만드는 경우가 있는지 보고 판단합니다.
 
 ## 테스트 설계
 
@@ -76,6 +76,14 @@ GitHub Pages 정적 배포는 301 응답을 구성할 수 없으므로, 이전 �
 - `npm run check:build-artifacts` 통과(게시글 506편, 초안 0편, 링크 7,934개). 이전 경로는 사이트맵에 포함되지 않음을 확인했습니다.
 - `npm run test:e2e` 8개 통과, `npm run format:check` 통과
 - 확인 예: `/blog/semiconductor/readme/`는 canonical·noindex·meta refresh를 가진 리다이렉트 페이지가 되고, 본문은 `/blog/semiconductor/`에서 제공됩니다.
+
+### 2026-11-10 비ASCII slug 백필 결과
+
+- Semiconductor는 범위 폴더(`semiconductor/31--40/`)를 유지하고 마지막 세그먼트만 `번호-영문`으로 바꿨습니다. 같은 폴더의 영문 제목 글과 모양을 맞추기 위해서입니다.
+- Reports는 기존 Reports slug처럼 날짜 폴더 없이 `reports/주제`로 두었습니다.
+- 이전 경로를 가리키던 내부 링크는 `ETF/Basics/README.md`의 4개였고 새 주소로 바꿨습니다. 빌드 산출물에서 이전 경로 92개를 가리키는 링크는 0개입니다.
+- `check:content`의 경로 파생 경고는 92건에서 0건이 되었습니다.
+- `npm test` 397개, `npm run build`(968페이지), `check:build-artifacts`(리디렉션 148개 포함), Playwright 34개가 통과했습니다.
 
 ## 범위 제외
 
