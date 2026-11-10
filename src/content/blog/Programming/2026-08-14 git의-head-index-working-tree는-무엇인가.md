@@ -2,6 +2,9 @@
 title: "Git의 HEAD / Index / Working Tree는 무엇인가"
 description: "git add·commit·diff·restore가 실제로 조작하는 HEAD, Index, Working Tree 세 영역의 관계를 예제로 정리합니다."
 pubDate: "2026-08-14T00:00:00+09:00"
+series: "Git 내부 구조"
+seriesSlug: "git-internals"
+seriesOrder: 4
 categories: "Programming"
 tags: ["Git", "Version Control", "Developer Tools"]
 slug: "git-internals-head-index-working-tree"

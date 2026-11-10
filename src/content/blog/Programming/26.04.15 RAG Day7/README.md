@@ -3,6 +3,9 @@ title: "RAG Week7 고도화 검색"
 slug: programming/260415-rag-day7
 description: "메타데이터 필터링, BM25, 벡터 검색, 하이브리드 검색, MMR 결과를 비교하는 실습"
 pubDate: "2026-04-15T00:00:00+09:00"
+series: "RAG 스터디"
+seriesSlug: "rag-study"
+seriesOrder: 9
 categories: "Programming"
 tags: ["RAG", "Hybrid Search", "BM25", "Vector DB", "MMR"]
 ---

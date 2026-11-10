@@ -3,6 +3,9 @@ title: "RAG Week6 LangChain으로 실전 파이프라인 완성"
 slug: programming/260414-rag-day6
 description: "LangChain의 Retriever, Chain, Memory를 활용해 RAG 파이프라인을 구조화하는 실습"
 pubDate: "2026-04-14T00:00:00+09:00"
+series: "RAG 스터디"
+seriesSlug: "rag-study"
+seriesOrder: 7
 categories: "Programming"
 tags: ["RAG", "LangChain", "Vector DB", "LLM"]
 ---

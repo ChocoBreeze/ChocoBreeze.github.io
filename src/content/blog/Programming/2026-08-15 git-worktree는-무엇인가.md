@@ -2,6 +2,9 @@
 title: "Git의 Worktree는 무엇인가"
 description: "하나의 Git 저장소에서 여러 Working Tree를 동시에 사용하는 git worktree의 내부 구조와 활용법을 살펴봅니다."
 pubDate: "2026-08-15T00:00:00+09:00"
+series: "Git 내부 구조"
+seriesSlug: "git-internals"
+seriesOrder: 5
 categories: "Programming"
 tags: ["Git", "Version Control", "Developer Tools"]
 slug: "git-internals-worktree"

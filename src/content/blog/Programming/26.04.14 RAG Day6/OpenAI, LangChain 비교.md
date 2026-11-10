@@ -2,6 +2,9 @@
 title: "RAG Week6 OpenAI SDK와 LangChain RAG 비교"
 description: "같은 2문서 RAG 예제를 OpenAI SDK 직접 구현 방식과 LangChain 구현 방식으로 비교합니다."
 pubDate: "2026-04-14T00:00:00+09:00"
+series: "RAG 스터디"
+seriesSlug: "rag-study"
+seriesOrder: 8
 categories: "Programming"
 tags: ["RAG", "OpenAI", "LangChain", "Vector DB", "LLM"]
 slug: "rag-week6-openai-sdk-vs-langchain-rag"

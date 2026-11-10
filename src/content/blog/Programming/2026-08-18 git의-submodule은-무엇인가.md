@@ -2,6 +2,9 @@
 title: "Git의 Submodule은 무엇인가"
 description: "다른 Git Repository를 특정 Commit 참조로 포함하는 git submodule의 동작 방식과 subtree와의 차이를 정리합니다."
 pubDate: "2026-08-18T00:00:00+09:00"
+series: "Git 내부 구조"
+seriesSlug: "git-internals"
+seriesOrder: 8
 categories: "Programming"
 tags: ["Git", "Version Control", "Developer Tools"]
 slug: "git-internals-submodule"

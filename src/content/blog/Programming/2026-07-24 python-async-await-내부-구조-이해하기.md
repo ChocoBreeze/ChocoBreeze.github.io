@@ -2,6 +2,9 @@
 title: "Python async/await 내부 구조 이해하기"
 description: "Coroutine, Task, Future, Event Loop가 asyncio 안에서 어떻게 연결되는지 MCP 클라이언트 예제로 추적합니다."
 pubDate: "2026-07-24T00:00:00+09:00"
+series: "async/await 내부 구조"
+seriesSlug: "async-await-internals"
+seriesOrder: 3
 categories: "Programming"
 slug: "programming/python-asyncio-internals"
 tags: ["Async", "Python", "asyncio"]

@@ -2,6 +2,9 @@
 title: "Git의 Subtree는 무엇인가"
 description: "저장소의 특정 디렉터리를 다른 Repository나 Branch와 연결해서 관리하는 git subtree의 동작 방식과 worktree/submodule과의 차이를 살펴봅니다."
 pubDate: "2026-08-16T00:00:00+09:00"
+series: "Git 내부 구조"
+seriesSlug: "git-internals"
+seriesOrder: 6
 categories: "Programming"
 tags: ["Git", "Version Control", "Developer Tools"]
 slug: "git-internals-subtree"

@@ -2,6 +2,9 @@
 title: "RAG Week9 Streamlit으로 RAG UI 만들기"
 description: "Week8 개인 투자 지식 베이스를 Streamlit 웹 UI로 확장하는 실습"
 pubDate: "2026-04-17T00:00:00+09:00"
+series: "RAG 스터디"
+seriesSlug: "rag-study"
+seriesOrder: 11
 categories: "Programming"
 tags: ["RAG", "Streamlit", "LangChain", "Chroma", "Vector DB"]
 slug: "rag-week9-streamlit-rag-ui"

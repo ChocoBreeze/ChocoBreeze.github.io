@@ -2,6 +2,9 @@
 title: "RAG Week1 Transformers, the tech behind LLMs | Deep Learning Chapter 5"
 description: "What is GPT?"
 pubDate: "2026-04-05T00:00:00+09:00"
+series: "RAG 스터디"
+seriesSlug: "rag-study"
+seriesOrder: 2
 categories: "Programming"
 tags: ["RAG", "LLM"]
 ---

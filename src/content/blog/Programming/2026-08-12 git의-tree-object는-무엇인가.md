@@ -2,6 +2,9 @@
 title: "Git의 Tree Object는 무엇인가"
 description: "Git의 tree 객체가 디렉터리 구조와 파일 이름을 어떻게 표현하는지, blob·commit과 어떻게 연결되는지 살펴봅니다."
 pubDate: "2026-08-12T00:00:00+09:00"
+series: "Git 내부 구조"
+seriesSlug: "git-internals"
+seriesOrder: 2
 categories: "Programming"
 tags: ["Git", "Version Control", "Developer Tools"]
 slug: "git-internals-tree-object"

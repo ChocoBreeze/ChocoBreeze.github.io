@@ -2,6 +2,9 @@
 title: "RAG Week8 최종 프로젝트"
 description: "PDF, TXT, URL 자료를 추가하고 질문할 수 있는 개인 투자 지식 베이스 CLI를 만드는 실습"
 pubDate: "2026-04-16T00:00:00+09:00"
+series: "RAG 스터디"
+seriesSlug: "rag-study"
+seriesOrder: 10
 categories: "Programming"
 tags: ["RAG", "LangChain", "Chroma", "CLI", "Vector DB"]
 slug: "rag-week8-investment-knowledge-base"

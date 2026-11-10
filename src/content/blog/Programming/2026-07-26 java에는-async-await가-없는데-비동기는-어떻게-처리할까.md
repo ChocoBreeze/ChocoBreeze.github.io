@@ -2,6 +2,9 @@
 title: "Java에는 async/await가 없는데 비동기는 어떻게 처리할까?"
 description: "CompletableFuture, Reactor(Mono/Flux), Virtual Thread가 각각 무엇을 추상화하는지 비교하고 Spring MVC/WebFlux 선택 기준을 정리합니다."
 pubDate: "2026-07-26T00:00:00+09:00"
+series: "async/await 내부 구조"
+seriesSlug: "async-await-internals"
+seriesOrder: 5
 categories: "Programming"
 slug: "programming/java-completablefuture-reactor-virtual-thread"
 tags: ["Async", "Java", "CompletableFuture", "Reactor", "Virtual Thread", "Spring"]

@@ -2,6 +2,9 @@
 title: "async/await는 스레드를 멈추는 문법이 아니다"
 description: "C++, JavaScript, Python, Java에 공통으로 적용되는 비동기 실행의 구조를 코루틴, continuation, Future/Promise, 이벤트 루프 중심으로 정리합니다."
 pubDate: "2026-07-22T00:00:00+09:00"
+series: "async/await 내부 구조"
+seriesSlug: "async-await-internals"
+seriesOrder: 1
 categories: "Programming"
 slug: "programming/async-await-common-principles"
 tags: ["Async", "Coroutine", "C++", "JavaScript", "Python", "Java"]

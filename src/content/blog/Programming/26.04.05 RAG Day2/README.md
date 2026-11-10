@@ -3,6 +3,9 @@ title: "RAG Week2 임베딩과 벡터"
 slug: programming/260405-rag-day2
 description: "관련 문서 판단"
 pubDate: "2026-04-06T00:00:00+09:00"
+series: "RAG 스터디"
+seriesSlug: "rag-study"
+seriesOrder: 3
 categories: "Programming"
 tags: ["RAG", "embedding", "vector"]
 ---

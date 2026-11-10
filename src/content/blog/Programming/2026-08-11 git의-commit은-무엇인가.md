@@ -2,6 +2,9 @@
 title: "Git의 Commit은 무엇인가"
 description: "Git의 commit 객체가 실제로 무엇을 저장하는지, tree·blob·parent와 어떻게 연결되는지 내부 구조를 살펴봅니다."
 pubDate: "2026-08-11T00:00:00+09:00"
+series: "Git 내부 구조"
+seriesSlug: "git-internals"
+seriesOrder: 1
 categories: "Programming"
 tags: ["Git", "Version Control", "Developer Tools"]
 slug: "git-internals-commit-object"

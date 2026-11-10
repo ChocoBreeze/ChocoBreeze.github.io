@@ -2,6 +2,9 @@
 title: "Git의 Blob Object는 무엇인가"
 description: "Git의 blob 객체가 파일 내용을 어떻게 저장하는지, 이름·경로와 분리되는 이유, 재사용과 불변성 원리를 살펴봅니다."
 pubDate: "2026-08-13T00:00:00+09:00"
+series: "Git 내부 구조"
+seriesSlug: "git-internals"
+seriesOrder: 3
 categories: "Programming"
 tags: ["Git", "Version Control", "Developer Tools"]
 slug: "git-internals-blob-object"

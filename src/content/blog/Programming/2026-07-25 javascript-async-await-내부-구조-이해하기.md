@@ -2,6 +2,9 @@
 title: "JavaScript async/await 내부 구조 이해하기"
 description: "Promise, Microtask Queue, Event Loop가 어떻게 연결되어 async/await의 중단과 재개를 만드는지 MCP 호출 예제로 정리합니다."
 pubDate: "2026-07-25T00:00:00+09:00"
+series: "async/await 내부 구조"
+seriesSlug: "async-await-internals"
+seriesOrder: 4
 categories: "Programming"
 slug: "programming/javascript-promise-event-loop-internals"
 tags: ["Async", "JavaScript", "Promise", "Event Loop"]

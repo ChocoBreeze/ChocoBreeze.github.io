@@ -2,6 +2,9 @@
 title: "Git의 reset / restore / checkout은 무엇이 다른가"
 description: "HEAD·Index·Working Tree 세 영역을 기준으로 git reset, restore, checkout이 각각 무엇을 바꾸는지 비교합니다."
 pubDate: "2026-08-17T00:00:00+09:00"
+series: "Git 내부 구조"
+seriesSlug: "git-internals"
+seriesOrder: 7
 categories: "Programming"
 tags: ["Git", "Version Control", "Developer Tools"]
 slug: "git-internals-reset-restore-checkout"
