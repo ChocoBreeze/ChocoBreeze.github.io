@@ -1,5 +1,6 @@
 ---
 title: '12. 공정 노드 (5nm / 3nm / 18A 등)'
+slug: semiconductor/11--20/12-process-node
 description: '트랜지스터가 얼마나 작게 만들어졌는지를 나타내는 반도체 세대 이름'
 pubDate: '2026-01-12T00:00:00Z'
 categories: "Semiconductor"

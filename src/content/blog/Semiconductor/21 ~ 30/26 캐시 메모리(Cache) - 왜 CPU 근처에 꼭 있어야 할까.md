@@ -1,5 +1,6 @@
 ---
 title: '26. 캐시 메모리(Cache) — 왜 CPU 근처에 꼭 있어야 할까?'
+slug: semiconductor/21--30/26-cache-memory
 description: 'CPU 바로 옆에서 데이터를 미리 준비해두는 초고속 임시 보관소'
 pubDate: '2026-01-26T00:00:00Z'
 categories: "Semiconductor"

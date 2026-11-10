@@ -1,5 +1,6 @@
 ---
 title: '22. 클럭(Clock)과 주파수(Frequency)'
+slug: semiconductor/21--30/22-clock-and-frequency
 description: 'CPU·GPU 성능을 이해하려면 반드시 알아야 하는 기본 중의 기본!'
 pubDate: '2026-01-22T00:00:00Z'
 categories: "Semiconductor"

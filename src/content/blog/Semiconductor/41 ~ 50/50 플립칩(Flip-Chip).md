@@ -1,5 +1,6 @@
 ---
 title: '50. 플립칩(Flip-Chip)'
+slug: semiconductor/41--50/50-flip-chip
 description: 'FC-BGA, CoWoS 같은 데서 자주 나오는 핵심 연결 방식'
 pubDate: '2026-02-20T00:00:00Z'
 categories: "Semiconductor"

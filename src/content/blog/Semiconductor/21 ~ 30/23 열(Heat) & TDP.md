@@ -1,5 +1,6 @@
 ---
 title: '23. 열(Heat) & TDP — 반도체는 왜 뜨거워지는가?'
+slug: semiconductor/21--30/23-heat-and-tdp
 description: '반도체는 전기를 켜고 끄는 과정에서 열이 발생하고, TDP는 칩이 최대한 버틸 수 있는 열량을 나타내는 숫자'
 pubDate: '2026-01-23T00:00:00Z'
 categories: "Semiconductor"

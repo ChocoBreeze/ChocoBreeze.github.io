@@ -1,5 +1,6 @@
 ---
 title: '25. SRAM vs DRAM — 왜 CPU와 GPU 안에는 SRAM이 있고, 밖에는 DRAM이 있을까?'
+slug: semiconductor/21--30/25-sram-vs-dram
 description: 'SRAM은 빠르지만 크고 비싼 메모리, DRAM은 느리지만 작고 싸고 많이 넣을 수 있는 메모리'
 pubDate: '2026-01-25T00:00:00Z'
 categories: "Semiconductor"

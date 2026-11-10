@@ -1,5 +1,6 @@
 ---
 title: '21. 메모리 계층 구조 (Memory Hierarchy)'
+slug: semiconductor/21--30/21-memory-hierarchy
 description: '왜 어떤 메모리는 빠르고, 어떤 메모리는 느리고, 어떤 건 비싸고 싼 걸까?'
 pubDate: '2026-01-21T00:00:00Z'
 categories: "Semiconductor"

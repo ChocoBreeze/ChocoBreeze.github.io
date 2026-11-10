@@ -1,5 +1,6 @@
 ---
 title: '30. 전력 소비의 진짜 원인 — 정적 전력(Leakage) vs 동적 전력(Switching Power)'
+slug: semiconductor/21--30/30-static-vs-dynamic-power
 description: 'AI 칩이 왜 그렇게 뜨겁고 전기를 많이 먹는지 이해하려면 필수'
 pubDate: '2026-01-30T00:00:00Z'
 categories: "Semiconductor"

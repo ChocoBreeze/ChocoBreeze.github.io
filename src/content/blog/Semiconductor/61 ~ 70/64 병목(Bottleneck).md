@@ -1,5 +1,6 @@
 ---
 title: '64. 병목(Bottleneck)'
+slug: semiconductor/61--70/64-bottleneck
 description: '전체 시스템에서 가장 느려서 다른 빠른 부품들까지 기다리게 만드는 가장 좁은 부분'
 pubDate: '2026-03-06T00:00:00Z'
 categories: "Semiconductor"

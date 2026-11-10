@@ -1,5 +1,6 @@
 ---
 title: '47. 다이싱(Dicing) — 웨이퍼를 칩으로 자르는 단계'
+slug: semiconductor/41--50/47-dicing
 description: '다이싱은 웨이퍼를 작은 네모 칩(다이)들로 잘라내는 공정'
 pubDate: '2026-02-17T00:00:00Z'
 categories: "Semiconductor"

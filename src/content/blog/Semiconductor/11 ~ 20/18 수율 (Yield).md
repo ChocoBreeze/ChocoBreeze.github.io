@@ -1,5 +1,6 @@
 ---
 title: '18. 반도체 가격 구조 — 수율(Yield)'
+slug: semiconductor/11--20/18-yield
 description: '왜 반도체는 비쌀까?의 핵심 개념'
 pubDate: '2026-01-18T00:00:00Z'
 categories: "Semiconductor"

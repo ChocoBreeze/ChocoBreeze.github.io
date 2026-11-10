@@ -1,5 +1,6 @@
 ---
 title: '66. 행렬 연산(Matrix Operation)'
+slug: semiconductor/61--70/66-matrix-operations
 description: '숫자를 표처럼 모아 놓고 한꺼번에 계산하는 방식'
 pubDate: '2026-03-08T00:00:00Z'
 categories: "Semiconductor"

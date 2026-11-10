@@ -1,5 +1,6 @@
 ---
 title: '29. 3D 칩렛(Chiplet) 구조 — 왜 여러 칩을 나눠 만들까?'
+slug: semiconductor/21--30/29-3d-chiplets
 description: '반도체 산업의 미래 핵심 기술'
 pubDate: '2026-01-29T00:00:00Z'
 categories: "Semiconductor"

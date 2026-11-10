@@ -1,5 +1,6 @@
 ---
 title: '2. 트랜지스터(Transistor)'
+slug: semiconductor/1--10/2-transistor
 description: '전기를 켜고 끄는 초미니 전기 스위치'
 pubDate: '2026-01-02T13:00:00Z'
 order: 2

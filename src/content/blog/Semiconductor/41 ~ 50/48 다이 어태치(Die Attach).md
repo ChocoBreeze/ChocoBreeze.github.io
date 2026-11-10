@@ -1,5 +1,6 @@
 ---
 title: '48. 다이 어태치(Die Attach)'
+slug: semiconductor/41--50/48-die-attach
 description: '다이를 바닥판(기판)에 붙이는 과정'
 pubDate: '2026-02-18T00:00:00Z'
 categories: "Semiconductor"

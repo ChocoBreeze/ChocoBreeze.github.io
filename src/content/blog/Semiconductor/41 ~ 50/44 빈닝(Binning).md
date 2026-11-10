@@ -1,5 +1,6 @@
 ---
 title: '44. 빈닝(Binning)'
+slug: semiconductor/41--50/44-binning
 description: '같은 칩인데 왜 어떤 건 ‘더 좋은 제품’으로 팔릴까?'
 pubDate: '2026-02-14T00:00:00Z'
 categories: "Semiconductor"

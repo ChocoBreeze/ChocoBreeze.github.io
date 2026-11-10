@@ -1,5 +1,6 @@
 ---
 title: '49. 와이어 본딩(Wire Bonding)'
+slug: semiconductor/41--50/49-wire-bonding
 description: '칩과 바깥을 가는 금속 실로 연결하는 방식'
 pubDate: '2026-02-19T00:00:00Z'
 categories: "Semiconductor"

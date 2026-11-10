@@ -1,5 +1,6 @@
 ---
 title: '39. 백사이드 전력공급(Backside Power Delivery, PowerVia)'
+slug: semiconductor/31--40/39-backside-power-delivery
 description: '인텔 18A 이야기에서 자주 나오는 그거!'
 pubDate: '2026-02-09T00:00:00Z'
 categories: "Semiconductor"

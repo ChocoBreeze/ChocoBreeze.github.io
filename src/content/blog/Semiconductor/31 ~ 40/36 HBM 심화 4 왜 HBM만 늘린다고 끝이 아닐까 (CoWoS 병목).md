@@ -1,5 +1,6 @@
 ---
 title: '36. HBM 심화 4: 왜 HBM만 늘린다고 끝이 아닐까? (CoWoS 병목)'
+slug: semiconductor/31--40/36-hbm-cowos-bottleneck
 description: 'HBM이 많아도, GPU와 HBM을 붙여주는 고급 패키징(예: CoWoS)이 부족하면 AI 칩을 많이 못 만들어요.'
 pubDate: '2026-02-06T00:00:00Z'
 categories: "Semiconductor"

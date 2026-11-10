@@ -1,5 +1,6 @@
 ---
 title: '34. HBM 심화 2: 왜 HBM은 만들기 어렵고(수율↓), 그래서 공급이 부족해질까?'
+slug: semiconductor/31--40/34-hbm-yield-and-supply
 description: 'HBM은 칩을 여러 장 쌓고(적층) + TSV로 연결해야 해서, 작은 실수 하나가 전체를 불량으로 만들기 쉬워요'
 pubDate: '2026-02-04T00:00:00Z'
 categories: "Semiconductor"

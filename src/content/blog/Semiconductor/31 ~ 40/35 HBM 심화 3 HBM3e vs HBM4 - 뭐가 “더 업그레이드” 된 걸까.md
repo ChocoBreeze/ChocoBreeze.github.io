@@ -1,5 +1,6 @@
 ---
 title: '35. HBM 심화 3: HBM3e vs HBM4 — 뭐가 더 업그레이드 된 걸까?'
+slug: semiconductor/31--40/35-hbm3e-vs-hbm4
 description: 'HBM3e/HBM4는 HBM의 다음 세대’이고, 핵심 업그레이드는 더 빠르게(속도) + 더 많이(대역폭/용량)예요.'
 pubDate: '2026-02-05T00:00:00Z'
 categories: "Semiconductor"

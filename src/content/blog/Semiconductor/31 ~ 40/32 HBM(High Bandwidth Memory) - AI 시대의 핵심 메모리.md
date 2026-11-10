@@ -1,5 +1,6 @@
 ---
 title: '32. HBM(High Bandwidth Memory) — AI 시대의 핵심 메모리'
+slug: semiconductor/31--40/32-hbm
 description: '여러 개의 DRAM 칩을 세로로 쌓아 올리고 초고속 통로로 연결해서, 대역폭을 엄청 크게 만든 메모리'
 pubDate: '2026-02-02T00:00:00Z'
 categories: "Semiconductor"

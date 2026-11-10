@@ -1,5 +1,6 @@
 ---
 title: '56. 메모리 컨트롤러(Memory Controller)'
+slug: semiconductor/51--60/56-memory-controller
 description: 'CPU나 GPU가 메모리와 질서 있게 대화하도록 도와주는 교통정리 담당자'
 pubDate: '2026-02-26T00:00:00Z'
 categories: "Semiconductor"

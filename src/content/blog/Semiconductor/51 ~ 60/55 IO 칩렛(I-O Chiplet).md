@@ -1,5 +1,6 @@
 ---
 title: '55. I/O 칩렛'
+slug: semiconductor/51--60/55-io-chiplet
 description: '바깥과 데이터를 주고받게 해주는 입출력 담당 칩 조각'
 pubDate: '2026-02-25T00:00:00Z'
 categories: "Semiconductor"

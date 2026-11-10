@@ -1,5 +1,6 @@
 ---
 title: '41. 변동성(Variation) — 왜 똑같이 만들었는데 결과가 다를까?'
+slug: semiconductor/41--50/41-variation
 description: '아주 작게 만들수록, 똑같이 만들려고 해도 조금씩 달라지는 현상'
 pubDate: '2026-02-11T00:00:00Z'
 categories: "Semiconductor"

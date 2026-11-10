@@ -1,5 +1,6 @@
 ---
 title: '17. 클린룸(Clean Room)'
+slug: semiconductor/11--20/17-clean-room
 description: '반도체 공장하면 떠오르는 바로 그 "먼지 없는 방"!'
 pubDate: '2026-01-17T00:00:00Z'
 categories: "Semiconductor"

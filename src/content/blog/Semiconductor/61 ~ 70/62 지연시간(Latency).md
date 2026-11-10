@@ -1,5 +1,6 @@
 ---
 title: '62. 지연시간(Latency)'
+slug: semiconductor/61--70/62-latency
 description: '데이터를 요청한 뒤 실제로 도착할 때까지 걸리는 기다리는 시간'
 pubDate: '2026-03-04T00:00:00Z'
 categories: "Semiconductor"

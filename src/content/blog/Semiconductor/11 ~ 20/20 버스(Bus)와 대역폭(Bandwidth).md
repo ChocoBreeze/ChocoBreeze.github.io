@@ -1,5 +1,6 @@
 ---
 title: '20. 버스(Bus)와 대역폭(Bandwidth)'
+slug: semiconductor/11--20/20-bus-and-bandwidth
 description: 'AI·GPU·HBM 이야기에서 꼭 등장하는 핵심 개념!'
 pubDate: '2026-01-20T00:00:00Z'
 categories: "Semiconductor"

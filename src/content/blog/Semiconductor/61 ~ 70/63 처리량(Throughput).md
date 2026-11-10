@@ -1,5 +1,6 @@
 ---
 title: '63. 처리량(Throughput)'
+slug: semiconductor/61--70/63-throughput
 description: '일정한 시간 동안 데이터를 얼마나 많이 처리하거나 보낼 수 있는지'
 pubDate: '2026-03-05T00:00:00Z'
 categories: "Semiconductor"

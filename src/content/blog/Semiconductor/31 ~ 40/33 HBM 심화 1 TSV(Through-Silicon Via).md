@@ -1,5 +1,6 @@
 ---
 title: '33. HBM 심화 1: TSV(Through-Silicon Via)'
+slug: semiconductor/31--40/33-hbm-tsv
 description: 'HBM이 층층이 쌓여도 빠른 진짜 이유'
 pubDate: '2026-02-03T00:00:00Z'
 categories: "Semiconductor"

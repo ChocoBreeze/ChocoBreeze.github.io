@@ -1,5 +1,6 @@
 ---
 title: '38. 지연(Delay)과 RC 지연(RC Delay)'
+slug: semiconductor/31--40/38-rc-delay
 description: '길이 있는데 왜 느려질까?'
 pubDate: '2026-02-08T00:00:00Z'
 categories: "Semiconductor"

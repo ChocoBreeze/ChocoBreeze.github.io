@@ -1,5 +1,6 @@
 ---
 title: '31. CPU vs GPU — 내부 구조가 왜 다를까?'
+slug: semiconductor/31--40/31-cpu-vs-gpu
 description: 'CPU는 똑똑한 소수 정예, GPU는 단순하지만 엄청나게 많은 병렬 인력을 가진 구조'
 pubDate: '2026-02-01T00:00:00Z'
 categories: "Semiconductor"

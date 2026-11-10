@@ -1,5 +1,6 @@
 ---
 title: '65. 병렬처리(Parallel Processing)'
+slug: semiconductor/61--70/65-parallel-processing
 description: '여러 일을 한 번에 동시에 나눠서 처리하는 방법'
 pubDate: '2026-03-07T00:00:00Z'
 categories: "Semiconductor"

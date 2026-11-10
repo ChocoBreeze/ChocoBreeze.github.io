@@ -1,5 +1,6 @@
 ---
 title: '37. 인터커넥트(Interconnect) — 칩 안의 ‘전기 길(배선)'
+slug: semiconductor/31--40/37-interconnect
 description: '칩 안에서 트랜지스터끼리 신호를 주고받게 해주는 초미세 전기선(길)'
 pubDate: '2026-02-07T00:00:00Z'
 categories: "Semiconductor"

@@ -1,5 +1,6 @@
 ---
 title: '15. 트랜지스터 구조 — FinFET vs GAAFET'
+slug: semiconductor/11--20/15-finfet-vs-gaafet
 description: '공정 노드와 함께 항상 등장하는 핵심 기술'
 pubDate: '2026-01-15T00:00:00Z'
 categories: "Semiconductor"

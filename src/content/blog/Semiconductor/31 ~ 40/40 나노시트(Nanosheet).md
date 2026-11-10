@@ -1,5 +1,6 @@
 ---
 title: '40. 나노시트(Nanosheet)'
+slug: semiconductor/31--40/40-nanosheet
 description: 'GAAFET의 대표 형태라고 생각하면 돼!'
 pubDate: '2026-02-10T00:00:00Z'
 categories: "Semiconductor"

@@ -1,5 +1,6 @@
 ---
 title: '14. HBM + 인터포저 + GPU의 전체 구조'
+slug: semiconductor/11--20/14-hbm-interposer-gpu-structure
 description: '2.5D 패키징 구조, CoWoS 같은 기술!'
 pubDate: '2026-01-14T00:00:00Z'
 categories: "Semiconductor"

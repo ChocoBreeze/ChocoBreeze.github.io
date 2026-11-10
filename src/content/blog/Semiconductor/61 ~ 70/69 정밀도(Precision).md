@@ -1,5 +1,6 @@
 ---
 title: '69. 정밀도(Precision) — FP32, FP16, BF16, FP8'
+slug: semiconductor/61--70/69-precision
 description: '숫자를 얼마나 자세하고 정교하게 표현하느냐를 뜻하는 개념'
 pubDate: '2026-03-11T00:00:00Z'
 categories: "Semiconductor"

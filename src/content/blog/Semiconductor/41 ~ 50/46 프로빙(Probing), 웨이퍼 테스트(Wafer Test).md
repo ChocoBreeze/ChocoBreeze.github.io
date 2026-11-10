@@ -1,5 +1,6 @@
 ---
 title: '46. 프로빙(Probing) / 웨이퍼 테스트(Wafer Test)'
+slug: semiconductor/41--50/46-wafer-probing
 description: '칩을 자르기 전에 먼저 시험 보는 단계'
 pubDate: '2026-02-16T00:00:00Z'
 categories: "Semiconductor"

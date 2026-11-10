@@ -1,5 +1,6 @@
 ---
 title: '61. 메모리 풀링(Memory Pooling)'
+slug: semiconductor/61--70/61-memory-pooling
 description: '여러 CPU와 GPU가 큰 메모리 창고를 함께 나눠 쓰는 방식'
 pubDate: '2026-03-03T00:00:00Z'
 categories: "Semiconductor"

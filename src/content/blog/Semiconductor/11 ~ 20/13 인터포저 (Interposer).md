@@ -1,5 +1,6 @@
 ---
 title: '13. AI 반도체 구조 — 인터포저(Interposer)'
+slug: semiconductor/11--20/13-interposer
 description: 'HBM과 GPU를 연결해주는 밑판 같은 존재'
 pubDate: '2026-01-13T00:00:00Z'
 categories: "Semiconductor"

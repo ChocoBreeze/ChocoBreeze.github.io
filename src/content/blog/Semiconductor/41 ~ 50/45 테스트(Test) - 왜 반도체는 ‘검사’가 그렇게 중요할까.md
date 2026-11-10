@@ -1,5 +1,6 @@
 ---
 title: '45. 테스트(Test) — 왜 반도체는 검사가 그렇게 중요할까?'
+slug: semiconductor/41--50/45-test
 description: '반도체 테스트는 칩이 제대로 동작하는지 확인해서 불량을 걸러내는 검사예요'
 pubDate: '2026-02-15T00:00:00Z'
 categories: "Semiconductor"

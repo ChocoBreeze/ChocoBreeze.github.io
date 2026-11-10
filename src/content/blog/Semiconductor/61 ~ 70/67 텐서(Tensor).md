@@ -1,5 +1,6 @@
 ---
 title: '67. 텐서(Tensor)'
+slug: semiconductor/61--70/67-tensor
 description: '행렬보다 더 큰 차원까지 담을 수 있는 숫자 데이터 묶음'
 pubDate: '2026-03-09T00:00:00Z'
 categories: "Semiconductor"
