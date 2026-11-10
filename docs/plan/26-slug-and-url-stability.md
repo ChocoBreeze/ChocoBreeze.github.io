@@ -49,7 +49,7 @@ GitHub Pages 정적 배포는 301 응답을 구성할 수 없으므로, 이전 �
 3. [완료] 중복 세그먼트 41편과 `readme` 세그먼트 15편, 합계 56편에 `slug`를 백필하고 이전 경로 56개를 매핑에 추가했습니다. 백필 전에 56개 경로를 가리키는 내부 링크가 없음을 확인했습니다(0건).
 4. [완료] 2026-11-10에 비ASCII 세그먼트 92편(ETF 4, Reports 34, Semiconductor 54)에 영문 `slug`를 백필하고 이전 경로 92개를 매핑에 추가했습니다. 명명 규칙과 전체 목록은 [26-slug-proposal.md](26-slug-proposal.md)에 있습니다.
 5. [완료] `check:build-artifacts`가 매핑별로 리다이렉트 페이지 생성, 대상 경로 일치, `robots noindex`, canonical, 대상 페이지 존재를 검사하고, 자체 매핑의 자기참조·중복 출발·연쇄도 검사합니다. Astro가 리다이렉트 페이지에 `Redirecting to: ...` 제목을 쓰므로 사이트 제목 규칙에서는 제외합니다.
-6. [미착수] 4단계 완료로 경로 파생 경고가 0건이 되어 오류로 승격할 수 있습니다. 승격하면 새 글이 `slug` 없이 한글 파일명만으로 커밋될 때 막히므로, `new:post`를 쓰지 않고 글을 만드는 경우가 있는지 보고 판단합니다.
+6. [완료] 2026-11-11에 경로 파생 경고를 오류로 승격했습니다. `slug` 없이 비ASCII·중복·`readme`/`index` 세그먼트가 생기는 글은 `check:content`와 pre-commit hook에서 막힙니다. `new:post`와 Market Brief 명령은 `slug`를 넣고, `/leetcode`는 영문 파일명을 쓰므로 영향이 없습니다. 접힌 `DERIVED ROUTES` 요약과 `--report-derived-routes` 옵션은 제거했습니다.
 
 ## 테스트 설계
 
