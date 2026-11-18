@@ -175,7 +175,7 @@ GitHub Pages deployment currently uses:
 
 `.github/workflows/ci.yml` runs the same checks on pull requests, minus `report:search-size`.
 
-`.nvmrc` is the deployment version source; keep it on Node `22.12.0+` for Astro 7 compatibility and keep `package.json`'s `engines` constraint aligned.
+`.nvmrc` is the deployment version source; keep it on Node `22.23.4+` (the minimum Astro 7.4.12 accepts) and keep `package.json`'s `engines` constraint aligned.
 
 ## Recommended Workflow
 

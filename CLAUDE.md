@@ -120,7 +120,7 @@ Posts without their own `heroImage`/`image` get an auto-generated OG card at `/o
 
 ### Deployment
 
-Push to `main` triggers GitHub Actions (`deploy.yml`) which builds with `npm run build` and deploys `./dist` to GitHub Pages. The Node version is single-sourced in `.nvmrc` (both workflows read it via `node-version-file`); bump that one file to upgrade, keeping it on Node 22.12+ for Astro 7 compatibility (`package.json`'s `engines` field must stay aligned).
+Push to `main` triggers GitHub Actions (`deploy.yml`) which builds with `npm run build` and deploys `./dist` to GitHub Pages. The Node version is single-sourced in `.nvmrc` (both workflows read it via `node-version-file`); bump that one file to upgrade, keeping it on Node 22.23.4+, the minimum Astro 7.4.12 accepts (`package.json`'s `engines` field must stay aligned).
 
 ## Operational guides
 
