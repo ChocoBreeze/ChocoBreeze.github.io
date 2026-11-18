@@ -10,6 +10,7 @@ npm run build         # Production build (output: ./dist)
 npm run preview       # Preview the built site locally
 npm run check         # TypeScript/Astro type-check
 npm run check:content # Validate all blog post frontmatter and content quality
+npm run check:audit   # npm audit gate used by CI/deploy (high/critical fail unless excepted)
 npm test              # Run the Node unit tests in scripts/test/
 npm run test:e2e      # Playwright browser smoke tests (e2e/), needs a build first
 npm run new:post      # Scaffold a new blog post (see below)
@@ -104,7 +105,7 @@ Posts without their own `heroImage`/`image` get an auto-generated OG card at `/o
 - Posts without `slug` whose file path yields a fragile URL (non-ASCII segment, repeated last segment, `readme`/`index` segment) — an error, not a warning
 - Unreferenced and oversized (over 1 MiB) image assets, reported as warnings; `npm run optimize:images` re-encodes the oversized ones
 
-`ci.yml` runs on every pull request: `npm ci` → `npm audit --audit-level=high` → `npm test` → `check:content` → `astro check` → `build` → `check:build-artifacts -- --report-budgets` → `test:e2e` (Chromium). `deploy.yml` reruns that sequence and adds `report:search-size` after the browser tests before publishing. The user-wide Git `pre-commit` dispatcher invokes this repository's `scripts/hooks/pre-commit` when it exists, so a commit with a broken post will fail — fix the reported errors rather than bypassing the hook. The global `commit-msg` hook validates AI provenance but does not generate metadata. This repository does not configure `core.hooksPath` or a `prepare` npm script.
+`ci.yml` runs on every pull request: `npm ci` → `npm run check:audit` (`npm audit` that fails on high/critical advisories except the expiring exceptions in `scripts/lib/audit-policy.mjs`) → `npm test` → `check:content` → `astro check` → `build` → `check:build-artifacts -- --report-budgets` → `test:e2e` (Chromium). `deploy.yml` reruns that sequence and adds `report:search-size` after the browser tests before publishing. The user-wide Git `pre-commit` dispatcher invokes this repository's `scripts/hooks/pre-commit` when it exists, so a commit with a broken post will fail — fix the reported errors rather than bypassing the hook. The global `commit-msg` hook validates AI provenance but does not generate metadata. This repository does not configure `core.hooksPath` or a `prepare` npm script.
 
 ### Git commits and AI provenance
 

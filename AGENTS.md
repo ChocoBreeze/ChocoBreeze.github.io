@@ -169,7 +169,7 @@ Use this checklist before committing non-trivial changes.
 GitHub Pages deployment currently uses:
 
 - `actions/setup-node@v4` with `node-version-file: .nvmrc`
-- `npm ci`, `npm audit --audit-level=high`, `npm test`, `npm run check:content`, `npm run check`, and `npm run build`
+- `npm ci`, `npm run check:audit`, `npm test`, `npm run check:content`, `npm run check`, and `npm run build`
 - `npm run check:build-artifacts -- --report-budgets`, then Chromium install and `npm run test:e2e`, then `npm run report:search-size`
 - `actions/upload-pages-artifact@v3` and `actions/deploy-pages@v4`
 

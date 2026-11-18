@@ -9,6 +9,7 @@
 		"dev": "astro dev",
 		"build": "astro build",
 		"check": "astro check",
+		"check:audit": "node scripts/check-audit.mjs",
 		"check:content": "node scripts/check-content.mjs",
 		"check:build-artifacts": "node scripts/check-build-artifacts.mjs",
 		"test:e2e": "playwright test",
