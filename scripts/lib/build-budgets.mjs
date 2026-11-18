@@ -22,7 +22,8 @@ export const BUILD_BUDGETS = [
 	{ key: 'blog', label: 'post pages', perPost: 70_000, measured: 28_267_593 },
 	// Fixed assets: these must not grow with the corpus.
 	{ key: '_astro', label: 'bundled CSS and JS', total: 5_500_000, measured: 4_182_835 },
-	{ key: 'images', label: 'public images', total: 8_500_000, measured: 7_274_306 },
+	// 2026-11-04: lowered after removing unused Okeydokey images (plan 25 step 6).
+	{ key: 'images', label: 'public images', total: 2_100_000, measured: 1_704_332 },
 	{ key: 'katex', label: 'vendored KaTeX', total: 400_000, measured: 282_654 },
 	// Search indexes. Keep these in step with `npm run report:search-size`.
 	{ key: 'search.json', label: 'full search index', total: 5_500_000, measured: 4_455_007 },
